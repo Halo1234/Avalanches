@@ -13,7 +13,7 @@
 @using_mod_message
 @log message="o—Íæ‚ğ ModMessage ‚É•ÏX‚µ‚Ü‚·B"
 
-;@cr_handling !ignore
+@cr_handling ignore
 
 @line_parameters line_size=24
 
