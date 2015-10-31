@@ -1,0 +1,281 @@
+/*
+ * $Revision: 88 $
+**/
+
+
+/*! \brief 拡張構文を処理します。
+**/
+class GSyntax
+{
+	var tagname_ = '';				// 元のタグ名
+
+	var elementConvertNames_ = [];	// 変換すべき属性名のリスト
+	var patternNames_ = [];			// パターン生成関数を持つ属性名のリスト
+	var groupFlagNames_ = [];		// グループ名のリスト
+
+	var elementConvert_ = %[];
+	var pattern_ = %[];
+	var groupFlag_ = %[];
+
+	var cacheArray_ = [];
+
+	function GSyntax(tagname)
+	{
+		tagname_ = tagname;
+	}
+
+	function finalize()
+	{
+	}
+
+	/*! \brief 属性変換を設定します。
+	**/
+	function setElementConvert(name, convert*)
+	{
+		var list = elementConvertNames_;
+		var econv = elementConvert_;
+
+		dm(@">>>> &name; の変換指定。");
+
+		var tokens, key;
+		for(var i = 0; i < convert.count; i++)
+		{
+			tokens = convert[i].split(/->/);
+			if(tokens.count > 2)
+			{
+				throw new GRuntimeError(
+					"変換指定 '->' が複数回現れました。\n" +
+					@"'&convert[i];'\n"
+				);
+			}
+
+			key = tokens[0];
+			econv[key] = [] if econv[key] === void;
+
+			var ctx = void;
+			for(var j = 0; j < econv[key].count; j++)
+			{
+				if(econv[key][j].target == name)
+				{
+					ctx = econv[key][j];
+					break;
+				}
+			}
+			if(ctx === void)
+				econv[key].push(ctx = %[]);
+
+			with(ctx)
+			{
+				if(tokens.count == 2)
+				{
+					.target = name;
+					.value = tokens[1];
+				}
+				else
+				{
+					.target = name;
+					.value = tokens[0];
+				}
+
+				dm(@"'&key;' は &.target;='&.value;' に変換されます。");
+			}
+
+			list.add(key) if list.find(key) == -1;
+		}
+
+		dm("<<<<");
+	}
+
+	/*! \brief パターン変換を設定します。
+	**/
+	function setPattern(name, pattern)
+	{
+		var ret = [];
+
+		dm(@">>>> 生成関数 &name; の定義");
+		dm(@"入力されたパターン文字列：'&pattern;'");
+
+		try {
+			// 簡単な構文チェック
+			var ltFlag = false;
+			var colonFlag = false;
+
+			for(var i = 0; i < pattern.length; i++)
+			{
+				if(pattern[i] == '<')
+				{
+					if(colonFlag)
+						throw new GRuntimeError('パターン指定 :～: の中に < は使えません。');
+					if(ltFlag)
+						throw new GRuntimeError('パターン指定 <> はネストする事はできません。');
+					ltFlag = true;
+				}
+				else
+				if(pattern[i] == '>')
+				{
+					if(!ltFlag)
+						throw new GRuntimeError('余分な > があります。');
+					if(i >= 1 && pattern[i - 1] == '<')
+						throw new GRuntimeError('名前の無い置換指定があります。');
+					ltFlag = false;
+				}
+				else
+				if(pattern[i] == ':')
+				{
+					if(ltFlag)
+						throw new GRuntimeError('パターン指定 <～> の中に : は使えません。');
+					if(colonFlag && i >= 1 && pattern[i - 1] == ':')
+						throw new GRuntimeError('名前の無い置換指定があります。');
+					colonFlag = !colonFlag;
+				}
+			}
+			if(ltFlag)
+				throw new GRuntimeError('< で開始されたパターン指定が > で閉じられていません。');
+			if(colonFlag)
+				throw new GRuntimeError(': が閉じられていない部分があります。');
+
+			var reg = new RegExp('<([^<>]*)>', 'g');
+			var src = "function (s, p) {\n";
+			var tokens = cacheArray_;
+			var block = function (m) {
+				var token = m[1];
+				token = token.toLowerCase();
+				cacheArray_.add(token);
+				return "&p['" + token + "'];";
+			} incontextof this;
+
+			// まず <name> 形式から p['&name;'] 形式に変換する。
+			tokens.clear();
+			pattern = pattern.replace(reg, block);
+
+			// <～> 指定は絶対指定なので属性が存在しない場合は void でなければならない。
+			for(var i = 0; i < tokens.count; i++)
+				src += @"if(p['&tokens[i];'] === void) return void;\n"; 
+			ret.push(tokens*);
+
+			// 次に :name: 形式から p['&name;'] 形式に変換する。
+			reg.compile(":([^:]*):", "g");
+			tokens.clear();
+			pattern = pattern.replace(reg, block);
+			ret.push(tokens*);
+
+			src += @'return @"&pattern;";\n};';
+
+			dm(@"生成関数：\n&src;\n<<<<");
+
+			pattern_[name] = ((Scripts.eval(src)) incontextof global);
+
+			with(patternNames_)
+				.add(name) if .find(name) == -1;
+		} catch(e) {
+			throw new GRuntimeError(
+				@"&e.message;\n\n" +
+				pattern
+			);
+		}
+
+		return ret;
+	}
+
+	/*! \brief グループに属性を追加する。
+	**/
+	function setGroup(name, elements*)
+	{
+		var gf = groupFlag_;
+
+		for(var i = 0; i < elements.count; i++)
+		{
+			gf[elements[i]] = [] if gf[elements[i]] === void;
+			with(gf[elements[i]])
+				.add(name) if .find(name) == -1;
+		}
+
+		with(groupFlagNames_)
+			.add(name) if .find(name) == -1;
+	}
+
+	/*! \brief 変換処理本体です。
+	 *
+	 * \param [input] 変換元の辞書配列を指定します。
+	 * \param [output:input:] 変換先が入力と違う場合に辞書配列を指定します。
+	**/
+	function translate(input, output = input)
+	{
+		var tick = System.getTickCount();
+		var econv = elementConvert_;
+		var ptrnns = patternNames_;
+		var ptrn = pattern_;
+		var arr = [];
+		var c, key, value;
+
+		dm(@">>>>[&tagname;] tag translate.");
+
+		arr.assign(input);
+		c = arr.count;
+
+		for(var i = 0; i < c; i += 2)
+		{
+			// グループフラグ
+			outputGroupFlag_private_(key = arr[i], output);
+
+			if(econv[key] === void)
+				continue;
+
+			// 属性変換
+			for(var j = 0; j < econv[key].count; j++)
+			{
+				with(econv[key][j])
+				{
+					output[.target] = .value;
+					dm(@"'&key;' を '&.target;=&.value;' に変換しました。");
+				}
+			}
+		}
+
+		// パターン
+		c = ptrnns.count;
+		for(var i = 0; i < c; i++)
+		{
+			key = ptrnns[i];
+
+			// すでに属性が存在する、またはパターンが無ければ何もしない。
+			if(output[key] !== void || ptrn[key] === void)
+				continue;
+
+			value = ptrn[key](this, input);
+			if(value !== void)
+			{
+				output[key] = value;
+				dm(@"'&key;=&value;' を生成しました。");
+
+				// グループフラグ
+				outputGroupFlag_private_(key, output);
+			}
+		}
+
+		dm(@"GSyntax#translate() processed in &System.getTickCount() - tick; ms.");
+
+		dm('<<<<');
+	}
+
+	function outputGroupFlag_private_(name, output)
+	{
+		var gf = groupFlag_[name];
+
+		if(gf !== void)
+		{
+			for(var i = 0; i < gf.count; i++)
+			{
+				output[gf[i]] = 0 if output[gf[i]] === void;
+				output[gf[i]]++;
+			}
+		}
+	}
+
+	property tagname
+	{
+		getter		{ return tagname_; }
+	}
+}
+
+

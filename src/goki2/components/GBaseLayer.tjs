@@ -1,0 +1,29 @@
+/*
+ * $Revision: 266 $
+**/
+
+
+/**/
+class GBaseLayer extends GLayer
+{
+	/**/
+	function GBaseLayer(window, parent, handler)
+	{
+		super.GLayer(...);
+
+		type = ltOpaque;
+	}
+
+	/**/
+	function assign(src)
+	{
+		// NOTE: •\¦ó‘Ô‚¾‚¯‚Í“¯Šú‚³‚¹‚È‚¢B
+		var backup = visible;
+
+		super.assign(src);
+
+		visible = backup;
+	}
+}
+
+

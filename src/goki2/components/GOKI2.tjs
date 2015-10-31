@@ -1,0 +1,72 @@
+/*
+ * $Revision: 343 $
+**/
+
+
+// NOTE: GOKI2 例外処理機構の登録。
+try {
+	Scripts.execStorage('GOKI2ExceptionControls.tjs');
+} catch(e) {
+	abort(
+		"GOKI2 例外処理機構の登録に失敗しました。\n" +
+		"強制終了します。\n" +
+		"\n" +
+		e.message
+	);
+}
+
+// NOTE: GOKI2 ユーティリティの読み込み。
+Scripts.execStorage('GOKI2Utils.tjs');
+
+// NOTE: 必要なファイルを全て読み込む。
+{
+	var src = [
+		'GContainer', 'GIterator',
+		'GModuleContainer', 'GModule',
+		'GLayer', 'GBaseLayer',
+		'GHyperTextLayer', 'GMessageLayer', 'GHistoryLayer',
+		'GLayerColorCorrection', 'GLayerConductor',
+		'GLayerContainer', 'GLayerIterator',
+		'GWidgetLayer',
+		'GSyntax', 'GConductor',
+		'GLocation', 'GTemporaryLocation',
+		'GWaveSoundBuffer', 'GWaveSoundBuffer2',
+		'GSoundBufferContainer', 'GSoundBufferIterator',
+		'GMenuItem', 'GMenuModule',
+		'GWindow'
+	];
+
+	if(System.getArgument('-goki2-on-demand-loading') == 'yes')
+	{
+		for(var i = 0; i < src.count; i++)
+			loadClassOnDemand(src[i]);
+	}
+	else
+	{
+		for(var i = 0; i < src.count; i++)
+			loadClass(src[i]);
+	}
+}
+
+/*! \var anotherCycle
+ * \brief グローバルトリガ
+**/
+global.anotherCycle = new GAnotherExclusiveCycle();
+
+/*! \var GMainWindow
+ * \brief 最初に作成されるメインウインドウクラスです。
+ *
+ * 最初に作成される Window クラスオブジェクトは GMainWindow です。
+ * これは初期状態では GWindow への参照がセットされています。
+ * これを変更したい場合は以下のようにしてください。
+ *
+ * example:
+ *  GMainWindow = UserWindowClass;
+**/
+var GMainWindow = GWindow;
+
+// NOTE: この中では GOKI2 の定義の変更などができます。
+if(Storages.isExistentStorage('Override.tjs'))
+	loadTJS('Override.tjs');
+
+

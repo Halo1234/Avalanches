@@ -1,0 +1,313 @@
+/**
+ * $Author$
+ * $Revision$
+**/
+
+/**/
+class ModADV extends GModule
+{
+	var characterNames_ = [];
+	var mobCharacterNames_ = [];
+	var characters_ = %[];
+
+	var cvLayerUsers_ = [];
+
+	var topmostShownCGLayerIndex_ = -1;
+
+	var timeZone_ = [];
+	var currentTimeZone_ = -1;
+	var standTimeZone_ = -1;
+
+	var stageNames_ = [];
+	var stageContext_ = %[];
+
+	var defaultCharacterName = '';
+
+	var lastCharacterName_ = '';				// 最後に setCharacterImageByElm() で操作したキャラ名
+	var activeCharacterName_ = '';				// 現在テキストを出力しているキャラ名
+	var inNextChPlayVoice_ = false;
+	var lastPlayedVoiceCharacterName_ = '';
+
+	function ModADV(container, name, requiredModules = true)
+	{
+		super.GModule(...);
+
+		if(requiredModules)
+		{
+			container.load('ModMessage');
+			container.load('ModImage');
+			container.load('ModSound');
+		}
+
+		with(container)
+		{
+			if(.modSound.systemSoundBuffers.count < 3)
+				.modSound.systemSoundBuffers.count = 3;
+			if(.modSound.voiceBuffers.count < 1)
+				.modSound.voiceBuffers.count = 1;
+			if(.modMessage.messageLayers.count < 1)
+				.modMessage.messageLayers.count = 1;
+		}
+	}
+
+	/**/
+	function createExtensionTagHandlers()
+	{
+		return %[
+
+			/* @using_mod_adv */
+			'using_mod_adv' => usingModADV,
+
+			/* @not_using_mod_adv */
+			'not_using_mod_adv' => notUsingModADV,
+
+			/* @make_character */
+			'make_character' => makeCharacterByElm,
+
+			/* @ch_mod_adv */
+			'ch_mod_adv' => function (elm, c) {
+				if(c.lastProcessedTag == 'r_mod_adv')
+				{
+					if(!container.modMessage.current.reline())
+						c.pendingTag('p');
+					c.pendingTag(elm);
+					return;
+				}
+				if(activeCharacterName_ != lastCharacterName_)
+				{
+					c.pendingTag("activate_character", elm);
+					return;
+				}
+				with(container.modMessage)
+				{
+					var wait = .current.output(elm);
+
+					if(wait)
+						return .outputInterval;
+					else
+						c.pendingTag('p', elm);
+				}
+			} incontextof this,
+
+			/* @r_mod_adv */
+			'r_mod_adv' => function (elm, c) {
+				if(container.modMessage.current.outputting)
+				{
+					if(c.lastProcessedTag == 'r_mod_adv' && +elm.eol)
+						c.pendingTag('p');
+				}
+			} incontextof this,
+
+			/* @p_mod_adv */
+			'p_mod_adv' => function (elm, c) {
+				c.interruptTag('end_of_sentence');
+				with(container.modMessage)
+				{
+					.cancelSkip() if .skipping && !.longSkipping;
+					if(.longSkipping)
+						return "breath";
+					.current.showPageGlyph();
+					c.waitSignal(%[left_click : .current.hidePageGlyph]);
+				}
+			} incontextof this,
+
+			/* @charcter */
+			'character' => setCharacterImageByElm,
+
+			/* @activate_character */
+			'activate_character' => function (elm, c) {
+				var name = (elm.name === void ? lastCharacterName_ : elm.name);
+				activateCharacter(name);
+				if(inNextChPlayVoice_)
+				{
+					c.interruptTag(%[tagname : 'play_character_voice', name : activeCharacterName_]);
+					inNextChPlayVoice_ = false;
+				}
+				with(container.modMessage)
+				{
+					if(!.current.visible)
+					{
+						c.interruptTag("show_current_message_layer");
+					}
+				}
+			} incontextof this,
+
+			/* @show_current_message_layer */
+			'show_current_message_layer' => function (elm) {
+				with(container.modMessage)
+				{
+					if(.current == null)
+						throw new GRuntimeError("カレントメッセージレイヤが設定されていません。");
+					if(.skipping)
+						.current.visible = true;
+					else
+						.current.show();
+				}
+			} incontextof this,
+
+			/* @play_character_voice */
+			'play_character_voice' => function (elm) {
+			} incontextof this,
+
+			/* @stop_character_voice */
+			'stop_character_voice' => function (elm) {
+			} incontextof this,
+
+			/* @wait_character_voice */
+			'wait_character_voice' => function (elm) {
+			} incontextof this,
+
+			/**/
+			'end_of_sentence' => function (elm, c) {
+				with(container.modMessage)
+				{
+					dm('end_of_sentence');
+					c.interruptTag(%[tagname : 'stop_character_voice', name : activeCharacterName_], 'er');
+					// スキップ中は何もする必要はない
+					if(.skipping)
+						return 'next';
+					if(.autoMode)
+					{
+						var char = getCharacter(activeCharacterName_);
+						if(char !== void)
+						{
+							var obj = window.modules.exSound.voiceBuffers.at(0);
+							if(obj.playing)
+							{
+								c.interruptTag(%[tagname : 'wait_character_voice', index : 0], elm);
+								return;
+							}
+						}
+						return .autoPageWait;
+					}
+				}
+			} incontextof this,
+
+		];
+	}
+
+	/**/
+	function usingModADV()
+	{
+		with(window.conductor)
+		{
+			.setRedirectTag('ch', 'ch_mod_adv');
+			.setRedirectTag('ruby', 'ruby_mod_message');
+			.setRedirectTag('r', 'r_mod_adv');
+			.setRedirectTag('p', 'p_mod_adv');
+			.setRedirectTag('er', 'erase_message');
+			.setRedirectTag('cm', 'clear_message_layer');
+		}
+	}
+
+	/**/
+	function notUsingModADV()
+	{
+		with(window.conductor)
+		{
+			.deleteRedirectTag('ch');
+			.deleteRedirectTag('ruby');
+			.deleteRedirectTag('r');
+			.deleteRedirectTag('p');
+			.deleteRedirectTag('er');
+			.deleteRedirectTag('cm');
+		}
+	}
+
+	/**/
+	function makeCharacterByElm(elm)
+	{
+		var name = elm.name;
+
+		if(name == '')
+			throw new GRuntimeError("キャラクターを編集しようとしましたが名前が指定されていません。");
+
+		var char = getCharacter(name);
+
+		if(char === void)
+		{
+			char = %[
+				subDirectoryName : 'fgimage', partOfDirectoryPath : void, storagePrefix : void,
+				name : name, actualViewingNameString : 'none', mob : false,
+				pose : void, dress : void, face : void, iconStorage : void,
+				voiceSubDirectoryName : 'sound', voiceStoragePrefix : void,
+				autoVoice : true, voiceGroup : 'others', voice : 0,
+				cvLayerIndex : void, messageLevel : 0,
+				noImage : true, noVoice : true, noIcon : true
+			];
+
+			window.conductor.setRedirectTag(name, 'character');
+
+			characters_[name] = char;
+		}
+
+		if(GObjectUtils.getBoolean(elm, 'mob'))
+		{
+			char.mob = true;
+			if(mobCharacterNames_.find(name) == -1)
+			{
+				//dm(@"Add mob character: &name;");
+
+				mobCharacterNames_.push(name);
+				characterNames_.remove(name);
+			}
+		}
+		else
+		{
+			char.mob = false;
+			if(characterNames_.find(name) == -1)
+			{
+				characterNames_.push(name);
+				mobCharacterNames_.remove(name);
+			}
+		}
+
+		char.subDirectoryName = elm.sub_directory_name if elm.sub_directory_name !== void;
+		char.partOfDirectoryPath = elm.part_of_directory_path if elm.part_of_directory_path !== void;
+		char.actualViewingNameString = elm.actual_viewing_name_string if elm.actual_viewing_name_string !== void;
+		char.iconStorage = elm.icon_storage if elm.icon_storage !== void;
+		char.voiceSubDirectoryName = elm.voice_sub_directory_name if elm.voice_sub_directory_name !== void;
+		char.atuoVoice = GObjectUtils.getBoolean(elm, 'auto_voice') if elm.auto_voice !== void;
+		char.voiceGroup = elm.voice_group if elm.voice_group !== void;
+		char.noImage = !GObjectUtils.getBoolean(elm, 'image') if GObjectUtils.hasValue(elm, 'image');
+		char.noVoice = !GObjectUtils.getBoolean(elm, 'voice') if GObjectUtils.hasValue(elm, 'voice');
+		char.noIcon = !GObjectUtils.getBoolean(elm, 'icon') if GObjectUtils.hasValue(elm, 'icon');
+	}
+
+	/**/
+	function getCharacter(name)
+	{
+		if(name == "")
+			return void;
+		return characters_[name];
+	}
+
+	/**/
+	function setCharacterImageByElm(elm)
+	{
+		var name = elm.tagname;
+
+		lastCharacterName_ = name;
+	}
+
+	/**/
+	function activateCharacter(name)
+	{
+		var modMessage = container.modMessage;
+		var char = getCharacter(name);
+
+		// カレント設定
+		modMessage.setCurrentLayer(char.messageLevel);
+
+		// カレントの設定
+		with(modMessage.current)
+		{
+		}
+
+		// TODO: 履歴の設定
+
+		activeCharacterName_ = name;
+	}
+}
+
+

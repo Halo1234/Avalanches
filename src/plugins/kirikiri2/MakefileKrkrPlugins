@@ -1,0 +1,20 @@
+#/**
+# * $Revision: 144 $
+#**/
+
+SRCDIR = $(KRKRPLUGINDIR)/../..
+include $(SRCDIR)/MakefileCommon
+
+INCLUDES = -I$(INCLUDEDIR) -I$(KRKRPLUGINDIR) -I$(KRKRPLUGINDIR)/ncbind
+CPPFLAGS = --input-charset=CP932 --exec-charset=CP932 -D_WIN32_IE=0x0300 -D_FILE_OFFSET_BITS=64 -D_UNICODE -DUNICODE -D_WINDLL -DWIN32 -D_WINDOWS -D_USRDLL
+CXXFLAGS = -O2
+
+NCBINDOBJ = $(KRKRPLUGINDIR)/ncbind/ncbind.o
+TPSTUBOBJ = $(KRKRPLUGINDIR)/tp_stub.o
+
+ifdef PROFILE
+CXXFLAGS += -pg -g -gstub
+LDFLAGS += -pg
+endif
+
+

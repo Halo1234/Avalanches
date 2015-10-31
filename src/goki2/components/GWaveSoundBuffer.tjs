@@ -1,0 +1,211 @@
+/*
+ $Author: halo $
+ $Revision: 339 $
+*/
+
+
+/*! \brief サウンドバッファ
+**/
+class GWaveSoundBuffer extends WaveSoundBuffer
+{
+	var name = '';
+	var handler = void;
+
+	var currentStorage_ = '';
+	var fadeStatus_ = 'stable';		//  'stable': フェードしていない
+									//    'fade': フェード中
+									// 'fadeout': フェードアウト中
+
+	/**/
+	function GWaveSoundBuffer(owner, handler = void)
+	{
+		super.WaveSoundBuffer(owner);
+		this.handler = handler;
+		name = GObjectUtils.getClassName(this);
+	}
+
+	/**/
+	function fadein(time, delay = 0)
+	{
+		volume = 0;
+		play();
+		fade(100000, time, delay);
+	}
+
+	/**/
+	function fadeout(time, delay = 0)
+	{
+		fade(0, time, delay);
+		fadeStatus_ = 'fadeout';
+	}
+
+	/*! \brief 外部イベント通知。
+	 *
+	 * \param [message] イベント名を文字列で指定します。
+	 * \param [elements] ハンドラに渡す引数を指定します。
+	 *
+	 * \return ハンドラが返す値を返します。
+	**/
+	function callHandler(message, elements = void)
+	{
+		var h = handler;
+
+		if(h === void)
+			return void;
+
+		return h(this, message, elements);
+	}
+
+	/**/
+	function callHandlerAtNextCycle(message, elements = void)
+	{
+		anotherCycle.add(callHandler, message, elements);
+	}
+
+	/**/
+	function store(tick)
+	{
+		var dic = %[
+			name : name, currentStorage : currentStorage_, looping : looping
+		];
+
+		if(!looping || fadeStatus_ == 'fadeout')
+			dic.status = 'stop';
+		else
+			dic.status = status;
+
+		return dic;
+	}
+
+	/**/
+	function restore(dic, tick)
+	{
+		if(dic.currentStorage != '')
+			open(dic.currentStorage);
+		else
+			currentStorage_ = '';
+
+		looping = dic.looping;
+
+		// NOTE: フェードアウト後は必ず 0 になっているのでこのタイミングで元に戻しておく。
+		volume = 100000;
+
+		(dic.status == 'play' ? play : stop)();
+	}
+
+	/**/
+	function open(storage)
+	{
+		volume = 100000;
+
+		if(currentStorage_ == storage)
+			return;
+
+		var actualStorageName = getExistentStorageNameAndExtension(storage, '', soundFileExtensions*);
+
+		super.open(actualStorageName);
+
+		currentStorage_ = storage;
+	}
+
+	/**/
+	function play()
+	{
+		try {
+			stopFade() if fadeStatus_ == 'fadeout';
+			super.play();
+		} catch (e) {
+			worn(@"&currentStorage_; の再生に失敗しました。");
+			worn(e.message);
+		}
+	}
+
+	/**/
+	function stop()
+	{
+		try {
+			super.stop();
+		} catch (e) {
+			// NOTE:
+			// せめて restore() 時に再読み込みしないようにする。
+			currentStorage_ = '';
+			fadeStatus_ = 'stable';
+
+			worn("再生中の &currentStorage_; の停止に失敗しました。");
+			worn(e.message);
+		}
+	}
+
+	/**/
+	function fade(to, time, delay = 0)
+	{
+		try {
+			super.fade(to, time, delay);
+			fadeStatus_ = 'fade';
+		} catch (e) {
+			worn(@"&currentStorage_; のフェイドに失敗しました。");
+			worn(e.message);
+		}
+	}
+
+	/**/
+	function stopFade()
+	{
+		try {
+			super.stopFade();
+			fadeStatus_ = 'stable';
+		} catch (e) {
+			worn(@"&currentStorage_; のフェイド停止に失敗しました。");
+			worn(e.message);
+		}
+	}
+
+	/**/
+	function onFadeCompleted()
+	{
+		if(fadeStatus_ == 'fadeout')
+			stop();
+
+		fadeStatus_ = 'stable';
+
+		super.onFadeCompleted(...);
+
+		callHandler('onFadeCompleted');
+	}
+
+	/**/
+	function onLabel(name)
+	{
+		super.onLabel(...);
+
+		callHandler('onLabel', %[name : name]);
+	}
+
+	/**/
+	function onStatusChanged(status)
+	{
+		super.onStatusChanged(...);
+
+		callHandler('onStatusChanged', %[status : status]);
+	}
+
+	/**/
+	property currentStorage
+	{
+		getter		{ return currentStorage_; }
+	}
+
+	/**/
+	property fadeStatus
+	{
+		getter		{ return fadeStatus_; }
+	}
+
+	/**/
+	property playing
+	{
+		getter		{ return super.status == 'play' ? true : false; }
+	}
+}
+
+

@@ -1,0 +1,31 @@
+/*
+ * $Revision: 144 $
+**/
+
+
+// NOTE: GOKI2 初期化。
+try {
+	var tick = System.getTickCount();
+	Scripts.execStorage('GOKI2.tjs');
+	log(@"GOKI2 の初期化が完了しました。 (&System.getTickCount() - tick; ms)");
+} catch(e) {
+	abort(
+		"GOKI2 の初期化に失敗しました。\n" +
+		"強制終了します。\n" +
+		"\n" +
+		@"!>> &e.message;"
+	);
+}
+
+var window = new GMainWindow();
+
+// NOTE: construct -> version -> config の順に実行。
+with(window.conductor)
+{
+	.pushScript('construct', 'version', 'config');
+	.jumpNextScript();
+}
+
+Debug.console.visible = true;
+
+

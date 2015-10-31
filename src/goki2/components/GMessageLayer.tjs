@@ -1,0 +1,338 @@
+/*
+ * $Revision: 335 $
+**/
+
+
+/**/
+class GCharacterLayer extends GWidgetLayer
+{
+	function GCharacterLayer(window, parent, handler)
+	{
+		super.GWidgetLayer(...);
+		hitThreshold = 256;
+		captionAlign = 0;
+		bodyOpacity = 0;
+	}
+
+	function drawCaption(offx = 0, offy = 0, color = parent.captionColor, edge = parent.edgeColor, shadow = parent.shadowColor, shadowOffsetX = parent.shadowOffsetX, shadowOffsetY = parent.shadowOffsetY, shadowExtent = parent.shadowExtent)
+	{
+		if(font.face[0] == '@')
+			super.drawCaption(font.height, offy, color, edge, shadow, shadowOffsetX, shadowOffsetY, shadowExtent);
+		else
+			super.drawCaption(offx, offy, color, edge, shadow, shadowOffsetX, shadowOffsetY, shadowExtent);
+	}
+
+	/**/
+	function alignToHeight(align, str)
+	{
+		return 0;
+	}
+
+	/**/
+	function alignToWidth(align, str)
+	{
+		return 0;
+	}
+}
+
+
+/**/
+class GRubyTextLayer extends GCharacterLayer
+{
+	function GRubyTextLayer(window, parent, handler)
+	{
+		super.GWidgetLayer(...);
+		hitThreshold = 256;
+		bodyOpacity = 0;
+	}
+
+	function assignFontToParent(decoration = false)
+	{
+		var dst = font;
+
+		with(parent)
+		{
+			dst.angle = .font.angle;
+			if(.font.face[0] == '@')
+				dst.face = "@" + .rubyFontFaceCache_;
+			else
+				dst.face = .rubyFontFaceCache_;
+			dst.height = .rubyFontSizeCache_;
+			dst.italic = .rubyItalicCache_;
+			dst.bold = .rubyBoldCache_;
+
+			if(decoration)
+			{
+				dst.strikeout = .rubyStrikeoutCache_;
+				dst.underline = .rubyUnderlineCache_;
+			}
+		}
+
+		return this;
+	}
+}
+
+
+/**/
+class GMessageLayer extends GHyperTextLayer
+{
+	var usedCharacterLayers_ = [];
+	var notUsedCharacterLayers_ = [];
+	var usedRubyTextLayers_ = [];
+	var notUsedRubyTextLayers_ = [];
+	var standbyRubyTextLayer_ = void;
+
+	var pageGlyphLayer_ = void;
+	var lineGlyphLayer_ = void;
+
+	function GMessageLayer(window, parent, handler)
+	{
+		super.GHyperTextLayer(...);
+
+		family.receive(new GDestructor(GObjectUtils.dispose, usedCharacterLayers_));
+		family.receive(new GDestructor(GObjectUtils.dispose, notUsedCharacterLayers_));
+
+		pageGlyphLayer_ = new global.GLayer(window, this);
+		loadPageGlyph('PageGlyph');
+
+		lineGlyphLayer_ = new global.GLayer(window, this);
+		loadLineGlyph('LineGlyph');
+	}
+
+	/**/
+	function createCharacterLayer(window, parent, handler)
+	{
+		return new GCharacterLayer(...);
+	}
+
+	/**/
+	function createRubyTextLayer(window, parent, handler)
+	{
+		return new GRubyTextLayer(...);
+	}
+
+	/**/
+	function allocCharacterLayer_private_()
+	{
+		var cache = notUsedCharacterLayers_;
+		var obj;
+
+		if(cache.count > 0)
+			obj = cache.pop();
+		else
+			obj = createCharacterLayer(window, this, onCharacterLayerEvent);
+		obj.assignFontToParent();
+		usedCharacterLayers_.push(obj);
+
+		return obj;
+	}
+
+	/**/
+	function allocRubyTextLayer_private_()
+	{
+		var cache = notUsedRubyTextLayers_;
+		var obj;
+
+		if(cache.count > 0)
+			obj = cache.pop();
+		else
+			obj = createRubyTextLayer(window, this, onRubyTextLayerEvent);
+		obj.assignFontToParent();
+		usedRubyTextLayers_.push(obj);
+
+		return obj;
+	}
+
+	/**/
+	function freeCharacterLayers_private_()
+	{
+		var layers = usedCharacterLayers_;
+		var c = layers.count;
+
+		for(var i = 0; i < c; i++)
+			layers[i].visible = false;
+		notUsedCharacterLayers_.push(layers*);
+		layers.clear();
+	}
+
+	/**/
+	function freeRubyTextLayers_private_()
+	{
+		var layers = usedRubyTextLayers_;
+		var c = layers.count;
+
+		for(var i = 0; i < c; i++)
+			layers[i].visible = false;
+		notUsedRubyTextLayers_.push(layers*);
+		layers.clear();
+	}
+
+	/**/
+	function loadPageGlyph(storage)
+	{
+		with(pageGlyphLayer_)
+		{
+			.loadImages(storage);
+			.conductor.loadScenario(Storages.chopStorageExt(storage));
+		}
+	}
+
+	/**/
+	function showPageGlyph()
+	{
+		with(pageGlyphLayer_)
+		{
+			.setPos(layout.getCurrentLeft(.width, .height), layout.getCurrentTop(.width, .height));
+			.conductor.start();
+			.show();
+		}
+	}
+
+	/**/
+	function hidePageGlyph()
+	{
+		with(pageGlyphLayer_)
+		{
+			.conductor.stop();
+			.hide();
+		}
+	}
+
+	/**/
+	function loadLineGlyph(storage)
+	{
+		with(lineGlyphLayer_)
+		{
+			.loadImages(storage);
+			.conductor.loadScenario(Storages.chopStorageExt(storage));
+		}
+	}
+
+	/**/
+	function showLineGlyph()
+	{
+		with(lineGlyphLayer_)
+		{
+			.setPos(layout.getCurrentLeft(.width, .height), layout.getCurrentTop(.width, .height));
+			.conductor.start();
+			.show();
+		}
+	}
+
+	/**/
+	function hideLineGlyph()
+	{
+		with(lineGlyphLayer_)
+		{
+			.conductor.stop();
+			.hide();
+		}
+	}
+
+	/**/
+	function store(tick)
+	{
+		var dic = super.store(...);
+
+		var arr = usedCharacterLayers_;
+		var c = arr.count;
+		dic.usedCharacterLayers = [];
+		for(var i = 0; i < c; i++)
+			dic.usedCharacterLayers[i] = arr[i].store(tick);
+
+		arr = usedRubyTextLayers_;
+		c = arr.count;
+		dic.usedRubyTextLayers = [];
+		for(var i = 0; i < c; i++)
+			dic.usedRubyTextLayers[i] = arr[i].store(tick);
+
+		dic.pageGlyphLayer = pageGlyphLayer_.store(tick);
+		dic.lineGlyphLayer = lineGlyphLayer_.store(tick);
+
+		return dic;
+	}
+
+	/**/
+	function restore(dic, tick)
+	{
+		super.restore(...);
+
+		var arr = dic.usedCharacterLayers;
+		var c = arr.count;
+		var obj;
+		freeCharacterLayers_private_();
+		for(var i = 0; i < c; i++)
+		{
+			with(allocCharacterLayer_private_())
+				.restore(arr[i]);
+		}
+
+		arr = dic.usedRubyTextLayers;
+		c = arr.count;
+		freeRubyTextLayers_private_();
+		for(var i = 0; i < c; i++)
+		{
+			with(allocRubyTextLayer_private_())
+			{
+				.restore(arr[i]);
+			}
+		}
+
+		pageGlyphLayer_.restore(dic.pageGlyphLayer);
+		lineGlyphLayer_.restore(dic.lineGlyphLayer);
+	}
+
+	/**/
+	function onRenderCharacter(ch, left, top, width, height)
+	{
+		var layer = allocCharacterLayer_private_();
+
+		layer.setPos(left, top, width, height);
+		layer.caption = ch;
+
+		if(standbyRubyTextLayer_ !== void)
+		{
+			with(standbyRubyTextLayer_)
+			{
+				.setPos(
+					layout.getRubyLeft(.width, .height, left, top, width, height),
+					layout.getRubyTop(.width, .height, left, top, width, height)
+				);
+				.show();
+			}
+			standbyRubyTextLayer_ = void;
+		}
+
+		layer.show();
+	}
+
+	/**/
+	function onRenderRubyText(text, width, height)
+	{
+		var layer = allocRubyTextLayer_private_();
+
+		layer.setSize(width, height);
+		layer.caption = text;
+
+		standbyRubyTextLayer_ = layer;
+	}
+
+	/**/
+	function onEraseText()
+	{
+		freeCharacterLayers_private_();
+		freeRubyTextLayers_private_();
+	}
+
+	/**/
+	function onCharacterLayerEvent(obj, message, elm)
+	{
+	}
+
+	/**/
+	function onRubyTextLayerEvent(obj, message, elm)
+	{
+	}
+}
+
+

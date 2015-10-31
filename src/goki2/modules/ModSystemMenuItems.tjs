@@ -1,0 +1,113 @@
+/*
+ $Author: halo $
+ $Revision: 5149 $
+*/
+
+
+/**/
+class ModSystemMenuItems extends GMenuModule
+{
+	var _messageHide;
+	var _historyShow;
+	var _goBackTitle;
+
+	var _exit;
+
+	var _messageHideEnabledBackup = false;
+	var _historyShowEnabledBackup = false;
+	var _goBackTitleEnabledBackup = false;
+	var _exitEnabledBackup = false;
+
+	function ModSystemMenuItems(container, name)
+	{
+		super.GMenuModule(...);
+
+		add(createMenuItem(window, window.menu, "システム", "S"));
+
+		add(createMenuItem(window, topItem, "スキップ", "K", onSkipMenuItemClick));
+		add(createMenuItem(window, topItem, "オートモード", "K", onAutoModeMenuItemClick));
+
+		_messageHide = add(createMenuItem(window, topItem, "メッセージを消す", "S", onHiddenMessageLayersMenuItemClick));
+		_historyShow = add(createMenuItem(window, topItem, "メッセージ履歴の表示", "H", onShowHistoryLayerMenuItemClick));
+
+		// セパレータ
+		add(createMenuItem(window, topItem, "-"));
+
+		_goBackTitle = add(createMenuItem(window, topItem, "タイトルに戻る", "T", onGoBackTitleMenuItemClick));
+
+		// セパレータ
+		add(createMenuItem(window, topItem, "-"));
+
+		_exit = add(createMenuItem(window, topItem, "終了", "X", onExitMenuItemClick));
+	}
+
+	function extensionTagHandlers()
+	{
+		return %[
+
+			/* @system_menu */
+			'system_menu' => function (elm) {
+				if(elm.enabled === void)
+					return;
+				var e = +elm.enabled;
+				_messageHide.enabled = e;
+				_historyShow.enabled = e;
+				_goBackTitle.enabled = e;
+			} incontextof this,
+
+		];
+	}
+
+	function onEnterSaveLoad()
+	{
+		_messageHide.enabled = false;
+		_historyShow.enabled = false;
+	}
+
+	function onSkipMenuItemClick(item)
+	{
+	}
+
+	function onAutoModeMenuItemClick(item)
+	{
+		if(window.modules.isLoaded('modMessage'))
+		{
+			window.modules.modMessage.enterAutoMode();
+		}
+	}
+
+	function onHiddenMessageLayersMenuItemClick(item)
+	{
+		item.name = "メッセージの表示";
+		item.handler = onShowMessageLayersMenuItemClick;
+	}
+
+	function onShowMessageLayersMenuItemClick(item)
+	{
+		item.name = "メッセージを消す";
+		item.handler = onHiddenMessageLayersMenuItemClick;
+	}
+
+	function onShowHistoryLayerMenuItemClick(item)
+	{
+		item.name = "メッセージ履歴の消去";
+		item.handler = onHideHistoryLayerMenuItemClick;
+	}
+
+	function onHideHistoryLayerMenuItemClick(item)
+	{
+		item.name = "メッセージ履歴の表示";
+		item.handler = onShowHistoryLayerMenuItemClick;
+	}
+
+	function onGoBackTitleMenuItemClick(item)
+	{
+	}
+
+	function onExitMenuItemClick(item)
+	{
+		anotherCycle.add(window.close);
+	}
+}
+
+

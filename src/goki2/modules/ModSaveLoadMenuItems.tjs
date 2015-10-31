@@ -1,0 +1,103 @@
+/*
+ $Author: halo $
+ $Revision: 5149 $
+*/
+
+
+/**/
+class ModSaveLoadMenuItems extends GMenuModule
+{
+	var save_;
+	var load_;
+
+	var saveItems_ = [];
+	var loadItems_ = [];
+
+	function ModSaveLoadMenuItems(container, name)
+	{
+		super.GMenuModule(...);
+
+		add(createMenuItem(window, window.menu, 'ブックマーク', ''));
+
+		add(save_ = createMenuItem(window, topItem, 'セーブ', ''));
+		add(load_ = createMenuItem(window, topItem, 'ロード', ''));
+
+		var bookmark = container.get('ModBookmark');
+
+		for(var i = 0; i < 10; i++)
+		{
+			var info = bookmark.getSaveDataInfoByNumber(i);
+			var date = @"&i; : ----/--/-- --:--";
+
+			if(info !== void && info.date !== void)
+			{
+				var obj = new Date();
+
+				obj.setTime(info.date);
+				date = '%04d/%02d/%02d %02d:%02d'.sprintf(
+					obj.getYear(), (obj.getMonth() + 1), obj.getDate(), obj.getHours(), obj.getMinutes()
+				);
+			}
+
+			add(saveItems_[i] = createMenuItem(window, save_, date, '', onSaveItem));
+			add(loadItems_[i] = createMenuItem(window, load_, date, '', onLoadItem));
+		}
+	}
+
+	function extensionTagHandlers()
+	{
+		return %[
+
+			/* @saveload_menu */
+			'saveload_menu' => function (elm) {
+			} incontextof this,
+
+		];
+	}
+
+	function onSaveItem(item)
+	{
+		var index = saveItems_.find(item);
+		var bookmark = container.get('ModBookmark');
+
+		bookmark.save(index);
+	}
+
+	function onLoadItem(item)
+	{
+		var index = loadItems_.find(item);
+		var bookmark = container.get('ModBookmark');
+
+		bookmark.load(index);
+	}
+
+	function onSave(user, core)
+	{
+		var bookmark = container.get('ModBookmark');
+
+		for(var i = 0; i < 10; i++)
+		{
+			var info = bookmark.getSaveDataInfoByNumber(i);
+			var date = @"&i; : ----/--/-- --:--";
+
+			if(info !== void && info.date !== void)
+			{
+				var obj = new Date();
+
+				obj.setTime(info.date);
+				date = @"&i; : %04d/%02d/%02d %02d:%02d".sprintf(
+					obj.getYear(), (obj.getMonth() + 1), obj.getDate(), obj.getHours(), obj.getMinutes()
+				);
+			}
+
+			saveItems_[i].caption = date;
+			loadItems_[i].caption = date;
+		}
+	}
+
+	function onLoad(user, core)
+	{
+	}
+}
+
+

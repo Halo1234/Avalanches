@@ -1,0 +1,733 @@
+/*
+ * $Revision: 346 $
+**/
+
+
+/**/
+class BGMBufferIterator extends GSoundBufferIterator
+{
+	var types_ = [];
+	var creationBufferType_ = '';
+
+	function BGMBufferIterator(window, container)
+	{
+		super.GSoundBufferIterator(...);
+	}
+
+	function addWaveTypeBuffer()
+	{
+		creationBufferType_ = 'WAVE';
+		realloc(count + 1);
+	}
+
+	function addMidiTypeBuffer()
+	{
+		throw new GNotImplementedError('現在、MIDI タイプのＢＧＭバッファは実装されていません。');
+	}
+
+	function addCdmaTypeBuffer()
+	{
+		throw new GNotImplementedError('現在、CDMA タイプのＢＧＭバッファは実装されていません。');
+	}
+
+	function create(window)
+	{
+		var obj;
+
+		switch(creationBufferType_)
+		{
+		case 'WAVE':	obj = new GWaveSoundBuffer2(null, onBufferEvent); break;
+		case 'MIDI':	/* Dead code. */ break;
+		case 'CDMA':	/* Dead code. */ break;
+		default:
+			throw new GRuntimeError(@"'&creationBufferType_;' 未知のメディアタイプです。");
+		}
+
+		return obj;
+	}
+
+	function initialize(obj, index)
+	{
+		super.initialize(...);
+
+		types_[index] = obj.type;
+	}
+
+	property types
+	{
+		getter		{ return GObjectUtils.clone(types_); }
+	}
+
+	property prefix
+	{
+		getter		{ return 'bgm'; }
+	}
+}
+
+
+/**/
+class SystemSoundBufferIterator extends GSoundBufferIterator
+{
+	function SystemSoundBufferIterator(window, container)
+	{
+		super.GSoundBufferIterator(...);
+	}
+
+	property prefix
+	{
+		getter		{ return 'system'; }
+	}
+}
+
+
+/**/
+class SoundEffectBufferIterator extends GSoundBufferIterator
+{
+	function SoundEffectBufferIterator(window, container)
+	{
+		super.GSoundBufferIterator(...);
+	}
+
+	property prefix
+	{
+		getter		{ return 'sound_effect'; }
+	}
+}
+
+
+/**/
+class VoiceBufferIterator extends GSoundBufferIterator
+{
+	function VoiceBufferIterator(window, container)
+	{
+		super.GSoundBufferIterator(...);
+	}
+
+	property prefix
+	{
+		getter		{ return 'voice'; }
+	}
+}
+
+
+/**/
+class ModSound extends GModule
+{
+	var soundBufferContainer_;
+
+	var bgmBuffers_;
+	var systemSoundBuffers_;
+	var soundEffectBuffers_;
+	var voiceBuffers_;
+
+	/**/
+	function ModSound(container, name)
+	{
+		super.GModule(...);
+
+		soundBufferContainer_ = new GSoundBufferContainer(window);
+
+		bgmBuffers_ = new BGMBufferIterator(window, soundBufferContainer_);
+		bgmBuffers_.onBufferEvent = onBGMBufferEvent;
+
+		systemSoundBuffers_ = new SystemSoundBufferIterator(window, soundBufferContainer_);
+		systemSoundBuffers_.onBufferEvent = onSystemSoundBufferEvent;
+
+		soundEffectBuffers_ = new SoundEffectBufferIterator(window, soundBufferContainer_);
+		soundEffectBuffers_.onBufferEvent = onSoundEffectBufferEvent;
+
+		voiceBuffers_ = new VoiceBufferIterator(window, soundBufferContainer_);
+		voiceBuffers_.onBufferEvent = onVoiceBufferEvent;
+	}
+
+	/**/
+	function finalize()
+	{
+		invalidate voiceBuffers_;
+		invalidate soundEffectBuffers_;
+		invalidate systemSoundBuffers_;
+		invalidate bgmBuffers_;
+
+		invalidate soundBufferContainer_;
+
+		super.finalize(...);
+	}
+
+	/**/
+	function findBGMBufferByElm(elm)
+	{
+		var obj;
+
+		if(elm.buffer !== void)
+		{
+			obj = bgmBuffers_.at(+elm.buffer);
+
+			if(obj === void)
+				throw new GArgumentsError(@"インデックス &elm.buffer; 番のＢＧＭバッファは存在しません。");
+		}
+		else
+		{
+			obj = getDefaultBGMBuffer();
+		}
+
+		return obj;
+	}
+
+	/**/
+	function findSystemSoundBufferByElm(elm)
+	{
+		var obj;
+
+		if(elm.buffer === void)
+			throw new GArgumentsError('buffer が指定されていません。');
+
+		obj = systemSoundBuffers_.at(+elm.buffer);
+		if(obj === void)
+			throw new GArgumentsError(@"インデックス &elm.buffer; 番の効果音バッファは存在しません。");
+
+		return obj;
+	}
+
+	/**/
+	function findSoundEffectBufferByElm(elm)
+	{
+		var obj;
+
+		if(elm.buffer === void)
+			throw new GArgumentsError('buffer が指定されていません。');
+
+		obj = soundEffectBuffers_.at(+elm.buffer);
+		if(obj === void)
+			throw new GArgumentsError(@"インデックス &elm.buffer; 番の効果音バッファは存在しません。");
+
+		return obj;
+	}
+
+	/**/
+	function findVoiceBufferByElm(elm)
+	{
+		var obj;
+
+		if(elm.buffer === void)
+			throw new GArgumentsError('buffer が指定されていません。');
+
+		obj = voiceBuffers_.at(+elm.buffer);
+		if(obj === void)
+			throw new GArgumentsError(@"インデックス &elm.buffer; 番のボイスバッファは存在しません。");
+
+		return obj;
+	}
+
+	/**/
+	function getDefaultBGMBuffer()
+	{
+		if(bgmBuffers_.count == 0)
+			throw new GRuntimeError('デフォルトのＢＧＭバッファが存在しません。');
+
+		return bgmBuffers_.at(0);
+	}
+
+	/**/
+	function createExtensionTagHandlers()
+	{
+		return %[
+
+			/* @system_sound_buffers */
+			'system_sound_buffers' => function (elm) {
+				systemSoundBuffers_.count = +elm.count if elm.count !== void;
+			} incontextof this,
+
+			/* @se_buffers */
+			'se_buffers' => function (elm) {
+				soundEffectBuffers_.count = +elm.count if elm.count !== void;
+			} incontextof this,
+
+			/* @voice_buffers */
+			'voice_buffers' => function  (elm) {
+				voiceBuffers_.count = +elm.count if elm.count !== void;
+			} incontextof this,
+
+			/* @fadein_system_sound */
+			'fadein_system_sound' => function (elm) {
+				with(findSystemSoundBufferByElm(elm))
+				{
+					.looping = GObjectUtils.toBoolean(elm.loop, false);
+					.open(elm.storage);
+					.fadein(+elm.time, +elm.delay);
+				}
+			} incontextof this,
+
+			/* @fadeout_system_sound */
+			'fadeout_system_sound' => function (elm) {
+				with(findSystemSoundBufferByElm(elm))
+					.fadeout(+elm.time, +elm.delay);
+			} incontextof this,
+
+			/* @fade_system_sound */
+			'fade_system_sound' => function (elm) {
+				with(findSystemSoundBufferByElm(elm))
+					.fade(+elm.volume, +elm.time, +elm.delay);
+			} incontextof this,
+
+			/* @play_system_sound */
+			'play_system_sound' => function (elm) {
+				with(findSystemSoundBufferByElm(elm))
+				{
+					.looping = GObjectUtils.toBoolean(elm.loop, false);
+					.open(elm.storage);
+					.play();
+				}
+			} incontextof this,
+
+			/* @stop_system_sound */
+			'stop_system_sound' => function (elm) {
+				with(findSystemSoundBufferByElm(elm))
+					.stop();
+			} incontextof this,
+
+			/* @system_sound_option */
+			'system_sound_option' => function (elm) {
+				with(findSystemSoundBufferByElm(elm))
+				{
+					.volume = (+elm.volume) * 1000 if elm.volume !== void;
+					.pan = (+elm.pan) * 1000 if elm.pan !== void;
+				}
+				window.sounds.masterVolume = (+elm['master-volume']) * 1000 if elm['master-volume'] !== void;
+			} incontextof this,
+
+			/* @wait_system_sound_fade */
+			'wait_system_sound_fade' => function (elm, c) {
+				with(findSystemSoundBufferByElm(elm))
+				{
+					if(!.fadeStatus == 'stable')
+						return;
+					if(!GObjectUtils.toBoolean(elm.canskip, false))
+						c.waitSignal(%[@"&.name;_fade" => null]);
+					else
+						.stopFade();
+				}
+			} incontextof this,
+
+			/* @wait_system_sound_stop */
+			'wait_system_sound_stop' => function (elm, c) {
+				with(findSystemSoundBufferByElm(elm))
+				{
+					if(!.playing || .looping)
+						return;
+					if(!GObjectUtils.toBoolean(elm.canskip, false))
+						c.waitSignal(%[@"&.name;_stop" => null]);
+					else
+						.stop();
+				}
+			} incontextof this,
+
+			/* @fadein_se */
+			'fadein_se' => function (elm) {
+				with(findSoundEffectBufferByElm(elm))
+				{
+					.looping = GObjectUtils.toBoolean(elm.loop, false);
+					.open(elm.storage);
+					.fadein(+elm.time, +elm.delay);
+				}
+			} incontextof this,
+
+			/* @fadeout_se */
+			'fadeout_se' => function (elm) {
+				with(findSoundEffectBufferByElm(elm))
+					.fadeout(+elm.time, +elm.delay);
+			} incontextof this,
+
+			/* @fade_se */
+			'fade_se' => function (elm) {
+				with(findSoundEffectBufferByElm(elm))
+					.fade(+elm.volume, +elm.time, +elm.delay);
+			} incontextof this,
+
+			/* @play_se */
+			'play_se' => function (elm) {
+				with(findSoundEffectBufferByElm(elm))
+				{
+					.looping = GObjectUtils.toBoolean(elm.loop, false);
+					.open(elm.storage);
+					.play();
+				}
+			} incontextof this,
+
+			/* @stop_se */
+			'stop_se' => function (elm) {
+				with(findSoundEffectBufferByElm(elm))
+					.stop();
+			} incontextof this,
+
+			/* @se_option */
+			'se_option' => function (elm) {
+				with(findSoundEffectBufferByElm(elm))
+				{
+					.volume = (+elm.volume) * 1000 if elm.volume !== void;
+					.pan = (+elm.pan) * 1000 if elm.pan !== void;
+				}
+				window.sounds.masterVolume = (+elm['master-volume']) * 1000 if elm['master-volume'] !== void;
+			} incontextof this,
+
+			/* @wait_se_fade */
+			'wait_se_fade' => function (elm, c) {
+				with(findSoundEffectBufferByElm(elm))
+				{
+					if(!.fadeStatus == 'stable')
+						return;
+					if(!GObjectUtils.toBoolean(elm.canskip, false))
+						c.waitSignal(%[@"&.name;_fade" => null]);
+					else
+						.stopFade();
+				}
+			} incontextof this,
+
+			/* @wait_se_stop */
+			'wait_se_stop' => function (elm, c) {
+				with(findSoundEffectBufferByElm(elm))
+				{
+					if(!.playing || .looping)
+						return;
+					if(!GObjectUtils.toBoolean(elm.canskip, false))
+						c.waitSignal(%[@"&.name;_stop" => null]);
+					else
+						.stop();
+				}
+			} incontextof this,
+
+			/* @fadein_voice */
+			'fadein_voice' => function (elm) {
+				with(findVoiceBufferByElm(elm))
+				{
+					.looping = GObjectUtils.toBoolean(elm.loop, false);
+					.open(elm.storage);
+					.fadein(+elm.time, +elm.delay);
+				}
+			} incontextof this,
+
+			/* @fadeout_voice */
+			'fadeout_voice' => function (elm) {
+				with(findVoiceBufferByElm(elm))
+					.fadeout(+elm.time, +elm.delay);
+			} incontextof this,
+
+			/* @fade_voice */
+			'fade_voice' => function (elm) {
+				with(findVoiceBufferByElm(elm))
+					.fade(+elm.volume, +elm.time, +elm.delay);
+			} incontextof this,
+
+			/* @play_voice */
+			'play_voice' => function (elm) {
+				with(findVoiceBufferByElm(elm))
+				{
+					.looping = GObjectUtils.toBoolean(elm.loop, false);
+					.open(elm.storage);
+					.play();
+				}
+			} incontextof this,
+
+			/* @stop_voice */
+			'stop_voice' => function (elm) {
+				with(findVoiceBufferByElm(elm))
+					.stop();
+			} incontextof this,
+
+			/* @voice_option */
+			'voice_option' => function (elm) {
+				with(findVoiceBufferByElm(elm))
+				{
+					.volume = (+elm.volume) * 1000 if elm.volume !== void;
+					.pan = (+elm.pan) * 1000 if elm.pan !== void;
+				}
+				window.sounds.masterVolume = (+elm['master-volume']) * 1000 if elm['master-volume'] !== void;
+			} incontextof this,
+
+			/* @wait_voice_fade */
+			'wait_voice_fade' => function (elm, c) {
+				with(findVoiceBufferByElm(elm))
+				{
+					if(!.fadeStatus == 'stable')
+						return;
+					if(!GObjectUtils.toBoolean(elm.canskip, false))
+						c.waitSignal(%[@"&.name;_fade" => null]);
+					else
+						.stopFade();
+				}
+			} incontextof this,
+
+			/* @wait_voice_stop */
+			'wait_voice_stop' => function (elm, c) {
+				with(findVoiceBufferByElm(elm))
+				{
+					if(!.playing || .looping)
+						return;
+					if(!GObjectUtils.toBoolean(elm.canskip, false))
+						c.waitSignal(%[@"&.name;_stop" => null]);
+					else
+						.stop();
+				}
+			} incontextof this,
+
+			/* @add_bgm_buffer */
+			'add_bgm_buffer' => function (elm) {
+				if(elm.type === void)
+					throw new GArgumentsError('type 属性に WAVE または MIDI または CDMA を指定してください。');
+				switch(elm.type)
+				{
+				case 'WAVE':	bgmBuffers_.addWaveTypeBuffer(); break;
+				case 'MIDI':	bgmBuffers_.addMidiTypeBuffer(); break;
+				case 'CDMA':	bgmBuffers_.addCdmaTypeBuffer(); break;
+				default:
+					throw new GArgumentsError('type 属性指定できる値は WAVE または MIDI または CDMA です。');
+				}
+			} incontextof this,
+
+			/* @free_bgm_buffers */
+			'free_bgm_buffers' => function (elm) {
+				bgmBuffers_.realloc(0);
+			} incontextof this,
+
+			/* @bgm_option */
+			'bgm_option' => function (elm) {
+				with(findBGMBufferByElm(elm))
+				{
+					.volume = (+elm.volume) * 1000 if elm.volume !== void;
+					.pan = (+elm.pan) * 1000 if elm.pan !== void;
+				}
+				window.sounds.masterVolume = (+elm.master_volume) * 1000 if elm.master_volume !== void;
+			} incontextof this,
+
+			/* @fadein_bgm */
+			'fadein_bgm' => function (elm) {
+				with(findBGMBufferByElm(elm))
+				{
+					.looping = GObjectUtils.toBoolean(elm.loop, true);
+					.open(elm.storage);
+					.fadein(+elm.time, +elm.delay);
+				}
+			} incontextof this,
+
+			/* @fadeout_bgm */
+			'fadeout_bgm' => function (elm) {
+				with(findBGMBufferByElm(elm))
+					.fadeout(+elm.time, +elm.delay);
+			} incontextof this,
+
+			/* @fade_bgm */
+			'fade_bgm' => function (elm) {
+				with(findBGMBufferByElm(elm))
+					.fade(+elm.volume, +elm.time, +elm.delay);
+			} incontextof this,
+
+			/* @pause_bgm */
+			'pause_bgm' => function (elm) {
+				with(findBGMBufferByElm(elm))
+					.paused = true;
+			} incontextof this,
+
+			/* @resume_bgm */
+			'resume_bgm' => function (elm) {
+				with(findBGMBufferByElm(elm))
+					.paused = false;
+			} incontextof this,
+
+			/* @play_bgm */
+			'play_bgm' => function (elm) {
+				with(findBGMBufferByElm(elm))
+				{
+					.looping = GObjectUtils.toBoolean(elm.loop, false);
+					.open(elm.storage);
+					.play();
+				}
+			} incontextof this,
+
+			/* @stop_bgm */
+			'stop_bgm' => function (elm) {
+				with(findBGMBufferByElm(elm))
+					.stop();
+			} incontextof this,
+
+			/* @exchange_bgm */
+			'exchange_bgm' => function (elm) {
+				with(findBGMBufferByElm(elm))
+				{
+					.looping = GObjectUtils.toBoolean(elm.loop, true);
+					.crossfade(elm.storage, +elm.time, +elm.overlap, +elm.delay);
+				}
+			} incontextof this,
+
+			/* @wait_bgm_fade */
+			'wait_bgm_fade' => function (elm, c) {
+				with(findBGMBufferByElm(elm))
+				{
+					if(!.fadeStatus == 'stable')
+						return;
+					if(!toBoolean(elm.canskip, false))
+						c.waitSignal(%[@"&.name;_fade" => null]);
+					else
+						.stopFade();
+				}
+			} incontextof this,
+
+			/* @wait_bgm_stop */
+			'wait_bgm_stop' => function (elm, c) {
+				with(findBGMBufferByElm(elm))
+				{
+					if(!.playing || .looping)
+						return;
+					if(!GObjectUtils.toBoolean(elm.canskip, false))
+						c.waitSignal(%[@"&.name;_stop" => null]);
+					else
+						.stop();
+				}
+			} incontextof this,
+
+		];
+	}
+
+	/**/
+	function stopBuffers_private_(buffers)
+	{
+		with(buffers)
+		{
+			var c = .count;
+			var obj;
+
+			for(var i = 0; i < c; i++)
+			{
+				obj = .at(i);
+				obj.stop();
+			}
+		}
+	}
+
+	/**/
+	function stopBGMBuffers()
+	{
+		stopBuffers_private_(bgmBuffers);
+	}
+
+	/**/
+	function stopSystemSoundBuffers()
+	{
+		stopBuffers_private_(systemSoundBuffers);
+	}
+
+	/**/
+	function stopSoundEffectBuffers()
+	{
+		stopBuffers_private_(soundEffectBuffers);
+	}
+
+	/**/
+	function stopVoiceBuffers()
+	{
+		stopBuffers_private_(voiceBuffers);
+	}
+
+	/**/
+	function stopAllSoundBuffers()
+	{
+		stopBGMBuffers();
+		stopSystemSoundBuffers();
+		stopSoundEffectBuffers();
+		stopVoiceBuffers();
+	}
+
+	/**/
+	function store(tick)
+	{
+		var dic = super.store(...);
+
+		dic.bgmBuffers = bgmBuffers_.store(tick);
+		dic.systemSoundBuffers = systemSoundBuffers_.store(tick);
+		dic.soundEffectBuffers = soundEffectBuffers_.store(tick);
+		dic.voiceBuffers = voiceBuffers_.store(tick);
+
+		return dic;
+	}
+
+	/**/
+	function restore(dic, tick)
+	{
+		bgmBuffers_.restore(dic.bgmBuffers);
+		systemSoundBuffers_.restore(dic.systemSoundBuffers);
+		soundEffectBuffers_.restore(dic.soundEffectBuffers);
+		voiceBuffers_.restore(dic.voiceBuffers);
+
+		super.restore(...);
+	}
+
+	/**/
+	function onBGMBufferEvent(obj, message, elm)
+	{
+		switch(message)
+		{
+		case 'onFadeCompleted':		window.conductor.signal(@"&obj.name;_fade"); break;
+		case 'onStatusChanged':		window.conductor.signal(@"&obj.name;_stop") if elm.status == 'stop'; break;
+		}
+	}
+
+	/**/
+	function onSystemSoundBufferEvent(obj, message, elm)
+	{
+		switch(message)
+		{
+		case 'onFadeCompleted':		window.conductor.signal(@"&obj.name;_fade"); break;
+		case 'onStatusChanged':		window.conductor.signal(@"&obj.name;_stop") if elm.status == 'stop'; break;
+		}
+	}
+
+	/**/
+	function onSoundEffectBufferEvent(obj, message, elm)
+	{
+		switch(message)
+		{
+		case 'onFadeCompleted':		window.conductor.signal(@"&obj.name;_fade"); break;
+		case 'onStatusChanged':		window.conductor.signal(@"&obj.name;_stop") if elm.status == 'stop'; break;
+		}
+	}
+
+	/**/
+	function onVoiceBufferEvent(obj, message, elm)
+	{
+		switch(message)
+		{
+		case 'onFadeCompleted':		window.conductor.signal(@"&obj.name;_fade"); break;
+		case 'onStatusChanged':		window.conductor.signal(@"&obj.name;_stop") if elm.status == 'stop'; break;
+		}
+	}
+
+	/**/
+	property bgmBuffers
+	{
+		getter		{ return bgmBuffers_; }
+	}
+
+	/**/
+	property systemSoundBuffers
+	{
+		getter		{ return systemSoundBuffers_; }
+	}
+
+	/**/
+	property soundEffectBuffers
+	{
+		getter		{ return soundEffectBuffers_; }
+	}
+
+	/**/
+	property voiceBuffers
+	{
+		getter		{ return voiceBuffers_; }
+	}
+
+	/**/
+	property defaultBGMBuffer
+	{
+		getter		{ return getDefaultBGMBuffer(); }
+	}
+}
+
+

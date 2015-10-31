@@ -1,0 +1,177 @@
+/*
+ * $Revision: 266 $
+**/
+
+
+/*! \brief レイヤ専用のイテレータ基本クラスです。
+**/
+class GLayerIterator extends GIterator
+{
+	var absoluteBase_ = 1000;
+	var absoluteStep_ = 1000;
+
+	/**/
+	function GLayerIterator(window, container = new GLayerContainer(window, window.primaryLayer, false))
+	{
+		super.GIterator(...);
+	}
+
+	/**/
+	function create(window)
+	{
+		return new GLayer(window, container.get(container.parentLayerName), onLayerEvent);
+	}
+
+	/**/
+	function initialize(obj, index)
+	{
+		obj.absolute = absoluteBase + (absoluteStep * index);
+	}
+
+	/**/
+	function relocation()
+	{
+		var base = absoluteBase_;
+		var step = absoluteStep_;
+
+		for(var i = count - 1; i >= 0; i--)
+		{
+			with(at(i))
+				.absolute = base + (step * i);
+		}
+	}
+
+	/**/
+	function realloc(count)
+	{
+		var container = container_;
+		var keys = keys_;
+		var c = keys.count;
+
+		if(c < count)
+		{
+			// 増える
+			var name, obj;
+
+			for(var i = c; i < count; i++)
+			{
+				keys.add(name = @"&prefix;&i;");
+				initialize(obj = create(window), i);
+				container.add(name, obj);
+			}
+		}
+		else
+		if(c > count)
+		{
+			// 減る
+			var obj;
+
+			for(var i = c - 1; i >= count; i--)
+			{
+				obj = container.erase(@"&prefix;&i;");
+				invalidate obj if obj !== void;
+			}
+
+			keys.count = count;
+		}
+	}
+
+	/**/
+	function setAbsoluteBase(base)
+	{
+		absoluteBase_ = base;
+		relocation();
+	}
+
+	/**/
+	function setAbsoluteStep(step)
+	{
+		absoluteStep_ = step;
+		relocation();
+	}
+
+	/**/
+	function at(index, fore = true)
+	{
+		var obj = super.at(index);
+
+		if(obj === void)
+			return void;
+
+		if(container.doubleBuffering)
+			return (fore ? obj : obj.mirror);
+
+		return obj;
+	}
+
+	/**/
+	function find(obj)
+	{
+		// TODO: 最適化対象です。
+
+		var index = super.find(obj);
+
+		if(index == -1)
+			index = super.find(obj.mirror);
+
+		return index;
+	}
+
+	/**/
+	function store(tick)
+	{
+		var dic = super.store(tick);
+
+		if(container.doubleBuffering)
+		{
+			dic.backObjects = [];
+			for(var i = dic.count - 1; i >= 0; i--)
+			{
+				with(at(i, false))
+					dic.backObjects[i] = .store(tick);
+			}
+		}
+
+		return dic;
+	}
+
+	/**/
+	function restore(dic, tick)
+	{
+		super.restore(dic, tick);
+
+		if(container.doubleBuffering)
+		{
+			for(var i = dic.count - 1; i >= 0; i--)
+			{
+				with(at(i, false))
+					.restore(dic.backObjects[i]);
+			}
+		}
+	}
+
+	/**/
+	function onLayerEvent(obj, event, elm)
+	{
+		// NOTE: オーバーライドしてください。
+	}
+
+	property absoluteBase
+	{
+		setter(x)	{ setAbsoluteBase(x); }
+		getter		{ return absoluteBase_; }
+	}
+
+	property absoluteStep
+	{
+		setter(x)	{ setAbsoluteStep(x); }
+		getter		{ return absoluteStep_; }
+	}
+
+	property prefix
+	{
+		getter		{ return 'layer'; }
+	}
+}
+
+

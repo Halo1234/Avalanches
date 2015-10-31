@@ -1,0 +1,391 @@
+/*
+ * $Revision: 292 $
+**/
+
+
+/*! \brief GOKI2 ウインドウ基本クラス
+**/
+class GWindow extends Window
+{
+	var temporaryLocation_;					//!< \brief 一時的なオブジェクト出力先
+	var locations_ = %[];					//!< \brief オブジェクト出力先
+
+	var modules_;							//!< \brief 拡張モジュール
+	var conductor_;							//!< \brief コンダクタ
+
+	var thisTagHandlers_;					//!< \brief このクラスが提供するタグハンドラ
+	var tagHandlers_ = %[];					//!< \brief タグハンドラ
+
+	var fullScreened_ = false;				// 内部用
+	var altEnterScreenModeChange = false;	//!< \brief true に設定すると Alt+Enter でスクリーンモードを切り替えます。
+
+	function GWindow()
+	{
+		super.Window(...);
+
+		temporaryLocation_ = createTemporaryLocation('default');
+
+		modules_ = createModuleContainer(this);
+		conductor_ = createConductor(this);
+
+		add(createPrimaryLayer(this));
+		fixPrimaryLayerSizeToInnerSize();
+
+		borderStyle = bsSingle;
+		innerSunken = true;
+		showScrollBars = false;
+
+		thisTagHandlers_ = createTagHandlers();
+		unifyTagHandlers();
+	}
+
+	function finalize()
+	{
+		invalidate conductor_;
+		invalidate modules_;
+
+		invalidate temporaryLocation_;
+
+		super.finalize(...);
+	}
+
+	/**/
+	function createModuleContainer(window)
+	{
+		return new GModuleContainer(window);
+	}
+
+	/**/
+	function createConductor(window)
+	{
+		return new GConductor(window);
+	}
+
+	/**/
+	function createTemporaryLocation(name)
+	{
+		return new GTemporaryLocation(name);
+	}
+
+	/**/
+	function createLocation(location, index)
+	{
+		return new GLocation(location, index);
+	}
+
+	/**/
+	function createPrimaryLayer(window)
+	{
+		var obj = new Layer(window, null);
+
+		obj.name = 'Primary layer.';
+		obj.neutralColor = 0xFFFFFFFF;
+		obj.type = ltCoverRect;
+		obj.visible = true;
+		obj.fillRect(0, 0, obj.width, obj.height, obj.neutralColor);
+
+		return obj;
+	}
+
+	/**/
+	function createTagHandlers()
+	{
+		return %[
+
+			/* @window */
+			'window' => function (elm) {
+				caption = elm.caption if elm.caption !== void;
+				innerWidth = +elm.width if elm.width !== void;
+				innerHeight = +elm.height if elm.height !== void;
+				with(GObjectUtils)
+				{
+					altEnterScreenModeChange = .getBoolean(elm, 'alt-enter') if .hasValue(elm, 'alt-enter');
+					fixWindowPositionToDesktopCenter() if .getBoolean(elm, 'fix-position-to-center');
+					fullScreen = .getBoolean(elm, 'full-screen') if.hasValue(elm, 'full-screen');
+					visible = .getBoolean(elm, 'visible') if .hasValue(elm, 'visible');
+				}
+				return 'break';
+			} incontextof this,
+
+			/* @load_module */
+			'load_module' => function (elm) {
+				if(elm.name == void)
+					throw new GRuntimeError('name 属性が指定されていません。');
+				with(modules_)
+				{
+					var mod = .load(elm.name, GObjectUtils.getBoolean(elm, 'automation', true));
+					.addAlias(mod, elm.alias) if elm.alias !== void;
+				}
+				return 'break';
+			} incontextof this,
+
+			/* @close */
+			'close' => function (elm, c) {
+			} incontextof this,
+
+			/* @single */
+			'single' => function (elm) {
+				if(!System.createAppLock(System.exePath.replace(/[^A-Za-z]/g, '_')))
+				{
+					System.inform(System.title + 'はすでに起動しています');
+					System.exit();
+				}
+			} incontextof this,
+
+		];
+	}
+
+	/**/
+	function unifyTagHandlers()
+	{
+		var work = GObjectUtils.assignDictionary(tagHandlers_, thisTagHandlers_);
+
+		modules_.unifyTagHandlers(work);
+
+		return conductor_.unifyTagHandlers(work);
+	}
+
+	/**/
+	function fixPrimaryLayerSizeToInnerSize()
+	{
+		var w = innerWidth;
+		var h = innerHeight;
+
+		with(primaryLayer)
+		{
+			.setSize(w, h);
+
+			modules_.callHandler('onPrimaryLayerResize', .left, .top, .width, .height);
+		}
+	}
+
+	/**/
+	function fixWindowPositionToDesktopCenter()
+	{
+		setPos(
+			System.desktopLeft + ((System.desktopWidth - width) >> 1),
+			System.desktopTop + ((System.desktopHeight - height) >> 1)
+		);
+	}
+
+	/*! \brief スクリーンモードを確定させます。
+	**/
+	function fixScreenMode()
+	{
+		var fs = fullScreened_;
+
+		// NOTE: ウインドウが非表示中は画面サイズが確定していない可能性がある。
+		// NOTE: そのためスクリーンモードの切り替えはウインドウが表示されている事を条件にします。
+		if(super.fullScreen != fs && super.visible)
+		{
+			try {
+				super.fullScreen = fs;
+			} catch(e) {
+				if(fs)
+					warn('フルスクリーンモードに移行できませんでした。');
+				else
+					warn('ウインドウモードに移行できませんでした。');
+				warn(e.message);
+			}
+
+			modules_.callHandler('onScreenModeChanged', fullScreened_ = super.fullScreen);
+		}
+	}
+
+	/**/
+	function setVisibleStatus(value)
+	{
+		if(!value && super.fullScreen)
+		{
+			warn('フルスクリーンモード中はウインドウを非表示にはできません。');
+		}
+		else
+		{
+			super.visible = value;
+
+			fixScreenMode();
+
+			anotherCycle.uniqueAdd(this.onVisibleStateChanged);
+		}
+	}
+
+	/**/
+	function makeLocation(name, location, index = '')
+	{
+		var obj = createLocation(location, index);
+
+		removeLocation(name);
+
+		locations_[name] = obj;
+
+		return obj;
+	}
+
+	/**/
+	function getLocation(name)
+	{
+		if(name == '')
+			return temporaryLocation;
+		return locations_[name];
+	}
+
+	/**/
+	function removeLocation(name)
+	{
+		if(name == '')
+			throw GRuntimeError('ロケーション名を指定してください。');
+
+		if(locations_[name] !== void)
+		{
+			invalidate locations_[name];
+			locations_[name] = void;
+		}
+	}
+
+	/**/
+	function leftClick(x, y, shift)
+	{
+		modules.callHandler('onWindowLeftClick', x, y, shift);
+		conductor.signal('left_click');
+	}
+
+	/**/
+	function rightClick(x, y, shift)
+	{
+		modules.callHandler('onWindowRightClick', x, y, shift);
+		conductor.signal('right_click');
+	}
+
+	/**/
+	function middleClick(x, y, shift)
+	{
+		modules.callHandler('onWindowMiddleClick', x, y, shift);
+		conductor.signal('middle_click');
+	}
+
+	/**/
+	function wheel(shift, delta, x, y)
+	{
+		modules.callHandler('onWindowWheel', shift, delta, x, y);
+	}
+
+	/**/
+	function store(tick = System.getTickCount())
+	{
+		return %[
+			tick : tick,
+			modules : modules_.store(tick),
+			conductor : conductor_.store(tick)
+		];
+	}
+
+	/**/
+	function restore(dic, tick = System.getTickCount())
+	{
+		conductor_.restore(dic.conductor, tick);
+		modules_.restore(dic.modules, tick);
+	}
+
+	/**/
+	function onLoadModule(module)
+	{
+		// FIXME: 面倒なので全部再統合している。
+		unifyTagHandlers() if module.tagHandlers !== void;
+	}
+
+	/*! \brief ウインドウの表示状態が変更された時に呼び出されます。
+	**/
+	function onVisibleStateChanged()
+	{
+	}
+
+	/**/
+	function onMouseUp(x, y, button, shift)
+	{
+		switch(button)
+		{
+		case mbLeft:	leftClick(x, y, shift); break;
+		case mbRight:	rightClick(x, y, shift); break;
+		case mbMiddle:	middleClick(x, y, shift); break;
+		}
+	}
+
+	/**/
+	function onKeyDown(key, shift)
+	{
+		modules.callHandler('onWindowKeyDown', key, shift);
+
+		return super.onKeyDown(key, shift);
+	}
+
+	/**/
+	function onKeyUp(key, shift)
+	{
+		modules.callHandler('onWindowKeyUp', key, shift);
+
+		if(altEnterScreenModeChange)
+		{
+			if(key == VK_RETURN && (shift & ssAlt))
+			{
+				fullScreen = !fullScreen;
+
+				return super.onKeyDown(key, shift);
+			}
+		}
+
+		return super.onKeyUp(key, shift);
+	}
+
+	/**/
+	function onResize()
+	{
+		fixPrimaryLayerSizeToInnerSize();
+	}
+
+	/**/
+	function onCloseQuery()
+	{
+		modules.callHandler('onWindowClose', this);
+
+		super.onCloseQuery(...);
+	}
+
+	property modules
+	{
+		getter		{ return modules_; }
+	}
+
+	property conductor
+	{
+		getter		{ return conductor_; }
+	}
+
+	property temporaryLocation
+	{
+		getter		{ return temporaryLocation_; }
+	}
+
+	property tagHandlers
+	{
+		getter		{ return tagHandlers_; }
+	}
+
+	property thisTagHandlers
+	{
+		getter		{ return thisTagHandlers_; }
+	}
+
+	property fullScreen
+	{
+		setter(x)	{ fullScreened_ = x; fixScreenMode(); }
+		getter		{ return fullScreened_; }
+	}
+
+	property visible
+	{
+		setter(x)	{ setVisibleStatus(x); }
+		getter		{ return super.visible; }
+	}
+}
+
+

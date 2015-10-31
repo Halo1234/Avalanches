@@ -1,0 +1,783 @@
+/*
+ * $Revision: 307 $
+**/
+
+
+/*! \brief レイヤ基本クラス
+**/
+class GLayer extends Layer
+{
+	var handler;
+
+	var family_ = void;
+	var conductor_ = void;				//!< \brief このレイヤのコンダクタ。
+	var colorCorrection_ = void;		//!< \brief このレイヤの色補正用オブジェクト。
+
+	var mirror_ = null;					//!< \brief ミラーレイヤ。最後にアサインしたレイヤです。
+	var offScreen_ = false;
+
+	var name_;
+
+	var loadImagesStorage_ = void;
+	var loadImagesColorKey_ = clNone;
+
+	var fixPositionToCenter = false;
+	var offsetX_ = 0;
+	var offsetY_ = 0;
+	var left_ = 0;
+	var top_ = 0;
+
+	var flipLeftRight_ = false;
+	var flipUpDown_ = false;
+
+	var showRunning_ = false;			//!< \brief 表示効果実行中は true に設定されます。
+	var hideRunning_ = false;			//!< \brief 非表示効果実行中は true に設定されます。
+
+	var inTransition_ = false;			//!< \brief トランジション中は true に設定されます。
+	var exchangeAfterTransition_;
+	var withChildrenTransition_;
+
+	var mouseEnterToLeave_ = false;		//!< \biref onMouseEnter を通過してから onMouseLeave() が発生するまでの間 true に設定されます。
+	var mouseDownToUp_ = false;			//!< \biref onMouseDown を通過してから onMouseUp() が発生するまでの間 true に設定されます。
+
+	/**/
+	function GLayer(window, parent, handler = void)
+	{
+		this.handler = handler;
+
+		super.Layer(window, parent);
+
+		// 特に理由は無い部分もあるが明示的に初期化しておく。
+		name = GObjectUtils.getClassName(this);
+		hitType = htMask;
+		hitThreshold = 256;
+		joinFocusChain = false;
+	}
+
+	function finalize()
+	{
+		handler = void;
+
+		stopTransition();
+		cancelShowHide(false);
+
+		invalidate conductor_ if conductor_ !== void;
+		conductor_ = void;
+		invalidate colorCorrection_ if colorCorrection_ !== void;
+		colorCorrection_ = void;
+
+		invalidate family_ if family_ !== void;
+		family_ = void;
+
+		super.finalize(...);
+	}
+
+	/**/
+	function loadImages(storage, key = clNone)
+	{
+		flipLeftRight_ = false;
+		flipUpDown_ = false;
+
+		return super.loadImages(loadImagesStorage_ = storage, loadImagesColorKey_ = key);
+	}
+
+	/**/
+	function createFamily(owner)
+	{
+		return new GFamily(owner);
+	}
+
+	/**/
+	function createConductor(window, layer)
+	{
+		return new GLayerConductor(window, layer);
+	}
+
+	/**/
+	function createColorCorrection(owner)
+	{
+		return new GLayerColorCorrection(owner);
+	}
+
+	/**/
+	function clearImages(value = neutralColor)
+	{
+		loadImagesStorage_ = void;
+		loadImagesColorKey_ = clNone;
+		flipLeftRight_ = false;
+		flipUpDown_ = false;
+		super.fillRect(0, 0, imageWidth, imageHeight, value) if hasImage;
+
+		conductor_.clear() if conductor_ !== void;
+		colorCorrection_.clear() if colorCorrection_ !== void;
+	}
+
+	/**/
+	function callHandler(message, elements = %[])
+	{
+		var h = handler;
+
+		if(h instanceof 'Function')
+			return h(this, message, elements);
+		else
+		if(typeof(h) == 'Object')
+			throw new GNotImplementedError();
+
+		return void;
+	}
+
+	/**/
+	function callHandlerInAnotherCycle(message, elements = %[])
+	{
+		anotherCycle.add(callHandler, message, elements);
+	}
+
+	/*! \brief レイヤーにアサインします。
+	 *
+	 * \param [src] アサイン先レイヤーを指定します。
+	 *
+	 * \return this を返します。
+	 *
+	 * \remarks 自身がプライマリの場合は offScreen プロパティ値は不定になります。
+	**/
+	function assign(src)
+	{
+		assignImages(src);
+
+		mirror_ = src;
+		src.mirror_ = this;
+
+		with(src)
+		{
+			loadImagesStorage_ = .loadImagesStorage_;
+			loadImagesColorKey_ = .loadImagesColorKey_;
+
+			if(!.isPrimary)
+			{
+				if(.parent.absoluteOrderMode)
+					absolute = .absolute;
+				else
+					order = .order;
+			}
+
+			if(!isPrimary)
+			{
+				offScreen_ = !.offScreen_;
+				resetLayerName();
+				.resetLayerName();
+			}
+
+			visible = .visible;
+			opacity = .opacity;
+			type = .type;
+			hitType = .hitType;
+			hitThreshold = .hitThreshold;
+
+			super.setSize(.width, .height);
+
+			super.left = (left_ = .left) + (offsetX_ = .offsetX);
+			super.top = (top_ = .top) + (offsetY_ = .offsetY);
+
+			// NOTE: assignImages() によって hasImage は既にアサインされています。
+			setImagePos(.imageLeft, .imageTop) if hasImage;
+
+			fixPositionToCenter = .fixPositionToCenter;
+
+			conductor.assign(.conductor_) if .conductor_ !== void;
+			colorCorrection.assign(.colorCorrection_) if .colorCorrection_ !== void;
+		}
+
+		resetMouseState();
+
+		return this;
+	}
+
+	/**/
+	function assignToMirror()
+	{
+		if(mirror_ === null)
+			throw new GRuntimeError('ミラーレイヤにアサインしましたが、ミラーレイヤが設定されていません。');
+
+		assign(mirror_);
+	}
+
+	/**/
+	function exchange()
+	{
+		if(mirror_ === null)
+			throw new GRuntimeError('ミラーレイヤと内容を入れ替えようとしましたが、ミラーレイヤが設定されていません。');
+
+		with(mirror_)
+		{
+			offScreen_ <-> .offScreen_;
+			name <-> .name;
+		}
+	}
+
+	/**/
+	function independence(mainImageCOW = true, provinceImageCOW = true)
+	{
+		independMainImage(mainImageCOW);
+		independProvinceImage(provinceImageCOW);
+
+		if(mirror_ !== null && isvalid mirror_ && mirror_.mirror_ === this)
+		{
+			mirror_.offScreen_ = false;
+			mirror_.mirror_ = null;
+			mirror_.resetLayerName();
+		}
+
+		offScreen_ = false;
+		mirror_ = null;
+		resetLayerName();
+	}
+
+	/**/
+	function assignFont(src, decoration = false)
+	{
+		var dst = font;
+
+		with(src)
+		{
+			dst.angle = .font.angle;
+			dst.face = .font.face;
+			dst.height = .font.height;
+			dst.bold = .font.bold;
+			dst.italic = .font.italic;
+
+			if(decoration)
+			{
+				dst.strikeout = .font.strikeout;
+				dst.underline = .font.underline;
+			}
+		}
+
+		return this;
+	}
+
+	/**/
+	function assignFontToParent(decoration = false)
+	{
+		if(isPrimary)
+			throw new GRuntimeError('プライマリレイヤに対して GLayer#assignFontToParent() を呼び出しました。');
+
+		assignFont(parent, decoration);
+
+		return this;
+	}
+
+	/**/
+	function resetLayerName()
+	{
+		if(mirror_ === null)
+			super.name = name_;
+		else
+			super.name = (offScreen_ ? @"[back] &name_;" : @"[fore] &name_;");
+
+		return super.name;
+	}
+
+	/**/
+	function setOffset(x, y)
+	{
+		super.left = left_ + (offsetX_ = x);
+		super.top = top_ + (offsetY_ = y);
+	}
+
+	/**/
+	function setPos(left, top, width, height)
+	{
+		left_ = left;
+		top_ = top;
+
+		// NOTE: left and top is local variables.
+		left += offsetX;
+		top += offsetY;
+
+		super.setPos(...);
+	}
+
+	/**/
+	function setCenterPos(x, y)
+	{
+		x = x - (width >> 1);
+		y = y - (height >> 1);
+
+		setPos(x, y);
+	}
+
+	/**/
+	function setFixedPos(x, y)
+	{
+		(fixPositionToCenter ? setCenterPos : setPos)(x, y);
+	}
+
+	/**/
+	function setSize(width, height)
+	{
+		var cx = centerX, cy = centerY;
+
+		super.setSize(width, height);
+
+		setCenterPos(cx, cy) if fixPositionToCenter;
+	}
+
+	/**/
+	function setSizeToImageSize()
+	{
+		var cx = centerX, cy = centerY;
+		var w = super.width, h = super.height;
+
+		super.setSizeToImageSize(...);
+
+		setCenterPos(cx, cy) if fixPositionToCenter;
+	}
+
+	/**/
+	function flipLR()
+	{
+		flipLeftRight_ = !flipLeftRight_;
+
+		return super.flipLR();
+	}
+
+	/**/
+	function flipUD()
+	{
+		flipUpDown_ = !flipUpDown_;
+
+		return super.flipUD();
+	}
+
+	/**/
+	function show()
+	{
+		if(showRunning_)
+			return false;
+		if(hideRunning_)
+			cancelShowHide();
+
+		visible = true;
+		showRunning_ = true;
+
+		beginShowEffect();
+
+		return true;
+	}
+
+	/*! \brief 表示効果を開始します。
+	 *
+	 * \remarks 固有の表示効果を実装する場合はこれをオーバーライドしてください。
+	 * \remarks 仕様上、派生先で基底クラスの同メソッドを呼び出すべきではありません。
+	**/
+	function beginShowEffect()
+	{
+		anotherCycle.uniqueAdd(showComplete);
+	}
+
+	/*! \brief 表示効果が完了した時に呼ばれます。
+	 *
+	 * \remarks show() 呼出し後、必ず呼ばれるという保証はありません。
+	**/
+	function showComplete()
+	{
+		showRunning_ = false;
+
+		callHandler('onShowCompleted');
+	}
+
+	/**/
+	function hide()
+	{
+		if(hideRunning_)
+			return false;
+		if(showRunning_)
+			cancelShowHide();
+
+		hideRunning_ = true;
+
+		beginHideEffect();
+
+		return false;
+	}
+
+	/*! \brief 非表示効果を開始します。
+	 *
+	 * \remarks 固有の非表示効果を実装する場合はこれをオーバーライドしてください。
+	 * \remarks 仕様上、派生先で基底クラスの同メソッドを呼び出すべきではありません。
+	**/
+	function beginHideEffect()
+	{
+		anotherCycle.uniqueAdd(hideComplete);
+	}
+
+	/*! \brief 非表示効果が完了した時に呼ばれます。
+	 *
+	 * \remarks hide() 呼出し後、必ず呼ばれるという保証はありません。
+	**/
+	function hideComplete()
+	{
+		visible = false;
+		hideRunning_ = false;
+
+		callHandler('onHideCompleted');
+	}
+
+	/**/
+	function cancelShowHide(drawFinalFrame = true)
+	{
+		if(showRunning_ || hideRunning_)
+			onInterruptShowHide(drawFinalFrame);
+
+		showRunning_ = false;
+		hideRunning_ = false;
+		anotherCycle.remove(hideComplete);
+		anotherCycle.remove(showComplete);
+	}
+
+	/**/
+	function beginTransition(name, withchildren = true, transsrc = null, options = %[])
+	{
+		stopTransition();
+
+		inTransition_ = true;
+		exchangeAfterTransition_ = +options.exchange; // NOTE: +void == 0 == false
+		withChildrenTransition_ = withchildren;
+
+		super.beginTransition(name, withchildren, transsrc, options);
+
+		callHandler(
+			'onBeginTransition',
+			%[
+				name : name, children : withchildren, src : transsrc, options : options
+			]
+		);
+	}
+
+	/**/
+	function stopTransition()
+	{
+		if(inTransition_)
+		{
+			super.stopTransition();
+
+			inTransition_ = false;
+		}
+	}
+
+	/**/
+	function resetMouseState()
+	{
+		mouseEnterToLeave_ = false;
+		mouseDownToUp_ = false;
+	}
+
+	/**/
+	function click(x, y, shift)
+	{
+	}
+
+	/**/
+	function rclick(x, y, shift)
+	{
+	}
+
+	/**/
+	function mclick(x, y, shift)
+	{
+	}
+
+	/**/
+	function store(tick)
+	{
+		var dic = %[
+			loadImagesStorage : loadImagesStorage_, loadImagesColorKey : loadImagesColorKey_,
+			visible : visible, opacity : opacity, hasImage : hasImage,
+			type : type, hitType : hitType, hitThreshold : hitThreshold,
+			left : left, top : top, width : width, height : height, offsetX : offsetX_, offsetY : offsetY_,
+			flipLeftRight : flipLeftRight_, flipUpDown : flipUpDown_,
+			imageLeft : imageLeft, imageTop : imageTop, imageWidth : imageWidth, imageHeight : imageHeight,
+			fixPositionToCenter : fixPositionToCenter,
+			//colorCorrection : colorCorrection_.store(tick)
+		];
+
+		dic.conductor = conductor_.store(tick) if conductor_ !== void;
+		dic.colorCorrection = colorCorrection_.store(tick) if colorCorrection_ !== void;
+
+		if(!isPrimary)
+		{
+			if(parent.absoluteOrderMode)
+				dic.absolute = absolute;
+			else
+				dic.order = order;
+		}
+
+		return dic;
+	}
+
+	/**/
+	function restore(dic, tick)
+	{
+		with(dic)
+		{
+			if((hasImage = .hasImage) != false)
+			{
+				loadImages(.loadImagesStorage, .loadImagesColorKey) if .loadImagesStorage !== void;
+
+				flipLR() if .flipLeftRight;
+				flipUD() if .flipUpDown;
+
+				setImageSize(.imageWidth, .imageHeight);
+				setPos(.left, .top, .width, .height);
+				setOffset(.offsetX, .offsetY);
+				setImagePos(.imageLeft, .imageTop);
+			}
+			else
+			{
+				loadImagesStorage_ = void;
+				loadImagesColorKey_ = clNone;
+				flipLeftRight_ = flipUpDown_ = false;
+				setPos(.left, .top, .width, .height);
+				setOffset(.offsetX, .offsetY);
+			}
+
+			if(!isPrimary)
+			{
+				if(.absolute !== void)
+					absolute = .absolute;
+				else
+				if(.order !== void)
+					order = .order;
+			}
+			visible = .visible;
+			opacity = .opacity;
+			type = .type;
+			hitType = .hitType;
+			hitThreshold = .hitThreshold;
+
+			fixPositionToCenter = .fixPositionToCenter;
+
+			conductor.restore(dic.conductor, tick) if dic.conductor !== void;
+			colorCorrection_.restore(dic.colorCorrection, tick) if dic.colorCorrection !== void;
+		}
+
+		resetMouseState();
+	}
+
+	/**/
+	function onInterruptShowHide(drawFinalFrame)
+	{
+	}
+
+	/**/
+	function onTransitionCompleted(dest, src)
+	{
+		super.onTransitionCompleted(dest, src);
+
+		inTransition_ = false;
+
+		callHandler(
+			'onTransitionCompleted',
+			%[
+				dest : dest, src : src, children : withChildrenTransition_, exchange : exchangeAfterTransition_
+			]
+		);
+	}
+
+	/**/
+	function onMouseEnter()
+	{
+		super.onMouseEnter(...);
+
+		mouseEnterToLeave_ = true;
+	}
+
+	/**/
+	function onMouseLeave()
+	{
+		super.onMouseLeave(...);
+
+		mouseEnterToLeave_ = false;
+	}
+
+	/**/
+	function onMouseDown(x, y, button, shift)
+	{
+		super.onMouseDown(...);
+
+		mouseDownToUp_ = true;
+	}
+
+	/**/
+	function onMouseUp(x, y, button, shift)
+	{
+		super.onMouseUp(...);
+
+		mouseDownToUp_ = false;
+
+		if(cursorOnLayer && mouseEnterToLeave_)
+		{
+			switch(button)
+			{
+			case mbLeft:	click(x, y, shift); break;
+			case mbRight:	rclick(x, y, shift); break;
+			case mbMiddle:	mclick(x, y, shift); break;
+			}
+		}
+	}
+
+	/**/
+	function onNodeDisabled()
+	{
+		resetMouseState();
+
+		super.onNodeDisabled();
+	}
+
+	property family
+	{
+		getter		{ return family_ === void ? (family_ = createFamily(this)) : family_; }
+	}
+
+	property conductor
+	{
+		getter		{ return conductor_ === void ? (conductor_ = createConductor(window, this)) : conductor_; }
+	}
+
+	property colorCorrection
+	{
+		getter		{ return colorCorrection_ === void ? (colorCorrection_ = createColorCorrection(this)) : colorCorrection_; }
+	}
+
+	property mirror
+	{
+		getter		{ return mirror_; }
+	}
+
+	property offScreen
+	{
+		getter		{ return offScreen_; }
+	}
+
+	property name
+	{
+		setter(x)	{ name_ = x; resetLayerName(); }
+		getter		{ return name_; }
+	}
+
+	property acctualName
+	{
+		getter		{ return super.name; }
+	}
+
+	property imageLoaded
+	{
+		getter		{ return loadImagesStorage_ === void ? false : true; }
+	}
+
+	property loadImagesStorage
+	{
+		getter		{ return loadImagesStorage_; }
+	}
+
+	property loadImagesColorKey
+	{
+		getter		{ return loadImagesColorKey_; }
+	}
+
+	property offsetX
+	{
+		setter(x)	{ super.left = left_ + (offsetX_ = x); }
+		getter		{ return offsetX_; }
+	}
+
+	property offsetY
+	{
+		setter(x)	{ super.top = top_ + (offsetY_ = x); }
+		getter		{ return offsetY_; }
+	}
+
+	property left
+	{
+		setter(x)	{ super.left = (left_ = x) + offsetX_; }
+		getter		{ return left_; }
+	}
+
+	property top
+	{
+		setter(x)	{ super.top = (top_ = x) + offsetY_; }
+		getter		{ return top_; }
+	}
+
+	property flipLeftRight
+	{
+		getter		{ return flipLeftRight_; }
+	}
+
+	property flipUpDown
+	{
+		getter		{ return flipUpDown_; }
+	}
+
+
+	property right
+	{
+		setter(x)	{ this.left = x - width; }
+		getter		{ return left_ + width; }
+	}
+
+	property bottom
+	{
+		setter(x)	{ this.top = x - height; }
+		getter		{ return top_ + height; }
+	}
+
+	property centerX
+	{
+		setter(x)	{ this.left = (x - (width >> 1)); }
+		getter		{ return left_ + (width >> 1); }
+	}
+
+	property centerY
+	{
+		setter(x)	{ this.top = (x - (height >> 1)); }
+		getter		{ return top_ + (height >> 1); }
+	}
+
+	property fixedX
+	{
+		setter(x)	{ (fixPositionToCenter ? centerX : left) = x; }
+		getter		{ return fixPositionToCenter ? centerX : left_; }
+	}
+
+	property fixedY
+	{
+		setter(x)	{ (fixPositionToCenter ? centerY : top) = x; }
+		getter		{ return fixPositionToCenter ? centerY : top_; }
+	}
+
+	property showRunning
+	{
+		getter		{ return showRunning_; }
+	}
+
+	property hideRunning
+	{
+		getter		{ return hideRunning_; }
+	}
+
+	property inTransition
+	{
+		getter		{ return inTransition_; }
+	}
+
+	property cursorOnLayer
+	{
+		getter		{ var x = cursorX, y = cursorY; return ((x >= 0 && x <= width && y >= 0 && y <= height) ? true : false); }
+	}
+
+	property pushed
+	{
+		getter		{ return mouseDownToUp_ && cursorOnLayer; }
+	}
+}

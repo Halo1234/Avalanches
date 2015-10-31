@@ -1,0 +1,558 @@
+/*
+ * $Revision$
+**/
+
+
+/**/
+class MessageLayerIterator extends GLayerIterator
+{
+	function MessageLayerIterator(window, container)
+	{
+		super.GLayerIterator(...);
+
+		setAbsoluteBase(1000000);
+		setAbsoluteStep(1000);
+	}
+
+	function create(window)
+	{
+		return new GMessageLayer(window, container.get(container.parentLayerName), onLayerEvent);
+	}
+
+	property prefix
+	{
+		getter		{ return 'message'; }
+	}
+}
+
+
+/**/
+class ModMessage extends GModule
+{
+	var layerContainer_;
+
+	var messageLayers_;
+
+	var current_ = null;
+	var outputInterval = 20;
+
+	var /* const */ smNotSkip = 0;		// スキップしない
+	var /* const */ smNextWait = 1;		// 次のクリック待ちまでスキップ
+	var /* const */ smPageEnd = 2;		// ページ末までスキップ
+	var /* const */ smNotRead = 100;	// 次の未読部分までスキップ
+	var /* const */ smCancel = 101;		// キャンセルされるまでスキップ
+										//
+										// skipMode が取りうる値
+										// skipMode <= 0 は非スキップ状態としてください。
+										// skipMode >= 1 はスキップ状態としてください。
+										// skipMode >= 100 は長いスキップ状態としてください。
+
+	var skipMode_ = smNotSkip;			// 現在のスキップ状態
+
+	var autoMode_ = false;
+	var autoPageWait = 2000;
+	var clickToAutoModeCancel = true;
+
+	var skipKey = VK_CONTROL;
+
+	function ModMessage(container, name)
+	{
+		super.GModule(...);
+
+		layerContainer_ = createLayerContainer(window, window.primaryLayer);
+
+		messageLayers_ = new MessageLayerIterator(window, layerContainer_);
+		messageLayers_.onLayerEvent = onMessageLayerEvent;
+	}
+
+	function finalize()
+	{
+		invalidate messageLayers_;
+		invalidate layerContainer_;
+
+		super.finalize(...);
+	}
+
+	/**/
+	function createLayerContainer(window, parentLayer)
+	{
+		return new GLayerContainer(window, parentLayer, false);
+	}
+
+	/**/
+	function createExtensionTagHandlers()
+	{
+		return %[
+
+			/* @message_layers */
+			'message_layers' => function (elm) {
+				with(messageLayers_)
+				{
+					.count = +elm.count if elm.count !== void;
+					.absoluteBase = +elm.base if elm.base !== void;
+					.absoluteStep = +elm.step if elm.step !== void;
+				}
+			} incontextof this,
+
+			/* @message_option */
+			'message_option' => function (elm) {
+				var layer;
+				with(layer = findByElm(elm))
+				{
+					if(elm.left !== void && elm.top !== void)
+						.setPos(+elm.left, +elm.top);
+					if(elm.width !== void && elm.height !== void)
+						.setSize(+elm.width, +elm.height);
+					.bodyColor = +elm.color if elm.color !== void;
+					.bodyOpacity = +elm.opacity if elm.opacity !== void;
+					setCurrentLayer(layer.name) if GObjectUtils.toBoolean(elm.current);
+					if(elm.margin_left !== void && elm.margin_top !== void && elm.margin_top !== void && elm.margin_bottom !== void)
+						.setMargin(+elm.margin_left, +elm.margin_top, +elm.margin_right, +elm.margin_bottom);
+					.layoutMode = elm.layout_mode if elm.layout_mode !== void;
+				}
+			} incontextof this,
+
+			/* @default_font_parameters */
+			'default_font_parameters' => function (elm) {
+				with(findByElm(elm))
+				{
+					elm.original_tagname = elm.tagname;
+					elm.tagname = 'default_font_parameters';
+
+					.output(elm);
+				}
+			} incontextof this,
+
+			/* @line_parameters */
+			'line_parameters' => function (elm) {
+				with(findByElm(elm))
+				{
+					elm.original_tagname = elm.tagname;
+					elm.tagname = 'line_parameters';
+
+					.output(elm);
+				}
+			} incontextof this,
+
+			/* @font */
+			'font' => function (elm) {
+				with(findByElm(elm))
+				{
+					elm.original_tagname = elm.tagname;
+					elm.tagname = 'font';
+
+					.output(elm);
+				}
+			} incontextof this,
+
+			/* @reset_font */
+			'reset_font' => function (elm) {
+				with(findByElm(elm))
+				{
+					elm.original_tagname = elm.tagname;
+					elm.tagname = 'reset_font';
+
+					.output(elm);
+				}
+			} incontextof this,
+
+			/* @using_mod_message */
+			'using_mod_message' => usingModMessage,
+
+			/* @not_using_mod_message */
+			'not_using_mod_message' => notUsingModMessage,
+
+			/* @show_message */
+			'show_message' => function (elm) {
+				with(findByElm(elm))
+					.show();
+			} incontextof this,
+
+			/* @hide_message */
+			'hide_message' => function (elm, c) {
+				with(findByElm(elm))
+					.hide();
+			} incontextof this,
+
+			/* @ch_mod_message */
+			'ch_mod_message' => function (elm, c) {
+				if(current_ !== null)
+				{
+					elm.original_tagname = elm.tagname;
+					elm.tagname = 'ch';
+
+					if(current_.output(elm))
+					{
+						return skipping ? 0 : outputInterval;
+					}
+
+					c.pendingTag('p', elm);
+				}
+			} incontextof this,
+
+			'ruby_mod_message' => function (elm) {
+				if(current_ !== null)
+				{
+					elm.original_tagname = elm.tagname;
+					elm.tagname = 'ruby';
+
+					current_.output(elm);
+				}
+			} incontextof this,
+
+			/* @r_mod_message */
+			'r_mod_message' => function (elm, c) {
+				if(current_ !== null)
+				{
+					// NOTE:
+					// 改行できない場合 p で置き換える。
+					// （次のページの行頭に改行は必要ない）
+					if(!current_.reline())
+						c.pendingTag('p');
+				}
+			} incontextof this,
+
+			/* @p_mod_message */
+			'p_mod_message' => function (elm, c) {
+				if(current_ !== null)
+				{
+					if(longSkipping)
+						return 0;
+					if(autoMode_)
+					{
+						return autoPageWait;
+					}
+					else
+					{
+						current_.showPageGlyph();
+						c.waitSignal(%[left_click : current_.hidePageGlyph]);
+					}
+				}
+			} incontextof this,
+
+			/* @clear_message_layer */
+			'clear_message_layer' => function (elm) {
+				if(current_ !== null)
+				{
+					current_.clear();
+				}
+			} incontextof this,
+
+			/* @erase_message */
+			'erase_message' => function (elm) {
+				if(current_ !== null)
+				{
+					dm('er');
+					current_.eraseText();
+				}
+			} incontextof this,
+
+			/* @indent */
+			'indent' => function (elm) {
+				if(current_ !== null)
+				{
+					current_.layout.markIndent();
+				}
+			} incontextof this,
+
+			/* @end_indent */
+			'end_indent' => function (elm) {
+				if(current_ !== null)
+				{
+					current_.layout.deleteIndent();
+				}
+			} incontextof this,
+
+		];
+	}
+
+	/**/
+	function skipTo(mode, bb = 1)
+	{
+		if(mode > 0)
+		{
+			skipMode_ <-> mode;
+
+			window.conductor.breathBound = bb;
+			window.modules.callHandler('onSkipModeChanged', /* from */mode, /* to */skipMode_);
+		}
+	}
+
+	/**/
+	function cancelSkip()
+	{
+		if(isSkip(skipMode_))
+		{
+			var from = skipMode_;
+			var to = smNotSkip;
+
+			skipMode_ = to;
+			window.conductor.breathBound = 1;
+			window.modules.callHandler('onSkipModeChanged', from, to);
+		}
+	}
+
+	/**/
+	function cancelAutoMode()
+	{
+		if(autoMode_)
+		{
+			autoMode_ = false;
+			window.conductor.cancelWaitTimer();
+			//skipTo(smNextWait);
+			window.modules.callHandler('onCancelAutoMode');
+		}
+	}
+
+	/**/
+	function enterAutoMode()
+	{
+		if(!autoMode_)
+		{
+			window.leftClick();
+			window.modules.callHandler('onEnterAutoMode');
+			autoMode_ = true;
+		}
+	}
+
+	/**/
+	function enterSkipToNextWait(bb = 1)
+	{
+		window.conductor.cancelWaitTimer();
+		skipTo(this.smNextWait, bb);
+	}
+
+	/**/
+	function enterSkipToPageEnd(bb = 1)
+	{
+		window.conductor.cancelWaitTimer();
+		skipTo(this.smPageEnd, bb);
+	}
+
+	/**/
+	function enterSkipToNotRead(bb = 1)
+	{
+		with(window)
+		{
+			.conductor.cancelWaitTimer();
+			if(.conductor.status == .conductor.stWait)
+				.leftClick();
+		}
+		skipTo(this.smNotRead, bb);
+	}
+
+	/**/
+	function enterSkipToSkipCancel(bb = 1)
+	{
+		with(window)
+		{
+			.conductor.cancelWaitTimer();
+			.leftClick();
+		}
+		skipTo(this.smCancel, bb);
+	}
+
+	/**/
+	function isNotSkip(mode)
+	{
+		return mode <= 0;
+	}
+
+	/**/
+	function isSkip(mode)
+	{
+		return mode >= 1;
+	}
+
+	/**/
+	function isLongSkip(mode)
+	{
+		return mode >= 100;
+	}
+
+	/**/
+	function usingModMessage()
+	{
+		with(window.conductor)
+		{
+			.setRedirectTag('ch', 'ch_mod_message');
+			.setRedirectTag('ruby', 'ruby_mod_message');
+			.setRedirectTag('r', 'r_mod_message');
+			.setRedirectTag('p', 'p_mod_message');
+			.setRedirectTag('er', 'erase_message');
+			.setRedirectTag('cm', 'clear_message_layer');
+		}
+	}
+
+	/**/
+	function notUsingModMessage()
+	{
+		with(window.conductor)
+		{
+			.deleteRedirectTag('ch');
+			.deleteRedirectTag('ruby');
+			.deleteRedirectTag('r');
+			.deleteRedirectTag('p');
+			.deleteRedirectTag('er');
+			.deleteRedirectTag('cm');
+		}
+	}
+
+	/**/
+	function findByElm(elm)
+	{
+		var layer, layerName;
+
+		if(elm.layer == '')
+		{
+			if(current_ === null)
+				throw new GRuntimeError('layer 属性が指定されていません。');
+
+			return current_;
+		}
+
+		layerName = (elm.layer == '' ? .parentLayerName : elm.layer);
+
+		layer = layerContainer_.get(elm.layer);
+
+		if(layer === void)
+			throw new GRuntimeError(@"レイヤー &elm.layer; は存在しません。");
+
+		return layer;
+	}
+
+	/**/
+	function setCurrentLayer(indexOrName)
+	{
+		var layer;
+
+		switch(typeof(indexOrName))
+		{
+		case 'String':
+			layer = layerContainer_.get(indexOrName);
+			break;
+		case 'Integer':
+			if(indexOrName < 0 || indexOrName >= messageLayers_.count)
+				throw new GOutOfRangeError(@"存在しないインデックス値を指定しました。（有効範囲：0 ～ &messageLayers_.count - 1;）");
+			layer = messageLayers_.at(indexOrName);
+			break;
+		default:
+			throw new GArgumentsError("Invalid parameter. ModMessage#setCurrentLayer()");
+		}
+
+		current_ = layer;
+	}
+
+	/**/
+	function store(tick)
+	{
+		var dic = super.store(tick);
+
+		dic.messageLayers = messageLayers_.store(tick);
+		dic.outputInterval = outputInterval;
+		dic.autoMode = autoMode_;
+		dic.clickToAutoModeCancel = clickToAutoModeCancel;
+		dic.skipKey = skipKey;
+
+		return dic;
+	}
+
+	/**/
+	function restore(dic, tick)
+	{
+		super.restore(dic, tick);
+
+		messageLayers_.restore(dic.messageLayers);
+		outputInterval = dic.outputInterval;
+		autoMode_ = dic.autoMode;
+		clickToAutoModeCancel = dic.clickToAutoModeCancel;
+		skipKey = dic.skipKey;
+	}
+
+	/**/
+	function onMessageLayerEvent(obj, message, elm)
+	{
+	}
+
+	/**/
+	function onWindowLeftClick(x, y, shift)
+	{
+		if(autoMode)
+		{
+			if(clickToAutoModeCancel)
+				cancelAutoMode();
+			else
+				window.conductor.cancelWaitTimer();
+		}
+
+		if(skipping)
+		{
+			cancelSkip();
+		}
+		else
+		{
+			with(window.conductor)
+			{
+				if(.status == .stRun)
+					enterSkipToPageEnd();
+			}
+		}
+	}
+
+	/**/
+	function onWindowKeyDown(key, shift)
+	{
+		if(shift & ssRepeat)
+			return;
+		switch(key)
+		{
+		case skipKey:	enterSkipToSkipCancel(); break;
+		}
+	}
+
+	/**/
+	function onWindowKeyUp(key, shift)
+	{
+		switch(key)
+		{
+		case skipKey:	cancelSkip(); break;
+		}
+	}
+
+	property messageLayers
+	{
+		getter		{ return messageLayers_; }
+	}
+
+	property current
+	{
+		getter		{ return current_; }
+	}
+
+	property skipMode
+	{
+		getter		{ return skipMode_; }
+	}
+
+	property autoMode
+	{
+		getter		{ return autoMode_; }
+	}
+
+	property notSkipping
+	{
+		getter		{ return isNotSkip(skipMode_); }
+	}
+
+	property skipping
+	{
+		getter		{ return isSkip(skipMode_); }
+	}
+
+	property longSkipping
+	{
+		getter		{ return isLongSkip(skipMode_); }
+	}
+}
+
+

@@ -1,0 +1,44 @@
+/*
+ * $Revision: 260 $
+**/
+
+
+/**/
+class GLayerColorCorrection
+{
+	var layer_ = void;
+
+	function GLayerColorCorrection(layer)
+	{
+		layer_ = layer;
+	}
+
+	/**/
+	function clear()
+	{
+	}
+
+	/**/
+	function assign(src)
+	{
+	}
+
+	/**/
+	function store(tick)
+	{
+		return %[];
+	}
+
+	/**/
+	function restore(dic, tick)
+	{
+	}
+
+	/**/
+	property layer
+	{
+		getter		{ return layer_; }
+	}
+}
+
+

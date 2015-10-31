@@ -1,0 +1,338 @@
+!include "configure.nsh"
+
+;---
+; インストーラ
+Var ProductDir
+Var IndexFile
+
+Section "-GameData" SECID_GAMEDATA
+
+	Push $0
+	Push $1
+
+	StrCpy $ProductDir "$INSTDIR\${PRODUCT}"
+	SetOutPath $ProductDir
+
+	ClearErrors
+
+	; セーブ先フォルダを作る
+	${If} ${MUIEX_SaveLocationPath} != ""
+		CreateDirectory "${MUIEX_SaveLocationPath}"
+
+		IfFileExists "${MUIEX_SaveLocationPath}\${INDEX_NAME}" already_exists_index
+
+		; インデックスファイル作成
+		${SafeFileOpenWrite} $IndexFile "${MUIEX_SaveLocationPath}\${INDEX_NAME}"
+		FileClose $IndexFile
+		;SetFileAttributes "${MUIEX_SaveLocationPath}\${INDEX_NAME}" READONLY
+
+		already_exists_index:
+			; 何もしない
+	${EndIf}
+
+	ClearErrors
+
+	!include "install_components"
+
+	ClearErrors
+
+	MorningNightcap::InitializeKrkrCF
+	MorningNightcap::SetDataPath "${MUIEX_SaveLocation}"
+	MorningNightcap::SaveKrkrCFFile "$ProductDir\${MAINAPPLICATION_NAME}.cf"
+
+	GameDataSection_retry:
+		FileOpen $0 "$ProductDir\pinfo" w
+		FileWrite $0 "/*$\r$\n 警告：このファイルの内容は決して書き換えないでください。$\r$\n */$\r$\n"
+		FileWrite $0 "%[ Vender : '${VENDER}', Product : '${PRODUCT}', IndexName : '${INDEX_NAME}']"
+		FileClose $0
+
+		IfErrors GameDataSection_error_break
+		GoTo GameDataSection_epilogue
+
+	GameDataSection_error_break:
+		StrCpy $0 "!!!>重要な情報の書き込みに失敗しました。"
+		MessageBox MB_RETRYCANCEL|MB_ICONSTOP $0 IDRETRY GameDataSection_retry
+		Abort $0
+
+	GameDataSection_epilogue:
+		Pop $1
+		Pop $0
+
+SectionEnd
+
+Section /o "RelocationSaveData" MUIEX_SECID_RELOCATIONSAVEDATA
+
+	;---
+	; MEMO:
+	; ここでセーブデータを再配置する
+	; 気をつける事は、セーブデータが存在するかどうかは常に不明だという事。
+	; 例えば、セーブデータを残してアンインストール後、
+	; 手動でセーブデータをバックアップして削除する。というケースは往々にして考えられる。
+	; その場合、アンインストーラと登録情報は残っているがセーブデータは存在しない。
+	;---
+
+	IfFileExists "${MUIEX_CurrentSaveLocationPath}\*.*" found_savedata
+	MessageBox MB_OK "古いセーブデータが見つかりませんでした。$\rセーブデータの移動はスキップされます。" IDOK done
+
+	found_savedata:
+
+		Push $0
+		Push $1
+		Push $R0
+		Push $R1
+		Push $R2
+
+		; インデックスを開く
+		StrCpy $1 "${MUIEX_CurrentSaveLocationPath}"
+		${OpenCopyIndex} $IndexFile "$1\${INDEX_NAME}"
+
+		move_loop:
+			${GetNextIndex} $IndexFile $R0
+			StrCmp $R0 "" move_loop_done
+
+			IfFileExists "$1\$R0\*.*" is_folder is_file
+
+			is_folder:
+				CreateDirectory "${MUIEX_SaveLocationPath}\$R0"
+				GoTo move_loop
+			is_file:
+				${SafeFileCopy} "${MUIEX_CurrentSaveLocationPath}\$R0" "${MUIEX_SaveLocationPath}\$R0"
+				GoTo move_loop
+
+		move_loop_done:
+			ClearErrors
+			${CloseIndex} $IndexFile
+			${SafeFileCopy} "${MUIEX_CurrentSaveLocationPath}\${INDEX_NAME}" "${MUIEX_SaveLocationPath}\${INDEX_NAME}"
+
+		; 古い管理ファイルは削除する
+		${DeleteIndexFile} "${MUIEX_CurrentSaveLocationPath}" ${INDEX_NAME}
+
+		; 古いデータフォルダはもう必要ないので削除する
+		ClearErrors
+		RMDir "${MUIEX_CurrentSaveLocationPath}"
+
+		IfErrors delete_topdirectory_failed
+
+	epilogue:
+		ClearErrors
+		Pop $R2
+		Pop $R1
+		Pop $R0
+		Pop $1
+		Pop $0
+		GoTo done
+
+	delete_topdirectory_failed:
+		MessageBox MB_OK "セーブ先に管理外のデータが存在しています。$\n古いセーブ先を確認後、手動で削除してください。" IDOK epilogue
+
+	done:
+
+SectionEnd
+
+Section "MakeStartMenu" MUIEX_SECID_CREATESTARTMENU
+
+	CreateDirectory "${SM_ROOT}"
+	CreateDirectory "${SM_PRODUCT}"
+
+	ClearErrors
+
+	!include "install_shortcutitems"
+
+	CreateShortCut "${SM_PRODUCT}\${MAINAPPLICATION_ALIAS}.lnk" "$ProductDir\${MAINAPPLICATION_FILENAME}"
+
+SectionEnd
+
+Section "MakeUninstallShortcutInStartMenu" MUIEX_SECID_CREATEUNINSTALLSHORTCUTINSTARTMENU
+
+	Push $0
+
+	; アンインストーラのパスを決定する
+	ReadRegStr $0 ${NSIS_UTILS_REGKEY_ROOT} "${REG_PRODUCT}" "FirstLocation"
+	${If} $0 == ""
+		ClearErrors
+		StrCpy $0 $ProductDir
+	${Else}
+		StrCpy $0 "$0\${PRODUCT}"
+	${EndIf}
+
+	CreateShortCut "${SM_PRODUCT}\${UNINSTALLER_ALIAS}.lnk" "$0\${UNINSTALLER_NAME}"
+
+	Pop $0
+
+SectionEnd
+
+Section /o "MakeDesktopShortcut" MUIEX_SECID_CREATEDESKTOPSHORTCUT
+
+	CreateShortCut "$DESKTOP\${MAINAPPLICATION_ALIAS}.lnk" "$ProductDir\${MAINAPPLICATION_FILENAME}"
+
+SectionEnd
+
+Section "-Regist" SECID_REGIST
+
+	; 製品概要
+	${SafeWriteRegStr} "${REG_PRODUCT}" "" "${PRODUCT_J}"
+	${SafeWriteRegStr} "${REG_PRODUCT}" "ProductID" "${PRODUCT_ID}"
+	${SafeWriteRegStr} "${REG_PRODUCT}" "SaveLocation" "${MUIEX_SaveLocation}"
+	${SafeWriteRegStr} "${REG_PRODUCT}" "Type" "Full"
+
+	; アンインストーラ登録
+	${SafeWriteRegStr} "${REG_MS_WINDOWS_PRODUCT}" "Comments" "${VENDER_J} ${PRODUCT_J}"
+	${SafeWriteRegStr} "${REG_MS_WINDOWS_PRODUCT}" "Contact" "${VENDER_URL}"
+	${SafeWriteRegStr} "${REG_MS_WINDOWS_PRODUCT}" "DisplayIcon" "$ProductDir\${MAINAPPLICATION_FILENAME}"
+	${SafeWriteRegStr} "${REG_MS_WINDOWS_PRODUCT}" "DisplayName" "${PRODUCT_J}"
+	${SafeWriteRegStr} "${REG_MS_WINDOWS_PRODUCT}" "DisplayVersion" "${MAJOR_VERSION}.${MINOR_VERSION}"
+	${SafeWriteRegStr} "${REG_MS_WINDOWS_PRODUCT}" "HelpLink" "${SUPPORT_URL}"
+	;${SafeWriteRegStr} "${REG_MS_WINDOWS_PRODUCT}" "InstallDate" ""
+	${SafeWriteRegStr} "${REG_MS_WINDOWS_PRODUCT}" "InstallLocation" "$INSTDIR"
+	${SafeWriteRegStr} "${REG_MS_WINDOWS_PRODUCT}" "InstallItem" "${PRODUCT}"
+	${SafeWriteRegStr} "${REG_MS_WINDOWS_PRODUCT}" "Publisher" "${PUBLISHER}"
+	${SafeWriteRegStr} "${REG_MS_WINDOWS_PRODUCT}" "URLInfoAbout" "${SUPPORT_URL}"
+
+	${SafeWriteRegDWORD} "${REG_MS_WINDOWS_PRODUCT}" "Language" 0
+	${SafeWriteRegDWORD} "${REG_MS_WINDOWS_PRODUCT}" "NoModify" 1
+	${SafeWriteRegDWORD} "${REG_MS_WINDOWS_PRODUCT}" "NoRepair" 1
+	${SafeWriteRegDWORD} "${REG_MS_WINDOWS_PRODUCT}" "Version" ${VERSION_DWORD}
+
+SectionEnd
+
+Section "WriteUninstaller" MUIEX_SECID_WRITEUNINSTALLER
+
+	WriteUninstaller "$ProductDir\${UNINSTALLER_NAME}"
+
+	${SafeWriteRegStr} "${REG_PRODUCT}" "FirstLocation" "$INSTDIR"
+
+	${SafeWriteRegStr} "${REG_MS_WINDOWS_PRODUCT}" "ModifyPath" "$ProductDir\${UNINSTALLER_NAME}"
+	${SafeWriteRegStr} "${REG_MS_WINDOWS_PRODUCT}" "UninstallString" "$ProductDir\${UNINSTALLER_NAME}"
+
+SectionEnd
+
+;---
+; 初期化モジュール展開
+!insertmacro NSIS_Initialize
+
+;---
+; ページ定義
+!insertmacro MUI_PAGE_WELCOME
+
+!insertmacro MUIEX_PAGE_SETUPMENU
+
+!insertmacro MUIEX_PAGE_DIRECTORYEX
+
+!insertmacro MUIEX_PAGE_SAVELOCATION
+
+!insertmacro MUIEX_PAGE_SHORTCUTLOCATION
+
+!insertmacro MUIEX_PAGE_CONFIRM
+
+!insertmacro MUI_PAGE_INSTFILES
+
+!define MUI_FINISHPAGE_SHOWREADME	"$EXEDIR\readme.txt"
+!insertmacro MUI_PAGE_FINISH
+
+; インストーラーの初期化
+Function .onInit
+	${NSIS_Initialize}
+FunctionEnd
+
+
+;---
+; アンインストーラ
+Var FirstLocation
+Var FirstProduct
+
+; ゲームデータのアンインストール
+Section "-Un.GameData" UN_SECID_REMOVEGAMEDATA
+
+	ReadRegStr $INSTDIR ${NSIS_UTILS_REGKEY_ROOT} "${REG_MS_WINDOWS_PRODUCT}" "InstallLocation"
+	StrCpy $ProductDir "$INSTDIR\${PRODUCT}"
+	ReadRegStr $FirstLocation ${NSIS_UTILS_REGKEY_ROOT} "${REG_PRODUCT}" "FirstLocation"
+	StrCpy $FirstProduct "$FirstLocation\${PRODUCT}"
+
+	; ショートカット類の削除
+	Delete "${SM_PRODUCT}\${MAINAPPLICATION_ALIAS}.lnk"
+	Delete "${SM_PRODUCT}\${UNINSTALLER_ALIAS}.lnk"
+	Delete "$DESKTOP\${MAINAPPLICATION_ALIAS}.lnk"
+
+	!include "uninstall_shortcutitems"
+
+	; アプリケーションとデータの削除
+	!include "uninstall_components"
+
+	; 管理ファイルを削除する
+	${un.DeleteIndexFile} "$ProductDir" ${INDEX_NAME}
+
+	Delete "$ProductDir\pinfo"
+	Delete "$ProductDir\${MAINAPPLICATION_NAME}.cf"
+
+	; フォルダ削除
+	RMDir "${SM_PRODUCT}"
+	RMDir "${SM_ROOT}"
+
+	RMDir "$ProductDir"
+	RMDir "$INSTDIR"
+
+	ClearErrors
+
+	; レジストリの内容を変更する
+	${SafeWriteRegStr} "${REG_PRODUCT}" "Type" "SaveOnly"
+	${SafeWriteRegStr} "${REG_MS_WINDOWS_PRODUCT}" "DisplayName" "${PRODUCT_J} のセーブデータ削除"
+
+SectionEnd
+
+; セーブデータのアンインストール
+Section /o "Un.Savedata" MUIEX_UN_SECID_REMOVESAVEDATA
+
+	; 管理ファイルを削除する
+	${un.DeleteIndexFile} "${un.MUIEX_CurrentSaveLocationPath}" ${INDEX_NAME}
+
+	; 古いデータフォルダはもう必要ないので削除する
+	ClearErrors
+	RMDir "${un.MUIEX_CurrentSaveLocationPath}"
+
+	IfErrors 0 unregist
+	MessageBox MB_OK "セーブ先に管理外のデータが存在しています。$\nセーブ先を確認後、手動で削除してください。"
+
+	unregist:
+		; レジストリの内容を全て削除
+		${un.SafeDeleteRegKey} "${REG_PRODUCT}"
+		${un.SafeDeleteRegKey} "${REG_ROOT}"
+
+		${un.SafeDeleteRegKey} "${REG_MS_WINDOWS_PRODUCT}"
+		${un.SafeDeleteRegKey} "${REG_MS_WINDOWS_UNINSTALL}"
+
+	; アンインストーラの削除
+	Delete "$ProductDir\${UNINSTALLER_NAME}"
+
+	; フォルダももういらないので削除
+	RMDir "$FirstProduct"
+	RMDir "$FirstLocation"
+
+	ClearErrors
+
+SectionEnd
+
+;---
+; 初期化モジュール展開
+!insertmacro un.NSIS_Initialize
+
+;---
+; ページ定義
+!insertmacro MUI_UNPAGE_WELCOME
+
+!insertmacro MUIEX_UNPAGE_SAVEDATA
+
+!insertmacro MUIEX_UNPAGE_CONFIRM
+
+!insertmacro MUI_UNPAGE_INSTFILES
+
+!insertmacro MUI_UNPAGE_FINISH
+
+; アンインストーラーの初期化
+Function un.onInit
+	${un.NSIS_Initialize}
+FunctionEnd
+
+; 言語設定
+!insertmacro MUI_LANGUAGE	"Japanese"
+
+

@@ -1,0 +1,53 @@
+;/*
+; * $Revision$
+;**/
+
+*label|
+; ModSound test.
+@load_module name=ModSound
+@log message="ModSound ƒ‚ƒWƒ…[ƒ‹“Ç‚İ‚İ‚É¬Œ÷‚µ‚Ü‚µ‚½B"
+
+@add_bgm_buffer type=WAVE
+@log message="‚a‚f‚lƒoƒbƒtƒ@‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B"
+
+@se_buffers count=1
+@log message="Œø‰Ê‰¹ƒoƒbƒtƒ@‚ğ‚Ğ‚Æ‚ÂŠm•Û‚µ‚Ü‚µ‚½B"
+
+@show_message layer=message0
+
+*label|
+@fadein_bgm storage=bgm001.ogg time=2000
+‚a‚f‚l‚ğÄ¶‚µ‚Ü‚µ‚½B[p][cm]
+
+*label|
+@pause_bgm
+‚a‚f‚l‚ğˆê’â~‚µ‚Ü‚µ‚½B[p][cm]
+
+*label|
+@resume_bgm
+‚a‚f‚l‚ğÄŠJ‚µ‚Ü‚µ‚½B[p][cm]
+
+*label|
+@play_se buffer=0 storage=se001
+‚r‚d‚ğÄ¶‚µ‚Ü‚µ‚½B[p][cm]
+
+*label|
+@play_se buffer=0 storage=se001 loop
+‚r‚d‚ğƒ‹[ƒvÄ¶‚µ‚Ü‚·B[p][cm]
+
+*label|
+@stop_se buffer=0
+‚r‚d‚ğ’â~‚µ‚Ü‚·B[p][cm]
+
+*label|
+@fadeout_bgm time=2000
+‚a‚f‚l‚ğ’â~‚µ‚Ü‚µ‚½B[p][cm]
+
+@free_bgm_buffers
+@log message="‚a‚f‚lƒoƒbƒtƒ@‚ğŠJ•ú‚µ‚Ü‚µ‚½B"
+
+@hide_message layer=message0
+
+@log message="ƒeƒXƒgI—¹‚µ‚Ü‚µ‚½B"
+
+
