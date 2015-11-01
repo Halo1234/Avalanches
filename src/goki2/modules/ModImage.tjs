@@ -291,7 +291,7 @@ class ModImage extends GModule
 			elm = GObjectUtils.unionDictionary(tag, elm) if tag !== null;
 
 			// asd_storage ‚ªw’è‚³‚ê‚Ä‚¢‚È‚¯‚ê‚Î’T‚µ‚Ä‚İ‚éB
-			if(elm['asd_storage'] === void)
+			if(elm['asd_storage'] == void)
 			{
 				var name = elm.storage;
 				var storage = getExistentStorageNameAndExtension(name, scriptFileExtensions*);
