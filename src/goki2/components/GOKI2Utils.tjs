@@ -441,8 +441,8 @@ class GObjectUtils
 		if(typeof(obj[@"!&name;"]) != 'undefined')
 			return !GObjectUtils.toBoolean(obj[@"!&name;"], false);
 		else
-		if(typeof(obj[@"no-&name;"]) != 'undefined')
-			return !GObjectUtils.toBoolean(obj[@"no-&name;"], false);
+		if(typeof(obj[@"no_&name;"]) != 'undefined')
+			return !GObjectUtils.toBoolean(obj[@"no_&name;"], false);
 
 		// NOTE: 仕様に global を参照する動作を追加するか検討。
 
