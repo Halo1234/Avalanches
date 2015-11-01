@@ -182,6 +182,8 @@ class GMessageLayer extends GHyperTextLayer
 	{
 		with(pageGlyphLayer_)
 		{
+			if(layout.shouldWordWrap(.width, .height))
+				reline();
 			.setPos(layout.getCurrentLeft(.width, .height), layout.getCurrentTop(.width, .height));
 			.conductor.start();
 			.show();
@@ -213,6 +215,8 @@ class GMessageLayer extends GHyperTextLayer
 	{
 		with(lineGlyphLayer_)
 		{
+			if(layout.shouldWordWrap(.width, .height))
+				reline();
 			.setPos(layout.getCurrentLeft(.width, .height), layout.getCurrentTop(.width, .height));
 			.conductor.start();
 			.show();

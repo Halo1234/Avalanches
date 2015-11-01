@@ -39,7 +39,7 @@ class GVerticalLayout
 	/**/
 	function shouldWordWrap(chWidth, chHeight)
 	{
-		return characterPosition_ > wwBound_ ? true : false;
+		return (characterPosition_ + chHeight) > wwBound_ ? true : false;
 	}
 
 	/**/
@@ -272,7 +272,7 @@ class GHorizontalLayout
 	/**/
 	function shouldWordWrap(chWidth, chHeight)
 	{
-		return characterPosition_ > wwBound_ ? true : false;
+		return (characterPosition_ + chWidth) > wwBound_ ? true : false;
 	}
 
 	/**/
@@ -764,14 +764,15 @@ class GHyperTextLayer extends GWidgetLayer
 
 		with(layout)
 		{
+			w = .getTextWidth(text);
+			h = .getTextHeight(text);
+
 			if(.shouldWordWrap(w, h))
 			{
 				if(!wordWrap(text, w, h))
 					return false;
 			}
 
-			w = .getTextWidth(text);
-			h = .getTextHeight(text);
 			l = .getCurrentLeft(w, h);
 			t = .getCurrentTop(w, h);
 
