@@ -132,7 +132,25 @@ class GConductor extends KAGParser
 
 			/* @syntax */
 			'syntax' => function (elm) {
-				// TODO:
+				with(getSyntax(elm["target_tag_name"]))
+				{
+					var arr = [];
+					var count, name;
+					arr.assign(elm);
+					count = arr.count;
+					for(var i = 0; i < count; i+=2)
+					{
+						name = arr[i];
+						if(name == 'target_tag_name' || name == 'tagname')
+							continue;
+						switch(name[0])
+						{
+						case '/':	.setPattern(name.substring(1, name.length - 1), arr[i + 1]); break;
+						case '&':	.setGroupFlag(name, arr[i + 1].split(', ', , true)*); break;
+						default:	.setElementConvert(name, arr[i + 1].split(', ', , true)*); break;
+						}
+					}
+				}
 			} incontextof this,
 
 			/* @redirect */
@@ -614,7 +632,7 @@ class GConductor extends KAGParser
 					throw new GRuntimeError(@"未知のタグ「&target;」の拡張構文設定タグが呼び出されました。");
 
 				elm['tagname'] = tagname = 'syntax';
-				elm['target-tag-name'] = target;
+				elm['target_tag_name'] = target;
 			}
 
 			if(typeof(tagHandlers_[tagname]) == 'undefined')
