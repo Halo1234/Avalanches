@@ -171,6 +171,11 @@ class ModImage extends GModule
 				beginTransitionByElm(elm, c);
 			} incontextof this,
 
+			/* @stop_transition */
+			'stop_transition' => function (elm) {
+				stopTransitionByElm(elm);
+			} incontextof this,
+
 			/* @wait_transition */
 			'wait_transition' => function (elm, c) {
 				waitTransitionByElm(elm, c);
@@ -436,6 +441,18 @@ class ModImage extends GModule
 	}
 
 	/**/
+	function stopTransitionByElm(elm)
+	{
+		var layer = findByElm(elm, true);
+
+		// トランジション中じゃないのですぐに戻る
+		if(!layer.inTransition)
+			return;
+
+		layer.stopTransition();
+	}
+
+	/**/
 	function waitTransitionByElm(elm, conductor)
 	{
 		var layer = findByElm(elm, true);
@@ -593,7 +610,7 @@ class ModImage extends GModule
 		// NOTE:
 		// もし、複数のコンテナを使い分けるならば
 		// この値も調整する必要があるので注意する事。
-		getter		{ return layerContainer.transitions; }
+		getter		{ return layerContainer.transitionCount; }
 	}
 
 	/**/
