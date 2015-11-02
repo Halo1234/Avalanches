@@ -16,7 +16,6 @@ class ModADV extends GModule
 
 	var timeZone_ = [];
 	var currentTimeZone_ = -1;
-	var standTimeZone_ = -1;
 
 	var stageNames_ = [];
 	var stageContext_ = %[];
@@ -27,6 +26,8 @@ class ModADV extends GModule
 	var activeCharacterName_ = '';				// 現在テキストを出力しているキャラ名
 	var inNextChPlayVoice_ = false;
 	var lastPlayedVoiceCharacterName_ = '';
+
+	var transitionParameters_ = %[reserved : false];
 
 	function ModADV(container, name, requiredModules = true)
 	{
@@ -47,6 +48,8 @@ class ModADV extends GModule
 				.modSound.voiceBuffers.count = 1;
 			if(.modMessage.messageLayers.count < 1)
 				.modMessage.messageLayers.count = 1;
+			if(.modImage.cvLayers.count < 1)
+				.modImage.cvLayers.count = 1;
 		}
 	}
 
@@ -66,6 +69,11 @@ class ModADV extends GModule
 
 			/* @ch_mod_adv */
 			'ch_mod_adv' => function (elm, c) {
+				if(isTransitionReserved())
+				{
+					c.pendingTag('run_reserved_transition', elm);
+					return 'break';
+				}
 				if(c.lastProcessedTag == 'r_mod_adv')
 				{
 					if(!container.modMessage.current.reline())
@@ -80,6 +88,9 @@ class ModADV extends GModule
 				}
 				with(container.modMessage)
 				{
+					if(.current == null)
+						return;
+
 					var wait = .current.output(elm);
 
 					if(wait)
@@ -91,10 +102,15 @@ class ModADV extends GModule
 
 			/* @r_mod_adv */
 			'r_mod_adv' => function (elm, c) {
-				if(container.modMessage.current.outputting)
+				with(container.modMessage)
 				{
-					if(c.lastProcessedTag == 'r_mod_adv' && +elm.eol)
-						c.pendingTag('p');
+					if(.current === null)
+						return;
+					if(.current.outputting)
+					{
+						if(c.lastProcessedTag == 'r_mod_adv' && +elm.eol)
+							c.pendingTag('p');
+					}
 				}
 			} incontextof this,
 
@@ -105,14 +121,19 @@ class ModADV extends GModule
 				{
 					.cancelSkip() if .skipping && !.longSkipping;
 					if(.longSkipping)
-						return "breath";
+						return;
+					if(.current === null)
+						return;
 					.current.showPageGlyph();
 					c.waitSignal(%[left_click : .current.hidePageGlyph]);
 				}
 			} incontextof this,
 
 			/* @charcter */
-			'character' => setCharacterImageByElm,
+			'character' => function (elm, c) {
+				if(setCharacterImageByElm(elm))
+					reservedTransition(elm, c);
+			} incontextof this,
 
 			/* @activate_character */
 			'activate_character' => function (elm, c) {
@@ -161,7 +182,6 @@ class ModADV extends GModule
 			'end_of_sentence' => function (elm, c) {
 				with(container.modMessage)
 				{
-					dm('end_of_sentence');
 					c.interruptTag(%[tagname : 'stop_character_voice', name : activeCharacterName_], 'er');
 					// スキップ中は何もする必要はない
 					if(.skipping)
@@ -181,6 +201,19 @@ class ModADV extends GModule
 						return .autoPageWait;
 					}
 				}
+			} incontextof this,
+
+			/* @reserved_transition */
+			'reserved_transition' => reservedTransition,
+
+			/* @run_reserved_transition */
+			'run_reserved_transition' => function (elm, c) {
+				if(container.modImage.transitionCount > 0)
+				{
+					c.pendingTag('wait-transition', elm);
+					return 'break';
+				}
+				runReservedTransition();
 			} incontextof this,
 
 		];
@@ -227,13 +260,10 @@ class ModADV extends GModule
 		if(char === void)
 		{
 			char = %[
-				subDirectoryName : 'fgimage', partOfDirectoryPath : void, storagePrefix : void,
-				name : name, actualViewingNameString : 'none', mob : false,
-				pose : void, dress : void, face : void, iconStorage : void,
-				voiceSubDirectoryName : 'sound', voiceStoragePrefix : void,
-				autoVoice : true, voiceGroup : 'others', voice : 0,
+				name : name, mob : false,
+				autoVoice : true, voiceGroup : 'others', voice : 0, voiceStorageFormat : @"&name;%03d",
 				cvLayerIndex : void, messageLevel : 0,
-				noImage : true, noVoice : true, noIcon : true
+				hasImage : true, hasVoice : true
 			];
 
 			window.conductor.setRedirectTag(name, 'character');
@@ -262,32 +292,260 @@ class ModADV extends GModule
 			}
 		}
 
-		char.subDirectoryName = elm.sub_directory_name if elm.sub_directory_name !== void;
-		char.partOfDirectoryPath = elm.part_of_directory_path if elm.part_of_directory_path !== void;
-		char.actualViewingNameString = elm.actual_viewing_name_string if elm.actual_viewing_name_string !== void;
-		char.iconStorage = elm.icon_storage if elm.icon_storage !== void;
-		char.voiceSubDirectoryName = elm.voice_sub_directory_name if elm.voice_sub_directory_name !== void;
 		char.atuoVoice = GObjectUtils.getBoolean(elm, 'auto_voice') if elm.auto_voice !== void;
+		char.voiceStorageFormat = elm.voice_storage_format if elm.voice_storage_format !== void;
 		char.voiceGroup = elm.voice_group if elm.voice_group !== void;
-		char.noImage = !GObjectUtils.getBoolean(elm, 'image') if GObjectUtils.hasValue(elm, 'image');
-		char.noVoice = !GObjectUtils.getBoolean(elm, 'voice') if GObjectUtils.hasValue(elm, 'voice');
-		char.noIcon = !GObjectUtils.getBoolean(elm, 'icon') if GObjectUtils.hasValue(elm, 'icon');
+		char.hasImage = GObjectUtils.getBoolean(elm, 'image') if GObjectUtils.hasValue(elm, 'image');
+		char.hasVoice = GObjectUtils.getBoolean(elm, 'voice') if GObjectUtils.hasValue(elm, 'voice');
 	}
 
 	/**/
 	function getCharacter(name)
 	{
-		if(name == "")
+		if(name == '')
 			return void;
 		return characters_[name];
+	}
+
+	/**
+	 * \brief 時間帯情報の作成。
+	**/
+	function makeTimeZone(elm)
+	{
+		var name = elm.name;
+
+		if(name === void)
+			throw new Exception("時間帯情報を作成しようとしましたが、名前が指定されていません。");
+
+		var arr = timeZone_;
+		var c = arr.count;
+
+		for(var i = 0; i < c; i++)
+		{
+			if(arr[i].name == name)
+				throw new GRuntimeError("「&name;」の時間帯情報を作成しようとしましたが、同じ名前の時間帯情報が既に存在しています。");
+		}
+
+		var tz = %[name : name, stand : elm.stand];
+
+		window.conductor.setRedirectTag(name, 'set-timezone');
+
+		// 何も選択されていない状態ならば今追加された時間帯を選択する。
+		if(currentTimeZone_ == -1)
+			setCurrentTimeZone(name);
+	}
+
+	/**/
+	function setCurrentTimeZone(name)
+	{
+		var arr = timeZone_;
+		var c = arr.count;
+
+		for(var i = 0; i < c; i++)
+		{
+			if(arr[i].name == name)
+			{
+				currentTimeZone_ = i;
+				break;
+			}
+		}
+
+		return currentTimeZone_;
+	}
+
+	function getCurrentTimeZone()
+	{
+		var index = currentTimeZone_;
+
+		if(index < 0 || index >= timeZone_.count)
+			return void;
+
+		return timeZone_[index];
+	}
+
+	/**/
+	function allocCVLayer_private_(name, fore = false)
+	{
+		var cvLayers = container.modImage.cvLayers;
+		var users = cvLayerUsers_;
+		var layer = void;
+
+		with(getCharacter(name))
+		{
+			// レイヤーが割り当てられていないので未使用のレイヤーを割り当てる。
+			if(.cvLayerIndex === void)
+			{
+				var max = cvLayers.count;
+
+				for(var i = 0; i < max; i++)
+				{
+					if(users[i] !== void)
+						continue;
+					users[i] = name;
+					.cvLayerIndex = i;
+					break;
+				}
+
+				// 割り当てられなかった。
+				if(.cvLayerIndex === void)
+					throw new GRuntimeError(@"「&cvLayers.prefix;」レイヤーグループのレイヤーが不足しています。");
+			}
+
+			// 競合してないかチェック
+			if(users[.cvLayerIndex] != name)
+			{
+				throw new Exception(
+					@"レイヤー所有者の競合が発生しました。\n" +
+					@"所有者Ａ「&name;」\n" +
+					@"所有者Ｂ「&users[.cvLayerIndex];」"
+				);
+			}
+
+			if((layer = cvLayers.at(.cvLayerIndex, fore)) === void)
+				throw new Exception(@"レイヤー「&cvLayers.prefix;&.cvLayerIndex;」を取得できませんでした。");
+		}
+
+		return layer;
+	}
+
+	/**/
+	function freeCVLayer_private_(name)
+	{
+		with(getCharacter(name))
+		{
+			if(.cvLayerIndex !== void)
+			{
+				cvLayerUsers_[.cvLayerIndex] = void;
+				.cvLayerIndex = void;
+			}
+		}
 	}
 
 	/**/
 	function setCharacterImageByElm(elm)
 	{
-		var name = elm.tagname;
+		var name = (elm.name === void ? elm.tagname : elm.name);
+		var char = getCharacter(name);
+
+		if(char === void)
+			throw new GRuntimeError(@"キャラクター「&name;」が未定義です。");
 
 		lastCharacterName_ = name;
+
+		// ボイス再生判定
+		// ここでは再生は行わない
+		inNextChPlayVoice_ = ((char.hasVoice && GObjectUtils.getBoolean(elm, 'voice')) ? true : false);
+		// ボイス番号のオーバーライド
+		char.voice = +elm.voice if elm.voice !== void;
+
+		if(!char.hasImage)
+			return false;
+
+		var imageLoaded = false;
+		var layer = allocCVLayer_private_(name);
+		var timeZone = getCurrentTimeZone();
+		var visible = (elm.visible === void ? layer.visible : +elm.visible);
+
+		if(elm.storage != '')
+		{
+			var storage = Storages.chopStorageExt(elm.storage);
+			var storageExt = Storages.extractStorageExt(elm.storage);
+			var asd = Storages.chopStorageExt(elm.asd);
+			var asdExt = Storages.extractStorageExt(elm.asd);
+
+			if(timeZone !== void)
+			{
+				storage = @"&storage;&timeZone.stand;&storageExt;";
+				if(elm.asd !== void)
+					asd = @"&asd;&timeZone.stand;&asdExt;";
+			}
+
+			if(getExistentStorageNameAndExtension(@"&storage;", graphicFileExtensions*) === void)
+			{
+				log(@"画像 &storage; が見つかりませんでした。");
+				return false;
+			}
+
+			elm.layer = layer.name;
+			elm.storage = storage + storageExt;
+			elm.asd_storage = asd + asdExt;
+			elm.page = 'back';
+
+			container.modImage.loadImageByElm(elm);
+
+			imageLoaded = true;
+		}
+
+		if(elm.target !== void)
+		{
+			var targets = elm.target.split(", ", , true);
+			var c = targets.count;
+
+			for(var i = 0; i < c; i++)
+				layer.startAnimation(targets[i]) if targets[i] != "";
+			imageLoaded = true;
+		}
+
+		if(layer.visible != visible)
+		{
+			layer.visible = +elm.visible;
+			imageLoaded = true;
+		}
+
+		// 最終的にレイヤが非表示になる場合は所有権を破棄する。
+		if(!layer.visible)
+		{
+			freeCVLayer_private_(name);
+			layer.clearImages();
+		}
+
+		// トランジション用パラメータのデフォルト値を設定
+		if(imageLoaded)
+		{
+			elm.layer = 'base';
+			elm.time = 200 if elm.time === void;
+			elm.vague = 128 if elm.vague === void;
+			elm.flash = true;
+		}
+
+		return imageLoaded;
+	}
+
+	/**
+	 * \remaks       elm: トランジションパラメータ。詳しくは ModImage#beginTransitionByElm() を参照してください。
+	 * \remaks conductor: 実行元のコンダクタ。詳しくは…（ｒｙ
+	**/
+	function reservedTransition(elm, conductor = void)
+	{
+		var tp = transitionParameters_;
+
+		GObjectUtils.copyDictionary(tp, elm);
+		tp.conductor = conductor;
+		tp.reserved = true;
+
+		//dm("Transition reserved.");
+	}
+
+	/**/
+	function runReservedTransition()
+	{
+		var tp = transitionParameters_;
+
+		if(tp.reserved)
+		{
+			container.modImage.beginTransitionByElm(tp, tp.conductor);
+
+			GObjectUtils.clearDictionary(tp);
+			tp.reserved = false;
+		}
+
+		//dm("Reserved transition running.");
+	}
+
+	/**/
+	function isTransitionReserved()
+	{
+		return transitionParameters_.reserved;
 	}
 
 	/**/

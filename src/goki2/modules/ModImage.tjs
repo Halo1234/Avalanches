@@ -190,6 +190,7 @@ class ModImage extends GModule
 		var obj = new GBaseLayer(window, parent, handler);
 
 		obj.name = 'base';
+		obj.setSize(window.primaryLayer.width, window.primaryLayer.height);
 		obj.absolute = 0;
 
 		return obj;
@@ -584,6 +585,15 @@ class ModImage extends GModule
 	property layerContainer
 	{
 		getter		{ return layerContainer_; }
+	}
+
+	/**/
+	property transitionCount
+	{
+		// NOTE:
+		// もし、複数のコンテナを使い分けるならば
+		// この値も調整する必要があるので注意する事。
+		getter		{ return layerContainer.transitions; }
 	}
 
 	/**/
