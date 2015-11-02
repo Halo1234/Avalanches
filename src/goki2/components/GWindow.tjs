@@ -16,6 +16,9 @@ class GWindow extends Window
 	var thisTagHandlers_;					//!< \brief このクラスが提供するタグハンドラ
 	var tagHandlers_ = %[];					//!< \brief タグハンドラ
 
+	var scWidth = 600;						//!< \brief ウインドウ幅
+	var scHeight = 480;						//!< \brief ウインドウ高さ
+
 	var fullScreened_ = false;				// 内部用
 	var altEnterScreenModeChange = false;	//!< \brief true に設定すると Alt+Enter でスクリーンモードを切り替えます。
 
@@ -95,8 +98,9 @@ class GWindow extends Window
 			/* @window */
 			'window' => function (elm) {
 				caption = elm.caption if elm.caption !== void;
-				innerWidth = +elm.width if elm.width !== void;
-				innerHeight = +elm.height if elm.height !== void;
+				scWidth = +elm.width if elm.width !== void;
+				scHeight = +elm.height if elm.height !== void;
+				fixPrimaryLayerSizeToInnerSize();
 				with(GObjectUtils)
 				{
 					altEnterScreenModeChange = .getBoolean(elm, 'alt-enter') if .hasValue(elm, 'alt-enter');
@@ -148,11 +152,12 @@ class GWindow extends Window
 	/**/
 	function fixPrimaryLayerSizeToInnerSize()
 	{
-		var w = innerWidth;
-		var h = innerHeight;
+		var w = scWidth;
+		var h = scHeight;
 
 		with(primaryLayer)
 		{
+			setInnerSize(w, h);
 			.setSize(w, h);
 
 			modules_.callHandler('onPrimaryLayerResize', .left, .top, .width, .height);
