@@ -649,9 +649,11 @@ class GConductor extends KAGParser
 
 		tag = tagHandlers_[tagname];
 
+		var ret = callTagHandler(tag, elm);
+
 		lastProcessedTag_ = tagname;
 
-		return callTagHandler(tag, elm);
+		return ret;
 	}
 
 	/**/
