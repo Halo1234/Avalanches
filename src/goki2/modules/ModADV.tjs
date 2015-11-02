@@ -86,6 +86,11 @@ class ModADV extends GModule
 					c.pendingTag("activate_character", elm);
 					return;
 				}
+				if(inNextChPlayVoice_)
+				{
+					c.interruptTag(%[tagname : 'play_character_voice', name : activeCharacterName_]);
+					inNextChPlayVoice_ = false;
+				}
 				with(container.modMessage)
 				{
 					if(.current == null)
@@ -139,11 +144,6 @@ class ModADV extends GModule
 			'activate_character' => function (elm, c) {
 				var name = (elm.name === void ? lastCharacterName_ : elm.name);
 				activateCharacter(name);
-				if(inNextChPlayVoice_)
-				{
-					c.interruptTag(%[tagname : 'play_character_voice', name : activeCharacterName_]);
-					inNextChPlayVoice_ = false;
-				}
 				with(container.modMessage)
 				{
 					if(!.current.visible)
@@ -168,10 +168,12 @@ class ModADV extends GModule
 
 			/* @play_character_voice */
 			'play_character_voice' => function (elm) {
+				playCharacterVoice(elm.name);
 			} incontextof this,
 
 			/* @stop_character_voice */
 			'stop_character_voice' => function (elm) {
+				stopCharacterVoice(elm.name);
 			} incontextof this,
 
 			/* @wait_character_voice */
@@ -182,13 +184,17 @@ class ModADV extends GModule
 			'end_of_sentence' => function (elm, c) {
 				with(container.modMessage)
 				{
-					c.interruptTag(%[tagname : 'stop_character_voice', name : activeCharacterName_], 'er');
+					var char = getCharacter(activeCharacterName_);
+					c.interruptTag(
+						%[tagname : 'stop_character_voice', name : activeCharacterName_],
+						%[tagname : 'stop_transition', layer : 'base'],
+						'er'
+					);
 					// スキップ中は何もする必要はない
 					if(.skipping)
 						return 'next';
 					if(.autoMode)
 					{
-						var char = getCharacter(activeCharacterName_);
 						if(char !== void)
 						{
 							var obj = window.modules.exSound.voiceBuffers.at(0);
@@ -434,7 +440,7 @@ class ModADV extends GModule
 
 		// ボイス再生判定
 		// ここでは再生は行わない
-		inNextChPlayVoice_ = ((char.hasVoice && GObjectUtils.getBoolean(elm, 'voice')) ? true : false);
+		inNextChPlayVoice_ = ((char.hasVoice && !GObjectUtils.getBoolean(elm, 'voice')) ? true : false);
 		// ボイス番号のオーバーライド
 		char.voice = +elm.voice if elm.voice !== void;
 
@@ -509,6 +515,60 @@ class ModADV extends GModule
 		}
 
 		return imageLoaded;
+	}
+
+	/**/
+	function playCharacterVoice(name)
+	{
+		if(name == '')
+			return false;
+
+		var char = getCharacter(name);
+		if(char === void)
+			throw new GRuntimeError(@"キャラクター「&name;」のボイスを再生しようとしましたが、存在しないキャラクターです。");
+
+		var storage;
+
+		// ストレージパスを作成
+		storage = char.voiceStorageFormat.sprintf(char.voice);
+		char.voice++ if char.autoVoice;
+
+		if(getExistentStorageNameAndExtension(storage, soundFileExtensions*) === void)
+			return false;
+
+		// TODO: 履歴にボイスを設定
+
+		// 長いスキップ中であれば再生は行わない
+		if(window.modules.modMessage.longSkipping)
+			return false;
+
+		with(window.modules.modSound.voiceBuffers.at(0))
+		{
+			.open(storage);
+			.play();
+		}
+
+		lastPlayedVoiceCharacterName_ = name;
+
+		return true;
+	}
+
+	/**/
+	function stopCharacterVoice(name)
+	{
+		var char = getCharacter(name);
+
+		if(char === void)
+			return false;
+
+		with(window.modules.modSound.voiceBuffers.at(0))
+		{
+			if(!.playing)
+				return false;
+			.stop();
+		}
+
+		return true;
 	}
 
 	/**
