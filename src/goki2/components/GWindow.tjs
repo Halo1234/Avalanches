@@ -316,6 +316,12 @@ class GWindow extends Window
 	}
 
 	/**/
+	function onMouseWheel(shift, delta, x, y)
+	{
+		modules.callHandler('onWindowMouseWheel', shift, delta, x, y);
+	}
+
+	/**/
 	function onKeyDown(key, shift)
 	{
 		modules.callHandler('onWindowKeyDown', key, shift);
