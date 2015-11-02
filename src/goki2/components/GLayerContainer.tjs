@@ -17,7 +17,7 @@ class GLayerContainer extends GContainer
 
 	var childLayerHandlers_ = %[];
 
-	var transitions_ = 0;
+	var transitionCount_ = 0;
 
 	/**/
 	function GLayerContainer(window, parentLayer, doubleBuffering = true)
@@ -369,8 +369,8 @@ class GLayerContainer extends GContainer
 	{
 		switch(event)
 		{
-		case 'onBeginTransition':			transitions_++; break;
-		case 'onTransitionCompleted':		transitions_--; terminateBaseLayerTransition(elm.dest, elm.src, elm.children, elm.exchange); break;
+		case 'onBeginTransition':			transitionCount_++; break;
+		case 'onTransitionCompleted':		transitionCount_--; terminateBaseLayerTransition(elm.dest, elm.src, elm.children, elm.exchange); break;
 		}
 
 		parentLayerHandler_(obj, event, elm) if parentLayerHandler_;
@@ -381,8 +381,8 @@ class GLayerContainer extends GContainer
 	{
 		switch(event)
 		{
-		case 'onBeginTransition':			transitions_++; break;
-		case 'onTransitionCompleted':		transitions_--; terminateLayerTransition(elm.dest, elm.src, elm.children, elm.exchange); break;
+		case 'onBeginTransition':			transitionCount_++; break;
+		case 'onTransitionCompleted':		transitionCount_--; terminateLayerTransition(elm.dest, elm.src, elm.children, elm.exchange); break;
 		}
 
 		childLayerHandlers_[obj.name](obj, event, elm) if childLayerHandlers_[obj.name] !== void;
@@ -398,9 +398,9 @@ class GLayerContainer extends GContainer
 		getter		{ return parentLayerName_; }
 	}
 
-	property transitions
+	property transitionCount
 	{
-		getter		{ return transitions_; }
+		getter		{ return transitionCount_; }
 	}
 }
 
