@@ -9,7 +9,7 @@
 @!make_character voice=ボイス有り->true,ボイス無し->false
 
 @make_character name=地文 actual-viewing-name-string=''
-@make_character name=ハロ voice_group=halo 立ち絵有り
+@make_character name=ハロ voice_group=halo 立ち絵有り ボイス有り
 
 @!character centerx=左->200,中->400,右->600,中左->300,中右->500,左端->100,右端->700
 @!character grayscale=セピア->true rgamma=セピア->1.5 ggamma=セピア->1.3
