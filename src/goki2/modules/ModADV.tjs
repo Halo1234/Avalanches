@@ -180,7 +180,7 @@ class ModADV extends GModule
 			'wait_character_voice' => function (elm) {
 			} incontextof this,
 
-			/**/
+			/* @end_of_sentence */
 			'end_of_sentence' => function (elm, c) {
 				with(container.modMessage)
 				{
