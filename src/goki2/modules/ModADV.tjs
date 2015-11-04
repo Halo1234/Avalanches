@@ -78,6 +78,8 @@ class ModADV extends GModule
 				{
 					if(!container.modMessage.current.reline())
 						c.pendingTag('p');
+					else
+						container.modMessage.historyLayer.reline();
 					c.pendingTag(elm);
 					return;
 				}
@@ -99,9 +101,14 @@ class ModADV extends GModule
 					var wait = .current.output(elm);
 
 					if(wait)
-						return .outputInterval;
+					{
+						.historyLayer.output(elm);
+						return .skipping ? 0 : .outputInterval;
+					}
 					else
+					{
 						c.pendingTag('p', elm);
+					}
 				}
 			} incontextof this,
 
@@ -124,7 +131,8 @@ class ModADV extends GModule
 				c.interruptTag('end_of_sentence');
 				with(container.modMessage)
 				{
-					.cancelSkip() if .skipping && !.longSkipping;
+					//.cancelSkip() if .skipping && !.longSkipping;
+					c.interruptTag('store_history_data');
 					if(.longSkipping)
 						return;
 					if(.current === null)
