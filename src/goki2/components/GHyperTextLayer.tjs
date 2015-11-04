@@ -1025,6 +1025,12 @@ class GHyperTextLayer extends GWidgetLayer
 	}
 
 	/**/
+	property splitingPage
+	{
+		getter		{ return splitingPage_; }
+	}
+
+	/**/
 	property marginLeftCache
 	{
 		getter		{ return marginLeftCache_; }
