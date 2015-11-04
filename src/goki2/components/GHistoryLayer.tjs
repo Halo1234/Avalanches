@@ -1,14 +1,530 @@
 /*
- * $Revision: 343 $
+ * $Revision$
 **/
+
+
+/**/
+class GHistoryVerticalLayout extends GVerticalLayout
+{
+	/**/
+	function GHistoryVerticalLayout(layer)
+	{
+		super.GVerticalLayout(...);
+	}
+
+	/**/
+	function possibleReline()
+	{
+		if(layer.visible)
+		{
+			if((baseLine + getLineSize_private_() + lineSpace) > layer.width - marginRight)
+				return false;
+		}
+
+		return true;
+	}
+
+	/**/
+	function resetPosition()
+	{
+		var ls = getLineSize_private_();
+
+		baseLine = marginLeft - (ls >> 1);
+		lineSize = ls;
+		characterPosition = (indentPosition == 0 ? marginTop : indentPosition);
+	}
+
+	/**/
+	function returnPosition()
+	{
+		with(layer_)
+		{
+			var ls = getLineSize_private_();
+
+			baseLine += ls + lineSpace;
+			lineSize = ls;
+			characterPosition = (indentPosition == 0 ? marginTop : indentPosition);
+		}
+	}
+}
+
+
+/**/
+class GHistoryHorizontalLayout extends GHorizontalLayout
+{
+	/**/
+	function GHistoryHorizontalLayout(layer)
+	{
+		super.GHorizontalLayout(...);
+	}
+
+	/**/
+	function possibleReline()
+	{
+		if(layer.visible)
+		{
+			if((baseLine - getLineSize_private_() - lineSpace) < marginTop)
+				return false;
+		}
+
+		return true;
+	}
+
+	/**/
+	function resetPosition()
+	{
+		var ls = getLineSize_private_();
+
+		baseLine = layer.height - marginBottom;
+		lineSize = ls;
+		characterPosition = (indentPosition == 0 ? marginLeft : indentPosition);
+	}
+
+	/**/
+	function returnPosition()
+	{
+		with(layer_)
+		{
+			var ls = getLineSize_private_();
+
+			baseLine -= ls + lineSpace;
+			lineSize = ls;
+			characterPosition = (indentPosition == 0 ? marginLeft : indentPosition);
+		}
+	}
+}
 
 
 /**/
 class GHistoryLayer extends GHyperTextLayer
 {
+	var historyData_ = [];			//!< \brief 履歴データ
+	var actionData_ = [];			//!< \brief アクションデータ
+	var historyDataMax_ = 400;		//!< \brief 履歴の最大件数
+	var writePointer_ = 0;			//!< \brief 書き込みポインタ
+
+	var displayTopIndex_ = 0;		//!< \brief 現在一番下（右）に表示されている行のインデックス
+	var displayLineCount_ = 0;		//!< \brief 現在表示している行数
+	var displayPageSize_ = 0;		//!< \brief 現在表示しているページのサイズ
+	var firstPage_ = false;			//!< \brief 現在のページが最初のページかどうか
+	var lastPage_ = false;			//!< \brief 現在のページが最後のページかどうか
+	var lastShowingTick_ = 0;		//!< \brief 最後に表示された tick
+
+	var standbyRubyText_ = '';
+
+	var textLayer_;
+
 	function GHistoryLayer(window, parent, handler)
 	{
 		super.GHyperTextLayer(...);
+		focusable = true;
+	}
+
+	/**/
+	function createLayout(layer)
+	{
+		var obj;
+
+		switch(layoutMode)
+		{
+		case 'horizontal':	obj = new GHistoryHorizontalLayout(layer); break;
+		case 'vertical':	obj = new GHistoryVerticalLayout(layer); break;
+		default:			throw new GArgumentsError(@"&layoutMode; は未定義のレイアウトです。");
+		}
+
+		obj.setMargin(marginLeftCache, marginTopCache, marginRightCache, marginBottomCache);
+
+		return obj;
+	}
+
+	/**/
+	function createTextLayer(window, parent, handler)
+	{
+		var obj = new global.GLayer(window, parent, handler);
+
+		obj.hitType = htMask;
+		obj.hitThreshold = 256;
+		obj.visible = true;
+
+		return obj;
+	}
+
+	/**/
+	function storeHistoryData()
+	{
+		var tags = contents;
+		var max = tags.count;
+		var hd = historyData_;
+		var hdmax = historyDataMax_;
+		var ptr = writePointer_;
+		var line = allocHistory_private_(ptr++);
+
+		ptr = 0 if ptr > hdmax;
+		for(var i = 0; i < max; i++)
+		{
+			if(tags[i].tagname == 'reline')
+			{
+				line = allocHistory_private_(ptr++);
+				ptr = 0 if ptr > hdmax;
+				continue;
+			}
+
+			if(tags[i].tagname == 'ch')
+				line.push(tags[i]);
+		}
+
+		freeHistory_private_(ptr);
+		writePointer_ = ptr;
+	}
+
+	/**/
+	function allocHistory_private_(line)
+	{
+		var hd = historyData_;
+
+		if(hd[line] === void)
+			hd[line] = [];
+		else
+			hd[line].clear();
+		hd[line].push(%[baseLine : 0, lineSize : 0]);
+
+		return hd[line];
+	}
+
+	/**/
+	function freeHistory_private_(line)
+	{
+		historyData_[line] = void;
+	}
+
+	/**/
+	function getHistoryDisplay(line)
+	{
+		var max = historyDataMax_;
+		var line = displayTopIndex_ - line;
+
+		if(line < 0)
+			line += max;
+
+		return (line >= max ? void : historyData_[line]);
+	}
+
+	/**/
+	function drawFirstPage()
+	{
+		displayTopIndex_ = lastDataIndex;
+
+		drawPage();
+	}
+
+	/**/
+	function drawPage()
+	{
+		layout.resetPosition();
+		layout.resetFont();
+
+		var layer = textLayer;
+
+		// いろいろ初期化
+		firstPage_ = (displayTopIndex_ == lastDataIndex ? true : false);
+		lastPage_ = true;
+		displayLineCount_ = 0;
+		displayPageSize_ = 0;
+
+		var data = getHistoryDisplay(displayLineCount_);
+
+		layer.setImageSize(width, height);
+		layer.setSizeToImageSize();
+		layer.fillRect(0, 0, width, height, 0);
+		layer.visible = true;
+
+		with(layout)
+		{
+			while(data !== void)
+			{
+				data[0].baseLine = .baseLine;
+				data[0].lineSize = .lineSize;
+
+				drawLine(displayLineCount_++);
+				displayPageSize_ += .lineSize + .lineSpace;
+
+				if(!.possibleReline())
+				{
+					lastPage_ = false;
+					break;
+				}
+
+				data = getHistoryDisplay(displayLineCount_);
+			}
+		}
+	}
+
+	/**/
+	function drawLine(line)
+	{
+		var data = getHistoryDisplay(line);
+
+		if(data === void)
+			return false;
+
+		var c = data.count;
+
+		layout.baseLine = data[0].baseLine;
+
+		var l, t, w, h;
+
+		if(layoutMode == 'horizontal')
+		{
+			l = layout.marginLeft;
+			t = data[0].baseLine - layout.lineSize;
+			w = width;
+			h = layout.lineSize + layout.lineSpace;
+		}
+		else
+		if(layoutMode == 'vertical')
+		{
+			l = data[0].baseLine - (data[0].lineSize >> 1);
+			t = layout.marginTop;
+			w = data[0].lineSize + data[0].lineSpace;
+			h = height - layout.marginBottom;
+		}
+
+		textLayer.fillRect(l, t, w, h, 0);
+		for(var i = 0; i < c; i++)
+		{
+			output(data[i], false);
+		}
+
+		if(!layout.possibleReline())
+			return false;
+		layout.returnPosition();
+
+		return true;
+	}
+
+	/**/
+	function scrollUp()
+	{
+		if(lastPage_)
+			return false;
+
+		if(layoutMode == 'horizontal')
+		{
+			// 次に表示すべき行を得る
+			var newLine = getHistoryDisplay(displayLineCount_);
+			var oldLine = getHistoryDisplay(displayTopIndex_);
+			var oldDataSize = displayPageSize_;
+			var oldDataCount = displayLineCount_;
+			var newLineSize = layout.lineSize + layout.lineSpace;
+			var pageSize = height - layout.marginTop - layout.marginBottom;
+
+			// 一番下の行は確実に入りきらないので追い出す
+			oldDataSize -= layout.lineSize + layout.lineSpace;
+			displayTopIndex_ = historyDataMax_ - 1 if (--displayTopIndex_) < 0;
+
+			// newLine は必ず表示しなければならない
+			// 一番下の入りきらない行を全部ページから追い出す
+			while(oldDataSize + newLineSize > pageSize && oldDataCount != 0)
+			{
+				oldLine = getHistoryDisplay(oldDataCount);
+				oldDataSize -= layout.lineSize - layout.lineSpace;
+				displayTopIndex_ = _historyDataMax - 1 if (--displayTopIndex_) < 0;
+				oldDataCount--;
+			}
+
+			if(getHistoryDisplay(displayLineCount_) === void)
+				lastPage_ = true;
+			firstPage_ = false;
+
+			// 古いデータをスクロール
+			var layer = textLayer;
+			var scrollSize = displayPageSize_ - oldDataSize;
+			layer.copyRect(0, height - layout.marginBottom - oldDataSize, layer, 0, height - layout.marginBottom - displayPageSize_, width, oldDataSize);
+			for(var i = 0; i < oldDataCount; i++)
+			{
+				getHistoryDisplay(i)[0].baseLine += scrollSize;
+				//onScrollLine(i);
+			}
+
+			// 新しいデータを描画
+			newLine[0].baseLine = height - layout.marginBottom - oldDataSize - newLine[0].lineSpace;
+			drawLine(displayLineCount_ - 1);
+
+			displayPageSize_ = oldDataSize + newLineSize;
+		}
+		else
+		if(layoutMode == 'vertical')
+		{
+		}
+
+		return true;
+	}
+
+	/**/
+	function scrollDown()
+	{
+		if(firstPage_)
+			return false;
+
+		if(layoutMode == 'horizontal')
+		{
+			// 次に表示すべき行を得る
+			var newLine = getHistoryDisplay(-1);
+			var oldLine = getHistoryDisplay(displayLineCount_ - 1);
+			var oldDataSize = displayPageSize_;
+			var oldDataCount = displayLineCount_;
+			var newLineSize = layout.lineSize + layout.lineSpace;
+			var pageSize = height - layout.marginTop - layout.marginBottom;
+
+			// 一番上の行は確実に入りきらないので追い出す
+			oldDataSize -= layout.lineSize + layout.lineSpace;
+			displayTopIndex_ = 0 if (++displayTopIndex_) >= historyDataMax_;
+
+			// newLine は必ず表示しなければならない
+			// 一番上の入りきらない行を全部ページから追い出す
+			while(oldDataSize + newLineSize > pageSize && oldDataCount != 0)
+			{
+				oldLine = getHistoryDisplay(0);
+				oldDataSize -= layout.lineSize - layout.lineSpace;
+				displayTopIndex_ = 0 if (++displayTopIndex_) >= historyDataMax_;
+				oldDataCount--;
+			}
+
+			if(getHistoryDisplay(-1) === void)
+				firstPage_ = true;
+			lastPage_ = false;
+
+			// 古いデータをスクロール
+			var layer = textLayer;
+			var scrollSize = displayPageSize_ - oldDataSize;
+			layer.copyRect(0, height - layout.marginBottom - oldDataSize - newLineSize, layer, 0, height - layout.marginBottom - oldDataSize, width, oldDataSize);
+			for(var i = 0; i < oldDataCount; i++)
+			{
+				getHistoryDisplay(i)[0].baseLine -= scrollSize;
+				//onScrollLine(i);
+			}
+
+			// 新しいデータを描画
+			newLine[0].baseLine = height - layout.marginBottom - newLine[0].lineSpace;
+			drawLine(0);
+
+			displayPageSize_ = oldDataSize + newLineSize;
+		}
+		else
+		if(layoutMode == 'vertical')
+		{
+		}
+
+		return true;
+	}
+
+	/**/
+	function output(tag, storeContents = true)
+	{
+		if(fixed_)
+			return false;
+
+		if(tag.tagname == 'ch')
+		{
+			if(!outputting_)
+			{
+				if(layoutMode_ !== layoutModeCache_)
+					resetLayout();
+				if(marginModified_)
+					layout.setMargin(marginLeftCache_, marginTopCache_, marginRightCache_, marginBottomCache_);
+				layout.resetPosition();
+				outputting_ = true;
+			}
+
+			if(!renderCharacter(tag.text))
+				return false;
+			contents.push(GObjectUtils.clone(tag)) if storeContents;
+		}
+	}
+
+	/**/
+	function beginShowEffect()
+	{
+		drawFirstPage();
+
+		anotherCycle.uniqueAdd(showComplete);
+	}
+
+	/**/
+	function showComplete()
+	{
+		lastShowingTick_ = System.getTickCount();
+
+		focus();
+
+		super.showComplete();
+	}
+
+	function onMouseWheel(shift, delta, x, y)
+	{
+		super.onMouseWheel(shift, delta, x, y);
+
+		var tick = System.getTickCount();
+		if(tick - lastShowingTick_ <= 500)
+			return;
+
+		// 手前に回転
+		if(delta < 0)
+		{
+			// 下にスクロールする
+			// スクロールできないなら hide する
+			if(!scrollDown())
+				hide();
+		}
+		// 奥に回転
+		else
+		{
+			// 上にスクロールする
+			scrollUp();
+		}
+	}
+
+	/**/
+	function onRenderCharacter(ch, left, top, width, height)
+	{
+		if(visible)
+		{
+			var layer = textLayer;
+
+			layer.assignFontToParent();
+			layer.drawText(left, top, ch, 0xFFFF0000);
+
+			if(standbyRubyText_ != '')
+			{
+				/*with(standbyRubyTextLayer_)
+				{
+					.setPos(
+						layout.getRubyLeft(.width, .height, left, top, width, height),
+						layout.getRubyTop(.width, .height, left, top, width, height)
+					);
+					.show();
+				}*/
+				standbyRubyText_ = '';
+			}
+		}
+	}
+
+	/**/
+	function onRenderRubyText(text, width, height)
+	{
+		standbyRubyText_ = text;
+	}
+
+	/**/
+	property lastDataIndex
+	{
+		getter		{ return (writePointer_ == 0 ? historyDataMax_ : writePointer_ - 1); }
+	}
+
+	/**/
+	property textLayer
+	{
+		getter		{ return (textLayer_ === void ? family.receive(textLayer_ = createTextLayer(window, this)) : textLayer_); }
 	}
 }
 
