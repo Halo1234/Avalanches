@@ -20,7 +20,7 @@
 @!ハロ face=表情１->face1
 @!ハロ pose=ポーズ１->pose1,ポーズ２->pose2
 
-@history_option storage=HistoryBack layout_mode=vertical margin_left=10 margin_top=10 margin_right=10 margin_bottom=10
+@history_option storage=HistoryBack margin_left=10 margin_top=10 margin_right=10 margin_bottom=10
 @message_option layer=message0 left=10 top=400 width=780 height=190 margin_left=10 margin_top=10 margin_right=10 margin_bottom=10 opacity=128 color=0x000000 current
 
 @cr_handling !ignore

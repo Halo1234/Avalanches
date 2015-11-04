@@ -29,7 +29,7 @@ class GHistoryVerticalLayout extends GVerticalLayout
 	{
 		var ls = getLineSize_private_();
 
-		baseLine = marginLeft - (ls >> 1);
+		baseLine = marginLeft + ls;
 		lineSize = ls;
 		characterPosition = (indentPosition == 0 ? marginTop : indentPosition);
 	}
@@ -45,6 +45,12 @@ class GHistoryVerticalLayout extends GVerticalLayout
 			lineSize = ls;
 			characterPosition = (indentPosition == 0 ? marginTop : indentPosition);
 		}
+	}
+
+	/**/
+	function getCurrentLeft(chWidth, chHeight)
+	{
+		return baseLine + (chWidth >> 1);
 	}
 }
 
@@ -109,6 +115,8 @@ class GHistoryLayer extends GHyperTextLayer
 	var firstPage_ = false;			//!< \brief 現在のページが最初のページかどうか
 	var lastPage_ = false;			//!< \brief 現在のページが最後のページかどうか
 	var lastShowingTick_ = 0;		//!< \brief 最後に表示された tick
+
+	var lastBaseLine_ = void;
 
 	var standbyRubyText_ = '';
 
@@ -267,8 +275,6 @@ class GHistoryLayer extends GHyperTextLayer
 		if(data === void)
 			return false;
 
-		var c = data.count;
-
 		layout.baseLine = data[0].baseLine;
 
 		var l, t, w, h;
@@ -289,11 +295,11 @@ class GHistoryLayer extends GHyperTextLayer
 			h = height - layout.marginBottom;
 		}
 
+		var c = data.count;
+
 		textLayer.fillRect(l, t, w, h, 0);
 		for(var i = 0; i < c; i++)
-		{
 			output(data[i], false);
-		}
 
 		if(!layout.possibleReline())
 			return false;
@@ -355,6 +361,59 @@ class GHistoryLayer extends GHyperTextLayer
 		else
 		if(layoutMode == 'vertical')
 		{
+			// 次に表示すべき行を得る
+			var newLine = getHistoryDisplay(displayLineCount_);
+			var oldLine = getHistoryDisplay(displayTopIndex_);
+			var oldDataSize = displayPageSize_;
+			var oldDataCount = displayLineCount_;
+			var newLineSize = layout.lineSize + layout.lineSpace;
+			var pageSize = width - layout.marginLeft - layout.marginRight;
+
+			// 一番左の行は確実に入りきらないので追い出す
+			oldDataSize -= layout.lineSize + layout.lineSpace;
+			displayTopIndex_ = historyDataMax_ - 1 if (--displayTopIndex_) < 0;
+
+			// newLine は必ず表示しなければならない
+			// 一番下の入りきらない行を全部ページから追い出す
+			while(oldDataSize + newLineSize > pageSize && oldDataCount != 0)
+			{
+				oldLine = getHistoryDisplay(oldDataCount);
+				oldDataSize -= layout.lineSize - layout.lineSpace;
+				displayTopIndex_ = _historyDataMax - 1 if (--displayTopIndex_) < 0;
+				oldDataCount--;
+			}
+
+			if(getHistoryDisplay(displayLineCount_) === void)
+				lastPage_ = true;
+			firstPage_ = false;
+
+			// 古いデータをスクロール
+			var layer = textLayer;
+			var scrollSize = displayPageSize_ - oldDataSize;
+			layer.copyRect(
+				width - layout.marginRight - displayPageSize_ - layout.lineSize - layout.lineSpace,
+				0,
+				layer,
+				width - layout.marginRight - oldDataSize - layout.lineSize - layout.lineSpace,
+				0,
+				oldDataSize,
+				height
+			);
+
+			for(var i = 0; i < oldDataCount; i++)
+			{
+				getHistoryDisplay(i)[0].baseLine += scrollSize;
+				//onScrollLine(i);
+			}
+
+			// 新しいデータを描画
+			if(lastBaseLine_ === void)
+				lastBaseLine_ = layout.baseLine;
+			newLine[0].baseLine = lastBaseLine_ - (layout.lineSize + layout.lineSpace);
+			newLine[0].lineSize = layout.lineSize;
+			drawLine(displayLineCount_ - 1);
+
+			displayPageSize_ = oldDataSize + newLineSize;
 		}
 
 		return true;
@@ -398,6 +457,7 @@ class GHistoryLayer extends GHyperTextLayer
 			var layer = textLayer;
 			var scrollSize = displayPageSize_ - oldDataSize;
 			layer.copyRect(0, height - layout.marginBottom - oldDataSize - newLineSize, layer, 0, height - layout.marginBottom - oldDataSize, width, oldDataSize);
+
 			for(var i = 0; i < oldDataCount; i++)
 			{
 				getHistoryDisplay(i)[0].baseLine -= scrollSize;
@@ -413,6 +473,59 @@ class GHistoryLayer extends GHyperTextLayer
 		else
 		if(layoutMode == 'vertical')
 		{
+			// 次に表示すべき行を得る
+			var newLine = getHistoryDisplay(-1);
+			var oldLine = getHistoryDisplay(displayLineCount_ - 1);
+			var oldDataSize = displayPageSize_;
+			var oldDataCount = displayLineCount_;
+			var newLineSize = layout.lineSize + layout.lineSpace;
+			var pageSize = width - layout.marginLeft - layout.marginRight;
+
+			// 一番上の行は確実に入りきらないので追い出す
+			oldDataSize -= layout.lineSize + layout.lineSpace;
+			displayTopIndex_ = 0 if (++displayTopIndex_) >= historyDataMax_;
+
+			// newLine は必ず表示しなければならない
+			// 一番上の入りきらない行を全部ページから追い出す
+			while(oldDataSize + newLineSize > pageSize && oldDataCount != 0)
+			{
+				oldLine = getHistoryDisplay(0);
+				oldDataSize -= layout.lineSize - layout.lineSpace;
+				displayTopIndex_ = 0 if (++displayTopIndex_) >= historyDataMax_;
+				oldDataCount--;
+			}
+
+			if(getHistoryDisplay(-1) === void)
+				firstPage_ = true;
+			lastPage_ = false;
+
+			layout.resetPosition();
+
+			// 古いデータをスクロール
+			var layer = textLayer;
+			var scrollSize = displayPageSize_ - oldDataSize;
+			layer.copyRect(
+				layout.marginLeft + newLineSize + (layout.lineSize >> 1),
+				0,
+				layer,
+				layout.baseLine - (layout.lineSize >> 1),
+				0,
+				oldDataSize,
+				height
+			);
+
+			for(var i = 0; i < oldDataCount; i++)
+			{
+				getHistoryDisplay(i)[0].baseLine -= scrollSize;
+				//onScrollLine(i);
+			}
+
+			// 新しいデータを描画
+			newLine[0].baseLine = layout.baseLine;
+			layout.resetPosition();
+			drawLine(0);
+
+			displayPageSize_ = oldDataSize + newLineSize;
 		}
 
 		return true;
