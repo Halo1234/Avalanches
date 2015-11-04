@@ -20,6 +20,7 @@
 @!ハロ face=表情１->face1
 @!ハロ pose=ポーズ１->pose1,ポーズ２->pose2
 
+@history_option storage=HistoryBack layout_mode=vertical margin_left=10 margin_top=10 margin_right=10 margin_bottom=10
 @message_option layer=message0 left=10 top=400 width=780 height=190 margin_left=10 margin_top=10 margin_right=10 margin_bottom=10 opacity=128 color=0x000000 current
 
 @cr_handling !ignore
@@ -29,11 +30,42 @@
 @ハロ ポーズ１ 表情１ 表示
 
 [ハロ]メッセージのテストです。
+改行します。
 
 *label|
 @ハロ ポーズ２ 表情１
 
 [ハロ]ポーズ２を表示します。
+
+*label|
+[ハロ]履歴を埋めます。
+
+*label|
+[ハロ]履歴を埋めます２。
+
+*label|
+[ハロ]履歴を埋めます３。
+
+*label|
+[ハロ]履歴を埋めます４。
+
+*label|
+[ハロ]履歴を埋めます５。
+
+*label|
+[ハロ]履歴を埋めます６。
+
+*label|
+[ハロ]履歴を埋めます７。
+
+*label|
+[ハロ]履歴を埋めます８。
+
+*label|
+[ハロ]履歴を埋めます９。
+
+*label|
+[ハロ]履歴を埋めます１０。
 
 *label|
 @ハロ 消去
