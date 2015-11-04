@@ -32,6 +32,7 @@ class ModMessage extends GModule
 	var layerContainer_;
 
 	var messageLayers_;
+	var historyLayer_;
 
 	var current_ = null;
 	var outputInterval = 20;
@@ -61,6 +62,8 @@ class ModMessage extends GModule
 
 		layerContainer_ = createLayerContainer(window, window.primaryLayer);
 
+		historyLayer_ = createHistoryLayer(window, window.primaryLayer);
+
 		messageLayers_ = new MessageLayerIterator(window, layerContainer_);
 		messageLayers_.onLayerEvent = onMessageLayerEvent;
 	}
@@ -80,6 +83,16 @@ class ModMessage extends GModule
 	}
 
 	/**/
+	function createHistoryLayer(window, parentLayer)
+	{
+		var obj = new GHistoryLayer(window, parentLayer, onHistoryLayerEvent);
+
+		obj.absolute = 1000000;
+
+		return obj;
+	}
+
+	/**/
 	function createExtensionTagHandlers()
 	{
 		return %[
@@ -96,16 +109,35 @@ class ModMessage extends GModule
 
 			/* @message_option */
 			'message_option' => function (elm) {
-				var layer;
-				with(layer = findByElm(elm))
+				with(findByElm(elm))
 				{
+					if(elm.storage !== void)
+						.loadImages(elm.storage);
 					if(elm.left !== void && elm.top !== void)
 						.setPos(+elm.left, +elm.top);
 					if(elm.width !== void && elm.height !== void)
 						.setSize(+elm.width, +elm.height);
 					.bodyColor = +elm.color if elm.color !== void;
 					.bodyOpacity = +elm.opacity if elm.opacity !== void;
-					setCurrentLayer(layer.name) if GObjectUtils.toBoolean(elm.current);
+					setCurrentLayer(.name) if GObjectUtils.toBoolean(elm.current);
+					if(elm.margin_left !== void && elm.margin_top !== void && elm.margin_top !== void && elm.margin_bottom !== void)
+						.setMargin(+elm.margin_left, +elm.margin_top, +elm.margin_right, +elm.margin_bottom);
+					.layoutMode = elm.layout_mode if elm.layout_mode !== void;
+				}
+			} incontextof this,
+
+			/**/
+			'history_option' => function (elm) {
+				with(historyLayer_)
+				{
+					if(elm.storage !== void)
+						.loadImages(elm.storage);
+					if(elm.left !== void && elm.top !== void)
+						.setPos(+elm.left, +elm.top);
+					if(elm.width !== void && elm.height !== void)
+						.setSize(+elm.width, +elm.height);
+					.bodyColor = +elm.color if elm.color !== void;
+					.bodyOpacity = +elm.opacity if elm.opacity !== void;
 					if(elm.margin_left !== void && elm.margin_top !== void && elm.margin_top !== void && elm.margin_bottom !== void)
 						.setMargin(+elm.margin_left, +elm.margin_top, +elm.margin_right, +elm.margin_bottom);
 					.layoutMode = elm.layout_mode if elm.layout_mode !== void;
@@ -120,6 +152,7 @@ class ModMessage extends GModule
 					elm.tagname = 'default_font_parameters';
 
 					.output(elm);
+					historyLayer_.output(elm);
 				}
 			} incontextof this,
 
@@ -131,6 +164,7 @@ class ModMessage extends GModule
 					elm.tagname = 'line_parameters';
 
 					.output(elm);
+					historyLayer_.output(elm);
 				}
 			} incontextof this,
 
@@ -142,6 +176,7 @@ class ModMessage extends GModule
 					elm.tagname = 'font';
 
 					.output(elm);
+					historyLayer_.output(elm);
 				}
 			} incontextof this,
 
@@ -153,6 +188,7 @@ class ModMessage extends GModule
 					elm.tagname = 'reset_font';
 
 					.output(elm);
+					historyLayer_.output(elm);
 				}
 			} incontextof this,
 
@@ -183,6 +219,7 @@ class ModMessage extends GModule
 
 					if(current_.output(elm))
 					{
+						historyLayer_.output(elm);
 						return skipping ? 0 : outputInterval;
 					}
 
@@ -197,6 +234,7 @@ class ModMessage extends GModule
 					elm.tagname = 'ruby';
 
 					current_.output(elm);
+					historyLayer_.output(elm);
 				}
 			} incontextof this,
 
@@ -209,6 +247,8 @@ class ModMessage extends GModule
 					// （次のページの行頭に改行は必要ない）
 					if(!current_.reline())
 						c.pendingTag('p');
+
+					historyLayer_.reline();
 				}
 			} incontextof this,
 
@@ -216,6 +256,10 @@ class ModMessage extends GModule
 			'p_mod_message' => function (elm, c) {
 				if(current_ !== null)
 				{
+					if(current_.splitingPage)
+						c.interruptTag('er');
+					else
+						c.interruptTag('store_history_data');
 					if(longSkipping)
 						return 0;
 					if(autoMode_)
@@ -235,6 +279,7 @@ class ModMessage extends GModule
 				if(current_ !== null)
 				{
 					current_.clear();
+					historyLayer_.clear();
 				}
 			} incontextof this,
 
@@ -242,8 +287,8 @@ class ModMessage extends GModule
 			'erase_message' => function (elm) {
 				if(current_ !== null)
 				{
-					dm('er');
 					current_.eraseText();
+					historyLayer_.eraseText();
 				}
 			} incontextof this,
 
@@ -260,6 +305,15 @@ class ModMessage extends GModule
 				if(current_ !== null)
 				{
 					current_.layout.deleteIndent();
+				}
+			} incontextof this,
+
+			/* @store_history_data */
+			'store_history_data' => function (elm) {
+				with(historyLayer_)
+				{
+					.storeHistoryData();
+					.clear();
 				}
 			} incontextof this,
 
@@ -444,6 +498,33 @@ class ModMessage extends GModule
 	}
 
 	/**/
+	function showHistoryLayer()
+	{
+		with(historyLayer_)
+		{
+			if(!.visible)
+			{
+				// 履歴が表示されている間はコンダクタを完全停止させる
+				window.conductor.suspended = true;
+				// 履歴レイヤを表示する
+				.show();
+
+				container.callHandler('onShowHistoryLayer');
+			}
+		}
+	}
+
+	/**/
+	function hideHistoryLayer()
+	{
+		with(historyLayer_)
+		{
+			if(.visible)
+				.hide();
+		}
+	}
+
+	/**/
 	function store(tick)
 	{
 		var dic = super.store(tick);
@@ -475,6 +556,18 @@ class ModMessage extends GModule
 	}
 
 	/**/
+	function onHistoryLayerEvent(obj, message, elm)
+	{
+		// 履歴レイヤが非表示にされる場合
+		// コンダクタの停止状態を解除しなければならない
+		if(message == 'onHideCompleted')
+		{
+			window.conductor.suspended = false;
+			container.callHandler('onHideHistoryLayer');
+		}
+	}
+
+	/**/
 	function onWindowLeftClick(x, y, shift)
 	{
 		if(autoMode)
@@ -496,6 +589,25 @@ class ModMessage extends GModule
 				if(.status == .stRun)
 					enterSkipToPageEnd();
 			}
+		}
+	}
+
+	/**/
+	function onWindowMouseWheel(shift, delta, x, y)
+	{
+		// 履歴が表示中
+		if(historyLayer.visible)
+		{
+			// ここにくるということは履歴が表示効果を実行中
+			// 読み捨てる
+			return true;
+		}
+		else
+		// 履歴が表示されていない、かつホイールが奥に回された。
+		if(delta > 0)
+		{
+			showHistoryLayer();
+			return true;
 		}
 	}
 
@@ -522,6 +634,11 @@ class ModMessage extends GModule
 	property messageLayers
 	{
 		getter		{ return messageLayers_; }
+	}
+
+	property historyLayer
+	{
+		getter		{ return historyLayer_; }
 	}
 
 	property current
