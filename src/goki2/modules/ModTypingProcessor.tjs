@@ -1423,6 +1423,7 @@ class TypingBaseLayer extends GLayer
 		hitThreshold = 256;
 		focusable = true;
 		hasImage = false;
+		absolute = 10000;
 
 		setSize(parent.width, parent.height);
 
@@ -1457,6 +1458,7 @@ class TypingBaseLayer extends GLayer
 		else
 			family.receive(obj = createTypingObjectLayer(window, this, onTypingObjectEvent));
 
+		obj.absolute = 1000;
 		obj.wordLayer.setWord(word);
 		usedObjectLayers_.push(obj);
 
