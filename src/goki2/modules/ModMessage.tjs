@@ -141,6 +141,8 @@ class ModMessage extends GModule
 					if(elm.margin_left !== void && elm.margin_top !== void && elm.margin_top !== void && elm.margin_bottom !== void)
 						.setMargin(+elm.margin_left, +elm.margin_top, +elm.margin_right, +elm.margin_bottom);
 					.layoutMode = elm.layout_mode if elm.layout_mode !== void;
+					.setFontSize(+elm.font_size) if elm.font_size !== void;
+					.setFontFace(elm.font_face) if elm.font_face !== void;
 				}
 			} incontextof this,
 
@@ -152,7 +154,6 @@ class ModMessage extends GModule
 					elm.tagname = 'default_font_parameters';
 
 					.output(elm);
-					historyLayer_.output(elm);
 				}
 			} incontextof this,
 
@@ -164,7 +165,6 @@ class ModMessage extends GModule
 					elm.tagname = 'line_parameters';
 
 					.output(elm);
-					historyLayer_.output(elm);
 				}
 			} incontextof this,
 
@@ -176,7 +176,6 @@ class ModMessage extends GModule
 					elm.tagname = 'font';
 
 					.output(elm);
-					historyLayer_.output(elm);
 				}
 			} incontextof this,
 
@@ -188,7 +187,6 @@ class ModMessage extends GModule
 					elm.tagname = 'reset_font';
 
 					.output(elm);
-					historyLayer_.output(elm);
 				}
 			} incontextof this,
 
