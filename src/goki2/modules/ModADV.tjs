@@ -131,11 +131,14 @@ class ModADV extends GModule
 				c.interruptTag('end_of_sentence');
 				with(container.modMessage)
 				{
-					//.cancelSkip() if .skipping && !.longSkipping;
-					c.interruptTag('store_history_data');
-					if(.longSkipping)
-						return;
 					if(.current === null)
+						return;
+					//.cancelSkip() if .skipping && !.longSkipping;
+					if(.current.splitingPage)
+						c.interruptTag('er');
+					else
+						c.interruptTag('store_history_data');
+					if(.longSkipping)
 						return;
 					.current.showPageGlyph();
 					c.waitSignal(%[left_click : .current.hidePageGlyph]);
