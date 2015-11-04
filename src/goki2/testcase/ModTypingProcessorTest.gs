@@ -36,9 +36,7 @@
 
 @dump_typing_word_list
 
-; タイピングターゲットが複数ある場合にできるだけ表示が重ならないように表示します。
-; どうでもいいならば何もしないか、@typing_config overlap とします。
-@typing_config target_image=TypingTarget000 !overlap
+@typing_config target_image=TypingTarget000
 
 *label|
 @typing_start
