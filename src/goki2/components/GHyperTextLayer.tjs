@@ -8,9 +8,9 @@ class GVerticalLayout
 {
 	var layer_ = void;
 
-	var baseLine_ = 0;
-	var lineSpace = 0;
-	var lineSize_ = 0;
+	var baseLine = 0;
+	var lineSpace = 8;
+	var lineSize = 0;
 	var marginLeft_ = 0;
 	var marginTop_ = 0;
 	var marginRight_ = 0;
@@ -18,7 +18,7 @@ class GVerticalLayout
 	var indentPosition = 0;
 
 	var wwBound_ = 0;
-	var characterPosition_ = 0;
+	var characterPosition = 0;
 
 	/**/
 	function GVerticalLayout(layer)
@@ -39,19 +39,22 @@ class GVerticalLayout
 	/**/
 	function shouldWordWrap(chWidth, chHeight)
 	{
-		return (characterPosition_ + chHeight) > wwBound_ ? true : false;
+		return (characterPosition + chHeight) > wwBound_ ? true : false;
 	}
 
 	/**/
 	function possibleDrawn(ch, chWidth, chHeight)
 	{
 		with(layer_)
-			return (characterPosition_ + chHeight) < .height ? true : false;
+			return (characterPosition + chHeight) < .height ? true : false;
 	}
 
 	/**/
 	function possibleReline()
 	{
+		if((baseLine + getLineSize_private_() + lineSpace) < marginLeft)
+			return false;
+
 		return true;
 	}
 
@@ -68,7 +71,7 @@ class GVerticalLayout
 	/**/
 	function markIndent()
 	{
-		indentPosition = characterPosition_;
+		indentPosition = characterPosition;
 	}
 
 	/**/
@@ -133,15 +136,15 @@ class GVerticalLayout
 	{
 		var ls = getLineSize_private_();
 
-		baseLine_ = layer_.width - marginRight_ - (ls >> 1);
-		lineSize_ = ls;
-		characterPosition_ = (indentPosition == 0 ? marginTop_ : indentPosition);
+		baseLine = layer_.width - marginRight_ - (ls >> 1);
+		lineSize = ls;
+		characterPosition = (indentPosition == 0 ? marginTop_ : indentPosition);
 	}
 
 	/**/
 	function nextPosition(chWidth, chHeight)
 	{
-		characterPosition_ += chHeight + layer_.characterSpace;
+		characterPosition += chHeight + layer_.characterSpace;
 	}
 
 	/**/
@@ -151,22 +154,22 @@ class GVerticalLayout
 		{
 			var ls = getLineSize_private_();
 
-			baseLine_ -= ls + lineSpace;
-			lineSize_ = ls;
-			characterPosition_ = (indentPosition == 0 ? marginTop_ : indentPosition);
+			baseLine -= ls + lineSpace;
+			lineSize = ls;
+			characterPosition = (indentPosition == 0 ? marginTop_ : indentPosition);
 		}
 	}
 
 	/**/
 	function getCurrentLeft(chWidth, chHeight)
 	{
-		return baseLine_ - (chWidth >> 1);
+		return baseLine - (chWidth >> 1);
 	}
 
 	/**/
 	function getCurrentTop(chWidth, chHeight)
 	{
-		return characterPosition_;
+		return characterPosition;
 	}
 
 	/**/
@@ -184,7 +187,7 @@ class GVerticalLayout
 	/**/
 	function getRubyLeft(rubyWidth, rubyHeight, chLeft, chTop, chWidth, chHeight)
 	{
-		var left = baseLine_ + (chWidth >> 1);
+		var left = baseLine + (chWidth >> 1);
 
 		if(marginRight_ > left)
 			left = marginRight_;
@@ -195,7 +198,7 @@ class GVerticalLayout
 	/**/
 	function getRubyTop(rubyWidth, rubyHeight, chLeft, chTop, chWidth, chHeight)
 	{
-		var top = characterPosition_;
+		var top = characterPosition;
 
 		return top;
 	}
@@ -205,16 +208,16 @@ class GVerticalLayout
 	{
 		var dic = %[];
 
-		dic.baseLine = baseLine_;
+		dic.baseLine = baseLine;
 		dic.lineSpace = lineSpace;
-		dic.lineSize = lineSize_;
+		dic.lineSize = lineSize;
 		dic.marginLeft = marginLeft_;
 		dic.marginTop = marginTop_;
 		dic.marginRight = marginRight_;
 		dic.marginBottom = marginBottom_;
 		dic.indentPosition = indentPosition;
 		dic.wwBound = wwBound_;
-		dic.characterPosition = characterPosition_;
+		dic.characterPosition = characterPosition;
 
 		return dic;
 	}
@@ -222,9 +225,9 @@ class GVerticalLayout
 	/**/
 	function restore(dic, tick)
 	{
-		baseLine_ = dic.baseLine;
+		baseLine = dic.baseLine;
 		lineSpace = dic.lineSpace;
-		lineSize_ = dic.lineSize;
+		lineSize = dic.lineSize;
 		marginLeft_ = dic.marginLeft;
 		marginTop_ = dic.marginTop;
 		marginRight_ = dic.marginRight;
@@ -232,6 +235,31 @@ class GVerticalLayout
 		indentPosition = dic.indentPosition;
 		wwBound_ = dic.wwBound;
 		characterPosition = dic.characterPosition;
+	}
+
+	property layer
+	{
+		getter		{ return layer_; }
+	}
+
+	property marginLeft
+	{
+		getter		{ return marginLeft_; }
+	}
+
+	property marginTop
+	{
+		getter		{ return marginTop_; }
+	}
+
+	property marginRight
+	{
+		getter		{ return marginRight_; }
+	}
+
+	property marginBottom
+	{
+		getter		{ return marginBottom_; }
 	}
 }
 
@@ -241,9 +269,9 @@ class GHorizontalLayout
 {
 	var layer_ = void;
 
-	var baseLine_ = 0;
-	var lineSpace = 0;
-	var lineSize_ = 0;
+	var baseLine = 0;
+	var lineSpace = 8;
+	var lineSize = 0;
 	var marginLeft_ = 0;
 	var marginTop_ = 0;
 	var marginRight_ = 0;
@@ -251,7 +279,7 @@ class GHorizontalLayout
 	var indentPosition = 0;
 
 	var wwBound_ = 0;
-	var characterPosition_ = 0;
+	var characterPosition = 0;
 
 	/**/
 	function GHorizontalLayout(layer)
@@ -272,20 +300,20 @@ class GHorizontalLayout
 	/**/
 	function shouldWordWrap(chWidth, chHeight)
 	{
-		return (characterPosition_ + chWidth) > wwBound_ ? true : false;
+		return (characterPosition + chWidth) > wwBound_ ? true : false;
 	}
 
 	/**/
 	function possibleDrawn(ch, chWidth, chHeight)
 	{
 		with(layer_)
-			return (characterPosition_ + chWidth) < .width ? true : false;
+			return (characterPosition + chWidth) < .width ? true : false;
 	}
 
 	/**/
 	function possibleReline()
 	{
-		if((baseLine_ + getLineSize_private_() + lineSpace) > (layer_.height - marginBottom_))
+		if((baseLine + getLineSize_private_() + lineSpace) > (layer_.height - marginBottom_))
 			return false;
 
 		return true;
@@ -304,7 +332,7 @@ class GHorizontalLayout
 	/**/
 	function markIndent()
 	{
-		indentPosition = characterPosition_;
+		indentPosition = characterPosition;
 	}
 
 	/**/
@@ -363,15 +391,15 @@ class GHorizontalLayout
 	{
 		var ls = getLineSize_private_();
 
-		baseLine_ = marginTop_ + ls;
-		lineSize_ = ls;
-		characterPosition_ = (indentPosition == 0 ? marginLeft_ : indentPosition);
+		baseLine = marginTop_ + ls;
+		lineSize = ls;
+		characterPosition = (indentPosition == 0 ? marginLeft_ : indentPosition);
 	}
 
 	/**/
 	function nextPosition(chWidth, chHeight)
 	{
-		characterPosition_ += chWidth + layer_.characterSpace;
+		characterPosition += chWidth + layer_.characterSpace;
 	}
 
 	/**/
@@ -381,22 +409,22 @@ class GHorizontalLayout
 		{
 			var ls = getLineSize_private_();
 
-			baseLine_ += ls + lineSpace;
-			lineSize_ = ls;
-			characterPosition_ = (indentPosition == 0 ? marginLeft_ : indentPosition);
+			baseLine += ls + lineSpace;
+			lineSize = ls;
+			characterPosition = (indentPosition == 0 ? marginLeft_ : indentPosition);
 		}
 	}
 
 	/**/
 	function getCurrentLeft(chWidth, chHeight)
 	{
-		return characterPosition_;
+		return characterPosition;
 	}
 
 	/**/
 	function getCurrentTop(chWidth, chHeight)
 	{
-		return baseLine_ - chHeight;
+		return baseLine - chHeight;
 	}
 
 	/**/
@@ -443,16 +471,16 @@ class GHorizontalLayout
 	{
 		var dic = %[];
 
-		dic.baseLine = baseLine_;
+		dic.baseLine = baseLine;
 		dic.lineSpace = lineSpace;
-		dic.lineSize = lineSize_;
+		dic.lineSize = lineSize;
 		dic.marginLeft = marginLeft_;
 		dic.marginTop = marginTop_;
 		dic.marginRight = marginRight_;
 		dic.marginBottom = marginBottom_;
 		dic.indentPosition = indentPosition;
 		dic.wwBound = wwBound_;
-		dic.characterPosition = characterPosition_;
+		dic.characterPosition = characterPosition;
 
 		return dic;
 	}
@@ -460,16 +488,41 @@ class GHorizontalLayout
 	/**/
 	function restore(dic, tick)
 	{
-		baseLine_ = dic.baseLine;
+		baseLine = dic.baseLine;
 		lineSpace = dic.lineSpace;
-		lineSize_ = dic.lineSize;
+		lineSize = dic.lineSize;
 		marginLeft_ = dic.marginLeft;
 		marginTop_ = dic.marginTop;
 		marginRight_ = dic.marginRight;
 		marginBottom_ = dic.marginBottom;
 		indentPosition = dic.indentPosition;
 		wwBound_ = dic.wwBound;
-		characterPosition_ = dic.characterPosition;
+		characterPosition = dic.characterPosition;
+	}
+
+	property layer
+	{
+		getter		{ return layer_; }
+	}
+
+	property marginLeft
+	{
+		getter		{ return marginLeft_; }
+	}
+
+	property marginTop
+	{
+		getter		{ return marginTop_; }
+	}
+
+	property marginRight
+	{
+		getter		{ return marginRight_; }
+	}
+
+	property marginBottom
+	{
+		getter		{ return marginBottom_; }
 	}
 }
 
@@ -491,6 +544,7 @@ class GHyperTextLayer extends GWidgetLayer
 
 	var fixed_ = false;
 	var outputting_ = false;
+	var splitingPage_ = false;
 
 	var marginLeftCache_ = 0;
 	var marginTopCache_ = 0;
@@ -619,7 +673,7 @@ class GHyperTextLayer extends GWidgetLayer
 	 * \return 出力できた場合は true を返します。
 	 * \return それ以外では false を返します。
 	**/
-	function output(tag)
+	function output(tag, storeContents = true)
 	{
 		if(fixed_)
 			return false;
@@ -638,7 +692,10 @@ class GHyperTextLayer extends GWidgetLayer
 			}
 
 			if(!renderCharacter(tag.text))
+			{
+				splitingPage_ = true;
 				return false;
+			}
 			break;
 
 		case 'ruby':
@@ -701,7 +758,7 @@ class GHyperTextLayer extends GWidgetLayer
 			break;
 		}
 
-		contents_.push(tag);
+		contents_.push(GObjectUtils.clone(tag)) if storeContents;
 
 		return true;
 	}
@@ -717,6 +774,8 @@ class GHyperTextLayer extends GWidgetLayer
 					return false;
 
 				.returnPosition();
+
+				contents_.push(%[tagname : 'reline']);
 			}
 		}
 
@@ -743,6 +802,7 @@ class GHyperTextLayer extends GWidgetLayer
 	function eraseText()
 	{
 		outputting_ = false;
+		splitingPage_ = false;
 		contents_.clear();
 		layout.resetPosition();
 
@@ -961,6 +1021,31 @@ class GHyperTextLayer extends GWidgetLayer
 	property layoutMode
 	{
 		setter(x)	{ layoutModeCache_ = x; }
+		getter		{ return layoutMode_; }
+	}
+
+	/**/
+	property marginLeftCache
+	{
+		getter		{ return marginLeftCache_; }
+	}
+
+	/**/
+	property marginTopCache
+	{
+		getter		{ return marginTopCache_; }
+	}
+
+	/**/
+	property marginRightCache
+	{
+		getter		{ return marginRightCache_; }
+	}
+
+	/**/
+	property marginBottomCache
+	{
+		getter		{ return marginBottomCache_; }
 	}
 
 	/**/
@@ -997,6 +1082,12 @@ class GHyperTextLayer extends GWidgetLayer
 	property shadowExtent
 	{
 		getter		{ return shadowExtent_; }
+	}
+
+	/**/
+	property contents
+	{
+		getter		{ return contents_; }
 	}
 }
 
