@@ -37,7 +37,9 @@ class GVideoOverlay extends VideoOverlay
 		super.finalize();
 	}
 
-	/* mode が vomOverlay なら vomMixer で開く事を試行する open() ラッパー */
+	/*
+	 * \brief mode が vomOverlay なら vomMixer で開く事を試行する open() ラッパー
+	**/
 	function openTryMixerMode(storage)
 	{
 		videoStorage_ = '';
@@ -66,7 +68,7 @@ class GVideoOverlay extends VideoOverlay
 		return openAcceptMode(storage);
 	}
 
-	/* open() ラッパー */
+	/**/
 	function openAcceptMode(storage)
 	{
 		try {
@@ -85,7 +87,7 @@ class GVideoOverlay extends VideoOverlay
 		return true;
 	}
 
-	/* オーバーライド */
+	/**/
 	function play(storage, loop = false)
 	{
 		if(videoStorage_ == "" && !open(storage))
@@ -101,7 +103,7 @@ class GVideoOverlay extends VideoOverlay
 		}
 	}
 
-	/* オーバーライド */
+	/**/
 	function pause()
 	{
 		if(!paused_)
