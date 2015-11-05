@@ -32,6 +32,8 @@ Scripts.execStorage('GOKI2Utils.tjs');
 		'GLocation', 'GTemporaryLocation',
 		'GWaveSoundBuffer', 'GWaveSoundBuffer2',
 		'GSoundBufferContainer', 'GSoundBufferIterator',
+		'GVideoOverlay',
+		'GVideoContainer', 'GVideoIterator',
 		'GMenuItem', 'GMenuModule',
 		'GWindow'
 	];

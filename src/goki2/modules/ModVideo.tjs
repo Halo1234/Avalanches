@@ -1,0 +1,200 @@
+/*
+ * $Author$
+ * $Revision$
+**/
+
+
+/**/
+class VideoBuffers extends GVideoIterator
+{
+	function VideoBuffers(window, contents)
+	{
+		super.GVideoIterator(...);
+	}
+
+	property prefix
+	{
+		getter		{ return "vb"; }
+	}
+}
+
+
+/**/
+class ModVideo extends GModule
+{
+	var dispatcher_;
+
+	var videoContainer_;
+
+	var videoBuffers_;
+
+	function ModVideo(holder, name)
+	{
+		super.GModule(...);
+
+		dispatcher_ = new GDispatcher();
+
+		videoContainer_ = createVideoContainer(window);
+
+		videoBuffers_ = createVideoBuffers(window);
+		videoBuffers_.onVideoEvent = onVideoEvent;
+	}
+
+	function finalize()
+	{
+		invalidate videoBuffers_;
+		invalidate videoContainer_;
+
+		invalidate dispatcher_;
+
+		super.finalize(...);
+	}
+
+	function createVideoContainer(window)
+	{
+		return new GVideoContainer(window);
+	}
+
+	function createVideoBuffers(window)
+	{
+		return new VideoBuffers(window);
+	}
+
+	function createExtensionTagHandlers()
+	{
+		return %[
+
+			/* @video_buffers */
+			'video_buffers' => function (elm) {
+				videoBuffers_.count = +elm.count if elm.count !== void;
+			} incontextof this,
+
+			/* @video */
+			'video' => function (elm) {
+				with(videoBuffers_.at(+elm.slot))
+				{
+					if(elm.left !== void || elm.top !== void || elm.width !== void || elm.height !== void)
+					{
+						var l = (elm.left === void ? buf.left : +elm.left);
+						var t = (elm.top === void ? buf.top : +elm.top);
+						var w = (elm.width === void ? buf.width : +elm.width);
+						var h = (elm.height === void ? buf.height : +elm.height);
+						.setBounds(l, t, w, h);
+					}
+					.position = +elm.position if elm.position !== void;
+					.loop = +elm.loop if elm.loop !== void;
+					.frame = +elm.frame if elm.frame !== void;
+					if(elm.mode !== void)
+					{
+						switch(elm.mode)
+						{
+						case "layer":	.mode = vomLayer; break;
+						case "mixer":	.mode = vomMixer; break;
+						default:		.mode = vomOverlay; break;
+						}
+					}
+					.playRate = +elm.play_rate if elm.play_rate !== void;
+					.audioVolume = +elm.volume * 1000 if elm.volume !== void;
+					.audioBalance = +elm.pan * 1000 if elm.pan !== void;
+					.selectAudioStream(+elm.audio_stream_number) if elm.audio_stream_number !== void;
+					.visible = +elm.visible if elm.visible !== void;
+				}
+			} incontextof this,
+
+			/* @open_video */
+			'open_video' => function (elm) {
+				with(videoBuffers_.at(+elm.slot))
+				{
+					.open(elm.storage);
+				}
+			} incontextof this,
+
+			/* @prepare_video */
+			'prepare_video' => function (elm) {
+				// slot
+			} incontextof this,
+
+			/* @play_video */
+			'play_video' => function (elm) {
+				with(videoBuffers.at(+elm.slot))
+				{
+					.play(elm.storage, GObjectUtils.toBoolean(elm, 'loop'));
+				}
+			} incontextof this,
+
+			/* @wait_video */
+			'wait_video' => function (elm, c) {
+				var iterator = videoBuffers;
+				with(iterator.at(+elm.slot))
+				{
+					//dm("playing : " + .playing);
+					if(.canWaitStop)
+					{
+						var event = @"&.name;_video_end";
+						dispatcher_.makeOneShot(event, c.signal, event);
+						if(!GObjectUtils.toBoolean(elm, 'skip'))
+							c.waitSignal(%[event => null]);
+						else
+						if(window.modules.isLoaded('ModMessage') && !window.modules.modMessage.longSkipping)
+							c.waitSignal(%[left_click : .stop, event => null]);
+						else
+							.stop();
+					}
+				}
+			} incontextof this,
+
+			/* @stop_video */
+			'stop_video' => function (elm) {
+				with(videoBuffers.at(+elm.slot))
+				{
+					.stop();
+				}
+			} incontextof this,
+
+		];
+	}
+
+	function setAudioVolume_private_(buffer, volume)
+	{
+		buffer.audioVolume = volume;
+	}
+
+	function onSoundMasterVolumeChanged(volume, oldVolume)
+	{
+		// NOTE:
+		// ビデオ音量の設定項目が存在しないので
+		// マスターボリュームにあわせる形で問題ない。
+		videoBuffers_.each(
+			setAudioVolume_private_, volume
+		);
+	}
+
+	function onVideoEvent(obj, event, elm)
+	{
+		switch(event)
+		{
+		case 'onStatusChanged':
+			if(elm.prev == 'play' && elm.now == 'stop')
+				dispatcher_.signal(@"&obj.name;_video_end");
+			break;
+
+		case 'onPeriod':
+			switch(elm.type)
+			{
+			case prePeriod:		dispatcher_.signal(@"&obj.name;_pre_period"); break;
+			case prePrepare:	dispatcher_.signal(@"&obj.name;_pre_prepara"); break;
+			}
+			break;
+
+		case 'onFrameUpdate':		break;
+		}
+	}
+
+
+	property videoBuffers
+	{
+		getter		{ return videoBuffers_; }
+	}
+}
+
+

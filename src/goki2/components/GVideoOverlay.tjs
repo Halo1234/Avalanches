@@ -1,0 +1,220 @@
+/*
+ * $Author$
+ * $Revision$
+**/
+
+
+/**/
+class GVideoOverlay extends VideoOverlay
+{
+	var window;
+	var handler;
+
+	var name;
+	var lastStatus_ = 'unload';
+	var status_ = 'unload';
+	var videoStorage_ = '';
+	var layerName1_ = '';
+	var layerName2_ = '';
+	var layerPage1_ = true;
+	var layerPage2_ = true;
+	var paused_ = false;
+
+	function GVideoOverlay(window, handler)
+	{
+		super.VideoOverlay(window);
+		this.window = window;
+		this.handler = handler;
+		this.name = GObjectUtils.getClassName(this);
+
+		// open() オーバーライド
+		open = openTryMixerMode;
+	}
+
+	function finalize()
+	{
+		stop();
+		super.finalize();
+	}
+
+	/* mode が vomOverlay なら vomMixer で開く事を試行する open() ラッパー */
+	function openTryMixerMode(storage)
+	{
+		videoStorage_ = '';
+
+		// もし mode が vomOverlay であれば vomMixer を試行してみる
+		if(mode == vomOverlay)
+		{
+			var ret = true;
+
+			try {
+				mode = vomMixer;
+				super.open(storage);
+				videoStorage_ = storage;
+			} catch(e) {
+				// vomMixer ではダメだったので vomOverlay に戻してリトライ
+				worn("!!---GVideoOverlay");
+				worn("!!---vomMixer の試行に失敗しました。");
+				mode = vomOverlay;
+				ret = openAcceptMode(storage);
+				open = openAcceptMode;
+			}
+
+			return ret;
+		}
+
+		return openAcceptMode(storage);
+	}
+
+	/* open() ラッパー */
+	function openAcceptMode(storage)
+	{
+		try {
+			videoStorage_ = "";
+			super.open(storage);
+			videoStorage_ = storage;
+		} catch(e) {
+			if(e.message.indexOf(".dll") != -1)
+				throw e;
+			worn(@"ムービー &storage; を開けません。");
+			worn(@">> &e.message;");
+
+			return false;
+		}
+
+		return true;
+	}
+
+	/* オーバーライド */
+	function play(storage, loop = false)
+	{
+		if(videoStorage_ == "" && !open(storage))
+			return false;
+		try {
+			super.play();
+			paused_ = false;
+		} catch(e) {
+			if(e.message.indexOf(".dll") != -1)
+				throw e;
+			worn(@"ムービー &_videoStorage; を再生できません。");
+			worn(@">> &e.message;");
+		}
+	}
+
+	/* オーバーライド */
+	function pause()
+	{
+		if(!paused_)
+		{
+			super.pause();
+			paused_ = true;
+		}
+	}
+
+	/**/
+	function resume()
+	{
+		if(paused_)
+		{
+			try {
+				super.play();
+				paused_ = false;
+			} catch(e) {
+				if(e.message.indexOf(".dll") != -1)
+					throw e;
+				worn(@"ムービー &_videoStorage; を再開できません。");
+				worn(@">> &e.message;");
+			}
+		}
+	}
+
+	/**/
+	function callHandler(message, elements = %[])
+	{
+		var h = handler;
+
+		if(h instanceof 'Function')
+			return h(this, message, elements);
+		else
+		if(typeof(h) == 'Object')
+			throw new GNotImplementedError();
+
+		return void;
+	}
+
+	/**/
+	function stop()
+	{
+		super.stop(...);
+		super.close();
+		paused_ = false;
+	}
+
+	/**/
+	function store(tick)
+	{
+		var dic = %[];
+
+		return dic;
+	}
+
+	function restore(dic, tick)
+	{
+	}
+
+	/**/
+	function onStatusChanged(status)
+	{
+		status_ = status;
+		super.onStatusChanged(status);
+		callHandler('onStatusChanged', %[prev : lastStatus_, now : status]);
+		lastStatus_ = status;
+	}
+
+	/**/
+	function onPeriod(type)
+	{
+		super.onPeriod(type);
+		callHandler('onPeriod', %[type: type]);
+	}
+
+	/**/
+	function onFrameUpdate(frame)
+	{
+		super.onFrameUpdate(frame);
+		callHandler('onFrameUpdate', %[frame: frame]);
+	}
+
+	/**/
+	property canWaitStop
+	{
+		getter		{ return playing && !loop; }
+	}
+
+	/**/
+	property lastStatus
+	{
+		getter		{ return lastStatus_; }
+	}
+
+	/**/
+	property playing
+	{
+		getter		{ return status_ == "play" ? true : false; }
+	}
+
+	/**/
+	property videoStorage
+	{
+		getter		{ return videoStorage_; }
+	}
+
+	/**/
+	property paused
+	{
+		setter(x)	{ (x ? pause : resume)(); }
+		getter		{ return _paused; }
+	}
+}
+
+

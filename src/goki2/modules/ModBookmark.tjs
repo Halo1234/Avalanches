@@ -21,7 +21,7 @@ class ModBookmark extends GModule
 		keepAspectRatio : true,
 		storagePrefix : 'save',
 		storageSuffix : '',
-		mode : 'z',
+		mode : '',
 		lastSaveNumber : -1,
 		lastLoadNumber : -1,
 		entries : %[]

@@ -1,0 +1,32 @@
+/*
+ * $Author$
+ * $Revision$
+**/
+
+
+/**/
+class GVideoIterator extends GIterator
+{
+	function GVideoIterator(window, container)
+	{
+		super.GIterator(...);
+	}
+
+	function create(window)
+	{
+		return new GVideoOverlay(window, onVideoEvent);
+	}
+
+	function onVideoEvent(obj, event, elm)
+	{
+		// 必要ならオーバーライドすること
+	}
+
+	property prefix
+	{
+		// かならず派生先でこれを一意なものにオーバーライドしてください。
+		getter		{ return 'video'; }
+	}
+}
+
+
