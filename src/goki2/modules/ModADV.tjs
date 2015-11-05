@@ -29,11 +29,11 @@ class ModADV extends GModule
 
 	var transitionParameters_ = %[reserved : false];
 
-	function ModADV(container, name, requiredModules = true)
+	function ModADV(container, name, requireModules = true)
 	{
 		super.GModule(...);
 
-		if(requiredModules)
+		if(requireModules)
 		{
 			container.load('ModMessage');
 			container.load('ModImage');
