@@ -111,7 +111,10 @@ class ModVideo extends GModule
 
 			/* @prepare_video */
 			'prepare_video' => function (elm) {
-				// slot
+				with(videoBuffers.at(+elm.slot))
+				{
+					.preprare();
+				}
 			} incontextof this,
 
 			/* @play_video */
@@ -140,6 +143,17 @@ class ModVideo extends GModule
 						else
 							.stop();
 					}
+				}
+			} incontextof this,
+
+			/* @wait_prepare */
+			'wait_prepare' => function (elm, c) {
+				with(videoBuffers.at(+elm.slot))
+				{
+					var event = @"&.name;_pre_prepare";
+
+					if(.inPrepare)
+						c.waitSignal(event => null);
 				}
 			} incontextof this,
 
@@ -182,7 +196,7 @@ class ModVideo extends GModule
 			switch(elm.type)
 			{
 			case prePeriod:		dispatcher_.signal(@"&obj.name;_pre_period"); break;
-			case prePrepare:	dispatcher_.signal(@"&obj.name;_pre_prepara"); break;
+			case prePrepare:	dispatcher_.signal(@"&obj.name;_pre_prepare"); break;
 			}
 			break;
 

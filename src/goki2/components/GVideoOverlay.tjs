@@ -20,6 +20,8 @@ class GVideoOverlay extends VideoOverlay
 	var layerPage2_ = true;
 	var paused_ = false;
 
+	var inPrepare_ = false;
+
 	function GVideoOverlay(window, handler)
 	{
 		super.VideoOverlay(window);
@@ -85,6 +87,13 @@ class GVideoOverlay extends VideoOverlay
 		}
 
 		return true;
+	}
+
+	/**/
+	function prepare()
+	{
+		super.prepare();
+		inPreprare = true;
 	}
 
 	/**/
@@ -177,6 +186,12 @@ class GVideoOverlay extends VideoOverlay
 	function onPeriod(type)
 	{
 		super.onPeriod(type);
+
+		switch(type)
+		{
+		case prePrepare:	inPreprare = false; break;
+		}
+
 		callHandler('onPeriod', %[type: type]);
 	}
 
@@ -216,6 +231,12 @@ class GVideoOverlay extends VideoOverlay
 	{
 		setter(x)	{ (x ? pause : resume)(); }
 		getter		{ return _paused; }
+	}
+
+	/**/
+	property inPrepare
+	{
+		getter		{ return inPrepare; }
 	}
 }
 
