@@ -317,10 +317,6 @@ class ModImage extends GModule
 			if(typeof(global[elm.mode]) !== 'undefined')
 				layer.type = global[elm.mode];
 		}
-		else
-		{
-			layer.type = ltAlpha;
-		}
 		layer.face = dfAuto;
 
 		// TODO: offs_x offs_y offs_unit ëŒâûÅB

@@ -24,12 +24,6 @@ class GBaseLayer extends GLayer
 
 		visible = backup;
 	}
-
-	property type
-	{
-		setter(x)	{ super.type = ltOpaque; }
-		getter		{ return super.type; }
-	}
 }
 
 
