@@ -7,11 +7,13 @@
 /**/
 class VideoBuffers extends GVideoIterator
 {
+	/**/
 	function VideoBuffers(window, contents)
 	{
 		super.GVideoIterator(...);
 	}
 
+	/**/
 	property prefix
 	{
 		getter		{ return "vb"; }
@@ -28,6 +30,7 @@ class ModVideo extends GModule
 
 	var videoBuffers_;
 
+	/**/
 	function ModVideo(holder, name)
 	{
 		super.GModule(...);
@@ -40,6 +43,7 @@ class ModVideo extends GModule
 		videoBuffers_.onVideoEvent = onVideoEvent;
 	}
 
+	/**/
 	function finalize()
 	{
 		invalidate videoBuffers_;
@@ -50,16 +54,19 @@ class ModVideo extends GModule
 		super.finalize(...);
 	}
 
+	/**/
 	function createVideoContainer(window)
 	{
 		return new GVideoContainer(window);
 	}
 
+	/**/
 	function createVideoBuffers(window)
 	{
 		return new VideoBuffers(window);
 	}
 
+	/**/
 	function createExtensionTagHandlers()
 	{
 		return %[
@@ -98,6 +105,49 @@ class ModVideo extends GModule
 					.audioBalance = +elm.pan * 1000 if elm.pan !== void;
 					.selectAudioStream(+elm.audio_stream_number) if elm.audio_stream_number !== void;
 					.visible = +elm.visible if elm.visible !== void;
+				}
+			} incontextof this,
+
+			/* @set_video_layer */
+			'set_video_layer' => function (elm) {
+				with(videoBuffers_.at(+elm.slot))
+				{
+					if(container.isLoaded('modImage'))
+					{
+						if(elm.channel == 1)
+						{
+							.layerElm1 = GObjectUtils.clone(elm);
+							.layer1 = container.modImage.findByElm(elm);
+							.mode = vomLayer;
+						}
+						else
+						if(elm.channel == 2)
+						{
+							.layerElm2 = GObjectUtils.clone(elm);
+							.layer2 = container.modImage.findByElm(elm);
+							.mode = vomLayer;
+						}
+					}
+				}
+			} incontextof this,
+
+			/* @clear_video_layer */
+			'clear_video_layer' => function (elm) {
+				with(videoBuffers_.at(+elm.slot))
+				{
+					if(elm.channel == 1)
+					{
+						.layerElm1.layer = '';
+						.layerElm1.page = '';
+						.layer1 = null;
+					}
+					else
+					if(elm.channel == 2)
+					{
+						.layerElm2.layer = '';
+						.layerElm2.page = '';
+						.layer2 = null;
+					}
 				}
 			} incontextof this,
 
@@ -165,14 +215,30 @@ class ModVideo extends GModule
 				}
 			} incontextof this,
 
+			/**/
+			'close_video' => function (elm) {
+				with(videoBuffers.at(+elm.slot))
+				{
+					.close();
+				}
+			} incontextof this,
+
 		];
 	}
 
+	/**/
 	function setAudioVolume_private_(buffer, volume)
 	{
 		buffer.audioVolume = volume;
 	}
 
+	/**/
+	function stopBuffers_private_(buffer)
+	{
+		buffer.stop();
+	}
+
+	/**/
 	function onSoundMasterVolumeChanged(volume, oldVolume)
 	{
 		// NOTE:
@@ -183,6 +249,7 @@ class ModVideo extends GModule
 		);
 	}
 
+	/**/
 	function onVideoEvent(obj, event, elm)
 	{
 		switch(event)
@@ -201,10 +268,19 @@ class ModVideo extends GModule
 			break;
 
 		case 'onFrameUpdate':		break;
+
+		case 'onSetLayer1':			obj.layer1 = container.modImage.findByElm(elm) if container.isLoaded('modImage'); break;
+		case 'onSetLayer2':			obj.layer2 = container.modImage.findByElm(elm) if container.isLoaded('modImage'); break;
 		}
 	}
 
+	/**/
+	function onWindowClose()
+	{
+		videoBuffers_.each(stopBuffers_private_);
+	}
 
+	/**/
 	property videoBuffers
 	{
 		getter		{ return videoBuffers_; }

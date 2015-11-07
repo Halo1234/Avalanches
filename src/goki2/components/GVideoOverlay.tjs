@@ -7,17 +7,15 @@
 /**/
 class GVideoOverlay extends VideoOverlay
 {
+	var name;
 	var window;
 	var handler;
 
-	var name;
 	var lastStatus_ = 'unload';
 	var status_ = 'unload';
 	var videoStorage_ = '';
-	var layerName1_ = '';
-	var layerName2_ = '';
-	var layerPage1_ = true;
-	var layerPage2_ = true;
+	var layerElm1 = %[layer : '', page : ''];
+	var layerElm2 = %[layer : '', page : ''];
 	var paused_ = false;
 
 	var inPrepare_ = false;
@@ -74,7 +72,7 @@ class GVideoOverlay extends VideoOverlay
 	function openAcceptMode(storage)
 	{
 		try {
-			videoStorage_ = "";
+			videoStorage_ = '';
 			super.open(storage);
 			videoStorage_ = storage;
 		} catch(e) {
@@ -90,6 +88,13 @@ class GVideoOverlay extends VideoOverlay
 	}
 
 	/**/
+	function close()
+	{
+		super.close();
+		videoStorage_ = '';
+	}
+
+	/**/
 	function prepare()
 	{
 		super.prepare();
@@ -99,8 +104,8 @@ class GVideoOverlay extends VideoOverlay
 	/**/
 	function play(storage, loop = false)
 	{
-		if(videoStorage_ == "" && !open(storage))
-			return false;
+		if(videoStorage_ == '' && !open(storage))
+			return;
 		try {
 			super.play();
 			paused_ = false;
@@ -166,11 +171,69 @@ class GVideoOverlay extends VideoOverlay
 	{
 		var dic = %[];
 
+		dic.name = name;
+		dic.status = status_;
+		dic.lastStatus = lastStatus;
+		dic.layerElm1 = layerElm1;
+		dic.layerElm2 = layerElm2;
+		dic.videoStorage = videoStorage_;
+		dic.paused = paused_;
+
+		if(mode == vomLayer)
+		{
+			dic.visible = visible;
+			dic.loop = loop;
+			dic.frame = frame;
+
+			if(numberOfAudioStream > 0)
+			{
+				dic.audioBalance = audioBalance;
+				dic.audioVolume = audioVolume;
+				dic.enabledAudioStream = enabeledAudioStream;
+			}
+
+			dic.segmentLoopStartFrame = segmentLoopStartFrame;
+			dic.segmentLoopEndFrame = segmentLoopEndFrame;
+			dic.periodEventFrame = periodEventFrame;
+		}
+
 		return dic;
 	}
 
 	function restore(dic, tick)
 	{
+		name = dic.name;
+		status_ = dic.status;
+		lastStatus_ = dic.lastStatus;
+		layerElm1 = GObjectUtils.clone(dic.layerElm1);
+		layerElm2 = GObjectUtils.clone(dic.layerElm2);
+		videoStorage_ = dic.videoStorage;
+		dic.paused = paused_;
+
+		callHandler('onSetLayer1', layerElm1);
+		callHandler('onSetLayer2', layerElm2);
+
+		if(dic.lastStatus != 'unload')
+		{
+			open(videoStorage_);
+			// ‚±‚ÌÝ’è‚Í•K‚¸ frame ‚æ‚èæ‚És‚¤‚±‚Æ
+			periodEventFrame = dic.periodEventFrame;
+			if(dic.frame >= 0)
+				frame = dic.frame;
+
+			if(numberOfAudioStream > 0)
+			{
+				audioBalance = dic.audioBalance;
+				audioVolume = dic.audioVolume;
+				if(dic.enabledAudioStream >= 0)
+					selectAudioStream(dic.enabledAudioStream);
+				super.setSegmentLoop(dic.segmentLoopStartFrame, dic.segmentLoopEndFrame);
+				if(dic.lastStatus == 'pause' || dic.lastStatus == 'play')
+					play();
+				if(dic.lastStatus == 'pause')
+					pause();
+			}
+		}
 	}
 
 	/**/
