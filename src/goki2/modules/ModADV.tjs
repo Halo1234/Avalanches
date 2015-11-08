@@ -157,6 +157,9 @@ class ModADV extends GModule
 						c.interruptTag('store_history_data');
 					if(.longSkipping)
 						return;
+					else
+					if(.skipping)
+						.cancelSkip();
 					.current.showPageGlyph();
 					c.waitSignal(%[left_click : .current.hidePageGlyph]);
 				}

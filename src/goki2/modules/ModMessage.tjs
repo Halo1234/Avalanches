@@ -281,6 +281,9 @@ class ModMessage extends GModule
 						c.interruptTag('store_history_data');
 					if(longSkipping)
 						return 0;
+					else
+					if(skipping)
+						cancelSkip();
 					if(autoMode_)
 					{
 						return autoPageWait;
