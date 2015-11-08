@@ -53,6 +53,8 @@ class ModMessage extends GModule
 
 	var skipMode_ = smNotSkip;			// 現在のスキップ状態
 
+	var clickSkipEnabled = true;		// クリックスキップが有効かどうか
+
 	var autoMode_ = false;
 	var autoPageWait = 2000;
 	var clickToAutoModeCancel = true;
@@ -342,6 +344,11 @@ class ModMessage extends GModule
 			/* @auto_wait_ch */
 			'auto_wait_ch' => setAutoWait,
 
+			/* @click_skip */
+			'click_skip' => function (elm) {
+				clickSkipEnabled = GObjectUtils.getBoolean(elm, 'enabled');
+			} incontextof this,
+
 		];
 	}
 
@@ -411,38 +418,50 @@ class ModMessage extends GModule
 	/**/
 	function enterSkipToNextWait(bb = 1)
 	{
-		window.conductor.cancelWaitTimer();
-		skipTo(this.smNextWait, bb);
+		if(clickSkipEnabled)
+		{
+			window.conductor.cancelWaitTimer();
+			skipTo(this.smNextWait, bb);
+		}
 	}
 
 	/**/
 	function enterSkipToPageEnd(bb = 1)
 	{
-		window.conductor.cancelWaitTimer();
-		skipTo(this.smPageEnd, bb);
+		if(clickSkipEnabled)
+		{
+			window.conductor.cancelWaitTimer();
+			skipTo(this.smPageEnd, bb);
+		}
 	}
 
 	/**/
 	function enterSkipToNotRead(bb = 1)
 	{
-		with(window)
+		if(clickSkipEnabled)
 		{
-			.conductor.cancelWaitTimer();
-			if(.conductor.status == .conductor.stWait)
-				.leftClick();
+			with(window)
+			{
+				.conductor.cancelWaitTimer();
+				if(.conductor.status == .conductor.stWait)
+					.leftClick();
+			}
+			skipTo(this.smNotRead, bb);
 		}
-		skipTo(this.smNotRead, bb);
 	}
 
 	/**/
 	function enterSkipToSkipCancel(bb = 1)
 	{
-		with(window)
+		if(clickSkipEnabled)
 		{
-			.conductor.cancelWaitTimer();
-			.leftClick();
+			with(window)
+			{
+				.conductor.cancelWaitTimer();
+				.leftClick();
+			}
+			skipTo(this.smCancel, bb);
 		}
-		skipTo(this.smCancel, bb);
 	}
 
 	/**/
