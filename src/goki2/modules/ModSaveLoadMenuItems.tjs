@@ -24,23 +24,26 @@ class ModSaveLoadMenuItems extends GMenuModule
 
 		var bookmark = container.get('ModBookmark');
 
-		for(var i = 0; i < 10; i++)
+		if(bookmark !== void)
 		{
-			var info = bookmark.getSaveDataInfoByNumber(i);
-			var date = @"&i; : ----/--/-- --:--";
-
-			if(info !== void && info.date !== void)
+			for(var i = 0; i < 10; i++)
 			{
-				var obj = new Date();
+				var info = bookmark.getSaveDataInfoByNumber(i);
+				var date = @"&i; : ----/--/-- --:--";
 
-				obj.setTime(info.date);
-				date = '%04d/%02d/%02d %02d:%02d'.sprintf(
-					obj.getYear(), (obj.getMonth() + 1), obj.getDate(), obj.getHours(), obj.getMinutes()
-				);
+				if(info !== void && info.date !== void)
+				{
+					var obj = new Date();
+
+					obj.setTime(info.date);
+					date = '%04d/%02d/%02d %02d:%02d'.sprintf(
+						obj.getYear(), (obj.getMonth() + 1), obj.getDate(), obj.getHours(), obj.getMinutes()
+					);
+				}
+
+				add(saveItems_[i] = createMenuItem(window, save_, date, '', onSaveItem));
+				add(loadItems_[i] = createMenuItem(window, load_, date, '', onLoadItem));
 			}
-
-			add(saveItems_[i] = createMenuItem(window, save_, date, '', onSaveItem));
-			add(loadItems_[i] = createMenuItem(window, load_, date, '', onLoadItem));
 		}
 	}
 

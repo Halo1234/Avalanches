@@ -640,6 +640,16 @@ class ModMessage extends GModule
 		}
 	}
 
+	/**/
+	function onLabel(label, name, firstLabelProcessed)
+	{
+		var modBookmark = window.modules.get('modBookmark');
+
+		// modBookmark が存在しない場合は既読スキップは即座にキャンセルする
+		if(modBookmark === void && longSkipping)
+			cancelNotReadSkip();
+	}
+
 	property messageLayers
 	{
 		getter		{ return messageLayers_; }

@@ -653,7 +653,7 @@ class ModBookmark extends GModule
 	function onLabel(label, name, firstLabelProcessed)
 	{
 		var tick = System.getTickCount();
-		var modMessage = window.modules.get('ModMessage');
+		var modMessage = window.modules.get('modMessage');
 
 		if(name !== void)
 		{
