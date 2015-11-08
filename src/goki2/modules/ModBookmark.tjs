@@ -96,6 +96,11 @@ class ModBookmark extends GModule
 				storeAndSave = GOBjectUtils.getBoolean(elm, 'store_and_save') if elm.store_and_save !== void;
 			} incontextof this,
 
+			/* @clear_system_variables */
+			'clear_system_variables' => function (elm) {
+				GObjectUtils.clearDictionary(systemUserFlags_);
+			} incontextof this,
+
 		];
 	}
 
