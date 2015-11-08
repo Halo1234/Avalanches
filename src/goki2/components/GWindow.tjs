@@ -157,7 +157,7 @@ class GWindow extends Window
 
 		with(primaryLayer)
 		{
-			setInnerSize(w, h);
+			setInnerSize(w, h) if !fullScreened_;
 			.setSize(w, h);
 
 			modules_.callHandler('onPrimaryLayerResize', .left, .top, .width, .height);
@@ -350,6 +350,7 @@ class GWindow extends Window
 	/**/
 	function onResize()
 	{
+		dm('on resize');
 		fixPrimaryLayerSizeToInnerSize();
 	}
 
