@@ -36,6 +36,9 @@ class ModMessage extends GModule
 
 	var current_ = null;
 	var outputInterval = 20;
+	var autoWaitChEnabled_ = false;
+	var autoWaitChChars_ = '';
+	var autoWaitChWaits_ = [];
 
 	var /* const */ smNotSkip = 0;		// スキップしない
 	var /* const */ smNextWait = 1;		// 次のクリック待ちまでスキップ
@@ -219,7 +222,24 @@ class ModMessage extends GModule
 					if(current_.output(elm))
 					{
 						historyLayer_.output(elm);
-						return skipping ? 0 : outputInterval;
+						if(skipping)
+						{
+							return 0;
+						}
+						else
+						{
+							if(autoWaitChEnabled_)
+							{
+								// 自動ウェイト
+								var idx;
+								if((idx = autoWaitChChars.indexOf(elm.text)) != -1)
+								{
+									return int(outputInterval * autoWaitChWaits[idx]);
+								}
+							}
+						}
+
+						return outputInterval;
 					}
 
 					c.pendingTag('p', elm);
@@ -316,7 +336,18 @@ class ModMessage extends GModule
 				}
 			} incontextof this,
 
+			/* @auto_wait_ch */
+			'auto_wait_ch' => setAutoWait,
+
 		];
+	}
+
+	/**/
+	function setAutoWait(elm)
+	{
+		autoWaitChEnabled_ = GObjectUtils.getBoolean(elm, 'enabled') if elm.enabled !== void;
+		autoWaitChChars_ = elm.chars if elm.chars !== void;
+		autoWaitChWaits_ = [].split(",", elm.time) if elm.time !== void;
 	}
 
 	/**/
@@ -536,6 +567,9 @@ class ModMessage extends GModule
 
 		dic.messageLayers = messageLayers_.store(tick);
 		dic.outputInterval = outputInterval;
+		dic.autoWaitChEnabled = autoWaitChEnabled_;
+		dic.autoWaitChChars = autoWaitChChars_;
+		dic.autoWaitChWaits = autoWaitChWaits_;
 		dic.autoMode = autoMode_;
 		dic.clickToAutoModeCancel = clickToAutoModeCancel;
 		dic.skipKey = skipKey;
@@ -550,6 +584,9 @@ class ModMessage extends GModule
 
 		messageLayers_.restore(dic.messageLayers);
 		outputInterval = dic.outputInterval;
+		autoWaitChEnabled_ = dic.autoWaitChEnabled;
+		autoWaitChChars_ = dic.autoWaitChChars;
+		autoWaitChWaits_ = dic.autoWaitChWaits;
 		autoMode_ = dic.autoMode;
 		clickToAutoModeCancel = dic.clickToAutoModeCancel;
 		skipKey = dic.skipKey;
@@ -663,6 +700,21 @@ class ModMessage extends GModule
 	property current
 	{
 		getter		{ return current_; }
+	}
+
+	property autoWaitChEnabled
+	{
+		getter		{ return autoWaitChEnabled_; }
+	}
+
+	property autoWaitChChars
+	{
+		getter		{ return autoWaitChChars_; }
+	}
+
+	property autoWaitChWaits
+	{
+		getter		{ return autoWaitChWaits_; }
 	}
 
 	property skipMode

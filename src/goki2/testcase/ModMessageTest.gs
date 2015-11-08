@@ -27,6 +27,10 @@
 改行のテストです。[r]２行目のテキストです。[p][cm]
 
 *label|
+@auto_wait_ch enabled chars=、。 time=10,50
+自動ウェイトの、テストです。[p][cm]
+
+*label|
 これは、[font face='ＭＳ Ｐ明朝' shadow_color=0x000000 size=24][indent]インデント[reset_font]のテストです。[r]
 正しく表示されていますか？[end_indent][p][cm]
 

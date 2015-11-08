@@ -103,7 +103,24 @@ class ModADV extends GModule
 					if(wait)
 					{
 						.historyLayer.output(elm);
-						return .skipping ? 0 : .outputInterval;
+						if(.skipping)
+						{
+							return 0;
+						}
+						else
+						{
+							if(.autoWaitChEnabled_)
+							{
+								// 自動ウェイト
+								var idx;
+								if((idx = .autoWaitChChars.indexOf(elm.text)) != -1)
+								{
+									return int(.outputInterval * .autoWaitChWaits[idx]);
+								}
+							}
+						}
+
+						return .outputInterval;
 					}
 					else
 					{
