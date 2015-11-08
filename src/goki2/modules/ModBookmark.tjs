@@ -10,7 +10,7 @@ class ModBookmark extends GModule
 	var possibleSave_ = false;
 
 	var storeOnLabelPassed = true;					// セーブ可能なラベル通過時にストアするかどうか
-	var doNotStoreAndSave = false;					// true ならセーブもストアもしない
+	var storeAndSave = true;						// true ならセーブもストアもしない
 
 	var context_ = %[
 		name : '',
@@ -27,9 +27,11 @@ class ModBookmark extends GModule
 		entries : %[]
 	];
 
-	var currentPageName = "";						// 現在のページ名
-	var currentReadingFlagName = "";				// 現在の既読フラグ名
+	var currentLabelName_ = '';						// 現在のラベル名
+	var currentPageName_ = '';						// 現在のページ名
+	var currentReadingFlagName = '';				// 現在の既読フラグ名
 	var readingFlagRecording = true;				// 既読フラグの記録を行うかどうか
+	var cancelSkipQuery = false;					// ラベル通過時にスキップをキャンセルするかどうか
 
 	var userFlags_ = %[];							// セーブデータ
 	var temporaryFlags_ = %[];						// 一時変数領域
@@ -52,7 +54,7 @@ class ModBookmark extends GModule
 		with(window)
 		{
 			if(.getLocation(name) === void)
-				.makeLocation(name, @"&System.exePath;/save", '');
+				.makeLocation(name, @"&System.exePath;/savedata", '');
 		}
 
 		calculateThumbnailSize_private_(context_);
@@ -74,6 +76,24 @@ class ModBookmark extends GModule
 
 			/* @bookmark */
 			'bookmark' => function (elm) {
+				with(context_)
+				{
+					.format = elm.format if elm.format !== void;
+					if(elm.width !== void || elm.height !== void)
+					{
+						if(elm.width !== void)
+							.thumbnailWidth = (elm.width == "auto" ? elm.width : +elm.width);
+						if(elm.height !== void)
+							.thumbnailHeight = (elm.height == "auto" ? elm.height : +elm.height);
+					}
+					.keepAspectRatio = +elm.keepAspectRatio if elm.keepAspectRatio !== void;
+					.storagePrefix = elm.prefix if elm.prefix !== void;
+					.storageSuffix = elm.suffix if elm.suffix !== void;
+					.mode = elm.mode if elm.mode !== void;
+					calculateThumbnailSize_private_(context_);
+				}
+				storeOnLabelPassed = GObjectUtils.getBoolean(elm, 'store_on_label_passed') if elm.store_on_label_passed !== void;
+				storeAndSave = GOBjectUtils.getBoolean(elm, 'store_and_save') if elm.store_and_save !== void;
 			} incontextof this,
 
 		];
@@ -85,24 +105,51 @@ class ModBookmark extends GModule
 		if(!readingFlagRecording)
 			return;
 
-		var rr = _systemCoreFlags.readingRecords;
+		var core = systemCoreFlags_;
 		var key = currentReadingFlagName;
 
 		if(key != '')
 		{
-			rr[key] = mark;
+			core[key] = mark;
 		}
 	}
 
+	/**/
 	function getCurrentReadingFlag()
 	{
 		if(!readingFlagRecording)
 			return true;
 
-		var rr = _systemCoreFlags.readingRecords;
+		var core = systemCoreFlags_;
 		var key = currentReadingFlagName;
 
-		return rr[key];
+		return core[key];
+	}
+
+	/**/
+	function makeReadingRecordFlagName(label)
+	{
+		var storage = window.conductor.curStorage;
+
+		storage = Storages.chopStorageExt(Storages.extractStorageName(storage));
+
+		if(label != '' && label[0] == '*')
+			label = label.substring(1);
+
+		return @"@&storage;_&label;";
+	}
+
+	/**
+	 * \brief 既読処理
+	 * \brief label が既読なら true を返す。
+	 * \brief それ以外ならば false を返す。
+	**/
+	function readingRecord(label)
+	{
+		setCurrentReadingFlag();
+		currentReadingFlagName = makeReadingRecordFlagName(label);
+
+		return getCurrentReadingFlag();
 	}
 
 	/**
@@ -111,7 +158,7 @@ class ModBookmark extends GModule
 	function saveStartAnchor()
 	{
 		// セーブしない
-		if(doNotStoreAndSave)
+		if(!storeAndSave)
 			return;
 
 		var temp = window.temporaryLocation;
@@ -374,7 +421,7 @@ class ModBookmark extends GModule
 	function save_private_(fileName, summary)
 	{
 		// セーブしない
-		if(doNotStoreAndSave)
+		if(!storeAndSave)
 			return;
 
 		var data = %[user : userFlags_];
@@ -437,7 +484,7 @@ class ModBookmark extends GModule
 		with(getSaveDataInfo(fileName))
 		{
 			.date = (new Date()).getTime();
-			.pageName = currentPageName;
+			.pageName = currentPageName_;
 			.summary = summary;
 		}
 
@@ -556,7 +603,8 @@ class ModBookmark extends GModule
 		var dic = super.store(...);
 
 		dic.storeOnLabelPassed = storeOnLabelPassed;
-		dic.currentPageName = currentPageName;
+		dic.currentLabelName = currentLabelName_;
+		dic.currentPageName = currentPageName_;
 		dic.currentReadingFlagName = currentReadingFlagName;
 		dic.readingFlagRecording = readingFlagRecording;
 
@@ -578,11 +626,12 @@ class ModBookmark extends GModule
 	{
 		super.restore(...);
 
-		// この時点で false が確定する
-		doNotStoreAndSave = false;
+		// この時点で true が確定する
+		storeAndSave = true;
 
 		storeOnLabelPassed = dic.storeOnLabelPassed;
-		currentPageName = dic.currentPageName;
+		currentLabelName_ = dic.currentLabelName;
+		currentPageName_ = dic.currentPageName;
 		currentReadingFlagName = dic.currentReadingFlagName;
 		readingFlagRecording = dic.readingFlagRecording;
 
@@ -606,31 +655,45 @@ class ModBookmark extends GModule
 		var tick = System.getTickCount();
 		var modMessage = window.modules.get('ModMessage');
 
-		currentPageName = name;
-
-		with(window)
+		if(name !== void)
 		{
-			if(storeOnLabelPassed)
+			with(window)
 			{
-				// スキップ中は store する必要がない
-				// ただし、farstLabelProcessed が false ならば強制的に store する
-				// または、ラベル名が *force_store ならば強制的に store する
-				// または、起動後まだ一度も store していないならば強制的に store する
-				if((modMessage !== void && !modMessage.longSkipping) ||
-					!firstLabelProcessed ||
-					regOnForceStored_static_.test(label) ||
-					!firstStored_)
+				if(modMessage !== void)
 				{
-					.temporaryLocation.save('core', .store());
-
-					firstStored_ = true;
-					possibleSave_ = true;
+					if(!readingRecord(label))
+						modMessage.cancelNotReadSkip();
+					if(cancelSkipQuery && modMessage.longSkipping)
+					{
+						modMessage.cancelSkip();
+						cancelSkipQuery = false;
+					}
 				}
-				else
+				currentLabelName_ = label;
+				currentPageName_ = name;
+
+				if(storeOnLabelPassed)
 				{
-					// セーブ可能なラベルを store せずにスキップした
-					// この場合、セーブ可能な状態とはいえない
-					possibleSave_ = false;
+					// スキップ中は store する必要がない
+					// ただし、farstLabelProcessed が false ならば強制的に store する
+					// または、ラベル名が *force_store ならば強制的に store する
+					// または、起動後まだ一度も store していないならば強制的に store する
+					if((modMessage !== void && !modMessage.longSkipping) ||
+						!firstLabelProcessed ||
+						regOnForceStored_static_.test(label) ||
+						!firstStored_)
+					{
+						.temporaryLocation.save('core', .store());
+
+						firstStored_ = true;
+						possibleSave_ = true;
+					}
+					else
+					{
+						// セーブ可能なラベルを store せずにスキップした
+						// この場合、セーブ可能な状態とはいえない
+						possibleSave_ = false;
+					}
 				}
 			}
 		}
@@ -644,6 +707,7 @@ class ModBookmark extends GModule
 		saveSystemVariables();
 	}
 
+	/**/
 	property saveLocation
 	{
 		getter

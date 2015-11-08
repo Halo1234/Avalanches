@@ -55,6 +55,7 @@ class ModMessage extends GModule
 	var clickToAutoModeCancel = true;
 
 	var skipKey = VK_CONTROL;
+	var notReadSkipKey = VK_S;
 
 	function ModMessage(container, name)
 	{
@@ -345,6 +346,12 @@ class ModMessage extends GModule
 	}
 
 	/**/
+	function cancelNotReadSkip()
+	{
+		cancelSkip() if skipMode_ == smNotRead;
+	}
+
+	/**/
 	function cancelAutoMode()
 	{
 		if(autoMode_)
@@ -578,7 +585,10 @@ class ModMessage extends GModule
 
 		if(skipping)
 		{
-			cancelSkip();
+			if(container.isLoaded('modBookmark'))
+				container.modBookmark.cancelSkipQuery = true;
+			else
+				cancelSkip();
 		}
 		else
 		{
@@ -616,7 +626,8 @@ class ModMessage extends GModule
 			return;
 		switch(key)
 		{
-		case skipKey:	enterSkipToSkipCancel(); break;
+		case skipKey:			enterSkipToSkipCancel(); break;
+		case notReadSkipKey:	enterSkipToNotRead(); break;
 		}
 	}
 
