@@ -3,7 +3,7 @@
 **/
 
 
-global.widgetInitializeWidget = 32;
+global.widgetInitializeWidth = 32;
 global.widgetInitializeHeight = 32;
 
 global.widgetCaptionAlignMargin = 4;
@@ -34,7 +34,7 @@ class GWidgetLayer extends GLayer
 	{
 		super.GLayer(...);
 		hitThreshold = 0;
-		setSize(global.widgetInitializeWidget, global.widgetInitializeHeight);
+		setSize(global.widgetInitializeWidth, global.widgetInitializeHeight);
 	}
 
 	/*! \brief ウィジット幅 width から必要なバッファ幅を返す。
@@ -193,7 +193,7 @@ class GWidgetLayer extends GLayer
 	{
 		if(width !== void || height !== void)
 		{
-			width = global.widgetInitializeWidget if width === void;
+			width = global.widgetInitializeWidth if width === void;
 			height = global.widgetInitializeHeight if height === void;
 
 			setImageSize(widthToImageWidth(width), heightToImageHeight(height)) if hasImage;
