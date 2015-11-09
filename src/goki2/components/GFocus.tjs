@@ -14,18 +14,18 @@ class GFocus
 {
 	var name;
 
-	var _items = [];
-	var _focusItemIndex = -1;
+	var items_ = [];
+	var focusItemIndex_ = -1;
 
 	var clickToKill = true;					// click() 呼び出し後に kill() するかどうか
 	var terminate = false;					// 最後の項目の次に仮想の項目を追加するかどうか
-	var _visible = true;
-	var _enabled = true;
+	var visible_ = true;
+	var enabled_ = true;
 
-	var _originalEnabledProperties = [];	// 元のプロパティ
-	var _originalVisibleProperties = [];	//
-	var _originalEnabledValueCache = [];	// 元のプロパティの値
-	var _originalVisibleValueCache = [];	//
+	var originalEnabledProperties_ = [];	// 元のプロパティ
+	var originalVisibleProperties_ = [];	//
+	var originalEnabledValueCache_ = [];	// 元のプロパティの値
+	var originalVisibleValueCache_ = [];	//
 
 	function GFocus(name = void)
 	{
@@ -43,7 +43,7 @@ class GFocus
 	**/
 	function add(item)
 	{
-		with(_items)
+		with(items_)
 		{
 			if(.find(item) == -1)
 			{
@@ -61,7 +61,7 @@ class GFocus
 
 	function insert(index, item)
 	{
-		with(_items)
+		with(items_)
 		{
 			if(.find(item) == -1)
 			{
@@ -79,7 +79,7 @@ class GFocus
 
 	function remove(item)
 	{
-		var items = _items;
+		var items = items_;
 		var index = items.find(item);
 
 		if(index != -1)
@@ -88,14 +88,14 @@ class GFocus
 			restoreVisibleProperty_private_(index);
 			items.remove(item);
 
-			_focusItemIndex = items.count - 1 if _focusItemIndex >= items.count;
+			focusItemIndex_ = items.count - 1 if focusItemIndex_ >= items.count;
 
-			if(_focusItemIndex != -1 && enabled && visible)
+			if(focusItemIndex_ != -1 && enabled && visible)
 			{
 				// NOTE:
 				// GFocus がフォーカスされる場合は移動方向がわからないので何もしない。
-				if(!(items[_focusItemIndex] instanceof 'GFocus'))
-					onFocused(items[_focusItemIndex]);
+				if(!(items[focusItemIndex_] instanceof 'GFocus'))
+					onFocused(items[focusItemIndex_]);
 			}
 		}
 
@@ -104,7 +104,7 @@ class GFocus
 
 	function clear()
 	{
-		var items = _items;
+		var items = items_;
 
 		for(var i = 0; i < items.count; i++)
 		{
@@ -115,17 +115,17 @@ class GFocus
 			}
 		}
 		items.clear();
-		_focusItemIndex = -1;	// kill() を呼ばない
+		focusItemIndex_ = -1;	// kill() を呼ばない
 	}
 
 	function at(index)
 	{
-		return _items[index];
+		return items_[index];
 	}
 
 	function find(obj)
 	{
-		var items = _items;
+		var items = items_;
 
 		for(var i = 0; i < items.count; i++)
 		{
@@ -138,7 +138,7 @@ class GFocus
 
 	function each(block, arg*)
 	{
-		var items = _items;
+		var items = items_;
 
 		for(var i = 0; i < items.count; i++)
 			block(items[i], i, arg*);
@@ -152,12 +152,12 @@ class GFocus
 	**/
 	function moveLeft(loop = false)
 	{
-		var items = _items;
+		var items = items_;
 		var count = items.count;
-		var f = _focusItemIndex;
+		var f = focusItemIndex_;
 
 		// 移動不可
-		if(!_visible || !_enabled || count <= 0)
+		if(!visible_ || !enabled_ || count <= 0)
 			return false;
 		// 前にいけない
 		if(f == 0 && !loop)
@@ -193,14 +193,14 @@ class GFocus
 			{
 				// ループしないなら抜ける。
 				// ただしもともとフォーカスを持っていない場合１回はループする。
-				if(!loop && _focusItemIndex != -1)
+				if(!loop && focusItemIndex_ != -1)
 					break;
 				f = terminate ? count : count - 1;
 			}
 
 			if(terminate && f == count)
 			{
-				_focusItemIndex = f;
+				focusItemIndex_ = f;
 				onTerminateObjectFocused();
 				return true;
 			}
@@ -212,14 +212,14 @@ class GFocus
 				{
 					if(items[f].moveLeft(false))
 					{
-						_focusItemIndex = f;
+						focusItemIndex_ = f;
 						return true;
 					}
 				}
 				else
 				{
 					// 更新
-					onFocused(items[_focusItemIndex = f]);
+					onFocused(items[focusItemIndex_ = f]);
 					return true;
 				}
 			}
@@ -232,12 +232,12 @@ class GFocus
 
 	function moveRight(loop = false)
 	{
-		var items = _items;
+		var items = items_;
 		var count = items.count;
-		var f = _focusItemIndex;
+		var f = focusItemIndex_;
 
 		// 移動不可
-		if(!_visible || !_enabled || count <= 0)
+		if(!visible_ || !enabled_ || count <= 0)
 			return false;
 		// 次にいけない
 		if(f == (count - 1) && !loop)
@@ -283,7 +283,7 @@ class GFocus
 
 			if(terminate && f == count)
 			{
-				_focusItemIndex = f;
+				focusItemIndex_ = f;
 				onTerminateObjectFocused();
 				return true;
 			}
@@ -295,14 +295,14 @@ class GFocus
 				{
 					if(items[f].moveRight(false))
 					{
-						_focusItemIndex = f;
+						focusItemIndex_ = f;
 						return true;
 					}
 				}
 				else
 				{
 					// 更新
-					onFocused(items[_focusItemIndex = f]);
+					onFocused(items[focusItemIndex_ = f]);
 					return true;
 				}
 			}
@@ -315,12 +315,12 @@ class GFocus
 
 	function moveUp(loop = false)
 	{
-		var items = _items;
+		var items = items_;
 		var count = items.count;
-		var f = _focusItemIndex;
+		var f = focusItemIndex_;
 
 		// 移動不可
-		if(!_visible || !_enabled || count <= 0)
+		if(!visible_ || !enabled_ || count <= 0)
 			return false;
 		// 前にいけない
 		if(f == 0 && !loop)
@@ -357,14 +357,14 @@ class GFocus
 			{
 				// ループしないなら抜ける。
 				// ただしもともとフォーカスを持っていない場合１回はループする。
-				if(!loop && _focusItemIndex != -1)
+				if(!loop && focusItemIndex_ != -1)
 					break;
 				f = terminate ? count : count - 1;
 			}
 
 			if(terminate && f == count)
 			{
-				_focusItemIndex = f;
+				focusItemIndex_ = f;
 				onTerminateObjectFocused();
 				return true;
 			}
@@ -376,14 +376,14 @@ class GFocus
 				{
 					if(items[f].moveUp(false))
 					{
-						_focusItemIndex = f;
+						focusItemIndex_ = f;
 						return true;
 					}
 				}
 				else
 				{
 					// 更新
-					onFocused(items[_focusItemIndex = f]);
+					onFocused(items[focusItemIndex_ = f]);
 					return true;
 				}
 			}
@@ -396,12 +396,12 @@ class GFocus
 
 	function moveDown(loop = false)
 	{
-		var items = _items;
+		var items = items_;
 		var count = items.count;
-		var f = _focusItemIndex;
+		var f = focusItemIndex_;
 
 		// 移動不可
-		if(!_visible || !_enabled || count <= 0)
+		if(!visible_ || !enabled_ || count <= 0)
 			return false;
 		// 次にいけない
 		if(f == (count - 1) && !loop)
@@ -448,7 +448,7 @@ class GFocus
 
 			if(terminate && f == count)
 			{
-				_focusItemIndex = f;
+				focusItemIndex_ = f;
 				onTerminateObjectFocused();
 				return true;
 			}
@@ -460,14 +460,14 @@ class GFocus
 				{
 					if(items[f].moveDown(false))
 					{
-						_focusItemIndex = f;
+						focusItemIndex_ = f;
 						return true;
 					}
 				}
 				else
 				{
 					// 更新
-					onFocused(items[_focusItemIndex = f]);
+					onFocused(items[focusItemIndex_ = f]);
 					return true;
 				}
 			}
@@ -504,32 +504,32 @@ class GFocus
 				item.updateState = true;
 		}
 
-		_focusItemIndex = -1;
+		focusItemIndex_ = -1;
 
 		onKillFocus();
 	}
 
 	function exchangeEnabledPropertyBypass_private_(index)
 	{
-		var items = _items;
-		var original = _originalEnabledProperties;
+		var items = items_;
+		var original = originalEnabledProperties_;
 
 		if(index < 0 || index >= items.count)
 			throw new Exception('Access violation in GFocus#exchangeEnabledPropertyBypass_private_().');
 
 		if(!((&original[index]) instanceof "Property"))
 		{
-			_originalEnabledValueCache[index] = items[index].enabled;
+			originalEnabledValueCache_[index] = items[index].enabled;
 			items[index].enabled = false;
 			original[index] = &items[index].enabled;
-			&items[index].enabled = ((&_widgetEnabledPropertyBypass) incontextof (new GInstantContext(%[focus : this, origin : items[index]])));
+			&items[index].enabled = ((&widgetEnabledPropertyBypass_) incontextof (new GInstantContext(%[focus : this, origin : items[index]])));
 		}
 	}
 
 	function restoreEnabledProperty_private_(index)
 	{
-		var items = _items;
-		var original = _originalEnabledProperties;
+		var items = items_;
+		var original = originalEnabledProperties_;
 
 		if(index < 0 || index >= items.count)
 			throw new Exception('Access violation in GFocus#restoreEnabledProperty_private_().');
@@ -538,31 +538,31 @@ class GFocus
 		{
 			&items[index].enabled = &original[index];
 			&original[index] = void;
-			items[index].enabled = _originalEnabledValueCache[index];
+			items[index].enabled = originalEnabledValueCache_[index];
 		}
 	}
 
 	function exchangeVisiblePropertyBypass_private_(index)
 	{
-		var items = _items;
-		var original = _originalVisibleProperties;
+		var items = items_;
+		var original = originalVisibleProperties_;
 
 		if(index < 0 || index >= items.count)
 			throw new Exception('Access violation in GFocus#exchangeEnabledPropertyBypass_private_().');
 
 		if(!((&original[index]) instanceof "Property"))
 		{
-			_originalVisibleValueCache[index] = items[index].visible;
+			originalVisibleValueCache_[index] = items[index].visible;
 			items[index].visible = false;
 			original[index] = &items[index].visible;
-			&items[index].visible = ((&_widgetVisiblePropertyBypass) incontextof (new GInstantContext(%[focus : this, origin : items[index]])));
+			&items[index].visible = ((&widgetVisiblePropertyBypass_) incontextof (new GInstantContext(%[focus : this, origin : items[index]])));
 		}
 	}
 
 	function restoreVisibleProperty_private_(index)
 	{
-		var items = _items;
-		var original = _originalVisibleProperties;
+		var items = items_;
+		var original = originalVisibleProperties_;
 
 		if(index < 0 || index >= items.count)
 			throw new Exception('Access violation in GFocus#restoreEnabledProperty_private_().');
@@ -571,7 +571,7 @@ class GFocus
 		{
 			&items[index].visible = &original[index];
 			&original[index] = void;
-			items[index].visible = _originalVisibleValueCache[index];
+			items[index].visible = originalVisibleValueCache_[index];
 		}
 	}
 
@@ -604,17 +604,17 @@ class GFocus
 
 	property count
 	{
-		getter		{ return _items.count; }
+		getter		{ return items_.count; }
 	}
 
 	property focused
 	{
-		getter		{ return (!_enabled || _focusItemIndex == -1 ? false : true); }
+		getter		{ return (!enabled_ || focusitemindex_ == -1 ? false : true); }
 	}
 
 	property focusItem
 	{
-		getter		{ return (focused ? (terminated ? void : _items[_focusItemIndex]) : void); }
+		getter		{ return (focused ? (terminated ? void : items_[focusitemindex_]) : void); }
 	}
 
 	property focusWidget
@@ -627,7 +627,7 @@ class GFocus
 
 	property terminated
 	{
-		getter		{ return (terminate && _focusItemIndex == _items.count); }
+		getter		{ return (terminate && focusitemindex_ == items_.count); }
 	}
 
 	/* 表示／非表示状態 */
@@ -637,27 +637,27 @@ class GFocus
 		{
 			if(x)
 			{
-				if(!_visible)
+				if(!visible_)
 				{
-					var items = _items;
+					var items = items_;
 					for(var i = 0; i < items.count; i++)
 						restoreVisibleProperty_private_(i);
 				}
-				_visible = true;
+				visible_ = true;
 			}
 			else
 			{
-				if(_visible)
+				if(visible_)
 				{
-					var items = _items;
+					var items = items_;
 					for(var i = 0; i < items.count; i++)
 						exchangeVisiblePropertyBypass_private_(i);
 					kill();
 				}
-				_visible = false;
+				visible_ = false;
 			}
 		}
-		getter		{ return _visible; }
+		getter		{ return visible_; }
 	}
 
 	/* 有効／無効状態 */
@@ -667,38 +667,38 @@ class GFocus
 		{
 			if(x)
 			{
-				if(!_enabled)
+				if(!enabled_)
 				{
-					var items = _items;
+					var items = items_;
 					for(var i = 0; i < items.count; i++)
 						restoreEnabledProperty_private_(i);
 				}
-				_enabled = true;
+				enabled_ = true;
 			}
 			else
 			{
-				if(_enabled)
+				if(enabled_)
 				{
-					var items = _items;
+					var items = items_;
 					for(var i = 0; i < items.count; i++)
 						exchangeEnabledPropertyBypass_private_(i);
 					kill();
 				}
-				_enabled = false;
+				enabled_ = false;
 			}
 		}
-		getter		{ return _enabled; }
+		getter		{ return enabled_; }
 	}
 
-	property _widgetVisiblePropertyBypass
+	property widgetVisiblePropertyBypass_
 	{
-		setter(x)	{ focus._originalVisibleValueCache[focus.find(origin)] = x; }
+		setter(x)	{ focus.originalVisibleValueCache_[focus.find(origin)] = x; }
 		getter		{ return false; }
 	}
 
-	property _widgetEnabledPropertyBypass
+	property widgetEnabledPropertyBypass_
 	{
-		setter(x)	{ focus._originalEnabledValueCache[focus.find(origin)] = x; }
+		setter(x)	{ focus.originalEnabledValueCache_[focus.find(origin)] = x; }
 		getter		{ return false; }
 	}
 }
