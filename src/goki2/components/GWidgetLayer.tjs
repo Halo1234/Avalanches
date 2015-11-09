@@ -316,7 +316,7 @@ class GWidgetLayer extends GLayer
 	{
 		var now = cursorOnLayer;
 
-		updateState = true if prevCursorOnLayer_ != now;
+		updateState() if prevCursorOnLayer_ != now;
 		prevCursorOnLayer_ = now;
 
 		super.onMouseMove(...);
@@ -326,27 +326,27 @@ class GWidgetLayer extends GLayer
 	function onMouseEnter()
 	{
 		super.onMouseEnter();
-		updateState = true;
+		updateState();
 	}
 
 	/**/
 	function onMouseLeave()
 	{
 		super.onMouseLeave();
-		updateState = true;
+		updateState();
 	}
 
 	/**/
 	function onMouseDown(x, y, button, shift)
 	{
 		super.onMouseDown(...);
-		updateState = true;
+		updateState();
 	}
 
 	/**/
 	function onMouseUp(x, y, button, shift)
 	{
-		updateState = true;
+		updateState();
 		super.onMouseUp(...);
 	}
 
