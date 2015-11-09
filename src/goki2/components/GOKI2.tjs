@@ -28,7 +28,7 @@ Scripts.execStorage('GOKI2Utils.tjs');
 		'GHyperTextLayer', 'GMessageLayer', 'GHistoryLayer',
 		'GLayerColorCorrection', 'GLayerConductor',
 		'GLayerContainer', 'GLayerIterator',
-		'GWidgetLayer',
+		'GWidgetLayer', 'GButtonLayer',
 		'GSyntax', 'GConductor',
 		'GLocation', 'GTemporaryLocation',
 		'GWaveSoundBuffer', 'GWaveSoundBuffer2',
