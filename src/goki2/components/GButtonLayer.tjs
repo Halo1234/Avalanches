@@ -1,0 +1,109 @@
+/*
+ $Author$
+ $Revision$
+*/
+
+
+/**/
+class GButtonLayer extends GWidgetLayer
+{
+	function GButtonLayer(window, parent, handler)
+	{
+		super.GWidgetLayer(...);
+	}
+
+	function click()
+	{
+		onButton();
+	}
+
+	function widthToImageWidth(width)
+	{
+		return width * 3;
+	}
+
+	function imageWidthToWidth(bufferWidth)
+	{
+		return bufferWidth \ 3;
+	}
+
+	function drawBody(/* offx, offy */)
+	{
+		var w = width;
+		var h = imageHeight;
+		var op = bodyOpacity;
+
+		face = dfBoth;
+		colorRect(0, 0, imageWidth, h, 0, -255);
+		colorRect(0, 0, imageWidth, h, bodyColor, op) if bodyColor != clNone;
+
+		// 通常状態とロールオーバー状態
+		op = op >> 1;
+		colorRect(0, 0, w + w, 1, 0xFFFFFF, op);
+		colorRect(0, 1, 1, h - 2, 0xFFFFFF, op);
+		colorRect(w + w - 1, 1, 1, h - 1, 0x000000, op);
+		colorRect(1, h - 1, w + w - 2, 1, 0x000000, op);
+		// 通常状態とロールオーバー状態の境界線
+		colorRect(w - 1, 1, 1, h - 2, 0x000000, op);
+		colorRect(w, 1, 1, h - 2, 0xFFFFFF, op);
+		// 押し下げ状態
+		colorRect(w + w, 0, w, 1, 0x000000, op);
+		colorRect(w + w, 1, 1, h - 2, 0x000000, op);
+		colorRect((w * 4) - 1, 1, 1, h - 1, 0xFFFFFF, op);
+		colorRect((w + w) + 1, h - 1, w - 2, 1, 0xFFFFFF, op);
+
+		// ハイライト
+		op = op >> 1;
+		colorRect(w + 1, 1, w + w - 2, h - 2, clHighlight, op);
+		colorRect(w + w + 1, 1, (w * 3) - 2, h - 2, clHighlight, op);
+	}
+
+	function drawCaption(offx = 0, offy = 0, color = captionColor, edge = edgeColor, shadow = shadowColor, shadowOffsetX = 2, shadowOffsetY = 2, shadowExtent = 2)
+	{
+		if(caption == '')
+			return;
+
+		if(offx === void || offy === void)
+		{
+			super.drawCaption(0, 0, color, edge, shadow, shadowOffsetX, shadowOffsetY, shadowExtent);
+			super.drawCaption(width, 0, color, edge, shadow, shadowOffsetX, shadowOffsetY, shadowExtent);
+			super.drawCaption((width << 1) + 1, 1, color, edge, shadow, shadowOffsetX, shadowOffsetY, shadowExtent);
+		}
+		else
+		{
+			super.drawCaption(...);
+		}
+	}
+
+	function onButton()
+	{
+		callHandler('onButton');
+	}
+
+	function onMouseEnter()
+	{
+		super.onMouseEnter(...);
+
+		callHandler('onMouseEnter');
+	}
+
+	function onMouseLeave()
+	{
+		super.onMouseLeave(...);
+
+		callHandler('onMouseLeave');
+	}
+
+	function onUpdateState()
+	{
+		if(push)
+			imageLeft = -(width << 1);
+		else
+		if(rollover)
+			imageLeft = -width;
+		else
+			imageLeft = 0;
+	}
+}
+
+
