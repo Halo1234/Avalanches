@@ -29,7 +29,7 @@ class GFocus
 
 	function GFocus(name = void)
 	{
-		this.name = (name === void ? getInstanceClassName(this) : name);
+		this.name = (name === void ? GObjectUtils.getClassName(this) : name);
 	}
 
 	function finalize()

@@ -23,6 +23,7 @@ Scripts.execStorage('GOKI2Utils.tjs');
 	var src = [
 		'GContainer', 'GIterator',
 		'GModuleContainer', 'GModule',
+		'GFocus', 'GFocus2D',
 		'GLayer', 'GBaseLayer',
 		'GHyperTextLayer', 'GMessageLayer', 'GHistoryLayer',
 		'GLayerColorCorrection', 'GLayerConductor',

@@ -1,0 +1,18 @@
+/*
+ * $Author$
+ * $Revision$
+**/
+
+
+/**/
+class GFocus2D
+{
+	var name;
+
+	function GFocus2D()
+	{
+		this.name = (name === void ? GObjectUtils.getClassName(this) : name);
+	}
+}
+
+
