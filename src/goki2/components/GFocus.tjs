@@ -501,7 +501,7 @@ class GFocus
 			if(item instanceof "GFocus")
 				item.kill();
 			else
-				item.updateState = true;
+				item.updateState();
 		}
 
 		focusItemIndex_ = -1;
@@ -582,7 +582,7 @@ class GFocus
 	function onFocused(item)
 	{
 		item.centeringMouseCursor();
-		item.updateState = true;
+		item.updateState();
 
 		return true;
 	}
