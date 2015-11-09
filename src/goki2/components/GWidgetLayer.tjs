@@ -208,7 +208,7 @@ class GWidgetLayer extends GLayer
 		if(hasImage)
 		{
 			setImageSize(widthToImageWidth(width), heightToImageHeight(height));
-			super.setSize(imageWidthToWidth(imageWidth), imageHeightToHeight(height));
+			super.setSize(imageWidthToWidth(imageWidth), imageHeightToHeight(imageHeight));
 		}
 		else
 		{
