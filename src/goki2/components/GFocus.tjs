@@ -515,14 +515,14 @@ class GFocus
 		var original = originalEnabledProperties_;
 
 		if(index < 0 || index >= items.count)
-			throw new Exception('Access violation in GFocus#exchangeEnabledPropertyBypass_private_().');
+			throw new GOutOfRangeError('Access violation in GFocus#exchangeEnabledPropertyBypass_private_().');
 
 		if(!((&original[index]) instanceof "Property"))
 		{
 			originalEnabledValueCache_[index] = items[index].enabled;
 			items[index].enabled = false;
 			original[index] = &items[index].enabled;
-			&items[index].enabled = ((&widgetEnabledPropertyBypass_) incontextof (new GInstantContext(%[focus : this, origin : items[index]])));
+			&items[index].enabled = ((&widgetEnabledPropertyBypass_) incontextof (Instant(%[focus : this, origin : items[index]])));
 		}
 	}
 
@@ -532,7 +532,7 @@ class GFocus
 		var original = originalEnabledProperties_;
 
 		if(index < 0 || index >= items.count)
-			throw new Exception('Access violation in GFocus#restoreEnabledProperty_private_().');
+			throw new GOutOfRangeError('Access violation in GFocus#restoreEnabledProperty_private_().');
 
 		if((&original[index]) instanceof "Property")
 		{
@@ -548,14 +548,14 @@ class GFocus
 		var original = originalVisibleProperties_;
 
 		if(index < 0 || index >= items.count)
-			throw new Exception('Access violation in GFocus#exchangeEnabledPropertyBypass_private_().');
+			throw new GOutOfRangeError('Access violation in GFocus#exchangeEnabledPropertyBypass_private_().');
 
 		if(!((&original[index]) instanceof "Property"))
 		{
 			originalVisibleValueCache_[index] = items[index].visible;
 			items[index].visible = false;
 			original[index] = &items[index].visible;
-			&items[index].visible = ((&widgetVisiblePropertyBypass_) incontextof (new GInstantContext(%[focus : this, origin : items[index]])));
+			&items[index].visible = ((&widgetVisiblePropertyBypass_) incontextof (Instant(%[focus : this, origin : items[index]])));
 		}
 	}
 
@@ -565,7 +565,7 @@ class GFocus
 		var original = originalVisibleProperties_;
 
 		if(index < 0 || index >= items.count)
-			throw new Exception('Access violation in GFocus#restoreEnabledProperty_private_().');
+			throw new GOutOfRangeError('Access violation in GFocus#restoreEnabledProperty_private_().');
 
 		if((&original[index]) instanceof "Property")
 		{
