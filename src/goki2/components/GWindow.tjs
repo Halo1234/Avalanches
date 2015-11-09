@@ -12,6 +12,7 @@ class GWindow extends Window
 
 	var modules_;							//!< \brief 拡張モジュール
 	var conductor_;							//!< \brief コンダクタ
+	var softFocus_;							//!< \brief ソフトフォーカス
 
 	var thisTagHandlers_;					//!< \brief このクラスが提供するタグハンドラ
 	var tagHandlers_ = %[];					//!< \brief タグハンドラ
@@ -30,6 +31,7 @@ class GWindow extends Window
 
 		modules_ = createModuleContainer(this);
 		conductor_ = createConductor(this);
+		softFocus_ = createSoftFocus('window soft focus.');
 
 		add(createPrimaryLayer(this));
 		fixPrimaryLayerSizeToInnerSize();
@@ -44,6 +46,7 @@ class GWindow extends Window
 
 	function finalize()
 	{
+		invalidate softFocus_;
 		invalidate conductor_;
 		invalidate modules_;
 
@@ -74,6 +77,12 @@ class GWindow extends Window
 	function createLocation(location, index)
 	{
 		return new GLocation(location, index);
+	}
+
+	/**/
+	function createSoftFocus(name)
+	{
+		return new GSoftFocus(name);
 	}
 
 	/**/
@@ -326,6 +335,31 @@ class GWindow extends Window
 	{
 		modules.callHandler('onWindowKeyDown', key, shift);
 
+		if(focusedLayer == null)
+		{
+			if(shift & ssShift)
+			{
+				switch(key)
+				{
+				case VK_LEFT:	key = VK_RIGHT; break;
+				case VK_UP:		key = VK_DOWN; break;
+				case VK_RIGHT:	key = VK_LEFT; break;
+				case VK_DOWN:	key = VK_UP; break;
+				}
+			}
+
+			//dumpGFocusItems(softFocus);
+
+			switch(key)
+			{
+			case VK_LEFT:	return softFocus.moveLeft(true);
+			case VK_UP:		return softFocus.moveUp(true);
+			case VK_RIGHT:	return softFocus.moveRight(true);
+			case VK_DOWN:	return softFocus.moveDown(true);
+			case VK_RETURN:	return softFocus.click();
+			}
+		}
+
 		return super.onKeyDown(key, shift);
 	}
 
@@ -370,6 +404,11 @@ class GWindow extends Window
 	property conductor
 	{
 		getter		{ return conductor_; }
+	}
+
+	property softFocus
+	{
+		getter		{ return softFocus_; }
 	}
 
 	property temporaryLocation
