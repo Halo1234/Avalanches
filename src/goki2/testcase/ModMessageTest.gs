@@ -20,6 +20,8 @@
 @show_message layer=message0
 @log message="メッセージレイヤ０を表示しました。"
 
+@click_skip !enabeld
+
 *label|
 メッセージレイヤのテストです。[p]
 
@@ -27,6 +29,8 @@
 改行のテストです。[r]２行目のテキストです。[p][cm]
 
 *label|
+@click_skip enabeld
+
 @auto_wait_ch enabled chars=、。 time=10,50
 自動ウェイトの、テストです。[p][cm]
 
