@@ -609,12 +609,12 @@ class GFocus
 
 	property focused
 	{
-		getter		{ return (!enabled_ || focusitemindex_ == -1 ? false : true); }
+		getter		{ return (!enabled_ || focusItemIndex_ == -1 ? false : true); }
 	}
 
 	property focusItem
 	{
-		getter		{ return (focused ? (terminated ? void : items_[focusitemindex_]) : void); }
+		getter		{ return (focused ? (terminated ? void : items_[focusItemIndex_]) : void); }
 	}
 
 	property focusWidget
@@ -627,7 +627,7 @@ class GFocus
 
 	property terminated
 	{
-		getter		{ return (terminate && focusitemindex_ == items_.count); }
+		getter		{ return (terminate && focusItemIndex_ == items_.count); }
 	}
 
 	/* •\¦^”ñ•\¦ó‘Ô */
