@@ -753,6 +753,23 @@ class GAnotherExclusiveCycle
 
 /*!
 **/
+class GInstantContext
+{
+	function GInstantContext(dic)
+	{
+		var arr = assignArray([], dic);
+		for(var i = 0; i < arr.count; i += 2)
+			this[arr[i]] = arr[i + 1];
+	}
+
+	function finalize()
+	{
+	}
+}
+function Instant(dic)	{ return new GInstantContext(dic); }
+
+/*!
+**/
 class GDispatcher
 {
 	var handlers_ = %[];
