@@ -1,0 +1,137 @@
+/*
+ $Author$
+ $Revision$
+*/
+
+
+/**
+ * 異なる GFormLayer 同士で softFocus のフォーカス移動を行いたい場合は
+ * GFormLayer#focusable に false を設定して GWindow#softFocus に追加する方法があります。
+ * 下記の例では GWindow#focusedLayer が null の時に矢印キーを押すと
+ * formA と formB の softFocus が順番にフォーカスされます。
+ *
+ * 例：
+ *  var formA = new GFormLayer(window, window.primaryLayer);
+ *  var formB = new GFormLayer(window, window.primaryLayer);
+ *
+ *  formA.focusable = formB.focusable = false;
+ *
+ *  window.softFocus.add(formA.softFocus);
+ *  window.softFocus.add(formB.softFocus);
+**/
+class GFormLayer extends GWidgetLayer
+{
+	var softFocus_;
+
+	var clickCancel = false;				// click() で show()/hide() をキャンセルするかどうか
+	var rclickHide = true;					// rclick() で hide() を呼ぶかどうか
+	var softFocusDisableInShowHideRunning = true;
+	var softFocusEnabledBackup_ = true;
+
+	function GFormLayer(window, parent, handler)
+	{
+		super.GWidgetLayer(...);
+		focusable = true;
+		bodyColor = clAppWorkSpace;
+		captionColor = clHighlightText;
+	}
+
+	function finalize()
+	{
+		// NOTE:
+		// softFocus_ は family に入れると無効化するタイミングが不定になるので
+		// ここで明示的に無効化します。
+		invalidate softFocus_ if softFocus_ !== void;
+
+		super.finalize(...);
+	}
+
+	function createFocus(name = void)
+	{
+		var obj = new GFocus(...);
+
+		obj.visible = visible;
+		obj.enabled = enabled;
+
+		return obj;
+	}
+
+	function click(x, y, shift)
+	{
+		if(clickCancel && (showRunning || hideRunning))
+			cancelShowHide();
+	}
+
+	function rclick(x, y, shift)
+	{
+		if(showRunning || hideRunning)
+			click(...);
+		else
+		if(rclickHide)
+			hide();
+	}
+
+	/**
+	 * フォーカスが変更された時に呼ばれます。
+	 * focused が false なら何もフォーカスされていません。
+	 * それ以外は何かがフォーカスされています。
+	**/
+	function onFocusChanged(focused)
+	{
+	}
+
+	function onKeyDown(key, shift)
+	{
+		if(shift & ssShift)
+		{
+			switch(key)
+			{
+			case VK_LEFT:	key = VK_RIGHT; break;
+			case VK_UP:		key = VK_DOWN; break;
+			case VK_RIGHT:	key = VK_LEFT; break;
+			case VK_DOWN:	key = VK_UP; break;
+			}
+		}
+
+		switch(key)
+		{
+		case VK_LEFT:	onFocusChanged(softFocus.moveLeft(true)); break;
+		case VK_UP:		onFocusChanged(softFocus.moveUp(true)); break;
+		case VK_RIGHT:	onFocusChanged(softFocus.moveRight(true)); break;
+		case VK_DOWN:	onFocusChanged(softFocus.moveDown(true)); break;
+		case VK_RETURN:	softFocus.click() if !(shift & ssRepeat); break;
+		case VK_SPACE:	rclick() if !(shift & ssRepeat); break;
+		default:		return false;
+		}
+
+		return true;
+	}
+
+	function onMouseMove()
+	{
+		softFocus.kill() if softFocus_ !== void;
+	}
+
+	function onInterruptShowHide(drawFinalFrame)
+	{
+	}
+
+	property softFocus
+	{
+		getter		{ return softFocus_ === void ? (softFocus_ = createFocus()) : softFocus_; }
+	}
+
+	property visible
+	{
+		setter(x)	{ super.visible = x; softFocus_.visible = x if softFocus_ !== void; }
+		getter		{ return super.visible; }
+	}
+
+	property enabled
+	{
+		setter(x)	{ super.enabled = x; softFocus_.enabled = x if softFocus_ !== void; }
+		getter		{ return super.enabled; }
+	}
+}
+
+

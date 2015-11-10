@@ -28,7 +28,8 @@ Scripts.execStorage('GOKI2Utils.tjs');
 		'GHyperTextLayer', 'GMessageLayer', 'GHistoryLayer',
 		'GLayerColorCorrection', 'GLayerConductor',
 		'GLayerContainer', 'GLayerIterator',
-		'GWidgetLayer', 'GButtonLayer',
+		'GWidgetLayer',
+		'GFormLayer', 'GButtonLayer', 'GCheckBoxLayer',
 		'GSyntax', 'GConductor',
 		'GLocation', 'GTemporaryLocation',
 		'GWaveSoundBuffer', 'GWaveSoundBuffer2',
@@ -36,7 +37,8 @@ Scripts.execStorage('GOKI2Utils.tjs');
 		'GVideoOverlay',
 		'GVideoContainer', 'GVideoIterator',
 		'GMenuItem', 'GMenuModule',
-		'GWindow'
+		'GWindow',
+		'GYesNoDialogLayer'
 	];
 
 	if(System.getArgument('-goki2-on-demand-loading') == 'yes')

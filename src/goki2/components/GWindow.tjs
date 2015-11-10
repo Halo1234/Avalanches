@@ -31,7 +31,7 @@ class GWindow extends Window
 
 		modules_ = createModuleContainer(this);
 		conductor_ = createConductor(this);
-		softFocus_ = createSoftFocus('window soft focus.');
+		softFocus_ = createFocus('window soft focus.');
 
 		add(createPrimaryLayer(this));
 		fixPrimaryLayerSizeToInnerSize();
@@ -80,9 +80,9 @@ class GWindow extends Window
 	}
 
 	/**/
-	function createSoftFocus(name)
+	function createFocus(name)
 	{
-		return new GSoftFocus(name);
+		return new GFocus(name);
 	}
 
 	/**/
@@ -97,6 +97,12 @@ class GWindow extends Window
 		obj.fillRect(0, 0, obj.width, obj.height, obj.neutralColor);
 
 		return obj;
+	}
+
+	/**/
+	function askClose(yesHandler, noHandler)
+	{
+		askYesNo(primaryLayer, '終了しますか？', '終了確認', yesHandler, noHandler);
 	}
 
 	/**/
@@ -283,6 +289,18 @@ class GWindow extends Window
 		modules.callHandler('onWindowWheel', shift, delta, x, y);
 	}
 
+	function shutdown(ask = false)
+	{
+		// コンダクタを停止させる
+		if(GObjectUtils.shutdownBackupStorage === void)
+			GObjectUtils.shutdownBackupStorage = _conductor.suspended;
+		_conductor.suspended = true;
+
+		anotherCycle.add(close);
+
+		onCloseQuery = onShutdown if !ask;
+	}
+
 	/**/
 	function store(tick = System.getTickCount())
 	{
@@ -316,11 +334,14 @@ class GWindow extends Window
 	/**/
 	function onMouseUp(x, y, button, shift)
 	{
-		switch(button)
+		if((x < 0 || x > scWidth) || (y < 0 || y > scHeight))
 		{
-		case mbLeft:	leftClick(x, y, shift); break;
-		case mbRight:	rightClick(x, y, shift); break;
-		case mbMiddle:	middleClick(x, y, shift); break;
+			switch(button)
+			{
+			case mbLeft:	leftClick(x, y, shift); break;
+			case mbRight:	rightClick(x, y, shift); break;
+			case mbMiddle:	middleClick(x, y, shift); break;
+			}
 		}
 	}
 
@@ -335,7 +356,7 @@ class GWindow extends Window
 	{
 		modules.callHandler('onWindowKeyDown', key, shift);
 
-		if(focusedLayer == null)
+		if(focusedLayer === null)
 		{
 			if(shift & ssShift)
 			{
@@ -389,11 +410,35 @@ class GWindow extends Window
 	}
 
 	/**/
+	function onCloseQueryYes()
+	{
+		this.onCloseQuery = this.onShutdown;
+
+		anotherCycle.add(close);
+	}
+
+	/**/
+	function onCloseQueryNo()
+	{
+		_conductor.suspended = GObjectUtils.shutdownBackupStorage if GObjectUtils.shutdownBackupStorage !== void;
+		GObjectUtils.shutdownBackupStorage = void;
+	}
+
+	/**/
 	function onCloseQuery()
+	{
+		super.onCloseQuery(false);
+		anotherCycle.uniqueAdd(
+			askClose, onCloseQueryYes, onCloseQueryNo
+		);
+	}
+
+	/**/
+	function onShutdown()
 	{
 		modules.callHandler('onWindowClose', this);
 
-		super.onCloseQuery(...);
+		super.onCloseQuery(true);
 	}
 
 	property modules

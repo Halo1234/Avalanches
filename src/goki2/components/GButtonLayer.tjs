@@ -58,7 +58,7 @@ class GButtonLayer extends GWidgetLayer
 		colorRect(w + w + 1, 1, (w * 3) - 2, h - 2, clHighlight, op);
 	}
 
-	function drawCaption(offx = 0, offy = 0, color = captionColor, edge = edgeColor, shadow = shadowColor, shadowOffsetX = 2, shadowOffsetY = 2, shadowExtent = 2)
+	function drawCaption(offx = void, offy = void, color = captionColor, edge = edgeColor, shadow = shadowColor, shadowOffsetX = 2, shadowOffsetY = 2, shadowExtent = 2)
 	{
 		if(caption == '')
 			return;
@@ -96,7 +96,7 @@ class GButtonLayer extends GWidgetLayer
 
 	function onUpdateState()
 	{
-		if(push)
+		if(pushed)
 			imageLeft = -(width << 1);
 		else
 		if(rollover)

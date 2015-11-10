@@ -106,6 +106,7 @@ class GObjectUtils
 		with(GObjectUtils)
 		{
 			.tjsStorageNameMarks_ = %[] if typeof(.tjsStorageNameMarks_) === 'undefined';
+			.shutdownBackupStorage = void if typeof(.shutdownBackupStorage) === 'undefined';
 		}
 	}
 
@@ -757,7 +758,8 @@ class GInstantContext
 {
 	function GInstantContext(dic)
 	{
-		var arr = assignArray([], dic);
+		var arr = [];
+		arr.assign(dic);
 		for(var i = 0; i < arr.count; i += 2)
 			this[arr[i]] = arr[i + 1];
 	}
@@ -899,6 +901,264 @@ class GDestructor
 
 		f(a*) if f !== void;
 	}
+}
+
+/**
+ * NOTE:
+ * これは GYesNoDialogLayer （または派生クラス）専用のキャッシュシステムです。
+ *
+ * レイヤタイプのダイアログはウインドウタイプのように気軽に同期実行ができないので
+ * ほうっておけばＧＣに殺されるのでどこかで参照を保持しなければならない。
+**/
+global['@GYesNoDialogLayer#object_cache'] = [];
+function getYesNoDialogLayerCacheMemory()
+{
+	return global['@GYesNoDialogLayer#object_cache'];
+}
+
+function pushYesNoDialogLayerForCache(obj)
+{
+	if(obj instanceof 'GYesNoDialogLayer')
+	{
+		with(getYesNoDialogLayerCacheMemory())
+			.push(obj) if .find(obj) == -1;
+	}
+	else
+	{
+		worn(@"GYesNoDialogLayer 専用のキャッシュに無関係のオブジェクトを登録しようとしました。");
+		worn('この呼び出しは単に無視されます。');
+		worn(@"登録しようとしたオブジェクトクラス名：'&getInstanceClassName(obj);'");
+	}
+}
+
+function popYesNoDialogLayerFromCache()
+{
+	with(getYesNoDialogLayerCacheMemory())
+	{
+		var obj = void;
+
+		do {
+			obj = .pop();
+			if(obj !== void && obj isvalid)
+				break;
+		} while(.count > 0);
+	}
+
+	return obj;
+}
+
+function findYesNoDialogLayerFromCache(id)
+{
+	var arr = getYesNoDialogLayerCacheMemory();
+	var c = arr.count;
+	var obj = void;
+
+	for(var i = 0; i < c; i++)
+	{
+		if(!(arr[i] isvalid))
+		{
+			arr[i] = void;
+			continue;
+		}
+
+		if(arr[i].id != id)
+			continue;
+
+		obj = arr[i];
+	}
+
+	arr.remove(void);
+
+	return obj;
+}
+
+function removeYesNoDialogLayerFromCache(id)
+{
+	var arr = getYesNoDialogLayerCacheMemory();
+	var c = arr.count;
+
+	// NOTE:
+	// 削除はしますが無効化はしません。
+	for(var i = 0; i < c; i++)
+	{
+		if(!(arr[i] isvalid))
+			arr[i] = void;
+		else
+		if(arr[i].id == id)
+			arr[i] = void;
+	}
+
+	arr.remove(void);
+}
+
+function disposeYesNoDialogLayerCache()
+{
+	var arr = getYesNoDialogLayerCacheMemory();
+	var c = arr.count;
+
+	for(var i = 0; i < c; i++)
+		invalidate arr[i] if arr[i] isvalid;
+
+	arr.clear();
+}
+
+// ◆YesNoダイアログ
+//
+function createYesNoDialogLayer()
+{
+	return new GYesNoDialogLayer(...);
+}
+
+function createYesNoDialogWindow()
+{
+	return new GYesNoDialogWindow(...);
+}
+
+//
+// 第一引数が Layer 派生クラスのインスタンスであれば
+// レイヤによる実装を返します。
+// そうでなければウインドウによる実装を返します。
+function createYesNoDialog(firstArg, args*)
+{
+	var obj;
+
+	if(firstArg instanceof 'Layer')
+	{
+		var id = void;
+
+		if(args.count >= 1)
+			obj = findYesNoDialogLayerFromCache(id = args[0]);
+		if(obj === void)
+		{
+			obj = createYesNoDialogLayer(firstArg.window, firstArg);
+			obj.id = id if id !== void;
+			obj.pushToCache();
+		}
+	}
+	else
+	{
+		// FIXME:
+		// 引数のチェックした方がいいんだけど、
+		// 面倒なので放置
+		obj = createYesNoDialogWindow(...);
+	}
+
+	return obj;
+}
+
+// ◆YesNo確認
+function askYesNo(firstArg, args*)
+{
+	var parent, message, caption, yesHandler, noHandler;
+	var dialog;
+
+	if(firstArg instanceof 'Layer')
+	{
+		// NOTE:
+		// こちらは非同期実行になります。
+		parent = firstArg;
+		message = args[0];
+		caption = args[1];
+		yesHandler = args[2];
+		noHandler = args[3];
+
+		dialog = createYesNoDialog(parent, message);
+		if(!dialog.visible)
+		{
+			dialog.messageText = message;
+			//dialog.captionText = caption;
+			dialog.checkMessageText = '';
+			dialog.yesHandler = yesHandler;
+			dialog.noHandler = noHandler;
+			dialog.show();
+		}
+	}
+	else
+	{
+		// NOTE:
+		// こちらは同期実行になります。
+		parent = void;
+		message = firstArg;
+		caption = args[0];
+		yesHandler = args[1];
+		noHandler = args[2];
+
+		dialog = createYesNoDialog(message);
+		dialog.caption = caption;
+		dialog.showModal();
+
+		var result = dialog.result;
+
+		invalidate dialog;
+		dialog = void;
+
+		switch(result)
+		{
+		case 'yes':		yesHandler() if yesHandler !== void;
+		case 'no':		noHandler() if noHandler !== void;
+		}
+	}
+
+	return dialog;
+}
+
+// ◆YesNoと次回も確認するかどうか確認
+function askYesNoConfirm(firstArg, args*)
+{
+	var checkMessage = '次回からは確認しない';
+	var parent, message, caption, initialCheckedStatus, yesHandler, noHandler;
+	var dialog;
+
+	if(firstArg instanceof 'Layer')
+	{
+		// NOTE:
+		// こちらは非同期実行になります。
+		parent = firstArg;
+		message = args[0];
+		caption = args[1];
+		initialCheckedStatus = args[2];
+		yesHandler = args[3];
+		noHandler = args[4];
+
+		dialog = createYesNoDialog(parent, message);
+		dialog.messageText = message;
+		//dialog.captionText = caption;
+		dialog.checked = initialCheckedStatus;
+		dialog.checkMessageText = checkMessage;
+		dialog.yesHandler = yesHandler;
+		dialog.noHandler = noHandler;
+		dialog.show();
+	}
+	else
+	{
+		// NOTE:
+		// こちらは同期実行になります。
+		parent = void;
+		message = firstArg;
+		caption = args[0];
+		initialCheckedStatus = args[1];
+		yesHandler = args[2];
+		noHandler = args[3];
+
+		dialog = createYesNoDialog(message, checkMessage);
+		dialog.caption = caption;
+		dialog.checked = initialCheckedStatus;
+		dialog.showModal();
+
+		var result = dialog.result;
+		var noConfirm = dialog.checked;
+
+		invalidate dialog;
+		dialog = void;
+
+		switch(result)
+		{
+		case 'yes':		yesHandler(noConfirm) if yesHandler !== void;
+		case 'no':		noHandler(noConfirm) if noHandler !== void;
+		}
+	}
+
+	return dialog;
 }
 
 global.graphicFileExtensions = ['.png', '.tlg', '.bmp', '.jpg', '.jpeg'];

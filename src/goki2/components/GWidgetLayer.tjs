@@ -33,6 +33,7 @@ class GWidgetLayer extends GLayer
 	function GWidgetLayer(window, parent, handler)
 	{
 		super.GLayer(...);
+		hitType = htMask;
 		hitThreshold = 0;
 		setSize(global.widgetInitializeWidth, global.widgetInitializeHeight);
 	}
@@ -150,7 +151,7 @@ class GWidgetLayer extends GLayer
 		}
 		else
 		{
-			return (height - font.getTextWidth(str)) >> 1;
+			return (height - font.getTextHeight(str)) >> 1;
 		}
 	}
 

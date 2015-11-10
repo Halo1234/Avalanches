@@ -11,6 +11,7 @@ class GBaseLayer extends GLayer
 	{
 		super.GLayer(...);
 
+		hitThreshold = 0;
 		type = ltOpaque;
 	}
 
@@ -23,6 +24,17 @@ class GBaseLayer extends GLayer
 		super.assign(src);
 
 		visible = backup;
+	}
+
+	/**/
+	function onMouseUp(x, y, button, shift)
+	{
+		switch(button)
+		{
+		case mbLeft:	window.leftClick(x, y, shift); break;
+		case mbRight:	window.rightClick(x, y, shift); break;
+		case mbMiddle:	window.middleClick(x, y, shift); break;
+		}
 	}
 }
 

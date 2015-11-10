@@ -776,6 +776,11 @@ class GLayer extends Layer
 		getter		{ var x = cursorX, y = cursorY; return ((x >= 0 && x <= width && y >= 0 && y <= height) ? true : false); }
 	}
 
+	property rollover
+	{
+		getter		{ return visible && mouseEnterToLeave_ && cursorOnLayer && window.mouseCursorState == mcsVisible; }
+	}
+
 	property pushed
 	{
 		getter		{ return mouseDownToUp_ && cursorOnLayer; }
