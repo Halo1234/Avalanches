@@ -140,6 +140,10 @@ class GWindow extends Window
 
 			/* @close */
 			'close' => function (elm, c) {
+				if(GObjectUtils.getBoolean(elm, 'ask', true))
+					close();
+				else
+					shutdown();
 			} incontextof this,
 
 			/* @single */
@@ -293,8 +297,8 @@ class GWindow extends Window
 	{
 		// コンダクタを停止させる
 		if(GObjectUtils.shutdownBackupStorage === void)
-			GObjectUtils.shutdownBackupStorage = _conductor.suspended;
-		_conductor.suspended = true;
+			GObjectUtils.shutdownBackupStorage = conductor_.suspended;
+		conductor_.suspended = true;
 
 		anotherCycle.add(close);
 
@@ -420,7 +424,7 @@ class GWindow extends Window
 	/**/
 	function onCloseQueryNo()
 	{
-		_conductor.suspended = GObjectUtils.shutdownBackupStorage if GObjectUtils.shutdownBackupStorage !== void;
+		conductor_.suspended = GObjectUtils.shutdownBackupStorage if GObjectUtils.shutdownBackupStorage !== void;
 		GObjectUtils.shutdownBackupStorage = void;
 	}
 
