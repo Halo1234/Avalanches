@@ -916,6 +916,7 @@ function getYesNoDialogLayerCacheMemory()
 	return global['@GYesNoDialogLayer#object_cache'];
 }
 
+/**/
 function pushYesNoDialogLayerForCache(obj)
 {
 	if(obj instanceof 'GYesNoDialogLayer')
@@ -931,6 +932,7 @@ function pushYesNoDialogLayerForCache(obj)
 	}
 }
 
+/**/
 function popYesNoDialogLayerFromCache()
 {
 	with(getYesNoDialogLayerCacheMemory())
@@ -947,6 +949,7 @@ function popYesNoDialogLayerFromCache()
 	return obj;
 }
 
+/**/
 function findYesNoDialogLayerFromCache(id)
 {
 	var arr = getYesNoDialogLayerCacheMemory();
@@ -972,6 +975,7 @@ function findYesNoDialogLayerFromCache(id)
 	return obj;
 }
 
+/**/
 function removeYesNoDialogLayerFromCache(id)
 {
 	var arr = getYesNoDialogLayerCacheMemory();
@@ -991,6 +995,20 @@ function removeYesNoDialogLayerFromCache(id)
 	arr.remove(void);
 }
 
+/**/
+function getVisibleYesNoDialogLayerFromCache()
+{
+	var arr = getYesNoDialogLayerCacheMemory();
+	var c = arr.count;
+
+	for(var i = 0; i < c; i++)
+	{
+		if(arr[i].visible)
+			return arr[i];
+	}
+}
+
+/**/
 function disposeYesNoDialogLayerCache()
 {
 	var arr = getYesNoDialogLayerCacheMemory();
@@ -1009,6 +1027,7 @@ function createYesNoDialogLayer()
 	return new GYesNoDialogLayer(...);
 }
 
+/**/
 function createYesNoDialogWindow()
 {
 	return new GYesNoDialogWindow(...);
@@ -1062,9 +1081,10 @@ function askYesNo(firstArg, args*)
 		yesHandler = args[2];
 		noHandler = args[3];
 
-		dialog = createYesNoDialog(parent, message);
-		if(!dialog.visible)
+		dialog = getVisibleYesNoDialogLayerFromCache();
+		if(dialog === void)
 		{
+			dialog = createYesNoDialog(parent, message);
 			dialog.messageText = message;
 			//dialog.captionText = caption;
 			dialog.checkMessageText = '';
@@ -1120,14 +1140,18 @@ function askYesNoConfirm(firstArg, args*)
 		yesHandler = args[3];
 		noHandler = args[4];
 
-		dialog = createYesNoDialog(parent, message);
-		dialog.messageText = message;
-		//dialog.captionText = caption;
-		dialog.checked = initialCheckedStatus;
-		dialog.checkMessageText = checkMessage;
-		dialog.yesHandler = yesHandler;
-		dialog.noHandler = noHandler;
-		dialog.show();
+		dialgo = getVisibleYesNoDialogLayerFromCache();
+		if(dialog === void)
+		{
+			dialog = createYesNoDialog(parent, message);
+			dialog.messageText = message;
+			//dialog.captionText = caption;
+			dialog.checked = initialCheckedStatus;
+			dialog.checkMessageText = checkMessage;
+			dialog.yesHandler = yesHandler;
+			dialog.noHandler = noHandler;
+			dialog.show();
+		}
 	}
 	else
 	{
