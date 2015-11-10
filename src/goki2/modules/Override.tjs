@@ -1,0 +1,11 @@
+/*
+ * $Author$
+ * $Revision$
+**/
+
+
+loadTJS('MainWindow.tjs');
+
+GMainWindow = MainWindow;
+
+

@@ -29,6 +29,8 @@
 @using_mod_adv
 @ハロ ポーズ１ 表情１ 表示
 
+;@cursor default_cursor=&crCross
+
 [ハロ]メッセージのテストです。
 改行します。
 

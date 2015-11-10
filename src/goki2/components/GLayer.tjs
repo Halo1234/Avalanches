@@ -27,6 +27,8 @@ class GLayer extends Layer
 	var left_ = 0;
 	var top_ = 0;
 
+	var defaultCursor = crDefault;
+
 	var flipLeftRight_ = false;
 	var flipUpDown_ = false;
 
@@ -212,6 +214,12 @@ class GLayer extends Layer
 			offScreen_ <-> .offScreen_;
 			name <-> .name;
 		}
+	}
+
+	/**/
+	function setDefaultCursor(cursor)
+	{
+		this.cursor = defaultCursor = cursor;
 	}
 
 	/**/

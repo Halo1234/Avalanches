@@ -30,7 +30,7 @@ class CharacterVisualLayerIterator extends GLayerIterator
 
 	property prefix
 	{
-		getter		{ return 'cv_layer'; }
+		getter		{ return ''; }
 	}
 }
 
