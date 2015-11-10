@@ -86,6 +86,9 @@ class GMessageLayer extends GHyperTextLayer
 	var pageGlyphLayer_ = void;
 	var lineGlyphLayer_ = void;
 
+	var invisibleByUser_ = false;
+	var visibleBackup_ = false;
+
 	function GMessageLayer(window, parent, handler)
 	{
 		super.GHyperTextLayer(...);
@@ -235,6 +238,27 @@ class GMessageLayer extends GHyperTextLayer
 	}
 
 	/**/
+	function hideByUser()
+	{
+		if(!invisibleByUser_)
+		{
+			visibleBackup_ = visible;
+			invisibleByUser_ = true;
+			visible = false;
+		}
+	}
+
+	/**/
+	function showByUser()
+	{
+		if(invisibleByUser_)
+		{
+			visible = visibleBackup_;
+			invisibleByUser_ = false;
+		}
+	}
+
+	/**/
 	function store(tick)
 	{
 		var dic = super.store(...);
@@ -337,6 +361,11 @@ class GMessageLayer extends GHyperTextLayer
 	/**/
 	function onRubyTextLayerEvent(obj, message, elm)
 	{
+	}
+
+	property invisibleByUser
+	{
+		getter		{ return invisibleByUser_; }
 	}
 }
 

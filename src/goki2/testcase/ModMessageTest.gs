@@ -23,6 +23,7 @@
 @click_skip !enabeld
 
 *label|
+@hide_message
 メッセージレイヤのテストです。[p]
 
 *label|
