@@ -367,9 +367,21 @@ class ModMessage extends GModule
 					current_.mapPrerenderdFont(elm.storage);
 			} incontextof this,
 
-			/**/
+			/* @next_skip */
 			'next_skip' => function (elm) {
 				nextSkipEnabled = GObjectUtils.getBoolean(elm, 'enabled') if GObjectUtils.hasValue(elm, 'enabled');
+			} incontextof this,
+
+			/* @s */
+			's' => function (elm) {
+				if(nextSkipEnabled && skipMode_ == smNextStop)
+					cancelSkip();
+				if(!elm.eof)
+					return 'stop';
+				// EOF処理
+				// 自動実行中なら next タグを追加
+				// 手動実行中なら end を追加する
+				c.pendingTag(autoJump ? 'next' : 'end');
 			} incontextof this,
 
 		];
@@ -474,7 +486,7 @@ class ModMessage extends GModule
 	/**/
 	function enterSkipToNextStop(bb = 1)
 	{
-		if(nextSkipEnabled)
+		if(nextSkipEnabled && clickSkipEnabled)
 		{
 			with(window)
 			{
