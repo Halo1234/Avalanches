@@ -192,7 +192,7 @@ class GConductor extends KAGParser
 			} incontextof this,
 
 			/* @wait */
-			'wait' => function (elm) {
+			'wait' => function (elm, c) {
 				var time = +elm.time;
 				if(elm.mode == 'until')
 				{
@@ -200,6 +200,8 @@ class GConductor extends KAGParser
 					if(time < 0)
 						return 0;
 				}
+				if(GObjectUtils.getBoolean(elm, 'skip', true))
+					c.waitSignal(%[left_click : null]);
 				return time;
 			} incontextof this,
 
