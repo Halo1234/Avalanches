@@ -357,6 +357,8 @@ class ModMessage extends GModule
 
 			/* @map_prerendered_font */
 			'map_prerendered_font' => function (elm) {
+				if(current_ !== null)
+					current_.mapPrerenderdFont(elm.storage);
 			} incontextof this,
 
 		];
