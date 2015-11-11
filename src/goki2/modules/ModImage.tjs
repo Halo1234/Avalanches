@@ -199,6 +199,14 @@ class ModImage extends GModule
 				}
 			} incontextof this,
 
+			/* @stop_shake */
+			'stop_shake' => function (elm) {
+				with(findByElm(elm).shaker)
+				{
+					.stop();
+				}
+			} incontextof this,
+
 			/* @transition */
 			'transition' => function (elm, c) {
 				beginTransitionByElm(elm, c);
