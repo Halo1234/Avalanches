@@ -384,6 +384,13 @@ class ModMessage extends GModule
 				c.pendingTag(c.autoJump ? 'next' : 'end');
 			} incontextof this,
 
+			/* @wait_ch */
+			'wait_ch' => function (elm, c) {
+				if(GObjectUtils.getBoolean(elm, 'skip', true) && clickSkipEnabled)
+					c.waitSignal(%[left_click : null]);
+				return outputInterval * (+elm.time);
+			} incontextof this,
+
 		];
 	}
 
