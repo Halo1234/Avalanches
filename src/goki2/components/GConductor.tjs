@@ -210,6 +210,11 @@ class GConductor extends KAGParser
 				timeOrigin_ = System.getTickCount();
 			} incontextof this,
 
+			/* @wait_click */
+			'wait_click' => function (elm) {
+				waitSignal(%[left_click : null]);
+			} incontextof this,
+
 			/* @eval */
 			'eval' => function (elm) {
 				Scripts.eval(elm.exp);
