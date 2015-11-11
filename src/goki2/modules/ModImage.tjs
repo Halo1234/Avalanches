@@ -227,6 +227,28 @@ class ModImage extends GModule
 				waitAnimationByElm(elm, c);
 			} incontextof this,
 
+			/* @wait_shake */
+			'wait_shake' => function (elm, c) {
+				with(findByElm(elm))
+				{
+					if(!.shaker.running || .shaker.endlessRunning)
+						return;
+					var modMessage = container.get('modMessage');
+					var skip = GObjectUtils.getBoolean(elm, 'skip', true);
+					var trigger = @"&.name;_end_of_shake";
+					dispatcher_.makeOneShot(trigger, c.signal, trigger);
+					if(modMessage !== void && modMessage.skipping && skip)
+					{
+						.shaker.stop();
+						return 'breath';
+					}
+					if(skip)
+						c.waitSignal(%[left_click : .shaker.stop, @"&trigger;" => null]);
+					else
+						c.waitSignal(%[@"&trigger;" => null]);
+				}
+			} incontextof this,
+
 		];
 	}
 
@@ -597,11 +619,13 @@ class ModImage extends GModule
 	{
 		with(dispatcher_)
 		{
+			dm(@"event : &event;");
 			switch(event)
 			{
 			case 'onBeginTransition':			break;
 			case 'onTransitionCompleted':		.signal(@"&obj.name;_end_of_transition"); break;
-			case 'onStopAnimation':				.signal("&obj.name;_end_of_animation&elm.index;"); break;
+			case 'onStopAnimation':				.signal(@"&obj.name;_end_of_animation&elm.index;"); break;
+			case 'onStopShaker':				.signal(@"&obj.name;_end_of_shake"); break;
 			case 'onShowCompleted':				break;
 			case 'onHideCompleted':				break;
 			}
@@ -618,6 +642,7 @@ class ModImage extends GModule
 			case 'onBeginTransition':			break;
 			case 'onTransitionCompleted':		.signal(@"&obj.name;_end_of_transition"); break;
 			case 'onStopAnimation':				.signal(@"&obj.name;_end_of_animation&elm.index;"); break;
+			case 'onStopShaker':				.signal(@"&obj.name;_end_of_shake"); break;
 			case 'onShowCompleted':				break;
 			case 'onHideCompleted':				break;
 			}

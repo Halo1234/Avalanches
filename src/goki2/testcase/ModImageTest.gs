@@ -32,6 +32,7 @@
 
 *label|
 @shake horizontal_max=10 vertical_max=10 time=1000
+@wait_shake
 
 óhÇÍÇ‹Ç∑ÅB[p][cm]
 
