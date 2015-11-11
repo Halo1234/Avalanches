@@ -126,6 +126,11 @@ class GWindow extends Window
 				return 'break';
 			} incontextof this,
 
+			/* @title */
+			'title' => function (elm) {
+				System.title = elm.name;
+			} incontextof this,
+
 			/* @load_module */
 			'load_module' => function (elm) {
 				if(elm.name == void)
