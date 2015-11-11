@@ -28,6 +28,8 @@ class GConductor extends KAGParser
 	var breathBound = 1;				//!< \brief ブレス状態に移行するまでの breath の数
 	var breathCount_ = 0;				//!< \brief 現在の breath の数
 
+	var timeOrigin_;
+
 	var interrupted_ = false;			//!< \brief interrupt 状態ならば true になります。
 	var suspended_ = false;				//!< \brief suspend 状態ならば true になります。
 
@@ -191,7 +193,19 @@ class GConductor extends KAGParser
 
 			/* @wait */
 			'wait' => function (elm) {
-				return +elm.time;
+				var time = +elm.time;
+				if(elm.mode == 'until')
+				{
+					time = timeOrigin_ + time - System.getTickCount();
+					if(time < 0)
+						return 0;
+				}
+				return time;
+			} incontextof this,
+
+			/* @reset_wait */
+			'reset_wait' => function (elm) {
+				timeOrigin_ = System.getTickCount();
 			} incontextof this,
 
 			/* @eval */
@@ -1033,7 +1047,10 @@ class GConductor extends KAGParser
 
 	function onTimeOut_private_()
 	{
-		start();
+		if(!signal('timeout'))
+		{
+			start();
+		}
 	}
 
 	function onStop()
