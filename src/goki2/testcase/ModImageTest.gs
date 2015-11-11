@@ -26,7 +26,7 @@
 @assign_to_mirror
 @log message="背景コピーのテスト"
 
-@load_image layer=cv_layer0 center_x=400 center_y=300 page=back storage=ImageSample visible
+@load_image layer=0 center_x=400 center_y=300 page=back storage=ImageSample visible
 
 背景コピーのテストに成功しました。[p][cm]
 
@@ -38,12 +38,12 @@
 子レイヤの読み込みに成功しました。[p][cm]
 
 *label|
-@start_animation layer=cv_layer0
+@start_animation layer=0
 @log message="子レイヤでアニメーションを開始しました。"
 
-@stop_animation layer=cv_layer0 index=0
-@wait_animation layer=cv_layer0 index=0
-@assign_image layer=cv_layer0
+@stop_animation layer=0 index=0
+@wait_animation layer=0 index=0
+@assign_image layer=0
 @log message="子レイヤのアニメーションを停止しました。"
 
 子レイヤのアニメーションテストに成功しました。[p][cm]
@@ -58,7 +58,7 @@
 背景がクリアされていれば成功です。[p][cm]
 
 *label|
-@clear_image layer=cv_layer0 page=back
+@clear_image layer=0 page=back
 @transition time=1000
 @wait_transition
 @log message="子レイヤクリアに成功しました。"

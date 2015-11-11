@@ -20,17 +20,17 @@
 @show_message layer=message0
 @log message="メッセージレイヤ０を表示しました。"
 
-@click_skip !enabeld
+@click_skip !enabled
 
 *label|
-@hide_message
+@hidden_message
 メッセージレイヤのテストです。[p]
 
 *label|
 改行のテストです。[r]２行目のテキストです。[p][cm]
 
 *label|
-@click_skip enabeld
+@click_skip enabled
 
 @auto_wait_ch enabled chars=、。 time=10,50
 自動ウェイトの、テストです。[p][cm]

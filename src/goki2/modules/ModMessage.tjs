@@ -43,6 +43,7 @@ class ModMessage extends GModule
 	var /* const */ smNotSkip = 0;		// スキップしない
 	var /* const */ smNextWait = 1;		// 次のクリック待ちまでスキップ
 	var /* const */ smPageEnd = 2;		// ページ末までスキップ
+	var /* const */ smNextStop = 3;		// 次の停止までスキップ
 	var /* const */ smNotRead = 100;	// 次の未読部分までスキップ
 	var /* const */ smCancel = 101;		// キャンセルされるまでスキップ
 										//
@@ -54,6 +55,7 @@ class ModMessage extends GModule
 	var skipMode_ = smNotSkip;			// 現在のスキップ状態
 
 	var clickSkipEnabled = true;		// クリックスキップが有効かどうか
+	var nextSkipEnabled = true;			// 次の停止までスキップが有効かどうか
 
 	var autoMode_ = false;
 	var autoPageWait = 2000;
@@ -345,20 +347,29 @@ class ModMessage extends GModule
 			'auto_wait_ch' => setAutoWait,
 
 			/* @click_skip */
-			'click_skip' => function (elm) {
-				clickSkipEnabled = GObjectUtils.getBoolean(elm, 'enabled');
+			'click_skip' => function (elm, c) {
+				clickSkipEnabled = GObjectUtils.getBoolean(elm, 'enabled') if GObjectUtils.hasValue(elm, 'enabled');
+				cancelSkip() if !clickSkipEnabled;
 			} incontextof this,
 
-			/* @hide_message */
-			'hide_message' => function (elm, c) {
-				hideMessageLayerByUser();
-				c.waitSignal(%[left_click : showMessageLayerByUser]);
+			/* @hidden_message */
+			'hidden_message' => function (elm, c) {
+				if(!skipping || (skipping && !clickSkipEnabled))
+				{
+					hideMessageLayerByUser();
+					c.waitSignal(%[left_click : showMessageLayerByUser]);
+				}
 			} incontextof this,
 
 			/* @map_prerendered_font */
 			'map_prerendered_font' => function (elm) {
 				if(current_ !== null)
 					current_.mapPrerenderdFont(elm.storage);
+			} incontextof this,
+
+			/**/
+			'next_skip' => function (elm) {
+				nextSkipEnabled = GObjectUtils.getBoolean(elm, 'enabled');
 			} incontextof this,
 
 		];
@@ -435,9 +446,13 @@ class ModMessage extends GModule
 	{
 		if(!autoMode_)
 		{
-			window.leftClick();
-			window.modules.callHandler('onEnterAutoMode');
-			autoMode_ = true;
+			with(window)
+			{
+				if(.conductor.status == .conductor.stWait)
+					.leftClick();
+				window.modules.callHandler('onEnterAutoMode');
+				autoMode_ = true;
+			}
 		}
 	}
 
@@ -446,8 +461,28 @@ class ModMessage extends GModule
 	{
 		if(clickSkipEnabled)
 		{
-			window.conductor.cancelWaitTimer();
-			skipTo(this.smNextWait, bb);
+			with(window)
+			{
+				if(.conductor.status == .conductor.stWait)
+					.leftClick();
+				.conductor.cancelWaitTimer();
+				skipTo(this.smNextWait, bb);
+			}
+		}
+	}
+
+	/**/
+	function enterSkipToNextStop(bb = 1)
+	{
+		if(nextSkipEnabled)
+		{
+			with(window)
+			{
+				if(.conductor.status == .conductor.stWait)
+					.leftClick();
+				.conductor.cancelWaitTimer();
+				skipTo(this.smNextStop, bb);
+			}
 		}
 	}
 
@@ -456,8 +491,13 @@ class ModMessage extends GModule
 	{
 		if(clickSkipEnabled)
 		{
-			window.conductor.cancelWaitTimer();
-			skipTo(this.smPageEnd, bb);
+			with(window)
+			{
+				if(.conductor.status == .conductor.stWait)
+					.leftClick();
+				.conductor.cancelWaitTimer();
+				skipTo(this.smPageEnd, bb);
+			}
 		}
 	}
 
@@ -484,7 +524,8 @@ class ModMessage extends GModule
 			with(window)
 			{
 				.conductor.cancelWaitTimer();
-				.leftClick();
+				if(.conductor.status == .conductor.stWait)
+					.leftClick();
 			}
 			skipTo(this.smCancel, bb);
 		}
