@@ -166,6 +166,39 @@ class ModImage extends GModule
 				}
 			} incontextof this,
 
+			/* @shake */
+			'shake' => function (elm) {
+				var layer = findByElm(elm);
+				with(layer.shaker)
+				{
+					if(GObjectUtils.getBoolean(elm, 'stop', false))
+					{
+						.stop();
+						return 'breath';
+					}
+					if(GObjectUtils.getBoolean(elm, 'start', true))
+					{
+						var time = (elm.time === void ? 1000 : +elm.time);
+						var delay = (elm.delay === void ? 0 : +elm.delay);
+						if(elm.time_mode !== void)
+						{
+							var modMessage = container.get('modMessage');
+
+							if(modMessage !== void && elm.timemode == 'delay')
+							{
+								time = modMessage.outputInterval * time;
+							}
+						}
+						.horizontalMax = +elm['horizontal_max'];
+						.verticalMax = +elm['vertical_max'];
+						.time = time;
+						.looping = GObjectUtils.getBoolean(elm, 'looping');
+						.delay = delay;
+						.start();
+					}
+				}
+			} incontextof this,
+
 			/* @transition */
 			'transition' => function (elm, c) {
 				beginTransitionByElm(elm, c);

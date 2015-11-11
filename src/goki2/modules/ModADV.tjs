@@ -329,7 +329,7 @@ class ModADV extends GModule
 			}
 		}
 
-		char.atuoVoice = GObjectUtils.getBoolean(elm, 'auto_voice') if GObjectUtils.hasValue(elm 'auto_voice');
+		char.atuoVoice = GObjectUtils.getBoolean(elm, 'auto_voice') if GObjectUtils.hasValue(elm, 'auto_voice');
 		char.voiceStorageFormat = elm.voice_storage_format if elm.voice_storage_format !== void;
 		char.voiceGroup = elm.voice_group if elm.voice_group !== void;
 		char.hasImage = GObjectUtils.getBoolean(elm, 'image') if GObjectUtils.hasValue(elm, 'image');

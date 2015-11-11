@@ -373,7 +373,7 @@ class ModMessage extends GModule
 			} incontextof this,
 
 			/* @s */
-			's' => function (elm) {
+			's' => function (elm, c) {
 				if(nextSkipEnabled && skipMode_ == smNextStop)
 					cancelSkip();
 				if(!elm.eof)
@@ -381,7 +381,7 @@ class ModMessage extends GModule
 				// EOF処理
 				// 自動実行中なら next タグを追加
 				// 手動実行中なら end を追加する
-				c.pendingTag(autoJump ? 'next' : 'end');
+				c.pendingTag(c.autoJump ? 'next' : 'end');
 			} incontextof this,
 
 		];
@@ -404,7 +404,7 @@ class ModMessage extends GModule
 	/**/
 	function setAutoWait(elm)
 	{
-		autoWaitChEnabled_ = GObjectUtils.getBoolean(elm, 'enabled') if GObjectUtils.hasValue(elm 'enabled');
+		autoWaitChEnabled_ = GObjectUtils.getBoolean(elm, 'enabled') if GObjectUtils.hasValue(elm, 'enabled');
 		autoWaitChChars_ = elm.chars if elm.chars !== void;
 		autoWaitChWaits_ = [].split(",", elm.time) if elm.time !== void;
 	}

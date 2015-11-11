@@ -12,6 +12,7 @@ class GLayer extends Layer
 	var family_ = void;
 	var conductor_ = void;				//!< \brief このレイヤのコンダクタ。
 	var colorCorrection_ = void;		//!< \brief このレイヤの色補正用オブジェクト。
+	var shaker_ = void;					//!< \brief このレイヤのシェイカー
 
 	var mirror_ = null;					//!< \brief ミラーレイヤ。最後にアサインしたレイヤです。
 	var offScreen_ = false;
@@ -101,6 +102,12 @@ class GLayer extends Layer
 	function createColorCorrection(owner)
 	{
 		return new GLayerColorCorrection(owner);
+	}
+
+	/**/
+	function createShaker(owner)
+	{
+		return new GLayerShaker(owner);
 	}
 
 	/**/
@@ -517,7 +524,8 @@ class GLayer extends Layer
 			flipLeftRight : flipLeftRight_, flipUpDown : flipUpDown_,
 			imageLeft : imageLeft, imageTop : imageTop, imageWidth : imageWidth, imageHeight : imageHeight,
 			fixPositionToCenter : fixPositionToCenter,
-			//colorCorrection : colorCorrection_.store(tick)
+			//colorCorrection : colorCorrection_.store(tick),
+			shaker : shaker.store()
 		];
 
 		dic.conductor = conductor_.store(tick) if conductor_ !== void;
@@ -578,6 +586,7 @@ class GLayer extends Layer
 
 			conductor.restore(dic.conductor, tick) if dic.conductor !== void;
 			colorCorrection_.restore(dic.colorCorrection, tick) if dic.colorCorrection !== void;
+			shaker_.restore(dic.shaker, tick) if dic.shaker !== void;
 		}
 
 		resetMouseState();
@@ -656,6 +665,11 @@ class GLayer extends Layer
 	property family
 	{
 		getter		{ return family_ === void ? (family_ = createFamily(this)) : family_; }
+	}
+
+	property shaker
+	{
+		getter		{ return shaker_ === void ? (shaker_ = createShaker(this)) : shaker_; }
 	}
 
 	property conductor

@@ -31,6 +31,11 @@
 背景コピーのテストに成功しました。[p][cm]
 
 *label|
+@shake horizontal_max=10 vertical_max=10 time=1000
+
+揺れます。[p][cm]
+
+*label|
 @transition time=1000
 @wait_transition
 @log message="子レイヤ読み込みに成功しました。"
