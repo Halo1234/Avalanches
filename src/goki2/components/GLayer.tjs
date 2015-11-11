@@ -21,6 +21,8 @@ class GLayer extends Layer
 	var loadImagesStorage_ = void;
 	var loadImagesColorKey_ = clNone;
 
+	var prerenderedFontStorage_ = '';
+
 	var fixPositionToCenter = false;
 	var offsetX_ = 0;
 	var offsetY_ = 0;
@@ -217,12 +219,6 @@ class GLayer extends Layer
 	}
 
 	/**/
-	function setDefaultCursor(cursor)
-	{
-		this.cursor = defaultCursor = cursor;
-	}
-
-	/**/
 	function independence(mainImageCOW = true, provinceImageCOW = true)
 	{
 		independMainImage(mainImageCOW);
@@ -252,6 +248,8 @@ class GLayer extends Layer
 			dst.height = .font.height;
 			dst.bold = .font.bold;
 			dst.italic = .font.italic;
+			if(.prerenderedFontStorage_ != '')
+				mapPrerenderedFont(.prerenderedFontStorage_);
 
 			if(decoration)
 			{
@@ -272,6 +270,19 @@ class GLayer extends Layer
 		assignFont(parent, decoration);
 
 		return this;
+	}
+
+	/**/
+	function mapPrerenderedFont(storage)
+	{
+		font.mapPrerenderedFont(storage);
+		prerenderedFontStorage_ = storage;
+	}
+
+	/**/
+	function setDefaultCursor(cursor)
+	{
+		this.cursor = defaultCursor = cursor;
 	}
 
 	/**/

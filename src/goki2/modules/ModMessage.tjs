@@ -349,9 +349,14 @@ class ModMessage extends GModule
 				clickSkipEnabled = GObjectUtils.getBoolean(elm, 'enabled');
 			} incontextof this,
 
+			/* @hide_message */
 			'hide_message' => function (elm, c) {
 				hideMessageLayerByUser();
 				c.waitSignal(%[left_click : showMessageLayerByUser]);
+			} incontextof this,
+
+			/* @map_prerendered_font */
+			'map_prerendered_font' => function (elm) {
 			} incontextof this,
 
 		];
