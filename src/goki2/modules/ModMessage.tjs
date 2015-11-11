@@ -369,7 +369,7 @@ class ModMessage extends GModule
 
 			/**/
 			'next_skip' => function (elm) {
-				nextSkipEnabled = GObjectUtils.getBoolean(elm, 'enabled');
+				nextSkipEnabled = GObjectUtils.getBoolean(elm, 'enabled') if GObjectUtils.hasValue(elm, 'enabled');
 			} incontextof this,
 
 		];
@@ -392,7 +392,7 @@ class ModMessage extends GModule
 	/**/
 	function setAutoWait(elm)
 	{
-		autoWaitChEnabled_ = GObjectUtils.getBoolean(elm, 'enabled') if elm.enabled !== void;
+		autoWaitChEnabled_ = GObjectUtils.getBoolean(elm, 'enabled') if GObjectUtils.hasValue(elm 'enabled');
 		autoWaitChChars_ = elm.chars if elm.chars !== void;
 		autoWaitChWaits_ = [].split(",", elm.time) if elm.time !== void;
 	}

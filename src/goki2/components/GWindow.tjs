@@ -118,9 +118,9 @@ class GWindow extends Window
 				fixPrimaryLayerSizeToInnerSize();
 				with(GObjectUtils)
 				{
-					altEnterScreenModeChange = .getBoolean(elm, 'alt-enter') if .hasValue(elm, 'alt-enter');
-					fixWindowPositionToDesktopCenter() if .getBoolean(elm, 'fix-position-to-center');
-					fullScreen = .getBoolean(elm, 'full-screen') if.hasValue(elm, 'full-screen');
+					altEnterScreenModeChange = .getBoolean(elm, 'alt_enter') if .hasValue(elm, 'alt_enter');
+					fixWindowPositionToDesktopCenter() if .getBoolean(elm, 'fix_position_to_center');
+					fullScreen = .getBoolean(elm, 'full_screen') if.hasValue(elm, 'full_screen');
 					visible = .getBoolean(elm, 'visible') if .hasValue(elm, 'visible');
 				}
 				return 'break';

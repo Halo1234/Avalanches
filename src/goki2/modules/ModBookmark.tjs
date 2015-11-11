@@ -92,8 +92,8 @@ class ModBookmark extends GModule
 					.mode = elm.mode if elm.mode !== void;
 					calculateThumbnailSize_private_(context_);
 				}
-				storeOnLabelPassed = GObjectUtils.getBoolean(elm, 'store_on_label_passed') if elm.store_on_label_passed !== void;
-				storeAndSave = GOBjectUtils.getBoolean(elm, 'store_and_save') if elm.store_and_save !== void;
+				storeOnLabelPassed = GObjectUtils.getBoolean(elm, 'store_on_label_passed') if GObjectUtils.hasValue(elm, 'store_on_label_passed');
+				storeAndSave = GOBjectUtils.getBoolean(elm, 'store_and_save') if GObjectUtils.hasValue(elm 'store_and_save');
 			} incontextof this,
 
 			/* @clear_system_variables */
