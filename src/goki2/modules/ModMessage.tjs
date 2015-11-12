@@ -121,7 +121,12 @@ class ModMessage extends GModule
 				with(findByElm(elm))
 				{
 					if(elm.storage !== void)
-						.loadImages(elm.storage);
+					{
+						if(elm.key !== void)
+							.loadImages(elm.storage, +elm.key);
+						else
+							.loadImages(elm.storage);
+					}
 					if(elm.left !== void && elm.top !== void)
 						.setPos(+elm.left, +elm.top);
 					if(elm.width !== void && elm.height !== void)
@@ -131,6 +136,7 @@ class ModMessage extends GModule
 					setCurrentLayer(.name) if GObjectUtils.toBoolean(elm.current);
 					if(elm.margin_left !== void && elm.margin_top !== void && elm.margin_top !== void && elm.margin_bottom !== void)
 						.setMargin(+elm.margin_left, +elm.margin_top, +elm.margin_right, +elm.margin_bottom);
+					.visible = elm.visible if elm.visible !== void;
 					.layoutMode = elm.layout_mode if elm.layout_mode !== void;
 				}
 			} incontextof this,
