@@ -23,6 +23,7 @@ class GConductor extends KAGParser
 
 	var startLabelName_ = '';			//!< \brief 現在のスクリプトを開始した時のラベル名。ラベル指定なしでの開始ならば空文字列。
 	var lastProcessedTag_ = '';			//!< \brief 最後に処理したタグ名
+	var lastActualProcessedTag_ = '';	//!< \brief 最後に（実際に）処理したタグ名
 	var pendingTags_ = [];				//!< \brief 後回しにされたタグ
 	var breathTags_ = [];				//!< \brief ブレスタグ
 	var breathBound = 1;				//!< \brief ブレス状態に移行するまでの breath の数
@@ -628,8 +629,9 @@ class GConductor extends KAGParser
 	function executeTag(tagname, elm)
 	{
 		var tag;
+		var originalTagname;
 
-		tagname = elm.tagname if tagname == '';
+		originalTagname = tagname = elm.tagname if tagname == '';
 		tagname = normalizeTag(tagname, elm);
 
 		if(tagname == '')
@@ -672,7 +674,8 @@ class GConductor extends KAGParser
 
 		var ret = callTagHandler(tag, elm);
 
-		lastProcessedTag_ = tagname;
+		lastProcessedTag_ = originalTagname;
+		lastActualProcessedTag_ = tagname;
 
 		return ret;
 	}
@@ -977,6 +980,7 @@ class GConductor extends KAGParser
 			syntax_ = .syntax_;
 			startLabelName_ = .startLabelName_;
 			lastProcessedTag_ = .lastProcessedTag_;
+			lastActualProcessedTag_ = .lastActualProcessedTag_;
 
 			pendingTags_.assignStruct(.pendingTags_);
 			breathTags_.assign(.breathTags_);
@@ -997,6 +1001,10 @@ class GConductor extends KAGParser
 		var dic = super.store();
 
 		dic.redirect = redirect_;
+		dic.startLabelName = startLabelName_;
+		dic.lastProcessedTag = lastProcessedTag_;
+		dic.lastActualProcessedTag = lastActualProcessedTag_;
+
 		dic.scriptQue = scriptQue_;
 		dic.autoJump = autoJump;
 
@@ -1006,6 +1014,10 @@ class GConductor extends KAGParser
 	function restore(dic, tick)
 	{
 		GObjectUtils.assignDictionary(redirect_, dic.redirect);
+		startLabelName_ = dic.startLabelName;
+		lastProcessedTag_ = dic.lastProcessedTag;
+		lastActualProcessedTag_ = dic.lastActualProcessedTag;
+
 		scriptQue_.assign(dic.scriptQue);
 		autoJump = dic.autoJump;
 
@@ -1169,6 +1181,11 @@ class GConductor extends KAGParser
 	property lastProcessedTag
 	{
 		getter		{ return lastProcessedTag_; }
+	}
+
+	property lastActualProcessedTag
+	{
+		getter		{ return lastActualProcessedTag_; }
 	}
 
 	property interrupted
