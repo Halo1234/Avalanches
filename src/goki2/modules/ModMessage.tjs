@@ -302,7 +302,12 @@ class ModMessage extends GModule
 
 			/* @clear_message_layer */
 			'clear_message_layer' => function (elm) {
-				clearMessageLayers();
+				clearMessageLayers(false);
+			} incontextof this,
+
+			/* @reset_message_layer */
+			'reset_message_layer' => function (elm) {
+				clearMessageLayers(true);
 			} incontextof this,
 
 			/* @erase_message */
@@ -401,6 +406,11 @@ class ModMessage extends GModule
 					return 0;
 				}
 				cancelSkip();
+			} incontextof this,
+
+			/* @current */
+			'current' => function (elm) {
+				current_ = findByElm(elm);
 			} incontextof this,
 
 		];
@@ -580,10 +590,14 @@ class ModMessage extends GModule
 	}
 
 	/**/
-	function clearMessageLayers()
+	function clearMessageLayers(reset)
 	{
-		messageLayers.each(clearMessageLayer_private_);
+		messageLayers_.each(clearMessageLayer_private_);
 		historyLayer_.clear();
+		if(reset && messageLayers_.count > 0)
+		{
+			current_ = messageLayers_.at(0);
+		}
 	}
 
 	/**/
@@ -615,6 +629,7 @@ class ModMessage extends GModule
 			.setRedirectTag('p', 'p_mod_message');
 			.setRedirectTag('er', 'erase_message');
 			.setRedirectTag('cm', 'clear_message_layer');
+			.setRedirectTag('ct', 'reset_message_layer');
 		}
 	}
 
