@@ -74,7 +74,7 @@ class ModADV extends GModule
 					c.pendingTag('run_reserved_transition', elm);
 					return 'break';
 				}
-				if(c.lastProcessedTag == 'r_mod_adv')
+				if(c.lastActualProcessedTag == 'r_mod_adv')
 				{
 					if(!container.modMessage.current.reline())
 						c.pendingTag('p');
@@ -137,7 +137,7 @@ class ModADV extends GModule
 						return;
 					if(.current.outputting)
 					{
-						if(c.lastProcessedTag == 'r_mod_adv' && +elm.eol)
+						if(c.lastActualProcessedTag == 'r_mod_adv' && +elm.eol)
 							c.pendingTag('p');
 					}
 				}
@@ -160,8 +160,15 @@ class ModADV extends GModule
 					else
 					if(.skipping)
 						.cancelSkip();
-					.current.showPageGlyph();
-					c.waitSignal(%[left_click : .current.hidePageGlyph]);
+					if(.autoMode)
+					{
+						return .autoPageWait;
+					}
+					else
+					{
+						.current.showPageGlyph();
+						c.waitSignal(%[left_click : .current.hidePageGlyph]);
+					}
 				}
 			} incontextof this,
 
@@ -228,7 +235,7 @@ class ModADV extends GModule
 					{
 						if(char !== void)
 						{
-							var obj = window.modules.exSound.voiceBuffers.at(0);
+							var obj = window.modules.modSound.voiceBuffers.at(0);
 							if(obj.playing)
 							{
 								c.interruptTag(%[tagname : 'wait_character_voice', index : 0], elm);

@@ -455,7 +455,18 @@ class ModMessage extends GModule
 		{
 			autoMode_ = false;
 			window.conductor.cancelWaitTimer();
-			//skipTo(smNextWait);
+			if(current_ !== null)
+			{
+				if(window.conductor.lastProcessedTag == 'p')
+				{
+					window.conductor.interruptTag('p');
+				}
+				else
+				if(window.conductor.lastActualProcessedTag == 'l')
+				{
+					window.conductor.interruptTag('l');
+				}
+			}
 			window.modules.callHandler('onCancelAutoMode');
 		}
 	}
@@ -727,20 +738,22 @@ class ModMessage extends GModule
 			else
 				window.conductor.cancelWaitTimer();
 		}
-
-		if(skipping)
-		{
-			if(container.isLoaded('modBookmark'))
-				container.modBookmark.cancelSkipQuery = true;
-			else
-				cancelSkip();
-		}
 		else
 		{
-			with(window.conductor)
+			if(skipping)
 			{
-				if(.status == .stRun)
-					enterSkipToPageEnd();
+				if(container.isLoaded('modBookmark'))
+					container.modBookmark.cancelSkipQuery = true;
+				else
+					cancelSkip();
+			}
+			else
+			{
+				with(window.conductor)
+				{
+					if(.status == .stRun)
+						enterSkipToPageEnd();
+				}
 			}
 		}
 	}
