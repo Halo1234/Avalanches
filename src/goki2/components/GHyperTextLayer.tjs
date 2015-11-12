@@ -52,7 +52,7 @@ class GVerticalLayout
 	/**/
 	function possibleReline()
 	{
-		if((baseLine + getLineSize_private_() + lineSpace) < marginLeft)
+		if((baseLine + getLineSize() + lineSpace) < marginLeft)
 			return false;
 
 		return true;
@@ -84,7 +84,7 @@ class GVerticalLayout
 	 *
 	 * \remarks 現在の行のサイズではありません。
 	**/
-	function getLineSize_private_()
+	function getLineSize()
 	{
 		var fontSize = Math.abs(layer_.font.height);
 
@@ -132,9 +132,20 @@ class GVerticalLayout
 	}
 
 	/**/
+	function setPositionX(x)
+	{
+		baseLine = x - marginRight_ - (ls >> 1);
+	}
+
+	function setPositionY(y)
+	{
+		characterPosition = y;
+	}
+
+	/**/
 	function resetPosition()
 	{
-		var ls = getLineSize_private_();
+		var ls = getLineSize();
 
 		baseLine = layer_.width - marginRight_ - (ls >> 1);
 		lineSize = ls;
@@ -152,7 +163,7 @@ class GVerticalLayout
 	{
 		with(layer_)
 		{
-			var ls = getLineSize_private_();
+			var ls = getLineSize();
 
 			baseLine -= ls + lineSpace;
 			lineSize = ls;
@@ -313,7 +324,7 @@ class GHorizontalLayout
 	/**/
 	function possibleReline()
 	{
-		if((baseLine + getLineSize_private_() + lineSpace) > (layer_.height - marginBottom_))
+		if((baseLine + getLineSize() + lineSpace) > (layer_.height - marginBottom_))
 			return false;
 
 		return true;
@@ -345,7 +356,7 @@ class GHorizontalLayout
 	 *
 	 * \remarks 現在の行のサイズではありません。
 	**/
-	function getLineSize_private_()
+	function getLineSize()
 	{
 		var fontSize = Math.abs(layer_.font.height);
 
@@ -387,9 +398,21 @@ class GHorizontalLayout
 	}
 
 	/**/
+	function setPositionX(x)
+	{
+		characterPosition = x;
+	}
+
+	/**/
+	function setPositionY(y)
+	{
+		baseLine = marginTop_ + y + ls;
+	}
+
+	/**/
 	function resetPosition()
 	{
-		var ls = getLineSize_private_();
+		var ls = getLineSize();
 
 		baseLine = marginTop_ + ls;
 		lineSize = ls;
@@ -407,7 +430,7 @@ class GHorizontalLayout
 	{
 		with(layer_)
 		{
-			var ls = getLineSize_private_();
+			var ls = getLineSize();
 
 			baseLine += ls + lineSpace;
 			lineSize = ls;
