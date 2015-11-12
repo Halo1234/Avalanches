@@ -413,6 +413,14 @@ class ModMessage extends GModule
 				current_ = findByElm(elm);
 			} incontextof this,
 
+			/* @delay */
+			'delay' => function (elm) {
+				if(elm.speed == 'nowait')
+					outputInterval = 0;
+				else
+					outputInterval = +elm.speed;
+			} incontextof this,
+
 		];
 	}
 
