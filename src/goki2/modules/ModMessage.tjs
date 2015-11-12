@@ -391,9 +391,20 @@ class ModMessage extends GModule
 				return outputInterval * (+elm.time);
 			} incontextof this,
 
-			/**/
+			/* @cancel_auto_mode */
 			'cancel_auto_mode' => function (elm) {
 				cancelAutoMode();
+			} incontextof this,
+
+			/* @cancel_skip */
+			'cancel_skip' => function (elm) {
+				var modMessage = container.get('modMessage');
+				if(modMessage !== void)
+				{
+					modMessage.cancelSkipQuery = true;
+					return 0;
+				}
+				cancelSkip();
 			} incontextof this,
 
 		];
