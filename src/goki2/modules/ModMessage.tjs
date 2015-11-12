@@ -301,6 +301,25 @@ class ModMessage extends GModule
 				}
 			} incontextof this,
 
+			/* @l_mod_message */
+			'l_mod_message' => function (elm) {
+				if(current_ !== null)
+				{
+					if(longSkipping)
+						return 0;
+					else
+					if(autoMode_)
+					{
+						return autoPageWait;
+					}
+					else
+					{
+						current_.showPageGlyph();
+						c.waitSignal(%[left_click : current_.hidePageGlyph]);
+					}
+				}
+			} incontextof this,
+
 			/* @clear_message_layer */
 			'clear_message_layer' => function (elm) {
 				clearMessageLayers(false);
@@ -660,6 +679,7 @@ class ModMessage extends GModule
 			.setRedirectTag('ruby', 'ruby_mod_message');
 			.setRedirectTag('r', 'r_mod_message');
 			.setRedirectTag('p', 'p_mod_message');
+			.setRedirectTag('l', 'l_mod_message');
 			.setRedirectTag('er', 'erase_message');
 			.setRedirectTag('cm', 'clear_message_layer');
 			.setRedirectTag('ct', 'reset_message_layer');
@@ -675,6 +695,7 @@ class ModMessage extends GModule
 			.deleteRedirectTag('ruby');
 			.deleteRedirectTag('r');
 			.deleteRedirectTag('p');
+			.deleteRedirectTag('l');
 			.deleteRedirectTag('er');
 			.deleteRedirectTag('cm');
 		}
