@@ -36,6 +36,7 @@ class ModMessage extends GModule
 
 	var current_ = null;
 	var outputInterval = 20;
+	var beforeNoWaitOutputInterval;
 	var autoWaitChEnabled_ = false;
 	var autoWaitChChars_ = '';
 	var autoWaitChWaits_ = [];
@@ -421,6 +422,17 @@ class ModMessage extends GModule
 					outputInterval = +elm.speed;
 			} incontextof this,
 
+			/* @nowait */
+			'nowait' => function (elm) {
+				beforeNoWaitOutputInterval = outputInterval;
+				outputInterval = 0;
+			} incontextof this,
+
+			/* @end_nowait */
+			'end_nowait' => function (elm) {
+				outputInterval = beforeNoWaitOutputInterval;
+			} incontextof this,
+
 		];
 	}
 
@@ -734,6 +746,7 @@ class ModMessage extends GModule
 
 		dic.messageLayers = messageLayers_.store(tick);
 		dic.outputInterval = outputInterval;
+		dic.beforeNoWaitOutputInterval = beforeNoWaitOutputInterval;
 		dic.autoWaitChEnabled = autoWaitChEnabled_;
 		dic.autoWaitChChars = autoWaitChChars_;
 		dic.autoWaitChWaits = autoWaitChWaits_;
@@ -751,6 +764,7 @@ class ModMessage extends GModule
 
 		messageLayers_.restore(dic.messageLayers);
 		outputInterval = dic.outputInterval;
+		beforeNoWaitOutputInterval = dic.beforeNoWaitOutputInterval;
 		autoWaitChEnabled_ = dic.autoWaitChEnabled;
 		autoWaitChChars_ = dic.autoWaitChChars;
 		autoWaitChWaits_ = dic.autoWaitChWaits;
