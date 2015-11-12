@@ -643,6 +643,12 @@ class GHyperTextLayer extends GWidgetLayer
 	}
 
 	/**/
+	function setRubyFontSize(size)
+	{
+		rubyFontSizeCache_ = size;
+	}
+
+	/**/
 	function setStrikeout(strikeout)
 	{
 		strikeoutCache_ = strikeout;
@@ -706,6 +712,7 @@ class GHyperTextLayer extends GWidgetLayer
 			setFontFace(tag.face) if tag.face !== void;
 			setFontSize(tag.size) if tag.size !== void;
 			setItalic(GObjectUtils.toBoolean(tag.italic)) if tag.italic !== void;
+			setRubyFontSize(tag.ruby_size) if tag.ruby_size !== void;
 			setBold(GObjectUtils.toBoolean(tag.bold)) if tag.bold !== void;
 			setStrikeout(GObjectUtils.toBoolean(tag.strikeout)) if tag.strikeout !== void;
 			setUnderline(GObjectUtils.toBoolean(tag.underline)) if tag.underline !== void;
