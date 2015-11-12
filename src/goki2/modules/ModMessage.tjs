@@ -302,11 +302,7 @@ class ModMessage extends GModule
 
 			/* @clear_message_layer */
 			'clear_message_layer' => function (elm) {
-				if(current_ !== null)
-				{
-					current_.clear();
-					historyLayer_.clear();
-				}
+				clearMessageLayers();
 			} incontextof this,
 
 			/* @erase_message */
@@ -575,6 +571,19 @@ class ModMessage extends GModule
 			}
 			skipTo(this.smCancel, bb);
 		}
+	}
+
+	/**/
+	function clearMessageLayer_private_(obj)
+	{
+		obj.clear();
+	}
+
+	/**/
+	function clearMessageLayers()
+	{
+		messageLayers.each(clearMessageLayer_private_);
+		historyLayer_.clear();
 	}
 
 	/**/
