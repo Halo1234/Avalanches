@@ -17,7 +17,7 @@ class GHistoryVerticalLayout extends GVerticalLayout
 	{
 		if(layer.visible)
 		{
-			if((baseLine + getLineSize_private_() + lineSpace) > layer.width - marginRight)
+			if((baseLine + getLineSize() + lineSpace) > layer.width - marginRight)
 				return false;
 		}
 
@@ -27,7 +27,7 @@ class GHistoryVerticalLayout extends GVerticalLayout
 	/**/
 	function resetPosition()
 	{
-		var ls = getLineSize_private_();
+		var ls = getLineSize();
 
 		baseLine = marginLeft + ls;
 		lineSize = ls;
@@ -39,7 +39,7 @@ class GHistoryVerticalLayout extends GVerticalLayout
 	{
 		with(layer_)
 		{
-			var ls = getLineSize_private_();
+			var ls = getLineSize();
 
 			baseLine += ls + lineSpace;
 			lineSize = ls;
@@ -69,7 +69,7 @@ class GHistoryHorizontalLayout extends GHorizontalLayout
 	{
 		if(layer.visible)
 		{
-			if((baseLine - getLineSize_private_() - lineSpace) < marginTop)
+			if((baseLine - getLineSize() - lineSpace) < marginTop)
 				return false;
 		}
 
@@ -79,7 +79,7 @@ class GHistoryHorizontalLayout extends GHorizontalLayout
 	/**/
 	function resetPosition()
 	{
-		var ls = getLineSize_private_();
+		var ls = getLineSize();
 
 		baseLine = layer.height - marginBottom;
 		lineSize = ls;
@@ -91,7 +91,7 @@ class GHistoryHorizontalLayout extends GHorizontalLayout
 	{
 		with(layer_)
 		{
-			var ls = getLineSize_private_();
+			var ls = getLineSize();
 
 			baseLine -= ls + lineSpace;
 			lineSize = ls;
