@@ -433,6 +433,19 @@ class ModMessage extends GModule
 				outputInterval = beforeNoWaitOutputInterval;
 			} incontextof this,
 
+			/* @glyph */
+			'glyph' => function (elm) {
+				if(current_ !== null)
+				{
+					with(current_)
+					{
+						.fixGlyphPosition = GObjectUtils.getBoolean(elm, 'fix') if GObjectUtils.hasValue(elm, 'fix');
+						.glyphPositionX = +elm.left if elm.left !== void;
+						.glyphPositionY = +elm.top if elm.top !== void;
+					}
+				}
+			} incontextof this,
+
 		];
 	}
 

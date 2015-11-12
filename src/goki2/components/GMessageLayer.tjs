@@ -86,6 +86,10 @@ class GMessageLayer extends GHyperTextLayer
 	var pageGlyphLayer_ = void;
 	var lineGlyphLayer_ = void;
 
+	var fixGlyphPosition = false;
+	var glyphPositionX = 0;
+	var glyphPositionY = 0;
+
 	var invisibleByUser_ = false;
 	var visibleBackup_ = false;
 
@@ -188,7 +192,10 @@ class GMessageLayer extends GHyperTextLayer
 		{
 			if(layout.shouldWordWrap(.width, .height))
 				reline();
-			.setPos(layout.getCurrentLeft(.width, .height), layout.getCurrentTop(.width, .height));
+			if(fixGlyphPosition)
+				.setPos(glyphPositionX, glyphPositionY);
+			else
+				.setPos(layout.getCurrentLeft(.width, .height), layout.getCurrentTop(.width, .height));
 			.conductor.start();
 			.show();
 		}
@@ -221,7 +228,10 @@ class GMessageLayer extends GHyperTextLayer
 		{
 			if(layout.shouldWordWrap(.width, .height))
 				reline();
-			.setPos(layout.getCurrentLeft(.width, .height), layout.getCurrentTop(.width, .height));
+			if(fixGlyphPosition)
+				.setPos(glyphPositionX, glyphPositionY);
+			else
+				.setPos(layout.getCurrentLeft(.width, .height), layout.getCurrentTop(.width, .height));
 			.conductor.start();
 			.show();
 		}
