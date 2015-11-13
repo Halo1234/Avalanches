@@ -144,6 +144,14 @@ class ModImage extends GModule
 					.assignToMirror();
 			} incontextof this,
 
+			/* @copy_layer */
+			'copy_layer' => function (elm) {
+				with(findByElm(elm, false, 'destination_'))
+				{
+					.assign(findByElm(elm, false, 'source_'));
+				}
+			} incontextof this,
+
 			/* @start_animation */
 			'start_animation' => function (elm) {
 				with(findByElm(elm))
@@ -286,13 +294,13 @@ class ModImage extends GModule
 	}
 
 	/**/
-	function findByElm(elm, ignorePage = false)
+	function findByElm(elm, ignorePage = false, prefix = '')
 	{
 		var layer, layerName;
 
 		with(layerContainer_)
 		{
-			layerName = (elm.layer == '' ? .parentLayerName : elm.layer);
+			layerName = (elm[prefix + 'layer'] == '' ? .parentLayerName : elm[prefix + 'layer']);
 
 			if(ignorePage)
 			{
@@ -300,7 +308,7 @@ class ModImage extends GModule
 			}
 			else
 			{
-				switch(elm.page)
+				switch(elm['prefix' + page])
 				{
 				case void:		// Not break.
 				case 'fore':	layer = .get(layerName, true); break;
