@@ -152,6 +152,12 @@ class ModImage extends GModule
 				}
 			} incontextof this,
 
+			/* @free_image */
+			'free_image' => function (elm) {
+				with(findByElm(elm))
+					.clearImages();
+			} incontextof this,
+
 			/* @start_animation */
 			'start_animation' => function (elm) {
 				with(findByElm(elm))
