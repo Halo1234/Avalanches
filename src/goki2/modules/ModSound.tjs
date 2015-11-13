@@ -127,6 +127,7 @@ class ModSound extends GModule
 	var soundEffectBuffers_;
 	var voiceBuffers_;
 
+	var bgmStopInfos_ = %[];
 	var bgmLabelInfos_ = %[];
 
 	/**/
@@ -539,6 +540,19 @@ class ModSound extends GModule
 				}
 			} incontextof this,
 
+			/* @set_bgm_stop */
+			'set_bgm_stop' => function (elm) {
+				with(findBGMBufferByElm(elm))
+				{
+					var infos = bgmStopInfos_[.name];
+					if(infos === void)
+						infos = bgmStopInfos_[.name] = %[];
+					infos.storage = elm.storage;
+					infos.target = elm.target;
+					infos.exp = elm.exp;
+				}
+			} incontextof this,
+
 			/* @fadein_bgm */
 			'fadein_bgm' => function (elm) {
 				with(findBGMBufferByElm(elm))
@@ -712,6 +726,25 @@ class ModSound extends GModule
 	}
 
 	/**/
+	function onBGMStop(obj, prevStatus, status)
+	{
+		window.conductor.signal(@"&obj.name;_stop");
+
+		var info = bgmStopInfos_[obj.name];
+
+		if(info !== void)
+		{
+			if(info.exp !== void)
+                Scripts.eval(info.exp);
+            if(info.storage !== void || info.target !== void)
+			{
+				window.conductor.jumpScenario(info.storage, info.target);
+				window.conductor.start();
+			}
+		}
+	}
+
+	/**/
 	function onBGMLabel(obj, label)
 	{
 		var info = bgmLabelInfos_[obj.name][label];
@@ -734,7 +767,7 @@ class ModSound extends GModule
 		switch(message)
 		{
 		case 'onFadeCompleted':		window.conductor.signal(@"&obj.name;_fade"); break;
-		case 'onStatusChanged':		window.conductor.signal(@"&obj.name;_stop") if elm.prevStatus == 'play' && elm.status == 'stop'; break;
+		case 'onStatusChanged':		onBGMStop(obj, elm.prevStatus, elm.status) if elm.prevStatus == 'play' && elm.status == 'stop'; break;
 		case 'onLabel':				anotherCycle.add(onBGMLabel, obj, elm.name); break;
 		}
 	}
