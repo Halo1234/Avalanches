@@ -545,6 +545,7 @@ class ModSound extends GModule
 				{
 					.looping = GObjectUtils.toBoolean(elm.loop, false);
 					.open(elm.storage);
+					GObjectUtils.clearDictionary(bgmLabelInfos_[.name]);
 					.setLabel(elm.label) if elm.label !== void;
 					.fadein(+elm.time, +elm.delay);
 				}
@@ -586,6 +587,7 @@ class ModSound extends GModule
 				{
 					.looping = GObjectUtils.toBoolean(elm.loop, false);
 					.open(elm.storage);
+					GObjectUtils.clearDictionary(bgmLabelInfos_[.name]);
 					.setLabel(elm.label) if elm.label !== void;
 					.play();
 				}
@@ -603,6 +605,7 @@ class ModSound extends GModule
 				{
 					.looping = GObjectUtils.toBoolean(elm.loop, true);
 					.crossfade(elm.storage, +elm.time, +elm.overlap, +elm.delay);
+					GObjectUtils.clearDictionary(bgmLabelInfos_[.name]);
 				}
 			} incontextof this,
 
