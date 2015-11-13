@@ -39,6 +39,13 @@ class GWaveSoundBuffer extends WaveSoundBuffer
 		fadeStatus_ = 'fadeout';
 	}
 
+	/**/
+	function fadePause(time, delay = 0)
+	{
+		fade(0, time, delay);
+		fadeStatus_ = 'pause';
+	}
+
 	/*! \brief 外部イベント通知。
 	 *
 	 * \param [message] イベント名を文字列で指定します。
@@ -179,6 +186,9 @@ class GWaveSoundBuffer extends WaveSoundBuffer
 	{
 		if(fadeStatus_ == 'fadeout')
 			stop();
+		else
+		if(fadeStatus_ == 'pause')
+			paused = true;
 
 		fadeStatus_ = 'stable';
 
