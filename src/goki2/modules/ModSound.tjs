@@ -344,6 +344,12 @@ class ModSound extends GModule
 					.fadeout(+elm.time, +elm.delay);
 			} incontextof this,
 
+			/* @fade_pause_se */
+			'fade_pause_se' => function (elm) {
+				with(findSoundEffectBufferByElm(elm))
+					.fadePause(+elm.time, +elm.delay);
+			} incontextof this,
+
 			/* @fade_se */
 			'fade_se' => function (elm) {
 				with(findSoundEffectBufferByElm(elm))
@@ -417,6 +423,12 @@ class ModSound extends GModule
 			'fadeout_voice' => function (elm) {
 				with(findVoiceBufferByElm(elm))
 					.fadeout(+elm.time, +elm.delay);
+			} incontextof this,
+
+			/* @fade_pause_voice */
+			'fade_pause_voice' => function (elm) {
+				with(findVoiceBufferByElm(elm))
+					.fadePause(+elm.time, +elm.delay);
 			} incontextof this,
 
 			/* @fade_voice */
@@ -522,6 +534,12 @@ class ModSound extends GModule
 			'fadeout_bgm' => function (elm) {
 				with(findBGMBufferByElm(elm))
 					.fadeout(+elm.time, +elm.delay);
+			} incontextof this,
+
+			/* @fade_pause_bgm */
+			'fade_pause_bgm' => function (elm) {
+				with(findBGMBufferByElm(elm))
+					.fadePause(+elm.time, +elm.delay);
 			} incontextof this,
 
 			/* @fade_bgm */
