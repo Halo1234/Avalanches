@@ -15,6 +15,8 @@ class GWaveSoundBuffer extends WaveSoundBuffer
 	var fadeStatus_ = 'stable';		//  'stable': フェードしていない
 									//    'fade': フェード中
 									// 'fadeout': フェードアウト中
+									//   'pause': フェードポーズ中
+	var prevStatus_ = 'unload';
 
 	/**/
 	function GWaveSoundBuffer(owner, handler = void)
@@ -210,7 +212,9 @@ class GWaveSoundBuffer extends WaveSoundBuffer
 	{
 		super.onStatusChanged(...);
 
-		callHandler('onStatusChanged', %[status : status]);
+		callHandler('onStatusChanged', %[prevStatus : prevStatus_, status : status]);
+
+		prevStatus_ = status;
 	}
 
 	/**/
