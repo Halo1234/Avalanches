@@ -314,7 +314,7 @@ class ModImage extends GModule
 			}
 			else
 			{
-				switch(elm['prefix' + page])
+				switch(elm[prefix + 'page'])
 				{
 				case void:		// Not break.
 				case 'fore':	layer = .get(layerName, true); break;
