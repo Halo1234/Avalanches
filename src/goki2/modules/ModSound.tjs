@@ -30,13 +30,20 @@ class BGMBufferIterator extends GSoundBufferIterator
 		throw new GNotImplementedError('現在、CDMA タイプのＢＧＭバッファは実装されていません。');
 	}
 
+	function createWaveSoundBuffer(owner, handler)
+	{
+		var obj = new GWaveSoundBuffer2(owner, handler);
+
+		return obj;
+	}
+
 	function create(window)
 	{
 		var obj;
 
 		switch(creationBufferType_)
 		{
-		case 'WAVE':	obj = new GWaveSoundBuffer2(null, onBufferEvent); break;
+		case 'WAVE':	obj = createWaveSoundBuffer(null, onBufferEvent); break;
 		case 'MIDI':	/* Dead code. */ break;
 		case 'CDMA':	/* Dead code. */ break;
 		default:
@@ -401,6 +408,7 @@ class ModSound extends GModule
 				{
 					.looping = GObjectUtils.toBoolean(elm.loop, false);
 					.open(elm.storage);
+					.setLabel(elm.label) if elm.label !== void;
 					.fadein(+elm.time, +elm.delay);
 				}
 			} incontextof this,
@@ -423,6 +431,7 @@ class ModSound extends GModule
 				{
 					.looping = GObjectUtils.toBoolean(elm.loop, false);
 					.open(elm.storage);
+					.setLabel(elm.label) if elm.label !== void;
 					.play();
 				}
 			} incontextof this,
@@ -502,8 +511,9 @@ class ModSound extends GModule
 			'fadein_bgm' => function (elm) {
 				with(findBGMBufferByElm(elm))
 				{
-					.looping = GObjectUtils.toBoolean(elm.loop, true);
+					.looping = GObjectUtils.toBoolean(elm.loop, false);
 					.open(elm.storage);
+					.setLabel(elm.label) if elm.label !== void;
 					.fadein(+elm.time, +elm.delay);
 				}
 			} incontextof this,
@@ -538,6 +548,7 @@ class ModSound extends GModule
 				{
 					.looping = GObjectUtils.toBoolean(elm.loop, false);
 					.open(elm.storage);
+					.setLabel(elm.label) if elm.label !== void;
 					.play();
 				}
 			} incontextof this,

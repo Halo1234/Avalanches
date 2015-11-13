@@ -63,37 +63,6 @@ class GWaveSoundBuffer extends WaveSoundBuffer
 	}
 
 	/**/
-	function store(tick)
-	{
-		var dic = %[
-			name : name, currentStorage : currentStorage_, looping : looping
-		];
-
-		if(!looping || fadeStatus_ == 'fadeout')
-			dic.status = 'stop';
-		else
-			dic.status = status;
-
-		return dic;
-	}
-
-	/**/
-	function restore(dic, tick)
-	{
-		if(dic.currentStorage != '')
-			open(dic.currentStorage);
-		else
-			currentStorage_ = '';
-
-		looping = dic.looping;
-
-		// NOTE: フェードアウト後は必ず 0 になっているのでこのタイミングで元に戻しておく。
-		volume = 100000;
-
-		(dic.status == 'play' ? play : stop)();
-	}
-
-	/**/
 	function open(storage)
 	{
 		volume = 100000;
@@ -106,6 +75,20 @@ class GWaveSoundBuffer extends WaveSoundBuffer
 		super.open(actualStorageName);
 
 		currentStorage_ = storage;
+	}
+
+	/**/
+	function setLabel(label)
+	{
+		if(label !== void && labels !== void)
+		{
+			var position = labels[label];
+
+			if(position !== void)
+			{
+				samplePosition = position;
+			}
+		}
 	}
 
 	/**/
@@ -158,6 +141,37 @@ class GWaveSoundBuffer extends WaveSoundBuffer
 			worn(@"&currentStorage_; のフェイド停止に失敗しました。");
 			worn(e.message);
 		}
+	}
+
+	/**/
+	function store(tick)
+	{
+		var dic = %[
+			name : name, currentStorage : currentStorage_, looping : looping
+		];
+
+		if(!looping || fadeStatus_ == 'fadeout')
+			dic.status = 'stop';
+		else
+			dic.status = status;
+
+		return dic;
+	}
+
+	/**/
+	function restore(dic, tick)
+	{
+		if(dic.currentStorage != '')
+			open(dic.currentStorage);
+		else
+			currentStorage_ = '';
+
+		looping = dic.looping;
+
+		// NOTE: フェードアウト後は必ず 0 になっているのでこのタイミングで元に戻しておく。
+		volume = 100000;
+
+		(dic.status == 'play' ? play : stop)();
 	}
 
 	/**/

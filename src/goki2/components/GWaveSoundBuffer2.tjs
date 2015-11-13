@@ -55,6 +55,12 @@ class GWaveSoundBuffer2
 	}
 
 	/**/
+	function setLabel(label)
+	{
+		buffer1_.setLabel(label);
+	}
+
+	/**/
 	function play()
 	{
 		buffer1_.play();
