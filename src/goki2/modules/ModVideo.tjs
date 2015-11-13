@@ -175,6 +175,14 @@ class ModVideo extends GModule
 				}
 			} incontextof this,
 
+			/* @rewind_video */
+			'rewind_video' => function (elm) {
+				with(videoBuffers.at(+elm.slot))
+				{
+					.rewind();
+				}
+			} incontextof this,
+
 			/* @wait_video */
 			'wait_video' => function (elm, c) {
 				var iterator = videoBuffers;
