@@ -114,10 +114,15 @@ class ModBookmark extends GModule
 				copySaveData(+elm.source, +elm.destination);
 			} incontextof this,
 
-			/**/
+			/* @disable_store */
 			'disable_store' => function (elm) {
 				possibleSave_ = !GObjectUtils.getBoolean(elm, 'store', true);
 				possibleLoad_ = !GObjectUtils.getBoolean(elm, 'restore', false);
+			} incontextof this,
+
+			/* @erase_bookmark */
+			'erase_bookmark' => function (elm) {
+				eraseBookmark(+elm.number);
 			} incontextof this,
 		];
 	}
@@ -512,6 +517,7 @@ class ModBookmark extends GModule
 			.date = (new Date()).getTime();
 			.pageName = currentPageName_;
 			.summary = summary;
+			.enabled = true;
 		}
 
 		container.callHandler("onSave", data.user, data.core);
@@ -544,6 +550,12 @@ class ModBookmark extends GModule
 
 		if(!possibleLoad_)
 			return false;
+
+		with(getSaveDataInfo(fileName))
+		{
+			if(!.enabled)
+				return false;
+		}
 
 		var ctx = context_;
 		var mode = ctx.mode;
@@ -603,6 +615,20 @@ class ModBookmark extends GModule
 		}
 
 		saveLocation.save(fileName, data, mode);
+	}
+
+	/**/
+	function eraseBookmark(number)
+	{
+		var fileName = makeSaveDataFileName(number);
+
+		with(getSaveDataInfo(fileName))
+		{
+			.date = void;
+			.pageName = void;
+			.summary = void;
+			.enabled = false;
+		}
 	}
 
 	/**
