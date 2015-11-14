@@ -223,11 +223,19 @@ class ModVideo extends GModule
 				}
 			} incontextof this,
 
-			/**/
+			/* @close_video */
 			'close_video' => function (elm) {
 				with(videoBuffers.at(+elm.slot))
 				{
 					.close();
+				}
+			} incontextof this,
+
+			/* @cancel_video_event */
+			'cancel_video_event' => function (elm) {
+				with(videoBuffers.at(+elm.slot))
+				{
+					.cancelPeriodEvent();
 				}
 			} incontextof this,
 
