@@ -124,6 +124,46 @@ class ModBookmark extends GModule
 			'erase_bookmark' => function (elm) {
 				eraseBookmark(+elm.number);
 			} incontextof this,
+
+			/* @record */
+			'record' => function (elm) {
+				pushRecordAnchor();
+			} incontextof this,
+
+			/* @go_back */
+			'go_back' => function (elm) {
+				popRecordAnchor();
+			} incontextof this,
+
+			/* @start_anchor */
+			'start_anchor' => function (elm) {
+				saveStartAnchor();
+			} incontextof this,
+
+			/* @go_to_start */
+			'go_to_start' => function (elm) {
+				loadStartAnchor();
+			} incontextof this,
+
+			/* @save */
+			'save' => function (elm) {
+				save(+elm.place);
+			} incontextof this,
+
+			/* @load */
+			'load' => function (elm) {
+				load(+elm.place);
+			} incontextof this,
+
+			/**/
+			'save_temporary' => function (elm) {
+				saveTemporary(+elm.place);
+			} incontextof this,
+
+			/**/
+			'load_temporary' => function (elm) {
+				loadTemporary(+elm.place);
+			} incontextof this,
 		];
 	}
 
@@ -253,6 +293,47 @@ class ModBookmark extends GModule
 
 			startAnchorEnabled_ = false;
 		}
+	}
+
+	/**/
+	function pushRecordAnchor()
+	{
+		if(!recordAnchorEnabled_ || !storeOnLabelPassed)
+			return false;
+
+		var data = %[core : %[], user : userFlags_];
+
+		window.temporaryLocation.load('core', data.core);
+
+		recordAnchorStack_.push(data);
+
+		if(recordAnchorStack_.count > recordAnchorStackSize_)
+			recordAnchorStack_.shift();
+
+		return true;
+	}
+
+	/**/
+	function popRecordAnchor()
+	{
+		if(!recordAnchorEnabled_)
+			return false;
+
+		if(recordAnchorStack_.count <= 0)
+			return false;
+
+		var data = recordAnchorStack_.pop();
+
+		assignDictionary(userFlags, data.user);
+		window.restore(data.core);
+
+		return true;
+	}
+
+	/**/
+	function clearRecordAnchor()
+	{
+		recordAnchorStack_.clear();
 	}
 
 	/**
@@ -434,6 +515,33 @@ class ModBookmark extends GModule
 
 		// ƒ[ƒh‚µ‚½
 		systemFlagsLoaded_ = true;
+	}
+
+	/**/
+	function saveTemporary(number)
+	{
+		if(!storeAndSave)
+			return false;
+
+		var data = %[core : %[]]
+
+		window.temporaryLocation.load('core', data.core);
+		window.temporaryLocation.save(@"temporary&number;", data);
+
+		return true;
+	}
+
+	/**/
+	function loadTemporary(number)
+	{
+		if(!storeAndSave)
+			return false;
+
+		var data = %[];
+
+		window.temporaryLocation.load(@"temporary&number;", data);
+
+		window.restore(data.core, System.getTickCount());
 	}
 
 	/**
@@ -708,6 +816,10 @@ class ModBookmark extends GModule
 		dic.currentReadingFlagName = currentReadingFlagName;
 		dic.readingFlagRecording = readingFlagRecording;
 
+		dic.recordAnchorEnabled = recordAnchorEnabled_;
+		dic.recordAnchorStack = recordAnchorStack_;
+		dic.recordAnchorStackSize = recordAnchorStackSize_;
+
 		dic.startAnchorEnabled = startAnchorEnabled_;
 
 		dic.recordAnchorEnabled = recordAnchorEnabled_;
@@ -734,6 +846,10 @@ class ModBookmark extends GModule
 		currentPageName_ = dic.currentPageName;
 		currentReadingFlagName = dic.currentReadingFlagName;
 		readingFlagRecording = dic.readingFlagRecording;
+
+		recordAnchorEnabled_ = dic.recordAnchorEnabled;
+		recordAnchorStack_ = dic.recordAnchorStack;
+		recordAnchorStackSize_ = dic.recordAnchorStackSize;
 
 		startAnchorEnabled_ = dic.startAnchorEnabled;
 
@@ -798,6 +914,7 @@ class ModBookmark extends GModule
 
 						firstStored_ = true;
 						possibleSave_ = true;
+						possibleLoad_ = true;
 					}
 					else
 					{
