@@ -389,7 +389,7 @@ class ModImage extends GModule
 		if(elm.mode !== void)
 		{
 			if(imageTagLayerType[elm.mode] !== void)
-				layer.type = imageTagLayerType[elm.mode];
+				layer.type = imageTagLayerType[elm.mode].type;
 			else
 			if(typeof(global[elm.mode]) !== 'undefined')
 				layer.type = global[elm.mode];

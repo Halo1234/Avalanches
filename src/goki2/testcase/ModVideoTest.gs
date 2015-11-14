@@ -23,10 +23,13 @@
 ビデオを再生しました。[p][cm]
 
 *label|
-@set_video_layer layer=base page=fore channel=1
+@set_video_layer layer=0 page=fore channel=1
 @open_video storage=sample.wmv
+
 @prepare_video
 @wait_period_event for=prepare
+@load_image layer=0 visible=1 mode=opaque
+
 @play_video
 
 レイヤでビデオを再生しました。[p][cm]
