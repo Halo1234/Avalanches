@@ -523,7 +523,7 @@ class ModBookmark extends GModule
 		if(!storeAndSave)
 			return false;
 
-		var data = %[core : %[]]
+		var data = %[core : %[]];
 
 		window.temporaryLocation.load('core', data.core);
 		window.temporaryLocation.save(@"temporary&number;", data);
