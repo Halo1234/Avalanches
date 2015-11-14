@@ -72,7 +72,7 @@ class ModBookmark extends GModule
 	}
 
 	/**/
-	function extensionTagHandlers()
+	function createExtensionTagHandlers()
 	{
 		return %[
 
@@ -103,10 +103,15 @@ class ModBookmark extends GModule
 				GObjectUtils.clearDictionary(systemUserFlags_);
 			} incontextof this,
 
+			/* @clear_variables */
 			'clear_variables' => function (elm) {
 				GObjectUtils.clearDictionary(userFlags_);
 			} incontextof this,
 
+			/* @copy_bookmark */
+			'copy_bookmark' => function (elm) {
+				copySaveData(+elm.source, +elm.destination);
+			} incontextof this,
 		];
 	}
 
@@ -531,7 +536,7 @@ class ModBookmark extends GModule
 		var ctx = context_;
 		var mode = ctx.mode;
 
-		if(ctx.format != "")
+		if(ctx.format != '')
 			mode = @"o&ctx.thumbnailInfo.size;";
 
 		var data = %[];
@@ -543,6 +548,47 @@ class ModBookmark extends GModule
 		GObjectUtils.assignDictionary(userFlags_, (data.user === void ? %[] : data.user));
 
 		window.restore(data.core);
+	}
+
+	/**/
+	function copySaveData(src, dest)
+	{
+		var fileName = makeSaveDataFileName(src);
+
+		if(!isExistentSaveData(fileName))
+			throw new Exception(@"セーブデータ「&fileName;」が見つかりませんでした。");
+
+		var ctx = context_;
+		var mode = ctx.mode;
+
+		if(ctx.format != '')
+		{
+			mode = @"o&ctx.thumbnailInfo.size;";
+
+			var layer = new GLayer(window, window.primaryLayer);
+
+			layer.loadImages(fileName);
+			layer.setSizeToImageSize();
+
+			saveLocation.save(fileName, layer, ctx.format);
+		}
+
+		var srcInfo = getSaveDataInfo(fileName);
+
+		var data = %[];
+
+		saveLocation.load(fileName, data, mode);
+
+		fileName = makeSaveDataFileName(dest);
+
+		with(getSaveDataInfo(fileName))
+		{
+			.date = srcInfo.date;
+			.pageName = srcInfo.pageName;
+			.summary = srcInfo.summary;
+		}
+
+		saveLocation.save(fileName, data, mode);
 	}
 
 	/**
