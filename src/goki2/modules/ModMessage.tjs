@@ -375,8 +375,16 @@ class ModMessage extends GModule
 
 			/* @click_skip */
 			'click_skip' => function (elm, c) {
+				var modBookmark = container.get('modBookmark');
 				clickSkipEnabled = GObjectUtils.getBoolean(elm, 'enabled') if GObjectUtils.hasValue(elm, 'enabled');
-				cancelSkip() if !clickSkipEnabled;
+				if(modBookmark !== void && modBookmark.storeSkipping)
+				{
+					cancelSkipQuery = true;
+				}
+				else
+				{
+					cancelSkip() if !clickSkipEnabled;
+				}
 			} incontextof this,
 
 			/* @hidden_message */
@@ -401,8 +409,18 @@ class ModMessage extends GModule
 
 			/* @s */
 			's' => function (elm, c) {
+				var modBookmark = container.get('modBookmark');
 				if(nextSkipEnabled && skipMode_ == smNextStop)
-					cancelSkip();
+				{
+					if(modBookmark !== void && modBookmark.storeSkipping)
+					{
+						cancelSkipQuery = true;
+					}
+					else
+					{
+						cancelSkip();
+					}
+				}
 				if(!elm.eof)
 					return 'stop';
 				// EOFèàóù
@@ -926,7 +944,16 @@ class ModMessage extends GModule
 	{
 		switch(key)
 		{
-		case skipKey:	cancelSkip(); break;
+		case skipKey:
+			if(container.isLoaded('modBookmark'))
+			{
+				container.modBookmark.cancelSkipQuery = true;
+			}
+			else
+			{
+				cancelSkip();
+			}
+			break;
 		}
 	}
 

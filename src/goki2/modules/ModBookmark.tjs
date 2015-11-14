@@ -12,6 +12,8 @@ class ModBookmark extends GModule
 	var storeOnLabelPassed = true;					// セーブ可能なラベル通過時にストアするかどうか
 	var storeAndSave = true;						// true ならセーブもストアもしない
 
+	var storeSkipping = false;
+
 	var context_ = %[
 		name : '',
 		format : '',
@@ -433,6 +435,9 @@ class ModBookmark extends GModule
 		if(!storeAndSave)
 			return;
 
+		if(!possibleSave_)
+			throw new GRuntimeError('セーブ可能な状態ではありません。');
+
 		var data = %[user : userFlags_];
 
 		if(storeOnLabelPassed)
@@ -667,7 +672,7 @@ class ModBookmark extends GModule
 	}
 
 	/**/
-	var regOnForceStored_static_ = new RegExp("^\\*force_store.*", "");
+	var regOnForceStored_static_ = new RegExp("^\\*.*force_store.*", "");
 	function onLabel(label, name, firstLabelProcessed)
 	{
 		var tick = System.getTickCount();
@@ -699,7 +704,8 @@ class ModBookmark extends GModule
 					if((modMessage !== void && !modMessage.longSkipping) ||
 						!firstLabelProcessed ||
 						regOnForceStored_static_.test(label) ||
-						!firstStored_)
+						!firstStored_ ||
+						!storeSkipping)
 					{
 						.temporaryLocation.save('core', .store());
 
