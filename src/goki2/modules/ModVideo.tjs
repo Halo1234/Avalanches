@@ -183,6 +183,39 @@ class ModVideo extends GModule
 				}
 			} incontextof this,
 
+			/* @pause_video */
+			'pause_video' => function (elm) {
+				with(videoBuffers.at(+elm.slot))
+				{
+					.paused = true;
+				}
+			} incontextof this,
+
+			/* @resume_video */
+			'resume_video' => fucntion (elm) {
+				with(videoBuffers.at(+elm.slot))
+				{
+					.paused = false;
+				}
+			} incontextof this,
+
+			/* @set_video_event */
+			'set_video_event' => function (elm) {
+				with(videoBuffers.at(+elm.slot))
+				{
+					.setPeriodEvent(+elm.frame);
+				}
+			} incontextof this,
+
+			/* @set_video_segment_loop */
+			'set_video_segment_loop' => function (elm) {
+				with(videoBuffers.at(+elm.slot))
+				{
+					if(elm.start !== void && elm.end !== void)
+						.setSegmentLoop(+elm.start, +elm.end);
+				}
+			} incontextof this,
+
 			/* @wait_video */
 			'wait_video' => function (elm, c) {
 				var iterator = videoBuffers;

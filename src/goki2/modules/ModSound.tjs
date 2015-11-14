@@ -631,6 +631,14 @@ class ModSound extends GModule
 				}
 			} incontextof this,
 
+			/* @clear_bgm_stop */
+			'clear_bgm_stop' => function (elm) {
+				with(findBGMBufferByElm(elm))
+				{
+					GObjectUtils.clearDictionary(bgmStopInfos_[.name]);
+				}
+			} incontextof this,
+
 			/* @wait_bgm_fade */
 			'wait_bgm_fade' => function (elm, c) {
 				with(findBGMBufferByElm(elm))

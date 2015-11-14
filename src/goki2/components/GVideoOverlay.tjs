@@ -293,7 +293,7 @@ class GVideoOverlay extends VideoOverlay
 	property paused
 	{
 		setter(x)	{ (x ? pause : resume)(); }
-		getter		{ return _paused; }
+		getter		{ return paused_; }
 	}
 
 	/**/
