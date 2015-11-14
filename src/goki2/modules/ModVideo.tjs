@@ -239,6 +239,14 @@ class ModVideo extends GModule
 				}
 			} incontextof this,
 
+			/* @cancel_video_segment_loop */
+			'cancel_video_segment_loop' => function (elm) {
+				with(videoBuffers.at(+elm.slot))
+				{
+					.cancelSegmentLoop();
+				}
+			} incontextof this,
+
 		];
 	}
 
