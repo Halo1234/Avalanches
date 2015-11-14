@@ -8,6 +8,7 @@ class ModBookmark extends GModule
 {
 	var firstStored_ = false;
 	var possibleSave_ = false;
+	var possibleLoad_ = true;
 
 	var storeOnLabelPassed = true;					// セーブ可能なラベル通過時にストアするかどうか
 	var storeAndSave = true;						// true ならセーブもストアもしない
@@ -111,6 +112,12 @@ class ModBookmark extends GModule
 			/* @copy_bookmark */
 			'copy_bookmark' => function (elm) {
 				copySaveData(+elm.source, +elm.destination);
+			} incontextof this,
+
+			/**/
+			'disable_store' => function (elm) {
+				possibleSave_ = !GObjectUtils.getBoolean(elm, 'store', true);
+				possibleLoad_ = !GObjectUtils.getBoolean(elm, 'restore', false);
 			} incontextof this,
 		];
 	}
@@ -429,8 +436,8 @@ class ModBookmark extends GModule
 	**/
 	function save(number, summary = '')
 	{
-		save_private_(makeSaveDataFileName(number), summary);
-		context_.lastSaveNumber = number;
+		if(save_private_(makeSaveDataFileName(number), summary))
+			context_.lastSaveNumber = number;
 	}
 
 	/**/
@@ -441,7 +448,7 @@ class ModBookmark extends GModule
 			return;
 
 		if(!possibleSave_)
-			throw new GRuntimeError('セーブ可能な状態ではありません。');
+			return false;
 
 		var data = %[user : userFlags_];
 
@@ -514,6 +521,8 @@ class ModBookmark extends GModule
 
 		// システム変数を保存
 		saveSystemVariables();
+
+		return true;
 	}
 
 	/**
@@ -521,8 +530,8 @@ class ModBookmark extends GModule
 	**/
 	function load(number)
 	{
-		load_private_(makeSaveDataFileName(number));
-		context_.lastLoadNumber = number;
+		if(load_private_(makeSaveDataFileName(number)))
+			context_.lastLoadNumber = number;
 	}
 
 	/**
@@ -532,6 +541,9 @@ class ModBookmark extends GModule
 	{
 		if(!isExistentSaveData(fileName))
 			throw new Exception(@"セーブデータ「&fileName;」が見つかりませんでした。");
+
+		if(!possibleLoad_)
+			return false;
 
 		var ctx = context_;
 		var mode = ctx.mode;
@@ -548,6 +560,8 @@ class ModBookmark extends GModule
 		GObjectUtils.assignDictionary(userFlags_, (data.user === void ? %[] : data.user));
 
 		window.restore(data.core);
+
+		return true;
 	}
 
 	/**/
