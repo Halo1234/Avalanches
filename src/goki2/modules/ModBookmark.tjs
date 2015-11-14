@@ -101,6 +101,10 @@ class ModBookmark extends GModule
 				GObjectUtils.clearDictionary(systemUserFlags_);
 			} incontextof this,
 
+			'clear_variables' => function (elm) {
+				GObjectUtils.clearDictionary(userFlags_);
+			} incontextof this,
+
 		];
 	}
 
@@ -654,6 +658,15 @@ class ModBookmark extends GModule
 		}
 	}
 
+	/**/
+	function onAttach(name)
+	{
+		global.f = userFlags_;
+		global.sf = systemUserFlags_;
+		global.tf = temporaryFlags_;
+	}
+
+	/**/
 	var regOnForceStored_static_ = new RegExp("^\\*force_store.*", "");
 	function onLabel(label, name, firstLabelProcessed)
 	{
