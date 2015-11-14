@@ -27,6 +27,12 @@
 
 *label|
 @using_mod_adv
+
+@input name=f.test prompt=入力してください。 title=入力
+
+[ハロ][emb exp=f.test]入力のテストです。
+
+*label|
 @ハロ ポーズ１ 表情１ 表示
 
 ;@cursor default_cursor=&crCross

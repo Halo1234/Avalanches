@@ -221,6 +221,17 @@ class GConductor extends KAGParser
 				Scripts.eval(elm.exp);
 			} incontextof this,
 
+			/* @input */
+			'input' => function (elm) {
+				var name = elm.name;
+				var initial = Scripts.eval(name);
+				var result = System.inputString(elm.title, elm.prompt, initial);
+				if(result !== void)
+				{
+					Scripts.eval(@"var func = function () { &name; = this.temp; } incontextof Instant(%[temp : '&result;']); func();");
+				}
+			} incontextof this,
+
 			/* @interrupt */
 			'interrupt' => function (elm) {
 				return 'stop';
