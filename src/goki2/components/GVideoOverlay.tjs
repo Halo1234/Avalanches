@@ -98,7 +98,7 @@ class GVideoOverlay extends VideoOverlay
 	function prepare()
 	{
 		super.prepare();
-		inPreprare = true;
+		inPrepare_ = true;
 	}
 
 	/**/
@@ -252,7 +252,7 @@ class GVideoOverlay extends VideoOverlay
 
 		switch(type)
 		{
-		case prePrepare:	inPreprare = false; break;
+		case perPrepare:	inPrepare_ = false; break;
 		}
 
 		callHandler('onPeriod', %[type: type]);

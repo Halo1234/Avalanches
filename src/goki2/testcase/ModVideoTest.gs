@@ -25,7 +25,8 @@
 *label|
 @set_video_layer layer=base page=fore channel=1
 @open_video storage=sample.wmv
-@video left=0 top=0 width=800 height=600
+@prepare_video
+@wait_period_event for=prepare
 @play_video
 
 レイヤでビデオを再生しました。[p][cm]

@@ -212,7 +212,7 @@ class GWaveSoundBuffer extends WaveSoundBuffer
 	{
 		super.onStatusChanged(...);
 
-		callHandler('onStatusChanged', %[prevStatus : prevStatus_, status : status]);
+		callHandler('onStatusChanged', %[prev : prevStatus_, now : status]);
 
 		prevStatus_ = status;
 	}
