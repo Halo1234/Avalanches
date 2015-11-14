@@ -232,6 +232,13 @@ class GConductor extends KAGParser
 				}
 			} incontextof this,
 
+			/* @trace */
+			'trace' => function (elm) {
+				var exp = elm.exp;
+				var result = Scripts.eval(exp);
+				dm(@"Бе[trace] expression='&exp;' type of result=&typeof(result); result=&result;");
+			} incontextof this,
+
 			/* @interrupt */
 			'interrupt' => function (elm) {
 				return 'stop';
