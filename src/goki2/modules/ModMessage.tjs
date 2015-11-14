@@ -482,6 +482,25 @@ class ModMessage extends GModule
 				}
 			} incontextof this,
 
+			/* @wait_trigger */
+			'wait_trigger' => function (elm) {
+				if(GObjectUtils.getBoolean(elm, 'skip') && clickSkipEnabled)
+				{
+					if(skipping)
+					{
+						Scripts.eval(elm.on_skip) if elm.on_skip !== void;
+						return 0;
+					}
+					waitSignal(%[
+						left_click_arg => elm.on_skip,
+						left_click => function (onSkip) {
+							Scripts.eval(onSkip) if onSkip !== void;
+						} incontextof this,
+						elm.name => null
+					]);
+				}
+			} incontextof this,
+
 		];
 	}
 
