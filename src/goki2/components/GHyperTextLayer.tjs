@@ -597,6 +597,7 @@ class GHyperTextLayer extends GWidgetLayer
 	var lastCharacter_ = '';
 
 	var contents_ = [];
+	var currentLine = 0;
 
 	/**/
 	function GHyperTextLayer(window, parent, handler)
@@ -788,7 +789,12 @@ class GHyperTextLayer extends GWidgetLayer
 			break;
 		}
 
-		contents_.push(GObjectUtils.clone(tag)) if storeContents;
+		if(storeContents)
+		{
+			if(contents_[currentLine] === void)
+				contents_[currentLine] = [];
+			contents_[currentLine].push(GObjectUtils.clone(tag));
+		}
 
 		return true;
 	}
@@ -805,7 +811,7 @@ class GHyperTextLayer extends GWidgetLayer
 
 				.returnPosition();
 
-				contents_.push(%[tagname : 'reline']);
+				currentLine++;
 			}
 		}
 
@@ -834,6 +840,7 @@ class GHyperTextLayer extends GWidgetLayer
 		outputting_ = false;
 		splitingPage_ = false;
 		contents_.clear();
+		currentLine = 0;
 		layout.resetPosition();
 
 		onEraseText();

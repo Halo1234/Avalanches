@@ -160,25 +160,24 @@ class GHistoryLayer extends GHyperTextLayer
 	/**/
 	function storeHistoryData()
 	{
-		var tags = contents;
-		var max = tags.count;
+		var cnts = contents;
+		var max = cnts.count;
 		var hd = historyData_;
 		var hdmax = historyDataMax_;
 		var ptr = writePointer_;
-		var line = allocHistory_private_(ptr++);
+		var line;
 
 		ptr = 0 if ptr > hdmax;
 		for(var i = 0; i < max; i++)
 		{
-			if(tags[i].tagname == 'reline')
-			{
-				line = allocHistory_private_(ptr++);
-				ptr = 0 if ptr > hdmax;
-				continue;
-			}
+			line = allocHistory_private_(ptr++);
+			ptr = 0 if ptr > hdmax;
 
-			if(tags[i].tagname == 'ch')
-				line.push(tags[i]);
+			for(var j = 0; j < cnts[i].count; j++)
+			{
+				if(cnts[i][j].tagname == 'ch')
+					line.push(cnts[i][j]);
+			}
 		}
 
 		freeHistory_private_(ptr);
@@ -551,7 +550,12 @@ class GHistoryLayer extends GHyperTextLayer
 
 			if(!renderCharacter(tag.text))
 				return false;
-			contents.push(GObjectUtils.clone(tag)) if storeContents;
+			if(storeContents)
+			{
+				if(contents[currentLine] === void)
+					contents[currentLine] = [];
+				contents[currentLine].push(GObjectUtils.clone(tag));
+			}
 		}
 	}
 
