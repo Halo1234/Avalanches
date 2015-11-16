@@ -134,7 +134,7 @@ class GVerticalLayout
 	/**/
 	function setPositionX(x)
 	{
-		baseLine = x - marginRight_ - (ls >> 1);
+		baseLine = x - marginRight_ - (getLineSize() >> 1);
 	}
 
 	function setPositionY(y)
@@ -458,7 +458,7 @@ class GHorizontalLayout
 	/**/
 	function setPositionY(y)
 	{
-		baseLine = marginTop_ + y + ls;
+		baseLine = marginTop_ + y + getLineSize();
 	}
 
 	/**/

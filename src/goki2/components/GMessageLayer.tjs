@@ -227,7 +227,6 @@ class GMessageLayer extends GHyperTextLayer
 		{
 			var line = links_[currentLine];
 			var link = %[
-				type : ltNormal,
 				baseLine : layout.baseLine,
 				lineSize : layout.lineSize,
 				start : layout.characterPosition,
@@ -261,15 +260,21 @@ class GMessageLayer extends GHyperTextLayer
 	/**/
 	function getLineNumber(x, y)
 	{
-		var lines = contents_;
+		var lines = links_;
 		var count = lines.count;
 
 		for(var i = 0; i < count; i++)
 		{
-			var lineInfo = lines[i][0];
+			if(lines[i] === void)
+				continue;
 
-			if(layout.includeLine(x, y, lineInfo.baseLine, lineInfo.lineSize))
-				return i;
+			for(var j = 0; j < lines[i].count; j++)
+			{
+				var lineInfo = lines[i][j];
+
+				if(layout.includeLine(x, y, lineInfo.baseLine, lineInfo.lineSize))
+					return i;
+			}
 		}
 
 		return -1;
