@@ -361,6 +361,25 @@ class ModMessage extends GModule
 				}
 			} incontextof this,
 
+			/* @link */
+			'link' => function (elm) {
+				if(current_ !== null)
+				{
+					elm.on_click_exp = createSoundExpression(elm.exp, elm.click_se, elm.click_se_buffer_number);
+					elm.on_enter_exp = createSoundExpression(elm.on_enter_exp, elm.enter_se, elm.enter_se_buffer_number);
+					elm.on_leave_exp = createSoundExpression(elm.on_leave_exp, elm.leave_se, elm.leave_se_buffer_number);
+					current_.beginLink(elm);
+				}
+			} incontextof this,
+
+			/* @end_link */
+			'end_link' => function (elm) {
+				if(current_ !== null)
+				{
+					current_.endLink();
+				}
+			} incontextof this,
+
 			/* @store_history_data */
 			'store_history_data' => function (elm) {
 				with(historyLayer_)
@@ -522,6 +541,26 @@ class ModMessage extends GModule
 		];
 	}
 
+	/**/
+	function createSoundExpression(exp, storage, buffer)
+	{
+		if(storage !== void)
+		{
+			if(container.isLoaded('modSound'))
+			{
+				var src = @"modSoundPlaySound(&buffer;, '&storage.escape();');";
+
+				if(exp !== void)
+					src += @", (&exp;);";
+
+				return src;
+			}
+		}
+
+		return exp;
+	}
+
+	/**/
 	function hideMessageLayerByUser()
 	{
 		messageLayers.each(
@@ -529,6 +568,7 @@ class ModMessage extends GModule
 		);
 	}
 
+	/**/
 	function showMessageLayerByUser()
 	{
 		messageLayers.each(
@@ -864,6 +904,25 @@ class ModMessage extends GModule
 	/**/
 	function onMessageLayerEvent(obj, message, elm)
 	{
+		switch(message)
+		{
+		case 'onLinkClick':
+			Script.eval(elm.onClickExp) if elm.onClickExp !== void;
+			if(elm.storage !== void || elm.target !== void)
+			{
+				window.conductor.jumpScenario(elm.storage, elm.target);
+				window.conductor.start();
+			}
+			break;
+
+		case 'onEnterLink':
+			Script.eval(elm.onEnterExp) if elm.onEnterExp !== void;
+			break;
+
+		case 'onLeaveLink':
+			Script.eval(elm.onLeaveExp) if elm.onLeaveExp !== void;
+			break;
+		}
 	}
 
 	/**/

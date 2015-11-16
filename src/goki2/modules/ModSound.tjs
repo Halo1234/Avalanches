@@ -4,6 +4,17 @@
 
 
 /**/
+function modSoundPlaySound(buffer, storage)
+{
+	var obj = window.modules.modSound.soundEffectBuffers.at(buffer);
+
+	obj.looping = false;
+	obj.open(storage);
+	obj.play();
+}
+
+
+/**/
 class BGMBufferIterator extends GSoundBufferIterator
 {
 	var types_ = [];

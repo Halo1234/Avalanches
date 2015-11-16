@@ -196,6 +196,30 @@ class GVerticalLayout
 	}
 
 	/**/
+	function getLineLeft(position, baseLine, lineSize)
+	{
+		return baseLine - (lineSize >> 1);
+	}
+
+	/**/
+	function getLineTop(position, baseLine, lineSize)
+	{
+		return position;
+	}
+
+	/**/
+	function getLineWidth(lineSize1, lineSize2)
+	{
+		return lineSize1;
+	}
+
+	/**/
+	function getLineHeight(lineSize1, lineSize2)
+	{
+		return lineSize2;
+	}
+
+	/**/
 	function getRubyLeft(rubyWidth, rubyHeight, chLeft, chTop, chWidth, chHeight)
 	{
 		var left = baseLine + (chWidth >> 1);
@@ -212,6 +236,22 @@ class GVerticalLayout
 		var top = characterPosition;
 
 		return top;
+	}
+
+	/**/
+	function includeLine(x, y, baseLine, lineSize)
+	{
+		if(x >= baseLine - (lineSize >> 1) && x <= baseLine + (lineSize >> 1))
+			return true;
+		return false;
+	}
+
+	/**/
+	function includePosition(x, y, startPosition, endPosition)
+	{
+		if(y >= startPosition && y <= endPosition)
+			return true;
+		return false;
 	}
 
 	/**/
@@ -463,6 +503,30 @@ class GHorizontalLayout
 	}
 
 	/**/
+	function getLineLeft(position, baseLine, lineSize)
+	{
+		return position;
+	}
+
+	/**/
+	function getLineTop(position, baseLine, lineSize)
+	{
+		return baseLine - lineSize;
+	}
+
+	/**/
+	function getLineWidth(lineSize1, lineSize2)
+	{
+		return lineSize2;
+	}
+
+	/**/
+	function getLineHeight(lineSize1, lineSize2)
+	{
+		return lineSize1;
+	}
+
+	/**/
 	function getRubyLeft(rubyWidth, rubyHeight, chLeft, chTop, chWidth, chHeight)
 	{
 		var left = (chLeft + (chWidth >> 1)) - (rubyWidth >> 1);
@@ -487,6 +551,22 @@ class GHorizontalLayout
 		//	top = layer_.height - marginBottom_;
 
 		return top;
+	}
+
+	/**/
+	function includeLine(x, y, baseLine, lineSize)
+	{
+		if(y >= baseLine - lineSize && y <= baseLine)
+			return true;
+		return false;
+	}
+
+	/**/
+	function includePosition(x, y, startPosition, endPosition)
+	{
+		if(x >= startPosition && x <= endPosition)
+			return true;
+		return false;
 	}
 
 	/**/
@@ -565,7 +645,6 @@ class GHyperTextLayer extends GWidgetLayer
 	var layoutMode_ = layoutModeCache_;
 	var layout_ = void;
 
-	var fixed_ = false;
 	var outputting_ = false;
 	var splitingPage_ = false;
 
@@ -603,7 +682,7 @@ class GHyperTextLayer extends GWidgetLayer
 	function GHyperTextLayer(window, parent, handler)
 	{
 		super.GWidgetLayer(...);
-		hitThreshold = 256;
+		hitThreshold = 0;
 
 		// NOTE: レイアウトは作り直しが発生する可能性があるので代行オブジェクトを通して破棄する。
 		family.receive(new GDestructor(resetLayout));
@@ -705,9 +784,6 @@ class GHyperTextLayer extends GWidgetLayer
 	**/
 	function output(tag, storeContents = true)
 	{
-		if(fixed_)
-			return false;
-
 		switch(tag.tagname)
 		{
 		case 'ch':
@@ -792,7 +868,13 @@ class GHyperTextLayer extends GWidgetLayer
 		if(storeContents)
 		{
 			if(contents_[currentLine] === void)
+			{
 				contents_[currentLine] = [];
+				contents_[currentLine][0] = %[
+					baseLine : layout.baseLine,
+					lineSize : layout.lineSize
+				];
+			}
 			contents_[currentLine].push(GObjectUtils.clone(tag));
 		}
 
@@ -806,12 +888,16 @@ class GHyperTextLayer extends GWidgetLayer
 		{
 			with(layout)
 			{
+				onEndLine();
+
 				if(!.possibleReline())
 					return false;
 
 				.returnPosition();
 
 				currentLine++;
+
+				onNewLine();
 			}
 		}
 
@@ -938,7 +1024,6 @@ class GHyperTextLayer extends GWidgetLayer
 		dic.layoutMode = layoutMode_;
 		dic.layout = layout_.store(tick) if layout_ !== void;
 
-		dic.fixed = fixed_;
 		dic.outputting = outputting_;
 
 		dic.marginLeftCache = marginLeftCache_;
@@ -983,7 +1068,6 @@ class GHyperTextLayer extends GWidgetLayer
 		layoutMode_ = dic.layoutMode;
 		layout.restore(dic.layout) if dic.layout !== void;
 
-		fixed_ = dic.fixed;
 		outputting_ = dic.outputting;
 
 		marginLeftCache_ = dic.marginLeftCache;
@@ -1014,6 +1098,16 @@ class GHyperTextLayer extends GWidgetLayer
 		lastCharacter_ = dic.lasttCharacter;
 
 		contents_.assignStruct(dic.contents);
+	}
+
+	/**/
+	function onNewLine()
+	{
+	}
+
+	/**/
+	function onEndLine()
+	{
 	}
 
 	/**/
@@ -1095,12 +1189,6 @@ class GHyperTextLayer extends GWidgetLayer
 	property layout
 	{
 		getter		{ return (layout_ === void ? (layout_ = createLayout(this)) : layout_); }
-	}
-
-	/**/
-	property fixed
-	{
-		getter		{ return fixed_; }
 	}
 
 	/**/

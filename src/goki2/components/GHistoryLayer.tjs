@@ -193,7 +193,6 @@ class GHistoryLayer extends GHyperTextLayer
 			hd[line] = [];
 		else
 			hd[line].clear();
-		hd[line].push(%[baseLine : 0, lineSize : 0]);
 
 		return hd[line];
 	}
@@ -533,9 +532,6 @@ class GHistoryLayer extends GHyperTextLayer
 	/**/
 	function output(tag, storeContents = true)
 	{
-		if(fixed_)
-			return false;
-
 		if(tag.tagname == 'ch')
 		{
 			if(!outputting_)
@@ -553,7 +549,10 @@ class GHistoryLayer extends GHyperTextLayer
 			if(storeContents)
 			{
 				if(contents[currentLine] === void)
+				{
 					contents[currentLine] = [];
+					contents_[currentLine][0] = %[baseLine : layout.baseLine, lineSize : layout.lineSize];
+				}
 				contents[currentLine].push(GObjectUtils.clone(tag));
 			}
 		}

@@ -77,6 +77,8 @@ class GRubyTextLayer extends GCharacterLayer
 /**/
 class GMessageLayer extends GHyperTextLayer
 {
+	var linkLayer_;
+
 	var usedCharacterLayers_ = [];
 	var notUsedCharacterLayers_ = [];
 	var usedRubyTextLayers_ = [];
@@ -90,6 +92,12 @@ class GMessageLayer extends GHyperTextLayer
 	var glyphPositionX = 0;
 	var glyphPositionY = 0;
 
+	var links_ = [];
+	var currentLinkID_ = 0;
+	var currentLinkObject_ = void;
+
+	var enterLinkID_ = void;
+
 	var invisibleByUser_ = false;
 	var visibleBackup_ = false;
 
@@ -97,13 +105,16 @@ class GMessageLayer extends GHyperTextLayer
 	{
 		super.GHyperTextLayer(...);
 
+		family.receive(linkLayer_ = new global.GLayer(window, this));
+		linkLayer_.visible = true;
+
 		family.receive(new GDestructor(GObjectUtils.dispose, usedCharacterLayers_));
 		family.receive(new GDestructor(GObjectUtils.dispose, notUsedCharacterLayers_));
 
-		pageGlyphLayer_ = new global.GLayer(window, this);
+		family.receive(pageGlyphLayer_ = new global.GLayer(window, this));
 		loadPageGlyph('PageGlyph');
 
-		lineGlyphLayer_ = new global.GLayer(window, this);
+		family.receive(lineGlyphLayer_ = new global.GLayer(window, this));
 		loadLineGlyph('LineGlyph');
 	}
 
@@ -117,6 +128,13 @@ class GMessageLayer extends GHyperTextLayer
 	function createRubyTextLayer(window, parent, handler)
 	{
 		return new GRubyTextLayer(...);
+	}
+
+	/**/
+	function setSize(width, height)
+	{
+		super.setSize(...);
+		linkLayer_.setSize(width, height) if linkLayer_ !== void;
 	}
 
 	/**/
@@ -173,6 +191,111 @@ class GMessageLayer extends GHyperTextLayer
 			layers[i].visible = false;
 		notUsedRubyTextLayers_.push(layers*);
 		layers.clear();
+	}
+
+	/**/
+	function beginLink(elm)
+	{
+		endLink();
+
+		currentLinkObject_ = %[
+			storage : elm.storage,
+			target : elm.target,
+			color : elm.color,
+			hint : elm.hint,
+			onClickExp : elm.on_click_exp,
+			onEnterExp : elm.on_enter_exp,
+			onLeaveExp : elm.on_leave_exp
+		];
+		currentLinkID_++;
+
+		internalBeginLink_private_();
+	}
+
+	/**/
+	function endLink()
+	{
+		internalEndLink_private_();
+
+		currentLinkObject_ = void;
+	}
+
+	/**/
+	function internalBeginLink_private_()
+	{
+		if(currentLinkObject_ !== void)
+		{
+			var line = links_[currentLine];
+			var link = %[
+				baseLine : layout.baseLine,
+				lineSize : layout.lineSize,
+				start : layout.characterPosition,
+				end : void,
+				object : currentLinkObject_,
+				id : currentLinkID_
+			];
+
+			if(line === void)
+				line = links_[currentLine] = [];
+			line.push(link);
+		}
+	}
+
+	/**/
+	function internalEndLink_private_()
+	{
+		if(currentLinkObject_ !== void)
+		{
+			var line = links_[currentLine];
+
+			if(line === void || line.count == 0)
+				return;
+
+			var link = line[line.count - 1];
+
+			link.end = layout.characterPosition;
+		}
+	}
+
+	/**/
+	function getLineNumber(x, y)
+	{
+		var lines = contents_;
+		var count = lines.count;
+
+		for(var i = 0; i < count; i++)
+		{
+			var lineInfo = lines[i][0];
+
+			if(layout.includeLine(x, y, lineInfo.baseLine, lineInfo.lineSize))
+				return i;
+		}
+
+		return -1;
+	}
+
+	/**/
+	function highLightLink(link)
+	{
+		linkLayer_.fillRect(
+			layout.getLineLeft(link.start, link.baseLine, link.lineSize),
+			layout.getLineTop(link.start, link.baseLine, link.lineSize),
+			layout.getLineWidth(link.lineSize, link.end - link.start),
+			layout.getLineHeight(link.lineSize, link.end - link.start),
+			0xFF000000 | clHighlight
+		);
+	}
+
+	/**/
+	function clearHightLight(link)
+	{
+		linkLayer_.fillRect(
+			layout.getLineLeft(link.start, link.baseLine, link.lineSize),
+			layout.getLineTop(link.start, link.baseLine, link.lineSize),
+			layout.getLineWidth(link.lineSize, link.end - link.start),
+			layout.getLineHeight(link.lineSize, link.end - link.start),
+			0
+		);
 	}
 
 	/**/
@@ -322,6 +445,18 @@ class GMessageLayer extends GHyperTextLayer
 	}
 
 	/**/
+	function onNewLine()
+	{
+		internalBeginLink_private_();
+	}
+
+	/**/
+	function onEndLine()
+	{
+		internalEndLink_private_();
+	}
+
+	/**/
 	function onRenderCharacter(ch, left, top, width, height)
 	{
 		var layer = allocCharacterLayer_private_();
@@ -361,6 +496,10 @@ class GMessageLayer extends GHyperTextLayer
 	{
 		freeCharacterLayers_private_();
 		freeRubyTextLayers_private_();
+
+		links_.clear();
+		endLink();
+		currentLinkID_ = 0;
 	}
 
 	/**/
@@ -371,6 +510,144 @@ class GMessageLayer extends GHyperTextLayer
 	/**/
 	function onRubyTextLayerEvent(obj, message, elm)
 	{
+	}
+
+	/**/
+	function onLinkClick(id)
+	{
+		var cnts = contents_;
+		var count = cnts.count;
+		var links = links_;
+		var data;
+
+		for(var i = 0; i < count; i++)
+		{
+			data = links[i];
+			if(data === void)
+				continue;
+			for(var j = 0; j < data.count; j++)
+			{
+				if(data[j].id == id)
+				{
+					callHandler('onLinkClick', data[j].object);
+					return;
+				}
+			}
+		}
+	}
+
+	/**/
+	function onEnterLink(id)
+	{
+		var links = links_;
+		var count = links.count;
+		var data;
+
+		for(var i = 0; i < count; i++)
+		{
+			data = links[i];
+			if(data === void)
+				continue;
+			for(var j = 0; j < data.count; j++)
+			{
+				if(data[j].id != id)
+					continue;
+				highLightLink(data[j]);
+				callHandler('onEnterLink', data[j].object);
+			}
+		}
+	}
+
+	/**/
+	function onLeaveLink(id)
+	{
+		var links = links_;
+		var count = links.count;
+		var layer = linkLayer_;
+		var data;
+
+		for(var i = 0; i < count; i++)
+		{
+			data = links[i];
+			if(data === void)
+				continue;
+			for(var j = 0; j < data.count; j++)
+			{
+				if(data[j].id != id)
+					continue;
+				clearHightLight(data[j]);
+				callHandler('onLeaveLink', data[j].object);
+			}
+		}
+	}
+
+	/**/
+	function onMouseUp(x, y, button, shift)
+	{
+		switch(button)
+		{
+		case mbLeft:
+			if(enterLinkID_ !== void)
+			{
+				onLinkClick(enterLinkID_);
+			}
+			else
+			{
+				window.leftClick(x, y, shift);
+			}
+			break;
+		}
+	}
+
+	/**/
+	function onMouseMove(x, y, shift)
+	{
+		super.onMouseMove(...);
+
+		var line = getLineNumber(x, y);
+
+		if(line === -1)
+		{
+			if(enterLinkID_ !== void)
+			{
+				onLeaveLink(enterLinkID_);
+				enterLinkID_ = void;
+			}
+			return;
+		}
+
+		var link = links_[line];
+
+		if(link === void)
+		{
+			if(enterLinkID_ !== void)
+			{
+				onLeaveLink(enterLinkID_);
+				enterLinkID_ = void;
+			}
+			return;
+		}
+
+		var count = link.count;
+
+		for(var i = 0; i < count; i++)
+		{
+			if(layout.includePosition(x, y, link[i].start, link[i].end))
+			{
+				if(enterLinkID_ != link[i].id)
+				{
+					onLeaveLink(enterLinkID_) if enterLinkID_ !== void;
+					onEnterLink(enterLinkID_ = link[i].id);
+				}
+				return;
+			}
+		}
+
+		if(enterLinkID_ !== void)
+		{
+			onLeaveLink(enterLinkID_);
+			enterLinkID_ = void;
+		}
 	}
 
 	property invisibleByUser

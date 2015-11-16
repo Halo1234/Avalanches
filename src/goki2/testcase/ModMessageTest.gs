@@ -15,8 +15,6 @@
 
 @cr_handling ignore
 
-@line_parameters line_size=24
-
 @show_message layer=message0
 @log message="メッセージレイヤ０を表示しました。"
 
@@ -30,10 +28,17 @@
 改行のテストです。[r]２行目のテキストです。[p][cm]
 
 *label|
+リンクの[link storage=ModMessageTest target=*next]テスト[end_link]です。[p][cm]
+
+*next
+
+*label|
 @click_skip enabled
 
 @auto_wait_ch enabled chars=、。 time=10,50
 自動ウェイトの、テストです。[p][cm]
+
+@line_parameters line_size=24
 
 *label|
 これは、[font face='ＭＳ Ｐ明朝' shadow_color=0x000000 size=24][indent]インデント[reset_font]のテストです。[r]
@@ -56,7 +61,9 @@
 @message_option layout_mode=vertical
 
 *label|
-縦書きのテストです。[p][cm]
+縦書きの[link storage=ModMessageTest target=*next2]テスト[end_link]です。[p][cm]
+
+*next2
 
 @default_font_parameters size=12
 @reset_font
