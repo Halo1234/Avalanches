@@ -28,7 +28,7 @@
 改行のテストです。[r]２行目のテキストです。[p][cm]
 
 *label|
-リンクの[locate x=100 y=100][link storage=ModMessageTest target=*next]テスト[end_link]です。[p][cm]
+リンクの[locate x=100 y=100][link storage=ModMessageTest target=*next]テスト[end_link]です。[button graphic=button target=*next2][p][cm]
 
 *next
 

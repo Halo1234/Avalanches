@@ -399,9 +399,15 @@ class ModMessage extends GModule
 			'link' => function (elm) {
 				if(current_ !== null)
 				{
-					elm.on_click_expression = createSoundExpression(elm.expression, elm.click_sound_effect, elm.click_sound_effect_buffer_number);
-					elm.on_enter_expression = createSoundExpression(elm.on_enter_expression, elm.enter_sound_effect, elm.enter_sound_effect_buffer_number);
-					elm.on_leave_expression = createSoundExpression(elm.on_leave_expression, elm.leave_sound_effect, elm.leave_sound_effect_buffer_number);
+					elm.on_click_expression = createSoundExpression(
+						elm.expression, elm.click_sound_effect, elm.click_sound_effect_buffer_number
+					);
+					elm.on_enter_expression = createSoundExpression(
+						elm.on_enter_expression, elm.enter_sound_effect, elm.enter_sound_effect_buffer_number
+					);
+					elm.on_leave_expression = createSoundExpression(
+						elm.on_leave_expression, elm.leave_sound_effect, elm.leave_sound_effect_buffer_number
+					);
 					current_.beginLink(elm);
 				}
 			} incontextof this,
@@ -411,6 +417,23 @@ class ModMessage extends GModule
 				if(current_ !== null)
 				{
 					current_.endLink();
+				}
+			} incontextof this,
+
+			/* @button */
+			'button' => function (elm) {
+				if(current_ !== null)
+				{
+					elm.on_click_expression = createSoundExpression(
+						elm.expression, elm.click_sound_effect, elm.click_sound_effect_buffer_number
+					);
+					elm.on_enter_expression = createSoundExpression(
+						elm.on_enter_expression, elm.enter_sound_effect, elm.enter_sound_effect_buffer_number
+					);
+					elm.on_leave_expression = createSoundExpression(
+						elm.on_leave_expression, elm.leave_sound_effect, elm.leave_sound_effect_buffer_number
+					);
+					current_.addButton(elm);
 				}
 			} incontextof this,
 
@@ -1032,7 +1055,8 @@ class ModMessage extends GModule
 	{
 		switch(message)
 		{
-		case 'onLinkClick':
+		case 'onClickLink':
+			dm(message);
 			Script.eval(elm.onClickExp) if elm.onClickExp !== void;
 			if(elm.storage !== void || elm.target !== void)
 			{

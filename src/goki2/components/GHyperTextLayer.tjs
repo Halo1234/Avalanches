@@ -267,6 +267,12 @@ class GVerticalLayout
 	}
 
 	/**/
+	function addPosition(x, y)
+	{
+		characterPosition += y;
+	}
+
+	/**/
 	function store(tick)
 	{
 		var dic = %[];
@@ -591,6 +597,12 @@ class GHorizontalLayout
 	function setLocateY(y)
 	{
 		baseLine = marginTop + y + getLineSize();
+	}
+
+	/**/
+	function addPosition(x, y)
+	{
+		characterPosition += x;
 	}
 
 	/**/

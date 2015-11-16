@@ -75,6 +75,23 @@ class GRubyTextLayer extends GCharacterLayer
 
 
 /**/
+class GLinkButtonLayer extends GButtonLayer
+{
+	var storage;
+	var target;
+
+	var onClickExp;
+	var onEnterExp;
+	var onLeaveExp;
+
+	function GLinkButtonLayer(window, parent, handler)
+	{
+		super.GButtonLayer(...);
+	}
+}
+
+
+/**/
 class GMessageLayer extends GHyperTextLayer
 {
 	var linkLayer_;
@@ -95,6 +112,11 @@ class GMessageLayer extends GHyperTextLayer
 	var links_ = [];
 	var currentLinkID_ = 0;
 	var currentLinkObject_ = void;
+
+	/* const */ var ltNormal = 1;
+	/* const */ var ltButton = 2;
+	/* const */ var ltEdit = 3;
+	/* const */ var ltCheckBox = 4;
 
 	var enterLinkID_ = void;
 
@@ -227,6 +249,7 @@ class GMessageLayer extends GHyperTextLayer
 		{
 			var line = links_[currentLine];
 			var link = %[
+				type : ltNormal,
 				baseLine : layout.baseLine,
 				lineSize : layout.lineSize,
 				start : layout.characterPosition,
@@ -272,12 +295,49 @@ class GMessageLayer extends GHyperTextLayer
 			{
 				var lineInfo = lines[i][j];
 
-				if(layout.includeLine(x, y, lineInfo.baseLine, lineInfo.lineSize))
-					return i;
+				if(lineInfo.type == ltNormal)
+				{
+					if(layout.includeLine(x, y, lineInfo.baseLine, lineInfo.lineSize))
+						return i;
+				}
 			}
 		}
 
 		return -1;
+	}
+
+	/**/
+	function addButton(elm)
+	{
+		var obj = new GLinkButtonLayer(window, this, onButtonEvent);
+		var line = links_[currentLine];
+		var link = %[
+			type : ltButton,
+			baseLine : layout.baseLine,
+			lineSize : layout.lineSize,
+			start : layout.characterPosition,
+			end : void,
+			object : obj,
+			id : currentLinkID_++
+		];
+
+		obj.loadImages(elm.graphic, elm.graphic_key);
+		obj.setPos(
+			layout.getLineLeft(link.start, link.baseLine, link.lineSize),
+			layout.getLineTop(link.start, link.baseLine, link.lineSize)
+		);
+		obj.storage = elm.storage;
+		obj.target = elm.target;
+		obj.onClickExp = elm.on_click_expression;
+		obj.onEnterExp = elm.on_enter_expression;
+		obj.onLeaveExp = elm.on_leave_expression;
+		obj.visible = true;
+
+		layout.addPosition(obj.width, obj.height);
+
+		if(line === void)
+			line = links_[currentLine] = [];
+		line.push(link);
 	}
 
 	/**/
@@ -503,6 +563,7 @@ class GMessageLayer extends GHyperTextLayer
 		freeCharacterLayers_private_();
 		freeRubyTextLayers_private_();
 
+		GObjectUtils.dispose(links_);
 		links_.clear();
 		endLink();
 		currentLinkID_ = 0;
@@ -535,7 +596,7 @@ class GMessageLayer extends GHyperTextLayer
 			{
 				if(data[j].id == id)
 				{
-					callHandler('onLinkClick', data[j].object);
+					callHandler('onClickLink', data[j].object);
 					return;
 				}
 			}
@@ -638,6 +699,8 @@ class GMessageLayer extends GHyperTextLayer
 
 		for(var i = 0; i < count; i++)
 		{
+			if(link[i].type != ltNormal)
+				continue;
 			if(layout.includePosition(x, y, link[i].start, link[i].end))
 			{
 				if(enterLinkID_ != link[i].id)
@@ -653,6 +716,17 @@ class GMessageLayer extends GHyperTextLayer
 		{
 			onLeaveLink(enterLinkID_);
 			enterLinkID_ = void;
+		}
+	}
+
+	/**/
+	function onButtonEvent(obj, message, elm)
+	{
+		switch(message)
+		{
+		case 'onMouseEnter':	callHandler('onEnterLink', obj); break;
+		case 'onMouseLeave':	callHandler('onLeaveLink', obj); break;
+		case 'onButton':		callHandler('onClickLink', obj); break;
 		}
 	}
 
