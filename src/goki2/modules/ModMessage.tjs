@@ -1024,6 +1024,11 @@ class ModMessage extends GModule
 			Script.eval(elm.onClickExp) if elm.onClickExp !== void;
 			if(elm.storage !== void || elm.target !== void)
 			{
+				if(current_ !== null)
+				{
+					current_.hidePageGlyph();
+					current_.hideLineGlyph();
+				}
 				window.conductor.jumpScenario(elm.storage, elm.target);
 				window.conductor.start();
 			}
