@@ -138,6 +138,18 @@ class ModMessage extends GModule
 				}
 			} incontextof this,
 
+			/* @locate */
+			'locate' => function (elm) {
+				if(current_ !== null)
+				{
+					with(current_.layout)
+					{
+						.setLocateX(+elm.x) if elm.x !== void;
+						.setLocateY(+elm.y) if elm.y !== void;
+					}
+				}
+			} incontextof this,
+
 			/* @message_option */
 			'message_option' => function (elm) {
 				with(findByElm(elm))

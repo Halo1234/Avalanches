@@ -227,6 +227,7 @@ class GMessageLayer extends GHyperTextLayer
 		{
 			var line = links_[currentLine];
 			var link = %[
+				type : ltNormal,
 				baseLine : layout.baseLine,
 				lineSize : layout.lineSize,
 				start : layout.characterPosition,
