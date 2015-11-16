@@ -70,6 +70,11 @@ class ModMessage extends GModule
 	var hasTimeoutEvent = false;
 	var timeoutTimer_;
 
+	var clickStorage_ = void;
+	var clickTarget_ = void;
+	var clickExpression_ = void;
+	var hasClickEvent_ = false;
+
 	var autoMode_ = false;
 	var autoPageWait = 2000;
 	var clickToAutoModeCancel = true;
@@ -590,6 +595,19 @@ class ModMessage extends GModule
 				clearTimeoutEvent();
 			} incontextof this,
 
+			/* @click */
+			'click' => function (elm) {
+				clickStorage_ = elm.storage;
+				clickTarget_ = elm.target;
+				clickExpression_ = createSoundExpression(elm.exp, elm.sound_effect, elm.sound_effect_buffer_number);
+				hasClickEvent_ = true;
+			} incontextof this,
+
+			/* @clear_click */
+			'clear_click' => function (elm) {
+				clearClickEvent();
+			} incontextof this,
+
 		];
 	}
 
@@ -630,6 +648,15 @@ class ModMessage extends GModule
 		timeoutExpression_ = void;
 		hasTimeoutEvent_ = false;
 		timeoutTimer_.enabled = false;
+	}
+
+	/**/
+	function clearClickEvent()
+	{
+		clickStorage_ = void;
+		clickTarget_ = void;
+		clickExpression_ = void;
+		hasClickEvent_ = false;
 	}
 
 	/**/
@@ -1027,6 +1054,18 @@ class ModMessage extends GModule
 	/**/
 	function onWindowLeftClick(x, y, shift)
 	{
+		if(hasClickEvent_)
+		{
+			Script.eval(clickExpression_) if clickExpression_ !== void;
+			if(clickStorage_ !== void || clickTarget_ !== void)
+			{
+				window.conductor.jumpScenario(clickStorage_, clickTarget_);
+				window.conductor.start();
+				clearClickEvent();
+			}
+			return;
+		}
+
 		if(autoMode)
 		{
 			if(clickToAutoModeCancel)
