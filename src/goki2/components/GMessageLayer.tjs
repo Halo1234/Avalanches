@@ -203,9 +203,9 @@ class GMessageLayer extends GHyperTextLayer
 			target : elm.target,
 			color : elm.color,
 			hint : elm.hint,
-			onClickExp : elm.on_click_exp,
-			onEnterExp : elm.on_enter_exp,
-			onLeaveExp : elm.on_leave_exp
+			onClickExp : elm.on_click_expression,
+			onEnterExp : elm.on_enter_expression,
+			onLeaveExp : elm.on_leave_expression
 		];
 		currentLinkID_++;
 
@@ -576,7 +576,7 @@ class GMessageLayer extends GHyperTextLayer
 				if(data[j].id != id)
 					continue;
 				clearHightLight(data[j]);
-				callHandler('onLeaveLink', data[j].object);
+				callHandler('onLeaveLink', data[j].objec);
 			}
 		}
 	}
