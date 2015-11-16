@@ -175,7 +175,7 @@ class ModMessage extends GModule
 				}
 			} incontextof this,
 
-			/**/
+			/* @history_option */
 			'history_option' => function (elm) {
 				with(historyLayer_)
 				{
