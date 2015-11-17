@@ -369,6 +369,22 @@ class ModMessage extends GModule
 				}
 			} incontextof this,
 
+			/* @history_reline */
+			'history_reline' => function (elm) {
+				if(outputHistory)
+				{
+					if(GObjectUtils.getBoolean(elm, 'repage', true))
+					{
+						.storeHistoryData();
+						.clear();
+					}
+					else
+					{
+						.reline();
+					}
+				}
+			} incontextof this,
+
 			/* @clear_message_layer */
 			'clear_message_layer' => function (elm) {
 				clearMessageLayers(false);
