@@ -321,7 +321,7 @@ class ModMessage extends GModule
 					if(!current_.reline())
 						c.pendingTag('p');
 
-					historyLayer_.reline() outputHisotyr_;
+					historyLayer_.reline() if outputHistory;
 				}
 			} incontextof this,
 
@@ -679,6 +679,16 @@ class ModMessage extends GModule
 			/* @show_history */
 			'show_history' => function (elm) {
 				showHistoryLayer();
+			} incontextof this,
+
+			/* @history_action */
+			'history_action' => function (elm) {
+				historyLayer_.beginAction(elm);
+			} incontextof this,
+
+			/**/
+			'end_history_action' => function (elm) {
+				historyLayer_.endAction();
 			} incontextof this,
 
 		];
@@ -1177,10 +1187,15 @@ class ModMessage extends GModule
 	{
 		// 履歴レイヤが非表示にされる場合
 		// コンダクタの停止状態を解除しなければならない
-		if(message == 'onHideCompleted')
+		switch(message)
 		{
+		case 'onHideCompleted':
 			window.conductor.suspended = false;
 			container.callHandler('onHideHistoryLayer');
+			break;
+		case 'onClickAction':
+			Scripts.eval(elm.exp);
+			break;
 		}
 	}
 

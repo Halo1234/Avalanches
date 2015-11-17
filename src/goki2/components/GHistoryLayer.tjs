@@ -104,10 +104,18 @@ class GHistoryHorizontalLayout extends GHorizontalLayout
 /**/
 class GHistoryLayer extends GHyperTextLayer
 {
+	var highLightLayer_;
+	var textLayer_;
+
 	var historyData_ = [];			//!< \brief 履歴データ
 	var actionData_ = [];			//!< \brief アクションデータ
 	var historyDataMax_ = 400;		//!< \brief 履歴の最大件数
 	var writePointer_ = 0;			//!< \brief 書き込みポインタ
+
+	var pageAction_ = [];			// 現在書き込み中のページのアクションデータ
+	var currentAction_ = void;		// 現在のアクション
+	var currentActionID_ = 0;		// 現在のアクションＩＤ
+	var enterActionID_ = void;		// 最後に enter したアクションＩＤ
 
 	var displayTopIndex_ = 0;		//!< \brief 現在一番下（右）に表示されている行のインデックス
 	var displayLineCount_ = 0;		//!< \brief 現在表示している行数
@@ -119,8 +127,6 @@ class GHistoryLayer extends GHyperTextLayer
 	var lastBaseLine_ = void;
 
 	var standbyRubyText_ = '';
-
-	var textLayer_;
 
 	function GHistoryLayer(window, parent, handler)
 	{
@@ -152,35 +158,115 @@ class GHistoryLayer extends GHyperTextLayer
 
 		obj.hitType = htMask;
 		obj.hitThreshold = 256;
+		obj.absolute = 1000;
 		obj.visible = true;
 
 		return obj;
 	}
 
 	/**/
+	function createHighLightLayer(window, parent, handler)
+	{
+		var obj = new global.GLayer(window, parent, handler);
+
+		obj.setSize(width, height);
+		obj.hitType = htMask;
+		obj.hitTreshold = 256;
+		obj.absolute = 2000;
+		obj.visible = true;
+
+		return obj;
+	}
+
+	/**/
+	function eraseText()
+	{
+		super.eraseText();
+		pageAction_.clear();
+	}
+
+	/**/
+	function beginAction(elm)
+	{
+		endAction();
+
+		currentAction_ = GObjectUtils.clone(elm);
+		currentActionID_++;
+
+		openAction();
+	}
+
+	/**/
+	function endAction()
+	{
+		closeAction();
+
+		currentAction_ = void;
+	}
+
+	/**/
+	function openAction()
+	{
+		if(currentAction_ !== void)
+		{
+			var line = pageAction_[currentLine];
+			var act = %[
+				start : layout.characterPosition, end : void,
+				action : currentAction_, id : currentActionID_
+			];
+
+			if(line === void)
+				line = pageAction_[currentLine] = [];
+			line.push(act);
+		}
+	}
+
+	/**/
+	function closeAction()
+	{
+		if(currentAction_ !== void)
+		{
+			var line = pageAction_[currentLine];
+			if(line === void || line.count == 0)
+				return;
+			var act = line[line.count - 1];
+			act.end = layout.characterPosition;
+		}
+	}
+
+	/**/
 	function storeHistoryData()
 	{
 		var cnts = contents;
-		var max = cnts.count;
+		var pact = pageAction_;
+		var max1 = cnts.count;
+		var max2 = pact.count;
 		var hd = historyData_;
 		var hdmax = historyDataMax_;
 		var ptr = writePointer_;
-		var line;
+		var line, action;
 
 		ptr = 0 if ptr > hdmax;
-		for(var i = 0; i < max; i++)
+		for(var i = 0; i < max1; i++)
 		{
-			line = allocHistory_private_(ptr++);
-			ptr = 0 if ptr > hdmax;
+			line = allocHistory_private_(ptr);
 
 			for(var j = 0; j < cnts[i].count; j++)
 			{
 				if(cnts[i][j].tagname == 'ch')
 					line.push(cnts[i][j]);
 			}
+			if(pact[i] !== void)
+			{
+				action = allocActionData_private_(ptr);
+				action.assign(pact[i]);
+			}
+
+			ptr = 0 if ++ptr > hdmax;
 		}
 
 		freeHistory_private_(ptr);
+		freeActionData_private_(ptr);
 		writePointer_ = ptr;
 	}
 
@@ -204,6 +290,69 @@ class GHistoryLayer extends GHyperTextLayer
 	}
 
 	/**/
+	function allocActionData_private_(line)
+	{
+		var ad = actionData_;
+
+		if(ad[line] === void)
+			ad[line] = [];
+		else
+			ad[line].clear();
+
+		return ad[line];
+	}
+
+	/**/
+	function freeActionData_private_(line)
+	{
+		actionData_[line] = void;
+	}
+
+	/**/
+	function highLight(baseLine, lineSize, start, end)
+	{
+		highLightLayer.fillRect(
+			layout.getLineLeft(start, baseLine, lineSize),
+			layout.getLineTop(start, baseLine, lineSize),
+			layout.getLineWidth(lineSize, end - start),
+			layout.getLineHeight(lineSize, end - start),
+			0x80000000 | clHighlight
+		);
+	}
+
+	/**/
+	function clearHightLight(baseLine, lineSize, start, end)
+	{
+		highLightLayer.fillRect(
+			layout.getLineLeft(start, baseLine, lineSize),
+			layout.getLineTop(start, baseLine, lineSize),
+			layout.getLineWidth(lineSize, end - start),
+			layout.getLineHeight(lineSize, end - start),
+			0
+		);
+	}
+
+	/**/
+	function getLineNumber(x, y)
+	{
+		var line;
+		var count = displayLineCount_;
+
+		for(var i = 0; i < count; i++)
+		{
+			line = getHistoryDisplay(i);
+
+			if(line === void)
+				continue;
+
+			if(layout.includeLine(x, y, line[0].baseLine, line[0].lineSize))
+				return i;
+		}
+
+		return -1;
+	}
+
+	/**/
 	function getHistoryDisplay(line)
 	{
 		var max = historyDataMax_;
@@ -213,6 +362,18 @@ class GHistoryLayer extends GHyperTextLayer
 			line += max;
 
 		return (line >= max ? void : historyData_[line]);
+	}
+
+	/**/
+	function getActionDataDisplay(line)
+	{
+		var max = historyDataMax_;
+		var line = displayTopIndex_ - line;
+
+		if(line < 0)
+			line += max;
+
+		return (line >= max ? void : actionData_[line]);
 	}
 
 	/**/
@@ -576,6 +737,38 @@ class GHistoryLayer extends GHyperTextLayer
 		super.showComplete();
 	}
 
+	/**/
+	function store(tick)
+	{
+		var dic = super.store(...);
+
+		dic.historyData = historyData_;
+		dic.actionData = actionData_;
+		dic.historyDataMax = historyDataMax_;
+		dic.writePointer = writePointer_;
+
+		dic.pageAction = pageAction_;
+		dic.currentAction = currentAction_;
+		dic.currentActionID = currentActionID_;
+
+		return dic;
+	}
+
+	/**/
+	function restore(dic, tick)
+	{
+		super.restore(...);
+
+		historyData_ = dic.historyData;
+		actionData_ = dic.actionData;
+		historyDataMax_ = dic.historyDataMax;
+		writePointer_ = dic.writePointer;
+
+		pageAction_ = dic.pageAction;
+		currentAction_ = dic.currentAction;
+		currentActionID_ = dic.currentActionID;
+	}
+
 	function onMouseWheel(shift, delta, x, y)
 	{
 		super.onMouseWheel(shift, delta, x, y);
@@ -632,6 +825,135 @@ class GHistoryLayer extends GHyperTextLayer
 	}
 
 	/**/
+	function onLeaveActionData(id)
+	{
+		var count = displayLineCount_;
+		var data, action;
+
+		for(var i = 0; i < count; i++)
+		{
+			data = getHistoryDisplay(i);
+			action = getActionDataDisplay(i);
+			if(data === void || action === void)
+				continue;
+			for(var j = 0; j < action.count; j++)
+			{
+				if(action[j].id != id)
+					continue;
+				clearHightLight(data[0].baseLine, data[0].lineSize, action[j].start, action[j].end);
+				callHandler('onEnterAction', data[j].action);
+			}
+		}
+	}
+
+	/* アクション領域内にカーソルが進入したときに呼ばれる */
+	function onEnterActionData(id)
+	{
+		var count = displayLineCount_;
+		var data, action;
+
+		for(var i = 0; i < count; i++)
+		{
+			data = getHistoryDisplay(i);
+			action = getActionDataDisplay(i);
+			if(data === void || action === void)
+				continue;
+			for(var j = 0; j < action.count; j++)
+			{
+				if(action[j].id != id)
+					continue;
+				highLight(data[0].baseLine, data[0].lineSize, action[j].start, action[j].end);
+				callHandler('onLeaveAction', data[j].action);
+			}
+		}
+
+	}
+
+	/* アクションがクリックされたときに呼ばれます */
+	function onActionClick(id)
+	{
+		var count = displayLineCount_;
+		var action;
+
+		for(var i = 0; i < count; i++)
+		{
+			action = getActionDataDisplay(i);
+			if(action === void)
+				continue;
+			for(var j = 0; j < action.count; j++)
+			{
+				if(action[j].id == id)
+				{
+					callHandler('onClickAction', action[j].action);
+					return;
+				}
+			}
+		}
+	}
+
+	/**/
+	function onMouseMove(x, y, shift)
+	{
+		super.onMouseMove(...);
+
+		var line = getLineNumber(x, y);
+		if(line === void)
+		{
+			if(enterActionID_ !== void)
+			{
+				onLeaveActionData(enterActionID_);
+				enterActionID_ = void;
+			}
+			return;
+		}
+
+		var data = getActionDataDisplay(line);
+		if(data === void)
+		{
+			if(enterActionID_ !== void)
+			{
+				onLeaveActionData(enterActionID_);
+				enterActionID_ = void;
+			}
+			return;
+		}
+
+		for(var i = 0; i < data.count; i++)
+		{
+			if(layout.includePosition(x, y, data[i].start, data[i].end))
+			{
+				if(enterActionID_ != data[i].id)
+				{
+					onLeaveActionData(enterActionID_) if enterActionID_ !== void;
+					onEnterActionData(enterActionID_ = data[i].id);
+				}
+				return;
+			}
+		}
+
+		if(enterActionID_ !== void)
+		{
+			onLeaveActionData(enterActionID_);
+			enterActionID_ = void;
+		}
+	}
+
+	/* オーバーライド */
+	function onMouseUp(x, y, button, shift)
+	{
+		switch(button)
+		{
+		case mbLeft:
+			onActionClick(enterActionID_) if enterActionID_ !== void;
+			break;
+
+		case mbRight:
+			hide();
+			break;
+		}
+	}
+
+	/**/
 	property lastDataIndex
 	{
 		getter		{ return (writePointer_ == 0 ? historyDataMax_ : writePointer_ - 1); }
@@ -641,6 +963,12 @@ class GHistoryLayer extends GHyperTextLayer
 	property textLayer
 	{
 		getter		{ return (textLayer_ === void ? family.receive(textLayer_ = createTextLayer(window, this)) : textLayer_); }
+	}
+
+	/**/
+	property highLightLayer
+	{
+		getter		{ return (highLightLayer_ === void ? family.receive(highLightLayer_ = createHighLightLayer(window, this)) : highLightLayer_); }
 	}
 }
 

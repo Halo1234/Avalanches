@@ -22,7 +22,7 @@
 メッセージレイヤのテストです。[p]
 
 *label|
-改行のテストです。[r]２行目のテキストです。[p][cm]
+改行のテストです。[r][history_action exp=System.inform('hoge')]２行目のテキスト[end_history_action]です。[p][cm]
 
 *label|
 リンクの[locate x=100 y=100][link storage=ModMessageTest target=*next]テスト[end_link]です。[button graphic=button target=*next2][p][cm]
