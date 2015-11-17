@@ -21,6 +21,7 @@ class GLayer extends Layer
 
 	var loadImagesStorage_ = void;
 	var loadImagesColorKey_ = clNone;
+	var clearImagesColor_ = neutralColor;
 
 	var prerenderedFontStorage_ = '';
 
@@ -117,7 +118,7 @@ class GLayer extends Layer
 		loadImagesColorKey_ = clNone;
 		flipLeftRight_ = false;
 		flipUpDown_ = false;
-		super.fillRect(0, 0, imageWidth, imageHeight, value) if hasImage;
+		super.fillRect(0, 0, imageWidth, imageHeight, clearImagesColor_ = value) if hasImage;
 
 		conductor_.clear() if conductor_ !== void;
 		colorCorrection_.clear() if colorCorrection_ !== void;
@@ -517,7 +518,7 @@ class GLayer extends Layer
 	function store(tick)
 	{
 		var dic = %[
-			loadImagesStorage : loadImagesStorage_, loadImagesColorKey : loadImagesColorKey_,
+			loadImagesStorage : loadImagesStorage_, loadImagesColorKey : loadImagesColorKey_, clearImagesColor : clearImagesColor_,
 			visible : visible, opacity : opacity, hasImage : hasImage,
 			type : type, hitType : hitType, hitThreshold : hitThreshold,
 			left : left, top : top, width : width, height : height, offsetX : offsetX_, offsetY : offsetY_,
@@ -555,6 +556,7 @@ class GLayer extends Layer
 				flipUD() if .flipUpDown;
 
 				setImageSize(.imageWidth, .imageHeight);
+				clearImages(dic.clearImagesColor) if .loadImagesStorage === void;
 				setPos(.left, .top, .width, .height);
 				setOffset(.offsetX, .offsetY);
 				setImagePos(.imageLeft, .imageTop);
