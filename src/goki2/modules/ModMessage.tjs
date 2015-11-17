@@ -41,6 +41,9 @@ class ModMessage extends GModule
 	var autoWaitChChars_ = '';
 	var autoWaitChWaits_ = [];
 
+	var outputHistory = true;
+	var historyEnabled = true;
+
 	var /* const */ smNotSkip = 0;		// スキップしない
 	var /* const */ smNextWait = 1;		// 次のクリック待ちまでスキップ
 	var /* const */ smPageEnd = 2;		// ページ末までスキップ
@@ -189,11 +192,15 @@ class ModMessage extends GModule
 						.setSize(+elm.width, +elm.height);
 					.bodyColor = +elm.color if elm.color !== void;
 					.bodyOpacity = +elm.opacity if elm.opacity !== void;
+					.setShadowColor(+elm.shadow_color) if elm.shadow_color !== void;
+					.setEdgeColor(+elm.edge_color) if elm.edge_color !== void;
 					if(elm.margin_left !== void && elm.margin_top !== void && elm.margin_top !== void && elm.margin_bottom !== void)
 						.setMargin(+elm.margin_left, +elm.margin_top, +elm.margin_right, +elm.margin_bottom);
 					.layoutMode = elm.layout_mode if elm.layout_mode !== void;
 					.setFontSize(+elm.font_size) if elm.font_size !== void;
 					.setFontFace(elm.font_face) if elm.font_face !== void;
+					historyEnabled = +elm.enabled if elm.enabled !== void;
+					outputHistory = +elm.output if elm.output !== void;
 				}
 			} incontextof this,
 
@@ -268,7 +275,7 @@ class ModMessage extends GModule
 
 					if(current_.output(elm))
 					{
-						historyLayer_.output(elm);
+						historyLayer_.output(elm) if outputHistory;
 						if(skipping)
 						{
 							return 0;
@@ -300,7 +307,7 @@ class ModMessage extends GModule
 					elm.tagname = 'ruby';
 
 					current_.output(elm);
-					historyLayer_.output(elm);
+					//historyLayer_.output(elm) if outputHistory;
 				}
 			} incontextof this,
 
@@ -314,7 +321,7 @@ class ModMessage extends GModule
 					if(!current_.reline())
 						c.pendingTag('p');
 
-					historyLayer_.reline();
+					historyLayer_.reline() outputHisotyr_;
 				}
 			} incontextof this,
 
@@ -377,7 +384,7 @@ class ModMessage extends GModule
 				if(current_ !== null)
 				{
 					current_.eraseText();
-					historyLayer_.eraseText();
+					historyLayer_.eraseText() if outputHistory;
 				}
 			} incontextof this,
 
@@ -443,8 +450,11 @@ class ModMessage extends GModule
 			'store_history_data' => function (elm) {
 				with(historyLayer_)
 				{
-					.storeHistoryData();
-					.clear();
+					if(outputHistory)
+					{
+						.storeHistoryData();
+						.clear();
+					}
 				}
 			} incontextof this,
 
@@ -875,7 +885,7 @@ class ModMessage extends GModule
 	function clearMessageLayers(reset)
 	{
 		messageLayers_.each(clearMessageLayer_private_);
-		historyLayer_.clear();
+		historyLayer_.clear() if outputHistory;
 		if(reset && messageLayers_.count > 0)
 		{
 			current_ = messageLayers_.at(0);
@@ -979,6 +989,8 @@ class ModMessage extends GModule
 	/**/
 	function showHistoryLayer()
 	{
+		if(!historyEnabled)
+			return;
 		with(historyLayer_)
 		{
 			if(!.visible)
@@ -996,6 +1008,8 @@ class ModMessage extends GModule
 	/**/
 	function hideHistoryLayer()
 	{
+		if(!historyEnabled)
+			return;
 		with(historyLayer_)
 		{
 			if(.visible)

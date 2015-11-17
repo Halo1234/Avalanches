@@ -79,7 +79,7 @@ class ModADV extends GModule
 					if(!container.modMessage.current.reline())
 						c.pendingTag('p');
 					else
-						container.modMessage.historyLayer.reline();
+						container.modMessage.historyLayer.reline() if outputHistory;
 					c.pendingTag(elm);
 					return;
 				}
@@ -110,7 +110,7 @@ class ModADV extends GModule
 
 					if(wait)
 					{
-						.historyLayer.output(elm);
+						.historyLayer.output(elm) if .outputHistory;
 						if(.skipping)
 						{
 							return 0;
