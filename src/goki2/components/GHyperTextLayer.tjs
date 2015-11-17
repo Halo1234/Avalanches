@@ -703,9 +703,9 @@ class GHyperTextLayer extends GWidgetLayer
 	var rubyBoldCache_ = false;
 	var rubyStrikeoutCache_ = false;
 	var rubyUnderlineCache_ = false;
-	var shadowColorCache_ = 0xFFFFFF;
-	var shadowOffsetX_ = 3;
-	var shadowOffsetY_ = 3;
+	var shadowColorCache_ = clNone;
+	var shadowOffsetX_ = 1;
+	var shadowOffsetY_ = 1;
 	var shadowExtent_ = 1;
 	var edgeColorCache_ = clNone;
 
