@@ -3,9 +3,6 @@
 ;**/
 
 *label|
-; ModMessage test.
-@load_module name=ModMessage
-@log message="ModMessage ƒ‚ƒWƒ…[ƒ‹“Ç‚İ‚İ‚É¬Œ÷‚µ‚Ü‚µ‚½B"
 
 @message_layers count=1
 

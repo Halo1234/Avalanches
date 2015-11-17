@@ -3,9 +3,6 @@
 ;**/
 
 *label|
-; ModSound test.
-@load_module name=ModSound
-@log message="ModSound モジュール読み込みに成功しました。"
 
 @add_bgm_buffer type=WAVE
 @log message="ＢＧＭバッファを追加しました。"

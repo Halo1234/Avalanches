@@ -3,9 +3,6 @@
 ;**/
 
 *label|
-; ModVideo test.
-@load_module name=ModVideo
-@log message="ModVideo ƒ‚ƒWƒ…[ƒ‹“Ç‚İ‚İ‚É¬Œ÷‚µ‚Ü‚µ‚½B"
 
 @show_message layer=message0
 

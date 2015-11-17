@@ -2,9 +2,6 @@
 ; * $Revision$
 ;**/
 
-@load_module name=ModADV
-@log message="ModADV モジュール読み込みに成功しました。"
-
 @!make_character image=立ち絵有り->true,立ち絵無し->false
 @!make_character voice=ボイス有り->true,ボイス無し->false
 

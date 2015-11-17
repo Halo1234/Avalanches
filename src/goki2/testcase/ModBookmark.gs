@@ -2,9 +2,6 @@
 ; * $Revision$
 ;**/
 
-@load_module name=ModBookmark
-@log message="ModBookmark ƒ‚ƒWƒ…[ƒ‹“Ç‚İ‚İ‚É¬Œ÷‚µ‚Ü‚µ‚½B"
-
 @message_option layer=message0 left=10 top=400 width=780 height=190 margin_left=10 margin_top=10 margin_right=10 margin_bottom=10 opacity=128 color=0x000000 current
 @using_mod_message
 

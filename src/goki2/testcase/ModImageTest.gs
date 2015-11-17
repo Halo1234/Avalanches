@@ -3,9 +3,6 @@
 ;**/
 
 *label|
-; ModImage test.
-@load_module name=ModImage
-@log message="ModImage ƒ‚ƒWƒ…[ƒ‹“Ç‚İ‚İ‚É¬Œ÷‚µ‚Ü‚µ‚½B"
 
 @cv_layers count=1
 

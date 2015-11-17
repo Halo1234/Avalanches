@@ -2,9 +2,7 @@
 ; * $Revision: 278 $
 ;**/
 
-; ModTypingProcessor test.
-@load_module name=ModTypingProcessor
-@log message="ModTypingProcessor モジュール読み込みに成功しました。"
+*label|
 
 @load_roman_table language=japanese
 @log message="日本語ローマ字対応表読み込みに成功しました。"
