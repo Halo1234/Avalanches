@@ -67,7 +67,7 @@ class ModMessage extends GModule
 	var timeoutStorage_ = void;
 	var timeoutTarget_ = void;
 	var timeoutExpression_ = void;
-	var hasTimeoutEvent = false;
+	var hasTimeoutEvent_ = false;
 	var timeoutTimer_;
 
 	var clickStorage_ = void;
@@ -167,6 +167,8 @@ class ModMessage extends GModule
 						.setSize(+elm.width, +elm.height);
 					.bodyColor = +elm.color if elm.color !== void;
 					.bodyOpacity = +elm.opacity if elm.opacity !== void;
+					.setShadowColor(+elm.shadow_color) if elm.shadow_color !== void;
+					.setEdgeColor(+elm.edge_color) if elm.edge_color !== void;
 					setCurrentLayer(.name) if GObjectUtils.toBoolean(elm.current);
 					if(elm.margin_left !== void && elm.margin_top !== void && elm.margin_top !== void && elm.margin_bottom !== void)
 						.setMargin(+elm.margin_left, +elm.margin_top, +elm.margin_right, +elm.margin_bottom);
@@ -325,7 +327,7 @@ class ModMessage extends GModule
 					else
 						c.interruptTag('store_history_data');
 					if(longSkipping)
-						return 0;
+						return 'break';
 					else
 					if(skipping)
 						cancelSkip();
@@ -1007,11 +1009,33 @@ class ModMessage extends GModule
 		var dic = super.store(tick);
 
 		dic.messageLayers = messageLayers_.store(tick);
+
 		dic.outputInterval = outputInterval;
 		dic.beforeNoWaitOutputInterval = beforeNoWaitOutputInterval;
 		dic.autoWaitChEnabled = autoWaitChEnabled_;
 		dic.autoWaitChChars = autoWaitChChars_;
 		dic.autoWaitChWaits = autoWaitChWaits_;
+
+		dic.clickSkipEnabled = clickSkipEnabled;
+		dic.nextSkipEnabled = nextSkipEnabled;
+
+		dic.wheelStorage = wheelStorage_;
+		dic.wheelTarget = wheelTarget_;
+		dic.wheelFunction = wheelFunction_;
+		dic.wheelExpression = wheelExpression_;
+		dic.hasWheelEvent = hasWheelEvent_;
+
+		dic.timeoutStorage = timeoutStorage_;
+		dic.timeoutTarget = timeoutTarget_;
+		dic.timeoutExpression = timeoutExpression_;
+		dic.timeoutTime = timeoutTimer_.interval;
+		dic.hasTimeoutEvent = hasTimeoutEvent_;
+
+		dic.clickStorage = clickStorage_;
+		dic.clickTarget = clickTarget_;
+		dic.clickExpression = clickExpression_;
+		dic.hasClickEvent = hasClickEvent_;
+
 		dic.autoMode = autoMode_;
 		dic.clickToAutoModeCancel = clickToAutoModeCancel;
 		dic.skipKey = skipKey;
@@ -1025,11 +1049,33 @@ class ModMessage extends GModule
 		super.restore(dic, tick);
 
 		messageLayers_.restore(dic.messageLayers);
+
 		outputInterval = dic.outputInterval;
 		beforeNoWaitOutputInterval = dic.beforeNoWaitOutputInterval;
 		autoWaitChEnabled_ = dic.autoWaitChEnabled;
 		autoWaitChChars_ = dic.autoWaitChChars;
 		autoWaitChWaits_ = dic.autoWaitChWaits;
+
+		clickSkipEnabled = dic.clickSkipEnabled;
+		nextSkipEnabled = dic.nextSkipEnabled;
+
+		wheelStorage_ = dic.wheelStorage;
+		wheelTarget_ = dic.wheelTarget;
+		wheelFunction_ = dic.wheelFunction;
+		wheelExpression_ = dic.wheelExpression;
+		hasWheelEvent_ = dic.hasWheelEvent;
+
+		timeoutStorage_ = dic.timeoutStorage;
+		timeoutTarget_ = dic.timeoutTarget;
+		timeoutExpression_ = dic.timeoutExpression;
+		timeoutTimer_.interval = dic.timeoutTime;
+		hasTimeoutEvent_ = dic.hasTimeoutEvent;
+
+		clickStorage_ = dic.clickStorage;
+		clickTarget_ = dic.clickTarget;
+		clickExpression_ = dic.clickExpression;
+		hasClickEvent_ = dic.hasClickEvent;
+
 		autoMode_ = dic.autoMode;
 		clickToAutoModeCancel = dic.clickToAutoModeCancel;
 		skipKey = dic.skipKey;
