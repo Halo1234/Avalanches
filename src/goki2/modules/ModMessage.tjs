@@ -676,6 +676,11 @@ class ModMessage extends GModule
 				clearClickEvent();
 			} incontextof this,
 
+			/* @show_history */
+			'show_history' => function (elm) {
+				showHistoryLayer();
+			} incontextof this,
+
 		];
 	}
 
