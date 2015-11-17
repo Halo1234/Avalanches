@@ -88,6 +88,14 @@ class ModADV extends GModule
 					c.pendingTag("activate_character", elm);
 					return;
 				}
+				with(container.modMessage)
+				{
+					if(!.current.visible)
+					{
+						c.pendingTag("show_current_message_layer", elm);
+						return;
+					}
+				}
 				if(inNextChPlayVoice_)
 				{
 					c.interruptTag(%[tagname : 'play_character_voice', name : activeCharacterName_]);
@@ -180,15 +188,7 @@ class ModADV extends GModule
 
 			/* @activate_character */
 			'activate_character' => function (elm, c) {
-				var name = (elm.name === void ? lastCharacterName_ : elm.name);
-				activateCharacter(name);
-				with(container.modMessage)
-				{
-					if(!.current.visible)
-					{
-						c.interruptTag("show_current_message_layer");
-					}
-				}
+				activateCharacter((elm.name === void ? lastCharacterName_ : elm.name));
 			} incontextof this,
 
 			/* @show_current_message_layer */
@@ -663,6 +663,66 @@ class ModADV extends GModule
 		// TODO: óöóÇÃê›íË
 
 		activeCharacterName_ = name;
+	}
+
+	/**/
+	function store(tick)
+	{
+		var dic = super.store(...);
+
+		dic.characterNames = characterNames_;
+		dic.mobCharacterNames = mobCharacterNames_;
+		dic.characters = characters_;
+
+		dic.cvLayerUsers = cvLayerUsers_;
+
+		dic.topmostShownCGLayerIndex = topmostShownCGLayerIndex_;
+
+		dic.timeZone = timeZone_;
+		dic.currentTimeZone = currentTimeZone_;
+
+		dic.stageNames = stageNames_;
+		dic.stageContext = stageContext_;
+
+		dic.defaultCharacterName = defaultCharacterName;
+
+		dic.lastCharacterName = lastCharacterName_;
+		dic.activeCharacterName = activeCharacterName_;
+		dic.inNextChPlayVoice = inNextChPlayVoice_;
+		dic.lastPlayedVoiceCharacterName = lastPlayedVoiceCharacterName_;
+
+		dic.transitionParameters = transitionParameters_;
+
+		return dic;
+	}
+
+	/**/
+	function restore(dic, tick)
+	{
+		super.restore(...);
+
+		characterNames_.assign(dic.characterNames);
+		mobCharacterNames_.assign(dic.mobCharacterNames);
+		GObjectUtils.assignDictionary(characters_, dic.characters);
+
+		cvLayerUsers_.assign(dic.cvLayerUsers);
+
+		topmostShownCGLayerIndex_ = dic.topmostShownCGLayerIndex;
+
+		timeZone_.assign(dic.timeZone);
+		currentTimeZone_ = dic.currentTimeZone;
+
+		stageNames_.assign(dic.stageNames);
+		GObjectUtils.assignDictionary(stageContext_, dic.stageContext);
+
+		defaultCharacterName = dic.defaultCharacterName;
+
+		lastCharacterName_ = dic.lastCharacterName;
+		activeCharacterName_ = dic.activeCharacterName;
+		inNextChPlayVoice_ = dic.inNextChPlayVoice;
+		lastPlayedVoiceCharacterName_ = dic.lastPlayedVoiceCharacterName;
+
+		GObjectUtils.assignDictionary(transitionParameters_, dic.transitionParameters);
 	}
 }
 
