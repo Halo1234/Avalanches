@@ -330,7 +330,7 @@ class ModMessage extends GModule
 				if(current_ !== null)
 				{
 					if(current_.splitingPage)
-						c.interruptTag('er');
+						c.interruptTag('clear_message_layers');
 					else
 						c.interruptTag('store_history_data');
 					if(longSkipping)
@@ -385,14 +385,19 @@ class ModMessage extends GModule
 				}
 			} incontextof this,
 
-			/* @clear_message_layer */
-			'clear_message_layer' => function (elm) {
-				clearMessageLayers(false);
+			/* @clear_message_layers_with_history */
+			'clear_message_layers_with_history' => function (elm) {
+				clearMessageLayersWithHistoryLayer(false);
 			} incontextof this,
 
 			/* @reset_message_layer */
 			'reset_message_layer' => function (elm) {
-				clearMessageLayers(true);
+				clearMessageLayersWithHistoryLayer(true);
+			} incontextof this,
+
+			/**/
+			'clear_message_layers' => function (elm) {
+				clearMessageLayers();
 			} incontextof this,
 
 			/* @erase_message */
@@ -898,7 +903,7 @@ class ModMessage extends GModule
 	}
 
 	/**/
-	function clearMessageLayers(reset)
+	function clearMessageLayersWithHistoryLayer(reset)
 	{
 		messageLayers_.each(clearMessageLayer_private_);
 		historyLayer_.clear() if outputHistory;
@@ -906,6 +911,12 @@ class ModMessage extends GModule
 		{
 			current_ = messageLayers_.at(0);
 		}
+	}
+
+	/**/
+	function clearMessageLayers()
+	{
+		messageLayers_.each(clearMessageLayer_private_);
 	}
 
 	/**/
@@ -937,7 +948,7 @@ class ModMessage extends GModule
 			.setRedirectTag('p', 'p_mod_message');
 			.setRedirectTag('l', 'l_mod_message');
 			.setRedirectTag('er', 'erase_message');
-			.setRedirectTag('cm', 'clear_message_layer');
+			.setRedirectTag('cm', 'clear_message_layers_with_history');
 			.setRedirectTag('ct', 'reset_message_layer');
 		}
 	}
