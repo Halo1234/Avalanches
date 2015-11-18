@@ -15,7 +15,7 @@ class GWidgetLayer extends GLayer
 {
 	var id;								//!< \brief ご自由に
 
-	var bodyColor_ = clBtnFace;			//!< \brief 本体の色
+	var bodyColor_ = clAppWorkSpace;	//!< \brief 本体の色
 	var bodyOpacity_ = 255;				//!< \brief 本体不透明度
 	var caption_ = '';					//!< \brief キャプションとして表示するテキスト
 	var captionAlign_ = 'center';		//!< \brief キャプション文字列のアライン
@@ -97,7 +97,7 @@ class GWidgetLayer extends GLayer
 	}
 
 	/**/
-	function drawCaption(offx = 0, offy = 0, color = captionColor, edge = edgeColor_, shadow = shadowColor_, shadowOffsetX = 2, shadowOffsetY = 2, shadowExtent = 2)
+	function drawCaption(offx = 0, offy = 0, color = captionColor_, edge = edgeColor_, shadow = shadowColor_, shadowOffsetX = 2, shadowOffsetY = 2, shadowExtent = 2)
 	{
 		var text = caption;
 
