@@ -193,19 +193,19 @@ class GHistoryLayer extends GHyperTextLayer
 		currentAction_ = GObjectUtils.clone(elm);
 		currentActionID_++;
 
-		openAction();
+		internalBegtinAction_private_();
 	}
 
 	/**/
 	function endAction()
 	{
-		closeAction();
+		internalEndAction_private_();
 
 		currentAction_ = void;
 	}
 
 	/**/
-	function openAction()
+	function internalBegtinAction_private_()
 	{
 		if(currentAction_ !== void)
 		{
@@ -222,7 +222,7 @@ class GHistoryLayer extends GHyperTextLayer
 	}
 
 	/**/
-	function closeAction()
+	function internalEndAction_private_()
 	{
 		if(currentAction_ !== void)
 		{
@@ -767,6 +767,18 @@ class GHistoryLayer extends GHyperTextLayer
 		pageAction_ = dic.pageAction;
 		currentAction_ = dic.currentAction;
 		currentActionID_ = dic.currentActionID;
+	}
+
+	/**/
+	function onNewLine()
+	{
+		internalBeginLink_private_();
+	}
+
+	/**/
+	function onEndLine()
+	{
+		internalEndLink_private_();
 	}
 
 	function onMouseWheel(shift, delta, x, y)

@@ -564,7 +564,7 @@ class GHorizontalLayout
 
 		if(marginTop_ > top)
 			top = marginTop_;
-		// NOTE: ch がマージンを超える事は実際のところありえないので必要ない。
+		// NOTE: top がマージンを超える事は実際のところありえないので必要ない。
 		//if((layer_.height - marginBottom_) < (top + rubyHeight_))
 		//	top = layer_.height - marginBottom_;
 
