@@ -193,7 +193,7 @@ class GHistoryLayer extends GHyperTextLayer
 		currentAction_ = GObjectUtils.clone(elm);
 		currentActionID_++;
 
-		internalBegtinAction_private_();
+		internalBeginAction_private_();
 	}
 
 	/**/
@@ -205,7 +205,7 @@ class GHistoryLayer extends GHyperTextLayer
 	}
 
 	/**/
-	function internalBegtinAction_private_()
+	function internalBeginAction_private_()
 	{
 		if(currentAction_ !== void)
 		{
@@ -772,13 +772,13 @@ class GHistoryLayer extends GHyperTextLayer
 	/**/
 	function onNewLine()
 	{
-		internalBeginLink_private_();
+		internalBeginAction_private_();
 	}
 
 	/**/
 	function onEndLine()
 	{
-		internalEndLink_private_();
+		internalEndAction_private_();
 	}
 
 	function onMouseWheel(shift, delta, x, y)
