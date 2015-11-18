@@ -92,6 +92,23 @@ class GLinkButtonLayer extends GButtonLayer
 
 
 /**/
+class GLinkCheckBoxLayer extends GCheckBoxLayer
+{
+	var exp;
+
+	function GLinkCheckBoxLayer(window, parent, handler)
+	{
+		super.GCheckBoxLayer(...);
+	}
+
+	function commit()
+	{
+		Scripts.eval(@"(&exp;) = &checked;");
+	}
+}
+
+
+/**/
 class GMessageLayer extends GHyperTextLayer
 {
 	var linkLayer_;
@@ -321,7 +338,7 @@ class GMessageLayer extends GHyperTextLayer
 			id : currentLinkID_++
 		];
 
-		obj.loadImages(elm.graphic, elm.graphic_key);
+		obj.loadImages(elm.graphic, elm.graphic_key) if elm.graphic !== void;
 		obj.setPos(
 			layout.getLineLeft(link.start, link.baseLine, link.lineSize),
 			layout.getLineTop(link.start, link.baseLine, link.lineSize)
@@ -334,6 +351,42 @@ class GMessageLayer extends GHyperTextLayer
 		obj.visible = true;
 
 		layout.addPosition(obj.width, obj.height);
+		link.end = layout.characterPosition;
+
+		if(line === void)
+			line = links_[currentLine] = [];
+		line.push(link);
+	}
+
+	/**/
+	function addCheckBox(elm)
+	{
+		var obj = new GLinkCheckBoxLayer(window, this, onCheckBoxEvent);
+		var line = links_[currentLine];
+		var link = %[
+			type : ltCheckBox,
+			baseLine : layout.baseLine,
+			lineSize : layout.lineSize,
+			start : layout.characterPosition,
+			end : void,
+			object : obj,
+			id : currentLinkID_++
+		];
+
+		obj.loadImages(elm.graphic, elm.graphic_key) if elm.graphic !== void;
+		obj.setPos(
+			layout.getLineLeft(link.start, link.baseLine, link.lineSize),
+			layout.getLineTop(link.start, link.baseLine, link.lineSize)
+		);
+		obj.exp = elm.name;
+		obj.caption = elm.caption if elm.caption !== void;
+		obj.bodyColor = +elm.background_color if elm.background_color !== void;
+		obj.captionColor = +elm.color if elm.color !== void;
+		obj.bodyOpacity = +elm.opacity if elm.opacity !== void;
+		obj.visible = true;
+
+		layout.addPosition(obj.width, obj.height);
+		link.end = layout.characterPosition;
 
 		if(line === void)
 			line = links_[currentLine] = [];
@@ -728,6 +781,11 @@ class GMessageLayer extends GHyperTextLayer
 		case 'onMouseLeave':	callHandler('onLeaveLink', obj); break;
 		case 'onButton':		callHandler('onClickLink', obj); break;
 		}
+	}
+
+	/**/
+	function onCheckBoxEvent(obj, message, elm)
+	{
 	}
 
 	property invisibleByUser

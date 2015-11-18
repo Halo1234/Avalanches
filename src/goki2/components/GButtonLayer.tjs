@@ -27,6 +27,24 @@ class GButtonLayer extends GWidgetLayer
 		return bufferWidth \ 3;
 	}
 
+	function fixImageSize()
+	{
+		if(!imageLoaded)
+		{
+			var tw = font.getTextWidth(caption);
+			var th = font.getTextHeight(caption);
+			var w = width;
+			var h = height;
+
+			if(tw > w)
+				w = tw;
+			if(th > h)
+				h = th;
+
+			setSize(w, h);
+		}
+	}
+
 	function drawBody(/* offx, offy */)
 	{
 		var w = width;

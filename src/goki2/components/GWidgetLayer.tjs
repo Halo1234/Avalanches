@@ -67,6 +67,12 @@ class GWidgetLayer extends GLayer
 	}
 
 	/**/
+	function fixImageSize()
+	{
+		//setSize(width, height);
+	}
+
+	/**/
 	function eraseBackGround()
 	{
 		callOnEraseBackGround_ = true;
@@ -231,7 +237,7 @@ class GWidgetLayer extends GLayer
 	/**/
 	function setSizeToImageSize()
 	{
-		super.setSize(imageWidthToWidth(imageWidth), imageHeightToHeight(imageHeight)) if hasImage;
+		super.setSize(imageWidthToWidth(imageWidth), imageHeightToHeight(imageHeight));
 	}
 
 	/**/
@@ -290,9 +296,14 @@ class GWidgetLayer extends GLayer
 	function onEraseBackGround()
 	{
 		if(imageLoaded)
+		{
 			loadImages(loadImagesStorage, loadImagesColorKey);
+			setSizeToImageSize();
+		}
 		else
+		{
 			drawBody();
+		}
 		drawCaption();
 	}
 
@@ -387,14 +398,14 @@ class GWidgetLayer extends GLayer
 	/**/
 	property caption
 	{
-		setter(x)	{ caption_ = x; eraseBackGround(); }
+		setter(x)	{ caption_ = x; eraseBackGround(); fixImageSize(); }
 		getter		{ return caption_; }
 	}
 
 	/**/
 	property captionAlign
 	{
-		setter(x)	{ captionAlign_ = x; eraseBackGround(); }
+		setter(x)	{ captionAlign_ = x; eraseBackGround(); fixImageSize(); }
 		getter		{ return captionAlign_; }
 	}
 

@@ -33,7 +33,7 @@ class GRadioGroup
 			for(var i = 0; i < g.count; i++)
 			{
 				g[i].checked_ = (g[i].id == id ? true : false);
-				g[i].updateState = true;
+				g[i].updateState();
 			}
 		}
 	}
@@ -104,7 +104,7 @@ class GRadioGroup
 					if(g[i] !== obj && g[i].checked)
 					{
 						g[i].checked_ = false;
-						g[i].updateState = true;
+						g[i].updateState();
 					}
 				}
 			}
@@ -112,7 +112,7 @@ class GRadioGroup
 			else
 			{
 				obj.checked_ = true;
-				obj.updateState = true;
+				obj.updateState();
 			}
 		}
 	}
@@ -132,6 +132,7 @@ class GCheckBoxLayer extends GButtonLayer
 	function GCheckBoxLayer(window, parent, handler)
 	{
 		super.GButtonLayer(...);
+		captionAlign = 'left';
 	}
 
 	function finalize()
@@ -141,56 +142,35 @@ class GCheckBoxLayer extends GButtonLayer
 		super.finalize(...);
 	}
 
-	function assign(src)
+	function fixImageSize()
 	{
-		super.assign(src);
-
-		with(src)
+		if(!imageLoaded)
 		{
-			checked_ = .checked_;
-			//group_ = .group_;
+			var layer = new global.Layer(window, this);
+			var w = width;
+			var h = height;
+			var tw = font.getTextWidth(caption);
+			var th = font.getTextHeight(caption);
+			var iw, ih;
 
-			boxLeft_ = .boxLeft_;
-			boxTop_ = .boxTop_;
-			boxWidth_ = .boxWidth_;
-			boxHeight_ = .boxHeight_;
-		}
-	}
+			layer.loadImages('check');
 
-	function click()
-	{
-		checked_ = !checked_;
-		updateState = true;
+			iw = layer.imageWidth;
+			ih = layer.imageHeight;
 
-		onCheckStateChanged();
-	}
+			if(iw + tw + alignToWidth(captionAlign, caption) > w)
+				w = iw + tw + alignToWidth(captionAlign, caption);
+			if(th > h)
+				h = th;
 
-	function widthToImageWidth(width)
-	{
-		return width << 2;
-	}
+			setSize(w, h);
 
-	function imageWidthToWidth(bufferWidth)
-	{
-		return bufferWidth >> 2;
-	}
-
-	function drawBody(/* offx, offy */)
-	{
-		if(loadImagesStorage != '')
-		{
-			loadImages(loadImagesStorage, loadImagesColorKey);
-		}
-		else
-		{
-			var w = imageWidth;
-			var h = imageHeight;
+			w = imageWidth;
+			h = imageHeight;
 
 			face = dfBoth;
 			colorRect(0, 0, w, h, 0, -255);
 			colorRect(0, 0, w, h, bodyColor, bodyOpacity) if bodyColor != clNone;
-
-			var layer = new global.Layer(window, this);
 
 			layer.loadImages('check');
 
@@ -229,7 +209,45 @@ class GCheckBoxLayer extends GButtonLayer
 		}
 	}
 
-	function drawCaption(offx = void, offy = void, color = clNone)
+	function assign(src)
+	{
+		super.assign(src);
+
+		with(src)
+		{
+			checked_ = .checked_;
+			//group_ = .group_;
+
+			boxLeft_ = .boxLeft_;
+			boxTop_ = .boxTop_;
+			boxWidth_ = .boxWidth_;
+			boxHeight_ = .boxHeight_;
+		}
+	}
+
+	function click()
+	{
+		checked_ = !checked_;
+		updateState();
+
+		onCheckStateChanged();
+	}
+
+	function widthToImageWidth(width)
+	{
+		return width << 2;
+	}
+
+	function imageWidthToWidth(bufferWidth)
+	{
+		return bufferWidth >> 2;
+	}
+
+	function drawBody(/* offx, offy */)
+	{
+	}
+
+	function drawCaption(offx = void, offy = void, color = captionColor, edge = edgeColor, shadow = shadowColor, shadowOffsetX = 2, shadowOffsetY = 2, shadowExtent = 2)
 	{
 		if(caption == '')
 			return;
@@ -248,13 +266,20 @@ class GCheckBoxLayer extends GButtonLayer
 		}
 	}
 
-	function alignStringTo(align, str)
+	function alignToWidth(align, str)
 	{
-		switch(align)
+		if(font.face[0] == '@')
 		{
-		case 'l':
-		case 'left':	return boxLeft_ + boxWidth_ + 4;
-		default:		return super.alignStringTo(...);
+			return (width - font.getTextHeight(str)) >> 1;
+		}
+		else
+		{
+			switch(align)
+			{
+			case 'l':
+			case 'left':	return boxLeft_ + boxWidth_ + 4;
+			default:		return super.alignToWidth(...);
+			}
 		}
 	}
 
@@ -294,7 +319,7 @@ class GCheckBoxLayer extends GButtonLayer
 			else
 			{
 				checked_ = x;
-				updateState = true;
+				updateState();
 			}
 		}
 		getter		{ return checked_; }

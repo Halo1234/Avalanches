@@ -467,6 +467,14 @@ class ModMessage extends GModule
 				}
 			} incontextof this,
 
+			/* @checkbox */
+			'checkbox' => function (elm) {
+				if(current_ !== null)
+				{
+					current_.addCheckBox(elm);
+				}
+			} incontextof this,
+
 			/* @store_history_data */
 			'store_history_data' => function (elm) {
 				with(historyLayer_)
@@ -605,6 +613,7 @@ class ModMessage extends GModule
 				}
 			} incontextof this,
 
+			/* @locate */
 			'locate' => function (elm) {
 				if(current_ !== null)
 				{
@@ -686,7 +695,7 @@ class ModMessage extends GModule
 				historyLayer_.beginAction(elm);
 			} incontextof this,
 
-			/**/
+			/* @end_history_action */
 			'end_history_action' => function (elm) {
 				historyLayer_.endAction();
 			} incontextof this,
