@@ -162,9 +162,7 @@ class GCheckBoxLayer extends GButtonLayer
 		checked_ = !checked_;
 		updateState = true;
 
-		// TODO: 1.7.0.0 でイベント名が変更されます。
-		// onCheckStateChanged
-		onCheck();
+		onCheckStateChanged();
 	}
 
 	function widthToImageWidth(width)
@@ -260,7 +258,7 @@ class GCheckBoxLayer extends GButtonLayer
 		}
 	}
 
-	function onCheck()
+	function onCheckStateChanged()
 	{
 		if(group !== void && typeof(global.GRadioGroup) != 'undefined' && typeof(GRadioGroup.onCheckEvent) != 'undefined')
 			GRadioGroup.onCheckEvent(this, %[]);
