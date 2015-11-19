@@ -141,18 +141,6 @@ class ModMessage extends GModule
 				}
 			} incontextof this,
 
-			/* @locate */
-			'locate' => function (elm) {
-				if(current_ !== null)
-				{
-					with(current_.layout)
-					{
-						.setLocateX(+elm.x) if elm.x !== void;
-						.setLocateY(+elm.y) if elm.y !== void;
-					}
-				}
-			} incontextof this,
-
 			/* @message_option */
 			'message_option' => function (elm) {
 				with(findByElm(elm))
@@ -300,6 +288,7 @@ class ModMessage extends GModule
 				}
 			} incontextof this,
 
+			/* @ruby_mod_message */
 			'ruby_mod_message' => function (elm) {
 				if(current_ !== null)
 				{
@@ -395,7 +384,7 @@ class ModMessage extends GModule
 				clearMessageLayersWithHistoryLayer(true);
 			} incontextof this,
 
-			/**/
+			/* @clear_message_layers */
 			'clear_message_layers' => function (elm) {
 				clearMessageLayers();
 			} incontextof this,
@@ -617,10 +606,10 @@ class ModMessage extends GModule
 			'locate' => function (elm) {
 				if(current_ !== null)
 				{
-					with(current_)
+					with(current_.layout)
 					{
-						.layout.setPositionX(+elm.x) if elm.x !== void;
-						.layout.setPositionY(+elm.y) if elm.y !== void;
+						.setPositionX(+elm.x) if elm.x !== void;
+						.setPositionY(+elm.y) if elm.y !== void;
 					}
 				}
 			} incontextof this,
