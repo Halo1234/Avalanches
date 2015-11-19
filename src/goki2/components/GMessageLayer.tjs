@@ -149,6 +149,23 @@ class GLinkCheckBoxLayer extends GCheckBoxLayer
 
 
 /**/
+class GLinkEditLayer extends GEditLayer
+{
+	var exp;
+
+	function GLinkEditLayer(window, parent, handler)
+	{
+		super.GEditLayer(...);
+	}
+
+	function commit()
+	{
+		Scripts.eval(@"(&exp;) = '&caption;'");
+	}
+}
+
+
+/**/
 class GMessageLayer extends GHyperTextLayer
 {
 	var linkLayer_;
@@ -433,6 +450,41 @@ class GMessageLayer extends GHyperTextLayer
 	}
 
 	/**/
+	function addEdit(elm)
+	{
+		var obj = new GLinkEditLayer(window, this, onEditEvent);
+		var line = links_[currentLine];
+		var link = %[
+			type : ltEdit,
+			baseLine : layout.baseLine,
+			lineSize : layout.lineSize,
+			start : layout.characterPosition,
+			end : void,
+			object : obj,
+			id : currentLinkID_++
+		];
+
+		obj.setPos(
+			layout.getLineLeft(link.start, link.baseLine, link.lineSize),
+			layout.getLineTop(link.start, link.baseLine, link.lineSize)
+		);
+		obj.exp = elm.name;
+		obj.width = +elm.length if elm.length !== void;
+		obj.caption = elm.caption if elm.caption !== void;
+		obj.bodyColor = +elm.background_color if elm.background_color !== void;
+		obj.captionColor = +elm.color if elm.color !== void;
+		obj.bodyOpacity = +elm.opacity if elm.opacity !== void;
+		obj.visible = true;
+
+		layout.addPosition(obj.width, obj.height);
+		link.end = layout.characterPosition;
+
+		if(line === void)
+			line = links_[currentLine] = [];
+		line.push(link);
+	}
+
+	/**/
 	function highLightLink(link)
 	{
 		linkLayer_.fillRect(
@@ -666,6 +718,9 @@ class GMessageLayer extends GHyperTextLayer
 					else
 					if(links[j].type == ltEdit)
 					{
+						var obj = new GLinkEditLayer(window, this, onEditEvent);
+						obj.restore(links[j].object, tick);
+						links[j].object = obj;
 					}
 				}
 			}
@@ -899,6 +954,11 @@ class GMessageLayer extends GHyperTextLayer
 
 	/**/
 	function onCheckBoxEvent(obj, message, elm)
+	{
+	}
+
+	/**/
+	function onEditEvent(obj, message, elm)
 	{
 	}
 
