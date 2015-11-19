@@ -464,11 +464,19 @@ class ModMessage extends GModule
 				}
 			} incontextof this,
 
-			/**/
+			/* @edit */
 			'edit' => function (elm) {
 				if(current_ !== null)
 				{
 					current_.addEdit(elm);
+				}
+			} incontextof this,
+
+			/* @commit */
+			'commit' => function (elm) {
+				if(current_ !== null)
+				{
+					current_.commit();
 				}
 			} incontextof this,
 

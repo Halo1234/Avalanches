@@ -28,6 +28,8 @@
 リンクの[locate x=100 y=100][link storage=ModMessageTest target=*next]テスト[end_link]です。
 [button graphic=button target=*next2][checkbox caption=hogehogehoge name=f.test][edit caption=hoge name=f.test2 length=100][p]
 
+[commit]
+
 *next
 
 *label|

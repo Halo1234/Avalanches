@@ -486,6 +486,29 @@ class GMessageLayer extends GHyperTextLayer
 	}
 
 	/**/
+	function commit()
+	{
+		var links = links_;
+		var max1 = links.count;
+
+		for(var i = 0; i < max1; i++)
+		{
+			if(links[i] === void)
+				continue;
+			var line = links[i];
+			var max2 = line.count;
+			for(var j = 0; j < max2; j++)
+			{
+				if(line[j].type == ltCheckBox ||
+					line[j].type == ltEdit)
+				{
+					line[j].object.commit();
+				}
+			}
+		}
+	}
+
+	/**/
 	function highLightLink(link)
 	{
 		linkLayer_.fillRect(
