@@ -88,6 +88,30 @@ class GLinkButtonLayer extends GButtonLayer
 	{
 		super.GButtonLayer(...);
 	}
+
+	function store(tick)
+	{
+		var dic = super.store(...);
+
+		dic.storage = storage;
+		dic.target = target;
+		dic.onClickExp = onClickExp;
+		dic.onEnterExp = onEnterExp;
+		dic.onLeaveExp = onLeaveExp;
+
+		return dic;
+	}
+
+	function restore(dic, tick)
+	{
+		super.restore(...);
+
+		storage = dic.storage;
+		target = dic.target;
+		onClickExp = dic.onClickExp;
+		onEnterExp = dic.onEnterExp;
+		onLeaveExp = dic.onLeaveExp;
+	}
 }
 
 
@@ -104,6 +128,22 @@ class GLinkCheckBoxLayer extends GCheckBoxLayer
 	function commit()
 	{
 		Scripts.eval(@"(&exp;) = &checked;");
+	}
+
+	function store(tick)
+	{
+		var dic = super.store(...);
+
+		dic.exp = exp;
+
+		return dic;
+	}
+
+	function restore(dic, tick)
+	{
+		super.restore(...);
+
+		exp = dic.exp;
 	}
 }
 

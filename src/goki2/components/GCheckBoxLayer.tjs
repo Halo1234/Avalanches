@@ -144,6 +144,7 @@ class GCheckBoxLayer extends GButtonLayer
 
 	function fixImageSize()
 	{
+		dm(@"&name; fixImageSize()");
 		if(!imageLoaded)
 		{
 			var layer = new global.Layer(window, this);
@@ -158,8 +159,11 @@ class GCheckBoxLayer extends GButtonLayer
 			iw = layer.imageWidth;
 			ih = layer.imageHeight;
 
-			if(iw + tw + alignToWidth(captionAlign, caption) > w)
-				w = iw + tw + alignToWidth(captionAlign, caption);
+			boxWidth_ = iw;
+			boxHeight_ = ih;
+
+			if(tw + alignToWidth(captionAlign, caption) > w)
+				w = tw + alignToWidth(captionAlign, caption);
 			if(th > h)
 				h = th;
 
@@ -172,38 +176,31 @@ class GCheckBoxLayer extends GButtonLayer
 			colorRect(0, 0, w, h, 0, -255);
 			colorRect(0, 0, w, h, bodyColor, bodyOpacity) if bodyColor != clNone;
 
-			layer.loadImages('check');
-
-			w = layer.imageWidth;
-			h = layer.imageHeight;
-
 			var l = 0;
-			var t = (height - h) >> 1;
+			var t = (height - ih) >> 1;
 			var off = 0;
 
 			for(var i = 0; i < 4; i++)
 			{
-				colorRect(off + l, t, w, h, 0xFFFFFF, 255);
-				colorRect(off + l, t, w, 1, 0x505050, 128);
-				colorRect(off + l, t + 1, 1, h - 1, 0x505050, 128);
-				colorRect(off + l + 1, t + 1, w - 2, 1, 0x000000, 128);
-				colorRect(off + l + 1, t + 2, 1, h - 3, 0x000000, 128);
-				colorRect(off + l + 1, t + h - 1, w - 1, 1, 0xB0B0B0, 128);
-				colorRect(off + l + w - 1, t + 1, 1, h - 1, 0xB0B0B0, 128);
-				colorRect(off + l + 2, t + h - 2, w - 4, 1, 0x606060, 128);
-				colorRect(off + l + w - 2, t + 2, 1, h - 3, 0x606060, 128);
+				colorRect(off + l, t, iw, ih, 0xFFFFFF, 255);
+				colorRect(off + l, t, iw, 1, 0x505050, 128);
+				colorRect(off + l, t + 1, 1, ih - 1, 0x505050, 128);
+				colorRect(off + l + 1, t + 1, iw - 2, 1, 0x000000, 128);
+				colorRect(off + l + 1, t + 2, 1, ih - 3, 0x000000, 128);
+				colorRect(off + l + 1, t + ih - 1, iw - 1, 1, 0xB0B0B0, 128);
+				colorRect(off + l + iw - 1, t + 1, 1, ih - 1, 0xB0B0B0, 128);
+				colorRect(off + l + 2, t + ih - 2, iw - 4, 1, 0x606060, 128);
+				colorRect(off + l + iw - 2, t + 2, 1, ih - 3, 0x606060, 128);
 				off += width;
 			}
 
 			off = width << 1;
-			operateRect(off + l, t, layer, 0, 0, w, h);
+			operateRect(off + l, t, layer, 0, 0, iw, ih);
 			off += width;
-			operateRect(off + l, t, layer, 0, 0, w, h);
+			operateRect(off + l, t, layer, 0, 0, iw, ih);
 
 			boxLeft_ = 0;
 			boxTop_ = t;
-			boxWidth_ = w;
-			boxHeight_ = h;
 
 			invalidate layer;
 		}
