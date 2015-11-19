@@ -548,16 +548,21 @@ class GLayer extends Layer
 	{
 		with(dic)
 		{
-			if((hasImage = .hasImage) != false)
+			if((hasImage = .hasImage) == true)
 			{
 				loadImages(.loadImagesStorage, .loadImagesColorKey) if .loadImagesStorage !== void;
 
 				flipLR() if .flipLeftRight;
 				flipUD() if .flipUpDown;
 
-				setImageSize(.imageWidth, .imageHeight);
-				clearImages(dic.clearImagesColor) if .loadImagesStorage === void;
-				setPos(.left, .top, .width, .height);
+				if(.loadImagesStorage === void)
+				{
+					setImageSize(.imageWidth, .imageHeight);
+					setSize(.width, .height);
+					clearImages(dic.clearImagesColor);
+				}
+				left = .left;
+				top = .top;
 				setOffset(.offsetX, .offsetY);
 				setImagePos(.imageLeft, .imageTop);
 			}
@@ -587,8 +592,8 @@ class GLayer extends Layer
 			fixPositionToCenter = .fixPositionToCenter;
 
 			conductor.restore(dic.conductor, tick) if dic.conductor !== void;
-			colorCorrection_.restore(dic.colorCorrection, tick) if dic.colorCorrection !== void;
-			shaker_.restore(dic.shaker, tick) if dic.shaker !== void;
+			colorCorrection.restore(dic.colorCorrection, tick) if dic.colorCorrection !== void;
+			shaker.restore(dic.shaker, tick) if dic.shaker !== void;
 		}
 
 		resetMouseState();

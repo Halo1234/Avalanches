@@ -1102,6 +1102,7 @@ class GHyperTextLayer extends GWidgetLayer
 
 		layoutModeCache_ = dic.layoutModeCache;
 		layoutMode_ = dic.layoutMode;
+		resetLayout();
 		layout.restore(dic.layout) if dic.layout !== void;
 
 		outputting_ = dic.outputting;
@@ -1134,6 +1135,8 @@ class GHyperTextLayer extends GWidgetLayer
 		lastCharacter_ = dic.lasttCharacter;
 
 		contents_.assignStruct(dic.contents);
+
+		layout.resetFont();
 	}
 
 	/**/

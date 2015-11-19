@@ -1167,7 +1167,6 @@ class ModMessage extends GModule
 		switch(message)
 		{
 		case 'onClickLink':
-			dm(message);
 			Script.eval(elm.onClickExp) if elm.onClickExp !== void;
 			if(elm.storage !== void || elm.target !== void)
 			{

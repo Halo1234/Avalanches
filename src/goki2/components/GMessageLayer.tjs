@@ -129,13 +129,12 @@ class GMessageLayer extends GHyperTextLayer
 	var links_ = [];
 	var currentLinkID_ = 0;
 	var currentLinkObject_ = void;
+	var enterLinkID_ = void;
 
 	/* const */ var ltNormal = 1;
 	/* const */ var ltButton = 2;
 	/* const */ var ltEdit = 3;
 	/* const */ var ltCheckBox = 4;
-
-	var enterLinkID_ = void;
 
 	var invisibleByUser_ = false;
 	var visibleBackup_ = false;
@@ -530,6 +529,39 @@ class GMessageLayer extends GHyperTextLayer
 		dic.pageGlyphLayer = pageGlyphLayer_.store(tick);
 		dic.lineGlyphLayer = lineGlyphLayer_.store(tick);
 
+		dic.fixGlyphPosition = fixGlyphPosition;
+		dic.glyphPositionX = glyphPositionX;
+		dic.glyphPositionY = glyphPositionY;
+
+		dic.links = GObjectUtils.clone(links_);
+
+		var maxLine = dic.links.count;
+		var max;
+
+		for(var i = 0; i < maxLine; i++)
+		{
+			if(dic.links[i] !== void)
+			{
+				var max = dic.links[i].count;
+				var links = dic.links[i];
+				for(var j = 0; j < max; j++)
+				{
+					if(links[j].type == ltButton ||
+						links[j].type == ltCheckBox ||
+						links[j].type == ltEdit)
+					{
+						links[j].object = links[j].object.store(tick);
+					}
+				}
+			}
+		}
+
+		dic.currentLinkID = currentLinkID_;
+		dic.currentLInkObject = currentLinkObject_;
+
+		dic.invisibleByUser = invisibleByUser_;
+		dic.visibleBackup = visibleBackup_;
+
 		return dic;
 	}
 
@@ -561,6 +593,48 @@ class GMessageLayer extends GHyperTextLayer
 
 		pageGlyphLayer_.restore(dic.pageGlyphLayer);
 		lineGlyphLayer_.restore(dic.lineGlyphLayer);
+
+		fixGlyphPosition = dic.fixGlyphPosition;
+		glyphPositionX = dic.glyphPositionX;
+		glyphPositionY = dic.glyphPositionY;
+
+		links_ = GObjectUtils.clone(dic.links);
+
+		var maxLine = links_.count;
+
+		for(var i = 0; i < maxLine; i++)
+		{
+			if(links_[i] !== void)
+			{
+				var links = links_[i];
+				var max = links.count;
+				for(var j = 0; j < max; j++)
+				{
+					if(links[j].type == ltButton)
+					{
+						var obj = new GLinkButtonLayer(window, this, onButtonEvent);
+						obj.restore(links[j].object, tick);
+						links[j].object = obj;
+					}
+					else
+					if(links[j].type == ltCheckBox)
+					{
+						var obj = new GLinkCheckBoxLayer(window, this, onCheckBoxEvent);
+						obj.restore(links[j].object, tick);
+						links[j].object = obj;
+					}
+					else
+					if(links[j].type == ltEdit)
+					{
+					}
+				}
+			}
+		}
+		currentLinkID_ = dic.currentLinkID;
+		currentLinkObject_ = dic.currentLinkObject;
+
+		invisibleByUser_ = dic.invisibleByUser;
+		visibleBackup_ = dic.visibleBackup;
 	}
 
 	/**/

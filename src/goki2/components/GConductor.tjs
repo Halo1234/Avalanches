@@ -1023,8 +1023,12 @@ class GConductor extends KAGParser
 		dic.lastProcessedTag = lastProcessedTag_;
 		dic.lastActualProcessedTag = lastActualProcessedTag_;
 
+		dic.pendingTags = pendingTags_;
+
 		dic.scriptQue = scriptQue_;
 		dic.autoJump = autoJump;
+
+		dic.ignoreCR = ignoreCR;
 
 		return dic;
 	}
@@ -1036,8 +1040,12 @@ class GConductor extends KAGParser
 		lastProcessedTag_ = dic.lastProcessedTag;
 		lastActualProcessedTag_ = dic.lastActualProcessedTag;
 
+		pendingTags_ = dic.pendingTags;
+
 		scriptQue_.assign(dic.scriptQue);
 		autoJump = dic.autoJump;
+
+		ignoreCR = dic.ignoreCR;
 
 		super.restore(dic);
 	}
