@@ -470,7 +470,7 @@ class GMessageLayer extends GHyperTextLayer
 		);
 		obj.exp = elm.name;
 		obj.width = +elm.length if elm.length !== void;
-		obj.caption = elm.caption if elm.caption !== void;
+		obj.text = elm.caption if elm.caption !== void;
 		obj.bodyColor = +elm.background_color if elm.background_color !== void;
 		obj.captionColor = +elm.color if elm.color !== void;
 		obj.bodyOpacity = +elm.opacity if elm.opacity !== void;
