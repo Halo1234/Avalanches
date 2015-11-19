@@ -288,6 +288,27 @@ class ModMessage extends GModule
 				}
 			} incontextof this,
 
+			/* @horizontal_ch */
+			'horizontal_ch' => function (elm, c) {
+				if(current_ !== null)
+				{
+					elm.original_tagname = elm.tagname;
+					elm.tagname = 'horizontal_ch';
+
+					if(current_.output(elm))
+					{
+						historyLayer_.output(elm) if outputHistory;
+						if(skipping)
+						{
+							return 0;
+						}
+						return outputInterval;
+					}
+
+					c.pendingTag('p', elm);
+				}
+			} incontextof this,
+
 			/* @ruby_mod_message */
 			'ruby_mod_message' => function (elm) {
 				if(current_ !== null)

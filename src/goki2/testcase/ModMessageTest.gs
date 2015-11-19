@@ -63,7 +63,9 @@
 *label|
 縦書きの[link storage=ModMessageTest target=*next2]テスト[end_link]です。[p][cm]
 
-*next2
+*next2|
+縦中横のテストです。[horizontal_ch text=12]月[horizontal_ch text='31-----' expand]日。[r]
+改行しますうううううううううううう。[p]
 
 @default_font_parameters size=12
 @reset_font

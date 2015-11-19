@@ -163,10 +163,8 @@ class GVerticalLayout
 	{
 		with(layer_)
 		{
-			var ls = getLineSize();
-
-			baseLine -= ls + lineSpace;
-			lineSize = ls;
+			baseLine -= lineSize + lineSpace;
+			lineSize = getLineSize();
 			characterPosition = (indentPosition == 0 ? marginTop_ : indentPosition);
 		}
 	}
@@ -488,10 +486,8 @@ class GHorizontalLayout
 	{
 		with(layer_)
 		{
-			var ls = getLineSize();
-
-			baseLine += ls + lineSpace;
-			lineSize = ls;
+			baseLine += lineSize + lineSpace;
+			lineSize = getLineSize();
 			characterPosition = (indentPosition == 0 ? marginLeft_ : indentPosition);
 		}
 	}
@@ -840,6 +836,24 @@ class GHyperTextLayer extends GWidgetLayer
 			}
 			break;
 
+		case 'horizontal_ch':
+			if(!outputting_)
+			{
+				if(layoutMode_ !== layoutModeCache_)
+					resetLayout();
+				if(marginModified_)
+					layout.setMargin(marginLeftCache_, marginTopCache_, marginRightCache_, marginBottomCache_);
+				layout.resetPosition();
+				outputting_ = true;
+			}
+
+			if(!renderHorizontalCharacter(tag.text, +tag.expand))
+			{
+				splitingPage_ = true;
+				return false;
+			}
+			break;
+
 		case 'ruby':
 			renderRuby(tag.text);
 			break;
@@ -979,7 +993,6 @@ class GHyperTextLayer extends GWidgetLayer
 	function renderCharacter(text)
 	{
 		var w, h, l, t;
-		var rl, rt;
 
 		with(layout)
 		{
@@ -1002,6 +1015,53 @@ class GHyperTextLayer extends GWidgetLayer
 			}
 
 			onRenderCharacter(text, l, t, w, h);
+
+			.nextPosition(w, h);
+		}
+
+		lastCharacter_ = text;
+
+		return true;
+	}
+
+	/**/
+	function renderHorizontalCharacter(text, expand)
+	{
+		var w, h, l, t;
+
+		with(layout)
+		{
+			if(font.face[0] != '@')
+				throw new GRuntimeError('縦書きモード以外では縦中横表示はできません。');
+
+			var f = font;
+			var face = f.face;
+			var angle = f.angle;
+
+			f.face = face.substring(1);
+			f.angle = 0;
+
+			w = f.getTextWidth(text);
+			h = f.getTextHeight(text);
+
+			if(.shouldWordWrap(w, h))
+			{
+				if(!wordWrap(text, w, h))
+					return false;
+			}
+
+			if(expand)
+			{
+				.lineSize = (w >> 1) + .lineSpace if ((w >> 1) + .lineSpace) > .lineSize;
+			}
+
+			l = .baseLine - (w >> 1);
+			t = .getCurrentTop(w, h);
+
+			onRenderCharacter(text, l, t, w, h);
+
+			f.face = face;
+			f.angle = angle;
 
 			.nextPosition(w, h);
 		}

@@ -34,6 +34,28 @@ class GCharacterLayer extends GWidgetLayer
 	{
 		return 0;
 	}
+
+	/**/
+	function store(tick)
+	{
+		var dic = super.store(...);
+
+		dic.fontFace = font.face;
+		dic.fontAngle = font.angle;
+		dic.fontSize = font.height;
+
+		return dic;
+	}
+
+	/**/
+	function restore(dic, tick)
+	{
+		font.face = dic.fontFace;
+		font.angle = dic.fontAngle;
+		font.height = dic.fontSize;
+
+		super.restore(...);
+	}
 }
 
 

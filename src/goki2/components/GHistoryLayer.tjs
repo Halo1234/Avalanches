@@ -253,8 +253,11 @@ class GHistoryLayer extends GHyperTextLayer
 
 			for(var j = 0; j < cnts[i].count; j++)
 			{
-				if(cnts[i][j].tagname == 'ch')
+				if(cnts[i][j].tagname == 'ch' || cnts[i][j].tagname == 'horizontal_ch')
+				{
+					cnts[i][j].tagname = 'ch';
 					line.push(cnts[i][j]);
+				}
 			}
 			if(pact[i] !== void)
 			{
@@ -693,7 +696,7 @@ class GHistoryLayer extends GHyperTextLayer
 	/**/
 	function output(tag, storeContents = true)
 	{
-		if(tag.tagname == 'ch')
+		if(tag.tagname == 'ch' || tag.tagname == 'horizontal_ch')
 		{
 			if(!outputting_)
 			{
@@ -712,7 +715,7 @@ class GHistoryLayer extends GHyperTextLayer
 				if(contents[currentLine] === void)
 				{
 					contents[currentLine] = [];
-					contents_[currentLine][0] = %[baseLine : layout.baseLine, lineSize : layout.lineSize];
+					contents[currentLine][0] = %[baseLine : layout.baseLine, lineSize : layout.lineSize];
 				}
 				contents[currentLine].push(GObjectUtils.clone(tag));
 			}
