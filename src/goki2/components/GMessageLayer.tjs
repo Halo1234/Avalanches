@@ -474,6 +474,7 @@ class GMessageLayer extends GHyperTextLayer
 		obj.bodyColor = +elm.background_color if elm.background_color !== void;
 		obj.captionColor = +elm.color if elm.color !== void;
 		obj.bodyOpacity = +elm.opacity if elm.opacity !== void;
+		obj.maxCharacter = +elm.max_character if elm.max_character !== void;
 		obj.visible = true;
 
 		layout.addPosition(obj.width, obj.height);
