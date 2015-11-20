@@ -245,6 +245,7 @@ class ModImage extends GModule
 					{
 						.splineUsed = true;
 						.mover.setParameters(arr, +elm.accel, +elm.time);
+						.mover.start(+elm.delay);
 					}
 					else
 					{
@@ -261,8 +262,9 @@ class ModImage extends GModule
 						}
 
 						.mover.time = +elm.time if elm.time !== void;
+						.mover.delay = +elm.delay if elm.delay !== void;
+						.mover.start();
 					}
-					.mover.start();
 				}
 			} incontextof this,
 
