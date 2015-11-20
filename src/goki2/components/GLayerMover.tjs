@@ -468,7 +468,7 @@ class GLayerMover extends GTimeLine
 			lines.push(@"layer.opacity = &first.opacity;" + ';') if typeof(first.opacity) !== 'undefined';
 			lines.push(@"layer.visible = &first.visible;" + ';') if typeof(first.visible) !== 'undefined';
 
-			lines.push("}");
+			lines.push('}');
 		}
 		else
 		{
@@ -489,7 +489,7 @@ class GLayerMover extends GTimeLine
 				}
 				else
 				{
-					lines.push("var x = ox;");
+					lines.push('var x = ox;');
 				}
 				if(typeof(first.y) !== 'undefined' && typeof(second.y) !== 'undefined')
 				{
@@ -498,7 +498,7 @@ class GLayerMover extends GTimeLine
 				}
 				else
 				{
-					lines.push("var y = oy;");
+					lines.push('var y = oy;');
 				}
 				if(typeof(first.width) !== 'undefined' && typeof(second.width) !== 'undefined')
 				{
@@ -507,7 +507,7 @@ class GLayerMover extends GTimeLine
 				}
 				else
 				{
-					lines.push("var width = layer.width;");
+					lines.push('var width = layer.width;');
 				}
 				if(typeof(first.height) !== 'undefined' && typeof(second.height) !== 'undefined')
 				{
@@ -516,7 +516,7 @@ class GLayerMover extends GTimeLine
 				}
 				else
 				{
-					lines.push("var height = layer.height;");
+					lines.push('var height = layer.height;');
 				}
 				if(typeof(first.ix) !== 'undefined' && typeof(second.ix) !== 'undefined')
 				{
@@ -525,7 +525,7 @@ class GLayerMover extends GTimeLine
 				}
 				else
 				{
-					lines.push("var ix = Math.abs(layer.imageLeft);");
+					lines.push('var ix = Math.abs(layer.imageLeft);');
 				}
 				if(typeof(first.iy) !== 'undefined' && typeof(second.iy) !== 'undefined')
 				{
@@ -534,7 +534,7 @@ class GLayerMover extends GTimeLine
 				}
 				else
 				{
-					lines.push("var iy = Math.abs(layer.imageTop);");
+					lines.push('var iy = Math.abs(layer.imageTop);');
 				}
 				if(typeof(first.opacity) !== 'undefined' && typeof(second.opacity) !== 'undefined')
 				{
@@ -543,7 +543,7 @@ class GLayerMover extends GTimeLine
 				}
 				else
 				{
-					lines.push("var opacity = layer.opacity;");
+					lines.push('var opacity = layer.opacity;');
 				}
 				if(typeof(first.ax) !== 'undefined' && typeof(second.ax) !== 'undefined')
 				{
@@ -568,55 +568,55 @@ class GLayerMover extends GTimeLine
 
 				// 回転行列 m は必ず必要になる
 				if(ax && ay)
-					lines.push("var m = rotateM(ax, ay);");
+					lines.push('var m = rotateM(ax, ay);');
 				else
 				if(ax)
-					lines.push("var m = rotateM(ax, 0);");
+					lines.push('var m = rotateM(ax, 0);');
 				else
 				if(ay)
-					lines.push("var m = rotateM(0, ay);");
+					lines.push('var m = rotateM(0, ay);');
 				else
-					lines.push("var m = rotateM(0);");
+					lines.push('var m = rotateM(0);');
 
-				lines.push("if(layer.fixPositionToCenter) {");
-				lines.push("var rx = width >> 1;");
-				lines.push("var ry = height >> 1;");
+				lines.push('if(layer.fixPositionToCenter) {');
+				lines.push('var rx = width >> 1;');
+				lines.push('var ry = height >> 1;');
 
-				lines.push("m = mulM(transM(-rx, -ry), m);");
+				lines.push('m = mulM(transM(-rx, -ry), m);');
 				// スケーリング（必要ならば）
 				if(sx && sy)
-					lines.push("m = mulM(m, scaleM(sx, sy));");
+					lines.push('m = mulM(m, scaleM(sx, sy));');
 				else
 				if(sx)
-					lines.push("m = mulM(m, scaleM(sx, 1.0));");
+					lines.push('m = mulM(m, scaleM(sx, 1.0));');
 				else
 				if(sy)
-					lines.push("m = mulM(m, scaleM(1.0, sy));");
+					lines.push('m = mulM(m, scaleM(1.0, sy));');
 				// 移動
-				lines.push("m = mulM(m, transM(x, y));");
-				lines.push("m = mulM(m, transM(rx, ry));");
+				lines.push('m = mulM(m, transM(x, y));');
+				lines.push('m = mulM(m, transM(rx, ry));');
 
-				lines.push("} else {");
+				lines.push('} else {');
 
 				// スケーリング（必要ならば）
 				if(sx && sy)
-					lines.push("m = mulM(m, scaleM(sx, sy));");
+					lines.push('m = mulM(m, scaleM(sx, sy));');
 				else
 				if(sx)
-					lines.push("m = mulM(m, scaleM(sx, 1.0));");
+					lines.push('m = mulM(m, scaleM(sx, 1.0));');
 				else
 				if(sy)
-					lines.push("m = mulM(m, scaleM(1.0, sy));");
+					lines.push('m = mulM(m, scaleM(1.0, sy));');
 				// 移動
-				lines.push("m = mulM(m, transM(x, y));");
+				lines.push('m = mulM(m, transM(x, y));');
 
-				lines.push("}");
+				lines.push('}');
 
 				// 描画本体
-				lines.push("with(targetLayer_) {");
-				lines.push(".fillRect(0, 0, .width, .height, 0);");
-				lines.push(".operateAffine(layer, int(ix + 0.5), int(iy + 0.5), width, height, true, m*, omAlpha, opacity, stNearest);");
-				lines.push("}");
+				lines.push('with(targetLayer_) {');
+				lines.push('.fillRect(0, 0, .width, .height, 0);');
+				lines.push('.operateAffine(layer, int(ix + 0.5), int(iy + 0.5), width, height, true, m*, omAlpha, opacity, stNearest);');
+				lines.push('}');
 			}
 			else
 			{
@@ -650,10 +650,10 @@ class GLayerMover extends GTimeLine
 				}
 			}
 
-			lines.push("}");
+			lines.push('}');
 		}
 
-		var src = lines.join("\n");
+		var src = lines.join('\n');
 
 		//dm(src);
 
