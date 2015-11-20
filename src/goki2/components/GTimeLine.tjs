@@ -340,7 +340,6 @@ class GTimeLine
 					timer_.enabled = false;
 					tickDiff_ = 0;
 
-					dm('ok');
 					notify('onStopTimeLine', false) if !timer_.enabled;
 				}
 			}
