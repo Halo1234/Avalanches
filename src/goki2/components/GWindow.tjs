@@ -17,11 +17,51 @@ class GWindow extends Window
 	var thisTagHandlers_;					//!< \brief このクラスが提供するタグハンドラ
 	var tagHandlers_ = %[];					//!< \brief タグハンドラ
 
+	var temporaryLayer_;
+	var temporaryCache_ = [];
+
 	var scWidth = 600;						//!< \brief ウインドウ幅
 	var scHeight = 480;						//!< \brief ウインドウ高さ
 
 	var fullScreened_ = false;				// 内部用
 	var altEnterScreenModeChange = false;	//!< \brief true に設定すると Alt+Enter でスクリーンモードを切り替えます。
+
+	/**
+	 * NOTE:
+	 * window が違う場合の動作については未定義です。
+	 * 注意して使う事。
+	**/
+	class GTemporaryLayer extends Layer
+	{
+		var _counter = 0;
+
+		function GTemporaryLayer(window, parent)
+		{
+			super.Layer(...);
+			hitType = htMask;
+			hitThreshold = 256;
+			name = 'Not used.';
+		}
+
+		function add()
+		{
+			return _counter++;
+		}
+
+		function release()
+		{
+			if((--_counter) == 0)
+			{
+				parent = window.temporaryLayer;
+				window.temporaryCache_.add(this);
+				name = 'Not used.';
+				visible = false;
+				setSize(32, 32);
+				fillRect(0, 0, imageWidth, imageHeight, 0);
+			}
+			return _counter;
+		}
+	}
 
 	function GWindow()
 	{
@@ -186,6 +226,30 @@ class GWindow extends Window
 
 			modules_.callHandler('onPrimaryLayerResize', .left, .top, .width, .height);
 		}
+	}
+
+	/**/
+	function getExclusiveWorkLayer(owner)
+	{
+		var arr = temporaryCache_;
+		var obj;
+
+		if(arr.count == 0)
+		{
+			// キャッシュに何も存在しないので新しく作る
+			obj = new global.GWindow.GTemporaryLayer(this, owner);
+		}
+		else
+		{
+			// 親を owner に変更する
+			obj = arr.pop();
+			obj.parent = owner;
+		}
+
+		obj.name = @"Working on '&owner.name;'";
+		obj.visible = false;
+
+		return obj;
 	}
 
 	/**/
@@ -478,6 +542,19 @@ class GWindow extends Window
 	property thisTagHandlers
 	{
 		getter		{ return thisTagHandlers_; }
+	}
+
+	property temporaryLayer
+	{
+		getter
+		{
+			if(temporaryLayer_ === void)
+			{
+				temporaryLayer_ = new GLayer(this, this.primaryLayer);
+				temporaryLayer_.name = '作業用レイヤ';
+			}
+			return temporaryLayer_;
+		}
 	}
 
 	property fullScreen

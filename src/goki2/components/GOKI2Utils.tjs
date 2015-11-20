@@ -1239,4 +1239,107 @@ function intRandom(min = 0, max = 0)
 	return int(Math.random() * (max - min + 1)) + min;
 }
 
+/* 行列計算 */
+
+/**
+ * 度数法における角度 angle をラジアン角に変換して返す。
+ *
+ * angle = 0 ～ 360 の範囲の整数、または実数。
+**/
+function toRadian(angle)
+{
+	return angle * Math.PI / 180;
+}
+
+/**
+ * 回転移動行列を作成して返す。
+ *
+ * rad = 回転角（ラジアン）
+ * tx  = Ｘ移動量
+ * ty  = Ｙ移動量
+**/
+function rotateM(radx, rady = radx, tx = 0, ty = 0)
+{
+	var sin = Math.sin(radx);
+	var cos = Math.cos(rady);
+
+	return [
+	//    1     2     3
+	// |----|-----|-----+
+		cos, -sin, // 0 | 1
+		sin,  cos, // 0 | 2
+		tx,    ty  // 1 | 3
+	];
+}
+
+/**
+ * 拡大縮小行列を作成して返す。
+ *
+ * sx = Ｘスケール
+ * sy = Ｙスケール
+**/
+function scaleM(sx, sy = sx)
+{
+	return [
+	//    1     2     3
+	// |----|-----|-----+
+		 sx,    0, // 0 | 1
+		  0,   sy, // 0 | 2
+		  0,    0  // 1 | 3
+	];
+}
+
+/**
+ * 移動行列を作成して返す。
+ *
+ * tx = Ｘ移動量
+ * ty = Ｙ移動量
+**/
+function transM(tx, ty)
+{
+	return [
+	//    1     2     3
+	// |----|-----|-----+
+		  1,    0, // 0 | 1
+		  0,    1, // 0 | 2
+		 tx,   ty  // 1 | 3
+	];
+}
+
+/**
+ * 行列の和
+**/
+function addM(m1, m2)
+{
+	return [
+		m1[0] + m2[0], m1[1] + m2[1],
+		m1[2] + m2[2], m1[3] + m2[3],
+		m1[4] + m2[4], m1[5] + m2[5]
+	];
+}
+
+/**
+ * 行列の差
+**/
+function subM(m1, m2)
+{
+	return [
+		m1[0] - m2[0], m1[1] - m2[1],
+		m1[2] - m2[2], m1[3] - m2[3],
+		m1[4] - m2[4], m1[5] - m2[5]
+	];
+}
+
+/**
+ * 行列の積
+**/
+function mulM(m1, m2)
+{
+	return [
+		m1[0] * m2[0] + m1[1] * m2[2] + 0 * m2[4], m1[0] * m2[1] + m1[1] * m2[3] + 0 * m2[5],
+		m1[2] * m2[0] + m1[3] * m2[2] + 0 * m2[4], m1[2] * m2[1] + m1[3] * m2[3] + 0 * m2[5],
+		m1[4] * m2[0] + m1[5] * m2[2] + 1 * m2[4], m1[4] * m2[1] + m1[5] * m2[3] + 1 * m2[5]
+	];
+}
+
 

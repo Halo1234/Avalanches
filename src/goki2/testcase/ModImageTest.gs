@@ -38,9 +38,17 @@
 @wait_transition
 @log message="子レイヤ読み込みに成功しました。"
 
+@click_skip !enabled
+
 子レイヤの読み込みに成功しました。[p][cm]
 
 *label|
+@move layer=0 path="(10, 10, 255), (500, 500, 255)" time=5000
+子レイヤの移動を行います。[p][cm]
+
+*label|
+@click_skip enabled
+
 @start_animation layer=0
 @log message="子レイヤでアニメーションを開始しました。"
 

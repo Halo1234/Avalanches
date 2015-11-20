@@ -231,6 +231,41 @@ class ModImage extends GModule
 				stopTransitionByElm(elm);
 			} incontextof this,
 
+			/**/
+			'move' => function (elm) {
+				with(findByElm(elm))
+				{
+					var arr = [].split('(), ', elm.path, , true);
+					for(var i = arr.count - 1; i >= 0; i--)
+						arr[i + 3] = +arr[i];
+					arr[0] = .left;
+					arr[1] = .top;
+					arr[2] = .opacity;
+					if(GObjectUtils.getBoolean(elm, 'spline', false))
+					{
+						.splineUsed = true;
+						.mover.setParameters(arr, +elm.accel, +elm.time);
+					}
+					else
+					{
+						.splineUsed = false;
+
+						var count = arr.count \ 3;
+						var step = 1.0 / count;
+						var pos = 0;
+
+						for(var i = 0; i < count; i++)
+						{
+							.mover.addFrame(pos, %[x : arr[i * 3], y : arr[(i * 3) + 1], opacity : arr[(i * 3) + 2]]);
+							pos += step;
+						}
+
+						.mover.time = +elm.time if elm.time !== void;
+					}
+					.mover.start();
+				}
+			} incontextof this,
+
 			/* @wait_transition */
 			'wait_transition' => function (elm, c) {
 				waitTransitionByElm(elm, c);

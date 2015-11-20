@@ -13,8 +13,12 @@ class GLayer extends Layer
 	var conductor_ = void;				//!< \brief このレイヤのコンダクタ。
 	var colorCorrection_ = void;		//!< \brief このレイヤの色補正用オブジェクト。
 	var shaker_ = void;					//!< \brief このレイヤのシェイカー
+	var splineUsed_ = false;
+	var mover_ = void;					//!< \brief このレイヤのムーバー
 
 	var mirror_ = null;					//!< \brief ミラーレイヤ。最後にアサインしたレイヤです。
+	var workLayer_;						//!< \brief 作業用レイヤ
+	var internalVisible_ = void;		//!< \brief 作業中の visible 状態
 	var offScreen_ = false;
 
 	var name_;
@@ -109,6 +113,18 @@ class GLayer extends Layer
 	function createShaker(owner)
 	{
 		return new GLayerShaker(owner);
+	}
+
+	/**/
+	function createMover(owner)
+	{
+		return new GLayerMover(owner);
+	}
+
+	/**/
+	function createSplineMover(owner)
+	{
+		return new GLayerSplineMover(owner);
 	}
 
 	/**/
@@ -242,6 +258,49 @@ class GLayer extends Layer
 		offScreen_ = false;
 		mirror_ = null;
 		resetLayerName();
+	}
+
+	/**
+	 * \brief このレイヤに対する何らかの描画を行う場合のターゲットを返す。
+	 * \brief このメソッドで取得したターゲットが必要なくなった場合
+	 * \brief 必ず、releaseRenderingTarget() を呼び出してください。
+	 *
+	 * \remarks このメソッドを呼び出すと this は強制的に非表示になります。
+	 * \remarks 実際には表示されていないだけでプロパティの値は変化しません。
+	 * \remarks （つまり、this.visible は通常通りの値を返します）
+	 * \remarks この動作は this 上で onMouseEnter などのイベントが発生しない事を意味します。
+	**/
+	function getRenderingTarget()
+	{
+		var obj = workLayer_;
+
+		if(obj === void)
+		{
+			obj = workLayer_ = window.getExclusiveWorkLayer(this.parent);
+			obj.visible = true;
+			internalVisible_ = super.visible;
+			super.visible = false;
+		}
+		obj.add();
+		obj.absolute = absolute if obj.absolute > absolute;
+		return obj;
+	}
+
+	/**
+	 * \brief getRenderingTarget() で取得したターゲットを解放します。
+	 * \brief 引数の target は単なるチェック用ですが、
+	 * \brief 正しく、this のターゲットを渡さない限り release はされません。
+	**/
+	function releaseRenderingTarget(target)
+	{
+		if(workLayer_ !== target)
+			return;
+		if(target.release() == 0)
+		{
+			workLayer_ = void;
+			super.visible = internalVisible_;
+			internalVisible_ = void;
+		}
 	}
 
 	/**/
@@ -514,6 +573,50 @@ class GLayer extends Layer
 	{
 	}
 
+	/**
+	 * str: 文字列を想定していますが、単項 + 演算子で数値化できるものであれば何でも構いません。
+	 *
+	 * あんまりまともに考えて作った仕様じゃないので何か漏れがあるかもめ。
+	**/
+	function stringTo(str)
+	{
+		// int ?
+		if(typeof(str) === 'Integer')
+			return str;
+
+		if(str !== void)
+		{
+			// mode ?
+			var types = imageTagLayerType;
+			if(types[str] !== void)
+				return types[str].type;
+
+			// global variable ?
+			if(typeof(global[str]) !== 'undefined')
+				return global[str];
+		}
+
+		// instance ?
+		switch(str)
+		{
+		case 'left':		return left;
+		case 'top':			return top;
+		case 'width':		return width;
+		case 'height':		return height;
+		case 'imageLeft':	return imageLeft;
+		case 'imageTop':	return imageTop;
+		case 'imageWidth':	return imageWidth;
+		case 'imageHeight':	return imageHeight;
+		case 'imageRight':	return imageWidth - width;
+		case 'imageBottom':	return imageHeight - height;
+
+		case 'clBlack':		return 0x000000;
+		case 'clWhite':		return 0xFFFFFF;
+		}
+
+		return +str;
+	}
+
 	/**/
 	function store(tick)
 	{
@@ -679,6 +782,17 @@ class GLayer extends Layer
 		getter		{ return shaker_ === void ? (shaker_ = createShaker(this)) : shaker_; }
 	}
 
+	property splineUsed
+	{
+		setter(x)	{ splineUsed_ = x; invalidate mover_ if mover_ !== void; mover_ = void; }
+		getter		{ return splineUsed_; }
+	}
+
+	property mover
+	{
+		getter		{ return mover_ === void ? (mover_ = (splineUsed ? createSplineMover(this) : createMover(this))) : mover_; }
+	}
+
 	property conductor
 	{
 		getter		{ return conductor_ === void ? (conductor_ = createConductor(window, this)) : conductor_; }
@@ -723,6 +837,12 @@ class GLayer extends Layer
 	property loadImagesColorKey
 	{
 		getter		{ return loadImagesColorKey_; }
+	}
+
+	property visible
+	{
+		setter(x)	{ (workLayer_ === void ? super.visible : internalVisible_) = x; }
+		getter		{ return (workLayer_ === void ? super.visible : internalVisible_); }
 	}
 
 	property offsetX
