@@ -10,6 +10,8 @@ class GLayerSplineMover
 	var owner_;
 	var delayTimer;
 
+	var name;
+
 	var path;
 	var time;
 	var accel;
@@ -31,7 +33,7 @@ class GLayerSplineMover
 
 	function finalize()
 	{
-		stopMove();
+		stop();
 		if(delayTimer !== void) invalidate delayTimer;
 	}
 
@@ -116,7 +118,7 @@ class GLayerSplineMover
 		System.addContinuousHandler(handler);
 	}
 
-	function stopMove()
+	function stop()
 	{
 		// ˆÚ“®‚ðI‚í‚é
 		if(moving)
@@ -131,14 +133,14 @@ class GLayerSplineMover
 			}
 			System.removeContinuousHandler(handler);
 			moving = false;
-			finalFunction() if finalFunction !== void;
+			finalFunction(owner_, 'onStopMover', %[]) if finalFunction !== void;
 		}
 	}
 
 	function handler(tick)
 	{
 		// ˆÚ“®’†‚ÉŒÄ‚Î‚ê‚é
-		if(nextStop || !(owner_ isvalid)) { stopMove();  return; }
+		if(nextStop || !(owner_ isvalid)) { stop();  return; }
 		if(first) startTick = tick, first = false;
 		tick -= startTick;
 		if(tick >= totalTime)
@@ -196,6 +198,16 @@ class GLayerSplineMover
 
 		owner_.setPos(l, t);
 		owner_.opacity = o;
+	}
+
+	property running
+	{
+		getter		{ return moving; }
+	}
+
+	property endlessRunning
+	{
+		getter		{ return false; }
 	}
 }
 

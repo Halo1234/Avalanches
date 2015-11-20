@@ -819,10 +819,15 @@ class GLayerMover extends GTimeLine
 
 	function onStopTimeLine(paused)
 	{
-		if(!paused && targetLayer_ !== void)
+		if(!paused)
 		{
-			owner.releaseRenderingTarget(targetLayer_);
-			targetLayer_ = void;
+			with(owner)
+			{
+				if(targetLayer_ !== void)
+					.releaseRenderingTarget(targetLayer_);
+				targetLayer_ = void;
+				.callHandler('onStopMover', %[paused : paused]);
+			}
 		}
 	}
 
