@@ -131,6 +131,12 @@ class ModImage extends GModule
 				return 'breath';
 			} incontextof this,
 
+			/* @partial_text */
+			'partial_text' => function (elm) {
+				drawReconstructibleTextByElm(elm);
+				return 'breath';
+			} incontextof this,
+
 			/* @clear_image */
 			'clear_image' => function (elm) {
 				with(findByElm(elm))
@@ -557,6 +563,32 @@ class ModImage extends GModule
 				destX, destY,
 				+elm.src_x, +elm.src_y, srcW, srcH,
 				elm.mode, opacity
+			);
+		}
+	}
+
+	/**/
+	function drawReconstructibleTextByElm(elm, ignorePage = false)
+	{
+		with(findByElm(elm, ignorePage))
+		{
+			var vertical = GObjectUtils.getBoolean(elm, 'vertical', false);
+			var angle = (elm.angle === void ? void : +elm.angle);
+			var size = (elm.size === void ? 12 : +elm.size);
+			var color = (elm.color === void ? 0x000000 : +elm.color);
+			var italic = GObjectUtils.getBoolean(elm, 'italic', false);
+			var bold = GObjectUtils.getBoolean(elm, 'bold', false);
+			var shadow = GObjectUtils.getBoolean(elm, 'shadow', true);
+			var edge = GObjectUtils.getBoolean(elm, 'edge', false);
+			var shadowColor = (elm.shadow_color === void ? 0x000000 : +elm.shadow_color);
+			var edgeColor = (elm.edge_color === void ? 0x000000 : +elm.edge_color);
+
+			.drawReconstructibleText(
+				+elm.x, +elm.y, elm.text,
+				vertical,
+				elm.face, angle, size, color,
+				italic, bold,
+				shadow, edge, shadowColor, edgeColor
 			);
 		}
 	}

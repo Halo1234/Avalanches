@@ -60,6 +60,13 @@
 子レイヤの部分画像読み込みのテストです。[p][cm]
 
 *label|
+@partial_text layer=0 x=0 y=0 text=hogehoge color=0xFFFF00
+子レイヤの文字描画のテストです。[p][cm]
+
+*label|
+テストを続けます。[p][cm]
+
+*label|
 @move layer=0 path="(10, 10, 255), (200, 200, 255)" time=5000
 @wait_move layer=0
 

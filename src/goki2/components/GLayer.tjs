@@ -42,6 +42,9 @@ class GLayer extends Layer
 
 	var partialImages_ = [];
 
+	var defaultFontFace_;
+	var defaultFontSize_;
+
 	var showRunning_ = false;			//!< \brief 表示効果実行中は true に設定されます。
 	var hideRunning_ = false;			//!< \brief 非表示効果実行中は true に設定されます。
 
@@ -58,6 +61,9 @@ class GLayer extends Layer
 		this.handler = handler;
 
 		super.Layer(window, parent);
+
+		defaultFontFace_ = font.face;
+		defaultFontSize_ = font.height;
 
 		// 特に理由は無い部分もあるが明示的に初期化しておく。
 		name = GObjectUtils.getClassName(this);
@@ -171,10 +177,53 @@ class GLayer extends Layer
 		}
 
 		partialImages_.push(%[
+			name : 'loadPartialImage',
 			storage : storage, key : key,
 			destX : destX, destY : destY,
 			srcX : srcX, srcY : srcY, srcW : srcW, srcH : srcH,
 			mode : mode, opacity : opacity
+		]);
+	}
+
+	/**/
+	function drawReconstructibleText(x, y, text, vertical, face, angle, size, color, italic, bold, shadow, edge, shadowColor, edgeColor)
+	{
+		with(font)
+		{
+			var f = (face === void ? defaultFontFace_ : face);
+			var s = (size === void ? defaultFontSize_ : size);
+			var a = (angle === void ? (vertical ? 2700 : 0) : angle);
+
+			if(vertical)
+				f = @"@&f;";
+			.face = f;
+			.height = s;
+			.angle = a;
+			.italic = italic if italic !== void;
+			.bold = bold if bold !== void;
+		}
+
+		if(edge)
+		{
+			drawText(x, y, text, color, 255, true, 512, edgeColor, 1, 0, 0);
+		}
+		else
+		if(shadow)
+		{
+			drawText(x, y, text, color, 255, true, 255, shadowColor, 0, 2, 2);
+		}
+		else
+		{
+			drawText(x, y, text, color, 255, true);
+		}
+
+		partialImages_.push(%[
+			name : 'drawReconstructibleText',
+			x : x, y : y, text : text,
+			vertical : vertical,
+			face : face, angle : angle, size : size, color : color,
+			italic : italic, bold : bold,
+			shadow : shadow, edge : edge, shadowColor : shadowColor, edgeColor : edgeColor
 		]);
 	}
 
@@ -813,7 +862,20 @@ class GLayer extends Layer
 			for(var i = 0; i < .partialImages.count; i++)
 			{
 				var pi = .partialImages[i];
-				loadPartialImage(pi.storage, pi.key, pi.destX, pi.destY, pi.srcX, pi.srcY, pi.srcW, pi.srcH, pi.mode, pi.opacity);
+				switch(pi.name)
+				{
+				case 'loadPartialImage':
+					loadPartialImage(pi.storage, pi.key, pi.destX, pi.destY, pi.srcX, pi.srcY, pi.srcW, pi.srcH, pi.mode, pi.opacity);
+					break;
+				case 'drawReconstructibleText':
+					drawReconstructibleText(
+						pi.x, pi.y, pi.text,
+						pi.vertical,
+						pi.face, pi.angle, pi.size, pi.color,
+						pi.italic, pi.bold, pi.shadow, pi.edge, pi.shadowColor, pi.edgeColor
+					);
+					break;
+				}
 			}
 
 			conductor.restore(dic.conductor, tick) if dic.conductor !== void;
