@@ -193,6 +193,15 @@ class GCellLayer extends GLayer
 		index_ = index;
 	}
 
+	function loadImages(storage, key)
+	{
+		var tag = super.loadImages(...);
+
+		parent.colorCorrection.apply(this);
+
+		return tag;
+	}
+
 	function createConductor(window, layer)
 	{
 		return new GCellLayerConductor(window, layer);

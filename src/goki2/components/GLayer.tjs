@@ -654,7 +654,6 @@ class GLayer extends Layer
 			flipLeftRight : flipLeftRight_, flipUpDown : flipUpDown_,
 			imageLeft : imageLeft, imageTop : imageTop, imageWidth : imageWidth, imageHeight : imageHeight,
 			fixPositionToCenter : fixPositionToCenter,
-			//colorCorrection : colorCorrection_.store(tick),
 			shaker : shaker.store()
 		];
 
@@ -723,6 +722,9 @@ class GLayer extends Layer
 			conductor.restore(dic.conductor, tick) if dic.conductor !== void;
 			colorCorrection.restore(dic.colorCorrection, tick) if dic.colorCorrection !== void;
 			shaker.restore(dic.shaker, tick) if dic.shaker !== void;
+
+			// êFï‚ê≥ìKâû
+			colorCorrection.apply();
 		}
 
 		resetMouseState();

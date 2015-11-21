@@ -23,8 +23,6 @@
 @assign_to_mirror
 @log message="背景コピーのテスト"
 
-@load_image layer=0 center_x=400 center_y=300 page=back storage=ImageSample visible
-
 背景コピーのテストに成功しました。[p][cm]
 
 *label|
@@ -34,13 +32,22 @@
 揺れます。[p][cm]
 
 *label|
-@transition time=1000
-@wait_transition
-@log message="子レイヤ読み込みに成功しました。"
-
 @click_skip !enabled
 
+@load_image layer=0 center_x=400 center_y=300 page=back storage=ImageSample visible
+
+@transition time=1000
+@wait_transition
+
 子レイヤの読み込みに成功しました。[p][cm]
+
+*label|
+@load_image layer=0 center_x=400 center_y=300 gray_scale rgamma=1.5 ggamma=1.3 page=back storage=ImageSample visible
+
+@transition time=1000
+@wait_transition
+
+子レイヤの色補正のテストです。[p][cm]
 
 *label|
 @move layer=0 path="(10, 10, 255), (500, 500, 255)" time=5000
