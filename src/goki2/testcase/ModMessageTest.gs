@@ -22,6 +22,9 @@
 メッセージレイヤのテストです。[p]
 
 *label|
+絵文字[graph storage=char character alt=(赤)]のテストです。[p][cm]
+
+*label|
 改行のテストです。[r][history_action exp=System.inform('hoge')]２行目のテキスト[end_history_action]です。[p][cm]
 
 *label|

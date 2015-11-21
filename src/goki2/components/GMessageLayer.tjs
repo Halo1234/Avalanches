@@ -815,6 +815,17 @@ class GMessageLayer extends GHyperTextLayer
 	}
 
 	/**/
+	function onRenderGraph(storage, key, character, left, top, width, height)
+	{
+		var temp = window.temporaryLayer;
+		var layer = allocCharacterLayer_private_();
+
+		layer.loadImages(storage, key);
+		layer.setPos(left, top);
+		layer.show();
+	}
+
+	/**/
 	function onRenderRubyText(text, width, height)
 	{
 		var layer = allocRubyTextLayer_private_();

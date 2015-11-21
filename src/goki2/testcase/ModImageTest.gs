@@ -44,6 +44,8 @@
 
 *label|
 @move layer=0 path="(10, 10, 255), (500, 500, 255)" time=5000
+@wait_move layer=0
+
 子レイヤの移動を行います。[p][cm]
 
 *label|

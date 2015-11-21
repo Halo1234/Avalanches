@@ -639,6 +639,21 @@ class ModMessage extends GModule
 				}
 			} incontextof this,
 
+			/**/
+			'graph' => function (elm) {
+				if(current_ !== null)
+				{
+					if(current_.output(elm))
+					{
+						historyLayer_.output(%[tagname : 'ch', text : elm.alt]) if outputHistory;
+
+						return outputInterval;
+					}
+
+					c.pendingTag('p', elm);
+				}
+			} incontextof this,
+
 			/* @locate */
 			'locate' => function (elm) {
 				if(current_ !== null)

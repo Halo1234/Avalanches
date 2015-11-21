@@ -170,9 +170,17 @@ class GVerticalLayout
 	}
 
 	/**/
+	function calculateLineSize(width, height)
+	{
+		return (width >> 1) + lineSize;
+	}
+
+	/**/
 	function getCurrentLeft(chWidth, chHeight)
 	{
-		return baseLine - (chWidth >> 1);
+		var left = baseLine - (chWidth >> 1);
+
+		return marginLeft_ > left ? marginLeft_ : left;
 	}
 
 	/**/
@@ -493,6 +501,12 @@ class GHorizontalLayout
 	}
 
 	/**/
+	function calculateLineSize(width, height)
+	{
+		return height + lineSize;
+	}
+
+	/**/
 	function getCurrentLeft(chWidth, chHeight)
 	{
 		return characterPosition;
@@ -501,7 +515,9 @@ class GHorizontalLayout
 	/**/
 	function getCurrentTop(chWidth, chHeight)
 	{
-		return baseLine - chHeight;
+		var top = baseLine - chHeight;
+
+		return marginTop_ > top ? marginTop_ : top;
 	}
 
 	/**/
@@ -836,6 +852,25 @@ class GHyperTextLayer extends GWidgetLayer
 			}
 			break;
 
+		case 'graph':
+			if(!outputting_)
+			{
+				if(layoutMode_ !== layoutModeCache_)
+					resetLayout();
+				if(marginModified_)
+					layout.setMargin(marginLeftCache_, marginTopCache_, marginRightCache_, marginBottomCache_);
+				layout.resetPosition();
+				outputting_ = true;
+			}
+
+			if(!renderGraph(tag.storage, adjustColorKey(tag.key), GObjectUtils.getBoolean(tag, 'character', true)))
+			{
+				splitingPage_ = true;
+				return false;
+			}
+
+			break;
+
 		case 'horizontal_ch':
 			if(!outputting_)
 			{
@@ -1072,6 +1107,39 @@ class GHyperTextLayer extends GWidgetLayer
 	}
 
 	/**/
+	function renderGraph(storage, key, character)
+	{
+		var w, h, l, t;
+
+		with(layout)
+		{
+			var layer = window.temporaryLayer;
+
+			layer.loadImages(storage, key);
+
+			w = layer.imageWidth;
+			h = layer.imageHeight;
+
+			if(.shouldWordWrap(w, h))
+			{
+				if(!wordWrap(text, w, h))
+					return false;
+			}
+
+			.lineSize = .calculateLineSize(w, h) if .calculateLineSize(w, h) > .lineSize;
+
+			l = .getCurrentLeft(w, h);
+			t = .getCurrentTop(w, h);
+
+			onRenderGraph(storage, key, character, l, t, w, h);
+
+			.nextPosition(w, h);
+		}
+
+		return true;
+	}
+
+	/**/
 	function renderRuby(text)
 	{
 		var face = font.face;
@@ -1213,6 +1281,11 @@ class GHyperTextLayer extends GWidgetLayer
 	function onRenderCharacter(ch, left, top, width, height)
 	{
 		// NOTE: ここでテキストを描画してください。
+	}
+
+	/**/
+	function onRenderGraph(storage, key, character, left, top, width, height)
+	{
 	}
 
 	/**/

@@ -88,6 +88,8 @@ class GLayer extends Layer
 		flipLeftRight_ = false;
 		flipUpDown_ = false;
 
+		key = adjustColorKey(key);
+
 		return super.loadImages(loadImagesStorage_ = storage, loadImagesColorKey_ = key);
 	}
 
@@ -571,6 +573,30 @@ class GLayer extends Layer
 	/**/
 	function mclick(x, y, shift)
 	{
+	}
+
+	/**/
+	function adjustColorKey(key)
+	{
+		if(key === void)
+		{
+			key = clNone;
+		}
+		else
+		if(typeof key == "String")
+		{
+			if(key == 'adapt')
+				key = clAdapt;
+			else
+			{
+				if(key.length >= 7)
+					key = +key;
+				else
+					key = +key + 0x3000000;
+			}
+		}
+
+		return key;
 	}
 
 	/**
