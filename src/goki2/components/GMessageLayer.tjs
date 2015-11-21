@@ -209,6 +209,7 @@ class GMessageLayer extends GHyperTextLayer
 	var currentLinkID_ = 0;
 	var currentLinkObject_ = void;
 	var enterLinkID_ = void;
+	var lockLink_ = false;
 
 	/* const */ var ltNormal = 1;
 	/* const */ var ltButton = 2;
@@ -308,6 +309,56 @@ class GMessageLayer extends GHyperTextLayer
 			layers[i].visible = false;
 		notUsedRubyTextLayers_.push(layers*);
 		layers.clear();
+	}
+
+	/**/
+	function lockLink()
+	{
+		var links = links_;
+		var max = links.count;
+		var line;
+
+		lockLink_ = true;
+
+		for(var i = 0; i < max; i++)
+		{
+			line = links[i];
+
+			for(var j = 0; j < line.count; j++)
+			{
+				if(line[j].type == ltButton ||
+					line[j].type == ltCheckBox ||
+					line[j].type == ltEdit)
+				{
+					line[j].object.enabled = false;
+				}
+			}
+		}
+	}
+
+	/**/
+	function unlockLink()
+	{
+		var links = links_;
+		var max = links.count;
+		var line;
+
+		lockLink_ = false;
+
+		for(var i = 0; i < max; i++)
+		{
+			line = links[i];
+
+			for(var j = 0; j < line.count; j++)
+			{
+				if(line[j].type == ltButton ||
+					line[j].type == ltCheckBox ||
+					line[j].type == ltEdit)
+				{
+					line[j].object.enabled = true;
+				}
+			}
+		}
 	}
 
 	/**/
@@ -861,6 +912,9 @@ class GMessageLayer extends GHyperTextLayer
 	/**/
 	function onLinkClick(id)
 	{
+		if(lockLink_)
+			return;
+
 		var cnts = contents_;
 		var count = cnts.count;
 		var links = links_;

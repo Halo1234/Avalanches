@@ -501,6 +501,22 @@ class ModMessage extends GModule
 				}
 			} incontextof this,
 
+			/**/
+			'lock_link' => function (elm) {
+				if(current_ !== null)
+				{
+					current_.lockLink();
+				}
+			} incontextof this,
+
+			/**/
+			'unlock_link' => function (elm) {
+				if(current_ !== null)
+				{
+					current_.unlockLink();
+				}
+			} incontextof this,
+
 			/* @store_history_data */
 			'store_history_data' => function (elm) {
 				with(historyLayer_)

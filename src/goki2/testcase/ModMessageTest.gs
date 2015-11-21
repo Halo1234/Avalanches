@@ -36,10 +36,15 @@
 *next
 
 *label|
+@lock_link
 @click_skip enabled
 
 @auto_wait_ch enabled chars=、。 time=10,50
-自動ウェイトの、テストです。[p][cm]
+自動ウェイトの、テストです。[p]
+
+*label|
+@unlock_link
+リンクのロックを解除します。[p][cm]
 
 @line_parameters line_size=24
 
