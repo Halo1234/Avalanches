@@ -17,6 +17,10 @@ try {
 	);
 }
 
+loadTJS('MainWindow.tjs');
+
+GMainWindow = MainWindow;
+
 var window = new GMainWindow();
 
 // NOTE: construct -> version -> config ‚Ì‡‚ÉŽÀsB

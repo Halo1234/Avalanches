@@ -4,10 +4,6 @@
 **/
 
 
-loadTJS('MainWindow.tjs');
-
-GMainWindow = MainWindow;
-
 // kWidgets 初期化スイッチ
 if(System.getArgument('-with-kwidgets') == 'yes')
 	loadTJS('KInitialize.tjs');
