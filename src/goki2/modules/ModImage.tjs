@@ -125,6 +125,12 @@ class ModImage extends GModule
 				return 'breath';
 			} incontextof this,
 
+			/* @load_partial_image */
+			'load_partial_image' => function (elm) {
+				loadPartialImageByElm(elm);
+				return 'breath';
+			} incontextof this,
+
 			/* @clear_image */
 			'clear_image' => function (elm) {
 				with(findByElm(elm))
@@ -532,6 +538,27 @@ class ModImage extends GModule
 		}
 
 		return layer;
+	}
+
+	/**/
+	function loadPartialImageByElm(elm, ignorePage = false)
+	{
+		with(findByElm(elm, ignorePage))
+		{
+			var destX = (elm.dest_x === void ? void : +elm.dest_x);
+			var destY = (elm.dest_y === void ? void : +elm.dest_y);
+			var srcW = (elm.src_w === void ? void : +elm.src_w);
+			var srcH = (elm.src_h === void ? void : +elm.src_h);
+			var opacity = (elm.opacity === void ? void : +elm.opacity);
+
+			.loadPartialImage(
+				elm.storage,
+				elm.key,
+				destX, destY,
+				+elm.src_x, +elm.src_y, srcW, srcH,
+				elm.mode, opacity
+			);
+		}
 	}
 
 	/**/

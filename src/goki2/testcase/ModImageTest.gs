@@ -50,7 +50,17 @@
 子レイヤの色補正のテストです。[p][cm]
 
 *label|
-@move layer=0 path="(10, 10, 255), (500, 500, 255)" time=5000
+@load_image layer=0 center_x=400 center_y=300 page=back storage=ImageSample visible
+
+@transition time=1000
+@wait_transition
+
+@load_partial_image layer=0 page=fore storage=CellImageSample dest_x=100 dest_y=100
+
+子レイヤの部分画像読み込みのテストです。[p][cm]
+
+*label|
+@move layer=0 path="(10, 10, 255), (200, 200, 255)" time=5000
 @wait_move layer=0
 
 子レイヤの移動を行います。[p][cm]

@@ -40,6 +40,8 @@ class GLayer extends Layer
 	var flipLeftRight_ = false;
 	var flipUpDown_ = false;
 
+	var partialImages_ = [];
+
 	var showRunning_ = false;			//!< \brief 表示効果実行中は true に設定されます。
 	var hideRunning_ = false;			//!< \brief 非表示効果実行中は true に設定されます。
 
@@ -89,8 +91,91 @@ class GLayer extends Layer
 		flipUpDown_ = false;
 
 		key = adjustColorKey(key);
+		colorCorrection.clear();
 
 		return super.loadImages(loadImagesStorage_ = storage, loadImagesColorKey_ = key);
+	}
+
+	/**/
+	function loadPartialImage(storage, key, destX, destY, srcX, srcY, srcW, srcH, mode, opacity)
+	{
+		if(key === void)
+		{
+			key = loadImagesColorKey_;
+		}
+
+		var layer = window.temporaryLayer;
+		var tag = layer.loadImages(storage, key);
+
+		if(tag !== null)
+		{
+			if(mode === void && tag.mode !== void)
+				mode = tag.mode;
+		}
+
+		if(mode !== void)
+		{
+			var info = imageTagLayerType[mode];
+
+			if(info !== void)
+				layer.type = info.type;
+		}
+
+		colorCorrection.apply(layer);
+
+		if(flipLeftRight_)
+		{
+			layer.flipLR();
+			destX = imageWidth - destX - srcW;
+			srcX = temp.imageWidth - srcX - srcW;
+		}
+		if(flipUpDown_)
+		{
+			layer.flipUD();
+			destY = imageHeight - destY - srcH;
+			srcY = temp.imageHeight - srcY - srcH;
+		}
+
+		var w = (srcW === void ? layer.imageWidth : srcW);
+		var h = (srcH === void ? layer.imageHeight : srcH);
+
+		if(mode == 'copy' || mode == 'opaque')
+		{
+			face = dfAlpha;
+			copyRect(destX, destY, layer, srcX, srcY, w, h);
+		}
+		else
+		{
+			opacity = 255 if opacity === void;
+
+			switch(mode)
+			{
+			case '': // default
+			case 'pile':
+			case 'alpha':
+				holdAlpha = false;
+				face = dfAlpha;
+				break;
+			case 'addalpha':
+				holdAlpha = false;
+				face = dfAddAlpha;
+				break;
+			default:
+				holdAlpha = true;
+				face = dfOpaque;
+				break;
+			}
+			operateRect(destX, destY, layer, srcX, srcY, w, h, omAuto, opacity);
+
+			face = dfAuto;
+		}
+
+		partialImages_.push(%[
+			storage : storage, key : key,
+			destX : destX, destY : destY,
+			srcX : srcX, srcY : srcY, srcW : srcW, srcH : srcH,
+			mode : mode, opacity : opacity
+		]);
 	}
 
 	/**/
@@ -202,6 +287,8 @@ class GLayer extends Layer
 			type = .type;
 			hitType = .hitType;
 			hitThreshold = .hitThreshold;
+
+			mapPrerenderedFont(.prerenderedFontStorage_) if .prerenderedFontStorage_ != '';
 
 			super.setSize(.width, .height);
 
@@ -317,8 +404,7 @@ class GLayer extends Layer
 			dst.height = .font.height;
 			dst.bold = .font.bold;
 			dst.italic = .font.italic;
-			if(.prerenderedFontStorage_ != '')
-				mapPrerenderedFont(.prerenderedFontStorage_);
+			mapPrerenderedFont(.prerenderedFontStorage_) if .prerenderedFontStorage_ != '';
 
 			if(decoration)
 			{
@@ -653,7 +739,9 @@ class GLayer extends Layer
 			left : left, top : top, width : width, height : height, offsetX : offsetX_, offsetY : offsetY_,
 			flipLeftRight : flipLeftRight_, flipUpDown : flipUpDown_,
 			imageLeft : imageLeft, imageTop : imageTop, imageWidth : imageWidth, imageHeight : imageHeight,
+			prerenderedFontStorage : prerenderedFontStorage_,
 			fixPositionToCenter : fixPositionToCenter,
+			partialImages : partialImages_,
 			shaker : shaker.store()
 		];
 
@@ -717,7 +805,16 @@ class GLayer extends Layer
 			hitType = .hitType;
 			hitThreshold = .hitThreshold;
 
+			mapPrerenderedFont(.prerenderedFontStorage_) if .prerenderedFontStorage != '';
+
 			fixPositionToCenter = .fixPositionToCenter;
+
+			partialImages_.clear();
+			for(var i = 0; i < .partialImages.count; i++)
+			{
+				var pi = .partialImages[i];
+				loadPartialImage(pi.storage, pi.key, pi.destX, pi.destY, pi.srcX, pi.srcY, pi.srcW, pi.srcH, pi.mode, pi.opacity);
+			}
 
 			conductor.restore(dic.conductor, tick) if dic.conductor !== void;
 			colorCorrection.restore(dic.colorCorrection, tick) if dic.colorCorrection !== void;
