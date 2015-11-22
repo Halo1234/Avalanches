@@ -1004,6 +1004,14 @@ class GMessageLayer extends GHyperTextLayer
 				window.leftClick(x, y, shift);
 			}
 			break;
+
+		case mbRight:
+			window.rightClick(x, y, shift);
+			break;
+
+		case mbMiddle:
+			window.middleClick(x, y, shift);
+			break;
 		}
 	}
 

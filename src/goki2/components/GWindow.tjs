@@ -11,6 +11,7 @@ class GWindow extends Window
 	var locations_ = %[];					//!< \brief オブジェクト出力先
 
 	var modules_;							//!< \brief 拡張モジュール
+	var mainConductor_;						//!< \brief メインコンダクタ
 	var conductor_;							//!< \brief コンダクタ
 	var softFocus_;							//!< \brief ソフトフォーカス
 
@@ -70,7 +71,7 @@ class GWindow extends Window
 		temporaryLocation_ = createTemporaryLocation('default');
 
 		modules_ = createModuleContainer(this);
-		conductor_ = createConductor(this);
+		conductor_ = mainConductor_ = createConductor(this);
 		softFocus_ = createFocus('window soft focus.');
 
 		add(createPrimaryLayer(this));
@@ -137,6 +138,21 @@ class GWindow extends Window
 		obj.fillRect(0, 0, obj.width, obj.height, obj.neutralColor);
 
 		return obj;
+	}
+
+	/**/
+	function exchangeConductor(conductor)
+	{
+		conductor_ = conductor;
+		unifyTagHandlers();
+		conductor_.assign(mainConductor);
+	}
+
+	/**/
+	function resetConductor()
+	{
+		conductor_ = mainConductor_;
+		unifyTagHandlers();
 	}
 
 	/**/
@@ -517,6 +533,11 @@ class GWindow extends Window
 	property modules
 	{
 		getter		{ return modules_; }
+	}
+
+	property mainConductor
+	{
+		getter		{ return mainConductor_; }
 	}
 
 	property conductor

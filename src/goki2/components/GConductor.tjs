@@ -582,6 +582,14 @@ class GConductor extends KAGParser
 		goToLabel(label) if label != void;
 	}
 
+	/*! \brief いわゆる @call タグの TJS 版です。
+	**/
+	function callScenario(storage, label = void)
+	{
+		loadScenario(storage) if storage != void;
+		callLabel(label) if label != void;
+	}
+
 	/*! \brief 現在のシナリオを破棄する。
 	 *
 	 * \remarks KAGParser にこういう機能が無かったのでとりあえず作ってみただけです。
@@ -1111,6 +1119,8 @@ class GConductor extends KAGParser
 		obj.ignore = false;
 		executeTag(tagname, obj);
 
+		window.modules.callHandler('onConductorCall', obj);
+
 		return !obj.ignore;
 	}
 
@@ -1123,6 +1133,8 @@ class GConductor extends KAGParser
 		obj.ignore = false;
 		executeTag(tagname, obj);
 
+		window.modules.callHandler('onConductorJump', obj);
+
 		return !obj.ignore;
 	}
 
@@ -1134,6 +1146,10 @@ class GConductor extends KAGParser
 		obj.tagname = tagname;
 		obj.ignore = false;
 		executeTag(tagname, obj);
+
+		window.modules.callHandler('onConductorReturn', obj);
+
+		dm(@"return : &obj.ignore;");
 
 		return !obj.ignore;
 	}
@@ -1159,19 +1175,19 @@ class GConductor extends KAGParser
 	/**/
 	function onScenarioLoad(storage)
 	{
-		window.modules.callHandler('onScenarioLoad', storage);
+		window.modules.callHandler('onConductorScenarioLoad', storage);
 	}
 
 	/**/
 	function onScenarioLoaded(storage)
 	{
-		window.modules.callHandler('onScenarioLoaded', storage);
+		window.modules.callHandler('onConductorScenarioLoaded', storage);
 	}
 
 	/**/
 	function onLabel(label, pagename)
 	{
-		window.modules.callHandler('onLabel', label, pagename);
+		window.modules.callHandler('onConductorLabel', label, pagename);
 	}
 
 	property window

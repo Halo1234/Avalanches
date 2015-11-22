@@ -875,7 +875,7 @@ class ModBookmark extends GModule
 
 	/**/
 	var regOnForceStored_static_ = new RegExp("^\\*.*force_store.*", "");
-	function onLabel(label, name, firstLabelProcessed)
+	function onCondcutorLabel(label, name, firstLabelProcessed)
 	{
 		var tick = System.getTickCount();
 		var modMessage = window.modules.get('modMessage');

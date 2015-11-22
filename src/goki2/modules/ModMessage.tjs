@@ -44,6 +44,8 @@ class ModMessage extends GModule
 	var outputHistory = true;
 	var historyEnabled = true;
 
+	var hiddenMessageLayers = false;
+
 	var /* const */ smNotSkip = 0;		// スキップしない
 	var /* const */ smNextWait = 1;		// 次のクリック待ちまでスキップ
 	var /* const */ smPageEnd = 2;		// ページ末までスキップ
@@ -501,7 +503,7 @@ class ModMessage extends GModule
 				}
 			} incontextof this,
 
-			/**/
+			/* @lock_link */
 			'lock_link' => function (elm) {
 				if(current_ !== null)
 				{
@@ -509,7 +511,7 @@ class ModMessage extends GModule
 				}
 			} incontextof this,
 
-			/**/
+			/* @unlock_link */
 			'unlock_link' => function (elm) {
 				if(current_ !== null)
 				{
@@ -811,6 +813,7 @@ class ModMessage extends GModule
 	/**/
 	function hideMessageLayerByUser()
 	{
+		hiddenMessageLayers = true;
 		messageLayers.each(
 			function (obj) { obj.hideByUser(); } incontextof this
 		);
@@ -819,9 +822,19 @@ class ModMessage extends GModule
 	/**/
 	function showMessageLayerByUser()
 	{
+		hiddenMessageLayers = false;
 		messageLayers.each(
 			function (obj) { obj.showByUser(); } incontextof this
 		);
+	}
+
+	/**/
+	function switchMessageLayerHiddenByUser()
+	{
+		if(hiddenMessageLayers)
+			showMessageLayerByUser();
+		else
+			hideMessageLayerByUser();
 	}
 
 	/**/

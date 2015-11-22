@@ -12,7 +12,9 @@
 @load_module name=ModSound
 @load_module name=ModVideo
 @load_module name=ModTypingProcessor
+@load_module name=ModRightClick
 
+@que storage=ModRightClickTest
 @que storage=ModADVTest
 @que storage=ModMessageTest
 @que storage=ModBookmark
