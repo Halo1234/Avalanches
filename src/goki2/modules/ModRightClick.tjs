@@ -58,6 +58,13 @@ class ModRightClick extends GModule
 	/**/
 	function callExtraConductor(storage, target)
 	{
+		var mod;
+
+		if((mod = container.get('modVideo')) !== void)
+		{
+			mod.isLeavePeriodEvent = true;
+		}
+
 		GObjectUtils.assignDictionary(conductor_.macros, window.conductor.macros);
 		window.exchangeConductor(conductor_);
 
@@ -72,12 +79,44 @@ class ModRightClick extends GModule
 	}
 
 	/**/
-	function returnExtraConductor()
+	function returnExtraConductor(storage, target)
 	{
 		conductor_.stop();
 		conductor_.interrupt();
 
 		window.resetConductor();
+
+		if(storage !== void || target !== void)
+		{
+			window.conductor.jumpScenario(storage, target);
+			window.conductor.start();
+		}
+
+		var mod;
+
+		if(!window.conductor.running)
+		{
+			if((mod = container.get('modMessage')) !== void)
+			{
+				mod.restoreClickGlyphState();
+			}
+		}
+
+		if((mod = container.get('modVideo')) !== void)
+		{
+			mod.isLeavePeriodEvent = false;
+
+			if(storage !== void || target !== void)
+			{
+				mod.holdPeriodEventQueue.clear();
+				mod.isWaitPeriodEvent = false;
+			}
+
+			if(mod.isWaitPeriodEvent)
+			{
+				mod.fireMoviePeriodFromQueue();
+			}
+		}
 	}
 
 	/**/
@@ -111,7 +150,7 @@ class ModRightClick extends GModule
 		{
 			if(conductor_.callStackDepth == 1)
 			{
-				returnExtraConductor();
+				returnExtraConductor(elm.storage, elm.target);
 
 				if(elm.storage !== void || elm.target !== void)
 				{

@@ -28,7 +28,7 @@
 @jump target=*next
 
 *right_click_2
-ここは右クリックサブルーチンの中です。[p][cm]
+ここは右クリックサブルーチンの中です。[p]
 @return
 
 *next|

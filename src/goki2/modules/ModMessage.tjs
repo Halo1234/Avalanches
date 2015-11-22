@@ -63,6 +63,10 @@ class ModMessage extends GModule
 	var clickSkipEnabled = true;		// クリックスキップが有効かどうか
 	var nextSkipEnabled = true;			// 次の停止までスキップが有効かどうか
 
+	var lastClickGlyphVisible = false;
+	var lastClickGlyphMessageName;
+	var lastClickGlyphWhich;
+
 	var wheelStorage_ = void;
 	var wheelTarget_ = void;
 	var wheelFunction_ = void;
@@ -356,7 +360,7 @@ class ModMessage extends GModule
 					}
 					else
 					{
-						current_.showPageGlyph();
+						showPageGlyph();
 						c.waitSignal(%[left_click : current_.hidePageGlyph]);
 					}
 				}
@@ -375,7 +379,7 @@ class ModMessage extends GModule
 					}
 					else
 					{
-						current_.showPageGlyph();
+						current_.showLineGlyph();
 						c.waitSignal(%[left_click : current_.hidePageGlyph]);
 					}
 				}
@@ -763,6 +767,59 @@ class ModMessage extends GModule
 	}
 
 	/**/
+	function storeClickGlyphState(which)
+	{
+		if(window.conductor == window.mainConductor)
+		{
+			lastClickGlyphVisible = true;
+			lastClickGlyphMessageName = current_.name;
+			lastClickGlyphWhich = which;
+		}
+	}
+
+	/**/
+	function restoreClickGlyphState()
+	{
+		if(lastClickGlyphVisible)
+		{
+			var layer = layerContainer_.get(lastClickGlyphMessageName);
+
+			if(layer !== void)
+			{
+				switch(lastClickGlyphWhich)
+				{
+				case 'line':
+					layer.showLineGlyph();
+					break;
+				case 'page':
+					layer.showPageGlyph();
+					break;
+				}
+			}
+		}
+	}
+
+	/**/
+	function showPageGlyph()
+	{
+		if(current_ !== null)
+		{
+			current_.showPageGlyph();
+			storeClickGlyphState('page');
+		}
+	}
+
+	/**/
+	function showLineGlyph()
+	{
+		if(current_ !== null)
+		{
+			current_.showLineGlyph();
+			storeClickGlyphState('line');
+		}
+	}
+
+	/**/
 	function createSoundExpression(exp, storage, buffer)
 	{
 		if(storage !== void)
@@ -999,6 +1056,7 @@ class ModMessage extends GModule
 	/**/
 	function clearMessageLayersWithHistoryLayer(reset)
 	{
+		dm('clearMessageLayersWithHistoryLayer');
 		messageLayers_.each(clearMessageLayer_private_);
 		historyLayer_.clear() if outputHistory;
 		if(reset && messageLayers_.count > 0)

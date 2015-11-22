@@ -353,6 +353,31 @@ class ModVideo extends GModule
 	}
 
 	/**/
+	function fireMoviePeriodFromQueue()
+	{
+		var result = false;
+
+		if(holdPeriodEventQueue.count > 0)
+		{
+			with(window)
+			{
+				if(waitedPeriodEventStorageName == .conductor.curStorage && .conductor == .mainConductor)
+				{
+					for(var i = 0; i < holdPeriodEventQueue.count; i++)
+					{
+						.conductor.trigger(holdPeriodEventQueue[i]);
+						result = true;
+					}
+				}
+			}
+			holdPeriodEventQueue.clear();
+			isWaitPeriodEvent = false;
+		}
+
+		return result;
+	}
+
+	/**/
 	function setAudioVolume_private_(buffer, volume)
 	{
 		buffer.audioVolume = volume;
