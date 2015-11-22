@@ -1,0 +1,204 @@
+/*
+ * $Revision: 220 $
+**/
+
+
+/*! \brief
+**/
+class GTemporaryLocation extends GLocation
+{
+	var temporaryLocation_ = %[];
+
+	/*! \brief コンストラクタ。
+	 *
+	 * \param [locationName] ロケーション名を指定します。
+	 * \param [indexName:'':] 指定しても必ず無視されます。
+	**/
+	function GTemporaryLocation(locationName, indexName = '')
+	{
+		super.GLocation(locationName, '');
+	}
+
+	function finalize()
+	{
+		GObjectUtils.destroy(temporaryLocation_);
+
+		super.finalize(...);
+	}
+
+	/**/
+	function makeStoragePath(name)
+	{
+		return name;
+	}
+
+	/**/
+	function exist(name)
+	{
+		return (typeof(temporaryLocation_[name]) === 'undefined' ? false : true);
+	}
+
+	/*! \brief 辞書配列をセーブします。
+	 *
+	 * オプションは以下の通りです。
+	 *
+	 * 'a' 参照コピーします。
+	 * 'c' 完全コピーします。（デフォルトの動作）
+	 * 'u' 上書きコピーします。
+	 *
+	 * \param [storage] 保存する辞書配列の名前を指定します。
+	 * \param [obj] 保存する辞書配列を指定します。
+	 * \param [option:'':] オプションがある場合は指定します。
+	 *
+	 * \return obj を返します。
+	 *
+	 * \remarks 競合するオプションが複数指定された場合は
+	 * \remarks リストのより上位のオプションが優先されます。
+	**/
+	function saveDictionary(storage, obj, option = '')
+	{
+		if(option != '')
+		{
+			if(option.indexOf('a') != -1)
+				temporaryLocation_[storage] = GObjectUtils.assignDictionary(%[], obj);
+			else
+			if(option.indexOf('c') != -1 || option == '')
+				temporaryLocation_[storage] = GObjectUtils.copyDictionary(%[], obj);
+			else
+			if(option.indexOf('u') != -1)
+				temporaryLocation_[storage] = GObjectUtils.unionDictionary(%[], obj);
+		}
+		else
+		{
+			temporaryLocation_[storage] = GObjectUtils.copyDictionary(%[], obj);
+		}
+
+		return obj;
+	}
+
+	/**/
+	function loadDictionary(storage, obj, option = '')
+	{
+		if(option != '')
+		{
+			if(option.indexOf('a') != -1)
+				GObjectUtils.assignDictionary(obj, temporaryLocation_[storage]);
+			else
+			if(option.indexOf('c') != -1 || option == '')
+				GObjectUtils.copyDictionary(obj, temporaryLocation_[storage]);
+			else
+			if(option.indexOf('u') != -1)
+				GObjectUtils.unionDictionary(obj, temporaryLocation_[storage]);
+		}
+		else
+		{
+			GObjectUtils.copyDictionary(obj, temporaryLocation_[storage]);
+		}
+
+		return obj;
+	}
+
+	/**/
+	function saveArray(storage, obj/*, option = ''*/)
+	{
+		temporaryLocation_[storage] = GObjectUtils.clone(obj);
+
+		return obj;
+	}
+
+	/**/
+	function loadArray(storage, obj/*, option = ''*/)
+	{
+		obj.assignStruct(temporaryLocation_[storage]);
+
+		return obj;
+	}
+
+	/*! \biref レイヤーをセーブします。
+	 *
+	 * オプションは以下の通りです。
+	 *
+	 * 'p' 子レイヤも全て重ね合わせた画像をセーブします。
+	 * 'c' 自分自身の画像のみをセーブします。（デフォルトの動作）
+	 *
+	 * \param [storage] 保存するレイヤーの名前を指定します。
+	 * \param [obj] 保存するレイヤーを指定します。
+	 * \param [option:'':] オプションがある場合は指定します。
+	 *
+	 * \return obj を返します。
+	 *
+	 * \remarks 競合するオプションが複数指定された場合は
+	 * \remarks リストのより上位のオプションが優先されます。
+	**/
+	function saveLayer(storage, obj, option = '')
+	{
+		var layer = new Layer(obj.window, obj.window.primaryLayer);
+
+		if(option != '')
+		{
+			if(option.indexOf('p') != -1)
+			{
+				var w = obj.imageWidth;
+				var h = obj.imageHeight;
+
+				layer.type = obj.type;
+				layer.setImageSize(w, h);
+				layer.piledCopy(0, 0, obj, 0, 0, w, h);
+			}
+			else
+			if(option.indexOf('c') != -1)
+			{
+				layer.assignImages(obj);
+			}
+		}
+		else
+		{
+			layer.assignImages(obj);
+		}
+
+		// NOTE: 表示してはならないレイヤです。
+		layer.visible = false;
+
+		temporaryLocation_[storage] = layer;
+
+		return obj;
+	}
+
+	/**/
+	function loadLayer(storage, obj/*, option = ''*/)
+	{
+		var work = temporaryLocation_[storage];
+
+		if(!(work instanceof 'Layer'))
+		{
+			throw new GArgumentsError(
+				@"'&storage;' でセーブされているオブジェクトはレイヤではありません。"
+			);
+		}
+
+		obj.assignImages(work);
+
+		return obj;
+	}
+
+	/**/
+	function openShell(params = '')
+	{
+		var arr = [];
+
+		arr.assign(temporaryLocation_);
+
+		log(@">>>> Location name: '&location;'");
+		for(var i = arr.count - 2; i >= 0; i -= 2)
+			log(@" content name &arr[i];: '&GObjectUtils.getClassName(arr[i + 1]);' (&arr[i + 1];)");
+		log('<<<< End of contents.');
+	}
+
+	/**/
+	function typeCheck(name, type)
+	{
+		return temporaryLocation_[makeStoragePath(addIndex(name))] instanceof type;
+	}
+}
+
+

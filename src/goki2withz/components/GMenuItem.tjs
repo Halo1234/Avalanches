@@ -1,0 +1,94 @@
+/*
+ * $Author$
+ * $Revision$
+*/
+
+
+/**/
+class GMenuItem extends MenuItem
+{
+	var owner_ = void;
+
+	var handler, exp;
+	var name_ = '';
+	var key_ = '';
+
+	var weight = 0;
+
+	function GMenuItem(window, parent, handler, owner = void, weight = 0)
+	{
+		super.MenuItem(window, '');
+
+		owner_ = owner;
+		this.weight = weight;
+		this.handler = handler;
+
+		autoInsert(parent);
+	}
+
+	/*
+	*/
+	function autoInsert(parent)
+	{
+		var brother = parent.children;
+		var pos = 0;
+
+		brother.sort(less);
+
+		for(var i = 0; i < brother.count; i++)
+		{
+			if(!less(this, brother[i]))
+				pos = i + 1;
+		}
+		parent.insert(this, pos);
+	}
+
+	function less(a, b)
+	{
+		return a.weight < b.weight;
+	}
+
+	function click()
+	{
+		if(handler !== void)
+			handler(this);
+		if(exp !== void)
+			Script.eval(exp);
+	}
+
+	function onClick()
+	{
+		super.onClick(...);
+		click();
+	}
+
+	property owner
+	{
+		getter		{ return owner_; }
+	}
+
+	property window
+	{
+		// NOTE: window プロパティはルート項目以外は void なので
+		// NOTE: ルートの window を返す
+		getter		{ return super.root.window;	}
+	}
+
+	property name
+	{
+		setter(x)
+		{
+			name_ = x;
+			super.caption = ((key == '') ? x : x + '(&' + key_ + ')');
+		}
+		getter		{ return name_; }
+	}
+
+	property key
+	{
+		setter(x)	{ super.caption = (((key_ = x) == '') ? name_ : name_ + '(&' + key_ + ')'); }
+		getter		{ return key_; }
+	}
+}
+
+

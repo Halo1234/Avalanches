@@ -1,0 +1,859 @@
+/*
+ * $Revision: 278 $
+ *
+ * 主に ADV での利用を想定したレイヤー管理モジュールです。
+ *
+ * CharacterVisualLayerIterator
+ *  いわゆる立ち絵用のレイヤー群を管理するイテレータクラスです。
+ *
+ * CharacterGraphicsLayerIterator
+ *  一枚絵（いわゆるＣＧ）用のレイヤー群を管理するイテレータクラスです。
+ *  ちなみに名前は間違えている訳ではなく造語です。
+**/
+
+
+/**/
+class CharacterVisualLayerIterator extends GLayerIterator
+{
+	function CharacterVisualLayerIterator(window, container)
+	{
+		super.GLayerIterator(...);
+
+		setAbsoluteBase(1000);
+		setAbsoluteStep(1000);
+	}
+
+	function create(window)
+	{
+		return new GLayer(window, container.get(container.parentLayerName), onLayerEvent);
+	}
+
+	property prefix
+	{
+		getter		{ return ''; }
+	}
+}
+
+/**/
+class CharacterGraphicsLayerIterator extends GLayerIterator
+{
+	function CharacterGraphicsLayerIterator(window, container)
+	{
+		super.GLayerIterator(...);
+
+		setAbsoluteBase(100000);
+		setAbsoluteStep(1000);
+	}
+
+	function create(window)
+	{
+		return new GLayer(window, container.get(container.parentLayerName), onLayerEvent);
+	}
+
+	property prefix
+	{
+		getter		{ return 'cg_layer'; }
+	}
+}
+
+/**/
+class ModImage extends GModule
+{
+	var dispatcher_;
+	var layerContainer_;
+
+	var cvLayers_;
+	var cgLayers_;
+
+	/**/
+	function ModImage(container, name)
+	{
+		super.GModule(...);
+
+		dispatcher_ = new GDispatcher();
+
+		layerContainer_ = createLayerContainer(
+			window,
+			createBaseLayer(window, window.primaryLayer, onBaseLayerEvent)
+		);
+
+		cvLayers_ = new CharacterVisualLayerIterator(window, layerContainer_);
+		cvLayers_.onLayerEvent = onChildLayerEvent;
+		cgLayers_ = new CharacterGraphicsLayerIterator(window, layerContainer_);
+		cgLayers_.onLayerEvent = onChildLayerEvent;
+	}
+
+	function finalize()
+	{
+		invalidate cgLayers_;
+		invalidate cvLayers_;
+		invalidate layerContainer_;
+
+		invalidate dispatcher_;
+
+		super.finalize(...);
+	}
+
+	/**/
+	function createExtensionTagHandlers()
+	{
+		return %[
+
+			/* @cv_layers */
+			'cv_layers' => function (elm) {
+				with(cvLayers_)
+				{
+					.count = +elm.count if elm.count !== void;
+					.absoluteBase = +elm.base if elm.base !== void;
+					.absoluteStep = +elm.step if elm.step !== void;
+				}
+			} incontextof this,
+
+			/* @cg_layers */
+			'cg_layers' => function (elm) {
+				with(cgLayers_)
+				{
+					.count = +elm.count if elm.count !== void;
+					.absoluteBase = +elm.base if elm.base !== void;
+					.absoluteStep = +elm.step if elm.step !== void;
+				}
+			} incontextof this,
+
+			/* @load_image */
+			'load_image' => function (elm) {
+				loadImageByElm(elm);
+				return 'breath';
+			} incontextof this,
+
+			/* @load_partial_image */
+			'load_partial_image' => function (elm) {
+				loadPartialImageByElm(elm);
+				return 'breath';
+			} incontextof this,
+
+			/* @partial_text */
+			'partial_text' => function (elm) {
+				drawReconstructibleTextByElm(elm);
+				return 'breath';
+			} incontextof this,
+
+			/* @clear_image */
+			'clear_image' => function (elm) {
+				with(findByElm(elm))
+					.clearImages();
+				return 'breath';
+			} incontextof this,
+
+			/* @assign_image */
+			'assign_image' => function (elm) {
+				with(findByElm(elm, true))
+					.mirror.assignToMirror();
+			} incontextof this,
+
+			/* @assign_to_mirror */
+			'assign_to_mirror' => function (elm) {
+				with(findByElm(elm, true))
+					.assignToMirror();
+			} incontextof this,
+
+			/* @copy_layer */
+			'copy_layer' => function (elm) {
+				with(findByElm(elm, false, 'destination_'))
+				{
+					.assign(findByElm(elm, false, 'source_'));
+				}
+			} incontextof this,
+
+			/* @free_image */
+			'free_image' => function (elm) {
+				with(findByElm(elm))
+					.clearImages();
+			} incontextof this,
+
+			/* @start_animation */
+			'start_animation' => function (elm) {
+				with(findByElm(elm))
+				{
+					if(elm.index === void)
+						.conductor.startAnimation(elm.target);
+					else
+						.conductor.startCellAnimation(+elm.index, elm.target);
+				}
+			} incontextof this,
+
+			/* @stop_animation */
+			'stop_animation' => function (elm) {
+				with(findByElm(elm))
+				{
+					if(elm.index === void)
+						.conductor.stopAnimation();
+					else
+						.conductor.stopCellAnimation(+elm.index);
+				}
+			} incontextof this,
+
+			/* @shake */
+			'shake' => function (elm) {
+				var layer = findByElm(elm);
+				with(layer.shaker)
+				{
+					if(GObjectUtils.getBoolean(elm, 'stop', false))
+					{
+						.stop();
+						return 'breath';
+					}
+					if(GObjectUtils.getBoolean(elm, 'start', true))
+					{
+						var time = (elm.time === void ? 1000 : +elm.time);
+						var delay = (elm.delay === void ? 0 : +elm.delay);
+						if(elm.time_mode !== void)
+						{
+							var modMessage = container.get('modMessage');
+
+							if(modMessage !== void && elm.timemode == 'delay')
+							{
+								time = modMessage.outputInterval * time;
+							}
+						}
+						.horizontalMax = +elm['horizontal_max'];
+						.verticalMax = +elm['vertical_max'];
+						.time = time;
+						.looping = GObjectUtils.getBoolean(elm, 'looping');
+						.delay = delay;
+						.start();
+					}
+				}
+			} incontextof this,
+
+			/* @stop_shake */
+			'stop_shake' => function (elm) {
+				with(findByElm(elm).shaker)
+				{
+					.stop();
+				}
+			} incontextof this,
+
+			/* @transition */
+			'transition' => function (elm, c) {
+				beginTransitionByElm(elm, c);
+			} incontextof this,
+
+			/* @stop_transition */
+			'stop_transition' => function (elm) {
+				stopTransitionByElm(elm);
+			} incontextof this,
+
+			/* @move */
+			'move' => function (elm) {
+				with(findByElm(elm))
+				{
+					var arr = [].split('(), ', elm.path, , true);
+					for(var i = arr.count - 1; i >= 0; i--)
+						arr[i + 3] = +arr[i];
+					arr[0] = .left;
+					arr[1] = .top;
+					arr[2] = .opacity;
+					if(GObjectUtils.getBoolean(elm, 'spline', false))
+					{
+						.splineUsed = true;
+						if(.name == 'base')
+							.mover.setParameters(arr, +elm.accel, +elm.time, onBaseLayerEvent);
+						else
+							.mover.setParameters(arr, +elm.accel, +elm.time, onChildLayerEvent);
+						.mover.start(+elm.delay);
+					}
+					else
+					{
+						.splineUsed = false;
+
+						var count = arr.count \ 3;
+						var step = 1.0 / (count - 1);
+						var pos = 0;
+
+						for(var i = 0; i < count; i++)
+						{
+							.mover.addFrame(pos, %[x : arr[i * 3], y : arr[(i * 3) + 1], opacity : arr[(i * 3) + 2]]);
+							pos += step;
+						}
+
+						.mover.time = +elm.time if elm.time !== void;
+						.mover.delay = +elm.delay if elm.delay !== void;
+						.mover.start();
+					}
+				}
+			} incontextof this,
+
+			/**/
+			'stop_move' => function (elm) {
+				with(findByElm(elm).mover)
+				{
+					.stop();
+				}
+			} incontextof this,
+
+			/* @wait_transition */
+			'wait_transition' => function (elm, c) {
+				waitTransitionByElm(elm, c);
+			} incontextof this,
+
+			/* @wait_animation */
+			'wait_animation' => function (elm, c) {
+				waitAnimationByElm(elm, c);
+			} incontextof this,
+
+			/* @wait_shake */
+			'wait_shake' => function (elm, c) {
+				with(findByElm(elm))
+				{
+					if(!.shaker.running || .shaker.endlessRunning)
+						return;
+					var modMessage = container.get('modMessage');
+					var skip = GObjectUtils.getBoolean(elm, 'skip', true);
+					var trigger = @"&.name;_end_of_shake";
+					dispatcher_.makeOneShot(trigger, c.signal, trigger);
+					if(modMessage !== void && modMessage.skipping && skip)
+					{
+						.shaker.stop();
+						return 'breath';
+					}
+					if(skip)
+						c.waitSignal(%[left_click : .shaker.stop, @"&trigger;" => null]);
+					else
+						c.waitSignal(%[@"&trigger;" => null]);
+				}
+			} incontextof this,
+
+			/* @wait_move */
+			'wait_move' => function (elm, c) {
+				with(findByElm(elm))
+				{
+					if(!.mover.running || .mover.endlessRunning)
+						return;
+					var modMessage = container.get('modMessage');
+					var skip = GObjectUtils.getBoolean(elm, 'skip', true);
+					var trigger = @"&.name;_end_of_move";
+					dispatcher_.makeOneShot(trigger, c.signal, trigger);
+					if(modMessage !== void && modMessage.skipping && skip)
+					{
+						.mover.stop();
+						return 'breath';
+					}
+					if(skip)
+						c.waitSignal(%[left_click : .mover.stop, @"&trigger;" => null]);
+					else
+						c.waitSignal(%[@"&trigger;" => null]);
+				}
+			} incontextof this,
+
+		];
+	}
+
+	/**/
+	function createBaseLayer(window, parent, handler = void)
+	{
+		var obj = new GBaseLayer(window, parent, handler);
+
+		obj.name = 'base';
+		obj.setSize(window.primaryLayer.width, window.primaryLayer.height);
+		obj.absolute = 0;
+
+		return obj;
+	}
+
+	/**/
+	function createLayerContainer(window, parentLayer)
+	{
+		return new GLayerContainer(window, parentLayer, true);
+	}
+
+	/**/
+	function isLongSkipping()
+	{
+		with(window.modules)
+		{
+			if(.isLoaded('modMessage'))
+			{
+				if(.modMessage.longSkipping)
+					return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**/
+	function findByElm(elm, ignorePage = false, prefix = '')
+	{
+		var layer, layerName;
+
+		with(layerContainer_)
+		{
+			layerName = (elm[prefix + 'layer'] == '' ? .parentLayerName : elm[prefix + 'layer']);
+
+			if(ignorePage)
+			{
+				layer = .get(layerName);
+			}
+			else
+			{
+				switch(elm[prefix + 'page'])
+				{
+				case void:		// Not break.
+				case 'fore':	layer = .get(layerName, true); break;
+				case 'back':	layer = .get(layerName, false); break;
+				default:		throw new GArgumentsError(@"page 属性に '&page;' が指定されましたが、未定義のページ指定です。");
+				}
+			}
+		}
+
+		if(layer === void)
+			throw new GRuntimeError(@"レイヤー &layerName; は存在しません。");
+
+		return layer;
+	}
+
+	/**/
+	function loadImageByElm(elm, ignorePage = false)
+	{
+		var layer = findByElm(elm, ignorePage);
+		var gbFunc = GObjectUtils.getBoolean;
+		var hvFunc = GObjectUtils.hasValue;
+
+		if(elm.storage == void)
+		{
+			layer.clearImages();
+		}
+		else
+		{
+			var key = elm.key;
+			var tag = null;
+
+			switch(typeof(key))
+			{
+			case 'void':
+				key = clNone;
+				break;
+
+			case 'String':
+				if(key == 'adapt')
+					key = clAdapt;
+				else
+				if(key.length <= 7)
+					key = +key + clPalIdx;
+				else
+				if(key.substring(0, 2) == '0a')
+					key = +(@"0x&key.substring(2);") + clAlphaMat;	// key == 0aRRGGBB
+				else
+					key = +key;
+				break;
+
+			default:
+				throw new GRuntimeError(@"key 属性に &key; を指定しましたが対応できない形式です。");
+				break;
+			}
+
+			tag = layer.loadImages(elm.storage, key);
+			elm = GObjectUtils.unionDictionary(tag, elm) if tag !== null;
+
+			// asd_storage が指定されていなければ探してみる。
+			if(elm['asd_storage'] == void)
+			{
+				var name = elm.storage;
+				var storage = getExistentStorageNameAndExtension(name, scriptFileExtensions*);
+
+				if(storage === void)
+					storage = getExistentStorageNameAndExtension(Storages.chopStorageExt(name), scriptFileExtensions*);
+
+				elm['asd_storage'] = storage;
+			}
+		}
+
+		if(elm.mode !== void)
+		{
+			if(imageTagLayerType[elm.mode] !== void)
+				layer.type = imageTagLayerType[elm.mode].type;
+			else
+			if(typeof(global[elm.mode]) !== 'undefined')
+				layer.type = global[elm.mode];
+		}
+		layer.face = dfAuto;
+
+		// TODO: offs_x offs_y offs_unit 対応。
+		// TODO: vpag_w vpag_h vpag_unit 対応。
+		// TODO: reso_x reso_y reso_unit 対応。
+
+		layer.flipUD() if gbFunc(elm, 'flip_ud', false);
+		layer.flipLR() if gbFunc(elm, 'flip_lr', false);
+
+		if(elm.clip_width !== void || elm.clip_height !== void)
+		{
+			var w = (elm.clip_width === void ? layer.imageWidth : +elm.clip_width);
+			var h = (elm.clip_height === void ? layer.imageHeight : +elm.clip_height);
+
+			layer.setSize(w, h);
+		}
+		else
+		{
+			layer.setSizeToImageSize();
+		}
+
+		if(elm.clip_left !== void || elm.clip_top !== void)
+		{
+			var l = (elm.clip_left === void ? (-layer.imageLeft) : +elm.clip_left);
+			var t = (elm.clip_top === void ? (-layer.imageTop) : +elm.clip_top);
+
+			layer.setImagePos(l, t);
+		}
+
+		// 色補正
+		with(layer.colorCorrection)
+		{
+			.grayScale = +elm.gray_scale if elm.gray_scale !== void;
+			.rGamma = +elm.r_gamma if elm.r_gamma !== void;
+			.gGamma = +elm.g_gamma if elm.g_gamma !== void;
+			.bGamma = +elm.b_gamma if elm.b_gamma !== void;
+			.rFloor = +elm.r_floor if elm.r_floor !== void;
+			.gFloor = +elm.g_floor if elm.g_floor !== void;
+			.bFloor = +elm.b_floor if elm.b_floor !== void;
+			.rCeil = +elm.r_ceil if elm.r_ceil !== void;
+			.gCeil = +elm.g_ceil if elm.g_ceil !== void;
+			.bCeil = +elm.b_ceil if elm.b_ceil !== void;
+			.color = +elm.color if elm.color !== void;
+			.opacity = +elm.opacity if elm.opacity !== void;
+			.mode = elm.mode if elm.mode !== void;
+
+			.apply();
+		}
+
+		layer.centerX = +elm.center_x if elm.center_x !== void;
+		layer.centerY = +elm.center_y if elm.center_y !== void;
+		layer.left = +elm.left if elm.left !== void;
+		layer.top = +elm.top if elm.top !== void;
+		layer.right = +elm.right if elm.right !== void;
+		layer.bottom = +elm.bottom if elm.bottom !== void;
+
+		layer.visible = gbFunc(elm, 'visible') if hvFunc(elm, 'visible');
+		layer.absolute = +elm.index if elm.index !== void;
+		layer.opacity = +elm.opacity if elm.opacity !== void;
+
+		// asd_storage 読み込み
+		if(elm.asd_storage !== void)
+		{
+			with(layer.conductor)
+				.loadScenario(elm.asd_storage);
+		}
+
+		return layer;
+	}
+
+	/**/
+	function loadPartialImageByElm(elm, ignorePage = false)
+	{
+		with(findByElm(elm, ignorePage))
+		{
+			var destX = (elm.dest_x === void ? void : +elm.dest_x);
+			var destY = (elm.dest_y === void ? void : +elm.dest_y);
+			var srcW = (elm.src_w === void ? void : +elm.src_w);
+			var srcH = (elm.src_h === void ? void : +elm.src_h);
+			var opacity = (elm.opacity === void ? void : +elm.opacity);
+
+			.loadPartialImage(
+				elm.storage,
+				elm.key,
+				destX, destY,
+				+elm.src_x, +elm.src_y, srcW, srcH,
+				elm.mode, opacity
+			);
+		}
+	}
+
+	/**/
+	function drawReconstructibleTextByElm(elm, ignorePage = false)
+	{
+		with(findByElm(elm, ignorePage))
+		{
+			var vertical = GObjectUtils.getBoolean(elm, 'vertical', false);
+			var angle = (elm.angle === void ? void : +elm.angle);
+			var size = (elm.size === void ? 12 : +elm.size);
+			var color = (elm.color === void ? 0x000000 : +elm.color);
+			var italic = GObjectUtils.getBoolean(elm, 'italic', false);
+			var bold = GObjectUtils.getBoolean(elm, 'bold', false);
+			var shadow = GObjectUtils.getBoolean(elm, 'shadow', true);
+			var edge = GObjectUtils.getBoolean(elm, 'edge', false);
+			var shadowColor = (elm.shadow_color === void ? 0x000000 : +elm.shadow_color);
+			var edgeColor = (elm.edge_color === void ? 0x000000 : +elm.edge_color);
+
+			.drawReconstructibleText(
+				+elm.x, +elm.y, elm.text,
+				vertical,
+				elm.face, angle, size, color,
+				italic, bold,
+				shadow, edge, shadowColor, edgeColor
+			);
+		}
+	}
+
+	/**/
+	function beginTransitionByElm(elm, conductor = void)
+	{
+		with(layerContainer_)
+		{
+			var children = GObjectUtils.toBoolean(elm.children, true);
+			var time = (elm.time === void ? 1000 : +elm.time);
+			var layerName = (elm.layer === void ? .parentLayerName : elm.layer);
+
+			if(elm.terminateFunction !== void)
+				dispatcher_.makeOneShot(@"&layerName;_end_of_transition", elm.terminateFunction);
+
+			// NOTE: フリップするだけなので他のパラメータは必要ない。
+			if(time == 0)
+			{
+				conductor.setControlCode('break') if conductor !== void;
+
+				return .flip(layerName, children, GObjectUtils.toBoolean(elm.exchange));
+			}
+
+			elm.time = time;
+
+			var method = elm.method;
+			var fore, back;
+
+			if((fore = .get(layerName)) === void)
+				throw new GArgumentsError(@"レイヤー &layerName; が見つかりませんでした。");
+
+			back = fore.mirror;
+
+			// method 属性が未指定ならば推測する。
+			method = methodInferFromElm(elm) if method == void;
+
+			// rule 属性をチェック
+			if(method == 'universal' && elm.rule == void)
+			{
+				throw new GArgumentsError('ユニバーサルトランジションを指定しましたがルール画像が指定されていません。');
+			}
+			else
+			// method が scroll の場合、from と stay パラメータを変換する。
+			if(method == 'scroll')
+			{
+				switch(elm.from)
+				{
+				default:			// Not break
+				case 'left':		elm.from = sttLeft; break;
+				case 'top':			elm.from = sttTop; break;
+				case 'right':		elm.from = sttRight; break;
+				case 'bottom':		elm.from = sttBottom; break;
+				}
+				switch(elm.stay)
+				{
+				default:			// Not break
+				case 'nostay':		elm.stay = ststNoStay; break;
+				case 'stayback':	elm.stay = ststStaySrc; break;
+				case 'stayfore':	elm.stay = ststStayDest; break;
+				}
+			}
+
+			fore.beginTransition(method, children, back, elm);
+
+			conductor.setControlCode('break') if conductor !== void;
+
+			return layerName;
+		}
+	}
+
+	/**/
+	function stopTransitionByElm(elm)
+	{
+		var layer = findByElm(elm, true);
+
+		// トランジション中じゃないのですぐに戻る
+		if(!layer.inTransition)
+			return;
+
+		layer.stopTransition();
+	}
+
+	/**/
+	function waitTransitionByElm(elm, conductor)
+	{
+		var layer = findByElm(elm, true);
+
+		// トランジション中じゃないのですぐに戻る
+		if(!layer.inTransition)
+			return;
+
+		var gbFunc = GObjectUtils.getBoolean;
+		var hvFunc = GObjectUtils.hasValue;
+		var event = @"&layer.name;_end_of_transition";
+
+		dispatcher_.makeOneShot(event, conductor.signal, event);
+
+		if(gbFunc(elm, 'skip', true))
+		{
+			if(isLongSkipping())
+			{
+				// TODO: スキップ処理を実行中ならば即座にトランジションを停止する。
+				layer.stopTransition();
+			}
+			else
+			{
+				conductor.waitSignal(%[left_click : layer.stopTransition, @"&event;" => null]);
+			}
+		}
+		else
+		{
+			// 大人しくトランジション終了イベントを待つ
+			conductor.waitSignal(%[@"&event;" => null]);
+		}
+	}
+
+	/**/
+	function waitAnimationByElm(elm, conductor)
+	{
+		var layer = findByElm(elm);
+
+		if(isLongSkipping())
+			return;
+
+		if(elm.index === void)
+		{
+			var event = @"&layer.name;_end_of_animation";
+
+			dispatcher_.makeOneShot(event, conductor.signal, event);
+
+			if(layer.conductor.canWaitStop())
+				conductor.waitSignal(%[@"&event;" => null]);
+		}
+		else
+		{
+			var event = @"&layer.name;_end_of_animation&elm.index;";
+
+			dispatcher_.makeOneShot(event, conductor.signal, event);
+
+			if(layer.conductor.canWaitStopForCell(+elm.index))
+				conductor.waitSignal(%[@"&event;" => null]);
+		}
+	}
+
+	/**/
+	function methodInferFromElm(elm)
+	{
+		// NOTE: ルール指定があるなら universal とみなす。
+		if(elm.rule !== void)
+			return 'universal';
+		else
+		// NOTE: from か stay の指定があるなら scroll とみなす。
+		if(elm.from !== void || elm.stay !== void)
+			return 'scroll';
+
+		// それ以外は 'crossfade' とみなす。
+		return 'crossfade';
+	}
+
+	/**/
+	function store(tick)
+	{
+		var dic = super.store(tick);
+
+		dic.foreBaseLayer = baseLayer.store(tick);
+		dic.backBaseLayer = baseLayer.mirror.store(tick);
+
+		dic.cvLayers = cvLayers_.store(tick);
+		dic.cgLayers = cgLayers_.store(tick);
+
+		return dic;
+	}
+
+	/**/
+	function restore(dic, tick)
+	{
+		baseLayer.restore(dic.foreBaseLayer);
+		baseLayer.mirror.restore(dic.backBaseLayer);
+
+		cvLayers_.restore(dic.cvLayers, tick);
+		cgLayers_.restore(dic.cgLayers, tick);
+
+		super.restore(dic, tick);
+	}
+
+	/**/
+	function onBaseLayerEvent(obj, event, elm)
+	{
+		with(dispatcher_)
+		{
+			switch(event)
+			{
+			case 'onBeginTransition':			break;
+			case 'onTransitionCompleted':		.signal(@"&obj.name;_end_of_transition"); break;
+			case 'onStopAnimation':				.signal(@"&obj.name;_end_of_animation&elm.index;"); break;
+			case 'onStopShaker':				.signal(@"&obj.name;_end_of_shake"); break;
+			case 'onStopMover':					.signal(@"&obj.name;_end_of_move"); break;
+			case 'onShowCompleted':				break;
+			case 'onHideCompleted':				break;
+			}
+		}
+	}
+
+	/**/
+	function onChildLayerEvent(obj, event, elm)
+	{
+		with(dispatcher_)
+		{
+			switch(event)
+			{
+			case 'onBeginTransition':			break;
+			case 'onTransitionCompleted':		.signal(@"&obj.name;_end_of_transition"); break;
+			case 'onStopAnimation':				.signal(@"&obj.name;_end_of_animation&elm.index;"); break;
+			case 'onStopShaker':				.signal(@"&obj.name;_end_of_shake"); break;
+			case 'onStopMover':					.signal(@"&obj.name;_end_of_move"); break;
+			case 'onShowCompleted':				break;
+			case 'onHideCompleted':				break;
+			}
+		}
+	}
+
+	/**/
+	function onPrimaryLayerResize(left, top, width, height)
+	{
+		with(baseLayer)
+		{
+			.setImageSize(width, height);
+			.setSizeToImageSize();
+			.mirror.assignToMirror() if .mirror !== null;
+		}
+	}
+
+	/**/
+	property layerContainer
+	{
+		getter		{ return layerContainer_; }
+	}
+
+	/**/
+	property transitionCount
+	{
+		// NOTE:
+		// もし、複数のコンテナを使い分けるならば
+		// この値も調整する必要があるので注意する事。
+		getter		{ return layerContainer.transitionCount; }
+	}
+
+	/**/
+	property baseLayer
+	{
+		getter		{ with(layerContainer_) { return .get(.parentLayerName); }; }
+	}
+
+	/**/
+	property cvLayers
+	{
+		getter		{ return cvLayers_; }
+	}
+
+	/**/
+	property cgLayers
+	{
+		getter		{ return cgLayers_; }
+	}
+}
+
+

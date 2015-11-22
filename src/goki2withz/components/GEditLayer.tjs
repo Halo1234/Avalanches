@@ -1,0 +1,715 @@
+/*
+ * $Author$
+ * $Revision$
+**/
+
+
+/*
+ * ほぼ KAG のコード流用
+**/
+class GEditLayer extends GWidgetLayer
+{
+	var selectStart_ = 0;
+	var selectLenght_ = 0;
+	var selectAnchor_ = 0;
+	var selectScrollPosition_ = 0;
+	var antialiased_ = true;
+	var maxCharacter_ = 0;
+
+	var vertical_ = false;
+
+	var caretLayer_;
+	var blinkTimer_;
+
+	function GEditLayer(win, par, handler)
+	{
+		super.GWidgetLayer(win, par);
+
+		hitType = htMask;
+		hitThreshold = 0;
+		focusable = true;
+		useAttention = true;
+
+		with(family.receive(caretLayer_ = new global.Layer(win, this)))
+		{
+			.hitType = htMask;
+			.hitThreshold = 256;
+		}
+		resizeCaret();
+
+		imeMode = imDontCare;
+
+		family.receive(blinkTimer_ = new Timer(onBlink_private_, ''));
+
+		cursor = crIBeam;
+
+		update();
+	}
+
+	function assign(src)
+	{
+		assignImages(src, true);
+		selectStart_ = src.selectStart_;
+		selectLenght_ = src.selectLenght_;
+		selectAnchor_ = src.selectAnchor_;
+		selectScrollPosition_ = src.selectScrollPosition_;
+		antialiased_ = src.antialiased_;
+		vertical_ = src.vertical_;
+		maxCharacter_ = src.maxCharacter_;
+		cursor = src.cursor;
+		resizeCaret();
+		update();
+	}
+
+	function resizeCaret()
+	{
+		if(vertical_)
+		{
+			var h = 2;
+			var w = font.height;
+			w = -w if(w<0);
+			caretLayer_.setImageSize(w, h);
+			caretLayer_.setSizeToImageSize();
+			caretLayer_.colorRect(0, 0, w, h, captionColor);
+		}
+		else
+		{
+			var w = 2;
+			var h = font.height;
+			h = -h if(h<0);
+			caretLayer_.setImageSize(w, h);
+			caretLayer_.setSizeToImageSize();
+			caretLayer_.colorRect(0, 0, w, h, captionColor);
+		}
+	}
+
+	function getCaretXPos()
+	{
+		var before = caption.substring(0, selectStart_);
+		var after = caption.substring(0, selectScrollPosition_);
+		return font.getTextWidth(before) - font.getTextWidth(after) + 3;
+	}
+
+	function ensureCaretVisible(step = 1)
+	{
+		// キャレットが確実に表示される位置までスクロールする
+		var old = selectScrollPosition_;
+		var txtlen = caption.length;
+		if(selectStart_ == txtlen)
+		{
+			while(selectScrollPosition_ >= 0 && getCaretXPos() <= 3)
+				selectScrollPosition_ -= step;
+		}
+		else
+		{
+			while(selectScrollPosition_ >= 0 && getCaretXPos() < 3)
+				selectScrollPosition_ -= step;
+		}
+		var limit = vertical_ ? imageHeight : imageWidth;
+		while(selectScrollPosition_ < txtlen && getCaretXPos() >= limit -3)
+			selectScrollPosition_ += step;
+		if(selectScrollPosition_ < 0)
+			selectScrollPosition_ = 0;
+		if(selectScrollPosition_ > txtlen)
+			selectScrollPosition_ = txtlen;
+		if(old != selectScrollPosition_)
+			update();
+	}
+
+	function setCaretLayerPos()
+	{
+		resizeCaret();
+		var xpos = getCaretXPos() - 1;
+		if(vertical_)
+		{
+			caretLayer_.top = xpos;
+			caretLayer_.left = imageWidth - 3 - caretLayer_.imageWidth;
+			setAttentionPos(imageWidth - 3 , caretLayer_.top);
+		}
+		else
+		{
+			caretLayer_.top = 3;
+			caretLayer_.left = xpos;
+			setAttentionPos(xpos, 3);
+		}
+	}
+
+	function showCaret()
+	{
+		setCaretLayerPos();
+		caretLayer_.visible = true;
+		blinkTimer_.interval = 500;
+		blinkTimer_.enabled = true;
+	}
+
+	function hideCaret()
+	{
+		blinkTimer_.enabled = false;
+		caretLayer_.visible = false;
+	}
+
+	function setSize(w, h)
+	{
+		super.setSize(w, h);
+		setImageSize(w, h);
+		update();
+	}
+
+	function stepLeft(keepAnchor = false)
+	{
+		var oldAnchor = selectAnchor_;
+
+		// キャレットを左へ
+		if(selectLenght_)
+		{
+			selectLenght_ = 0;
+			update();
+		}
+		if(selectStart_ > 0)
+		{
+			selectStart_ --;
+			ensureCaretVisible(3);
+		}
+		if(!keepAnchor)
+			selectAnchor_ = selectStart_;
+		if(keepAnchor || oldAnchor != selectAnchor_)
+			update();
+		showCaret();
+	}
+
+	function stepRight(keepAnchor = false)
+	{
+		var oldAnchor = selectAnchor_;
+
+		// キャレットを右へ
+		if(selectLenght_)
+		{
+			selectLenght_ = 0;
+			update();
+		}
+		if(selectStart_ < caption.length)
+		{
+			selectStart_++;
+			ensureCaretVisible(3);
+		}
+		if(!keepAnchor)
+			selectAnchor_ = selectStart_;
+		if(keepAnchor || oldAnchor != selectAnchor_)
+			update();
+		showCaret();
+	}
+
+	function getCaretPosFromX(x)
+	{
+		// クリックされた位置を割り出す
+		x -= 3;
+		var text = caption.substring(selectScrollPosition_);
+		var i = 0;
+		for(;;)
+		{
+			var tx = text.substring(0, i);
+			var cw;
+			if((cw = font.getTextWidth(tx)) > x)
+			{
+				i--;
+				var cc = text.substring(i, 1);
+				var ccw = font.getTextWidth(cc);
+				cw -= ccw;
+				if(x > cw + (ccw>>1))
+					i++;
+				if(i < 0)
+					i = 0;
+				if(i > text.length)
+					i = text.length;
+
+				return i + selectScrollPosition_;
+			}
+			i++;
+			if(i > text.length)
+				return text.length + selectScrollPosition_;
+		}
+	}
+
+	/*
+	 * \brief 選択範囲に含まれる文字を全て削除する
+	 * \brief 削除したのであれば true を、そうでなければ false を返す
+	**/
+	function deleteSelectRange()
+	{
+		if(selectStart_ == selectAnchor_)
+			return false;
+
+		var sp, ep;
+
+		if(selectStart_ > selectAnchor_)
+		{
+			sp = selectAnchor_;
+			ep = selectStart_;
+			selectStart_ = selectAnchor_;
+		}
+		else
+		{
+			sp = selectStart_;
+			ep = selectAnchor_;
+			selectAnchor_ = selectStart_;
+		}
+
+		caption = caption.substring(0, sp) + caption.substring(ep);
+
+		ensureCaretVisible();
+		showCaret();
+		update();
+
+		return true;
+	}
+
+	/**/
+	function isSelected(pos)
+	{
+		if(selectStart_ == selectAnchor_)
+			return false;
+
+		if(selectStart_ > selectAnchor_)
+			return ((selectAnchor_ <= pos && selectStart_ > pos) ? true : false);
+		else
+			return ((selectAnchor_ > pos && selectStart_ <= pos) ? true : false);
+
+		return true;/* dead code */
+	}
+
+	/**/
+	function operationAllSelection()
+	{
+		selectAnchor_ = 0;
+		selectStart_ = caption.length;
+		ensureCaretVisible();
+		showCaret();
+		update();
+	}
+
+	/**/
+	function operationCopy()
+	{
+		if(selectAnchor_ == selectStart_)
+			return;
+
+		var start, len;
+		var text = "";
+
+		if(selectStart_ > selectAnchor_)
+		{
+			start = selectAnchor_;
+			len = selectStart_ - start;
+		}
+		else
+		{
+			start = selectStart_;
+			len = selectAnchor_ - start;
+		}
+
+		Clipboard.asText = caption.substring(start, len);
+	}
+
+	/**/
+	function operationPaste()
+	{
+		// テキストが無ければもちろん何もしない
+		if(Clipboard.hasFormat(cbfText))
+		{
+			var text = Clipboard.asText;
+
+			if(maxCharacter_)
+			{
+				var acceptLen = maxCharacter_ - caption.length;
+				text = text.substring(0, acceptLen);
+
+				if(text == '')
+					return;
+			}
+
+			insertCharacter(text);
+		}
+	}
+
+	/**/
+	function operationCut()
+	{
+		operationCopy();
+		deleteSelectRange();
+	}
+
+	function insertCharacter(ch)
+	{
+		// 選択範囲のテキストを削除する
+		deleteSelectRange();
+
+		// ch をカーソル位置に挿入
+		var before = caption.substring(0, selectStart_); // 選択領域以前
+		var after = caption.substring(selectStart_ + selectLenght_); // 選択領域以後
+		caption = before + ch + after;
+		selectStart_ += ch.length;
+		selectAnchor_ = selectStart_;
+		ensureCaretVisible();
+		showCaret();
+		update();
+	}
+
+	function deleteBeforeCaret()
+	{
+		// キャレットの手前の文字を一文字削除する
+		if(!deleteSelectRange() && selectStart_ > 0)
+		{
+			var before = caption.substring(0, selectStart_-1);
+			var after = caption.substring(selectStart_ + selectLenght_);
+			caption = before + after;
+			selectStart_--;
+			selectAnchor_ = selectStart_;
+			ensureCaretVisible(5);
+			showCaret();
+			update();
+		}
+	}
+
+	function deleteAfterCaret()
+	{
+		// キャレットの次の一文字を削除する
+		if(!deleteSelectRange() && selectStart_ < caption.length)
+		{
+			var before = caption.substring(0, selectStart_);
+			var after = caption.substring(selectStart_ + selectLenght_ + 1);
+			caption = before + after;
+			ensureCaretVisible();
+			showCaret();
+			update();
+		}
+	}
+
+	function onBlink_private_()
+	{
+		caretLayer_.visible = !caretLayer_.visible;
+	}
+
+	function onMouseDown(x, y, button, shift)
+	{
+		super.onMouseDown(...);
+
+		// クリックされた
+		if(x >= 3 && y >= 3 && x < imageWidth -3 && y < imageHeight - 3)
+		{
+			var oldStart = selectStart_;
+			var oldAnchor = selectAnchor_;
+
+			if(vertical_)
+				selectStart_ = getCaretPosFromX(y);
+			else
+				selectStart_ = getCaretPosFromX(x);
+
+			// Shift キーが押されていないのであればアンカーも更新する
+			if((shift & ssShift) != ssShift)
+				selectAnchor_ = selectStart_;
+
+			// 更新の必要があれば更新する
+			if(oldStart != selectStart_ || oldAnchor != selectAnchor_)
+				update();
+
+			ensureCaretVisible();
+			showCaret();
+		}
+
+		focus();
+	}
+
+	function onMouseMove(x, y, button)
+	{
+		if(pushed)
+		{
+			// ここでの移動はアンカーは絶対に移動しない
+
+			if(vertical_)
+			{
+				if(y >= 3 && y < (imageHeight - 3))
+				{
+					var oldStart = selectStart_;
+
+					selectStart_ = getCaretPosFromX(y);
+
+					// 更新の必要があれば更新する
+					if(oldStart != selectStart_)
+						update();
+
+					ensureCaretVisible();
+					showCaret();
+				}
+				else
+				{
+					if(y <= 3)
+						stepLeft(true);
+					else
+					if(y > (imageHeight - 3))
+						stepRight(true);
+				}
+			}
+			else
+			{
+				if(x >= 3 && x < (imageWidth - 3))
+				{
+					var oldStart = selectStart_;
+
+					selectStart_ = getCaretPosFromX(x);
+
+					// 更新の必要があれば更新する
+					if(oldStart != selectStart_)
+						update();
+
+					ensureCaretVisible();
+					showCaret();
+				}
+				else
+				{
+					if(x <= 3)
+						stepLeft(true);
+					else
+					if(x > (imageWidth - 3))
+						stepRight(true);
+				}
+			}
+		}
+
+		super.onMouseMove(...);
+	}
+
+	function onKeyPress(key)
+	{
+		// キーが押された
+		if(#key >= 32)
+		{
+			// 普通の文字
+			if(!maxCharacter_ || caption.length < maxCharacter_)
+				insertCharacter(key);
+			// マウスカーソルを一時的に非表示にする
+			window.hideMouseCursor();
+		}
+		else super.onKeyPress(...);
+	}
+
+	function onKeyDown(key, shift)
+	{
+		// 特殊なオペレーション
+		if(shift & ssCtrl)
+		{
+			switch(key)
+			{
+			case VK_A:	operationAllSelection(); return;
+			case VK_C:	operationCopy(); return;
+			case VK_X:	operationCut(); return;
+			case VK_V:	operationPaste(); return;
+			}
+		}
+
+		if(key == (vertical_?VK_UP:VK_LEFT))
+			stepLeft((shift & ssShift) == ssShift);
+		else
+		if(key == (vertical_?VK_DOWN:VK_RIGHT))
+			stepRight((shift & ssShift) == ssShift);
+		else
+		if(key == VK_DELETE)
+			deleteAfterCaret();
+		else
+		if(key == VK_BACK)
+			deleteBeforeCaret();
+		else
+			super.onKeyDown(...);
+	}
+
+
+	function onFocus()
+	{
+		// フォーカスを得た
+		super.onFocus(...);
+		showCaret();
+	}
+
+	function onBlur()
+	{
+		// フォーカスを失った
+		super.onBlur(...);
+		hideCaret();
+	}
+
+
+	function onPaint()
+	{
+		// 描画の直前に呼ばれる
+		// 内容を描画する
+		// とりあえずクリア
+		var vert = vertical_;
+		var imwidth = vert ? imageHeight : imageWidth;
+		fillRect(0, 0, imageWidth, imageHeight, 0);
+		colorRect(0, 0, imageWidth, imageHeight, bodyColor, bodyOpacity);
+		// 文字を描画
+		// グローバル変数や、オブジェクト内変数はアクセスが遅いので、
+		// よく使う変数はローカルに持ってくる
+		var h = font.height;
+		h = -h if h < 0;
+		var x = vert ? imageWidth - 3 : 3;
+		var y = 3;
+		var chpos = selectScrollPosition_;
+		var text = caption;
+		var textlen = text.length;
+		var selstart = selectStart_;
+		var selend = selectLenght_ + selstart;
+		var highlightbg = 0xff000000 | clHighlight;
+		var highlighttext = clHighlightText;
+		var anti = antialiased_;
+		var textcolor = captionColor;
+		var tx = "";
+		if(vert)
+		{
+			for(;;)
+			{
+				y = 3 + font.getTextWidth(tx);
+				if(y > imwidth)
+					break;
+				if(chpos >= textlen)
+					break;
+				var ch = text[chpos];
+				var chw = font.getTextWidth(ch);
+				if(isSelected(chpos++))
+				{
+					// 選択領域内
+					// 背景を塗る
+					fillRect(x, y, h, chw, highlightbg);
+					// 文字を書く
+					drawText(x, y, ch, highlighttext, 255, anti);
+				}
+				else
+				{
+					// 選択領域外
+					drawText(x, y, ch, textcolor, 255, anti);
+				}
+				tx += ch;
+			}
+		}
+		else
+		{
+			for(;;)
+			{
+				x = 3 + font.getTextWidth(tx);
+				if(x > imwidth)
+					break;
+				if(chpos >= textlen)
+					break;
+				var ch = text[chpos];
+				var chw = font.getTextWidth(ch);
+				if(isSelected(chpos++))
+				{
+					// 背景を塗る
+					fillRect(x, y, chw, h, highlightbg);
+					// 文字を書く
+					drawText(x, y, ch, highlighttext, 255, anti);
+				}
+				else
+				{
+					// 選択領域外
+					drawText(x, y, ch, textcolor, 255, anti);
+				}
+				tx += ch;
+			}
+		}
+		// 文字領域外をもう一度クリア
+		if(vert)
+		{
+			fillRect(0, imageHeight - 3, imageWidth, 3, 0);
+			colorRect(0, imageHeight - 3, imageWidth, 3, bodyColor, bodyOpacity);
+		}
+		else
+		{
+			fillRect(imageWidth - 3, 0, 3, imageHeight, 0);
+			colorRect(imageWidth - 3, 0, 3, imageHeight, bodyColor, bodyOpacity);
+		}
+		// 枠を描画
+		colorRect(0, 0, imageWidth, 1, 0x000000, 128);
+		colorRect(0, 1, 1, imageHeight-2, 0x000000, 128);
+		colorRect(imageWidth-1, 1, 1, imageHeight-1, 0xffffff, 128);
+		colorRect(1, imageHeight-1, imageWidth-2, 1, 0xffffff, 128);
+	}
+
+	property text
+	{
+		setter(x)
+		{
+			x = '' if x === void;
+			super.caption = x;
+			selectStart_ = 0;
+			selectLenght_ = 0;
+			selectAnchor_ = 0;
+			selectScrollPosition_ = 0;
+			setCaretLayerPos();
+			update();
+		}
+		getter
+		{
+			return super.caption;
+		}
+	}
+
+	property maxCharacter
+	{
+		setter(x)
+		{
+			maxCharacter_ = int x;
+			selectStart_ = 0;
+			selectLenght_ = 0;
+			selectAnchor_ = 0;
+			selectScrollPosition_ = 0;
+			if(maxCharacter_ && caption.length >= maxCharacter_)
+				caption = caption.substring(0, maxCharacter_);
+			setCaretLayerPos();
+			update();
+		}
+		getter
+		{
+			return maxCharacter_;
+		}
+	}
+
+	property width
+	{
+		setter(x)	{ super.width = x; imageWidth = x; update(); }
+		getter		{ return super.width; }
+	}
+
+	property height
+	{
+		setter(x)	{ super.height = x; imageHeight = x; update(); }
+		getter		{ return super.height; }
+	}
+
+	property vertical
+	{
+		setter(x)
+		{
+			vertical_ = int x;
+			update();
+		}
+		getter
+		{
+			return vertical_;
+		}
+	}
+
+	property antialiased
+	{
+		setter(x)
+		{
+			antialiased_ = int x;
+			update();
+		}
+		getter
+		{
+			return antialiased_;
+		}
+	}
+}
+
+

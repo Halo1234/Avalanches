@@ -1,0 +1,1397 @@
+/*
+ * $Revision: 338 $
+**/
+
+
+/**/
+class GVerticalLayout
+{
+	var layer_ = void;
+
+	var baseLine = 0;
+	var lineSpace = 8;
+	var lineSize = 0;
+	var marginLeft_ = 0;
+	var marginTop_ = 0;
+	var marginRight_ = 0;
+	var marginBottom_ = 0;
+	var indentPosition = 0;
+
+	var wwBound_ = 0;
+	var characterPosition = 0;
+
+	/**/
+	function GVerticalLayout(layer)
+	{
+		layer_ = layer;
+
+		resetPosition();
+		resetFont();
+	}
+
+	/**/
+	function updateWordWrapBound()
+	{
+		with(layer_)
+			wwBound_ = .height - marginBottom_ - (.font.height * .wwRightCh);
+	}
+
+	/**/
+	function shouldWordWrap(chWidth, chHeight)
+	{
+		return (characterPosition + chHeight) > wwBound_ ? true : false;
+	}
+
+	/**/
+	function possibleDrawn(ch, chWidth, chHeight)
+	{
+		with(layer_)
+			return (characterPosition + chHeight) < .height ? true : false;
+	}
+
+	/**/
+	function possibleReline()
+	{
+		if((baseLine + getLineSize() + lineSpace) < marginLeft)
+			return false;
+
+		return true;
+	}
+
+	/**/
+	function setMargin(left, top, right, bottom)
+	{
+		marginLeft_ = left;
+		marginTop_ = top;
+		marginRight_ = right;
+		marginBottom_ = bottom;
+		updateWordWrapBound();
+	}
+
+	/**/
+	function markIndent()
+	{
+		indentPosition = characterPosition;
+	}
+
+	/**/
+	function deleteIndent()
+	{
+		indentPosition = 0;
+	}
+
+	/*! \brief 行のサイズを返す。
+	 *
+	 * \remarks 現在の行のサイズではありません。
+	**/
+	function getLineSize()
+	{
+		var fontSize = Math.abs(layer_.font.height);
+
+		with(layer_)
+			return (fontSize < .reservedLineSize ? .reservedLineSize : fontSize);
+	}
+
+	/**/
+	function resetFont()
+	{
+		with(layer_)
+		{
+			if(.fontFaceCache_[0] != '@')
+				.font.face = @"@&.fontFaceCache_;";
+			else
+				.font.face = .fontFaceCache_;
+			.font.angle = 2700;
+			.font.height = .fontSizeCache_;
+			.font.italic = .italicCache_;
+			.font.bold = .boldCache_;
+			.font.strikeout = .strikeoutCache_;
+			.font.underline = .underlineCache_;
+			.shadowColor = .shadowColorCache_;
+			.edgeColor = .edgeColorCache_;
+			updateWordWrapBound();
+		}
+	}
+
+	/**/
+	function resetRubyFont()
+	{
+		with(layer_)
+		{
+			if(.rubyFontFaceCache_[0] != '@')
+				.font.face = @"@&.rubyFontFaceCache_;";
+			else
+				.font.face = .rubyFontFaceCache_;
+			.font.angle = 2700;
+			.font.height = .rubyFontSizeCache_;
+			.font.italic = .rubyItalicCache_;
+			.font.bold = .rubyBoldCache_;
+			.font.strikeout = .rubyStrikeoutCache_;
+			.font.underline = .rubyUnderlineCache_;
+		}
+	}
+
+	/**/
+	function setPositionX(x)
+	{
+		baseLine = x - marginRight_ - (getLineSize() >> 1);
+	}
+
+	function setPositionY(y)
+	{
+		characterPosition = y;
+	}
+
+	/**/
+	function resetPosition()
+	{
+		var ls = getLineSize();
+
+		baseLine = layer_.width - marginRight_ - (ls >> 1) - lineSpace;
+		lineSize = ls;
+		characterPosition = (indentPosition == 0 ? marginTop_ : indentPosition);
+	}
+
+	/**/
+	function nextPosition(chWidth, chHeight)
+	{
+		characterPosition += chHeight + layer_.characterSpace;
+	}
+
+	/**/
+	function returnPosition()
+	{
+		with(layer_)
+		{
+			baseLine -= lineSize + lineSpace;
+			lineSize = getLineSize();
+			characterPosition = (indentPosition == 0 ? marginTop_ : indentPosition);
+		}
+	}
+
+	/**/
+	function calculateLineSize(width, height)
+	{
+		return (width >> 1) + lineSize;
+	}
+
+	/**/
+	function getCurrentLeft(chWidth, chHeight)
+	{
+		var left = baseLine - (chWidth >> 1);
+
+		return marginLeft_ > left ? marginLeft_ : left;
+	}
+
+	/**/
+	function getCurrentTop(chWidth, chHeight)
+	{
+		return characterPosition;
+	}
+
+	/**/
+	function getTextWidth(ch)
+	{
+		return layer_.font.getTextHeight(ch);
+	}
+
+	/**/
+	function getTextHeight(ch)
+	{
+		return layer_.font.getTextWidth(ch);
+	}
+
+	/**/
+	function getLineLeft(position, baseLine, lineSize)
+	{
+		return baseLine - (lineSize >> 1);
+	}
+
+	/**/
+	function getLineTop(position, baseLine, lineSize)
+	{
+		return position;
+	}
+
+	/**/
+	function getLineWidth(lineSize1, lineSize2)
+	{
+		return lineSize1;
+	}
+
+	/**/
+	function getLineHeight(lineSize1, lineSize2)
+	{
+		return lineSize2;
+	}
+
+	/**/
+	function getRubyLeft(rubyWidth, rubyHeight, chLeft, chTop, chWidth, chHeight)
+	{
+		var left = baseLine + (chWidth >> 1);
+
+		if(marginRight_ > left)
+			left = marginRight_;
+
+		return left;
+	}
+
+	/**/
+	function getRubyTop(rubyWidth, rubyHeight, chLeft, chTop, chWidth, chHeight)
+	{
+		var top = characterPosition;
+
+		return top;
+	}
+
+	/**/
+	function includeLine(x, y, baseLine, lineSize)
+	{
+		if(x >= baseLine - (lineSize >> 1) && x <= baseLine + (lineSize >> 1))
+			return true;
+		return false;
+	}
+
+	/**/
+	function includePosition(x, y, startPosition, endPosition)
+	{
+		if(y >= startPosition && y <= endPosition)
+			return true;
+		return false;
+	}
+
+	/**/
+	function setLocateX(x)
+	{
+		baseLine = marginLeft + x + (getLineSize() >> 1);
+	}
+
+	/**/
+	function setLocateY(y)
+	{
+		characterPosition = marginTop + y;
+	}
+
+	/**/
+	function addPosition(x, y)
+	{
+		characterPosition += y;
+	}
+
+	/**/
+	function store(tick)
+	{
+		var dic = %[];
+
+		dic.baseLine = baseLine;
+		dic.lineSpace = lineSpace;
+		dic.lineSize = lineSize;
+		dic.marginLeft = marginLeft_;
+		dic.marginTop = marginTop_;
+		dic.marginRight = marginRight_;
+		dic.marginBottom = marginBottom_;
+		dic.indentPosition = indentPosition;
+		dic.wwBound = wwBound_;
+		dic.characterPosition = characterPosition;
+
+		return dic;
+	}
+
+	/**/
+	function restore(dic, tick)
+	{
+		baseLine = dic.baseLine;
+		lineSpace = dic.lineSpace;
+		lineSize = dic.lineSize;
+		marginLeft_ = dic.marginLeft;
+		marginTop_ = dic.marginTop;
+		marginRight_ = dic.marginRight;
+		marginBottom_ = dic.marginBottom;
+		indentPosition = dic.indentPosition;
+		wwBound_ = dic.wwBound;
+		characterPosition = dic.characterPosition;
+	}
+
+	property layer
+	{
+		getter		{ return layer_; }
+	}
+
+	property marginLeft
+	{
+		getter		{ return marginLeft_; }
+	}
+
+	property marginTop
+	{
+		getter		{ return marginTop_; }
+	}
+
+	property marginRight
+	{
+		getter		{ return marginRight_; }
+	}
+
+	property marginBottom
+	{
+		getter		{ return marginBottom_; }
+	}
+}
+
+
+/**/
+class GHorizontalLayout
+{
+	var layer_ = void;
+
+	var baseLine = 0;
+	var lineSpace = 8;
+	var lineSize = 0;
+	var marginLeft_ = 0;
+	var marginTop_ = 0;
+	var marginRight_ = 0;
+	var marginBottom_ = 0;
+	var indentPosition = 0;
+
+	var wwBound_ = 0;
+	var characterPosition = 0;
+
+	/**/
+	function GHorizontalLayout(layer)
+	{
+		layer_ = layer;
+
+		resetPosition();
+		resetFont();
+	}
+
+	/**/
+	function updateWordWrapBound()
+	{
+		with(layer_)
+			wwBound_ = .width - marginRight_ - (.font.height * .wwRightCh);
+	}
+
+	/**/
+	function shouldWordWrap(chWidth, chHeight)
+	{
+		return (characterPosition + chWidth) > wwBound_ ? true : false;
+	}
+
+	/**/
+	function possibleDrawn(ch, chWidth, chHeight)
+	{
+		with(layer_)
+			return (characterPosition + chWidth) < .width ? true : false;
+	}
+
+	/**/
+	function possibleReline()
+	{
+		if((baseLine + getLineSize() + lineSpace) > (layer_.height - marginBottom_))
+			return false;
+
+		return true;
+	}
+
+	/**/
+	function setMargin(left, top, right, bottom)
+	{
+		marginLeft_ = left;
+		marginTop_ = top;
+		marginRight_ = right;
+		marginBottom_ = bottom;
+		updateWordWrapBound();
+	}
+
+	/**/
+	function markIndent()
+	{
+		indentPosition = characterPosition;
+	}
+
+	/**/
+	function deleteIndent()
+	{
+		indentPosition = 0;
+	}
+
+	/*! \brief 行のサイズを返す。
+	 *
+	 * \remarks 現在の行のサイズではありません。
+	**/
+	function getLineSize()
+	{
+		var fontSize = Math.abs(layer_.font.height);
+
+		with(layer_)
+			return (fontSize < .reservedLineSize ? .reservedLineSize : fontSize);
+	}
+
+	/**/
+	function resetFont()
+	{
+		with(layer_)
+		{
+			.font.face = .fontFaceCache_;
+			.font.angle = 0;
+			.font.height = .fontSizeCache_;
+			.font.italic = .italicCache_;
+			.font.bold = .boldCache_;
+			.font.strikeout = .strikeoutCache_;
+			.font.underline = .underlineCache_;
+			.shadowColor = .shadowColorCache_;
+			.edgeColor = .edgeColorCache_;
+			updateWordWrapBound();
+		}
+	}
+
+	/**/
+	function resetRubyFont()
+	{
+		with(layer_)
+		{
+			.font.face = .rubyFontFaceCache_;
+			.font.angle = 0;
+			.font.height = .rubyFontSizeCache_;
+			.font.italic = .rubyItalicCache_;
+			.font.bold = .rubyBoldCache_;
+			.font.strikeout = .rubyStrikeoutCache_;
+			.font.underline = .rubyUnderlineCache_;
+		}
+	}
+
+	/**/
+	function setPositionX(x)
+	{
+		characterPosition = x;
+	}
+
+	/**/
+	function setPositionY(y)
+	{
+		baseLine = marginTop_ + y + getLineSize();
+	}
+
+	/**/
+	function resetPosition()
+	{
+		var ls = getLineSize();
+
+		baseLine = marginTop_ + ls + lineSpace;
+		lineSize = ls;
+		characterPosition = (indentPosition == 0 ? marginLeft_ : indentPosition);
+	}
+
+	/**/
+	function nextPosition(chWidth, chHeight)
+	{
+		characterPosition += chWidth + layer_.characterSpace;
+	}
+
+	/**/
+	function returnPosition()
+	{
+		with(layer_)
+		{
+			baseLine += lineSize + lineSpace;
+			lineSize = getLineSize();
+			characterPosition = (indentPosition == 0 ? marginLeft_ : indentPosition);
+		}
+	}
+
+	/**/
+	function calculateLineSize(width, height)
+	{
+		return height + lineSize;
+	}
+
+	/**/
+	function getCurrentLeft(chWidth, chHeight)
+	{
+		return characterPosition;
+	}
+
+	/**/
+	function getCurrentTop(chWidth, chHeight)
+	{
+		var top = baseLine - chHeight;
+
+		return marginTop_ > top ? marginTop_ : top;
+	}
+
+	/**/
+	function getTextWidth(ch)
+	{
+		return layer_.font.getTextWidth(ch);
+	}
+
+	/**/
+	function getTextHeight(ch)
+	{
+		return layer_.font.getTextHeight(ch);
+	}
+
+	/**/
+	function getLineLeft(position, baseLine, lineSize)
+	{
+		return position;
+	}
+
+	/**/
+	function getLineTop(position, baseLine, lineSize)
+	{
+		return baseLine - lineSize;
+	}
+
+	/**/
+	function getLineWidth(lineSize1, lineSize2)
+	{
+		return lineSize2;
+	}
+
+	/**/
+	function getLineHeight(lineSize1, lineSize2)
+	{
+		return lineSize1;
+	}
+
+	/**/
+	function getRubyLeft(rubyWidth, rubyHeight, chLeft, chTop, chWidth, chHeight)
+	{
+		var left = (chLeft + (chWidth >> 1)) - (rubyWidth >> 1);
+
+		if(marginLeft_ > left)
+			left = marginLeft_;
+		if((layer_.width - marginRight_) < (left + rubyWidth))
+			left = layer_.width - marginRight_;
+
+		return left;
+	}
+
+	/**/
+	function getRubyTop(rubyWidth, rubyHeight, chLeft, chTop, chWidth, chHeight)
+	{
+		var top = chTop - rubyHeight;
+
+		if(marginTop_ > top)
+			top = marginTop_;
+		// NOTE: top がマージンを超える事は実際のところありえないので必要ない。
+		//if((layer_.height - marginBottom_) < (top + rubyHeight_))
+		//	top = layer_.height - marginBottom_;
+
+		return top;
+	}
+
+	/**/
+	function includeLine(x, y, baseLine, lineSize)
+	{
+		if(y >= baseLine - lineSize && y <= baseLine)
+			return true;
+		return false;
+	}
+
+	/**/
+	function includePosition(x, y, startPosition, endPosition)
+	{
+		if(x >= startPosition && x <= endPosition)
+			return true;
+		return false;
+	}
+
+	/**/
+	function setLocateX(x)
+	{
+		characterPosition = marginLeft + x;
+	}
+
+	/**/
+	function setLocateY(y)
+	{
+		baseLine = marginTop + y + getLineSize();
+	}
+
+	/**/
+	function addPosition(x, y)
+	{
+		characterPosition += x;
+	}
+
+	/**/
+	function store(tick)
+	{
+		var dic = %[];
+
+		dic.baseLine = baseLine;
+		dic.lineSpace = lineSpace;
+		dic.lineSize = lineSize;
+		dic.marginLeft = marginLeft_;
+		dic.marginTop = marginTop_;
+		dic.marginRight = marginRight_;
+		dic.marginBottom = marginBottom_;
+		dic.indentPosition = indentPosition;
+		dic.wwBound = wwBound_;
+		dic.characterPosition = characterPosition;
+
+		return dic;
+	}
+
+	/**/
+	function restore(dic, tick)
+	{
+		baseLine = dic.baseLine;
+		lineSpace = dic.lineSpace;
+		lineSize = dic.lineSize;
+		marginLeft_ = dic.marginLeft;
+		marginTop_ = dic.marginTop;
+		marginRight_ = dic.marginRight;
+		marginBottom_ = dic.marginBottom;
+		indentPosition = dic.indentPosition;
+		wwBound_ = dic.wwBound;
+		characterPosition = dic.characterPosition;
+	}
+
+	property layer
+	{
+		getter		{ return layer_; }
+	}
+
+	property marginLeft
+	{
+		getter		{ return marginLeft_; }
+	}
+
+	property marginTop
+	{
+		getter		{ return marginTop_; }
+	}
+
+	property marginRight
+	{
+		getter		{ return marginRight_; }
+	}
+
+	property marginBottom
+	{
+		getter		{ return marginBottom_; }
+	}
+}
+
+/**/
+class GHyperTextLayer extends GWidgetLayer
+{
+	var wwFollowingStrong_ =									//!< \brief 行頭(強)禁則文字
+		'　%),:;]}｡｣ﾞﾟ。，、．：；゛゜ヽヾゝゞ々’”）〕］｝〉》」』】°′″℃￠％‰!?！？';
+	var wwFollowingWeak_ =										//!< \brief 行頭(弱)禁則文字
+		' .､･ｧｨｩｪｫｬｭｮｯｰ・ぁぃぅぇぉっゃゅょゎァィゥェォッャュョヮヵヶ';
+	var wwLeading = 											//!< \brief 行末禁則文字
+		'\\$([{｢‘“（〔［｛〈《「『【￥＄￡';
+	var wwFollowing_ = wwFollowingStrong_ + wwFollowingWeak_;	//!< \brief 行頭禁則文字
+	var wwRightCh = 1;											//!< \brief ワードラップのためにあけておく文字数
+
+	var layoutModeCache_ = 'horizontal';
+	var layoutMode_ = layoutModeCache_;
+	var layout_ = void;
+
+	var outputting_ = false;
+	var splitingPage_ = false;
+
+	var marginLeftCache_ = 0;
+	var marginTopCache_ = 0;
+	var marginRightCache_ = 0;
+	var marginBottomCache_ = 0;
+	var marginModified_ = false;
+	var reservedLineSize = 0;
+	var characterSpace = 0;
+	var fontFaceCache_ = 'ＭＳ Ｐゴシック';
+	var fontSizeCache_ = 24;
+	var italicCache_ = false;
+	var boldCache_ = false;
+	var strikeoutCache_ = false;
+	var underlineCache_ = false;
+	var rubyFontFaceCache_ = 'ＭＳ Ｐゴシック';
+	var rubyFontSizeCache_ = 8;
+	var rubyItalicCache_ = false;
+	var rubyBoldCache_ = false;
+	var rubyStrikeoutCache_ = false;
+	var rubyUnderlineCache_ = false;
+	var shadowColorCache_ = clNone;
+	var shadowOffsetX_ = 1;
+	var shadowOffsetY_ = 1;
+	var shadowExtent_ = 1;
+	var edgeColorCache_ = clNone;
+
+	var lastCharacter_ = '';
+
+	var contents_ = [];
+	var currentLine = 0;
+
+	/**/
+	function GHyperTextLayer(window, parent, handler)
+	{
+		super.GWidgetLayer(...);
+		hitThreshold = 0;
+
+		// NOTE: レイアウトは作り直しが発生する可能性があるので代行オブジェクトを通して破棄する。
+		family.receive(new GDestructor(resetLayout));
+	}
+
+	/**/
+	function drawCaption(offx = 0, offy = 0, color = captionColor, edge = edgeColor, shadow = shadowColor, shadowOffsetX = shadowOffsetX_, shadowOffsetY = shadowOffsetY_, shadowExtent = shadowExtent_)
+	{
+		// NOTE: 再描画の時にのみ呼び出されます。派生先で実装してください。
+	}
+
+	/**/
+	function createLayout(layer)
+	{
+		var obj;
+
+		switch(layoutMode_)
+		{
+		case 'horizontal':	obj = new GHorizontalLayout(layer); break;
+		case 'vertical':	obj = new GVerticalLayout(layer); break;
+		default:			throw new GArgumentsError(@"&layoutMode_; は未定義のレイアウトです。");
+		}
+
+		obj.setMargin(marginLeftCache_, marginTopCache_, marginRightCache_, marginBottomCache_);
+
+		return obj;
+	}
+
+	/**/
+	function setMargin(left, top, right, bottom)
+	{
+		marginLeftCache_ = left;
+		marginTopCache_ = top;
+		marginRightCache_ = right;
+		marginBottomCache_ = bottom;
+		marginModified_ = true;
+	}
+
+	/**/
+	function setFontFace(face)
+	{
+		fontFaceCache_ = face;
+	}
+
+	/**/
+	function setFontSize(size)
+	{
+		fontSizeCache_ = size;
+	}
+
+	/**/
+	function setItalic(italic)
+	{
+		italicCache_ = italic;
+	}
+
+	/**/
+	function setBold(bold)
+	{
+		boldCache_ = bold;
+	}
+
+	/**/
+	function setRubyFontSize(size)
+	{
+		rubyFontSizeCache_ = size;
+	}
+
+	/**/
+	function setStrikeout(strikeout)
+	{
+		strikeoutCache_ = strikeout;
+	}
+
+	/**/
+	function setUnderline(underline)
+	{
+		underlineCache_ = underline;
+	}
+
+	/**/
+	function setShadowColor(color)
+	{
+		shadowColorCache_ = color;
+	}
+
+	/**/
+	function setEdgeColor(color)
+	{
+		edgeColorCache_ = color;
+	}
+
+	/*! \brief タグ（文字）出力。
+	 *
+	 * \param [tag] 出力するタグを指定します。
+	 *
+	 * \return 出力できた場合は true を返します。
+	 * \return それ以外では false を返します。
+	**/
+	function output(tag, storeContents = true)
+	{
+		switch(tag.tagname)
+		{
+		case 'ch':
+			if(!outputting_)
+			{
+				if(layoutMode_ !== layoutModeCache_)
+					resetLayout();
+				if(marginModified_)
+					layout.setMargin(marginLeftCache_, marginTopCache_, marginRightCache_, marginBottomCache_);
+				layout.resetPosition();
+				outputting_ = true;
+			}
+
+			if(!renderCharacter(tag.text))
+			{
+				splitingPage_ = true;
+				return false;
+			}
+			break;
+
+		case 'graph':
+			if(!outputting_)
+			{
+				if(layoutMode_ !== layoutModeCache_)
+					resetLayout();
+				if(marginModified_)
+					layout.setMargin(marginLeftCache_, marginTopCache_, marginRightCache_, marginBottomCache_);
+				layout.resetPosition();
+				outputting_ = true;
+			}
+
+			if(!renderGraph(tag.storage, adjustColorKey(tag.key), GObjectUtils.getBoolean(tag, 'character', true)))
+			{
+				splitingPage_ = true;
+				return false;
+			}
+
+			break;
+
+		case 'horizontal_ch':
+			if(!outputting_)
+			{
+				if(layoutMode_ !== layoutModeCache_)
+					resetLayout();
+				if(marginModified_)
+					layout.setMargin(marginLeftCache_, marginTopCache_, marginRightCache_, marginBottomCache_);
+				layout.resetPosition();
+				outputting_ = true;
+			}
+
+			if(!renderHorizontalCharacter(tag.text, +tag.expand))
+			{
+				splitingPage_ = true;
+				return false;
+			}
+			break;
+
+		case 'ruby':
+			renderRuby(tag.text);
+			break;
+
+		case 'default_font_parameters':
+			setFontFace(tag.face) if tag.face !== void;
+			setFontSize(tag.size) if tag.size !== void;
+			setItalic(GObjectUtils.toBoolean(tag.italic)) if tag.italic !== void;
+			setRubyFontSize(tag.ruby_size) if tag.ruby_size !== void;
+			setBold(GObjectUtils.toBoolean(tag.bold)) if tag.bold !== void;
+			setStrikeout(GObjectUtils.toBoolean(tag.strikeout)) if tag.strikeout !== void;
+			setUnderline(GObjectUtils.toBoolean(tag.underline)) if tag.underline !== void;
+			if(tag.shadow_color !== void)
+			{
+				if(tag.shadow_color == 'clNone')
+					setShadowColor(clNone);
+				else
+					setShadowColor(+tag.shadow_color);
+			}
+			if(tag.edge_color !== void)
+			{
+				if(tag.edge_color == 'clNone')
+					setEdgeColor(clNone);
+				else
+					setEdgeColor(+tag.edge_color);
+			}
+			break;
+
+		case 'line_parameters':
+			reservedLineSize = +tag.line_size if tag.line_size !== void;
+			characterSpace = +tag.character_space if tag.character_space !== void;
+			break;
+
+		case 'font':
+			font.face = tag.face if tag.face !== void;
+			font.height = +tag.size if tag.size !== void;
+			font.italic = GObjectUtils.toBoolean(tag.italic) if tag.italic !== void;
+			font.bold = GObjectUtils.toBoolean(tag.bold) if tag.bold !== void;
+			font.strikeout = GObjectUtils.toBoolean(tag.strikeout) if tag.strikeout !== void;
+			font.underline = GObjectUtils.toBoolean(tag.underline) if tag.underline !== void;
+			if(tag.shadow_color !== void)
+			{
+				if(tag.shadow_color == 'clNone')
+					shadowColor = clNone;
+				else
+					shadowColor = +tag.shadow_color;
+			}
+			if(tag.edge_color !== void)
+			{
+				if(tag.edge_color == 'clNone')
+					edgeColor = clNone;
+				else
+					edgeColor = +tag.edge_color;
+			}
+			break;
+
+		case 'reset_font':
+			layout.resetFont();
+			break;
+		}
+
+		if(storeContents)
+		{
+			if(contents_[currentLine] === void)
+			{
+				contents_[currentLine] = [];
+				contents_[currentLine][0] = %[
+					baseLine : layout.baseLine,
+					lineSize : layout.lineSize
+				];
+			}
+			contents_[currentLine].push(GObjectUtils.clone(tag));
+		}
+
+		return true;
+	}
+
+	/**/
+	function reline()
+	{
+		if(outputting_)
+		{
+			with(layout)
+			{
+				onEndLine();
+
+				if(!.possibleReline())
+					return false;
+
+				.returnPosition();
+
+				currentLine++;
+
+				onNewLine();
+			}
+		}
+
+		return true;
+	}
+
+	/**/
+	function wordWrap(ch, chWidth, chHeight)
+	{
+		var last = lastCharacter_;
+
+		if(((last == '' || wwLeading.indexOf(last) == -1) && wwFollowing_.indexOf(ch) == -1) ||
+			(last != '' && wwFollowingWeak_.indexOf(last) != -1 && wwFollowingWeak_.indexOf(ch) != -1) ||
+			!layout.possibleDrawn(ch))
+		{
+			if(!reline())
+				return false;
+		}
+
+		return true;
+	}
+
+	/**/
+	function eraseText()
+	{
+		outputting_ = false;
+		splitingPage_ = false;
+		contents_.clear();
+		currentLine = 0;
+		layout.resetPosition();
+
+		onEraseText();
+	}
+
+	/**/
+	function clear()
+	{
+		layout.resetFont();
+		eraseText();
+	}
+
+	/**/
+	function renderCharacter(text)
+	{
+		var w, h, l, t;
+
+		with(layout)
+		{
+			w = .getTextWidth(text);
+			h = .getTextHeight(text);
+
+			if(.shouldWordWrap(w, h))
+			{
+				if(!wordWrap(text, w, h))
+					return false;
+			}
+
+			l = .getCurrentLeft(w, h);
+			t = .getCurrentTop(w, h);
+
+			if(shadowColor != clNone)
+			{
+				w += shadowOffsetX;
+				h += shadowOffsetY;
+			}
+
+			onRenderCharacter(text, l, t, w, h);
+
+			.nextPosition(w, h);
+		}
+
+		lastCharacter_ = text;
+
+		return true;
+	}
+
+	/**/
+	function renderHorizontalCharacter(text, expand)
+	{
+		var w, h, l, t;
+
+		with(layout)
+		{
+			if(font.face[0] != '@')
+				throw new GRuntimeError('縦書きモード以外では縦中横表示はできません。');
+
+			var f = font;
+			var face = f.face;
+			var angle = f.angle;
+
+			f.face = face.substring(1);
+			f.angle = 0;
+
+			w = f.getTextWidth(text);
+			h = f.getTextHeight(text);
+
+			if(.shouldWordWrap(w, h))
+			{
+				if(!wordWrap(text, w, h))
+					return false;
+			}
+
+			if(expand)
+			{
+				.lineSize = (w >> 1) + .lineSpace if ((w >> 1) + .lineSpace) > .lineSize;
+			}
+
+			l = .baseLine - (w >> 1);
+			t = .getCurrentTop(w, h);
+
+			onRenderCharacter(text, l, t, w, h);
+
+			f.face = face;
+			f.angle = angle;
+
+			.nextPosition(w, h);
+		}
+
+		lastCharacter_ = text;
+
+		return true;
+	}
+
+	/**/
+	function renderGraph(storage, key, character)
+	{
+		var w, h, l, t;
+
+		with(layout)
+		{
+			var layer = window.temporaryLayer;
+
+			layer.loadImages(storage, key);
+
+			w = layer.imageWidth;
+			h = layer.imageHeight;
+
+			if(.shouldWordWrap(w, h))
+			{
+				if(!wordWrap(text, w, h))
+					return false;
+			}
+
+			.lineSize = .calculateLineSize(w, h) if .calculateLineSize(w, h) > .lineSize;
+
+			l = .getCurrentLeft(w, h);
+			t = .getCurrentTop(w, h);
+
+			onRenderGraph(storage, key, character, l, t, w, h);
+
+			.nextPosition(w, h);
+		}
+
+		return true;
+	}
+
+	/**/
+	function renderRuby(text)
+	{
+		var face = font.face;
+		var height = font.height;
+		var angle = font.angle;
+		var italic = font.italic;
+		var bold = font.bold;
+		var strikeout = font.strikeout;
+		var underline = font.underline;
+		var w, h;
+
+		layout.resetRubyFont();
+
+		with(layout)
+		{
+			w = .getTextWidth(text);
+			h = .getTextHeight(text);
+		}
+
+		// NOTE: resetFont() ではない事に注意。
+		font.face = face;
+		font.height = height;
+		font.angle = angle;
+		font.italic = italic;
+		font.bold = bold;
+		font.strikeout = strikeout;
+		font.underline = underline;
+
+		onRenderRubyText(text, w, h);
+	}
+
+	/**/
+	function resetLayout()
+	{
+		layoutMode_ = layoutModeCache_;
+		invalidate layout_ if layout_ !== void;
+		layout_ = void;
+	}
+
+	/**/
+	function store(tick)
+	{
+		var dic = super.store(tick);
+
+		dic.layoutModeCache = layoutModeCache_;
+		dic.layoutMode = layoutMode_;
+		dic.layout = layout_.store(tick) if layout_ !== void;
+
+		dic.outputting = outputting_;
+
+		dic.marginLeftCache = marginLeftCache_;
+		dic.marginTopCache = marginTopCache_;
+		dic.marginRightCache = marginRightCache_;
+		dic.marginBottomCache = marginBottomCache_;
+		dic.marginModified = marginModified_;
+		dic.reservedLineSize = reservedLineSize;
+		dic.characterSpace = characterSpace;
+		dic.fontFaceCache = fontFaceCache_;
+		dic.fontSizeCache = fontSizeCache_;
+		dic.italicCache = italicCache_;
+		dic.boldCache = boldCache_;
+		dic.strikeoutCache = strikeoutCache_;
+		dic.underlineCache = underlineCache_;
+		dic.rubyFontFaceCache = rubyFontFaceCache_;
+		dic.rubyFontSizeCache = rubyFontSizeCache_;
+		dic.rubyItalicCache = rubyItalicCache_;
+		dic.rubyBoldCache = rubyBoldCache_;
+		dic.rubyStrikeoutCache = rubyStrikeoutCache_;
+		dic.rubyUnderlineCache = rubyUnderlineCache_;
+		dic.shadowColorCache = shadowColorCache_;
+		dic.shadowOffsetX = shadowOffsetX_;
+		dic.shadowOffsetY = shadowOffsetY_;
+		dic.shadowExtent = shadowExtent_;
+		dic.edgeColorCache = edgeColorCache_;
+
+		dic.lastCharacter = lastCharacter_;
+
+		dic.contents = [];
+		dic.contents.assignStruct(contents_);
+
+		return dic;
+	}
+
+	/**/
+	function restore(dic, tick)
+	{
+		super.restore(...);
+
+		layoutModeCache_ = dic.layoutModeCache;
+		layoutMode_ = dic.layoutMode;
+		resetLayout();
+		layout.restore(dic.layout) if dic.layout !== void;
+
+		outputting_ = dic.outputting;
+
+		marginLeftCache_ = dic.marginLeftCache;
+		marginTopCache_ = dic.marginTopCache;
+		marginRightCache_ = dic.marginRightCache;
+		marginBottomCache_ = dic.marginBottomCache;
+		marginModified_ = dic.marginModified;
+		reservedLineSize = dic.reservedLineSize;
+		characterSpace = dic.characterSpace;
+		fontFaceCache_ = dic.fontFaceCache;
+		fontSizeCache_ = dic.fontSizeCache;
+		italicCache_ = dic.italicCache;
+		boldCache_ = dic.boldCache;
+		strikeoutCache_ = dic.strikeoutCache;
+		underlineCache_ = dic.underlineCache;
+		rubyFontFaceCache_ = dic.rubyFontFaceCache;
+		rubyFontSizeCache_ = dic.rubyFontSizeCache;
+		rubyItalicCache_ = dic.rubyItalicCache;
+		rubyBoldCache_ = dic.rubyBoldCache;
+		rubyStrikeoutCache_ = dic.rubyStrikeoutCache;
+		rubyUnderlineCache_ = dic.rubyUnderlineCache;
+		shadowColorCache_ = dic.shadowColorCache;
+		shadowOffsetX_ = dic.shadowOffsetX;
+		shadowOffsetY_ = dic.shadowOffsetY;
+		shadowExtent_ = dic.shadowExtent;
+		edgeColorCache_ = dic.edgeColorCache;
+
+		lastCharacter_ = dic.lasttCharacter;
+
+		contents_.assignStruct(dic.contents);
+
+		layout.resetFont();
+	}
+
+	/**/
+	function onNewLine()
+	{
+	}
+
+	/**/
+	function onEndLine()
+	{
+	}
+
+	/**/
+	function onRenderCharacter(ch, left, top, width, height)
+	{
+		// NOTE: ここでテキストを描画してください。
+	}
+
+	/**/
+	function onRenderGraph(storage, key, character, left, top, width, height)
+	{
+	}
+
+	/**/
+	function onRenderRubyText(text, width, height)
+	{
+		// NOTE: ここでルビを描画してください。
+		// 表示位置は次の文字の描画位置に依存するのでそちらで調整してください。
+	}
+
+	/**/
+	function onEraseText()
+	{
+		// NOTE: ここでテキストを消去してください。
+	}
+
+	/**/
+	property wwFollowingStrong
+	{
+		setter(x)	{ wwFollowingStrong_ = x; wwFollowing_ = x + wwFollowingWeak_; }
+		getter		{ return wwFollowingStrong_; }
+	}
+
+	/**/
+	property wwFollowingWeak
+	{
+		setter(x)	{ wwFollowingWeak_ = x; wwFollowing = wwFollowingStrong_ + x; }
+		getter		{ return wwFollowingWeak_; }
+	}
+
+	property wwFollowing
+	{
+		getter		{ return wwFollowing_; }
+	}
+
+	/**/
+	property layoutMode
+	{
+		setter(x)	{ layoutModeCache_ = x; }
+		getter		{ return layoutMode_; }
+	}
+
+	/**/
+	property splitingPage
+	{
+		getter		{ return splitingPage_; }
+	}
+
+	/**/
+	property marginLeftCache
+	{
+		getter		{ return marginLeftCache_; }
+	}
+
+	/**/
+	property marginTopCache
+	{
+		getter		{ return marginTopCache_; }
+	}
+
+	/**/
+	property marginRightCache
+	{
+		getter		{ return marginRightCache_; }
+	}
+
+	/**/
+	property marginBottomCache
+	{
+		getter		{ return marginBottomCache_; }
+	}
+
+	/**/
+	property layout
+	{
+		getter		{ return (layout_ === void ? (layout_ = createLayout(this)) : layout_); }
+	}
+
+	/**/
+	property outputting
+	{
+		getter		{ return outputting_; }
+	}
+
+	/**/
+	property shadowOffsetX
+	{
+		getter		{ return shadowOffsetX_; }
+	}
+
+	/**/
+	property shadowOffsetY
+	{
+		getter		{ return shadowOffsetY_; }
+	}
+
+	/**/
+	property shadowExtent
+	{
+		getter		{ return shadowExtent_; }
+	}
+
+	/**/
+	property contents
+	{
+		getter		{ return contents_; }
+	}
+}
+
+

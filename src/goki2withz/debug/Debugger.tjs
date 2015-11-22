@@ -1,0 +1,9 @@
+/*
+ * $Revision: 144 $
+**/
+
+
+// NOTE: dm() 書きかえ
+function dm(msg)	{ Debug.message(msg); }
+
+

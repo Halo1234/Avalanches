@@ -1,0 +1,1509 @@
+/*
+ * $Revision$
+**/
+
+
+/**/
+class MessageLayerIterator extends GLayerIterator
+{
+	function MessageLayerIterator(window, container)
+	{
+		super.GLayerIterator(...);
+
+		setAbsoluteBase(1000000);
+		setAbsoluteStep(1000);
+	}
+
+	function create(window)
+	{
+		return new GMessageLayer(window, container.get(container.parentLayerName), onLayerEvent);
+	}
+
+	property prefix
+	{
+		getter		{ return 'message'; }
+	}
+}
+
+
+/**/
+class ModMessage extends GModule
+{
+	var layerContainer_;
+
+	var messageLayers_;
+	var historyLayer_;
+
+	var current_ = null;
+	var outputInterval = 20;
+	var beforeNoWaitOutputInterval;
+	var autoWaitChEnabled_ = false;
+	var autoWaitChChars_ = '';
+	var autoWaitChWaits_ = [];
+
+	var outputHistory = true;
+	var historyEnabled = true;
+
+	var hiddenMessageLayers = false;
+
+	var /* const */ smNotSkip = 0;		// スキップしない
+	var /* const */ smNextWait = 1;		// 次のクリック待ちまでスキップ
+	var /* const */ smPageEnd = 2;		// ページ末までスキップ
+	var /* const */ smNextStop = 3;		// 次の停止までスキップ
+	var /* const */ smNotRead = 100;	// 次の未読部分までスキップ
+	var /* const */ smCancel = 101;		// キャンセルされるまでスキップ
+										//
+										// skipMode が取りうる値
+										// skipMode <= 0 は非スキップ状態としてください。
+										// skipMode >= 1 はスキップ状態としてください。
+										// skipMode >= 100 は長いスキップ状態としてください。
+
+	var skipMode_ = smNotSkip;			// 現在のスキップ状態
+
+	var clickSkipEnabled = true;		// クリックスキップが有効かどうか
+	var nextSkipEnabled = true;			// 次の停止までスキップが有効かどうか
+
+	var lastClickGlyphVisible = false;
+	var lastClickGlyphMessageName;
+	var lastClickGlyphWhich;
+
+	var wheelStorage_ = void;
+	var wheelTarget_ = void;
+	var wheelFunction_ = void;
+	var wheelExpression_ = void;
+	var hasWheelEvent_ = false;
+
+	var timeoutStorage_ = void;
+	var timeoutTarget_ = void;
+	var timeoutExpression_ = void;
+	var hasTimeoutEvent_ = false;
+	var timeoutTimer_;
+
+	var clickStorage_ = void;
+	var clickTarget_ = void;
+	var clickExpression_ = void;
+	var hasClickEvent_ = false;
+
+	var autoMode_ = false;
+	var autoPageWait = 2000;
+	var clickToAutoModeCancel = true;
+
+	var skipKey = VK_CONTROL;
+	var notReadSkipKey = VK_S;
+
+	function ModMessage(container, name)
+	{
+		super.GModule(...);
+
+		layerContainer_ = createLayerContainer(window, window.primaryLayer);
+
+		historyLayer_ = createHistoryLayer(window, window.primaryLayer);
+
+		messageLayers_ = new MessageLayerIterator(window, layerContainer_);
+		messageLayers_.onLayerEvent = onMessageLayerEvent;
+
+		timeoutTimer_ = new Timer(onTimeout_private_);
+		timeoutTimer_.capacity = 1;
+		timeoutTimer_.enabled = false;
+	}
+
+	function finalize()
+	{
+		invalidate messageLayers_;
+		invalidate historyLayer_;
+		invalidate layerContainer_;
+
+		super.finalize(...);
+	}
+
+	/**/
+	function createLayerContainer(window, parentLayer)
+	{
+		return new GLayerContainer(window, parentLayer, false);
+	}
+
+	/**/
+	function createHistoryLayer(window, parentLayer)
+	{
+		var obj = new GHistoryLayer(window, parentLayer, onHistoryLayerEvent);
+
+		obj.absolute = 1000000;
+
+		return obj;
+	}
+
+	/**/
+	function createExtensionTagHandlers()
+	{
+		return %[
+
+			/* @message_layers */
+			'message_layers' => function (elm) {
+				with(messageLayers_)
+				{
+					.count = +elm.count if elm.count !== void;
+					.absoluteBase = +elm.base if elm.base !== void;
+					.absoluteStep = +elm.step if elm.step !== void;
+				}
+			} incontextof this,
+
+			/* @message_option */
+			'message_option' => function (elm) {
+				with(findByElm(elm))
+				{
+					if(elm.storage !== void)
+					{
+						if(elm.key !== void)
+							.loadImages(elm.storage, +elm.key);
+						else
+							.loadImages(elm.storage);
+					}
+					if(elm.left !== void && elm.top !== void)
+						.setPos(+elm.left, +elm.top);
+					if(elm.width !== void && elm.height !== void)
+						.setSize(+elm.width, +elm.height);
+					.bodyColor = +elm.color if elm.color !== void;
+					.bodyOpacity = +elm.opacity if elm.opacity !== void;
+					.setShadowColor(+elm.shadow_color) if elm.shadow_color !== void;
+					.setEdgeColor(+elm.edge_color) if elm.edge_color !== void;
+					setCurrentLayer(.name) if GObjectUtils.toBoolean(elm.current);
+					if(elm.margin_left !== void && elm.margin_top !== void && elm.margin_top !== void && elm.margin_bottom !== void)
+						.setMargin(+elm.margin_left, +elm.margin_top, +elm.margin_right, +elm.margin_bottom);
+					.visible = elm.visible if elm.visible !== void;
+					.layoutMode = elm.layout_mode if elm.layout_mode !== void;
+				}
+			} incontextof this,
+
+			/* @history_option */
+			'history_option' => function (elm) {
+				with(historyLayer_)
+				{
+					if(elm.storage !== void)
+						.loadImages(elm.storage);
+					if(elm.left !== void && elm.top !== void)
+						.setPos(+elm.left, +elm.top);
+					if(elm.width !== void && elm.height !== void)
+						.setSize(+elm.width, +elm.height);
+					.bodyColor = +elm.color if elm.color !== void;
+					.bodyOpacity = +elm.opacity if elm.opacity !== void;
+					.setShadowColor(+elm.shadow_color) if elm.shadow_color !== void;
+					.setEdgeColor(+elm.edge_color) if elm.edge_color !== void;
+					if(elm.margin_left !== void && elm.margin_top !== void && elm.margin_top !== void && elm.margin_bottom !== void)
+						.setMargin(+elm.margin_left, +elm.margin_top, +elm.margin_right, +elm.margin_bottom);
+					.layoutMode = elm.layout_mode if elm.layout_mode !== void;
+					.setFontSize(+elm.font_size) if elm.font_size !== void;
+					.setFontFace(elm.font_face) if elm.font_face !== void;
+					historyEnabled = +elm.enabled if elm.enabled !== void;
+					outputHistory = +elm.output if elm.output !== void;
+				}
+			} incontextof this,
+
+			/* @default_font_parameters */
+			'default_font_parameters' => function (elm) {
+				with(findByElm(elm))
+				{
+					elm.original_tagname = elm.tagname;
+					elm.tagname = 'default_font_parameters';
+
+					.output(elm);
+				}
+			} incontextof this,
+
+			/* @line_parameters */
+			'line_parameters' => function (elm) {
+				with(findByElm(elm))
+				{
+					elm.original_tagname = elm.tagname;
+					elm.tagname = 'line_parameters';
+
+					.output(elm);
+				}
+			} incontextof this,
+
+			/* @font */
+			'font' => function (elm) {
+				with(findByElm(elm))
+				{
+					elm.original_tagname = elm.tagname;
+					elm.tagname = 'font';
+
+					.output(elm);
+				}
+			} incontextof this,
+
+			/* @reset_font */
+			'reset_font' => function (elm) {
+				with(findByElm(elm))
+				{
+					elm.original_tagname = elm.tagname;
+					elm.tagname = 'reset_font';
+
+					.output(elm);
+				}
+			} incontextof this,
+
+			/* @using_mod_message */
+			'using_mod_message' => usingModMessage,
+
+			/* @not_using_mod_message */
+			'not_using_mod_message' => notUsingModMessage,
+
+			/* @show_message */
+			'show_message' => function (elm) {
+				with(findByElm(elm))
+					.show();
+			} incontextof this,
+
+			/* @hide_message */
+			'hide_message' => function (elm, c) {
+				with(findByElm(elm))
+					.hide();
+			} incontextof this,
+
+			/* @ch_mod_message */
+			'ch_mod_message' => function (elm, c) {
+				if(current_ !== null)
+				{
+					elm.original_tagname = elm.tagname;
+					elm.tagname = 'ch';
+
+					if(current_.output(elm))
+					{
+						historyLayer_.output(elm) if outputHistory;
+						if(skipping)
+						{
+							return 0;
+						}
+						else
+						{
+							if(autoWaitChEnabled_)
+							{
+								// 自動ウェイト
+								var idx;
+								if((idx = autoWaitChChars.indexOf(elm.text)) != -1)
+								{
+									return int(outputInterval * autoWaitChWaits[idx]);
+								}
+							}
+						}
+
+						return outputInterval;
+					}
+
+					c.pendingTag('p', elm);
+				}
+			} incontextof this,
+
+			/* @horizontal_ch */
+			'horizontal_ch' => function (elm, c) {
+				if(current_ !== null)
+				{
+					elm.original_tagname = elm.tagname;
+					elm.tagname = 'horizontal_ch';
+
+					if(current_.output(elm))
+					{
+						historyLayer_.output(elm) if outputHistory;
+						if(skipping)
+						{
+							return 0;
+						}
+						return outputInterval;
+					}
+
+					c.pendingTag('p', elm);
+				}
+			} incontextof this,
+
+			/* @ruby_mod_message */
+			'ruby_mod_message' => function (elm) {
+				if(current_ !== null)
+				{
+					elm.original_tagname = elm.tagname;
+					elm.tagname = 'ruby';
+
+					current_.output(elm);
+					//historyLayer_.output(elm) if outputHistory;
+				}
+			} incontextof this,
+
+			/* @r_mod_message */
+			'r_mod_message' => function (elm, c) {
+				if(current_ !== null)
+				{
+					// NOTE:
+					// 改行できない場合 p で置き換える。
+					// （次のページの行頭に改行は必要ない）
+					if(!current_.reline())
+						c.pendingTag('p');
+
+					historyLayer_.reline() if outputHistory;
+				}
+			} incontextof this,
+
+			/* @p_mod_message */
+			'p_mod_message' => function (elm, c) {
+				if(current_ !== null)
+				{
+					if(current_.splitingPage)
+						c.interruptTag('clear_message_layers');
+					else
+						c.interruptTag('store_history_data');
+					if(longSkipping)
+						return 'break';
+					else
+					if(skipping)
+						cancelSkip();
+					if(autoMode_)
+					{
+						return autoPageWait;
+					}
+					else
+					{
+						showPageGlyph();
+						c.waitSignal(%[left_click : current_.hidePageGlyph]);
+					}
+				}
+			} incontextof this,
+
+			/* @l_mod_message */
+			'l_mod_message' => function (elm) {
+				if(current_ !== null)
+				{
+					if(longSkipping)
+						return 0;
+					else
+					if(autoMode_)
+					{
+						return autoPageWait;
+					}
+					else
+					{
+						current_.showLineGlyph();
+						c.waitSignal(%[left_click : current_.hidePageGlyph]);
+					}
+				}
+			} incontextof this,
+
+			/* @history_reline */
+			'history_reline' => function (elm) {
+				if(outputHistory)
+				{
+					if(GObjectUtils.getBoolean(elm, 'repage', true))
+					{
+						.storeHistoryData();
+						.clear();
+					}
+					else
+					{
+						.reline();
+					}
+				}
+			} incontextof this,
+
+			/* @clear_message_layers_with_history */
+			'clear_message_layers_with_history' => function (elm) {
+				clearMessageLayersWithHistoryLayer(false);
+			} incontextof this,
+
+			/* @reset_message_layer */
+			'reset_message_layer' => function (elm) {
+				clearMessageLayersWithHistoryLayer(true);
+			} incontextof this,
+
+			/* @clear_message_layers */
+			'clear_message_layers' => function (elm) {
+				clearMessageLayers();
+			} incontextof this,
+
+			/* @erase_message */
+			'erase_message' => function (elm) {
+				if(current_ !== null)
+				{
+					current_.eraseText();
+					historyLayer_.eraseText() if outputHistory;
+				}
+			} incontextof this,
+
+			/* @indent */
+			'indent' => function (elm) {
+				if(current_ !== null)
+				{
+					current_.layout.markIndent();
+				}
+			} incontextof this,
+
+			/* @end_indent */
+			'end_indent' => function (elm) {
+				if(current_ !== null)
+				{
+					current_.layout.deleteIndent();
+				}
+			} incontextof this,
+
+			/* @link */
+			'link' => function (elm) {
+				if(current_ !== null)
+				{
+					elm.on_click_expression = createSoundExpression(
+						elm.expression, elm.click_sound_effect, elm.click_sound_effect_buffer_number
+					);
+					elm.on_enter_expression = createSoundExpression(
+						elm.on_enter_expression, elm.enter_sound_effect, elm.enter_sound_effect_buffer_number
+					);
+					elm.on_leave_expression = createSoundExpression(
+						elm.on_leave_expression, elm.leave_sound_effect, elm.leave_sound_effect_buffer_number
+					);
+					current_.beginLink(elm);
+				}
+			} incontextof this,
+
+			/* @end_link */
+			'end_link' => function (elm) {
+				if(current_ !== null)
+				{
+					current_.endLink();
+				}
+			} incontextof this,
+
+			/* @button */
+			'button' => function (elm) {
+				if(current_ !== null)
+				{
+					elm.on_click_expression = createSoundExpression(
+						elm.expression, elm.click_sound_effect, elm.click_sound_effect_buffer_number
+					);
+					elm.on_enter_expression = createSoundExpression(
+						elm.on_enter_expression, elm.enter_sound_effect, elm.enter_sound_effect_buffer_number
+					);
+					elm.on_leave_expression = createSoundExpression(
+						elm.on_leave_expression, elm.leave_sound_effect, elm.leave_sound_effect_buffer_number
+					);
+					current_.addButton(elm);
+				}
+			} incontextof this,
+
+			/* @checkbox */
+			'checkbox' => function (elm) {
+				if(current_ !== null)
+				{
+					current_.addCheckBox(elm);
+				}
+			} incontextof this,
+
+			/* @edit */
+			'edit' => function (elm) {
+				if(current_ !== null)
+				{
+					current_.addEdit(elm);
+				}
+			} incontextof this,
+
+			/* @commit */
+			'commit' => function (elm) {
+				if(current_ !== null)
+				{
+					current_.commit();
+				}
+			} incontextof this,
+
+			/* @lock_link */
+			'lock_link' => function (elm) {
+				if(current_ !== null)
+				{
+					current_.lockLink();
+				}
+			} incontextof this,
+
+			/* @unlock_link */
+			'unlock_link' => function (elm) {
+				if(current_ !== null)
+				{
+					current_.unlockLink();
+				}
+			} incontextof this,
+
+			/* @store_history_data */
+			'store_history_data' => function (elm) {
+				with(historyLayer_)
+				{
+					if(outputHistory)
+					{
+						.storeHistoryData();
+						.clear();
+					}
+				}
+			} incontextof this,
+
+			/* @auto_wait_ch */
+			'auto_wait_ch' => setAutoWait,
+
+			/* @click_skip */
+			'click_skip' => function (elm, c) {
+				var modBookmark = container.get('modBookmark');
+				clickSkipEnabled = GObjectUtils.getBoolean(elm, 'enabled') if GObjectUtils.hasValue(elm, 'enabled');
+				if(modBookmark !== void && modBookmark.storeSkipping)
+				{
+					modBookmark.cancelSkipQuery = true;
+				}
+				else
+				{
+					cancelSkip() if !clickSkipEnabled;
+				}
+			} incontextof this,
+
+			/* @hidden_message */
+			'hidden_message' => function (elm, c) {
+				if(!skipping || (skipping && !clickSkipEnabled))
+				{
+					hideMessageLayerByUser();
+					c.waitSignal(%[left_click : showMessageLayerByUser]);
+				}
+			} incontextof this,
+
+			/* @map_prerendered_font */
+			'map_prerendered_font' => function (elm) {
+				if(current_ !== null)
+					current_.mapPrerenderdFont(elm.storage);
+			} incontextof this,
+
+			/* @next_skip */
+			'next_skip' => function (elm) {
+				nextSkipEnabled = GObjectUtils.getBoolean(elm, 'enabled') if GObjectUtils.hasValue(elm, 'enabled');
+			} incontextof this,
+
+			/* @s */
+			's' => function (elm, c) {
+				var modBookmark = container.get('modBookmark');
+				if(nextSkipEnabled && skipMode_ == smNextStop)
+				{
+					if(modBookmark !== void && modBookmark.storeSkipping)
+					{
+						modBookmark.cancelSkipQuery = true;
+					}
+					else
+					{
+						cancelSkip();
+					}
+				}
+				if(!elm.eof)
+				{
+					if(hasTimeoutEvent_)
+					{
+						timeoutTimer_.enabled = true;
+					}
+
+					return 'stop';
+				}
+				// EOF処理
+				// 自動実行中なら next タグを追加
+				// 手動実行中なら end を追加する
+				c.pendingTag(c.autoJump ? 'next' : 'end');
+			} incontextof this,
+
+			/* @wait_ch */
+			'wait_ch' => function (elm, c) {
+				if(GObjectUtils.getBoolean(elm, 'skip', true) && clickSkipEnabled)
+					c.waitSignal(%[left_click : null]);
+				return outputInterval * (+elm.time);
+			} incontextof this,
+
+			/* @cancel_auto_mode */
+			'cancel_auto_mode' => function (elm) {
+				cancelAutoMode();
+			} incontextof this,
+
+			/* @cancel_skip */
+			'cancel_skip' => function (elm) {
+				var modBookmark = container.get('modBookmark');
+				if(modBookmark !== void)
+				{
+					modBookmark.cancelSkipQuery = true;
+					return 0;
+				}
+				cancelSkip();
+			} incontextof this,
+
+			/* @current */
+			'current' => function (elm) {
+				current_ = findByElm(elm);
+			} incontextof this,
+
+			/* @delay */
+			'delay' => function (elm) {
+				if(elm.speed == 'nowait')
+					outputInterval = 0;
+				else
+					outputInterval = +elm.speed;
+			} incontextof this,
+
+			/* @nowait */
+			'nowait' => function (elm) {
+				beforeNoWaitOutputInterval = outputInterval;
+				outputInterval = 0;
+			} incontextof this,
+
+			/* @end_nowait */
+			'end_nowait' => function (elm) {
+				outputInterval = beforeNoWaitOutputInterval;
+			} incontextof this,
+
+			/* @glyph */
+			'glyph' => function (elm) {
+				if(current_ !== null)
+				{
+					with(current_)
+					{
+						.fixGlyphPosition = GObjectUtils.getBoolean(elm, 'fix') if GObjectUtils.hasValue(elm, 'fix');
+						.glyphPositionX = +elm.left if elm.left !== void;
+						.glyphPositionY = +elm.top if elm.top !== void;
+					}
+				}
+			} incontextof this,
+
+			/**/
+			'graph' => function (elm) {
+				if(current_ !== null)
+				{
+					if(current_.output(elm))
+					{
+						historyLayer_.output(%[tagname : 'ch', text : elm.alt]) if outputHistory;
+
+						return outputInterval;
+					}
+
+					c.pendingTag('p', elm);
+				}
+			} incontextof this,
+
+			/* @locate */
+			'locate' => function (elm) {
+				if(current_ !== null)
+				{
+					with(current_.layout)
+					{
+						.setPositionX(+elm.x) if elm.x !== void;
+						.setPositionY(+elm.y) if elm.y !== void;
+					}
+				}
+			} incontextof this,
+
+			/* @wait_trigger */
+			'wait_trigger' => function (elm) {
+				if(GObjectUtils.getBoolean(elm, 'skip') && clickSkipEnabled)
+				{
+					if(skipping)
+					{
+						Scripts.eval(elm.on_skip) if elm.on_skip !== void;
+						return 0;
+					}
+					waitSignal(%[
+						left_click_arg => elm.on_skip,
+						left_click => function (onSkip) {
+							Scripts.eval(onSkip) if onSkip !== void;
+						} incontextof this,
+						elm.name => null
+					]);
+				}
+			} incontextof this,
+
+			/* @wheel */
+			'wheel' => function (elm) {
+				wheelStorage_ = elm.storage;
+				wheelTarget_ = elm.target;
+				wheelFunction_ = elm.function;
+				wheelExpression_ = createSoundExpression(elm.exp, elm.sound_effect, elm.sound_effect_buffer_number);
+				hasWheelEvent_ = true;
+			} incontextof this,
+
+			/* @clear_wheel */
+			'clear_wheel' => function (elm) {
+				clearWheelEvent();
+			} incontextof this,
+
+			/* @timeout */
+			'timeout' => function (elm) {
+				timeoutStorage_ = elm.storage;
+				timeoutTarget_ = elm.target;
+				timeoutExpression_ = createSoundExpression(elm.exp, elm.sound_effect, elm.sound_effect_buffer_number);
+				hasTimeoutEvent_ = true;
+				timeoutTimer_.interval = +elm.time;
+			} incontextof this,
+
+			/* @clear_timeout */
+			'clear_timeout' => function (elm) {
+				clearTimeoutEvent();
+			} incontextof this,
+
+			/* @click */
+			'click' => function (elm) {
+				clickStorage_ = elm.storage;
+				clickTarget_ = elm.target;
+				clickExpression_ = createSoundExpression(elm.exp, elm.sound_effect, elm.sound_effect_buffer_number);
+				hasClickEvent_ = true;
+			} incontextof this,
+
+			/* @clear_click */
+			'clear_click' => function (elm) {
+				clearClickEvent();
+			} incontextof this,
+
+			/* @show_history */
+			'show_history' => function (elm) {
+				showHistoryLayer();
+			} incontextof this,
+
+			/* @history_action */
+			'history_action' => function (elm) {
+				historyLayer_.beginAction(elm);
+			} incontextof this,
+
+			/* @end_history_action */
+			'end_history_action' => function (elm) {
+				historyLayer_.endAction();
+			} incontextof this,
+
+		];
+	}
+
+	/**/
+	function storeClickGlyphState(which)
+	{
+		if(window.conductor == window.mainConductor)
+		{
+			lastClickGlyphVisible = true;
+			lastClickGlyphMessageName = current_.name;
+			lastClickGlyphWhich = which;
+		}
+	}
+
+	/**/
+	function restoreClickGlyphState()
+	{
+		if(lastClickGlyphVisible)
+		{
+			var layer = layerContainer_.get(lastClickGlyphMessageName);
+
+			if(layer !== void)
+			{
+				switch(lastClickGlyphWhich)
+				{
+				case 'line':
+					layer.showLineGlyph();
+					break;
+				case 'page':
+					layer.showPageGlyph();
+					break;
+				}
+			}
+		}
+	}
+
+	/**/
+	function showPageGlyph()
+	{
+		if(current_ !== null)
+		{
+			current_.showPageGlyph();
+			storeClickGlyphState('page');
+		}
+	}
+
+	/**/
+	function showLineGlyph()
+	{
+		if(current_ !== null)
+		{
+			current_.showLineGlyph();
+			storeClickGlyphState('line');
+		}
+	}
+
+	/**/
+	function createSoundExpression(exp, storage, buffer)
+	{
+		if(storage !== void)
+		{
+			if(container.isLoaded('modSound'))
+			{
+				var src = @"modSoundPlaySound(&buffer;, '&storage.escape();');";
+
+				if(exp !== void)
+					src += @", (&exp;);";
+
+				return src;
+			}
+		}
+
+		return exp;
+	}
+
+	/**/
+	function clearWheelEvent()
+	{
+		wheelStorage_ = void;
+		wheelTarget_ = void;
+		wheelFunction_ = void;
+		wheelExpression_ = void;
+		hasWheelEvent_ = false;
+	}
+
+	/**/
+	function clearTimeoutEvent()
+	{
+		timeoutStorage_ = void;
+		timeoutTimer_ = void;
+		timeoutExpression_ = void;
+		hasTimeoutEvent_ = false;
+		timeoutTimer_.enabled = false;
+	}
+
+	/**/
+	function clearClickEvent()
+	{
+		clickStorage_ = void;
+		clickTarget_ = void;
+		clickExpression_ = void;
+		hasClickEvent_ = false;
+	}
+
+	/**/
+	function hideMessageLayerByUser()
+	{
+		hiddenMessageLayers = true;
+		messageLayers.each(
+			function (obj) { obj.hideByUser(); } incontextof this
+		);
+	}
+
+	/**/
+	function showMessageLayerByUser()
+	{
+		hiddenMessageLayers = false;
+		messageLayers.each(
+			function (obj) { obj.showByUser(); } incontextof this
+		);
+	}
+
+	/**/
+	function switchMessageLayerHiddenByUser()
+	{
+		if(hiddenMessageLayers)
+			showMessageLayerByUser();
+		else
+			hideMessageLayerByUser();
+	}
+
+	/**/
+	function setAutoWait(elm)
+	{
+		autoWaitChEnabled_ = GObjectUtils.getBoolean(elm, 'enabled') if GObjectUtils.hasValue(elm, 'enabled');
+		autoWaitChChars_ = elm.chars if elm.chars !== void;
+		autoWaitChWaits_ = [].split(",", elm.time) if elm.time !== void;
+	}
+
+	/**/
+	function skipTo(mode, bb = 1)
+	{
+		if(mode > 0)
+		{
+			skipMode_ <-> mode;
+
+			window.conductor.breathBound = bb;
+			window.modules.callHandler('onSkipModeChanged', /* from */mode, /* to */skipMode_);
+		}
+	}
+
+	/**/
+	function cancelSkip()
+	{
+		if(isSkip(skipMode_))
+		{
+			var from = skipMode_;
+			var to = smNotSkip;
+
+			skipMode_ = to;
+			window.conductor.breathBound = 1;
+			window.modules.callHandler('onSkipModeChanged', from, to);
+		}
+	}
+
+	/**/
+	function cancelNotReadSkip()
+	{
+		cancelSkip() if skipMode_ == smNotRead;
+	}
+
+	/**/
+	function cancelAutoMode()
+	{
+		if(autoMode_)
+		{
+			autoMode_ = false;
+			window.conductor.cancelWaitTimer();
+			if(current_ !== null)
+			{
+				if(window.conductor.lastProcessedTag == 'p')
+				{
+					window.conductor.interruptTag('p');
+				}
+				else
+				if(window.conductor.lastActualProcessedTag == 'l')
+				{
+					window.conductor.interruptTag('l');
+				}
+			}
+			window.modules.callHandler('onCancelAutoMode');
+		}
+	}
+
+	/**/
+	function enterAutoMode()
+	{
+		if(!autoMode_)
+		{
+			with(window)
+			{
+				if(.conductor.status == .conductor.stWait)
+					.leftClick();
+				window.modules.callHandler('onEnterAutoMode');
+				autoMode_ = true;
+			}
+		}
+	}
+
+	/**/
+	function enterSkipToNextWait(bb = 1)
+	{
+		if(clickSkipEnabled)
+		{
+			with(window)
+			{
+				if(.conductor.status == .conductor.stWait)
+					.leftClick();
+				.conductor.cancelWaitTimer();
+				skipTo(this.smNextWait, bb);
+			}
+		}
+	}
+
+	/**/
+	function enterSkipToNextStop(bb = 1)
+	{
+		if(nextSkipEnabled && clickSkipEnabled)
+		{
+			with(window)
+			{
+				if(.conductor.status == .conductor.stWait)
+					.leftClick();
+				.conductor.cancelWaitTimer();
+				skipTo(this.smNextStop, bb);
+			}
+		}
+	}
+
+	/**/
+	function enterSkipToPageEnd(bb = 1)
+	{
+		if(clickSkipEnabled)
+		{
+			with(window)
+			{
+				if(.conductor.status == .conductor.stWait)
+					.leftClick();
+				.conductor.cancelWaitTimer();
+				skipTo(this.smPageEnd, bb);
+			}
+		}
+	}
+
+	/**/
+	function enterSkipToNotRead(bb = 1)
+	{
+		if(clickSkipEnabled)
+		{
+			with(window)
+			{
+				.conductor.cancelWaitTimer();
+				if(.conductor.status == .conductor.stWait)
+					.leftClick();
+			}
+			skipTo(this.smNotRead, bb);
+		}
+	}
+
+	/**/
+	function enterSkipToSkipCancel(bb = 1)
+	{
+		if(clickSkipEnabled)
+		{
+			with(window)
+			{
+				.conductor.cancelWaitTimer();
+				if(.conductor.status == .conductor.stWait)
+					.leftClick();
+			}
+			skipTo(this.smCancel, bb);
+		}
+	}
+
+	/**/
+	function clearMessageLayer_private_(obj)
+	{
+		obj.clear();
+	}
+
+	/**/
+	function clearMessageLayersWithHistoryLayer(reset)
+	{
+		dm('clearMessageLayersWithHistoryLayer');
+		messageLayers_.each(clearMessageLayer_private_);
+		historyLayer_.clear() if outputHistory;
+		if(reset && messageLayers_.count > 0)
+		{
+			current_ = messageLayers_.at(0);
+		}
+	}
+
+	/**/
+	function clearMessageLayers()
+	{
+		messageLayers_.each(clearMessageLayer_private_);
+	}
+
+	/**/
+	function isNotSkip(mode)
+	{
+		return mode <= 0;
+	}
+
+	/**/
+	function isSkip(mode)
+	{
+		return mode >= 1;
+	}
+
+	/**/
+	function isLongSkip(mode)
+	{
+		return mode >= 100;
+	}
+
+	/**/
+	function usingModMessage()
+	{
+		with(window.conductor)
+		{
+			.setRedirectTag('ch', 'ch_mod_message');
+			.setRedirectTag('ruby', 'ruby_mod_message');
+			.setRedirectTag('r', 'r_mod_message');
+			.setRedirectTag('p', 'p_mod_message');
+			.setRedirectTag('l', 'l_mod_message');
+			.setRedirectTag('er', 'erase_message');
+			.setRedirectTag('cm', 'clear_message_layers_with_history');
+			.setRedirectTag('ct', 'reset_message_layer');
+		}
+	}
+
+	/**/
+	function notUsingModMessage()
+	{
+		with(window.conductor)
+		{
+			.deleteRedirectTag('ch');
+			.deleteRedirectTag('ruby');
+			.deleteRedirectTag('r');
+			.deleteRedirectTag('p');
+			.deleteRedirectTag('l');
+			.deleteRedirectTag('er');
+			.deleteRedirectTag('cm');
+		}
+	}
+
+	/**/
+	function findByElm(elm)
+	{
+		var layer, layerName;
+
+		if(elm.layer == '')
+		{
+			if(current_ === null)
+				throw new GRuntimeError('layer 属性が指定されていません。');
+
+			return current_;
+		}
+
+		layerName = (elm.layer == '' ? .parentLayerName : elm.layer);
+
+		layer = layerContainer_.get(elm.layer);
+
+		if(layer === void)
+			throw new GRuntimeError(@"レイヤー &elm.layer; は存在しません。");
+
+		return layer;
+	}
+
+	/**/
+	function setCurrentLayer(indexOrName)
+	{
+		var layer;
+
+		switch(typeof(indexOrName))
+		{
+		case 'String':
+			layer = layerContainer_.get(indexOrName);
+			break;
+		case 'Integer':
+			if(indexOrName < 0 || indexOrName >= messageLayers_.count)
+				throw new GOutOfRangeError(@"存在しないインデックス値を指定しました。（有効範囲：0 ～ &messageLayers_.count - 1;）");
+			layer = messageLayers_.at(indexOrName);
+			break;
+		default:
+			throw new GArgumentsError("Invalid parameter. ModMessage#setCurrentLayer()");
+		}
+
+		current_ = layer;
+	}
+
+	/**/
+	function showHistoryLayer()
+	{
+		if(!historyEnabled)
+			return;
+		with(historyLayer_)
+		{
+			if(!.visible)
+			{
+				// 履歴が表示されている間はコンダクタを完全停止させる
+				window.conductor.suspended = true;
+				// 履歴レイヤを表示する
+				.show();
+
+				container.callHandler('onShowHistoryLayer');
+			}
+		}
+	}
+
+	/**/
+	function hideHistoryLayer()
+	{
+		if(!historyEnabled)
+			return;
+		with(historyLayer_)
+		{
+			if(.visible)
+				.hide();
+		}
+	}
+
+	/**/
+	function store(tick)
+	{
+		var dic = super.store(tick);
+
+		dic.messageLayers = messageLayers_.store(tick);
+
+		dic.outputInterval = outputInterval;
+		dic.beforeNoWaitOutputInterval = beforeNoWaitOutputInterval;
+		dic.autoWaitChEnabled = autoWaitChEnabled_;
+		dic.autoWaitChChars = autoWaitChChars_;
+		dic.autoWaitChWaits = autoWaitChWaits_;
+
+		dic.clickSkipEnabled = clickSkipEnabled;
+		dic.nextSkipEnabled = nextSkipEnabled;
+
+		dic.wheelStorage = wheelStorage_;
+		dic.wheelTarget = wheelTarget_;
+		dic.wheelFunction = wheelFunction_;
+		dic.wheelExpression = wheelExpression_;
+		dic.hasWheelEvent = hasWheelEvent_;
+
+		dic.timeoutStorage = timeoutStorage_;
+		dic.timeoutTarget = timeoutTarget_;
+		dic.timeoutExpression = timeoutExpression_;
+		dic.timeoutTime = timeoutTimer_.interval;
+		dic.hasTimeoutEvent = hasTimeoutEvent_;
+
+		dic.clickStorage = clickStorage_;
+		dic.clickTarget = clickTarget_;
+		dic.clickExpression = clickExpression_;
+		dic.hasClickEvent = hasClickEvent_;
+
+		dic.autoMode = autoMode_;
+		dic.clickToAutoModeCancel = clickToAutoModeCancel;
+		dic.skipKey = skipKey;
+
+		return dic;
+	}
+
+	/**/
+	function restore(dic, tick)
+	{
+		super.restore(dic, tick);
+
+		messageLayers_.restore(dic.messageLayers);
+
+		outputInterval = dic.outputInterval;
+		beforeNoWaitOutputInterval = dic.beforeNoWaitOutputInterval;
+		autoWaitChEnabled_ = dic.autoWaitChEnabled;
+		autoWaitChChars_ = dic.autoWaitChChars;
+		autoWaitChWaits_ = dic.autoWaitChWaits;
+
+		clickSkipEnabled = dic.clickSkipEnabled;
+		nextSkipEnabled = dic.nextSkipEnabled;
+
+		wheelStorage_ = dic.wheelStorage;
+		wheelTarget_ = dic.wheelTarget;
+		wheelFunction_ = dic.wheelFunction;
+		wheelExpression_ = dic.wheelExpression;
+		hasWheelEvent_ = dic.hasWheelEvent;
+
+		timeoutStorage_ = dic.timeoutStorage;
+		timeoutTarget_ = dic.timeoutTarget;
+		timeoutExpression_ = dic.timeoutExpression;
+		timeoutTimer_.interval = dic.timeoutTime;
+		hasTimeoutEvent_ = dic.hasTimeoutEvent;
+
+		clickStorage_ = dic.clickStorage;
+		clickTarget_ = dic.clickTarget;
+		clickExpression_ = dic.clickExpression;
+		hasClickEvent_ = dic.hasClickEvent;
+
+		autoMode_ = dic.autoMode;
+		clickToAutoModeCancel = dic.clickToAutoModeCancel;
+		skipKey = dic.skipKey;
+	}
+
+	/**/
+	function onTimeout_private_()
+	{
+		if(hasTimeoutEvent_)
+		{
+			Scripts.eval(timeoutExpression_) if timeoutExpression_ !== void;
+			if(timeoutStorage_ !== void || timeoutTarget_ !== void)
+			{
+				window.conductor.jumpScenario(timeoutStorage_, timeoutTarget_);
+				window.conductor.start();
+				clearTimeoutEvent();
+			}
+		}
+	}
+
+	/**/
+	function onMessageLayerEvent(obj, message, elm)
+	{
+		switch(message)
+		{
+		case 'onClickLink':
+			Script.eval(elm.onClickExp) if elm.onClickExp !== void;
+			if(elm.storage !== void || elm.target !== void)
+			{
+				if(current_ !== null)
+				{
+					current_.hidePageGlyph();
+					current_.hideLineGlyph();
+				}
+				window.conductor.jumpScenario(elm.storage, elm.target);
+				window.conductor.start();
+			}
+			break;
+
+		case 'onEnterLink':
+			Script.eval(elm.onEnterExp) if elm.onEnterExp !== void;
+			break;
+
+		case 'onLeaveLink':
+			Script.eval(elm.onLeaveExp) if elm.onLeaveExp !== void;
+			break;
+		}
+	}
+
+	/**/
+	function onHistoryLayerEvent(obj, message, elm)
+	{
+		// 履歴レイヤが非表示にされる場合
+		// コンダクタの停止状態を解除しなければならない
+		switch(message)
+		{
+		case 'onHideCompleted':
+			window.conductor.suspended = false;
+			container.callHandler('onHideHistoryLayer');
+			break;
+		case 'onClickAction':
+			Scripts.eval(elm.exp);
+			break;
+		}
+	}
+
+	/**/
+	function onWindowLeftClick(x, y, shift)
+	{
+		if(hasClickEvent_)
+		{
+			Script.eval(clickExpression_) if clickExpression_ !== void;
+			if(clickStorage_ !== void || clickTarget_ !== void)
+			{
+				window.conductor.jumpScenario(clickStorage_, clickTarget_);
+				window.conductor.start();
+				clearClickEvent();
+			}
+			return;
+		}
+
+		if(autoMode)
+		{
+			if(clickToAutoModeCancel)
+				cancelAutoMode();
+			else
+				window.conductor.cancelWaitTimer();
+		}
+		else
+		{
+			if(longSkipping)
+			{
+				if(container.isLoaded('modBookmark'))
+					container.modBookmark.cancelSkipQuery = true;
+				else
+					cancelSkip();
+			}
+			else
+			{
+				with(window.conductor)
+				{
+					if(.status == .stRun)
+						enterSkipToPageEnd();
+				}
+			}
+		}
+	}
+
+	/**/
+	function onWindowMouseWheel(shift, delta, x, y)
+	{
+		if(hasWheelEvent_)
+		{
+			Scripts.eval(wheelFunction_)(shift, delta, x, y) if wheelFunction_ !== void;
+            Scripts.eval(wheelExpression_) if wheelExpression_ !== void;
+			if(wheelStorage_ !== void || wheelTarget_ !== void)
+			{
+				window.conductor.jumpScenario(wheelStorage_, wheelTarget_);
+				window.conductor.start();
+				clearWheelEvent();
+			}
+
+			return true;
+		}
+		// 履歴が表示中
+		if(historyLayer.visible)
+		{
+			// ここにくるということは履歴が表示効果を実行中
+			// 読み捨てる
+			return true;
+		}
+		else
+		// 履歴が表示されていない、かつホイールが奥に回された。
+		if(delta > 0)
+		{
+			showHistoryLayer();
+			return true;
+		}
+	}
+
+	/**/
+	function onWindowKeyDown(key, shift)
+	{
+		if(shift & ssRepeat)
+			return;
+		switch(key)
+		{
+		case skipKey:			enterSkipToSkipCancel(); break;
+		case notReadSkipKey:	enterSkipToNotRead(); break;
+		}
+	}
+
+	/**/
+	function onWindowKeyUp(key, shift)
+	{
+		switch(key)
+		{
+		case skipKey:
+			if(container.isLoaded('modBookmark'))
+			{
+				if(container.isLoaded('modMessage') && container.modMessage.longSkipping)
+					container.modBookmark.cancelSkipQuery = true;
+			}
+			else
+			{
+				cancelSkip();
+			}
+			break;
+		}
+	}
+
+	/**/
+	function onLabel(label, name, firstLabelProcessed)
+	{
+		var modBookmark = window.modules.get('modBookmark');
+
+		// modBookmark が存在しない場合は既読スキップは即座にキャンセルする
+		if(modBookmark === void && longSkipping)
+			cancelNotReadSkip();
+	}
+
+	property messageLayers
+	{
+		getter		{ return messageLayers_; }
+	}
+
+	property historyLayer
+	{
+		getter		{ return historyLayer_; }
+	}
+
+	property current
+	{
+		getter		{ return current_; }
+	}
+
+	property autoWaitChEnabled
+	{
+		getter		{ return autoWaitChEnabled_; }
+	}
+
+	property autoWaitChChars
+	{
+		getter		{ return autoWaitChChars_; }
+	}
+
+	property autoWaitChWaits
+	{
+		getter		{ return autoWaitChWaits_; }
+	}
+
+	property skipMode
+	{
+		getter		{ return skipMode_; }
+	}
+
+	property autoMode
+	{
+		getter		{ return autoMode_; }
+	}
+
+	property notSkipping
+	{
+		getter		{ return isNotSkip(skipMode_); }
+	}
+
+	property skipping
+	{
+		getter		{ return isSkip(skipMode_); }
+	}
+
+	property longSkipping
+	{
+		getter		{ return isLongSkip(skipMode_); }
+	}
+}
+
+

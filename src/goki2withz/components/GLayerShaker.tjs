@@ -1,0 +1,79 @@
+/**
+ * $Author$
+ * $Revision$
+**/
+
+
+/**/
+class GLayerShaker extends GTimeLine
+{
+	var verticalMax = 0;
+	var horizontalMax = 0;
+	var _phase = false;
+
+	function GLayerShaker(owner)
+	{
+		super.GTimeLine(...);
+	}
+
+	function store(tick)
+	{
+		var dic = super.store(...);
+
+		dic.verticalMax = verticalMax;
+		dic.horizontalMax = horizontalMax;
+
+		return dic;
+	}
+
+	function restore(dic, tick)
+	{
+		verticalMax = dic.verticalMax;
+		horizontalMax = dic.horizontalMax;
+
+		super.restore(...);
+	}
+
+	function onProcessTimeLine(step)
+	{
+		var vmax = verticalMax;
+		var hmax = horizontalMax;
+		var x, y;
+
+		if(hmax == vmax)
+		{
+			x = intRandom(hmax);
+			y = intRandom(vmax);
+			if(_phase)
+				x = -x;
+			else
+				y = -y;
+		}
+		else
+		if(hmax < vmax)
+		{
+			x = intRandom(hmax);
+			y = (_phase ? intRandom(vmax) : -intRandom(vmax));
+		}
+		else
+		{
+			x = (_phase ? intRandom(hmax) : -intRandom(hmax));
+			y = intRandom(vmax);
+		}
+
+		owner.setOffset(x, y);
+
+		_phase = !_phase;
+	}
+
+	function onStopTimeLine(paused)
+	{
+		with(owner)
+		{
+			.setOffset(0, 0);
+			.callHandler('onStopShaker', %[paused : paused]);
+		}
+	}
+}
+
+
