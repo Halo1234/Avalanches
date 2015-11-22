@@ -147,7 +147,7 @@ class GVerticalLayout
 	{
 		var ls = getLineSize();
 
-		baseLine = layer_.width - marginRight_ - (ls >> 1);
+		baseLine = layer_.width - marginRight_ - (ls >> 1) - lineSpace;
 		lineSize = ls;
 		characterPosition = (indentPosition == 0 ? marginTop_ : indentPosition);
 	}
@@ -478,7 +478,7 @@ class GHorizontalLayout
 	{
 		var ls = getLineSize();
 
-		baseLine = marginTop_ + ls;
+		baseLine = marginTop_ + ls + lineSpace;
 		lineSize = ls;
 		characterPosition = (indentPosition == 0 ? marginLeft_ : indentPosition);
 	}
@@ -704,7 +704,7 @@ class GHyperTextLayer extends GWidgetLayer
 	var reservedLineSize = 0;
 	var characterSpace = 0;
 	var fontFaceCache_ = '‚l‚r ‚oƒSƒVƒbƒN';
-	var fontSizeCache_ = 12;
+	var fontSizeCache_ = 24;
 	var italicCache_ = false;
 	var boldCache_ = false;
 	var strikeoutCache_ = false;
