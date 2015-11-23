@@ -21,8 +21,8 @@
 ;                caption: ウインドウのタイトルバーに表示する文字列です。
 ;                  width: ウインドウの幅です。（正確にはクライアント領域の幅です）
 ;                 height: ウインドウの高さです。（正確にはクライアント領域の高さです）
-; fix-position-to-center: 指定するとウインドウ初期位置がデスクトップ中央に設定されます。
-;              alt-enter: 指定すると Alt+Enter でスクリーンモードを切り替える事ができるようになります。
+; fix_position_to_center: 指定するとウインドウ初期位置がデスクトップ中央に設定されます。
+;              alt_enter: 指定すると Alt+Enter でスクリーンモードを切り替える事ができるようになります。
 ;                visible: 指定するとウインドウを表示します。
 ;
 @window width=800 height=600 fix_position_to_center alt_enter
