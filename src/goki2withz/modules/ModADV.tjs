@@ -9,6 +9,8 @@ class ModADV extends GModule
 	var characterNames_ = [];
 	var mobCharacterNames_ = [];
 	var characters_ = %[];
+	var stageNames_ = [];
+	var stage_ = %[];
 
 	var cvLayerUsers_ = [];
 
@@ -66,6 +68,17 @@ class ModADV extends GModule
 
 			/* @make_character */
 			'make_character' => makeCharacterByElm,
+
+			/* @make_time_zone */
+			'make_time_zone' => makeTimeZoneByElm,
+
+			/* @make_stage */
+			'make_stage' => makeStageByElm,
+
+			/* @set_timezone */
+			'set_timezone' => function (elm) {
+				setCurrentTimeZone(elm.tagname);
+			} incontextof this,
 
 			/* @ch_mod_adv */
 			'ch_mod_adv' => function (elm, c) {
@@ -180,7 +193,7 @@ class ModADV extends GModule
 				}
 			} incontextof this,
 
-			/* @charcter */
+			/* @character */
 			'character' => function (elm, c) {
 				if(setCharacterImageByElm(elm))
 					reservedTransition(elm, c);
@@ -189,6 +202,12 @@ class ModADV extends GModule
 			/* @activate_character */
 			'activate_character' => function (elm, c) {
 				activateCharacter((elm.name === void ? lastCharacterName_ : elm.name));
+			} incontextof this,
+
+			/* @stage */
+			'stage' => function (elm, c) {
+				if(setStageByElm(elm))
+					reservedTransition(elm, c);
 			} incontextof this,
 
 			/* @show_current_message_layer */
@@ -351,10 +370,70 @@ class ModADV extends GModule
 		return characters_[name];
 	}
 
+	/**/
+	function makeStageByElm(elm)
+	{
+		var name = elm.name;
+
+		if(name == '')
+			throw new GRuntimeError("背景を編集しようとしましたが名前が指定されていません。");
+
+		var stage = getStage();
+
+		if(stage === void)
+		{
+			var stg = %[
+				name : name, storage : elm.storage
+			];
+
+			window.conductor.setRedirectTag(name, 'stage');
+
+			stage_[name] = stg;
+		}
+
+		stageNames_.add(name);
+	}
+
+	/**/
+	function getStage(name)
+	{
+		if(name == '')
+			return void;
+		return stage_[name];
+	}
+
+	/**/
+	function setStageByElm(elm)
+	{
+		var name = elm.name;
+
+		name = elm.tagname if name == '' && elm.tagname != 'stage';
+
+		var stage = getStage(name);
+		var tz = getCurrentTimeZone();
+		var storage = stage.storage;
+
+		if(getExistentStorageNameAndExtension(@"&storage;&tz.prefix;", graphicFileExtensions*) !== void)
+			storage = @"&storage;&tz.prefix;";
+
+		var layer = container.modImage.baseLayer.mirror;
+
+		elm.layer = 'base';
+		elm.page = 'back';
+		elm.storage = storage;
+
+		container.modImage.loadImageByElm(elm);
+
+		elm.time = 1000 if elm.time === void;
+		elm.vague = 128 if elm.vague === void;
+
+		return true;
+	}
+
 	/**
 	 * \brief 時間帯情報の作成。
 	**/
-	function makeTimeZone(elm)
+	function makeTimeZoneByElm(elm)
 	{
 		var name = elm.name;
 
@@ -370,9 +449,11 @@ class ModADV extends GModule
 				throw new GRuntimeError("「&name;」の時間帯情報を作成しようとしましたが、同じ名前の時間帯情報が既に存在しています。");
 		}
 
-		var tz = %[name : name, stand : elm.stand];
+		var tz = %[name : name, storagePrefix : elm.prefix];
 
-		window.conductor.setRedirectTag(name, 'set-timezone');
+		arr.push(tz);
+
+		window.conductor.setRedirectTag(name, 'set_timezone');
 
 		// 何も選択されていない状態ならば今追加された時間帯を選択する。
 		if(currentTimeZone_ == -1)
@@ -478,9 +559,9 @@ class ModADV extends GModule
 
 		// ボイス再生判定
 		// ここでは再生は行わない
-		inNextChPlayVoice_ = ((char.hasVoice && !GObjectUtils.getBoolean(elm, 'voice')) ? true : false);
+		inNextChPlayVoice_ = ((char.hasVoice && GObjectUtils.getBoolean(elm, 'voice', true)) ? true : false);
 		// ボイス番号のオーバーライド
-		char.voice = +elm.voice if elm.voice !== void;
+		char.voice = +elm.voice_number if elm.voice_number !== void;
 
 		if(!char.hasImage)
 			return false;
@@ -499,9 +580,9 @@ class ModADV extends GModule
 
 			if(timeZone !== void)
 			{
-				storage = @"&storage;&timeZone.stand;&storageExt;";
+				storage = @"&storage;&timeZone.storagePrefix;&storageExt;";
 				if(elm.asd !== void)
-					asd = @"&asd;&timeZone.stand;&asdExt;";
+					asd = @"&asd;&timeZone.storagePrefix;&asdExt;";
 			}
 
 			if(getExistentStorageNameAndExtension(@"&storage;", graphicFileExtensions*) === void)

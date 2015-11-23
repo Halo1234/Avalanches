@@ -6,7 +6,7 @@
 
 @show_message layer=message0
 
-@click_skip !enabled
+;@click_skip !enabled
 *label|
 @fadein_bgm storage=bgm001.ogg time=2000
 ‚a‚f‚l‚ğÄ¶‚µ‚Ü‚µ‚½B[p][cm]

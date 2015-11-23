@@ -6,9 +6,13 @@
 
 @show_message layer=message0
 
+;@click_skip !enabled
 *label|
 @fadein_bgm storage=bgm001.ogg time=2000
 ＢＧＭを再生しました。[p][cm]
+
+*label|
+ＢＧＭ再生中です。[p][cm]
 
 *label|
 @pause_bgm

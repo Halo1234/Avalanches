@@ -518,8 +518,8 @@ class ModImage extends GModule
 			.rCeil = +elm.r_ceil if elm.r_ceil !== void;
 			.gCeil = +elm.g_ceil if elm.g_ceil !== void;
 			.bCeil = +elm.b_ceil if elm.b_ceil !== void;
-			.color = +elm.color if elm.color !== void;
-			.opacity = +elm.opacity if elm.opacity !== void;
+			.color = +elm.mcolor if elm.mcolor !== void;
+			.opacity = +elm.mopacity if elm.mopacity !== void;
 			.mode = elm.mode if elm.mode !== void;
 
 			.apply();

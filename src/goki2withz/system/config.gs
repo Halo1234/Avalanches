@@ -12,7 +12,7 @@
 
 ; ◆改行の扱い方
 ;
-; ignore: 改行コードを r タグとして扱うかどうか
+; ignore: false を指定すると改行コードを r タグとして扱います。
 @cr_handling ignore
 
 
@@ -65,7 +65,7 @@
 
 ; キャラクター定義
 ;
-; タグ名が ! で始まるタグはタグの設定を行う特殊なタグになります。
+; タグ名が ! で始まるタグはタグの拡張構文設定を行う特殊なタグになります。
 ; これはすべてのタグに対して有効な設定です。
 ;
 ; 属性名=名前->値 の形式で置換を行う事ができます。
@@ -105,11 +105,22 @@
 @!make_character voice=ボイス有り->true,ボイス無し->false
 
 ; キャラクター作成
-@make_character name=地文 actual_viewing_name_string=''
-@make_character name=ハロ voice_group=halo 立ち絵有り ボイス有り
+;
+;                 name: キャラクター名を指定します。
+;                       ここで指定した名前がそのままタグ名になります。
+;                  mob: true を指定すると１つのスクリプトファイル内でのみ有効なキャラクターを作成します。
+;           auto_voice: 自動ボイス再生を行う場合に true を指定します。
+; voice_storage_format: ボイスファイルのフォーマットを指定します。
+;                       これは一つの番号を引数として受け取る sprintf() の引数です。
+;                       例： halo_voice_%03d
+;                       デフォルトでは「名前%03d」です。（名前は name で指定した文字列）
+;                image: 立ち絵などのグラフィックを持つ場合に true を指定します。
+;                voice: ボイスを持つ場合に true を指定します。
+@make_character name=地文
+@make_character name=ハロ 立ち絵有り ボイス有り
 
 ; character タグはすべてのキャラクタタグの実体です。
-; このタグに対して設定するとすべてのキャラクタタグに適応されます。
+; このタグに対して拡張構文を設定するとすべてのキャラクタタグに適応されます。
 ;
 ; 例：
 ;  @!character gray_scale=セピア->true r_gamma=セピア->1.5 g_gamma=セピア->1.3
@@ -120,19 +131,75 @@
 ;  ;
 ;  ; これも同様に置換されます。
 ;  @地文 セピア
-@!character centerx=左->200,中->400,右->600,中左->300,中右->500,左端->100,右端->700
+;
+; character タグの仕様
+;
+;      storage: 画像ファイル名を指定します。
+;          key: 画像のキー値を指定します。
+;  asd_storage: ASDファイル名を指定します。
+;   gray_scale: true を指定するとグレイスケール化します。
+;      r_gamma: Gamma値を指定します。
+;      g_gamma: Gamma値を指定します。
+;      b_gamma: Gamma値を指定します。
+;      r_floor: Floor値を指定します。
+;      g_floor: Floor値を指定します。
+;      b_floor: Floor値を指定します。
+;       r_ceil: Ceil値を指定します。
+;       g_ceil: Ceil値を指定します。
+;       b_ceil: Ceil値を指定します。
+;       mcolor: ブレンドする色を指定します。
+;     mopacity: ブレンドする色の不透明度を指定します。
+;         mode: 透過モードを指定します。
+;      flip_ud: true を指定すると上下を入れ替えます。
+;      flip_lr: true を指定すると左右を入れ替えます。
+;    clip_left: 画像のクリッピング座標を指定します。
+;     clip_top: 画像のクリッピング座標を指定します。
+;   clip_width: 画像のクリッピング座標を指定します。
+;  clip_height: 画像のクリッピング座標を指定します。
+;     center_x: 画像中心位置のX座標値です。
+;     center_y: 画像中心位置のY座標値です。
+;         left: 画像の左上隅表示位置を指定します。
+;          top: 画像の左上隅表示位置を指定します。
+;        right: 画像の右下隅表示位置を指定します。
+;       bottom: 画像の右下隅表示位置を指定します。
+;      opacity: 画像の不透明度を指定します。
+;        index: 画像の重ね合わせ順序を指定します。
+;        voice: true を指定するとボイスを再生します。何も指定しなければ true とみなします。
+; voice_number: ボイス番号を指定します。何も指定しなければ自動で割り当てられます。
+;         time: トランジションの時間を指定します。何も指定しなければ 200 になります。
+;        vague: トランジションの曖昧値を指定します。何も指定しなければ 128 になります。
+;       method: トランジションのタイプを指定します。何も指定しなければ他の値から推測されます。    
+;         from: スクロールトランジションの引数です。left, top, right, bottom のいずれかを指定します。
+;         stay: スクロールトランジションの引数です。stayfore, stayback, nostay のいずれかを指定します。
+;         rule: ルール画像を指定します。
+;     children: トランジションの対象に子レイヤも含めるかどうかを指定します。何も指定しなければ true になります。
+@!character center_x=左->200,中->400,右->600,中左->300,中右->500,左端->100,右端->700
 @!character gray_scale=セピア->true r_gamma=セピア->1.5 g_gamma=セピア->1.3
 @!character visible=表示->true,消去->false
 @!character no_voice=nv->true
 
+; 時間帯を定義します。
+;
+;   name: 時間帯名を指定します。ここで指定した名前がそのままタグになります。
+; prefix: 立ち絵のファイル名などの末尾につける文字列を指定します。
+@make_time_zone name=朝 prefix=''
+@make_time_zone name=夕 prefix=ev
+@make_time_zone name=夜 prefix=ng
+
 ; サンプルキャラクター設定
+;
+; タグの仕様は character タグと同じです。
 @!ハロ /storage=A_<POSE>_<FACE>
 @!ハロ face=表情１->face1
 @!ハロ pose=ポーズ１->pose1,ポーズ２->pose2
 
-; 改行コードを無視するかどうか
-@cr_handling !ignore
-
+; サンプル背景
+;
+;    name: 名前を指定します。この名前がそのままタグ名になります。
+; storage: 背景として読み込むファイル名を指定します。
+@make_stage name=白 storage=白
+@make_stage name=黒 storage=黒
+@make_stage name=赤 storage=赤
 ; ココまで
 
 
