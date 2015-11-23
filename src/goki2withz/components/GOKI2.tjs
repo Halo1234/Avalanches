@@ -37,7 +37,6 @@ Scripts.execStorage('GOKI2Utils.tjs');
 		'GVideoOverlay',
 		'GVideoContainer', 'GVideoIterator',
 		'GTimeLine', 'GLayerShaker', 'GLayerMover', 'GLayerSplineMover',
-		'GMenuItem', 'GMenuModule',
 		'GWindow',
 		'GYesNoDialogLayer'
 	];
