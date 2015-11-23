@@ -1,0 +1,425 @@
+/*
+ $Author$
+ $Revision$
+*/
+
+
+/**/
+class GTimeLine
+{
+	var owner_;					//!> \breif イベント発生先オブジェクト
+
+	var delay = 0;				//!> \brief start() 呼び出しからタイムライン始点までのディレイ
+	var accel_ = 0;				//!> \brief 加速度。減速 < 0 < 加速
+	var startTick_ = 0;			//!> \brief 始点通過時点の tick
+	var time_ = 1000;			//!> \brief 始点から終点までの tick
+	var tickDiff_;				//!> \brief resume() 用
+	var looping = false;		//!> \brief ループしてるかどうか
+	var inDelay_ = false;		//!> \brief 開始遅延待ち中かどうか
+	var processInterval_ = 6;	//!> \brief onProcess 発生周期
+
+	var restartAtNextTime_ = false;
+	var handler_ = void;
+
+	var timer_;
+
+	function GTimeLine(owner)
+	{
+		owner_ = owner;
+
+		timer_ = new Timer(onTimer_, "");
+		timer_.capacity = 1;	// GTimeLine の場合キューに大量にキャッシュされてもあまり意味はない
+		timer_.enabled = false;
+		timer_.mode = atmNormal;
+	}
+
+	function finalize()
+	{
+		invalidate timer_;
+	}
+
+	function start()
+	{
+		var timer = timer_;
+
+		if(!timer.enabled)
+		{
+			notify('onStartTimeLine');
+
+			if(delay > 0)
+			{
+				inDelay_ = true;
+				handler_ = onDelayTimeout;
+				startTick_ = System.getTickCount();
+				tickDiff_ = 0;
+				timer.interval = delay;
+				timer.enabled = true;
+			}
+			else
+			{
+				onDelayTimeout();
+			}
+		}
+	}
+
+	/**
+	 * \brief 実行中のタイムラインを最初からやり直します。
+	 * \brief pause() で一時停止したタイムラインを再開する場合は
+	 * \brief resume() を使ってください。
+	**/
+	function restart()
+	{
+		if(!timer_.enabled)
+			throw new Exception("開始されていないタイムラインをリスタートしようとしました。");
+		restartAtNextTime_ = true;
+	}
+
+	/**/
+	function stop()
+	{
+		var timer = timer_;
+
+		if(timer.enabled)
+		{
+			timer.enabled = false;
+			tickDiff_ = 0;
+
+			notify('onEndTimeLine');
+			process(1);
+			notify('onStopTimeLine', false) if !timer.enabled;
+		}
+	}
+
+	/**/
+	function pause()
+	{
+		var timer = timer_;
+
+		if(timer.enabled)
+		{
+			tickDiff_ = System.getTickCount() - startTick_;
+			tickDiff_ = 1 if tickDiff_ == 0;
+			timer.enabled = false;
+
+			process(applyAccelTo(localizeTime(0, tickDiff_, time_), accel));
+			notify('onStopTimeLine', true);
+		}
+	}
+
+	/**/
+	function resume()
+	{
+		var timer = timer_;
+
+		if(!timer.enabled && tickDiff_ > 0)
+		{
+			timer.enabled = true;
+			startTick_ = System.getTickCount() - tickDiff_;
+
+			notify('onResumeTimeLine');
+			process(applyAccelTo(localizeTime(0, tickDiff_, time_), accel));
+
+			tickDiff_ = 0;
+		}
+	}
+
+	/**
+	 * \breif ディレイ中の場合は残りディレイ時間を ms 単位で返します。
+	 * \breif 実行中、またはポーズ中であれば残り実行時間を ms 単位で返します。
+	 * \breif それ以外では time 値をそのまま返します。
+	**/
+	function getRemainingTime()
+	{
+		if(timer_.enabled)
+			return System.getTickCount() - startTick_;
+		else
+		if(tickDiff_ > 0)
+			return time_ - tickDiff_;
+
+		return time_;
+	}
+
+	/**/
+	function process(position)
+	{
+		notify('onProcessTimeLine', position);
+	}
+
+	/**
+	 * \brief    base: 始点。
+	 * \brief current: ローカライズ対象値。
+	 * \brief     max: 始点から終点までの時間。
+	 *
+	 * \remarks 引数は全てミリ秒単位。
+	 * \remarks ミリ秒単位の値を 0.0 ～ 1.0 の範囲にローカライズします。
+	 * \remarks current の値が範囲を越えていてもエラーにはなりません。
+	**/
+	function localizeTime(base, current, max)
+	{
+		var position = (current - base) / max;
+
+		if(position > 1.0)
+			return 1.0;
+		else
+		if(position < 0.0)
+			return 0.0;
+
+		return position;
+	}
+
+	/**
+	 * \brief position は必ず 0.0 ～ 1.0 の範囲で指定してください。
+	**/
+	function applyAccelTo(position, accel)
+	{
+		if(accel < 0)
+			position = 1.0 - Math.pow(1.0 - position, -accel);
+		else
+		if(accel > 0)
+			position = Math.pow(position, accel);
+
+		return position;
+	}
+
+	/**
+	 * \brief イベント通知用
+	 * \brief まずオーナーに対してハンドラが存在すればイベントを通知します。
+	 * \brief オーナーハンドラが true を返すと this のハンドラ呼び出しはキャンセルされます。
+	 * \brief オーナーハンドラが true 以外を返した時、this にもハンドラが存在すればイベントを通知します。
+	 *
+	 * this のハンドラが呼び出された場合は true を返します。
+	 * それ以外ならば false を返します。
+	 *
+	 * onStart/onStop
+	 * それぞれタイムラインの開始前/停止後に発生します。
+	 *
+	 * onBegin/onEnd
+	 * それぞれタイムライン始点/終点で onProcess の後/前に発生します。
+	 *
+	 * onRestart
+	 * 実行中に最初からやり直す時に onProcess の前に発生します。
+	 *
+	 * onResume
+	 * タイムラインが再開される時に onProcess の前に発生します。
+	 *
+	 * onProcess
+	 * タイムライン実行中に定期的に発生します。
+	**/
+	function notify(message, arg*)
+	{
+		var o = owner_;
+
+		if(o !== void)
+		{
+			if(typeof(o[message]) !== "undefined" && o[message](this, arg*))
+				return false;
+		}
+
+		if(typeof(this[message]) !== "undefined")
+		{
+			this[message](arg*);
+
+			return true;
+		}
+
+		return false;
+	}
+
+	function store(tick)
+	{
+		var dic = %[
+			delay : delay,
+			accel : accel,
+			time : time_,
+			tickDiff : tickDiff_,
+			looping : looping,
+			inDelay : inDelay_,
+			interval : interval,
+			running : running
+		];
+
+		// NOTE:
+		// ここに到達するまでにティックが進んでいる可能性があるので
+		// System.getTickCount() は信用しない。
+		// tick 引数は大本の store() が呼び出された直後のティックなので
+		// そちらを利用する。
+		dic.delayTick = dic.tick = tick - startTick_;
+		dic.delayTick = dic.delay if dic.tick > dic.delay;
+		dic.tick = dic.time if dic.tick > dic.time;
+
+		return dic;
+	}
+
+	function restore(dic, tick)
+	{
+		var timer = timer_;
+
+		timer.enabled = false;
+
+		delay = dic.delay;
+		accel = dic.accel;
+		time_ = dic.time;
+		tickDiff_ = dic.tickDiff;
+		looping = dic.looping;
+		inDelay_ = dic.inDelay;
+		interval = dic.interval;
+		timer.enabled = dic.running;
+
+		restartAtNextTime_ = false;
+
+		// NOTE:
+		// ここに到達するまでに tick がずれている可能性があるので
+		// System.getTickCount() を呼び出して正確なティックを取得する。
+		if(inDelay)
+		{
+			startTick_ = System.getTickCount() - dic.delayTick;
+			handler_ = onDelayTimeout;
+
+			timer.interval = dic.delayTick;
+		}
+		else
+		{
+			startTick_ = System.getTickCount() - dic.tick;
+			handler_ = onUpdate;
+
+			timer.interval = interval;
+
+			if(running)
+				onTimer_();
+		}
+	}
+
+	function onTimer_()
+	{
+		var f = handler_;
+		f() if f !== void;
+	}
+
+	function onDelayTimeout()
+	{
+		inDelay_ = false;
+		timer_.interval = processInterval_;
+		timer_.enabled = true;
+		startTick_ = System.getTickCount();
+		tickDiff_ = 0;
+		restartAtNextTime_ = false;
+		handler_ = onUpdate;
+
+		process(0);
+		notify('onBeginTimeLine');
+	}
+
+	function onUpdate()
+	{
+		if(restartAtNextTime_)
+		{
+			startTick_ = System.getTickCount();
+			tickDiff_ = 0;
+			restartAtNextTime_ = false;
+
+			notify('onRestartTimeLine');
+			process(0);
+			notify('onBeginTimeLine');
+		}
+		else
+		{
+			var position = applyAccelTo(localizeTime(startTick_, System.getTickCount(), time_), accel);
+
+			if(position >= 1)
+			{
+				notify('onEndTimeLine');
+				process(1);
+
+				if(looping)
+				{
+					restartAtNextTime_ = true;
+				}
+				else
+				if(!restartAtNextTime_)
+				{
+					timer_.enabled = false;
+					tickDiff_ = 0;
+
+					notify('onStopTimeLine', false) if !timer_.enabled;
+				}
+			}
+			else
+			{
+				process(position);
+			}
+		}
+	}
+
+	/**
+	 * イベント発生先オブジェクト
+	**/
+	property owner
+	{
+		getter		{ return owner_; }
+	}
+
+	property accel
+	{
+		setter(x)	{ accel_ = x; }
+		getter		{ return accel_; }
+	}
+
+	/**
+	 * onProcess() 呼び出し周期とタイムライン終点（ms 単位）
+	 *
+	 * タイムラインは 0.0 (0 ms) を始点。
+	 * 1.0 (N ms | N = time プロパティ値) を終点と考えます。
+	 *
+	 * ループする場合は始点から終点までを繰り返します。
+	 * 終点から始点までの移動はありませんので注意してください。
+	**/
+	property interval
+	{
+		setter(x)	{ processInterval_ = x; }
+		getter		{ return processInterval_; }
+	}
+
+	property time
+	{
+		setter(x)	{ tickDiff_ = x if x > time_ && tickDiff_ != 0; time_ = x; }
+		getter		{ return time_; }
+	}
+
+	property remainingTime
+	{
+		getter		{ return getRemainingTime(); }
+	}
+
+	/**
+	 * 実行中/一時停止中のフラグ
+	**/
+	property running
+	{
+		getter		{ return timer_.enabled; }
+	}
+
+	property paused
+	{
+		getter		{ return (tickDiff_ != 0 ? true : false); }
+	}
+
+	/**
+	 * 時間経過による停止がない場合に true を返します。
+	 * 自然停止がないだけで本当にエンドレスな訳じゃないので注意してください。
+	**/
+	property endlessRunning
+	{
+		getter		{ return timer_.enabled && looping; }
+	}
+
+	/**
+	 * ディレイ待ち中であれば true を返します。
+	 * それ以外では false を返します。
+	**/
+	property inDelay
+	{
+		getter		{ return inDelay_; }
+	}
+}
+
+

@@ -1,0 +1,23 @@
+/*
+ * $Author$
+ * Revision$
+**/
+
+
+/**/
+class GVideoContainer extends GContainer
+{
+	function GVideoContainer(window)
+	{
+		super.GContainer(window);
+	}
+
+	function add(name, item)
+	{
+		item.name = name;
+
+		return super.add(name, item);
+	}
+}
+
+

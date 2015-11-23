@@ -1,0 +1,394 @@
+/*
+ * $Revision: 296 $
+**/
+
+
+/**/
+class GCellLayerConductor extends GConductor
+{
+	var layer_ = void;
+
+	var startLoopLabelName_ = '';
+	var looping_ = false;
+	var endLoop_ = false;
+
+	function GCellLayerConductor(window, layer)
+	{
+		super.GConductor(window);
+		layer_ = layer;
+
+		addBreathTag('wait');
+		ignoreCR = true;
+		debugLevel = tkdlNone;
+
+		autoJump = false;
+	}
+
+	/**/
+	function createTagHandlers()
+	{
+		return GObjectUtils.unionDictionary(
+			super.createTagHandlers(),
+
+			%[
+
+				/* @load_cell */
+				'load_cell' => function (elm, c) {
+					layer.loadImages(elm.storage) if elm.storage !== void;
+				} incontextof this,
+
+				/* @option */
+				'option' => function  (elm) {
+					var gbFunc = GObjectUtils.getBoolean;
+					var hvFunc = GObjectUtils.hasValue;
+
+					layer.flipUD() if gbFunc(elm, 'flip_ud', false);
+					layer.flipLR() if gbFunc(elm, 'flip_lr', false);
+
+					if(elm.clip_width !== void || elm.clip_height !== void)
+					{
+						var w = (elm.clip_width === void ? layer.imageWidth : +elm.clip_width);
+						var h = (elm.clip_height === void ? layer.imageHeight : +elm.clip_height);
+
+						layer.setSize(w, h);
+					}
+
+					if(elm.clip_left !== void || elm.clip_top !== void)
+					{
+						var l = (elm.clip_left === void ? (-layer.imageLeft) : +elm.clip_left);
+						var t = (elm.clip_top === void ? (-layer.imageTop) : +elm.clip_top);
+
+						layer.setImagePos(-l, -t);
+					}
+
+					layer.centerX = +elm.center_x if elm.center_x !== void;
+					layer.centerY = +elm.center_y if elm.center_y !== void;
+					layer.left = +elm.left if elm.left !== void;
+					layer.top = +elm.top if elm.top !== void;
+					layer.right = +elm.right if elm.right !== void;
+					layer.bottom = +elm.bottom if elm.bottom !== void;
+
+					layer.visible = gbFunc(elm, 'visible') if hvFunc(elm, 'visible');
+					layer.absolute = +elm.index if elm.index !== void;
+					layer.opacity = +elm.opacity if elm.opacity !== void;
+				} incontextof this,
+
+				/* @fork */
+				'fork' => function (elm) {
+					layer.parent.startCellAnimation(+elm.index, elm.target);
+				} incontextof this,
+
+				/* @looping */
+				'looping' => function (elm) {
+					startLoopLabelName_ = curLabel;
+					looping_ = true;
+				} incontextof this,
+
+				/* @end_looping */
+				'end_looping' => function (elm) {
+					goToLabel(startLoopLabelName_);
+				} incontextof this,
+
+				/* @home */
+				'home' => function (elm) {
+					if(endLoop_)
+						return 'stop';
+				} incontextof this,
+
+				/* @move */
+				'move' => function (elm) {
+				} incontextof this,
+
+				/* @wait_move */
+				'wait_move' => function (elm, c) {
+				} incontextof this,
+
+			]);
+	}
+
+	/**/
+	function clear()
+	{
+		super.clear(...);
+
+		startLoopLabelName_ = '';
+		looping_ = false;
+		endLoop_ = false;
+	}
+
+	/**/
+	function startAnimation(target = '')
+	{
+		goToLabel(target) if target != '';
+		startImmediate();
+	}
+
+	/**/
+	function stopAnimation()
+	{
+		if(looping_)
+			endLooping();
+		else
+			stop();
+	}
+
+	/**/
+	function endLooping()
+	{
+		endLoop_ = true;
+	}
+
+	/**/
+	function canWaitStop()
+	{
+		if(running)
+			return (!looping_ || endLoop_);
+			//return (!loop || (loop && endLoop)); 意味は同じ
+
+		return false;
+	}
+
+	/**/
+	function assign(src)
+	{
+		super.assign(src);
+
+		startLoopLabelName_ = src.startLoopLabelName_;
+		looping_ = src.looping_;
+		endLoop_ = src.endLoop_;
+	}
+
+	/**/
+	function onStop()
+	{
+		with(layer)
+			.callHandler('onStopAnimation', %[index : .index]);
+	}
+
+	/**/
+	function onLabel()
+	{
+	}
+
+	property layer
+	{
+		getter()		{ return layer_; }
+	}
+
+	property looping
+	{
+		getter()		{ return looping_; }
+	}
+}
+
+
+/**/
+class GCellLayer extends GLayer
+{
+	var index_ = void;
+
+	function GCellLayer(window, parent, handler, index)
+	{
+		super.GLayer(...);
+		index_ = index;
+	}
+
+	function loadImages(storage, key)
+	{
+		var tag = super.loadImages(...);
+
+		parent.colorCorrection.apply(this);
+
+		return tag;
+	}
+
+	function createConductor(window, layer)
+	{
+		return new GCellLayerConductor(window, layer);
+	}
+
+	function assign(src)
+	{
+		super.assign(...);
+
+		index_ = src.index_;
+	}
+
+	property index
+	{
+		getter()		{ return index_; }
+	}
+}
+
+
+/*! \brief レイヤ専用コンダクタ
+**/
+class GLayerConductor extends GCellLayerConductor
+{
+	var cellLayers_ = [];
+
+	/**/
+	function GLayerConductor(window, layer)
+	{
+		super.GCellLayerConductor(...);
+	}
+
+	/**/
+	function clear()
+	{
+		super.clear(...);
+
+		var cells = cellLayers_;
+		var c = cells.count;
+
+		for(var i = 0; i < c; i++)
+			cells[i].clearImages() if cells[i] !== void;
+	}
+
+	/**/
+	function createCellLayer(window, parent, handler, index)
+	{
+		return new GCellLayer(window, parent, handler, index);
+	}
+
+	/**/
+	function allocCellLayer_private_(index)
+	{
+		var obj = cellLayers_[index];
+
+		if(obj === void)
+		{
+			layer.family.receive(obj = createCellLayer(window, layer, onCellLayerEvent, index));
+			cellLayers_[index] = obj;
+		}
+
+		return obj;
+	}
+
+	/**/
+	function startCellAnimation(index, target = '')
+	{
+		var cells = cellLayers_;
+
+		if(index === void)
+			throw new GArgumentsError('index 引数が指定されていません。');
+
+		with(allocCellLayer_private_(index))
+		{
+			.conductor.assign(this);
+			.conductor.startAnimation(target);
+		}
+	}
+
+	/**/
+	function stopCellAnimation(index, target = '')
+	{
+		var cells = cellLayers_;
+
+		if(index === void)
+			throw new GArgumentsError('index 引数が指定されていません。');
+
+		if(cells[index] !== void)
+			cells[index].conductor.stopAnimation();
+	}
+
+	/**/
+	function canWaitStopForCell(index)
+	{
+		var cells = cellLayers_;
+
+		if(index === void)
+			throw new GArgumentsError('index 引数が指定されていません。');
+
+		if(cells[index] !== void)
+			return cells[index].conductor.canWaitStop();
+
+		return false;
+	}
+
+	/**/
+	function createTagHandlers()
+	{
+		return GObjectUtils.unionDictionary(
+			super.createTagHandlers(),
+
+			%[
+
+				/* @load_cell */
+				'load_cell' => function (elm, c) {
+					throw new GImpossibleAccessError("親レイヤにセル画像は読み込めません。");
+				} incontextof this,
+
+				/* @fork */
+				'fork' => function (elm) {
+					startCellAnimation(+elm.index, elm.target);
+				} incontextof this,
+
+			]);
+	}
+
+	/**/
+	function assign(src)
+	{
+		super.assign(src);
+
+		var destination = cellLayers_;
+		var source = src.cellLayers_;
+		var c = source.count;
+
+		for(var i = 0; i < c; i++)
+		{
+			if(source[i] !== void)
+			{
+				with(allocCellLayer_private_(i))
+					.assign(source[i]);
+			}
+		}
+	}
+
+	/**/
+	function onCellLayerEvent(obj, message, elm)
+	{
+		switch(message)
+		{
+		case 'onStopAnimation':	layer.callHandler(message, elm); break;
+		}
+	}
+
+	function onStop()
+	{
+		layer.callHandler('onStopAnimation', %[index : void]);
+	}
+
+	function store(tick)
+	{
+		var dic = super.store(...);
+
+		var cellLayers = cellLayers_;
+		var c = cellLayers.count;
+
+		dic.cellLayers = [];
+		for(var i = 0; i < c; i++)
+		{
+			dic.cellLayers[i] = cellLayers[i].store(tick) if cellLayers[i] !== void;
+		}
+
+		return dic;
+	}
+
+	function restore(dic, tick)
+	{
+		super.restore(...);
+
+		var cellLayers = dic.cellLayers;
+		var c = cellLayers.count;
+
+		for(var i = 0; i < c; i++)
+		{
+			with(allocCellLayer_private_(i))
+				.restore(cellLayers[i]);
+		}
+	}
+}
+
+

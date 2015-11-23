@@ -1,0 +1,55 @@
+/*
+**/
+
+/**/
+class MainWindow extends GWindow
+{
+	function MainWindow()
+	{
+		super.GWindow(...);
+	}
+
+	function createTagHandlers()
+	{
+		return GObjectUtils.unionDictionary(
+			super.createTagHandlers(),
+			%[
+
+				/* @cursor */
+				'cursor' => setCursor,
+
+			]
+		);
+	}
+
+	/**/
+	function setCursor_private_(variable, value)
+	{
+		if(value !== void)
+		{
+			if(!(typeof(value) == 'String' && (value.indexOf('.cur') != -1 || value.indexOf('.ani') != -1)))
+				value = +value;
+			this[variable] = value;
+		}
+	}
+
+	/**/
+	function setCursor(elm)
+	{
+		setCursor_private_('cursorDefault', elm.default_cursor); 
+		setCursor_private_('cursorPointed', elm.pointed_cursor);
+		setCursor_private_('cursorWaitingClick', elm.click_cursor);
+		setCursor_private_('cursorDraggable', elm.draggable_cursor);
+
+		if(modules.isLoaded('modImage') !== void)
+		{
+			with(modules.modImage.layerContainer.get('base', true))
+			{
+				.setDefaultCursor(cursorDefault);
+				.mirror.setDefaultCursor(cursorDefault);
+			}
+		}
+	}
+}
+
+

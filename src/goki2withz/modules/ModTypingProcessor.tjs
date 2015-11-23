@@ -1,0 +1,1857 @@
+/*
+ * $Revision: 327 $
+**/
+
+
+/**/
+property modTypingProcessorAcceptedValue
+{
+	getter		{ return 0; }
+}
+
+/**/
+property modTypingProcessorDeniedValue
+{
+	getter		{ return -1; }
+}
+
+/**/
+property modTypingProcessorUnstableValue
+{
+	getter		{ return 1; }
+}
+
+/*! \brief 各値検証用関数
+**/
+function isModTypingProcessorAcceptedValue(value)
+{
+	return (value === modTypingProcessorAcceptedValue ? true : false);
+}
+function isModTypingProcessorDeniedValue(value)
+{
+	return (value === modTypingProcessorDeniedValue ? true : false);
+}
+function isModTypingProcessorUnstableValue(value)
+{
+	return (value === modTypingProcessorUnstableValue ? true : false);
+}
+
+/*! \brief ワードクラス
+ *
+ * ワードはキャプションとルビで構成されるオブジェクトです。
+**/
+class TypingWord
+{
+	var processor_;
+
+	var caption_ = '';
+	var ruby_ = '';
+
+	var acceptRubyCount_ = 0;			// 入力されたルビの文字数。
+	var acceptRomanString_ = [];		// 現在までに受理されたルビの実際に入力されたローマ字文字列。
+	var candidate_;						// 現在入力中のルビ（文字）の詳細。
+
+	var lastResult_;					// 最後の入力の結果。
+
+	/**/
+	function TypingWord(processor, caption, ruby)
+	{
+		processor_ = processor;
+		caption_ = caption;
+		ruby_ = ruby;
+	}
+
+	/**/
+	function finalize()
+	{
+		// NOTE: 必要なし
+		//processor_ = void;
+		//caption_ = ruby_ = '';
+	}
+
+	/**/
+	function setCaption(caption)
+	{
+		caption_ = caption;
+		reset();
+	}
+
+	/**/
+	function setRuby(ruby)
+	{
+		ruby_ = ruby;
+		reset();
+	}
+
+	/**/
+	function setCaptionAndRuby(caption, ruby)
+	{
+		caption_ = caption;
+		ruby_ = ruby;
+		reset();
+	}
+
+	/**/
+	function reset()
+	{
+		acceptRubyCount_ = 0;
+		acceptRomanString_.clear();
+		candidate_ = void;
+		lastResult_ = modTypingProcessorDeniedValue;
+	}
+
+	/**/
+	function getSafeRomanString_private_(text)
+	{
+		try {
+			return processor_.getRomanStringTable(text);
+		} catch (e) {
+			throw new GRuntimeError(
+				@"&e.message;\n\n" +
+				@"単語：「&caption_;」\n" +
+				@"ルビ：「&ruby_;」"
+			);
+		}
+	}
+
+	/*! \brief index 文字目以降の入力候補を返します。
+	**/
+	function getCandidate(index)
+	{
+		if(index < 0)
+			throw new GOutOfRangeError('Access underrun in TypingWord#getCandidate().');
+		if(index >= ruby_.length)
+			throw new GOutOfRangeError('Access overrun in TypingWord#getCandidate().');
+
+		var text = ruby_.substring(index);
+		var candidate = %[
+			targets : getSafeRomanString_private_(text),
+			acceptRomans : [], current : 0, position : index
+		];
+
+		if(candidate.targets.count <= 0)
+			throw new GRuntimeError('入力候補が見つかりませんでした。');
+
+		return candidate;
+	}
+
+	/*! \brief 最初の文字の候補についての情報を返します。
+	**/
+	function getFirstRubyCandidate()
+	{
+		if(ruby_.length <= 0)
+			throw new GRuntimeError('最初の文字の入力候補を取得しようとしましたがワードが空文字列です。');
+		return getCandidate(0);
+	}
+
+	/*! \brief 現在の入力候補を返します。
+	**/
+	function getCurrentRubyCandidate()
+	{
+		if(accepted)
+			throw new GRuntimeError('受理状態のオブジェクトの入力候補を取得しようとしました。');
+
+		var result = candidate_;
+
+		if(result === void)
+			candidate_ = result = getCandidate(acceptRubyCount_);
+
+		return result;
+	}
+
+	/**/
+	function getCurrentRubyAcceptRomanString()
+	{
+		if(!accepted)
+		{
+			var current = getCurrentRubyCandidate();
+
+			if(current !== void && current.acceptRomans !== void)
+				return current.acceptRomans.join('');
+		}
+
+		return '';
+	}
+
+	/**/
+	function getCurrentRubyTargets_private_()
+	{
+		try {
+			if(!accepted)
+			{
+				var candidate = getCurrentRubyCandidate();
+
+				if(candidate !== void && candidate.targets !== void && candidate.current >= 0)
+					return candidate.targets[candidate.current];
+			}
+		} catch(e) {
+			worn(e.message);
+		}
+
+		return void;
+	}
+
+	/**/
+	function getCurrentTargetString()
+	{
+		var current = getCurrentRubyTargets_private_();
+
+		return (current === void ? '' : current.target);
+	}
+
+	/**/
+	function getCurrentTargetRomanString()
+	{
+		var current = getCurrentRubyTargets_private_();
+		var work;
+
+		if(current === void || current.romans === void || current.romans.count <= 0)
+			return '';
+
+		var work = GObjectUtils.clone(current.romans[0]);
+		work.remove('\\*');
+
+		return work.join('');
+	}
+
+	/*! \brief checkCharacter_private_() とほぼ同じ動作でが、特殊パターンにはマッチしません。
+	**/
+	function checkCharacterNoPattern_private_(candidate, ch)
+	{
+		var targets = candidate.targets;
+		var c = targets.count;
+
+		var arc = candidate.acceptRomans.count;
+
+		for(var i = 0; i < c; i++)
+		{
+			if(targets[i] === null)
+				continue;
+
+			var work = targets[i];
+
+			for(var j = 0; j < work.romans.count; j++)
+			{
+				var c = work.romans[j][arc];
+
+				if(ch == c)
+					return c;
+			}
+		}
+
+		return '';
+	}
+
+	/*! \brief candidate が ch を受け付けるなら受け付けた文字（またはパターン）を返します。
+	**/
+	function checkCharacter_private_(candidate, ch)
+	{
+		var targets = candidate.targets;
+		var arc = candidate.acceptRomans.count;
+
+		for(var i = 0; i < targets.count; i++)
+		{
+			if(targets[i] === null)
+				continue;
+
+			var work = targets[i];
+
+			for(var j = 0; j < work.romans.count; j++)
+			{
+				var c = work.romans[j][arc];
+
+				if(c == '\\*')
+				{
+					if(arc + 1 != work.romans[j].count)
+						throw new GRuntimeError(@"特殊パターン「&c;」が文字の最後の入力以外で現れました。");
+
+					// NOTE: 次の文字が受け入れられるならば現在の文字を完了とする。
+					var nc = getCandidate(candidate.position + work.target.length);
+
+					if(checkCharacterNoPattern_private_(nc, ch) != '')
+						return c;
+				}
+				else
+				if(ch == c)
+				{
+					return c;
+				}
+			}
+		}
+
+		return '';
+	}
+
+	/*! \brief 文字 ch を入力します。
+	**/
+	function input(ch)
+	{
+		if(accepted)
+			return modTypingProcessorDeniedValue;
+
+		var candidate = getCurrentRubyCandidate();
+		var pattern = checkCharacter_private_(candidate, ch);
+
+		//dm(@"pattern: &pattern;");
+
+		// パターンヒット無し
+		if(pattern == '')
+			return (lastResult_ = modTypingProcessorDeniedValue);
+
+		// pattern にヒットしたので、内部状態を更新する。
+		var targets = candidate.targets;
+		var ar = candidate.acceptRomans;
+		var arc = ar.count;
+
+		// 必要なくなった候補を削除する。
+		for(var i = targets.count - 1; i >= 0; i--)
+		{
+			if(targets[i] === null)
+				continue;
+
+			var work = targets[i];
+			var tmp = [];
+
+			for(var j = 0; j < work.romans.count; j++)
+			{
+				var p = work.romans[j];
+				var c = p[arc];
+
+				if(pattern == c)
+				{
+					// 現在の候補で確定した。
+					if(arc + 1 == p.count)
+					{
+						acceptRubyCount_ += work.target.length;
+						acceptRomanString_.push(ar*);
+						candidate_ = void;
+
+						// NOTE: 最適化が可能。
+						// ch が受け付けられるのは確定しているので
+						// 無駄といえば無駄ではある。
+						if(pattern == "\\*")
+							return input(ch);
+
+						acceptRomanString_.push(ch);
+
+						if(acceptRubyCount_ == ruby.length)
+							return lastResult_ = modTypingProcessorAcceptedValue;
+						return lastResult_ = modTypingProcessorUnstableValue;
+					}
+
+					tmp.push(p);
+					candidate.current = i;
+				}
+			}
+
+			/*if(work.romans.count != 0)
+			{
+				var arr1 = [];
+
+				for(var x = 0; x < tmp.count; x++)
+					arr1.push(tmp[x].join(""));
+				log("----------");
+				log("%02d: %s".sprintf(i, work.target));
+				log(@"candidate: [&arr1.join('], [');]");
+				log("----------");
+			}*/
+
+			work.romans.assign(tmp);
+
+			if(work.romans.count == 0)
+				targets[i] = null;
+		}
+
+		ar.push(ch);
+
+		return lastResult_ = modTypingProcessorUnstableValue;
+	}
+
+	/**/
+	property processor
+	{
+		getter		{ return processor_; }
+	}
+
+	/**/
+	property caption
+	{
+		getter		{ return caption_; }
+	}
+
+	/**/
+	property ruby
+	{
+		getter		{ return ruby_; }
+	}
+
+	/**/
+	property romans
+	{
+		getter		{ return acceptRomanString + currentRomanString + unstableRomanString; }
+	}
+
+	/**/
+	property acceptRubyCount
+	{
+		getter		{ return acceptRubyCount_; }
+	}
+
+	/**/
+	property acceptRomanString
+	{
+		getter		{ return acceptRomanString_.join(''); }
+	}
+
+	/**/
+	property acceptRuby
+	{
+		getter		{ return ruby_.substring(0, acceptRubyCount); }
+	}
+
+	/**/
+	property currentRomanString
+	{
+		getter		{ return getCurrentTargetRomanString(); }
+	}
+
+	/**/
+	property currentRuby
+	{
+		getter		{ return getCurrentTargetString(); }
+	}
+
+	/**/
+	property currentRubyAcceptRomanString
+	{
+		getter		{ return getCurrentRubyAcceptRomanString(); }
+	}
+
+	/**/
+	property currentRubyUnstableRomanString
+	{
+		getter		{ return currentRomanString.substring(currentRubyAcceptRomanString.length); }
+	}
+
+	/**/
+	property unstableRomanString
+	{
+		getter		{ return processor_.getShortestString(unstableRuby); }
+	}
+
+	/**/
+	property unstableRuby
+	{
+		getter		{ return ruby_.substring(acceptRubyCount + currentRuby.length); }
+	}
+
+	/**/
+	property accepted
+	{
+		getter		{ return isModTypingProcessorAcceptedValue(lastResult_); }
+	}
+
+	/**/
+	property denied
+	{
+		getter		{ return isModTypingProcessorDeniedValue(lastResult_); }
+	}
+
+	/**/
+	property unstable
+	{
+		getter		{ return isModTypingProcessorUnstableValue(lastResult_); }
+	}
+
+	/**/
+	property lastResult
+	{
+		getter		{ return lastResult; }
+	}
+}
+
+/*! \brief ワードプロセッサ
+ *
+ * 各言語対応は派生先で行ってください。
+**/
+class TypingWordProcessor
+{
+	var romanTable_ = void;
+	var symbolTable_ = void;
+
+	var words_ = [];
+
+	/**/
+	function TypingWordProcessor()
+	{
+		romanTable_ = void;
+		symbolTable_ = void;
+		GObjectUtils.dispose(words_);
+	}
+
+	/**/
+	function finalize()
+	{
+		romanTable_ = void;
+		symbolTable_ = void;
+		GObjectUtils.destroy(words_);
+	}
+
+	/**/
+	function createTypingWord(processor, caption, ruby)
+	{
+		return new TypingWord(processor, caption, ruby);
+	}
+
+	/**/
+	function loadRomanTable(language)
+	{
+		var baseStorage = @"&language;.dic";
+		var symbolStorage = @"&language;_symbol.dic";
+
+		romanTable_ = symbolTable_ = void;
+
+		if(!Storages.isExistentStorage(symbolStorage))
+			throw new GNotFoundStorageError(@"指定された言語のローマ字対応表が見つかりませんでした。言語：'&language;'");
+		romanTable_ = Scripts.evalStorage(baseStorage, '');
+
+		// シンボルテーブルはあれば読み込む
+		if(Storages.isExistentStorage(symbolStorage))
+		{
+			symbolTable_ = Scripts.evalStorage(symbolStorage, '');
+
+			GObjectUtils.unionDictionary(romanTable_, symbolTable_);
+		}
+	}
+
+	/**/
+	function loadWords(storage)
+	{
+		if(!Storages.isExistentStorage(storage))
+			throw new GNotFoundStorageError(@"ストレージ「&storage;」が見つかりませんでした。");
+
+		var source = Scripts.evalStorage(storage);
+		var cwFunc = createTypingWord;
+
+		with(words_)
+		{
+			for(var i = source.count - 1; i >= 0; --i)
+				.push(cwFunc(this, source[i].caption, source[i].ruby));
+		}
+	}
+
+	/**/
+	function addWord(caption, ruby)
+	{
+		words_.push(createTypingWord(this, caption, ruby));
+	}
+
+	/**/
+	function removeWordByCaption(caption)
+	{
+		var words = words_;
+
+		for(var i = words.count - 1; i >= 0; --i)
+		{
+			if(words[i].caption == caption)
+			{
+				invalidate words[i];
+				words[i] = void;
+			}
+		}
+
+		words.remove(void);
+	}
+
+	/**/
+	function removeWordByRuby(ruby)
+	{
+		var words = words_;
+
+		for(var i = words.count - 1; i >= 0; --i)
+		{
+			if(words[i].ruby == ruby)
+			{
+				invalidate words[i];
+				words[i] = void;
+			}
+		}
+
+		words.remove(void);
+	}
+
+	/**/
+	function clearWords()
+	{
+		GObjectUtils.dispose(words_);
+		words_.clear();
+	}
+
+	/*! \brief text 引数から最初の１モーラを抽出します。
+	 *
+	 * \return 抽出された１モーラ分のテキストを返します。
+	**/
+	function getFirstMora(text)
+	{
+		return text[0];
+	}
+
+	/*! \brief text 引数の最初の１モーラに対するローマ字対応表を返します。
+	 *
+	 * \remarks 返り値は下記構造の Dictionary の配列を返してください。
+	 * \remarks 
+	 * \remarks struct {
+	 * \remarks     String  target;
+	 * \remarks     Array   [
+	 * \remarks         String;
+	 * \remarks         ...
+	 * \remarks     ]       romans;
+	 * \remarks }
+	 * \remarks 
+	 * \remarks target : 対応する文字列です。
+	 * \remarks romans : target のローマ字文字列です。
+	 * \remarks 
+	 * \remarks この配列は target の長いものから順に並べて返してください。
+	**/
+	function getRomanStringTable(text)
+	{
+		var table = romanTable_;
+		var mora = getFirstMora(text);
+		var result = [];
+		var key, record;
+		var work;
+
+		key = mora[0];
+		record = table[key];
+
+		if(record === void)
+			throw new GRuntimeError(@"「&key;」に対応するローマ字が見つかりませんでした。");
+
+		result.push(%[target : key, romans: GObjectUtils.clone(record)]);
+
+		return result;
+	}
+
+	/*! \brief text に対する最短のローマ字文字列を返す。
+	**/
+	function getShortestString(text)
+	{
+		var str = '';
+
+		try {
+			while(text != '')
+			{
+				var next = getRomanStringTable(text);
+				var work = next[0];
+				var tmp = GObjectUtils.clone(work.romans[0]);
+
+				tmp.remove('\\*');
+				str += tmp.join('');
+
+				text = text.substring(work.target.length);
+			}
+		} catch(e) {
+			throw new GRuntimeError(
+				@"&e.message;\n" +
+				@"入力：「&text;」"
+			);
+		}
+
+		return str;
+	}
+
+	/*! \brief 新しいワードをランダムで抽選する。
+	 *
+	 * \return 抽選したワードを返します。
+	 * \return 現在、返せるワードが無い場合は void を返します。
+	**/
+	function getNewWordAtRandom(banInitials = [])
+	{
+		var words = words_;
+
+		if(words.count > 0)
+		{
+			var index = intRandom(words.count);
+			var max = words.count;
+
+			/*for(var i = 0; i < banInitials.count; i++)
+			{
+				dm(@"banInitials &i;: &banInitials[i];");
+			}*/
+
+			// FIXME:
+			// 適当に抽選する。
+			for(var i = 0; i < max; i++)
+			{
+				if(index >= max)
+					index = 0;
+
+				var frc = words[index].getFirstRubyCandidate();
+				var targets = frc.targets;
+				var c = targets.count;
+
+				//dm(@"&targets[0].romans[0][0];");
+
+				for(var j = 0; j < c; j++)
+				{
+					var romans = targets[j].romans;
+					var cancel = false;
+
+					for(var k = romans.count - 1; k >= 0; --k)
+					{
+						if((cancel |= (banInitials.find(romans[k][0]) == -1 ? false : true)) == true);
+							break;
+					}
+
+					if(!cancel)
+						return words[index];
+				}
+			}
+		}
+
+		return void;
+	}
+
+	/**/
+	function getNewWordByCaption(caption, banInitials = [])
+	{
+		var words = words_;
+
+		if(words.count > 0)
+		{
+			var max = words.count;
+
+			for(var i = 0; i < max; i++)
+			{
+				if(words[i].caption != caption)
+					continue;
+
+				var frc = words[i].getFirstRubyCandidate();
+				var targets = frc.targets;
+				var c = targets.count;
+
+				//dm(@"&targets[0].romans[0][0];");
+
+				for(var j = 0; j < c; j++)
+				{
+					var romans = targets[j].romans;
+					var cancel = false;
+
+					for(var k = romans.count - 1; k >= 0; --k)
+					{
+						if((cancel |= (banInitials.find(romans[k][0]) == -1 ? false : true)) == true);
+							break;
+					}
+
+					if(!cancel)
+						return words[i];
+				}
+			}
+		}
+
+		return void;
+	}
+
+	/**/
+	function getNewWordByRuby(ruby, banInitials = [])
+	{
+		var words = words_;
+
+		if(words.count > 0)
+		{
+			var max = words.count;
+
+			for(var i = 0; i < max; i++)
+			{
+				//dm(@"&i;: &words[i].ruby; == &ruby;");
+				if(words[i].ruby != ruby)
+					continue;
+
+				var frc = words[i].getFirstRubyCandidate();
+				var targets = frc.targets;
+				var c = targets.count;
+
+				//dm(@"&targets[0].romans[0][0];");
+
+				for(var j = 0; j < c; j++)
+				{
+					var romans = targets[j].romans;
+					var cancel = false;
+
+					for(var k = romans.count - 1; k >= 0; --k)
+					{
+						if((cancel |= (banInitials.find(romans[k][0]) == -1 ? false : true)) == true);
+							break;
+					}
+
+					if(!cancel)
+						return words[i];
+				}
+			}
+		}
+
+		return void;
+	}
+
+	/**/
+	function dumpWordList()
+	{
+		var arr = words_;
+		var c = arr.count;
+
+		dm('---- word list.');
+		for(var i = 0; i < c; i++)
+			dm(@"&arr[i].caption;(&arr[i].ruby;)");
+		dm('---- End of word list.');
+	}
+
+	/**/
+	property romanTable
+	{
+		getter		{ return GObjectUtils.clone(romanTable_); }
+	}
+
+	/**/
+	property symbolTable
+	{
+		getter		{ return GObjectUtils.clone(symbolTable_); }
+	}
+}
+
+/*! \brief 日本語対応版ワードプロセッサ
+**/
+class TypingWordProcessorForJapanese extends TypingWordProcessor
+{
+	function TypingWordProcessorForJapanese()
+	{
+		super.TypingWordProcessor(...);
+	}
+
+	/*! \brief 日本語対応版。
+	 *
+	 * \return 抽出された１モーラ分（例外あり）のテキストを返します。
+	 *
+	 * \remarks 最初の１文字目が捨て仮名の場合は促音かどうかで以下のように処理が分かれます。
+	 * \remarks 
+	 * \remarks ・最初の文字が促音の場合
+	 * \remarks 　２文字目が母音かナ行であれば促音のみ（つまり「ッ」）を返します。
+	 * \remarks 　それ以外の場合次のモーラと合わせて（例えば「ッタ」「ッギャ」など）返します。
+	 * \remarks 
+	 * \remarks ・最初の文字が促音でない場合
+	 * \remarks 　そのまま捨て仮名のみを返します。
+	 * \remarks 
+	 * \remarks 最初の１文字目が捨て仮名ではない場合は２文字目によって処理が分かれます。
+	 * \remarks 
+	 * \remarks ・２文字目が「ァィゥェォャュョ」のいずれかの場合
+	 * \remarks 　可能であれば拗音として処理する。
+	 * \remarks 　「ワャ」などは２文字目が捨て仮名ではあるが
+	 * \remarks 　拗音ではないので「ワ」を返します。
+	 * \remarks 
+	 * \remarks ・１文字目が「ン」かつ、２文字目が母音かナ行の場合
+	 * \remarks 　特殊な撥音として２モーラを返します。
+	 * \remarks 
+	 * \remarks その他、記号や長音は全て１モーラと見なしてそのまま１文字だけを返します。
+	 * \remarks 
+	 * \remarks text が１文字しかない場合はその１文字を返します。
+	**/
+	function getFirstMora(text)
+	{
+		if(typeof(text) != 'String' || text.length <= 0)
+			throw new GArgumentsError(@"「&text;」は文字列ではないか、空文字列です。");
+
+		var mora = text[0];
+
+		if(!isSymbol_private_(mora) && text.length >= 2)
+		{
+			var ch = text[1];
+
+			// １文字目が捨て仮名
+			if(isSmallKANA_private_(mora))
+			{
+				// NOTE: 「ッギャ」のような場合を考慮する。
+				if(mora === 'ッ' && !isVowelOrNALine_private_(ch) && !isSymbol_private_(ch) && !isSmallKANA_private_(ch))
+					mora += getFirstMora(text.substring(1));
+			}
+			// １文字目が捨て仮名ではない
+			else
+			{
+				// NOTE: 特殊な撥音
+				if(mora === 'ン' && isVowelOrNALine_private_(ch))
+					mora += ch;
+				else
+				// NOTE: 拗音
+				if(romanTable_[mora + ch] !== void)
+					mora += ch;
+			}
+		}
+
+		if(mora.length <= 0)
+			throw new GRuntimeError(@"文字列のパース中に予期しない例外が発生しました。\n入力された文字列「&text;」");
+
+		return mora;
+	}
+
+	/*! \brief 日本語対応版。
+	 *
+	 * \remarks text の最初の１モーラに対するローマ字文字列を返します。
+	 * \remarks ただし、１モーラが拗音など２文字で形成されている場合は
+	 * \remarks 最初の１文字だけのローマ字文字列も同時に返します。
+	 * \remarks 
+	 * \remarks 特殊な入力文字として '\\*' があります。
+	 * \remarks これは入力のショートカット用の文字で、
+	 * \remarks 「次の文字の入力が受け入れられるならば現在の文字の入力を完了してもよい」
+	 * \remarks という意味です。
+	 * \remarks 一般的には「ン」の入力処理にのみ使われますが、仕様上は特に限定していません。
+	 * \remarks 
+	 * \remarks ※本来「ン」用の処理なので他の文字でこれを使った場合どうなるかは検証してません。
+	**/
+	function getRomanStringTable(text)
+	{
+		var table = romanTable_;
+		var mora = getFirstMora(text);
+		var result = [];
+		var key, record;
+		var work;
+
+		key = mora[0];
+		record = table[key];
+		if(record === void)
+			throw new GRuntimeError(@"「&key;」に対応するローマ字が見つかりませんでした。");
+
+		work = GObjectUtils.clone(record);
+		work.push(record*); // ????
+		result.push(%[target : key, romans: work]);
+
+		if(mora.length >= 2)
+		{
+			// NOTE:
+			// １文字目が撥音という事は特殊な撥音。
+			if(key == 'ン')
+			{
+				// この場合、特殊入力でのショートカットはできないので候補から削除する。
+				for(var i = 0; i < work.count; i++)
+				{
+					if(work[i].find('\\*') != -1)
+						work[i] = null;
+				}
+				work.remove(null);
+
+				if(work.count == 0)
+					throw new GRuntimeError(@"「&key;」に対するローマ字対応が特殊入力しか見つかりませんでした。");
+			}
+			else
+			// NOTE:
+			// １文字目が捨て仮名という事は短縮可能な促音。
+			if(isSmallKANA_private_(key))
+			{
+				// この場合、次のモーラの最初の子音を１回多く入力すれば
+				// ２モーラ分の入力が可能。
+				var next = getRomanStringTable(mora.substring(1));
+				var c = next.count;
+
+				for(var i = 0; i < c; i++)
+				{
+					var arr = next[i].romans;
+
+					work = [];
+					for(var j = 0; j < arr.count; j++)
+					{
+						var tmp = [];
+						tmp.push(arr[j][0], arr[j]*);
+						work.push(tmp);
+					}
+					result.insert(i, %[target : key + next[i].target, romans : work]);
+				}
+			}
+			else
+			// NOTE:
+			// １文字目が撥音でも促音でもないという事は拗音。
+			{
+				// 特に必要な処理はない。
+				record = table[mora];
+				if(record === void)
+					throw new GRuntimeError(@"「&mora;」のローマ字対応が見つかりませんでした。");
+
+				work = [];
+				work.push(record*);
+				result.unshift(%[target : mora, romans : work]);
+			}
+		}
+
+		var c = result.count;
+
+		// 全ての候補に対して、
+		// それが最後の文字の場合は '\\*' を持つ候補を削除する。
+		for(var i = 0; i < c; i++)
+		{
+			var work = result[i];
+			var c2 = work.romans.count;
+
+			if(work.target != text)
+				continue;
+			for(var j = 0; j < c2; j++)
+			{
+				if(work.romans[j].find('\\*') != -1)
+					work.romans[j] = null;
+			}
+			work.romans.remove(null);
+
+			if(work.romans.count == 0)
+				throw new GRuntimeError(@"「&work.target;」に対するローマ字対応が特殊入力しか見つかりませんでした。");
+		}
+
+		return result;
+	}
+
+	/*! \brief 捨て仮名判定。
+	 *
+	 * \return ch が捨て仮名ならば true を返す。
+	 * \return それ以外では false を返します。
+	**/
+	function isSmallKANA_private_(ch)
+	{
+		switch(ch)
+		{
+		case 'ァ': case 'ィ': case 'ゥ': case 'ェ': case 'ォ':
+		case 'ッ':
+		case 'ャ': case 'ュ': case 'ョ':
+		case 'ヮ':
+			return true;
+		}
+		return false;
+	}
+
+	/*! \brief 母音またはナ行、または「ン」判定。
+	 *
+	 * \return ch が母音かナ行、または「ン」ならば true を返す。
+	 * \return それ以外の場合は false を返します。
+	**/
+	function isVowelOrNALine_private_(ch)
+	{
+		switch(ch)
+		{
+		case 'ア': case 'イ': case 'ウ': case 'エ': case 'オ':
+		case 'ナ': case 'ニ': case 'ヌ': case 'ネ': case 'ノ':
+		case 'ン':
+			return true;
+		}
+		return false;
+	}
+
+	/*! \brief 「ン」の特殊入力の不可能判定。
+	 *
+	 * \return ch が「ン」かつ特殊入力が可能ならば true を返します。
+	 * \return それ以外ならば false を返す。
+	**/
+	function isSpecialSyllabicNasal_private_(ch)
+	{
+		if(ch[0] == 'ン' && !isVowelOrNALine_private_(ch[1]))
+			return true;
+		return false;
+	}
+
+	/*! \brief 記号判定。
+	 *
+	 * \return ch が記号ならば true を返す。
+	 * \return それ以外の場合は false を返します。
+	**/
+	function isSymbol_private_(ch)
+	{
+		return symbolTable[ch] !== void ? true : false;
+	}
+}
+
+/*! \brief ワード表示用のレイヤ
+**/
+class TypingWordLayer extends GWidgetLayer
+{
+	var word_ = void;
+
+	var captionFontSize_ = 16;
+	var rubyFontSize_ = 8;
+	var romanFontSize_ = 16;
+
+	var acceptColor_ = 0xC74573;
+	var acceptEdgeColor_ = clNone;
+	var currentColor_ = 0x000000;
+	var currentEdgeColor_ = 0xB6FF67;
+	var unstableColor_ = 0x000000;
+	var unstableEdgeColor_ = clNone;
+
+	var widthMargin_ = 10;
+	var heightMargin_ = 3;
+
+	var invisibleRuby_ = false;
+
+	var lineSpace_ = 1;
+
+	function TypingWordLayer(window, parent, handler)
+	{
+		super.GLayer(...);
+		fixPositionToCenter = true;
+		hitThreshold = 256;
+		bodyOpacity = 128;
+		absolute = 1000000;
+	}
+
+	/**/
+	function setWord(word)
+	{
+		word_ = word;
+
+		rebirth();
+	}
+
+	/**/
+	function clear()
+	{
+		word_.reset() if word_ !== void;
+		word_ = void;
+
+		rebirth();
+	}
+
+	/**/
+	function rebirth()
+	{
+		var word = word_;
+
+		if(word === void)
+			return;
+
+		var cw = 0, ch = 0;
+		var rw = 0, rh = 0;
+		var mw = 0, mh = 0;
+		var ls = 0;
+		var work;
+
+		work = word.caption;
+		font.height = captionFontSize_;
+		cw = font.getTextWidth(work);
+		ch = font.getTextHeight(work);
+
+		if(!invisibleRuby_)
+		{
+			work = word.ruby;
+			ls += lineSpace_;
+			font.height = rubyFontSize_;
+			rw = font.getTextWidth(work);
+			rh = font.getTextHeight(work);
+		}
+
+		work = word.romans;
+		ls += lineSpace_;
+		font.height = romanFontSize_;
+		mw = font.getTextWidth(work);
+		mh = font.getTextHeight(work);
+
+		// サイズ計算
+		var h = ch + rh + mh + ls + (heightMargin_ << 1);
+		var w;
+
+		w = cw;
+		w = rw if w < rw;
+		w = mw if w < mw;
+		w += (widthMargin_ << 1);
+
+		// サイズ変更
+		setSize(w, h);
+
+		// クリッピング
+		if(left < 0)
+			left = 0;
+		if(right > parent.width)
+			right = parent.width;
+		if(top < 0)
+			top = 0;
+		if(bottom > parent.height)
+			bottom = parent.height;
+
+		eraseBackGround();
+	}
+
+	/**/
+	function drawTextWithWhiteColor_private_(offx, offy, text, color, edge)
+	{
+		if(text.indexOf(' ') == -1)
+		{
+			drawText(offx, offy, text, color, 255, true, 1024, edge, 1, 0, 0);
+		}
+		else
+		{
+			// NOTE: 足掻けるだけ足掻いてみる。
+			var dtFunc = drawText;
+			var crFunc = colorRect;
+			var gtwFunc = font.getTextWidth;
+			var gthFunc = font.getTextHeight;
+			var len = text.length;
+			var v = (bodyOpacity << 24) & bodyColor;
+			var x = 0;
+			var ch;
+
+			for(var i = 0; i < len; i++)
+			{
+				ch = text.charAt(i);
+
+				if(ch == ' ')
+				{
+					dtFunc(x + offx, offy, ch, color, 255, true, 1024, edge, 1, 0, 0);
+					crFunc(x + offx, offy, gtwFunc(ch), gthFunc(ch), color);
+					crFunc(x + offx + 1, offy + 1, gtwFunc(ch) - 2, gthFunc(ch) - 2, edge);
+				}
+				else
+				{
+					dtFunc(x + offx, offy, ch, color, 255, true, 1024, edge, 1, 0, 0);
+				}
+
+				x += gtwFunc(ch);
+			}
+		}
+	}
+
+	function drawWord_private_(offx, offy, accept, current, unstable)
+	{
+		if(acceptEdgeColor_ == clNone)
+			drawText(offx, offy, accept, acceptColor_, 255);
+		else
+			drawTextWithWhiteColor_private_(offx, offy, accept, acceptColor_, acceptEdgeColor_);
+
+		offx += font.getTextWidth(accept);
+		if(currentEdgeColor_ == clNone)
+			drawText(offx, offy, current, currentColor_, 255);
+		else
+			drawTextWithWhiteColor_private_(offx, offy, current, currentColor_, currentEdgeColor_);
+
+		offx += font.getTextWidth(current);
+		if(unstableEdgeColor_ == clNone)
+			drawText(offx, offy, unstable, unstableColor_, 255);
+		else
+			drawTextWithWhiteColor_private_(offx, offy, unstable, unstableColor_, unstableEdgeColor_);
+	}
+
+	function drawCaption(offx = 0, offy = 0, color = captionColor, edge = edgeColor, shadow = shadowColor, shadowOffsetX = 2, shadowOffsetY = 2, shadowExtent = 2)
+	{
+		var word = word_;
+
+		if(word === void)
+			return;
+
+		if(edgeColor == clNone)
+		{
+			offy += 2;
+			// ルビ
+			if(!invisibleRuby_)
+			{
+				font.height = rubyFontSize_;
+				drawWord_private_(
+					offx + alignToWidth(captionAlign, word.ruby), offy,
+					word.acceptRuby, word.currentRuby, word.unstableRuby
+				);
+				offy += font.getTextHeight(word.ruby) + lineSpace_;
+			}
+			// キャプション
+			font.height = captionFontSize_;
+			drawText(
+				offx + alignToWidth(captionAlign, word.caption), offy,
+				word.caption, color, 255
+			);
+			// 音素
+			offy += font.getTextHeight(word.caption) + lineSpace_;
+			font.height = romanFontSize_;
+			drawWord_private_(
+				offx + alignToWidth(captionAlign, word.romans), offy,
+				word.acceptRomanString + word.currentRubyAcceptRomanString,
+				word.currentRubyUnstableRomanString,
+				word.unstableRomanString
+			);
+		}
+		else
+		{
+			drawText(offx + tw, offy + th, text, color, 255, true, 1024, edgeColor, 1, 0, 0);
+		}
+	}
+
+	/**/
+	function input(ch)
+	{
+		if(word_ === void)
+			throw new GRuntimeError('ワードが設定されていないオブジェクトに入力しました。');
+
+		var ret = word_.input(ch);
+
+		if(!isModTypingProcessorDeniedValue(ret))
+			rebirth();
+
+		return ret;
+	}
+
+	/**/
+	property word
+	{
+		getter		{ return word_; }
+	}
+
+	/**/
+	property accepted
+	{
+		getter		{ return (word_ === void ? false : word_.accepted); }
+	}
+}
+
+
+/*! \brief タイピングオブジェクト
+ *
+ * 最低限度の実装です。
+ * ゲームらしさを追求するならばこのオブジェクトを派生させて
+ * 演出を加えるべきです。
+**/
+class TypingObjectLayer extends GLayer
+{
+	var wordLayer_;
+
+	/**/
+	function TypingObjectLayer(window, parent, handler)
+	{
+		super.GLayer(...);
+		fixPositionToCenter = true;
+		hitThreshold = 256;
+		absolute = 1000;
+
+		wordLayer_ = createWordLayer(window, parent, onWordLayerEvent);
+	}
+
+	/**/
+	function createWordLayer(window, parent, handler)
+	{
+		return new TypingWordLayer(window, parent, handler);
+	}
+
+	/**/
+	function show()
+	{
+		super.show();
+		wordLayer_.show();
+	}
+
+	/**/
+	function hide()
+	{
+		super.hide();
+		wordLayer_.hide();
+	}
+
+	/**/
+	function setPos(left, top, width, height)
+	{
+		super.setPos(...);
+		fixWordLayerPosition();
+	}
+
+	/**/
+	function setCenterPos(x, y)
+	{
+		super.setCenterPos(...);
+		fixWordLayerPosition();
+	}
+
+	/**/
+	function fixWordLayerPosition()
+	{
+		with(wordLayer_)
+		{
+			.centerX = centerX;
+			.bottom = bottom;
+		}
+	}
+
+	/**/
+	function clear()
+	{
+		wordLayer_.clear();
+		hide();
+	}
+
+	/**/
+	function input(ch)
+	{
+		var ret = wordLayer_.input(ch);
+
+		// NOTE:
+		// 必要ならばレイヤ更新。
+
+		return ret;
+	}
+
+	/**/
+	function onWordLayerEvent(obj, message, elm)
+	{
+	}
+
+	/**/
+	property wordLayer
+	{
+		getter()		{ return wordLayer_; }
+	}
+
+	/**/
+	property accepted
+	{
+		getter()		{ return wordLayer_.accepted; }
+	}
+}
+
+
+/*! \brief キー処理を行うためのベースレイヤ
+ *
+ * 最低限度の実装です。
+ * ゲームらしさを追求するならばこのオブジェクトを派生させて
+ * 演出を加えるべきです。
+**/
+class TypingBaseLayer extends GLayer
+{
+	var processor_;
+
+	var usedObjectLayers_ = [];
+	var unUsedObjectLayers_ = [];
+
+	var activeObject_ = void;
+
+	/**/
+	function TypingBaseLayer(window, parent, handler)
+	{
+		super.GLayer(...);
+		hitThreshold = 256;
+		focusable = true;
+		hasImage = false;
+		absolute = 10000;
+
+		setSize(parent.width, parent.height);
+
+		processor_ = createTypingWordProcessor();
+
+		disable();
+	}
+
+	/**/
+	function createTypingWordProcessor()
+	{
+		return new TypingWordProcessorForJapanese();
+	}
+
+	/**/
+	function createTypingObjectLayer(window, parent, handler)
+	{
+		return new TypingObjectLayer(window, parent, handler);
+	}
+
+	/**/
+	function allocObjectLayer_private_(word)
+	{
+		if(word === void)
+			return void;
+
+		var cache = unUsedObjectLayers_;
+		var obj;
+
+		if(cache.count > 0)
+			obj = cache.pop();
+		else
+			family.receive(obj = createTypingObjectLayer(window, this, onTypingObjectEvent));
+
+		obj.absolute = 1000;
+		obj.wordLayer.setWord(word);
+		usedObjectLayers_.push(obj);
+
+		return obj;
+	}
+
+	/**/
+	function releaseObjectLayer_private_(obj)
+	{
+		if(obj === activeObject_)
+			activeObject_ = void;
+
+		obj.clear();
+
+		usedObjectLayers_.remove(obj);
+		unUsedObjectLayers_.push(obj);
+	}
+
+	/**/
+	function getUsedInitials(used = usedObjectLayers_)
+	{
+		var used = usedObjectLayers_;
+		var c = used.count;
+		var usedInitials = [];
+
+		for(var i = 0; i < c; i++)
+		{
+			if(used[i].wordLayer.accepted)
+				continue;
+
+			var word = used[i].wordLayer.word;
+
+			if(word === void)
+				continue;
+
+			var fc = word.getFirstRubyCandidate();
+			var fct = fc.targets;
+			var jc = fct.count;
+
+			for(var j = 0; j < jc; j++)
+			{
+				var romans = fct[j].romans;
+				var kc = romans.count;
+
+				for(var k = 0; k < kc; k++)
+					usedInitials.push(romans[k][0]) if usedInitials.find(romans[k][0]) == -1;
+			}
+		}
+
+		return usedInitials;
+	}
+
+	/*! \brief 新しいワードをランダムで表示する。
+	**/
+	function showNewWordAtRandom()
+	{
+		var obj = allocObjectLayer_private_(processor_.getNewWordAtRandom(getUsedInitials()));
+
+		if(obj != void)
+		{
+			obj.setCenterPos(width >> 1, height >> 1);
+			obj.show();
+		}
+
+		return obj;
+	}
+
+	/**/
+	function showNewWordByCaption(caption)
+	{
+		var obj = allocObjectLayer_private_(processor_.getNewWordByCaption(caption, getUsedInitials()));
+
+		if(obj != void)
+		{
+			obj.setCenterPos(width >> 1, height >> 1);
+			obj.show();
+		}
+
+		return obj;
+	}
+
+	/**/
+	function showNewWordByRuby(ruby)
+	{
+		var obj = allocObjectLayer_private_(processor_.getNewWordByRuby(ruby, getUsedInitials()));
+
+		if(obj != void)
+		{
+			obj.setCenterPos(width >> 1, height >> 1);
+			obj.show();
+		}
+
+		return obj;
+	}
+
+	/**/
+	function enable()
+	{
+		visible = enabled = true;
+		focus();
+	}
+
+	/**/
+	function disable()
+	{
+		visible = enabled = false;
+	}
+
+	/*! \brief オブジェクトにキーを入力します。
+	 *
+	 * \return 入力を処理したオブジェクトを返します。
+	 * \return それ以外（何もワードが存在しない等）では void を返します。
+	**/
+	function inputKey(key, shift)
+	{
+		var obj = activeObject_;
+
+		if(obj === void)
+		{
+			var used = usedObjectLayers_;
+
+			for(var i = used.count - 1; i >= 0; --i)
+			{
+				if(!isModTypingProcessorDeniedValue(used[i].input(key)))
+				{
+					//dm(used[i].wordLayer.word.caption);
+					activeObject_ = used[i];
+					break;
+				}
+			}
+		}
+		else
+		{
+			obj.input(key);
+		}
+
+		return obj;
+	}
+
+	/**/
+	function onTypingObjectEvent(obj, message, elm)
+	{
+	}
+
+	/**/
+	function onKeyPress(key, shift)
+	{
+		var obj = inputKey(key, shift);
+
+		if(obj !== void)
+		{
+			//log(@"【入力 '&key;'】");
+
+			// 入力が完了したらアクティブオブジェクトの参照を外しておく。
+			if(obj.accepted)
+			{
+				releaseObjectLayer_private_(obj);
+				callHandler('onWordAccepted', %[obj : obj]);
+				activeObject_ = void;
+			}
+		}
+	}
+
+	/**/
+	property processor
+	{
+		getter		{ return processor_; }
+	}
+
+	/**/
+	property targetCount
+	{
+		getter		{ return usedObjectLayers_.count; }
+	}
+}
+
+/**/
+class ModTypingProcessor extends GModule
+{
+	var baseLayer_ = void;
+	var dispatcher_ = void;
+
+	var targetImageStorage = '';
+
+	/**/
+	function ModTypingProcessor(container, name)
+	{
+		super.GModule(...);
+
+		baseLayer_ = createBaseLayer(window, window.primaryLayer, onBaseEvent);
+
+		dispatcher_ = createDispatcher();
+	}
+
+	/**/
+	function finalize()
+	{
+		invalidate dispatcher_;
+		invalidate baseLayer_;
+		baseLayer_ = void;
+
+		super.finalize(...);
+	}
+
+	/**/
+	function createExtensionTagHandlers()
+	{
+		return %[
+
+			/* @load_roman_table */
+			'load_roman_table' => function (elm) {
+				baseLayer_.processor.loadRomanTable(elm.language);
+			} incontextof this,
+
+			/* @typing_base_layer */
+			'typing_base_layer' => function (elm) {
+				with(baseLayer_)
+				{
+					.absolute = +elm.absolute;
+				}
+			} incontextof this,
+
+			/* @typing_config */
+			'typing_config' => function (elm) {
+				targetImageStorage = elm.target_image if elm.target_image !== void;
+			} incontextof this,
+
+			/* @typing_start */
+			'typing_start' => function (elm) {
+				baseLayer_.enable();
+			} incontextof this,
+
+			/* @typing_end */
+			'typing_end' => function (elm) {
+				baseLayer_.disable();
+			} incontextof this,
+
+			/* @load_typing_words */
+			'load_typing_words' => function (elm) {
+				baseLayer_.processor.loadWords(elm.storage);
+			} incontextof this,
+
+			/* @add_typing_word */
+			'add_typing_word' => function (elm) {
+				baseLayer_.processor.addWord(elm.caption, elm.ruby);
+			} incontextof this,
+
+			/* @remove_typing_word */
+			'remove_typing_word' => function (elm) {
+				with(baseLayer_.processor)
+				{
+					.removeWordByCaption(elm.caption) if elm.caption !== void;
+					.removeWordByRuby(elm.ruby) if elm.ruby !== void;
+				}
+			} incontextof this,
+
+			/* @clear_typing_word_list */
+			'clear_typing_word_list' => function (elm) {
+				baseLayer_.processor.clearWords();
+			} incontextof this,
+
+			/* @show_typing_target */
+			'show_typing_target' => function (elm) {
+				with(baseLayer_)
+				{
+					var obj = void;
+
+					// ターゲット表示
+					if(elm.caption == 'random' || elm.ruby == 'random' || (elm.caption === void && elm.ruby === void))
+					{
+						// word をランダム抽選
+						obj = .showNewWordAtRandom();
+					}
+					else
+					{
+						// caption or ruby による指定
+						if(elm.caption !== void)
+							obj = .showNewWordByCaption(elm.caption);
+						else
+						if(elm.ruby !== void)
+							obj = .showNewWordByRuby(elm.ruby);
+					}
+
+					if(obj !== void)
+					{
+						if(targetImageStorage != '')
+						{
+							obj.loadImages(targetImageStorage);
+							obj.setSizeToImageSize();
+						}
+
+						// ターゲットの表示位置
+						switch(elm.position)
+						{
+						case 'random':	elm.left = elm.top = 'random'; break;
+						case 'center':	elm.left = elm.top = 'center'; break;
+						}
+
+						// (left, top) で指定された位置に表示
+						// ただし、各値が 'random' ならば baseLayer の範囲に収まる範囲でランダム位置に表示
+						var width = obj.parent.width;
+						var height = obj.parent.height;
+						var left = +elm.left;
+						var top = +elm.top;
+
+						switch(elm.left)
+						{
+						case 'random':	left = intRandom(width); break;
+						case 'center':	left = width >> 1; break;
+						}
+						switch(elm.top)
+						{
+						case 'random':	top = intRandom(height); break;
+						case 'center':	top = height >> 1; break;
+						}
+
+						if(left < (obj.wordLayer.width >> 1))
+							left = obj.wordLayer.width >> 1;
+						else
+						if(left > (width - (obj.wordLayer.width >> 1)))
+							left = width - (obj.wordLayer.width >> 1);
+						if(top < (obj.wordLayer.height >> 1))
+							top = obj.wordLayer.height >> 1;
+						else
+						if(top > (height - (obj.wordLayer.height >> 1)))
+							top = height - (obj.wordLayer.height >> 1);
+
+						//dm(@"&left;(&elm.left;), &top;(&elm.top;)");
+						obj.setCenterPos(left, top);
+						// 指定時間が有る場合は指定時間経過後に自動的に消滅する設定を行う
+					}
+					else
+					{
+						if(elm.caption !== void)
+							warn(@"&elm.caption; は存在しません。");
+						if(elm.ruby !== void)
+							warn(@"&elm.ruby; は存在しません。");
+					}
+				}
+			} incontextof this,
+
+			/* @wait_typing */
+			'wait_typing' => function (elm, c) {
+				dispatcher_.make('onWordAccepted', onWordAccepted, elm.target_count);
+				c.waitSignal(%['word_accepted' => null]);
+			} incontextof this,
+
+			/* @dump_typing_word_list */
+			'dump_typing_word_list' => function (elm) {
+				baseLayer_.processor.dumpWordList();
+			} incontextof this,
+
+		];
+	}
+
+	/**/
+	function createBaseLayer(window, parent, handler)
+	{
+		return new TypingBaseLayer(window, parent, handler);
+	}
+
+	/**/
+	function createDispatcher()
+	{
+		return new GDispatcher();
+	}
+
+	/**/
+	function onBaseEvent(obj, message, params)
+	{
+		switch(message)
+		{
+		case 'onWordAccepted': dispatcher_.signal(message); break;
+		}
+	}
+
+	/**/
+	function onWordAccepted(count)
+	{
+		if(baseLayer_.targetCount <= count)
+			window.conductor.signal('word_accepted');
+	}
+
+	/**/
+	function onPrimaryLayerResize(left, top, width, height)
+	{
+		baseLayer_.setSize(width, height) if baseLayer_ !== void;
+	}
+
+	property baseLayer
+	{
+		getter		{ return baseLayer_; }
+	}
+}
+
+

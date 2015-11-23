@@ -1,0 +1,223 @@
+/*
+ * $Revision: 166 $
+**/
+
+
+/**/
+class GLocation
+{
+	var location_;
+	var indexName_;
+
+	var index_ = [];
+
+	/*! \brief コンストラクタ。
+	 *
+	 * \param [location] フォルダを統一ストレージで指定します。
+	 * \param [indexName:'':] インデックスファイルを作成する場合はファイル名を指定します。
+	**/
+	function GLocation(location, indexName = '')
+	{
+		location_ = location;
+		indexName_ = indexName;
+
+		loadIndex();
+	}
+
+	function finalize()
+	{
+		saveIndex();
+	}
+
+	/**/
+	function makeStoragePath(name)
+	{
+		return @"&location_;/&name;";
+	}
+
+	/**/
+	function saveIndex()
+	{
+		if(indexName_ != '')
+			index_.save(makeStoragePath(indexName_));
+	}
+
+	/**/
+	function loadIndex()
+	{
+		if(indexName_ != '')
+		{
+			var storage = makeStoragePath(indexName_);
+
+			if(Storages.isExistentStorage(storage))
+				index_.load(storage);
+		}
+	}
+
+	function sortFunction_private_(a, b)
+	{
+		var adep = a.split('/').count;
+		var bdep = b.split('/').count;
+
+		return adep < bdep;
+	}
+
+	/**/
+	function addIndex(name)
+	{
+		if(name.substring(0, 1) == '/')
+			name = name.substring(1);
+
+		with(index_)
+		{
+			if(.find(name) == -1)
+			{
+				.add(name);
+				.sort(sortFunction_private_);
+			}
+		}
+
+		return name;
+	}
+
+	/*! \brief 指定された名前のオブジェクトの存在を確認します。
+	 *
+	 * \param [name] 存在を確認したいオブジェクトの名前を指定します。
+	 *
+	 * \return name が既に存在していれば true を返します。
+	 * \return それ以外では false を返します。
+	 *
+	 * \remarks 事実上 Storages.isExistentStorage() の戻り値がそのまま戻り値となります。
+	**/
+	function exist(name)
+	{
+		return Storages.isExistentStorage(makeStoragePath(name));
+	}
+
+	/*! \brief オブジェクトをセーブします。
+	 *
+	 * \param [name] 任意の名前を指定します。
+	 * \param [obj] 保存したいオブジェクトを指定します。
+	 * \param [option:'':] Array#save() などの説明を参照してください。
+	 *
+	 * \return obj を返します。
+	**/
+	function save(name, obj, option = '')
+	{
+		var storage = makeStoragePath(addIndex(name));
+
+		if(obj instanceof 'Dictionary')
+			return saveDictionary(storage, obj, option);
+		else
+		if(obj instanceof 'Array')
+			return saveArray(storage, obj, option);
+		else
+		if(obj instanceof 'Layer')
+			return saveLayer(storage, obj, option);
+
+		return saveOtherObject(storage, obj, option);
+	}
+
+	/*! \brief オブジェクトをロードします。
+	 *
+	 * \return obj を返します。
+	**/
+	function load(name, obj, option)
+	{
+		var storage = makeStoragePath(addIndex(name));
+
+		if(obj instanceof 'Dictionary')
+			return loadDictionary(storage, obj, option);
+		else
+		if(obj instanceof 'Array')
+			return loadArray(storage, obj, option);
+		else
+		if(obj instanceof 'Layer')
+			return loadLayer(storage, obj, option);
+
+		return loadOtherObject(storage, obj, option);
+	}
+
+	/**/
+	function saveDictionary(storage, obj, option = '')
+	{
+		return (Dictionary.saveStruct incontextof obj)(storage, option);
+	}
+
+	/**/
+	function loadDictionary(storage, obj, option = '')
+	{
+		GObjectUtils.assignDictionary(obj, Scripts.evalStorage(storage, option));
+
+		return obj;
+	}
+
+	/**/
+	function saveArray(storage, obj, option = '')
+	{
+		return obj.saveStruct(storage, option);
+	}
+
+	/**/
+	function loadArray(storage, obj, option = '')
+	{
+		obj.assignStruct(Scripts.evalStorage(storage, option));
+
+		return obj;
+	}
+
+	/**/
+	function saveLayer(storage, obj, option = '')
+	{
+		obj.saveLayerImage(storage, option);
+
+		return obj;
+	}
+
+	/**/
+	function loadLayer(storage, obj, option = '')
+	{
+		obj.loadImages(storage, option);
+
+		return obj;
+	}
+
+	/**/
+	function saveOtherObject(storage, obj, option = '')
+	{
+		throw new GRuntimeError(@"不明なオブジェクトのため &storage; をセーブできませんでした。");
+	}
+
+	/**/
+	function loadOtherObject(storage, obj, option)
+	{
+		throw new GRuntimeError(@"不明なオブジェクトのため &storage; をロードできませんでした。");
+	}
+
+	/**/
+	function openShell(params = '')
+	{
+		if(location_ != '')
+			return System.shellExecute(Storages.getLocalName(location_), params);
+
+		return false;
+	}
+
+	property location
+	{
+		getter		{ return location_; }
+	}
+
+	property indexName
+	{
+		getter		{ return indexName_; }
+	}
+
+	property index
+	{
+		// NOTE: 読み取り専用です。
+		getter		{ return GObjectUtils.clone(index_); }
+	}
+}
+
+

@@ -1,0 +1,448 @@
+/*
+ * $Revision: 329 $
+**/
+
+
+global.widgetInitializeWidth = 32;
+global.widgetInitializeHeight = 32;
+
+global.widgetCaptionAlignMargin = 4;
+
+
+/*! \brief ウィジットレイヤ
+**/
+class GWidgetLayer extends GLayer
+{
+	var id;								//!< \brief ご自由に
+
+	var bodyColor_ = clAppWorkSpace;	//!< \brief 本体の色
+	var bodyOpacity_ = 255;				//!< \brief 本体不透明度
+	var caption_ = '';					//!< \brief キャプションとして表示するテキスト
+	var captionAlign_ = 'center';		//!< \brief キャプション文字列のアライン
+	var captionColor_ = clBtnText;		//!< \brief キャプション文字列の色
+	var shadowColor_ = clNone;			//!< \brief キャプション文字列の影カラー
+	var edgeColor_ = clNone;			//!< \brief キャプション文字列のエッジカラー
+
+	var mouseCentering = false;			//!< \brief フォーカス時にマウスカーソルをセンタリングするかどうか
+
+	var callOnUpdateState_ = false;		//!< \brief onUpdateState() を呼ぶかどうか
+	var callOnEraseBackGround_ = false;	//!< \brief onEraseBackGround() を呼ぶかどうか
+	var prevCursorOnLayer_ = false;		//!< \brief 最後に onMouseMove を通過した時の cursorOnLayer の値
+
+	/**/
+	function GWidgetLayer(window, parent, handler)
+	{
+		super.GLayer(...);
+		hitType = htMask;
+		hitThreshold = 0;
+		setSize(global.widgetInitializeWidth, global.widgetInitializeHeight);
+	}
+
+	/*! \brief ウィジット幅 width から必要なバッファ幅を返す。
+	**/
+	function widthToImageWidth(width)
+	{
+		return width;
+	}
+
+	/*! \brief ウィジット高さ height から必要なバッファ高さを返す。
+	**/
+	function heightToImageHeight(height)
+	{
+		return height;
+	}
+
+	/*! \brief 画像幅 bufferWidth からウィジット幅を返す。
+	**/
+	function imageWidthToWidth(bufferWidth)
+	{
+		return bufferWidth;
+	}
+
+	/*! \brief 画像高さ bufferHeight からウィジット高さを返す。
+	**/
+	function imageHeightToHeight(bufferHeight)
+	{
+		return bufferHeight;
+	}
+
+	/**/
+	function fixImageSize()
+	{
+		//setSize(width, height);
+	}
+
+	/**/
+	function eraseBackGround()
+	{
+		callOnEraseBackGround_ = true;
+		update();
+	}
+
+	/**/
+	function updateState()
+	{
+		callOnUpdateState_ = true;
+		update();
+	}
+
+	/**/
+	function drawBody(offx = 0, offy = 0)
+	{
+		var c = bodyColor, o = bodyOpacity;
+
+		if(c != clNone)
+		{
+			var w = width;
+			var h = height;
+
+			face = dfBoth;
+			colorRect(offx, offy, w, h, 0, -255);
+			colorRect(offx, offy, w, h, c, o);
+		}
+	}
+
+	/**/
+	function drawCaption(offx = 0, offy = 0, color = captionColor_, edge = edgeColor_, shadow = shadowColor_, shadowOffsetX = 2, shadowOffsetY = 2, shadowExtent = 2)
+	{
+		var text = caption;
+
+		if(text != '')
+		{
+			var tw, th;
+
+			tw = alignToWidth(captionAlign, text);
+			th = alignToHeight(captionAlign, text);
+
+			if(shadow != clNone)
+				drawText(offx + tw, offy + th, text, color, 255, true, 255, shadow, shadowExtent, shadowOffsetX, shadowOffsetY);
+			if(edge == clNone)
+				drawText(offx + tw, offy + th, text, color, 255);
+			else
+				drawText(offx + tw, offy + th, text, color, 255, true, 1024, edge, 1, 0, 0);
+		}
+	}
+
+	/**/
+	function alignToWidth(align, str)
+	{
+		if(font.face[0] == '@')
+		{
+			return (width - font.getTextHeight(str)) >> 1;
+		}
+		else
+		{
+			switch(align)
+			{
+			case 'l': case 'left':		return global.widgetCaptionAlignMargin;
+			case 'c': case 'center':	return (width - font.getTextWidth(str)) >> 1;
+			case 'r': case 'right':		return width - font.getTextWidth(str) - global.widgetCaptionAlignMargin;
+			default:					return (int)align;
+			}
+		}
+	}
+
+	/**/
+	function alignToHeight(align, str)
+	{
+		if(font.face[0] == '@')
+		{
+			switch(align)
+			{
+			case 'l': case 'left':		return global.widgetCaptionAlignMargin;
+			case 'c': case 'center':	return (height - font.getTextHeight(str)) >> 1;
+			case 'r': case 'right':		return height - font.getTextHeight(str) - global.widgetCaptionAlignMargin;
+			default:					return (int)align;
+			}
+		}
+		else
+		{
+			return (height - font.getTextHeight(str)) >> 1;
+		}
+	}
+
+	/**/
+	function centeringMouseCursor()
+	{
+		setCursorPos(width >> 1, height >> 1);
+	}
+
+	/**/
+	function resetMouseState()
+	{
+		updateState();
+		prevCursorOnLayer_ = false;
+		super.resetMouseState();
+	}
+
+	/**/
+	function loadImages()
+	{
+		var result = super.loadImages(...);
+
+		setSizeToImageSize();
+		drawCaption();
+
+		return result;
+	}
+
+	/**/
+	function clearImages()
+	{
+		super.clearImages();
+
+		eraseBackGround();
+		updateState();
+	}
+
+	/**/
+	function setPos(left, top, width = void, height = void)
+	{
+		if(width !== void || height !== void)
+		{
+			width = global.widgetInitializeWidth if width === void;
+			height = global.widgetInitializeHeight if height === void;
+
+			setImageSize(widthToImageWidth(width), heightToImageHeight(height)) if hasImage;
+		}
+
+		super.setPos(...);
+	}
+
+	/**/
+	function setSize(width, height)
+	{
+		if(hasImage)
+		{
+			setImageSize(widthToImageWidth(width), heightToImageHeight(height));
+			super.setSize(imageWidthToWidth(imageWidth), imageHeightToHeight(imageHeight));
+		}
+		else
+		{
+			super.setSize(width, height);
+		}
+	}
+
+	/**/
+	function setImageSize(width, height)
+	{
+		if(hasImage)
+		{
+			super.setImageSize(width, height);
+			clearImages();
+			setSizeToImageSize();
+		}
+	}
+
+	/**/
+	function setSizeToImageSize()
+	{
+		super.setSize(imageWidthToWidth(imageWidth), imageHeightToHeight(imageHeight));
+	}
+
+	/**/
+	function assign(src)
+	{
+		super.assign(...);
+
+		with(src)
+		{
+			bodyColor_ = .bodyColor_;
+			bodyOpacity_ = .bodyOpacity_;
+			caption_ = .caption_;
+			captionAlign_ = .captionAlign_;
+			captionColor_ = .captionColor_;
+			shadowColor_ = .shadowColor_;
+			edgeColor_ = .edgeColor_;
+			mouseCentering = .mouseCentering;
+		}
+	}
+
+	/**/
+	function store(tick)
+	{
+		var dic = super.store(...);
+
+		dic.bodyColor = bodyColor_;
+		dic.bodyOpacity = bodyOpacity_;
+		dic.caption = caption_;
+		dic.captionAlign = captionAlign_;
+		dic.captionColor = captionColor_;
+		dic.shadowColor = shadowColor_;
+		dic.edgeColor = edgeColor_;
+		dic.mouseCentering = mouseCentering;
+
+		return dic;
+	}
+
+	/**/
+	function restore(dic, tick)
+	{
+		super.restore(...);
+
+		bodyColor = dic.bodyColor;
+		bodyOpacity = dic.bodyOpacity;
+		caption = dic.caption;
+		captionAlign = dic.captionAlign;
+		captionColor = dic.captionColor;
+		shadowColor = dic.shadowColor;
+		edgeColor = dic.edgeColor;
+		mouseCentering = dic.mouseCentering;
+
+		eraseBackGround() if !imageLoaded;
+	}
+
+	/**/
+	function onEraseBackGround()
+	{
+		if(imageLoaded)
+		{
+			loadImages(loadImagesStorage, loadImagesColorKey);
+			setSizeToImageSize();
+		}
+		else
+		{
+			drawBody();
+		}
+		drawCaption();
+	}
+
+	/**/
+	function onUpdateState()
+	{
+	}
+
+	/**/
+	function onFocus(focused, direction)
+	{
+		super.onFocus(...);
+
+		// センタリング機能がＯＮかつ、
+		// カーソルがレイヤ内に存在しなければセンタリングする
+		if(mouseCentering && !cursorOnLayer)
+			centeringMouseCursor();
+	}
+
+	/**/
+	function onMouseMove(x, y, shift)
+	{
+		var now = cursorOnLayer;
+
+		updateState() if prevCursorOnLayer_ != now;
+		prevCursorOnLayer_ = now;
+
+		super.onMouseMove(...);
+	}
+
+	/**/
+	function onMouseEnter()
+	{
+		super.onMouseEnter();
+		updateState();
+	}
+
+	/**/
+	function onMouseLeave()
+	{
+		super.onMouseLeave();
+		updateState();
+	}
+
+	/**/
+	function onMouseDown(x, y, button, shift)
+	{
+		super.onMouseDown(...);
+		updateState();
+	}
+
+	/**/
+	function onMouseUp(x, y, button, shift)
+	{
+		updateState();
+		super.onMouseUp(...);
+	}
+
+	/**/
+	function onPaint()
+	{
+		prevCursorOnLayer_ = cursorOnLayer;
+
+		if(callOnEraseBackGround_)
+		{
+			callOnEraseBackGround_ = false;
+			onEraseBackGround() if hasImage;
+		}
+		if(callOnUpdateState_)
+		{
+			callOnUpdateState_ = false;
+			onUpdateState();
+		}
+
+		super.onPaint(...);
+	}
+
+	/**/
+	property bodyColor
+	{
+		setter(x)	{ bodyColor_ = x; eraseBackGround() if !imageLoaded; }
+		getter		{ return bodyColor_; }
+	}
+
+	/**/
+	property bodyOpacity
+	{
+		setter(x)	{ bodyOpacity_ = x; eraseBackGround() if !imageLoaded; }
+		getter		{ return bodyOpacity_; }
+	}
+
+	/**/
+	property caption
+	{
+		setter(x)	{ caption_ = x; eraseBackGround(); fixImageSize(); }
+		getter		{ return caption_; }
+	}
+
+	/**/
+	property captionAlign
+	{
+		setter(x)	{ captionAlign_ = x; eraseBackGround(); fixImageSize(); }
+		getter		{ return captionAlign_; }
+	}
+
+	/**/
+	property captionColor
+	{
+		setter(x)	{ captionColor_ = x; eraseBackGround(); }
+		getter		{ return captionColor_; }
+	}
+
+	/**/
+	property shadowColor
+	{
+		setter(x)	{ shadowColor_ = x; eraseBackGround(); }
+		getter		{ return shadowColor_; }
+	}
+
+	/**/
+	property edgeColor
+	{
+		setter(x)	{ edgeColor_ = x; eraseBackGround(); }
+		getter		{ return edgeColor_; }
+	}
+
+	/**/
+	property callOnUpdateState
+	{
+		setter(x)	{ callOnUpdateState_ = x; }
+		getter		{ return callOnUpdateState_; }
+	}
+
+	/**/
+	property callOnEraseBackGround
+	{
+		setter(x)	{ callOnEraseBackGround_ = x; }
+		getter		{ return callOnEraseBackGround_; }
+	}
+}
+
+

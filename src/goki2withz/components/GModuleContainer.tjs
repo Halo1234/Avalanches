@@ -1,0 +1,298 @@
+/*
+ * $Revision: 266 $
+**/
+
+
+/*! \brief モジュール専用コンテナ
+**/
+class GModuleContainer extends GContainer
+{
+	var keys_ = [];				//<! \brief 読み込まれているモジュール名。後に読み込まれたモジュール名が先頭になります。
+	var noticeHandlers_ = [];
+
+	/*! \brief コンストラクタ
+	 *
+	 * \param [window] プラグイン先のウインドウオブジェクトを指定します。
+	**/
+	function GModuleContainer(window)
+	{
+		super.GContainer(...);
+	}
+
+	function finalize()
+	{
+		each(unload);
+	}
+
+	/**/
+	function isLoaded(nameOrModule)
+	{
+		var mod = void;
+
+		switch(typeof(nameOrModule))
+		{
+		case 'String':		mod = get(nameOrModule); break;
+		case 'Object':		mod = nameOrModule if find(nameOrModule) != ''; break;
+		default:
+			throw new GArgumentsError('nameOrModule 引数には名前 (String) かモジュール (GModule 派生オブジェクト) を指定してください。');
+		}
+
+		return (mod == void ? false : true);
+	}
+
+	/**/
+	function load(name, automaton = true)
+	{
+		var mod = super.get(name);
+
+		// 競合確認
+		if(mod !== void)
+			return mod;
+
+		if(typeof(global[name]) === 'undefined')
+		{
+			// クラスが見つからないので、クラス名と同じ名前で *.tjs ファイルの読み込みを試す。
+			var storage = @"&name;.tjs";
+
+			if(!Storages.isExistentStorage(storage))
+				throw new GRuntimeError(@"'&name;' モジュールが見つかりませんでした。");
+
+			loadTJSOnce(storage);
+		}
+
+		try {
+			mod = new global[name](this, name);
+		} catch(e) {
+			throw new GRuntimeError(
+				@"'&name;' モジュールのローディングに失敗しました。\n" +
+				e.message
+			);
+		}
+
+		super.add(name, mod);
+
+		if(automaton)
+		{
+			var orig = name;
+			var str = orig[0].toLowerCase() + orig.substring(1);
+			addAlias(mod, str) if str != orig;
+		}
+
+		// NOTE: add/push は不可です。注意してください。
+		keys_.unshift(name);
+
+		// ロード完了
+		notice('onLoadModule', mod);
+		mod.onAttach(name);
+
+		return mod;
+	}
+
+	/**/
+	function unload(nameOrModule)
+	{
+		var mod = void;
+
+		switch(typeof(nameOrModule))
+		{
+		case 'String':		mod = get(nameOrModule); break;
+		case 'Object':		mod = nameOrModule if find(nameOrModule) != ''; break;
+		default:
+			throw new GArgumentsError('nameOrModule 引数には名前 (String) かモジュール (GModule 派生オブジェクト) を指定してください。');
+		}
+
+		if(mod !== void)
+		{
+			mod.onDetach(mod.name);
+
+			keys_.remove(mod.name);
+			super.erase(mod.name);
+
+			// アンロード完了
+			notice('onUnloadModule', mod);
+
+			invalidate mod;
+		}
+	}
+
+	/**/
+	function addAlias(nameOrModule, alias)
+	{
+		var work = get(alias);
+		var mod = void;
+
+		switch(typeof(nameOrModule))
+		{
+		case 'String':		mod = get(nameOrModule); break;
+		case 'Object':		mod = nameOrModule if find(nameOrModule) != ''; break;
+		default:
+			throw new GArgumentsError('nameOrModule 引数には名前 (String) かモジュール (GModule 派生オブジェクト) を指定してください。');
+		}
+
+		if(work !== void)
+		{
+			// すでに登録済みならば何もしない。
+			if(work.name == mod.name)
+				return;
+
+			throw new GRuntimeError(
+				@"モジュールの別名 '&alias;' の競合。\n" +
+				@"既に登録されているモジュール: '&work.name;'\n" +
+				@"登録しようとしたモジュール: '&mod.name;'"
+			);
+		}
+
+		super.add(alias, mod);
+
+		// 登録完了
+		mod.onRegistAlias(alias);
+	}
+
+	/**/
+	function eraseAlias(alias)
+	{
+		// keys_ に名前が載っているという事はエイリアスではない
+		if(keys_.find(alias) != -1)
+			throw new GArgumentsError(@"モジュールの別名を削除しようとしましたが &alias; は別名ではありません。");
+
+		var mod = super.get(alias);
+
+		if(mod !== void)
+		{
+			super.erase(alias);
+
+			// 削除完了
+			mod.onUnregistAlias(alias);
+		}
+	}
+
+	/*! \brief モジュールのタグハンドラを統合する。
+	 *
+	 * \param [destination] 統合先の辞書配列オブジェクトを指定します。
+	 *
+	 * \return 統合した辞書配列オブジェクトを返します。つまり destination を返します。
+	**/
+	function unifyTagHandlers(destination)
+	{
+		var arr = GObjectUtils.duplicate(keys_);
+		var func = GObjectUtils.unionDictionary;
+
+		for(var i = arr.count - 1; i >= 0; i--)
+		{
+			with(get(arr[i]))
+				func(destination, .tagHandlers) if .tagHandlers !== void;
+		}
+
+		return destination;
+	}
+
+	/**/
+	function notice(message, arguments*)
+	{
+		var own = window;
+		var hdrs = noticeHandlers_;
+		var work;
+
+		if(typeof(own[message]) !== 'undefined')
+			own[message](arguments*) if own[message] instanceof 'Function';
+
+		for(var i = hdrs.count - 1; i >= 0; i--)
+		{
+			work = hdrs[i];
+			if(work instanceof 'Function')
+				work(message, arguments*);
+			else
+			if(typeof(work) === 'Object' && typeof(work[message]) !== 'undefined')
+				work[message](arguments*) if work[message] instanceof 'Function';
+		}
+	}
+
+	/**/
+	function callHandler(message, arguments*)
+	{
+		var arr = GObjectUtils.duplicate(keys_);
+		var mod;
+
+		for(var i = arr.count - 1; i >= 0; i--)
+		{
+			if(isvalid(mod = get(arr[i])))
+			{
+				if(typeof(mod[message]) !== 'undefined')
+					mod[message](arguments*) if mod[message] instanceof 'Function';
+			}
+		}
+	}
+
+	/**/
+	function callHandlerInAnotherCycle(message, arguments*)
+	{
+		anotherCycle.add(this.callHandler, message, arguments*);
+	}
+
+	/**/
+	function add(name, obj)
+	{
+		throw new GImpossibleAccessError('GModuleContainer#add() メソッドは利用できません。代わりに load() メソッドを利用してください。');
+	}
+
+	/**/
+	function erase(name)
+	{
+		throw new GImpossibleAccessError('GModuleContainer#erase() メソッドは利用できません。代わりに unload() メソッドを利用してください。');
+	}
+
+	/**/
+	function remove(obj)
+	{
+		throw new GImpossibleAccessError('GModuleContainer#remove() メソッドは利用できません。代わりに unload() メソッドを利用してください。');
+	}
+
+	/**/
+	function each(block, arguments*)
+	{
+		var arr = GObjectUtils.duplicate(keys_);
+
+		for(var i = arr.count - 1; i >= 0; i--)
+			block(get(arr[i]), arguments*);
+	}
+
+	/**/
+	function store(tick)
+	{
+		var dic = super.store(tick);
+		var arr = keys_;
+
+		// 全てのモジュールの状態を保存する。
+		dic.modules = %[];
+		for(var i = arr.count - 1; i >= 0; i--)
+		{
+			with(get(arr[i]))
+				dic.modules[arr[i]] = .store(tick);
+		}
+		dic.keys = arr;
+
+		return dic;
+	}
+
+	/**/
+	function restore(dic, tick)
+	{
+		var arr = GObjectUtils.duplicate(keys_);
+
+		super.restore(dic, tick);
+
+		// 必要のないモジュールをアンロード
+		for(var i = arr.count - 1; i >= 0; i--)
+			unload(arr[i]) if dic.keys.find(arr[i]) == -1;
+
+		// 必要なモジュールを復元
+		for(var i = dic.keys.count - 1; i >= 0; i--)
+		{
+			with(load(dic.keys[i]))
+				.restore(dic.modules[dic.keys[i]], tick);
+		}
+
+		// キー配列復元
+		keys_.assign(dic.keys);
+	}
+}
