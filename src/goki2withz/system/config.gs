@@ -108,6 +108,18 @@
 @make_character name=地文 actual_viewing_name_string=''
 @make_character name=ハロ voice_group=halo 立ち絵有り ボイス有り
 
+; character タグはすべてのキャラクタタグの実体です。
+; このタグに対して設定するとすべてのキャラクタタグに適応されます。
+;
+; 例：
+;  @!character gray_scale=セピア->true r_gamma=セピア->1.5 g_gamma=セピア->1.3
+;   ^ ! マークに注意
+;  ;
+;  ; これは gray_scale=true r_gamma=1.5 g_gamma=1.3 に置換されます。
+;  @ハロ セピア
+;  ;
+;  ; これも同様に置換されます。
+;  @地文 セピア
 @!character centerx=左->200,中->400,右->600,中左->300,中右->500,左端->100,右端->700
 @!character gray_scale=セピア->true r_gamma=セピア->1.5 g_gamma=セピア->1.3
 @!character visible=表示->true,消去->false
