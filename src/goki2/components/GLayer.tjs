@@ -3,22 +3,22 @@
 **/
 
 
-/*! \brief ƒŒƒCƒ„Šî–{ƒNƒ‰ƒX
+/*! \brief ãƒ¬ã‚¤ãƒ¤åŸºæœ¬ã‚¯ãƒ©ã‚¹
 **/
 class GLayer extends Layer
 {
 	var handler;
 
 	var family_ = void;
-	var conductor_ = void;				//!< \brief ‚±‚ÌƒŒƒCƒ„‚ÌƒRƒ“ƒ_ƒNƒ^B
-	var colorCorrection_ = void;		//!< \brief ‚±‚ÌƒŒƒCƒ„‚ÌF•â³—pƒIƒuƒWƒFƒNƒgB
-	var shaker_ = void;					//!< \brief ‚±‚ÌƒŒƒCƒ„‚ÌƒVƒFƒCƒJ[
+	var conductor_ = void;				//!< \brief ã“ã®ãƒ¬ã‚¤ãƒ¤ã®ã‚³ãƒ³ãƒ€ã‚¯ã‚¿ã€‚
+	var colorCorrection_ = void;		//!< \brief ã“ã®ãƒ¬ã‚¤ãƒ¤ã®è‰²è£œæ­£ç”¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
+	var shaker_ = void;					//!< \brief ã“ã®ãƒ¬ã‚¤ãƒ¤ã®ã‚·ã‚§ã‚¤ã‚«ãƒ¼
 	var splineUsed_ = false;
-	var mover_ = void;					//!< \brief ‚±‚ÌƒŒƒCƒ„‚Ìƒ€[ƒo[
+	var mover_ = void;					//!< \brief ã“ã®ãƒ¬ã‚¤ãƒ¤ã®ãƒ ãƒ¼ãƒãƒ¼
 
-	var mirror_ = null;					//!< \brief ƒ~ƒ‰[ƒŒƒCƒ„BÅŒã‚ÉƒAƒTƒCƒ“‚µ‚½ƒŒƒCƒ„‚Å‚·B
-	var workLayer_;						//!< \brief ì‹Æ—pƒŒƒCƒ„
-	var internalVisible_ = void;		//!< \brief ì‹Æ’†‚Ì visible ó‘Ô
+	var mirror_ = null;					//!< \brief ãƒŸãƒ©ãƒ¼ãƒ¬ã‚¤ãƒ¤ã€‚æœ€å¾Œã«ã‚¢ã‚µã‚¤ãƒ³ã—ãŸãƒ¬ã‚¤ãƒ¤ã§ã™ã€‚
+	var workLayer_;						//!< \brief ä½œæ¥­ç”¨ãƒ¬ã‚¤ãƒ¤
+	var internalVisible_ = void;		//!< \brief ä½œæ¥­ä¸­ã® visible çŠ¶æ…‹
 	var offScreen_ = false;
 
 	var name_;
@@ -45,15 +45,15 @@ class GLayer extends Layer
 	var defaultFontFace_;
 	var defaultFontSize_;
 
-	var showRunning_ = false;			//!< \brief •\¦Œø‰ÊÀs’†‚Í true ‚Éİ’è‚³‚ê‚Ü‚·B
-	var hideRunning_ = false;			//!< \brief ”ñ•\¦Œø‰ÊÀs’†‚Í true ‚Éİ’è‚³‚ê‚Ü‚·B
+	var showRunning_ = false;			//!< \brief è¡¨ç¤ºåŠ¹æœå®Ÿè¡Œä¸­ã¯ true ã«è¨­å®šã•ã‚Œã¾ã™ã€‚
+	var hideRunning_ = false;			//!< \brief éè¡¨ç¤ºåŠ¹æœå®Ÿè¡Œä¸­ã¯ true ã«è¨­å®šã•ã‚Œã¾ã™ã€‚
 
-	var inTransition_ = false;			//!< \brief ƒgƒ‰ƒ“ƒWƒVƒ‡ƒ“’†‚Í true ‚Éİ’è‚³‚ê‚Ü‚·B
+	var inTransition_ = false;			//!< \brief ãƒˆãƒ©ãƒ³ã‚¸ã‚·ãƒ§ãƒ³ä¸­ã¯ true ã«è¨­å®šã•ã‚Œã¾ã™ã€‚
 	var exchangeAfterTransition_;
 	var withChildrenTransition_;
 
-	var mouseEnterToLeave_ = false;		//!< \biref onMouseEnter ‚ğ’Ê‰ß‚µ‚Ä‚©‚ç onMouseLeave() ‚ª”­¶‚·‚é‚Ü‚Å‚ÌŠÔ true ‚Éİ’è‚³‚ê‚Ü‚·B
-	var mouseDownToUp_ = false;			//!< \biref onMouseDown ‚ğ’Ê‰ß‚µ‚Ä‚©‚ç onMouseUp() ‚ª”­¶‚·‚é‚Ü‚Å‚ÌŠÔ true ‚Éİ’è‚³‚ê‚Ü‚·B
+	var mouseEnterToLeave_ = false;		//!< \biref onMouseEnter ã‚’é€šéã—ã¦ã‹ã‚‰ onMouseLeave() ãŒç™ºç”Ÿã™ã‚‹ã¾ã§ã®é–“ true ã«è¨­å®šã•ã‚Œã¾ã™ã€‚
+	var mouseDownToUp_ = false;			//!< \biref onMouseDown ã‚’é€šéã—ã¦ã‹ã‚‰ onMouseUp() ãŒç™ºç”Ÿã™ã‚‹ã¾ã§ã®é–“ true ã«è¨­å®šã•ã‚Œã¾ã™ã€‚
 
 	/**/
 	function GLayer(window, parent, handler = void)
@@ -65,7 +65,7 @@ class GLayer extends Layer
 		defaultFontFace_ = font.face;
 		defaultFontSize_ = font.height;
 
-		// “Á‚É——R‚Í–³‚¢•”•ª‚à‚ ‚é‚ª–¾¦“I‚É‰Šú‰»‚µ‚Ä‚¨‚­B
+		// ç‰¹ã«ç†ç”±ã¯ç„¡ã„éƒ¨åˆ†ã‚‚ã‚ã‚‹ãŒæ˜ç¤ºçš„ã«åˆæœŸåŒ–ã—ã¦ãŠãã€‚
 		name = GObjectUtils.getClassName(this);
 		hitType = htMask;
 		hitThreshold = 256;
@@ -296,13 +296,13 @@ class GLayer extends Layer
 		anotherCycle.add(callHandler, message, elements);
 	}
 
-	/*! \brief ƒŒƒCƒ„[‚ÉƒAƒTƒCƒ“‚µ‚Ü‚·B
+	/*! \brief ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«ã‚¢ã‚µã‚¤ãƒ³ã—ã¾ã™ã€‚
 	 *
-	 * \param [src] ƒAƒTƒCƒ“æƒŒƒCƒ„[‚ğw’è‚µ‚Ü‚·B
+	 * \param [src] ã‚¢ã‚µã‚¤ãƒ³å…ˆãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’æŒ‡å®šã—ã¾ã™ã€‚
 	 *
-	 * \return this ‚ğ•Ô‚µ‚Ü‚·B
+	 * \return this ã‚’è¿”ã—ã¾ã™ã€‚
 	 *
-	 * \remarks ©g‚ªƒvƒ‰ƒCƒ}ƒŠ‚Ìê‡‚Í offScreen ƒvƒƒpƒeƒB’l‚Í•s’è‚É‚È‚è‚Ü‚·B
+	 * \remarks è‡ªèº«ãŒãƒ—ãƒ©ã‚¤ãƒãƒªã®å ´åˆã¯ offScreen ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£å€¤ã¯ä¸å®šã«ãªã‚Šã¾ã™ã€‚
 	**/
 	function assign(src)
 	{
@@ -344,7 +344,7 @@ class GLayer extends Layer
 			super.left = (left_ = .left) + (offsetX_ = .offsetX);
 			super.top = (top_ = .top) + (offsetY_ = .offsetY);
 
-			// NOTE: assignImages() ‚É‚æ‚Á‚Ä hasImage ‚ÍŠù‚ÉƒAƒTƒCƒ“‚³‚ê‚Ä‚¢‚Ü‚·B
+			// NOTE: assignImages() ã«ã‚ˆã£ã¦ hasImage ã¯æ—¢ã«ã‚¢ã‚µã‚¤ãƒ³ã•ã‚Œã¦ã„ã¾ã™ã€‚
 			setImagePos(.imageLeft, .imageTop) if hasImage;
 
 			fixPositionToCenter = .fixPositionToCenter;
@@ -362,7 +362,7 @@ class GLayer extends Layer
 	function assignToMirror()
 	{
 		if(mirror_ === null)
-			throw new GRuntimeError('ƒ~ƒ‰[ƒŒƒCƒ„‚ÉƒAƒTƒCƒ“‚µ‚Ü‚µ‚½‚ªAƒ~ƒ‰[ƒŒƒCƒ„‚ªİ’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB');
+			throw new GRuntimeError('ãƒŸãƒ©ãƒ¼ãƒ¬ã‚¤ãƒ¤ã«ã‚¢ã‚µã‚¤ãƒ³ã—ã¾ã—ãŸãŒã€ãƒŸãƒ©ãƒ¼ãƒ¬ã‚¤ãƒ¤ãŒè¨­å®šã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚');
 
 		assign(mirror_);
 	}
@@ -371,7 +371,7 @@ class GLayer extends Layer
 	function exchange()
 	{
 		if(mirror_ === null)
-			throw new GRuntimeError('ƒ~ƒ‰[ƒŒƒCƒ„‚Æ“à—e‚ğ“ü‚ê‘Ö‚¦‚æ‚¤‚Æ‚µ‚Ü‚µ‚½‚ªAƒ~ƒ‰[ƒŒƒCƒ„‚ªİ’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB');
+			throw new GRuntimeError('ãƒŸãƒ©ãƒ¼ãƒ¬ã‚¤ãƒ¤ã¨å†…å®¹ã‚’å…¥ã‚Œæ›¿ãˆã‚ˆã†ã¨ã—ã¾ã—ãŸãŒã€ãƒŸãƒ©ãƒ¼ãƒ¬ã‚¤ãƒ¤ãŒè¨­å®šã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚');
 
 		with(mirror_)
 		{
@@ -399,14 +399,14 @@ class GLayer extends Layer
 	}
 
 	/**
-	 * \brief ‚±‚ÌƒŒƒCƒ„‚É‘Î‚·‚é‰½‚ç‚©‚Ì•`‰æ‚ğs‚¤ê‡‚Ìƒ^[ƒQƒbƒg‚ğ•Ô‚·B
-	 * \brief ‚±‚Ìƒƒ\ƒbƒh‚Åæ“¾‚µ‚½ƒ^[ƒQƒbƒg‚ª•K—v‚È‚­‚È‚Á‚½ê‡
-	 * \brief •K‚¸AreleaseRenderingTarget() ‚ğŒÄ‚Ño‚µ‚Ä‚­‚¾‚³‚¢B
+	 * \brief ã“ã®ãƒ¬ã‚¤ãƒ¤ã«å¯¾ã™ã‚‹ä½•ã‚‰ã‹ã®æç”»ã‚’è¡Œã†å ´åˆã®ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚’è¿”ã™ã€‚
+	 * \brief ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã§å–å¾—ã—ãŸã‚¿ãƒ¼ã‚²ãƒƒãƒˆãŒå¿…è¦ãªããªã£ãŸå ´åˆ
+	 * \brief å¿…ãšã€releaseRenderingTarget() ã‚’å‘¼ã³å‡ºã—ã¦ãã ã•ã„ã€‚
 	 *
-	 * \remarks ‚±‚Ìƒƒ\ƒbƒh‚ğŒÄ‚Ño‚·‚Æ this ‚Í‹­§“I‚É”ñ•\¦‚É‚È‚è‚Ü‚·B
-	 * \remarks ÀÛ‚É‚Í•\¦‚³‚ê‚Ä‚¢‚È‚¢‚¾‚¯‚ÅƒvƒƒpƒeƒB‚Ì’l‚Í•Ï‰»‚µ‚Ü‚¹‚ñB
-	 * \remarks i‚Â‚Ü‚èAthis.visible ‚Í’Êí’Ê‚è‚Ì’l‚ğ•Ô‚µ‚Ü‚·j
-	 * \remarks ‚±‚Ì“®ì‚Í this ã‚Å onMouseEnter ‚È‚Ç‚ÌƒCƒxƒ“ƒg‚ª”­¶‚µ‚È‚¢–‚ğˆÓ–¡‚µ‚Ü‚·B
+	 * \remarks ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã³å‡ºã™ã¨ this ã¯å¼·åˆ¶çš„ã«éè¡¨ç¤ºã«ãªã‚Šã¾ã™ã€‚
+	 * \remarks å®Ÿéš›ã«ã¯è¡¨ç¤ºã•ã‚Œã¦ã„ãªã„ã ã‘ã§ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®å€¤ã¯å¤‰åŒ–ã—ã¾ã›ã‚“ã€‚
+	 * \remarks ï¼ˆã¤ã¾ã‚Šã€this.visible ã¯é€šå¸¸é€šã‚Šã®å€¤ã‚’è¿”ã—ã¾ã™ï¼‰
+	 * \remarks ã“ã®å‹•ä½œã¯ this ä¸Šã§ onMouseEnter ãªã©ã®ã‚¤ãƒ™ãƒ³ãƒˆãŒç™ºç”Ÿã—ãªã„äº‹ã‚’æ„å‘³ã—ã¾ã™ã€‚
 	**/
 	function getRenderingTarget()
 	{
@@ -425,9 +425,9 @@ class GLayer extends Layer
 	}
 
 	/**
-	 * \brief getRenderingTarget() ‚Åæ“¾‚µ‚½ƒ^[ƒQƒbƒg‚ğ‰ğ•ú‚µ‚Ü‚·B
-	 * \brief ˆø”‚Ì target ‚Í’P‚È‚éƒ`ƒFƒbƒN—p‚Å‚·‚ªA
-	 * \brief ³‚µ‚­Athis ‚Ìƒ^[ƒQƒbƒg‚ğ“n‚³‚È‚¢ŒÀ‚è release ‚Í‚³‚ê‚Ü‚¹‚ñB
+	 * \brief getRenderingTarget() ã§å–å¾—ã—ãŸã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚’è§£æ”¾ã—ã¾ã™ã€‚
+	 * \brief å¼•æ•°ã® target ã¯å˜ãªã‚‹ãƒã‚§ãƒƒã‚¯ç”¨ã§ã™ãŒã€
+	 * \brief æ­£ã—ãã€this ã®ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚’æ¸¡ã•ãªã„é™ã‚Š release ã¯ã•ã‚Œã¾ã›ã‚“ã€‚
 	**/
 	function releaseRenderingTarget(target)
 	{
@@ -469,7 +469,7 @@ class GLayer extends Layer
 	function assignFontToParent(decoration = false)
 	{
 		if(isPrimary)
-			throw new GRuntimeError('ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚É‘Î‚µ‚Ä GLayer#assignFontToParent() ‚ğŒÄ‚Ño‚µ‚Ü‚µ‚½B');
+			throw new GRuntimeError('ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã«å¯¾ã—ã¦ GLayer#assignFontToParent() ã‚’å‘¼ã³å‡ºã—ã¾ã—ãŸã€‚');
 
 		assignFont(parent, decoration);
 
@@ -588,19 +588,19 @@ class GLayer extends Layer
 		return true;
 	}
 
-	/*! \brief •\¦Œø‰Ê‚ğŠJn‚µ‚Ü‚·B
+	/*! \brief è¡¨ç¤ºåŠ¹æœã‚’é–‹å§‹ã—ã¾ã™ã€‚
 	 *
-	 * \remarks ŒÅ—L‚Ì•\¦Œø‰Ê‚ğÀ‘•‚·‚éê‡‚Í‚±‚ê‚ğƒI[ƒo[ƒ‰ƒCƒh‚µ‚Ä‚­‚¾‚³‚¢B
-	 * \remarks d—lãA”h¶æ‚ÅŠî’êƒNƒ‰ƒX‚Ì“¯ƒƒ\ƒbƒh‚ğŒÄ‚Ño‚·‚×‚«‚Å‚Í‚ ‚è‚Ü‚¹‚ñB
+	 * \remarks å›ºæœ‰ã®è¡¨ç¤ºåŠ¹æœã‚’å®Ÿè£…ã™ã‚‹å ´åˆã¯ã“ã‚Œã‚’ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã—ã¦ãã ã•ã„ã€‚
+	 * \remarks ä»•æ§˜ä¸Šã€æ´¾ç”Ÿå…ˆã§åŸºåº•ã‚¯ãƒ©ã‚¹ã®åŒãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã³å‡ºã™ã¹ãã§ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚
 	**/
 	function beginShowEffect()
 	{
 		anotherCycle.uniqueAdd(showComplete);
 	}
 
-	/*! \brief •\¦Œø‰Ê‚ªŠ®—¹‚µ‚½‚ÉŒÄ‚Î‚ê‚Ü‚·B
+	/*! \brief è¡¨ç¤ºåŠ¹æœãŒå®Œäº†ã—ãŸæ™‚ã«å‘¼ã°ã‚Œã¾ã™ã€‚
 	 *
-	 * \remarks show() ŒÄo‚µŒãA•K‚¸ŒÄ‚Î‚ê‚é‚Æ‚¢‚¤•ÛØ‚Í‚ ‚è‚Ü‚¹‚ñB
+	 * \remarks show() å‘¼å‡ºã—å¾Œã€å¿…ãšå‘¼ã°ã‚Œã‚‹ã¨ã„ã†ä¿è¨¼ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚
 	**/
 	function showComplete()
 	{
@@ -624,19 +624,19 @@ class GLayer extends Layer
 		return false;
 	}
 
-	/*! \brief ”ñ•\¦Œø‰Ê‚ğŠJn‚µ‚Ü‚·B
+	/*! \brief éè¡¨ç¤ºåŠ¹æœã‚’é–‹å§‹ã—ã¾ã™ã€‚
 	 *
-	 * \remarks ŒÅ—L‚Ì”ñ•\¦Œø‰Ê‚ğÀ‘•‚·‚éê‡‚Í‚±‚ê‚ğƒI[ƒo[ƒ‰ƒCƒh‚µ‚Ä‚­‚¾‚³‚¢B
-	 * \remarks d—lãA”h¶æ‚ÅŠî’êƒNƒ‰ƒX‚Ì“¯ƒƒ\ƒbƒh‚ğŒÄ‚Ño‚·‚×‚«‚Å‚Í‚ ‚è‚Ü‚¹‚ñB
+	 * \remarks å›ºæœ‰ã®éè¡¨ç¤ºåŠ¹æœã‚’å®Ÿè£…ã™ã‚‹å ´åˆã¯ã“ã‚Œã‚’ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã—ã¦ãã ã•ã„ã€‚
+	 * \remarks ä»•æ§˜ä¸Šã€æ´¾ç”Ÿå…ˆã§åŸºåº•ã‚¯ãƒ©ã‚¹ã®åŒãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã³å‡ºã™ã¹ãã§ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚
 	**/
 	function beginHideEffect()
 	{
 		anotherCycle.uniqueAdd(hideComplete);
 	}
 
-	/*! \brief ”ñ•\¦Œø‰Ê‚ªŠ®—¹‚µ‚½‚ÉŒÄ‚Î‚ê‚Ü‚·B
+	/*! \brief éè¡¨ç¤ºåŠ¹æœãŒå®Œäº†ã—ãŸæ™‚ã«å‘¼ã°ã‚Œã¾ã™ã€‚
 	 *
-	 * \remarks hide() ŒÄo‚µŒãA•K‚¸ŒÄ‚Î‚ê‚é‚Æ‚¢‚¤•ÛØ‚Í‚ ‚è‚Ü‚¹‚ñB
+	 * \remarks hide() å‘¼å‡ºã—å¾Œã€å¿…ãšå‘¼ã°ã‚Œã‚‹ã¨ã„ã†ä¿è¨¼ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚
 	**/
 	function hideComplete()
 	{
@@ -735,9 +735,9 @@ class GLayer extends Layer
 	}
 
 	/**
-	 * str: •¶š—ñ‚ğ‘z’è‚µ‚Ä‚¢‚Ü‚·‚ªA’P€ + ‰‰Zq‚Å”’l‰»‚Å‚«‚é‚à‚Ì‚Å‚ ‚ê‚Î‰½‚Å‚à\‚¢‚Ü‚¹‚ñB
+	 * str: æ–‡å­—åˆ—ã‚’æƒ³å®šã—ã¦ã„ã¾ã™ãŒã€å˜é … + æ¼”ç®—å­ã§æ•°å€¤åŒ–ã§ãã‚‹ã‚‚ã®ã§ã‚ã‚Œã°ä½•ã§ã‚‚æ§‹ã„ã¾ã›ã‚“ã€‚
 	 *
-	 * ‚ ‚ñ‚Ü‚è‚Ü‚Æ‚à‚Él‚¦‚Äì‚Á‚½d—l‚¶‚á‚È‚¢‚Ì‚Å‰½‚©˜R‚ê‚ª‚ ‚é‚©‚à‚ßB
+	 * ã‚ã‚“ã¾ã‚Šã¾ã¨ã‚‚ã«è€ƒãˆã¦ä½œã£ãŸä»•æ§˜ã˜ã‚ƒãªã„ã®ã§ä½•ã‹æ¼ã‚ŒãŒã‚ã‚‹ã‹ã‚‚ã‚ã€‚
 	**/
 	function stringTo(str)
 	{
@@ -882,7 +882,7 @@ class GLayer extends Layer
 			colorCorrection.restore(dic.colorCorrection, tick) if dic.colorCorrection !== void;
 			shaker.restore(dic.shaker, tick) if dic.shaker !== void;
 
-			// F•â³“K‰
+			// è‰²è£œæ­£é©å¿œ
 			colorCorrection.apply();
 		}
 

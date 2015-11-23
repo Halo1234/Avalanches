@@ -3,53 +3,53 @@
 **/
 
 
-/*! \brief ƒRƒ“ƒ_ƒNƒ^Šî–{ƒNƒ‰ƒXB
+/*! \brief ã‚³ãƒ³ãƒ€ã‚¯ã‚¿åŸºæœ¬ã‚¯ãƒ©ã‚¹ã€‚
 **/
 class GConductor extends KAGParser
 {
-	var window_;						//!< \brief ‚±‚ÌƒRƒ“ƒ_ƒNƒ^‚ªŠÇ—‚·‚éƒEƒCƒ“ƒhƒEƒIƒuƒWƒFƒNƒg
+	var window_;						//!< \brief ã“ã®ã‚³ãƒ³ãƒ€ã‚¯ã‚¿ãŒç®¡ç†ã™ã‚‹ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 
 	var trigger_;
 	var timer_;
 
-	var thisTagHandlers_;				//!< \brief ‚±‚ÌƒNƒ‰ƒX‚ª’ñ‹Ÿ‚·‚éƒ^ƒOƒnƒ“ƒhƒ‰
-	var tagHandlers_ = %[];				//!< \brief ƒ^ƒOƒnƒ“ƒhƒ‰
+	var thisTagHandlers_;				//!< \brief ã“ã®ã‚¯ãƒ©ã‚¹ãŒæä¾›ã™ã‚‹ã‚¿ã‚°ãƒãƒ³ãƒ‰ãƒ©
+	var tagHandlers_ = %[];				//!< \brief ã‚¿ã‚°ãƒãƒ³ãƒ‰ãƒ©
 
-	var redirect_ = %[];				// ƒ^ƒO‚ÌƒŠƒ_ƒCƒŒƒNƒgæ
-	var syntax_ = %[];					// Šeƒ^ƒO—p‚ÌŠg’£ƒVƒ“ƒ^ƒbƒNƒX
+	var redirect_ = %[];				// ã‚¿ã‚°ã®ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆå…ˆ
+	var syntax_ = %[];					// å„ã‚¿ã‚°ç”¨ã®æ‹¡å¼µã‚·ãƒ³ã‚¿ãƒƒã‚¯ã‚¹
 
-	var scriptQue_ = [];				//!< \brief ƒXƒNƒŠƒvƒgƒLƒ…[
-	var autoJump = true;				//!< \brief ‚±‚Ì’l‚ª true ‚È‚ç‚ÎƒXƒNƒŠƒvƒgI’[‚É’B‚µ‚½‚É©“®“I‚ÉŸ‚ÌƒXƒNƒŠƒvƒg‚ÉƒWƒƒƒ“ƒv‚µ‚Ü‚·B
+	var scriptQue_ = [];				//!< \brief ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚­ãƒ¥ãƒ¼
+	var autoJump = true;				//!< \brief ã“ã®å€¤ãŒ true ãªã‚‰ã°ã‚¹ã‚¯ãƒªãƒ—ãƒˆçµ‚ç«¯ã«é”ã—ãŸæ™‚ã«è‡ªå‹•çš„ã«æ¬¡ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆã«ã‚¸ãƒ£ãƒ³ãƒ—ã—ã¾ã™ã€‚
 
-	var startLabelName_ = '';			//!< \brief Œ»İ‚ÌƒXƒNƒŠƒvƒg‚ğŠJn‚µ‚½‚Ìƒ‰ƒxƒ‹–¼Bƒ‰ƒxƒ‹w’è‚È‚µ‚Å‚ÌŠJn‚È‚ç‚Î‹ó•¶š—ñB
-	var lastProcessedTag_ = '';			//!< \brief ÅŒã‚Éˆ—‚µ‚½ƒ^ƒO–¼
-	var lastActualProcessedTag_ = '';	//!< \brief ÅŒã‚ÉiÀÛ‚Éjˆ—‚µ‚½ƒ^ƒO–¼
-	var pendingTags_ = [];				//!< \brief Œã‰ñ‚µ‚É‚³‚ê‚½ƒ^ƒO
-	var breathTags_ = [];				//!< \brief ƒuƒŒƒXƒ^ƒO
-	var breathBound = 1;				//!< \brief ƒuƒŒƒXó‘Ô‚ÉˆÚs‚·‚é‚Ü‚Å‚Ì breath ‚Ì”
-	var breathCount_ = 0;				//!< \brief Œ»İ‚Ì breath ‚Ì”
+	var startLabelName_ = '';			//!< \brief ç¾åœ¨ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’é–‹å§‹ã—ãŸæ™‚ã®ãƒ©ãƒ™ãƒ«åã€‚ãƒ©ãƒ™ãƒ«æŒ‡å®šãªã—ã§ã®é–‹å§‹ãªã‚‰ã°ç©ºæ–‡å­—åˆ—ã€‚
+	var lastProcessedTag_ = '';			//!< \brief æœ€å¾Œã«å‡¦ç†ã—ãŸã‚¿ã‚°å
+	var lastActualProcessedTag_ = '';	//!< \brief æœ€å¾Œã«ï¼ˆå®Ÿéš›ã«ï¼‰å‡¦ç†ã—ãŸã‚¿ã‚°å
+	var pendingTags_ = [];				//!< \brief å¾Œå›ã—ã«ã•ã‚ŒãŸã‚¿ã‚°
+	var breathTags_ = [];				//!< \brief ãƒ–ãƒ¬ã‚¹ã‚¿ã‚°
+	var breathBound = 1;				//!< \brief ãƒ–ãƒ¬ã‚¹çŠ¶æ…‹ã«ç§»è¡Œã™ã‚‹ã¾ã§ã® breath ã®æ•°
+	var breathCount_ = 0;				//!< \brief ç¾åœ¨ã® breath ã®æ•°
 
 	var timeOrigin_;
 
-	var interrupted_ = false;			//!< \brief interrupt ó‘Ô‚È‚ç‚Î true ‚É‚È‚è‚Ü‚·B
-	var suspended_ = false;				//!< \brief suspend ó‘Ô‚È‚ç‚Î true ‚É‚È‚è‚Ü‚·B
+	var interrupted_ = false;			//!< \brief interrupt çŠ¶æ…‹ãªã‚‰ã° true ã«ãªã‚Šã¾ã™ã€‚
+	var suspended_ = false;				//!< \brief suspend çŠ¶æ…‹ãªã‚‰ã° true ã«ãªã‚Šã¾ã™ã€‚
 
-	var signalHandlers_ = %[];			// ƒVƒOƒiƒ‹ƒnƒ“ƒhƒ‰
+	var signalHandlers_ = %[];			// ã‚·ã‚°ãƒŠãƒ«ãƒãƒ³ãƒ‰ãƒ©
 
-	var status_ = 0;					// Œ»İ‚Ìó‘Ô
+	var status_ = 0;					// ç¾åœ¨ã®çŠ¶æ…‹
 
-	var /* const */ stWait = -1;		// ƒVƒOƒiƒ‹‘Ò‚¿
-	var /* const */ stStop = 0;			// ’â~’†
-	var /* const */ stRun = 1;			// Às’†
-	var /* const */ stBreath = 2;		// Ÿ‚ÌƒuƒŒƒXƒ^ƒO‚ğˆ—‚·‚é‘O‚É breath ƒ^ƒO‚ğÀs‚·‚é
+	var /* const */ stWait = -1;		// ã‚·ã‚°ãƒŠãƒ«å¾…ã¡
+	var /* const */ stStop = 0;			// åœæ­¢ä¸­
+	var /* const */ stRun = 1;			// å®Ÿè¡Œä¸­
+	var /* const */ stBreath = 2;		// æ¬¡ã®ãƒ–ãƒ¬ã‚¹ã‚¿ã‚°ã‚’å‡¦ç†ã™ã‚‹å‰ã« breath ã‚¿ã‚°ã‚’å®Ÿè¡Œã™ã‚‹
 
-	var controlCode_;					// ƒRƒ“ƒgƒ[ƒ‹ƒR[ƒh
+	var controlCode_;					// ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚³ãƒ¼ãƒ‰
 
-	var majorVersionNumber = 0;			//!< \brief ƒQ[ƒ€ƒo[ƒWƒ‡ƒ“iƒƒWƒƒ[j
-	var minorVersionNumber = 0;			//!< \brief ƒQ[ƒ€ƒo[ƒWƒ‡ƒ“iƒ}ƒCƒi[j
-	var specialVersionString = '';		//!< \brief ƒXƒyƒVƒƒƒ‹ƒo[ƒWƒ‡ƒ“•¶š—ñ
+	var majorVersionNumber = 0;			//!< \brief ã‚²ãƒ¼ãƒ ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼ˆãƒ¡ã‚¸ãƒ£ãƒ¼ï¼‰
+	var minorVersionNumber = 0;			//!< \brief ã‚²ãƒ¼ãƒ ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼ˆãƒã‚¤ãƒŠãƒ¼ï¼‰
+	var specialVersionString = '';		//!< \brief ã‚¹ãƒšã‚·ãƒ£ãƒ«ãƒãƒ¼ã‚¸ãƒ§ãƒ³æ–‡å­—åˆ—
 
-	/*! \brief ƒRƒ“ƒXƒgƒ‰ƒNƒ^B
+	/*! \brief ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚
 	**/
 	function GConductor(window)
 	{
@@ -76,17 +76,17 @@ class GConductor extends KAGParser
 		super.finalize(...);
 	}
 
-	/*! \brief ‚±‚ÌƒNƒ‰ƒX‚Ìƒ^ƒOƒnƒ“ƒhƒ‰‚ğì¬‚µ‚Ä•Ô‚µ‚Ü‚·B
+	/*! \brief ã“ã®ã‚¯ãƒ©ã‚¹ã®ã‚¿ã‚°ãƒãƒ³ãƒ‰ãƒ©ã‚’ä½œæˆã—ã¦è¿”ã—ã¾ã™ã€‚
 	 *
-	 * \return ì¬‚µ‚½ƒ^ƒOƒnƒ“ƒhƒ‰‚ğ•Ô‚µ‚Ü‚·B
+	 * \return ä½œæˆã—ãŸã‚¿ã‚°ãƒãƒ³ãƒ‰ãƒ©ã‚’è¿”ã—ã¾ã™ã€‚
 	**/
 	function createTagHandlers()
 	{
 		return %[
 
-			// NOTE: ‚±‚±‚Åì¬‚·‚éƒ^ƒO‚Í‚·‚×‚Ä lightweight ‚ÈÀ‘•‚Å‚·B
-			// NOTE: ‚Æ‚è‚ ‚¦‚¸—vŒ‚Í–‚½‚µ‚Ü‚·‚ªƒƒCƒ“‚Åg‚¤ƒRƒ“ƒ_ƒNƒ^‚Æ‚µ‚Ä‚Íã‚¢‚Æv‚¢‚Ü‚·B
-			// NOTE: ”h¶æ‚Å“KƒI[ƒo[ƒ‰ƒCƒh‚µ‚Ä‚â‚Á‚Ä‚­‚¾‚³‚¢B
+			// NOTE: ã“ã“ã§ä½œæˆã™ã‚‹ã‚¿ã‚°ã¯ã™ã¹ã¦ lightweight ãªå®Ÿè£…ã§ã™ã€‚
+			// NOTE: ã¨ã‚Šã‚ãˆãšè¦ä»¶ã¯æº€ãŸã—ã¾ã™ãŒãƒ¡ã‚¤ãƒ³ã§ä½¿ã†ã‚³ãƒ³ãƒ€ã‚¯ã‚¿ã¨ã—ã¦ã¯å¼±ã„ã¨æ€ã„ã¾ã™ã€‚
+			// NOTE: æ´¾ç”Ÿå…ˆã§é©æ™‚ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã—ã¦ã‚„ã£ã¦ãã ã•ã„ã€‚
 
 			/**/
 			'cr_handling' => function (elm) {
@@ -119,7 +119,7 @@ class GConductor extends KAGParser
 
 			/* @next */
 			'next' => function (elm) {
-				// NOTE: autoJump ‚Ìó‘Ô‚ÉˆË‘¶‚µ‚È‚¢
+				// NOTE: autoJump ã®çŠ¶æ…‹ã«ä¾å­˜ã—ãªã„
 				jumpNextScript();
 				return 'break';
 			} incontextof this,
@@ -129,7 +129,7 @@ class GConductor extends KAGParser
 				if(GObjectUtils.toBoolean(elm.off))
 					autoJump = false;
 				else
-				//if(+elm.on) off ‚¶‚á‚È‚¢‚È‚ç on ‚¾‚Æ‰ğß‚·‚é
+				//if(+elm.on) off ã˜ã‚ƒãªã„ãªã‚‰ on ã ã¨è§£é‡ˆã™ã‚‹
 					autoJump = true;
 			} incontextof this,
 
@@ -181,9 +181,9 @@ class GConductor extends KAGParser
 			's' => function (elm, c) {
 				if(!elm.eof)
 					return 'stop';
-				// EOFˆ—
-				// ©“®Às’†‚È‚ç next ƒ^ƒO‚ğ’Ç‰Á
-				// è“®Às’†‚È‚ç end ‚ğ’Ç‰Á‚·‚é
+				// EOFå‡¦ç†
+				// è‡ªå‹•å®Ÿè¡Œä¸­ãªã‚‰ next ã‚¿ã‚°ã‚’è¿½åŠ 
+				// æ‰‹å‹•å®Ÿè¡Œä¸­ãªã‚‰ end ã‚’è¿½åŠ ã™ã‚‹
 				c.pendingTag(autoJump ? 'next' : 'end');
 			} incontextof this,
 
@@ -223,20 +223,20 @@ class GConductor extends KAGParser
 
 			/* @input */
 			'input' => function (elm) {
-				var name = elm.name;
+				/*var name = elm.name;
 				var initial = Scripts.eval(name);
 				var result = System.inputString(elm.title, elm.prompt, initial);
 				if(result !== void)
 				{
 					Scripts.eval(@"&name; = '&result;';");
-				}
+				}*/
 			} incontextof this,
 
 			/* @trace */
 			'trace' => function (elm) {
 				var exp = elm.exp;
 				var result = Scripts.eval(exp);
-				dm(@"¥[trace] expression='&exp;' type of result=&typeof(result); result=&result;");
+				dm(@"â–¼[trace] expression='&exp;' type of result=&typeof(result); result=&result;");
 			} incontextof this,
 
 			/* @interrupt */
@@ -259,65 +259,65 @@ class GConductor extends KAGParser
 				return 'breathClear';
 			} incontextof this,
 
-			// NOTE: @call @jump @return @script ‚Í“Áê‚Èƒ^ƒO‚Å‚·B
-			// NOTE: Šî–{“I‚Èˆ—‚Í KAGParser ‚ªs‚¤‚Ì‚Å‚±‚ê‚ç‚Ìƒ^ƒO‚Í‰½‚à‚·‚é•K—v‚Í‚ ‚è‚Ü‚¹‚ñB
-			// NOTE: Ú‚µ‚­‚ÍŠeƒ^ƒO‚ÌƒRƒƒ“ƒg‚ğŒ©‚Ä‚­‚¾‚³‚¢B
+			// NOTE: @call @jump @return @script ã¯ç‰¹æ®Šãªã‚¿ã‚°ã§ã™ã€‚
+			// NOTE: åŸºæœ¬çš„ãªå‡¦ç†ã¯ KAGParser ãŒè¡Œã†ã®ã§ã“ã‚Œã‚‰ã®ã‚¿ã‚°ã¯ä½•ã‚‚ã™ã‚‹å¿…è¦ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚
+			// NOTE: è©³ã—ãã¯å„ã‚¿ã‚°ã®ã‚³ãƒ¡ãƒ³ãƒˆã‚’è¦‹ã¦ãã ã•ã„ã€‚
 			//---
 
 			/**
 			 * @call
-			 * elm.ignore ‚É‚Íí‚É false ‚ªƒZƒbƒg‚³‚ê‚Ä‚¢‚Ü‚·B
-			 * •K—v‚È‚ç‚Îƒ^ƒO“à‚Å‘‚«Š·‚¦‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B
-			 * @call ƒ^ƒOŒÄ‚Ño‚µŒ³‚ÍA’Êí onCall() ‚Å‚·B
-			 * GConductor#onCall() ‚Í @call ƒ^ƒOŒÄo‚µŒãAelm.ignore ‚Ì’l‚ğ•Ô‚µ‚ÄI—¹‚µ‚Ü‚·B
-			 * onCall() ‚É‚Â‚¢‚Ä‚ÍA‹g—¢‹g—¢ƒŠƒtƒ@ƒŒƒ“ƒX‚Ì KAGParser#onCall() ‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+			 * elm.ignore ã«ã¯å¸¸ã« false ãŒã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã¾ã™ã€‚
+			 * å¿…è¦ãªã‚‰ã°ã‚¿ã‚°å†…ã§æ›¸ãæ›ãˆã‚‹ã“ã¨ãŒã§ãã¾ã™ã€‚
+			 * @call ã‚¿ã‚°å‘¼ã³å‡ºã—å…ƒã¯ã€é€šå¸¸ onCall() ã§ã™ã€‚
+			 * GConductor#onCall() ã¯ @call ã‚¿ã‚°å‘¼å‡ºã—å¾Œã€elm.ignore ã®å€¤ã‚’è¿”ã—ã¦çµ‚äº†ã—ã¾ã™ã€‚
+			 * onCall() ã«ã¤ã„ã¦ã¯ã€å‰é‡Œå‰é‡Œãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã® KAGParser#onCall() ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚
 			**/
 			'call' => alwaysVoid,
 
 			/**
 			 * @jump
-			 * elm.ignore ‚É‚Íí‚É false ‚ªƒZƒbƒg‚³‚ê‚Ä‚¢‚Ü‚·B
-			 * •K—v‚È‚ç‚Îƒ^ƒO“à‚Å‘‚«Š·‚¦‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B
-			 * @jump ƒ^ƒOŒÄ‚Ño‚µŒ³‚ÍA’Êí onJump() ‚Å‚·B
-			 * GConductor#onJump() ‚Í @jump ƒ^ƒOŒÄo‚µŒãAelm.ignore ‚Ì’l‚ğ•Ô‚µ‚ÄI—¹‚µ‚Ü‚·B
-			 * onJump() ‚É‚Â‚¢‚Ä‚ÍA‹g—¢‹g—¢ƒŠƒtƒ@ƒŒƒ“ƒX‚Ì KAGParser#onJump() ‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+			 * elm.ignore ã«ã¯å¸¸ã« false ãŒã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã¾ã™ã€‚
+			 * å¿…è¦ãªã‚‰ã°ã‚¿ã‚°å†…ã§æ›¸ãæ›ãˆã‚‹ã“ã¨ãŒã§ãã¾ã™ã€‚
+			 * @jump ã‚¿ã‚°å‘¼ã³å‡ºã—å…ƒã¯ã€é€šå¸¸ onJump() ã§ã™ã€‚
+			 * GConductor#onJump() ã¯ @jump ã‚¿ã‚°å‘¼å‡ºã—å¾Œã€elm.ignore ã®å€¤ã‚’è¿”ã—ã¦çµ‚äº†ã—ã¾ã™ã€‚
+			 * onJump() ã«ã¤ã„ã¦ã¯ã€å‰é‡Œå‰é‡Œãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã® KAGParser#onJump() ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚
 			**/
 			'jump' => alwaysVoid,
 
 			/**
 			 * @return
-			 * elm.ignore ‚É‚Íí‚É false ‚ªƒZƒbƒg‚³‚ê‚Ä‚¢‚Ü‚·B
-			 * •K—v‚È‚ç‚Îƒ^ƒO“à‚Å‘‚«Š·‚¦‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B
-			 * @return ƒ^ƒOŒÄ‚Ño‚µŒ³‚ÍA’Êí onReturn() ‚Å‚·B
-			 * GConductor#onReturn() ‚Í @return ƒ^ƒOŒÄo‚µŒãAelm.ignore ‚Ì’l‚ğ•Ô‚µ‚ÄI—¹‚µ‚Ü‚·B
-			 * onReturn() ‚É‚Â‚¢‚Ä‚ÍA‹g—¢‹g—¢ƒŠƒtƒ@ƒŒƒ“ƒX‚Ì KAGParser#onReturn() ‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+			 * elm.ignore ã«ã¯å¸¸ã« false ãŒã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã¾ã™ã€‚
+			 * å¿…è¦ãªã‚‰ã°ã‚¿ã‚°å†…ã§æ›¸ãæ›ãˆã‚‹ã“ã¨ãŒã§ãã¾ã™ã€‚
+			 * @return ã‚¿ã‚°å‘¼ã³å‡ºã—å…ƒã¯ã€é€šå¸¸ onReturn() ã§ã™ã€‚
+			 * GConductor#onReturn() ã¯ @return ã‚¿ã‚°å‘¼å‡ºã—å¾Œã€elm.ignore ã®å€¤ã‚’è¿”ã—ã¦çµ‚äº†ã—ã¾ã™ã€‚
+			 * onReturn() ã«ã¤ã„ã¦ã¯ã€å‰é‡Œå‰é‡Œãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã® KAGParser#onReturn() ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚
 			**/
 			'return' => alwaysVoid,
 
 			/**
 			 * @script
-			 * elm.ignore ‚É‚Íí‚É false ‚ªƒZƒbƒg‚³‚ê‚Ä‚¢‚Ü‚·B
-			 * •K—v‚È‚ç‚Îƒ^ƒO“à‚Å‘‚«Š·‚¦‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B
-			 * elm.script ‚É‚Í @iscript ` @endscript ‚Ü‚Å‚É‘‚©‚ê‚½ TJS ƒXƒNƒŠƒvƒg‚ªƒZƒbƒg‚³‚ê‚Ä‚¢‚Ü‚·B
-			 * •K—v‚È‚ç‚Îƒ^ƒO“à‚Å‘‚«Š·‚¦‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B
-			 * @script ƒ^ƒOŒÄ‚Ño‚µŒ³‚ÍA’Êí onScript() ‚Å‚·B
-			 * GConductor#onScript() ‚Í @script ƒ^ƒOŒÄo‚µŒãAelm.ignore ‚Ì’l‚ª false ‚È‚ç‚ÎA
-			 * Scripts.exec(elm.script) ‚ğÀs‚µ‚Ü‚·B
+			 * elm.ignore ã«ã¯å¸¸ã« false ãŒã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã¾ã™ã€‚
+			 * å¿…è¦ãªã‚‰ã°ã‚¿ã‚°å†…ã§æ›¸ãæ›ãˆã‚‹ã“ã¨ãŒã§ãã¾ã™ã€‚
+			 * elm.script ã«ã¯ @iscript ï½ @endscript ã¾ã§ã«æ›¸ã‹ã‚ŒãŸ TJS ã‚¹ã‚¯ãƒªãƒ—ãƒˆãŒã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã¾ã™ã€‚
+			 * å¿…è¦ãªã‚‰ã°ã‚¿ã‚°å†…ã§æ›¸ãæ›ãˆã‚‹ã“ã¨ãŒã§ãã¾ã™ã€‚
+			 * @script ã‚¿ã‚°å‘¼ã³å‡ºã—å…ƒã¯ã€é€šå¸¸ onScript() ã§ã™ã€‚
+			 * GConductor#onScript() ã¯ @script ã‚¿ã‚°å‘¼å‡ºã—å¾Œã€elm.ignore ã®å€¤ãŒ false ãªã‚‰ã°ã€
+			 * Scripts.exec(elm.script) ã‚’å®Ÿè¡Œã—ã¾ã™ã€‚
 			 *
-			 * elm.ignore ‚ª true ‚È‚ç‚Î‰½‚à‚µ‚Ü‚¹‚ñB
+			 * elm.ignore ãŒ true ãªã‚‰ã°ä½•ã‚‚ã—ã¾ã›ã‚“ã€‚
 			 *
-			 * onScript() ‚É‚Â‚¢‚Ä‚ÍA‹g—¢‹g—¢ƒŠƒtƒ@ƒŒƒ“ƒX‚Ì KAGParser#onScript() ‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+			 * onScript() ã«ã¤ã„ã¦ã¯ã€å‰é‡Œå‰é‡Œãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã® KAGParser#onScript() ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚
 			**/
 			'script' => alwaysVoid,
 
 		];
 	}
 
-	/*! \brief ƒ^ƒOƒnƒ“ƒhƒ‰‚ğ“‡‚µ‚Ü‚·B
+	/*! \brief ã‚¿ã‚°ãƒãƒ³ãƒ‰ãƒ©ã‚’çµ±åˆã—ã¾ã™ã€‚
 	 *
-	 * \params [tags] “‡‚µ‚½‚¢ŠO•”’ñ‹Ÿ‚Ìƒ^ƒOƒnƒ“ƒhƒ‰‚ğw’è‚µ‚Ü‚·B
+	 * \params [tags] çµ±åˆã—ãŸã„å¤–éƒ¨æä¾›ã®ã‚¿ã‚°ãƒãƒ³ãƒ‰ãƒ©ã‚’æŒ‡å®šã—ã¾ã™ã€‚
 	 *
-	 * \return “‡‚µ‚½ƒ^ƒOƒnƒ“ƒhƒ‰‚ğ•Ô‚µ‚Ü‚·B
+	 * \return çµ±åˆã—ãŸã‚¿ã‚°ãƒãƒ³ãƒ‰ãƒ©ã‚’è¿”ã—ã¾ã™ã€‚
 	**/
 	function unifyTagHandlers(tags)
 	{
@@ -332,16 +332,16 @@ class GConductor extends KAGParser
 		return work;
 	}
 
-	/*! \brief ‘¦À‚ÉŠJn‚µ‚Ü‚·B
+	/*! \brief å³åº§ã«é–‹å§‹ã—ã¾ã™ã€‚
 	**/
 	function startImmediate()
 	{
 		onTimer_private_();
 	}
 
-	/*! \brief o—ˆ‚é‚¾‚¯‘f‘‚­ŠJn‚µ‚Ü‚·B
+	/*! \brief å‡ºæ¥ã‚‹ã ã‘ç´ æ—©ãé–‹å§‹ã—ã¾ã™ã€‚
 	 *
-	 * \remarks Ÿ‚Ì atmExclusive ‚Èƒ^ƒCƒ~ƒ“ƒO‚ÅŠJn‚³‚ê‚Ü‚·B
+	 * \remarks æ¬¡ã® atmExclusive ãªã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§é–‹å§‹ã•ã‚Œã¾ã™ã€‚
 	**/
 	function start()
 	{
@@ -360,9 +360,9 @@ class GConductor extends KAGParser
 		status_ = this.stRun;
 	}
 
-	/*! \brief ‚ä‚Á‚­‚èŠJn‚µ‚Ü‚·B
+	/*! \brief ã‚†ã£ãã‚Šé–‹å§‹ã—ã¾ã™ã€‚
 	 *
-	 * \remarks Ÿ‚Ì atmAtIdle ‚Èƒ^ƒCƒ~ƒ“ƒO‚ÅŠJn‚³‚ê‚Ü‚·B
+	 * \remarks æ¬¡ã® atmAtIdle ãªã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§é–‹å§‹ã•ã‚Œã¾ã™ã€‚
 	**/
 	function startToIdle()
 	{
@@ -381,9 +381,9 @@ class GConductor extends KAGParser
 		status_ = this.stRun;
 	}
 
-	/*! \brief w’èŠÔŒo‰ßŒã‚ÉŠJn‚µ‚Ü‚·B
+	/*! \brief æŒ‡å®šæ™‚é–“çµŒéå¾Œã«é–‹å§‹ã—ã¾ã™ã€‚
 	 *
-	 * \param [time] ƒ~ƒŠ•b’PˆÊ‚Å‚·B
+	 * \param [time] ãƒŸãƒªç§’å˜ä½ã§ã™ã€‚
 	**/
 	function startInTime(wait)
 	{
@@ -399,7 +399,7 @@ class GConductor extends KAGParser
 		//status_ = stRun if status_ != stBreath && status_ != stWait;
 	}
 
-	/*! \brief ŠÔw’èŒ^‚ÌƒEƒFƒCƒg‚ğƒLƒƒƒ“ƒZƒ‹‚µ‚Ü‚·B
+	/*! \brief æ™‚é–“æŒ‡å®šå‹ã®ã‚¦ã‚§ã‚¤ãƒˆã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ã¾ã™ã€‚
 	**/
 	function cancelWaitTimer()
 	{
@@ -410,7 +410,7 @@ class GConductor extends KAGParser
 		}
 	}
 
-	/*! \brief Às‚ğ’â~‚µ‚Ü‚·B
+	/*! \brief å®Ÿè¡Œã‚’åœæ­¢ã—ã¾ã™ã€‚
 	**/
 	function stop()
 	{
@@ -429,9 +429,9 @@ class GConductor extends KAGParser
 		}
 	}
 
-	/*! \brief ƒTƒXƒyƒ“ƒhó‘Ô‚É‚µ‚Ü‚·B
+	/*! \brief ã‚µã‚¹ãƒšãƒ³ãƒ‰çŠ¶æ…‹ã«ã—ã¾ã™ã€‚
 	 *
-	 * \remarks ‚²—˜—p‚ÍŒv‰æ“I‚Éc
+	 * \remarks ã”åˆ©ç”¨ã¯è¨ˆç”»çš„ã«â€¦
 	**/
 	function suspend()
 	{
@@ -443,9 +443,9 @@ class GConductor extends KAGParser
 		}
 	}
 
-	/*! \brief ƒTƒXƒyƒ“ƒhó‘Ô‚ğ‰ğœ‚µ‚Ü‚·B
+	/*! \brief ã‚µã‚¹ãƒšãƒ³ãƒ‰çŠ¶æ…‹ã‚’è§£é™¤ã—ã¾ã™ã€‚
 	 *
-	 * \remarks ‚²—˜—p‚ÍŒv‰æ“I‚Éc
+	 * \remarks ã”åˆ©ç”¨ã¯è¨ˆç”»çš„ã«â€¦
 	**/
 	function resume()
 	{
@@ -464,9 +464,9 @@ class GConductor extends KAGParser
 		super.clear();
 	}
 
-	/*! \brief w’è‚³‚ê‚½ƒCƒxƒ“ƒg‚ªƒVƒOƒiƒ‹‚³‚ê‚é‚Ü‚Å’â~‚µ‚Ü‚·B
+	/*! \brief æŒ‡å®šã•ã‚ŒãŸã‚¤ãƒ™ãƒ³ãƒˆãŒã‚·ã‚°ãƒŠãƒ«ã•ã‚Œã‚‹ã¾ã§åœæ­¢ã—ã¾ã™ã€‚
 	 *
-	 * \param [handlers] ƒnƒ“ƒhƒ‰‚ğ«‘”z—ñŒ`®‚Åw’è‚µ‚Ü‚·B
+	 * \param [handlers] ãƒãƒ³ãƒ‰ãƒ©ã‚’è¾æ›¸é…åˆ—å½¢å¼ã§æŒ‡å®šã—ã¾ã™ã€‚
 	**/
 	function waitSignal(handlers)
 	{
@@ -475,9 +475,9 @@ class GConductor extends KAGParser
 		status_ = this.stWait;
 	}
 
-	/*! \brief w’è‚ÌƒVƒOƒiƒ‹‚ğ”­¶‚³‚¹‚éŠÖ”ƒIƒuƒWƒFƒNƒg‚ğ•Ô‚µ‚Ü‚·B
+	/*! \brief æŒ‡å®šã®ã‚·ã‚°ãƒŠãƒ«ã‚’ç™ºç”Ÿã•ã›ã‚‹é–¢æ•°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è¿”ã—ã¾ã™ã€‚
 	 *
-	 * \param [name] ”­¶‚³‚¹‚½‚¢ƒVƒOƒiƒ‹‚ğw’è‚µ‚Ü‚·B
+	 * \param [name] ç™ºç”Ÿã•ã›ãŸã„ã‚·ã‚°ãƒŠãƒ«ã‚’æŒ‡å®šã—ã¾ã™ã€‚
 	**/
 	function compileSignalFunction(name)
 	{
@@ -486,9 +486,9 @@ class GConductor extends KAGParser
 		return ((Scripts.eval(src)) incontextof this);
 	}
 
-	/*! \brief ƒVƒOƒiƒ‹‚ğ”­¶‚³‚¹‚Ü‚·B
+	/*! \brief ã‚·ã‚°ãƒŠãƒ«ã‚’ç™ºç”Ÿã•ã›ã¾ã™ã€‚
 	 *
-	 * \param [name] ”­¶‚³‚¹‚½‚¢ƒCƒxƒ“ƒg–¼‚ğw’è‚µ‚Ü‚·B
+	 * \param [name] ç™ºç”Ÿã•ã›ãŸã„ã‚¤ãƒ™ãƒ³ãƒˆåã‚’æŒ‡å®šã—ã¾ã™ã€‚
 	**/
 	function signal(name)
 	{
@@ -498,14 +498,14 @@ class GConductor extends KAGParser
 		var f = signalHandlers_[name];
 		var arg = signalHandlers_[@"&name;_arg"];
 
-		// ƒnƒ“ƒhƒ‰‚ª“o˜^‚³‚ê‚Ä‚¢‚È‚¢‚Ì‚Å‚·‚®‚É–ß‚é
+		// ãƒãƒ³ãƒ‰ãƒ©ãŒç™»éŒ²ã•ã‚Œã¦ã„ãªã„ã®ã§ã™ãã«æˆ»ã‚‹
 		if(f === void)
 			return false;
 
-		// ƒnƒ“ƒhƒ‰‚Í‘S‚ÄƒNƒŠƒA‚·‚é
+		// ãƒãƒ³ãƒ‰ãƒ©ã¯å…¨ã¦ã‚¯ãƒªã‚¢ã™ã‚‹
 		GObjectUtils.clearDictionary(signalHandlers_);
 
-		// Às‚ğŠJn‚µ‚Ä‚©‚çƒnƒ“ƒhƒ‰‚ğŒÄ‚Ño‚·
+		// å®Ÿè¡Œã‚’é–‹å§‹ã—ã¦ã‹ã‚‰ãƒãƒ³ãƒ‰ãƒ©ã‚’å‘¼ã³å‡ºã™
 		startToIdle();
 
 		if(f !== null)
@@ -516,43 +516,43 @@ class GConductor extends KAGParser
 		return true;
 	}
 
-	/*! \brief ƒXƒNƒŠƒvƒgƒLƒ…[‚ÌÅŒã‚ÉƒXƒNƒŠƒvƒg‚ğ’Ç‰Á‚µ‚Ü‚·B
+	/*! \brief ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚­ãƒ¥ãƒ¼ã®æœ€å¾Œã«ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	 *
-	 * \param [storages*] ’Ç‰Á‚µ‚½‚¢ƒXƒNƒŠƒvƒg‚ğw’è‚µ‚Ü‚·B
+	 * \param [storages*] è¿½åŠ ã—ãŸã„ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’æŒ‡å®šã—ã¾ã™ã€‚
 	 *
-	 * \return ’Ç‰ÁŒã‚ÌƒXƒNƒŠƒvƒgƒLƒ…[‚ÌƒTƒCƒY‚ğ•Ô‚µ‚Ü‚·B
+	 * \return è¿½åŠ å¾Œã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚­ãƒ¥ãƒ¼ã®ã‚µã‚¤ã‚ºã‚’è¿”ã—ã¾ã™ã€‚
 	**/
 	function pushScript(storages*)
 	{
 		return scriptQue_.push(storages*);
 	}
 
-	/*! \brief ƒXƒNƒŠƒvƒgƒLƒ…[‚Ìæ“ª‚ÉƒXƒNƒŠƒvƒg‚ğ’Ç‰Á‚µ‚Ü‚·B
+	/*! \brief ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚­ãƒ¥ãƒ¼ã®å…ˆé ­ã«ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	 *
-	 * \param [storages*] ’Ç‰Á‚µ‚½‚¢ƒXƒNƒŠƒvƒg‚ğw’è‚µ‚Ü‚·B
+	 * \param [storages*] è¿½åŠ ã—ãŸã„ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’æŒ‡å®šã—ã¾ã™ã€‚
 	 *
-	 * \return ’Ç‰ÁŒã‚ÌƒXƒNƒŠƒvƒgƒLƒ…[‚ÌƒTƒCƒY‚ğ•Ô‚µ‚Ü‚·B
+	 * \return è¿½åŠ å¾Œã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚­ãƒ¥ãƒ¼ã®ã‚µã‚¤ã‚ºã‚’è¿”ã—ã¾ã™ã€‚
 	**/
 	function unshiftScript(storages*)
 	{
 		scriptQue_.unshift(storages*);
 	}
 
-	/*! \brief ƒXƒNƒŠƒvƒgƒLƒ…[‚ğƒNƒŠƒA‚µ‚Ü‚·B
+	/*! \brief ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚­ãƒ¥ãƒ¼ã‚’ã‚¯ãƒªã‚¢ã—ã¾ã™ã€‚
 	**/
 	function clearScriptQue()
 	{
 		scriptQue_.clear();
 	}
 
-	/*! \brief ƒXƒNƒŠƒvƒgƒLƒ…[‚Ìæ“ª‚©‚çƒXƒNƒŠƒvƒg‚ğˆê‚Âæ‚èo‚µƒWƒƒƒ“ƒv‚µ‚Ü‚·B
+	/*! \brief ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚­ãƒ¥ãƒ¼ã®å…ˆé ­ã‹ã‚‰ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’ä¸€ã¤å–ã‚Šå‡ºã—ã‚¸ãƒ£ãƒ³ãƒ—ã—ã¾ã™ã€‚
 	**/
 	function jumpNextScript()
 	{
 		var node = scriptQue_.shift();
 
 		if(node === void)
-			throw new GRuntimeError(@"'&curStorage;' Ÿ‚ÌƒVƒiƒŠƒI‚ğÀs‚µ‚æ‚¤‚Æ‚µ‚Ü‚µ‚½‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½B");
+			throw new GRuntimeError(@"'&curStorage;' æ¬¡ã®ã‚·ãƒŠãƒªã‚ªã‚’å®Ÿè¡Œã—ã‚ˆã†ã¨ã—ã¾ã—ãŸãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚");
 
 		var arr = node.split('/', , true);
 
@@ -574,7 +574,7 @@ class GConductor extends KAGParser
 		dm('=====');
 	}
 
-	/*! \brief ‚¢‚í‚ä‚é @jump ƒ^ƒO‚Ì TJS ”Å‚Å‚·B
+	/*! \brief ã„ã‚ã‚†ã‚‹ @jump ã‚¿ã‚°ã® TJS ç‰ˆã§ã™ã€‚
 	**/
 	function jumpScenario(storage, label = void)
 	{
@@ -582,7 +582,7 @@ class GConductor extends KAGParser
 		goToLabel(label) if label != void;
 	}
 
-	/*! \brief ‚¢‚í‚ä‚é @call ƒ^ƒO‚Ì TJS ”Å‚Å‚·B
+	/*! \brief ã„ã‚ã‚†ã‚‹ @call ã‚¿ã‚°ã® TJS ç‰ˆã§ã™ã€‚
 	**/
 	function callScenario(storage, label = void)
 	{
@@ -590,10 +590,10 @@ class GConductor extends KAGParser
 		callLabel(label) if label != void;
 	}
 
-	/*! \brief Œ»İ‚ÌƒVƒiƒŠƒI‚ğ”jŠü‚·‚éB
+	/*! \brief ç¾åœ¨ã®ã‚·ãƒŠãƒªã‚ªã‚’ç ´æ£„ã™ã‚‹ã€‚
 	 *
-	 * \remarks KAGParser ‚É‚±‚¤‚¢‚¤‹@”\‚ª–³‚©‚Á‚½‚Ì‚Å‚Æ‚è‚ ‚¦‚¸ì‚Á‚Ä‚İ‚½‚¾‚¯‚Å‚·B
-	 * \remarks •K—v‚©‚Ç‚¤‚©‚à’è‚©‚¶‚á‚ ‚è‚Ü‚¹‚ñB
+	 * \remarks KAGParser ã«ã“ã†ã„ã†æ©Ÿèƒ½ãŒç„¡ã‹ã£ãŸã®ã§ã¨ã‚Šã‚ãˆãšä½œã£ã¦ã¿ãŸã ã‘ã§ã™ã€‚
+	 * \remarks å¿…è¦ã‹ã©ã†ã‹ã‚‚å®šã‹ã˜ã‚ƒã‚ã‚Šã¾ã›ã‚“ã€‚
 	**/
 	function destroyScenario()
 	{
@@ -601,12 +601,12 @@ class GConductor extends KAGParser
 		interrupt();
 	}
 
-	/*! \brief Debug#notice() ‚ÉƒƒbƒZ[ƒWo—Í‚µ‚Ü‚·B
+	/*! \brief Debug#notice() ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡ºåŠ›ã—ã¾ã™ã€‚
 	 *
-	 * ‚±‚ÌƒNƒ‰ƒX‚Å‚Í 'version' ƒvƒŠƒZƒbƒg‚ª—˜—p‚Å‚«‚Ü‚·B
-	 * •K—v‚È‚ç‚Î”h¶æ‚ÅƒvƒŠƒZƒbƒg‚ğ’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+	 * ã“ã®ã‚¯ãƒ©ã‚¹ã§ã¯ 'version' ãƒ—ãƒªã‚»ãƒƒãƒˆãŒåˆ©ç”¨ã§ãã¾ã™ã€‚
+	 * å¿…è¦ãªã‚‰ã°æ´¾ç”Ÿå…ˆã§ãƒ—ãƒªã‚»ãƒƒãƒˆã‚’è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 	 *
-	 * \param [message] o—Í‚µ‚½‚¢ƒƒbƒZ[ƒW‚ğw’è‚µ‚Ü‚·BƒvƒŠƒZƒbƒg‚àw’è‰Â”\‚Å‚·B
+	 * \param [message] å‡ºåŠ›ã—ãŸã„ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æŒ‡å®šã—ã¾ã™ã€‚ãƒ—ãƒªã‚»ãƒƒãƒˆã‚‚æŒ‡å®šå¯èƒ½ã§ã™ã€‚
 	**/
 	function notice(message)
 	{
@@ -665,20 +665,20 @@ class GConductor extends KAGParser
 			tagname = onUnknownTag('', elm);
 
 			if(tagname == '')
-				throw new GRuntimeError('ƒ^ƒO–¼‚ª•s–¾‚Ìƒ^ƒO‚ğÀs‚µ‚æ‚¤‚Æ‚µ‚Ü‚µ‚½B');
+				throw new GRuntimeError('ã‚¿ã‚°åãŒä¸æ˜ã®ã‚¿ã‚°ã‚’å®Ÿè¡Œã—ã‚ˆã†ã¨ã—ã¾ã—ãŸã€‚');
 		}
 		else
 		{
-			// NOTE: '!' ‚Ån‚Ü‚éƒ^ƒO‚ÍŠg’£ƒVƒ“ƒ^ƒbƒNƒX‚Ìİ’èƒ^ƒO‚ğŒÄ‚Ño‚·B
+			// NOTE: '!' ã§å§‹ã¾ã‚‹ã‚¿ã‚°ã¯æ‹¡å¼µã‚·ãƒ³ã‚¿ãƒƒã‚¯ã‚¹ã®è¨­å®šã‚¿ã‚°ã‚’å‘¼ã³å‡ºã™ã€‚
 			if(tagname.substring(0, 1) == '!')
 			{
 				var target = tagname.substring(1);
 
 				if(target == '')
-					throw new GRuntimeError('ƒ^ƒO–¼‚ª•s–¾‚Ìƒ^ƒO‚É‘Î‚µ‚ÄŠg’£\•¶İ’èƒ^ƒO‚ğÀs‚µ‚æ‚¤‚Æ‚µ‚Ü‚µ‚½B');
+					throw new GRuntimeError('ã‚¿ã‚°åãŒä¸æ˜ã®ã‚¿ã‚°ã«å¯¾ã—ã¦æ‹¡å¼µæ§‹æ–‡è¨­å®šã‚¿ã‚°ã‚’å®Ÿè¡Œã—ã‚ˆã†ã¨ã—ã¾ã—ãŸã€‚');
 
 				if(typeof(tagHandlers_[target]) == 'undefined' && typeof(redirect_[target]) == 'undefined')
-					throw new GRuntimeError(@"–¢’m‚Ìƒ^ƒOu&target;v‚ÌŠg’£\•¶İ’èƒ^ƒO‚ªŒÄ‚Ño‚³‚ê‚Ü‚µ‚½B");
+					throw new GRuntimeError(@"æœªçŸ¥ã®ã‚¿ã‚°ã€Œ&target;ã€ã®æ‹¡å¼µæ§‹æ–‡è¨­å®šã‚¿ã‚°ãŒå‘¼ã³å‡ºã•ã‚Œã¾ã—ãŸã€‚");
 
 				elm['tagname'] = tagname = 'syntax';
 				elm['target_tag_name'] = target;
@@ -689,12 +689,12 @@ class GConductor extends KAGParser
 				tagname = onUnknownTag('', elm);
 
 				if(tagname == '')
-					throw new GRuntimeError('ƒ^ƒO–¼‚ª•s–¾‚Ìƒ^ƒO‚ğÀs‚µ‚æ‚¤‚Æ‚µ‚Ü‚µ‚½B');
+					throw new GRuntimeError('ã‚¿ã‚°åãŒä¸æ˜ã®ã‚¿ã‚°ã‚’å®Ÿè¡Œã—ã‚ˆã†ã¨ã—ã¾ã—ãŸã€‚');
 			}
 		}
 
 		if(typeof(tagHandlers_[tagname]) == 'undefined')
-			throw new GRuntimeError(@"–¢’m‚Ìƒ^ƒOu&tagname;v‚ğÀs‚µ‚æ‚¤‚Æ‚µ‚Ü‚µ‚½B");
+			throw new GRuntimeError(@"æœªçŸ¥ã®ã‚¿ã‚°ã€Œ&tagname;ã€ã‚’å®Ÿè¡Œã—ã‚ˆã†ã¨ã—ã¾ã—ãŸã€‚");
 
 		tag = tagHandlers_[tagname];
 
@@ -713,33 +713,33 @@ class GConductor extends KAGParser
 		if(tag instanceof 'Function')
 			return tag(elm, this);
 
-		throw new GRuntimeError('–³Œø‚Èƒ^ƒOƒnƒ“ƒhƒ‰‚ğŒÄ‚Ño‚»‚¤‚Æ‚µ‚Ü‚µ‚½B');
+		throw new GRuntimeError('ç„¡åŠ¹ãªã‚¿ã‚°ãƒãƒ³ãƒ‰ãƒ©ã‚’å‘¼ã³å‡ºãã†ã¨ã—ã¾ã—ãŸã€‚');
 	}
 
-	/*! \brief ƒŠƒ_ƒCƒŒƒNƒgƒ^ƒO‚ğ“o˜^‚µ‚Ü‚·B
+	/*! \brief ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã‚¿ã‚°ã‚’ç™»éŒ²ã—ã¾ã™ã€‚
 	 *
-	 * \param [name] ƒŠƒ_ƒCƒŒƒNƒgŒ³ƒ^ƒO–¼‚ğw’è‚µ‚Ü‚·B‚±‚ê‚Í‘¶İ‚µ‚È‚¢ƒ^ƒO–¼‚Å‚à\‚¢‚Ü‚¹‚ñB
-	 * \param [redirect] ƒŠƒ_ƒCƒŒƒNƒgæƒ^ƒO–¼‚ğw’è‚µ‚Ü‚·B
+	 * \param [name] ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆå…ƒã‚¿ã‚°åã‚’æŒ‡å®šã—ã¾ã™ã€‚ã“ã‚Œã¯å­˜åœ¨ã—ãªã„ã‚¿ã‚°åã§ã‚‚æ§‹ã„ã¾ã›ã‚“ã€‚
+	 * \param [redirect] ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆå…ˆã‚¿ã‚°åã‚’æŒ‡å®šã—ã¾ã™ã€‚
 	**/
 	function setRedirectTag(name, redirect)
 	{
 		redirect_[name] = redirect;
 	}
 
-	/*! \brief ƒŠƒ_ƒCƒŒƒNƒgƒ^ƒO‚ğíœ‚µ‚Ü‚·B
+	/*! \brief ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã‚¿ã‚°ã‚’å‰Šé™¤ã—ã¾ã™ã€‚
 	 *
-	 * \param [name] íœ‚µ‚½‚¢ƒŠƒ_ƒCƒŒƒNƒgƒ^ƒO–¼‚ğw’è‚µ‚Ü‚·B
+	 * \param [name] å‰Šé™¤ã—ãŸã„ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã‚¿ã‚°åã‚’æŒ‡å®šã—ã¾ã™ã€‚
 	**/
 	function deleteRedirectTag(name)
 	{
 		delete redirect_[name] if typeof(redirect_[name]) !== 'undefined';
 	}
 
-	/*! \brief ƒ^ƒO‚ÌŠg’£\•¶ƒIƒuƒWƒFƒNƒg‚ğ•Ô‚·B
+	/*! \brief ã‚¿ã‚°ã®æ‹¡å¼µæ§‹æ–‡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è¿”ã™ã€‚
 	 *
-	 * \param [tagname] ƒ^ƒO–¼‚ğw’è‚µ‚Ü‚·B
+	 * \param [tagname] ã‚¿ã‚°åã‚’æŒ‡å®šã—ã¾ã™ã€‚
 	 *
-	 * \return Šg’£\•¶ƒIƒuƒWƒFƒNƒg‚ğ•Ô‚µ‚Ü‚·B
+	 * \return æ‹¡å¼µæ§‹æ–‡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è¿”ã—ã¾ã™ã€‚
 	**/
 	function getSyntax(tagname)
 	{
@@ -764,34 +764,34 @@ class GConductor extends KAGParser
 		return tagname;
 	}
 
-	/*! \brief ƒ^ƒO‚ğŒã‰ñ‚µ‚É‚µ‚Ü‚·B
+	/*! \brief ã‚¿ã‚°ã‚’å¾Œå›ã—ã«ã—ã¾ã™ã€‚
 	 *
-	 * \param [tag*] Œã‰ñ‚µ‚É‚µ‚½‚¢ƒ^ƒO‚ğw’è‚µ‚Ü‚·B
+	 * \param [tag*] å¾Œå›ã—ã«ã—ãŸã„ã‚¿ã‚°ã‚’æŒ‡å®šã—ã¾ã™ã€‚
 	**/
 	function pendingTag(tag*)
 	{
 		pendingTags_.push(translateTag(tag)*);
 	}
 
-	/*! \brief ƒ^ƒO‚ğŒã‰ñ‚µ‚É‚µ‚Ü‚·B
+	/*! \brief ã‚¿ã‚°ã‚’å¾Œå›ã—ã«ã—ã¾ã™ã€‚
 	 *
-	 * \param [tag*] Œã‰ñ‚µ‚É‚µ‚½‚¢ƒ^ƒO‚ğw’è‚µ‚Ü‚·B
+	 * \param [tag*] å¾Œå›ã—ã«ã—ãŸã„ã‚¿ã‚°ã‚’æŒ‡å®šã—ã¾ã™ã€‚
 	**/
 	function interruptTag(tag*)
 	{
 		pendingTags_.unshift(translateTag(tag)*);
 	}
 
-	/*! \brief ƒuƒŒƒXƒ^ƒO‚ğ’Ç‰Á‚µ‚Ü‚·B
+	/*! \brief ãƒ–ãƒ¬ã‚¹ã‚¿ã‚°ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	 *
-	 * \param [tagname] ƒuƒŒƒXƒ^ƒO‚Æ‚µ‚½‚¢ƒ^ƒO–¼‚ğw’è‚µ‚Ü‚·B
+	 * \param [tagname] ãƒ–ãƒ¬ã‚¹ã‚¿ã‚°ã¨ã—ãŸã„ã‚¿ã‚°åã‚’æŒ‡å®šã—ã¾ã™ã€‚
 	**/
 	function addBreathTag(tagname)
 	{
 		breathTags_.add(tagname) if breathTags_.find(tagname) == -1;
 	}
 
-	/*! \brief ƒuƒŒƒXó‘Ô‚É‚µ‚Ü‚·B
+	/*! \brief ãƒ–ãƒ¬ã‚¹çŠ¶æ…‹ã«ã—ã¾ã™ã€‚
 	**/
 	function setBreath()
 	{
@@ -802,7 +802,7 @@ class GConductor extends KAGParser
 		}
 	}
 
-	/*! \brief ƒuƒŒƒXó‘Ô‚ğƒNƒŠƒA‚µ‚Ü‚·B
+	/*! \brief ãƒ–ãƒ¬ã‚¹çŠ¶æ…‹ã‚’ã‚¯ãƒªã‚¢ã—ã¾ã™ã€‚
 	**/
 	function clearBreath()
 	{
@@ -813,11 +813,11 @@ class GConductor extends KAGParser
 		}
 	}
 
-	/*! \brief ƒRƒ“ƒgƒ[ƒ‹ƒR[ƒh‚ğİ’è‚µ‚Ü‚·B
+	/*! \brief ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚³ãƒ¼ãƒ‰ã‚’è¨­å®šã—ã¾ã™ã€‚
 	 *
-	 * \param [code] ƒRƒ“ƒgƒ[ƒ‹ƒR[ƒh‚ğ•¶š—ñ‚©®”’l‚Åw’è‚µ‚Ü‚·B
+	 * \param [code] ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚³ãƒ¼ãƒ‰ã‚’æ–‡å­—åˆ—ã‹æ•´æ•°å€¤ã§æŒ‡å®šã—ã¾ã™ã€‚
 	 *
-	 * \return İ’è‚³‚ê‚½ƒRƒ“ƒgƒ[ƒ‹ƒR[ƒh‚ğ•Ô‚µ‚Ü‚·B
+	 * \return è¨­å®šã•ã‚ŒãŸã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚³ãƒ¼ãƒ‰ã‚’è¿”ã—ã¾ã™ã€‚
 	**/
 	function setControlCode(code = neutralCode)
 	{
@@ -834,7 +834,7 @@ class GConductor extends KAGParser
 			case 'pendingbreak':	controlCode_ = -5; break;
 			case 'breath':			controlCode_ = -6; break;
 			case 'breathclear':		controlCode_ = -7; break;
-			default:				throw new GRuntimeError(@"'&code; ‚Í•s–¾‚ÈƒRƒ“ƒgƒ[ƒ‹ƒR[ƒh‚Å‚·B");
+			default:				throw new GRuntimeError(@"'&code; ã¯ä¸æ˜ãªã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚³ãƒ¼ãƒ‰ã§ã™ã€‚");
 			}
 			break;
 
@@ -844,8 +844,8 @@ class GConductor extends KAGParser
 
 		default:
 			throw new GArgumentsError(
-				@"code ‚É '&typeof(code);' ƒ^ƒCƒv‚Ì’l‚ªw’è‚³‚ê‚Ü‚µ‚½B\n" +
-				'code ‚É‚ÍA•¶š—ñ‚©®”’l‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢B'
+				@"code ã« '&typeof(code);' ã‚¿ã‚¤ãƒ—ã®å€¤ãŒæŒ‡å®šã•ã‚Œã¾ã—ãŸã€‚\n" +
+				'code ã«ã¯ã€æ–‡å­—åˆ—ã‹æ•´æ•°å€¤ã‚’æŒ‡å®šã—ã¦ãã ã•ã„ã€‚'
 			);
 		}
 
@@ -857,7 +857,7 @@ class GConductor extends KAGParser
 	function control_private_(code, tag)
 	{
 		try {
-			// ƒR[ƒh•ÏŠ·
+			// ã‚³ãƒ¼ãƒ‰å¤‰æ›
 			switch(typeof(code))
 			{
 			case 'void':		code = controlCode_; break;
@@ -865,37 +865,37 @@ class GConductor extends KAGParser
 			default:			code = setControlCode(code); break;
 			}
 
-			// ƒR[ƒhƒNƒŠƒA
+			// ã‚³ãƒ¼ãƒ‰ã‚¯ãƒªã‚¢
 			controlCode_ = neutralCode;
 
 			//dm(@"control code : &code;");
 			switch(code)
 			{
-			// ‘¦À‚ÉŸ‚ğˆ—
+			// å³åº§ã«æ¬¡ã‚’å‡¦ç†
 			case 0:		return true;
-			// Œ»İ‚ÌƒVƒiƒŠƒI‚ğ”jŠü
+			// ç¾åœ¨ã®ã‚·ãƒŠãƒªã‚ªã‚’ç ´æ£„
 			case -1:	destroyScenario(); break;
-			// ’â~
+			// åœæ­¢
 			case -2:	stop(); break;
-			// Œ»İ‚Ìƒ^ƒO‚ğŒã‰ñ‚µ‚É‚µ‚Ä’â~
+			// ç¾åœ¨ã®ã‚¿ã‚°ã‚’å¾Œå›ã—ã«ã—ã¦åœæ­¢
 			case -3:	pendingTag(tag); stop(); break;
-			// ˆê’UƒRƒA‚É§Œä‚ğ–ß‚·
+			// ä¸€æ—¦ã‚³ã‚¢ã«åˆ¶å¾¡ã‚’æˆ»ã™
 			case -4:	startToIdle(); break;
-			// Œ»İ‚Ìƒ^ƒO‚ğŒã‰ñ‚µ‚É‚µ‚ÄAˆê’UƒRƒA‚É§Œä‚ğ•Ô‚·B
+			// ç¾åœ¨ã®ã‚¿ã‚°ã‚’å¾Œå›ã—ã«ã—ã¦ã€ä¸€æ—¦ã‚³ã‚¢ã«åˆ¶å¾¡ã‚’è¿”ã™ã€‚
 			case -5:	pendingTag(tag); startToIdle(); break;
-			// ƒuƒŒƒXó‘Ô‚É‚µ‚Ä‘¦À‚ÉŸ‚Ö
+			// ãƒ–ãƒ¬ã‚¹çŠ¶æ…‹ã«ã—ã¦å³åº§ã«æ¬¡ã¸
 			case -6:	setBreath(); return true;
-			// ƒuƒŒƒXó‘Ô‚ğƒNƒŠƒA
+			// ãƒ–ãƒ¬ã‚¹çŠ¶æ…‹ã‚’ã‚¯ãƒªã‚¢
 			case -7:	return !clearBreath();
 			// wait
 			default:
 				if(code <= 0)
-					throw new GRuntimeError('•s–¾‚ÈƒRƒ“ƒgƒ[ƒ‹ƒR[ƒh‚Å‚·B');
+					throw new GRuntimeError('ä¸æ˜ãªã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚³ãƒ¼ãƒ‰ã§ã™ã€‚');
 				startInTime(code);
 				break;
 			}
 		} catch(e) {
-			// FIXME: —áŠO e ‚ÌŒ^î•ñ‚ª¸‚í‚ê‚éBclone() ‚·‚×‚«‚©H
+			// FIXME: ä¾‹å¤– e ã®å‹æƒ…å ±ãŒå¤±ã‚ã‚Œã‚‹ã€‚clone() ã™ã¹ãã‹ï¼Ÿ
 			throw new GRuntimeError(
 				@"&e.message;\n" +
 				@"control code: '&code;'"
@@ -910,17 +910,17 @@ class GConductor extends KAGParser
 		var storage;
 
 		if(name == '')
-			throw new GRuntimeError('ƒXƒNƒŠƒvƒg‚ğ“Ç‚İ‚à‚¤‚Æ‚µ‚Ü‚µ‚½‚ª‹ó•¶š—ñ‚ªw’è‚³‚ê‚Ü‚µ‚½B');
+			throw new GRuntimeError('ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’èª­ã¿è¾¼ã‚‚ã†ã¨ã—ã¾ã—ãŸãŒç©ºæ–‡å­—åˆ—ãŒæŒ‡å®šã•ã‚Œã¾ã—ãŸã€‚');
 
 		storage = getExistentStorageNameAndExtension(name, '', scriptFileExtensions*);
 		if(storage == void)
 		{
 			throw new GNotFoundStorageError(
-				@"ƒXƒNƒŠƒvƒgƒXƒgƒŒ[ƒWu&name;v‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½B\n" +
+				@"ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ã€Œ&name;ã€ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚\n" +
 				@"\n" +
-				@"yŒŸõğŒz\n" +
-				@"ƒtƒ@ƒCƒ‹–¼F'&name;'\n" +
-				@"Šg’£qF'', '&scriptFileExtensions.join('\', \'', , true);'"
+				@"ã€æ¤œç´¢æ¡ä»¶ã€‘\n" +
+				@"ãƒ•ã‚¡ã‚¤ãƒ«åï¼š'&name;'\n" +
+				@"æ‹¡å¼µå­ï¼š'', '&scriptFileExtensions.join('\', \'', , true);'"
 			);
 		}
 
@@ -945,27 +945,27 @@ class GConductor extends KAGParser
 
 	function getNextTag()
 	{
-		// Œã‰ñ‚µ‚É‚³‚ê‚½ƒ^ƒO‚ª‚ ‚ê‚Î‚»‚¿‚ç‚ğæ‚Éˆ—‚·‚é
+		// å¾Œå›ã—ã«ã•ã‚ŒãŸã‚¿ã‚°ãŒã‚ã‚Œã°ãã¡ã‚‰ã‚’å…ˆã«å‡¦ç†ã™ã‚‹
 		if(pendingTags_.count > 0)
 			return pendingTags_.shift();
 
 		var obj = super.getNextTag();
 
-		// getNextTag() ˆ—’†‚É pendingTags_ ‚É’Ç‰Á‚³‚ê‚½‚à‚Ì‚ª‚È‚¢‚©ƒ`ƒFƒbƒN
+		// getNextTag() å‡¦ç†ä¸­ã« pendingTags_ ã«è¿½åŠ ã•ã‚ŒãŸã‚‚ã®ãŒãªã„ã‹ãƒã‚§ãƒƒã‚¯
 		if(pendingTags_.count > 0)
 		{
 			pendingTag(obj);
 			obj = pendingTags_.shift();
 		}
 
-		// obj ‚ª void ‚È‚ç‚»‚ê‚ÍƒVƒiƒŠƒI‚ÌI’[
+		// obj ãŒ void ãªã‚‰ãã‚Œã¯ã‚·ãƒŠãƒªã‚ªã®çµ‚ç«¯
 		if(obj === void)
 			obj = %[tagname : 's', eof : true];
 
-		// ƒuƒŒƒXó‘Ô‚È‚çƒuƒŒƒXƒ^ƒO‚ğˆ—‚·‚é
+		// ãƒ–ãƒ¬ã‚¹çŠ¶æ…‹ãªã‚‰ãƒ–ãƒ¬ã‚¹ã‚¿ã‚°ã‚’å‡¦ç†ã™ã‚‹
 		if(breath)
 		{
-			// ƒuƒŒƒXƒ^ƒO‚©‚Ç‚¤‚©’²‚×‚é
+			// ãƒ–ãƒ¬ã‚¹ã‚¿ã‚°ã‹ã©ã†ã‹èª¿ã¹ã‚‹
 			if(breathTags_.find(obj.tagname) != -1)
 			{
 				interruptTag(obj);
@@ -1072,8 +1072,8 @@ class GConductor extends KAGParser
 			timer_.enabled = false;
 
 			do {
-				// NOTE: getNextTag() “à•”‚Ì—áŠO‚ğŒë‚Á‚Äˆê‚Â‘O‚Ìƒ^ƒO‚ÌƒGƒ‰[‚Æ‚µ‚ÄƒŒƒ|[ƒg‚µ‚È‚¢‚æ‚¤‚É
-				// NOTE: —\‚ß obj ‚É‚Í void ‚ğƒZƒbƒg‚µ‚Ä‚¨‚­
+				// NOTE: getNextTag() å†…éƒ¨ã®ä¾‹å¤–ã‚’èª¤ã£ã¦ä¸€ã¤å‰ã®ã‚¿ã‚°ã®ã‚¨ãƒ©ãƒ¼ã¨ã—ã¦ãƒ¬ãƒãƒ¼ãƒˆã—ãªã„ã‚ˆã†ã«
+				// NOTE: äºˆã‚ obj ã«ã¯ void ã‚’ã‚»ãƒƒãƒˆã—ã¦ãŠã
 				obj = void;
 
 				if(suspended_)
@@ -1084,14 +1084,14 @@ class GConductor extends KAGParser
 		} catch(e) {
 			if(obj === void)
 			{
-				// NOTE: ƒ^ƒOˆ—‘O‚Ì—áŠO‚ÍŠÛ“Š‚°‚·‚éB
+				// NOTE: ã‚¿ã‚°å‡¦ç†å‰ã®ä¾‹å¤–ã¯ä¸¸æŠ•ã’ã™ã‚‹ã€‚
 				raiseUpException(e);
 			}
 			else
 			{
 				throw new GRuntimeError(
-					@"&obj.tagname; ‚ğˆ—’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B\n" +
-					@"sF&curLine + 1;\n\n" +
+					@"&obj.tagname; ã‚’å‡¦ç†ä¸­ã«ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚\n" +
+					@"è¡Œï¼š&curLine + 1;\n\n" +
 					e.message
 				);
 			}
@@ -1164,9 +1164,9 @@ class GConductor extends KAGParser
 			Scripts.exec(obj.script) if !obj.ignore;
 		} catch(e) {
 			throw new GRuntimeError(
-				@"@iscript - @endscript “à‚Å—áŠO‚ª”­¶‚µ‚Ü‚µ‚½B\n" +
-				@"ƒtƒ@ƒCƒ‹: &storageShortName;\n" +
-				@"s: &scriptStart;\n\n" +
+				@"@iscript - @endscript å†…ã§ä¾‹å¤–ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚\n" +
+				@"ãƒ•ã‚¡ã‚¤ãƒ«: &storageShortName;\n" +
+				@"è¡Œ: &scriptStart;\n\n" +
 				@"&e.message;"
 			);
 		}

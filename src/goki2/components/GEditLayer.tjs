@@ -5,7 +5,7 @@
 
 
 /*
- * ‚Ù‚Ú KAG ‚ÌƒR[ƒh—¬—p
+ * ã»ã¼ KAG ã®ã‚³ãƒ¼ãƒ‰æµç”¨
 **/
 class GEditLayer extends GWidgetLayer
 {
@@ -92,7 +92,7 @@ class GEditLayer extends GWidgetLayer
 
 	function ensureCaretVisible(step = 1)
 	{
-		// ƒLƒƒƒŒƒbƒg‚ªŠmÀ‚É•\¦‚³‚ê‚éˆÊ’u‚Ü‚ÅƒXƒNƒ[ƒ‹‚·‚é
+		// ã‚­ãƒ£ãƒ¬ãƒƒãƒˆãŒç¢ºå®Ÿã«è¡¨ç¤ºã•ã‚Œã‚‹ä½ç½®ã¾ã§ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã™ã‚‹
 		var old = selectScrollPosition_;
 		var txtlen = caption.length;
 		if(selectStart_ == txtlen)
@@ -159,7 +159,7 @@ class GEditLayer extends GWidgetLayer
 	{
 		var oldAnchor = selectAnchor_;
 
-		// ƒLƒƒƒŒƒbƒg‚ğ¶‚Ö
+		// ã‚­ãƒ£ãƒ¬ãƒƒãƒˆã‚’å·¦ã¸
 		if(selectLenght_)
 		{
 			selectLenght_ = 0;
@@ -181,7 +181,7 @@ class GEditLayer extends GWidgetLayer
 	{
 		var oldAnchor = selectAnchor_;
 
-		// ƒLƒƒƒŒƒbƒg‚ğ‰E‚Ö
+		// ã‚­ãƒ£ãƒ¬ãƒƒãƒˆã‚’å³ã¸
 		if(selectLenght_)
 		{
 			selectLenght_ = 0;
@@ -201,7 +201,7 @@ class GEditLayer extends GWidgetLayer
 
 	function getCaretPosFromX(x)
 	{
-		// ƒNƒŠƒbƒN‚³‚ê‚½ˆÊ’u‚ğŠ„‚èo‚·
+		// ã‚¯ãƒªãƒƒã‚¯ã•ã‚ŒãŸä½ç½®ã‚’å‰²ã‚Šå‡ºã™
 		x -= 3;
 		var text = caption.substring(selectScrollPosition_);
 		var i = 0;
@@ -231,8 +231,8 @@ class GEditLayer extends GWidgetLayer
 	}
 
 	/*
-	 * \brief ‘I‘ğ”ÍˆÍ‚ÉŠÜ‚Ü‚ê‚é•¶š‚ğ‘S‚Äíœ‚·‚é
-	 * \brief íœ‚µ‚½‚Ì‚Å‚ ‚ê‚Î true ‚ğA‚»‚¤‚Å‚È‚¯‚ê‚Î false ‚ğ•Ô‚·
+	 * \brief é¸æŠç¯„å›²ã«å«ã¾ã‚Œã‚‹æ–‡å­—ã‚’å…¨ã¦å‰Šé™¤ã™ã‚‹
+	 * \brief å‰Šé™¤ã—ãŸã®ã§ã‚ã‚Œã° true ã‚’ã€ãã†ã§ãªã‘ã‚Œã° false ã‚’è¿”ã™
 	**/
 	function deleteSelectRange()
 	{
@@ -313,7 +313,7 @@ class GEditLayer extends GWidgetLayer
 	/**/
 	function operationPaste()
 	{
-		// ƒeƒLƒXƒg‚ª–³‚¯‚ê‚Î‚à‚¿‚ë‚ñ‰½‚à‚µ‚È‚¢
+		// ãƒ†ã‚­ã‚¹ãƒˆãŒç„¡ã‘ã‚Œã°ã‚‚ã¡ã‚ã‚“ä½•ã‚‚ã—ãªã„
 		if(Clipboard.hasFormat(cbfText))
 		{
 			var text = Clipboard.asText;
@@ -340,12 +340,12 @@ class GEditLayer extends GWidgetLayer
 
 	function insertCharacter(ch)
 	{
-		// ‘I‘ğ”ÍˆÍ‚ÌƒeƒLƒXƒg‚ğíœ‚·‚é
+		// é¸æŠç¯„å›²ã®ãƒ†ã‚­ã‚¹ãƒˆã‚’å‰Šé™¤ã™ã‚‹
 		deleteSelectRange();
 
-		// ch ‚ğƒJ[ƒ\ƒ‹ˆÊ’u‚É‘}“ü
-		var before = caption.substring(0, selectStart_); // ‘I‘ğ—ÌˆæˆÈ‘O
-		var after = caption.substring(selectStart_ + selectLenght_); // ‘I‘ğ—ÌˆæˆÈŒã
+		// ch ã‚’ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã«æŒ¿å…¥
+		var before = caption.substring(0, selectStart_); // é¸æŠé ˜åŸŸä»¥å‰
+		var after = caption.substring(selectStart_ + selectLenght_); // é¸æŠé ˜åŸŸä»¥å¾Œ
 		caption = before + ch + after;
 		selectStart_ += ch.length;
 		selectAnchor_ = selectStart_;
@@ -356,7 +356,7 @@ class GEditLayer extends GWidgetLayer
 
 	function deleteBeforeCaret()
 	{
-		// ƒLƒƒƒŒƒbƒg‚Ìè‘O‚Ì•¶š‚ğˆê•¶šíœ‚·‚é
+		// ã‚­ãƒ£ãƒ¬ãƒƒãƒˆã®æ‰‹å‰ã®æ–‡å­—ã‚’ä¸€æ–‡å­—å‰Šé™¤ã™ã‚‹
 		if(!deleteSelectRange() && selectStart_ > 0)
 		{
 			var before = caption.substring(0, selectStart_-1);
@@ -372,7 +372,7 @@ class GEditLayer extends GWidgetLayer
 
 	function deleteAfterCaret()
 	{
-		// ƒLƒƒƒŒƒbƒg‚ÌŸ‚Ìˆê•¶š‚ğíœ‚·‚é
+		// ã‚­ãƒ£ãƒ¬ãƒƒãƒˆã®æ¬¡ã®ä¸€æ–‡å­—ã‚’å‰Šé™¤ã™ã‚‹
 		if(!deleteSelectRange() && selectStart_ < caption.length)
 		{
 			var before = caption.substring(0, selectStart_);
@@ -393,7 +393,7 @@ class GEditLayer extends GWidgetLayer
 	{
 		super.onMouseDown(...);
 
-		// ƒNƒŠƒbƒN‚³‚ê‚½
+		// ã‚¯ãƒªãƒƒã‚¯ã•ã‚ŒãŸ
 		if(x >= 3 && y >= 3 && x < imageWidth -3 && y < imageHeight - 3)
 		{
 			var oldStart = selectStart_;
@@ -404,11 +404,11 @@ class GEditLayer extends GWidgetLayer
 			else
 				selectStart_ = getCaretPosFromX(x);
 
-			// Shift ƒL[‚ª‰Ÿ‚³‚ê‚Ä‚¢‚È‚¢‚Ì‚Å‚ ‚ê‚ÎƒAƒ“ƒJ[‚àXV‚·‚é
+			// Shift ã‚­ãƒ¼ãŒæŠ¼ã•ã‚Œã¦ã„ãªã„ã®ã§ã‚ã‚Œã°ã‚¢ãƒ³ã‚«ãƒ¼ã‚‚æ›´æ–°ã™ã‚‹
 			if((shift & ssShift) != ssShift)
 				selectAnchor_ = selectStart_;
 
-			// XV‚Ì•K—v‚ª‚ ‚ê‚ÎXV‚·‚é
+			// æ›´æ–°ã®å¿…è¦ãŒã‚ã‚Œã°æ›´æ–°ã™ã‚‹
 			if(oldStart != selectStart_ || oldAnchor != selectAnchor_)
 				update();
 
@@ -423,7 +423,7 @@ class GEditLayer extends GWidgetLayer
 	{
 		if(pushed)
 		{
-			// ‚±‚±‚Å‚ÌˆÚ“®‚ÍƒAƒ“ƒJ[‚Íâ‘Î‚ÉˆÚ“®‚µ‚È‚¢
+			// ã“ã“ã§ã®ç§»å‹•ã¯ã‚¢ãƒ³ã‚«ãƒ¼ã¯çµ¶å¯¾ã«ç§»å‹•ã—ãªã„
 
 			if(vertical_)
 			{
@@ -433,7 +433,7 @@ class GEditLayer extends GWidgetLayer
 
 					selectStart_ = getCaretPosFromX(y);
 
-					// XV‚Ì•K—v‚ª‚ ‚ê‚ÎXV‚·‚é
+					// æ›´æ–°ã®å¿…è¦ãŒã‚ã‚Œã°æ›´æ–°ã™ã‚‹
 					if(oldStart != selectStart_)
 						update();
 
@@ -457,7 +457,7 @@ class GEditLayer extends GWidgetLayer
 
 					selectStart_ = getCaretPosFromX(x);
 
-					// XV‚Ì•K—v‚ª‚ ‚ê‚ÎXV‚·‚é
+					// æ›´æ–°ã®å¿…è¦ãŒã‚ã‚Œã°æ›´æ–°ã™ã‚‹
 					if(oldStart != selectStart_)
 						update();
 
@@ -480,13 +480,13 @@ class GEditLayer extends GWidgetLayer
 
 	function onKeyPress(key)
 	{
-		// ƒL[‚ª‰Ÿ‚³‚ê‚½
+		// ã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸ
 		if(#key >= 32)
 		{
-			// •’Ê‚Ì•¶š
+			// æ™®é€šã®æ–‡å­—
 			if(!maxCharacter_ || caption.length < maxCharacter_)
 				insertCharacter(key);
-			// ƒ}ƒEƒXƒJ[ƒ\ƒ‹‚ğˆê“I‚É”ñ•\¦‚É‚·‚é
+			// ãƒã‚¦ã‚¹ã‚«ãƒ¼ã‚½ãƒ«ã‚’ä¸€æ™‚çš„ã«éè¡¨ç¤ºã«ã™ã‚‹
 			window.hideMouseCursor();
 		}
 		else super.onKeyPress(...);
@@ -494,7 +494,7 @@ class GEditLayer extends GWidgetLayer
 
 	function onKeyDown(key, shift)
 	{
-		// “Áê‚ÈƒIƒyƒŒ[ƒVƒ‡ƒ“
+		// ç‰¹æ®Šãªã‚ªãƒšãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³
 		if(shift & ssCtrl)
 		{
 			switch(key)
@@ -524,14 +524,14 @@ class GEditLayer extends GWidgetLayer
 
 	function onFocus()
 	{
-		// ƒtƒH[ƒJƒX‚ğ“¾‚½
+		// ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã‚’å¾—ãŸ
 		super.onFocus(...);
 		showCaret();
 	}
 
 	function onBlur()
 	{
-		// ƒtƒH[ƒJƒX‚ğ¸‚Á‚½
+		// ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã‚’å¤±ã£ãŸ
 		super.onBlur(...);
 		hideCaret();
 	}
@@ -539,16 +539,16 @@ class GEditLayer extends GWidgetLayer
 
 	function onPaint()
 	{
-		// •`‰æ‚Ì’¼‘O‚ÉŒÄ‚Î‚ê‚é
-		// “à—e‚ğ•`‰æ‚·‚é
-		// ‚Æ‚è‚ ‚¦‚¸ƒNƒŠƒA
+		// æç”»ã®ç›´å‰ã«å‘¼ã°ã‚Œã‚‹
+		// å†…å®¹ã‚’æç”»ã™ã‚‹
+		// ã¨ã‚Šã‚ãˆãšã‚¯ãƒªã‚¢
 		var vert = vertical_;
 		var imwidth = vert ? imageHeight : imageWidth;
 		fillRect(0, 0, imageWidth, imageHeight, 0);
 		colorRect(0, 0, imageWidth, imageHeight, bodyColor, bodyOpacity);
-		// •¶š‚ğ•`‰æ
-		// ƒOƒ[ƒoƒ‹•Ï”‚âAƒIƒuƒWƒFƒNƒg“à•Ï”‚ÍƒAƒNƒZƒX‚ª’x‚¢‚Ì‚ÅA
-		// ‚æ‚­g‚¤•Ï”‚Íƒ[ƒJƒ‹‚É‚Á‚Ä‚­‚é
+		// æ–‡å­—ã‚’æç”»
+		// ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã‚„ã€ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå†…å¤‰æ•°ã¯ã‚¢ã‚¯ã‚»ã‚¹ãŒé…ã„ã®ã§ã€
+		// ã‚ˆãä½¿ã†å¤‰æ•°ã¯ãƒ­ãƒ¼ã‚«ãƒ«ã«æŒã£ã¦ãã‚‹
 		var h = font.height;
 		h = -h if h < 0;
 		var x = vert ? imageWidth - 3 : 3;
@@ -576,15 +576,15 @@ class GEditLayer extends GWidgetLayer
 				var chw = font.getTextWidth(ch);
 				if(isSelected(chpos++))
 				{
-					// ‘I‘ğ—Ìˆæ“à
-					// ”wŒi‚ğ“h‚é
+					// é¸æŠé ˜åŸŸå†…
+					// èƒŒæ™¯ã‚’å¡—ã‚‹
 					fillRect(x, y, h, chw, highlightbg);
-					// •¶š‚ğ‘‚­
+					// æ–‡å­—ã‚’æ›¸ã
 					drawText(x, y, ch, highlighttext, 255, anti);
 				}
 				else
 				{
-					// ‘I‘ğ—ÌˆæŠO
+					// é¸æŠé ˜åŸŸå¤–
 					drawText(x, y, ch, textcolor, 255, anti);
 				}
 				tx += ch;
@@ -603,20 +603,20 @@ class GEditLayer extends GWidgetLayer
 				var chw = font.getTextWidth(ch);
 				if(isSelected(chpos++))
 				{
-					// ”wŒi‚ğ“h‚é
+					// èƒŒæ™¯ã‚’å¡—ã‚‹
 					fillRect(x, y, chw, h, highlightbg);
-					// •¶š‚ğ‘‚­
+					// æ–‡å­—ã‚’æ›¸ã
 					drawText(x, y, ch, highlighttext, 255, anti);
 				}
 				else
 				{
-					// ‘I‘ğ—ÌˆæŠO
+					// é¸æŠé ˜åŸŸå¤–
 					drawText(x, y, ch, textcolor, 255, anti);
 				}
 				tx += ch;
 			}
 		}
-		// •¶š—ÌˆæŠO‚ğ‚à‚¤ˆê“xƒNƒŠƒA
+		// æ–‡å­—é ˜åŸŸå¤–ã‚’ã‚‚ã†ä¸€åº¦ã‚¯ãƒªã‚¢
 		if(vert)
 		{
 			fillRect(0, imageHeight - 3, imageWidth, 3, 0);
@@ -627,7 +627,7 @@ class GEditLayer extends GWidgetLayer
 			fillRect(imageWidth - 3, 0, 3, imageHeight, 0);
 			colorRect(imageWidth - 3, 0, 3, imageHeight, bodyColor, bodyOpacity);
 		}
-		// ˜g‚ğ•`‰æ
+		// æ ã‚’æç”»
 		colorRect(0, 0, imageWidth, 1, 0x000000, 128);
 		colorRect(0, 1, 1, imageHeight-2, 0x000000, 128);
 		colorRect(imageWidth-1, 1, 1, imageHeight-1, 0xffffff, 128);

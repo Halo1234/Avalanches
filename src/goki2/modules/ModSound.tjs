@@ -33,12 +33,12 @@ class BGMBufferIterator extends GSoundBufferIterator
 
 	function addMidiTypeBuffer()
 	{
-		throw new GNotImplementedError('Œ»İAMIDI ƒ^ƒCƒv‚Ì‚a‚f‚lƒoƒbƒtƒ@‚ÍÀ‘•‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB');
+		throw new GNotImplementedError('ç¾åœ¨ã€MIDI ã‚¿ã‚¤ãƒ—ã®ï¼¢ï¼§ï¼­ãƒãƒƒãƒ•ã‚¡ã¯å®Ÿè£…ã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚');
 	}
 
 	function addCdmaTypeBuffer()
 	{
-		throw new GNotImplementedError('Œ»İACDMA ƒ^ƒCƒv‚Ì‚a‚f‚lƒoƒbƒtƒ@‚ÍÀ‘•‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB');
+		throw new GNotImplementedError('ç¾åœ¨ã€CDMA ã‚¿ã‚¤ãƒ—ã®ï¼¢ï¼§ï¼­ãƒãƒƒãƒ•ã‚¡ã¯å®Ÿè£…ã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚');
 	}
 
 	function createWaveSoundBuffer(owner, handler)
@@ -58,7 +58,7 @@ class BGMBufferIterator extends GSoundBufferIterator
 		case 'MIDI':	/* Dead code. */ break;
 		case 'CDMA':	/* Dead code. */ break;
 		default:
-			throw new GRuntimeError(@"'&creationBufferType_;' –¢’m‚ÌƒƒfƒBƒAƒ^ƒCƒv‚Å‚·B");
+			throw new GRuntimeError(@"'&creationBufferType_;' æœªçŸ¥ã®ãƒ¡ãƒ‡ã‚£ã‚¢ã‚¿ã‚¤ãƒ—ã§ã™ã€‚");
 		}
 
 		return obj;
@@ -184,7 +184,7 @@ class ModSound extends GModule
 			obj = bgmBuffers_.at(+elm.buffer);
 
 			if(obj === void)
-				throw new GArgumentsError(@"ƒCƒ“ƒfƒbƒNƒX &elm.buffer; ”Ô‚Ì‚a‚f‚lƒoƒbƒtƒ@‚Í‘¶İ‚µ‚Ü‚¹‚ñB");
+				throw new GArgumentsError(@"ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ &elm.buffer; ç•ªã®ï¼¢ï¼§ï¼­ãƒãƒƒãƒ•ã‚¡ã¯å­˜åœ¨ã—ã¾ã›ã‚“ã€‚");
 		}
 		else
 		{
@@ -200,11 +200,11 @@ class ModSound extends GModule
 		var obj;
 
 		if(elm.buffer === void)
-			throw new GArgumentsError('buffer ‚ªw’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB');
+			throw new GArgumentsError('buffer ãŒæŒ‡å®šã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚');
 
 		obj = systemSoundBuffers_.at(+elm.buffer);
 		if(obj === void)
-			throw new GArgumentsError(@"ƒCƒ“ƒfƒbƒNƒX &elm.buffer; ”Ô‚ÌŒø‰Ê‰¹ƒoƒbƒtƒ@‚Í‘¶İ‚µ‚Ü‚¹‚ñB");
+			throw new GArgumentsError(@"ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ &elm.buffer; ç•ªã®åŠ¹æœéŸ³ãƒãƒƒãƒ•ã‚¡ã¯å­˜åœ¨ã—ã¾ã›ã‚“ã€‚");
 
 		return obj;
 	}
@@ -215,11 +215,11 @@ class ModSound extends GModule
 		var obj;
 
 		if(elm.buffer === void)
-			throw new GArgumentsError('buffer ‚ªw’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB');
+			throw new GArgumentsError('buffer ãŒæŒ‡å®šã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚');
 
 		obj = soundEffectBuffers_.at(+elm.buffer);
 		if(obj === void)
-			throw new GArgumentsError(@"ƒCƒ“ƒfƒbƒNƒX &elm.buffer; ”Ô‚ÌŒø‰Ê‰¹ƒoƒbƒtƒ@‚Í‘¶İ‚µ‚Ü‚¹‚ñB");
+			throw new GArgumentsError(@"ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ &elm.buffer; ç•ªã®åŠ¹æœéŸ³ãƒãƒƒãƒ•ã‚¡ã¯å­˜åœ¨ã—ã¾ã›ã‚“ã€‚");
 
 		return obj;
 	}
@@ -230,11 +230,11 @@ class ModSound extends GModule
 		var obj;
 
 		if(elm.buffer === void)
-			throw new GArgumentsError('buffer ‚ªw’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB');
+			throw new GArgumentsError('buffer ãŒæŒ‡å®šã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚');
 
 		obj = voiceBuffers_.at(+elm.buffer);
 		if(obj === void)
-			throw new GArgumentsError(@"ƒCƒ“ƒfƒbƒNƒX &elm.buffer; ”Ô‚Ìƒ{ƒCƒXƒoƒbƒtƒ@‚Í‘¶İ‚µ‚Ü‚¹‚ñB");
+			throw new GArgumentsError(@"ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ &elm.buffer; ç•ªã®ãƒœã‚¤ã‚¹ãƒãƒƒãƒ•ã‚¡ã¯å­˜åœ¨ã—ã¾ã›ã‚“ã€‚");
 
 		return obj;
 	}
@@ -243,7 +243,7 @@ class ModSound extends GModule
 	function getDefaultBGMBuffer()
 	{
 		if(bgmBuffers_.count == 0)
-			throw new GRuntimeError('ƒfƒtƒHƒ‹ƒg‚Ì‚a‚f‚lƒoƒbƒtƒ@‚ª‘¶İ‚µ‚Ü‚¹‚ñB');
+			throw new GRuntimeError('ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ï¼¢ï¼§ï¼­ãƒãƒƒãƒ•ã‚¡ãŒå­˜åœ¨ã—ã¾ã›ã‚“ã€‚');
 
 		return bgmBuffers_.at(0);
 	}
@@ -507,14 +507,14 @@ class ModSound extends GModule
 			/* @add_bgm_buffer */
 			'add_bgm_buffer' => function (elm) {
 				if(elm.type === void)
-					throw new GArgumentsError('type ‘®«‚É WAVE ‚Ü‚½‚Í MIDI ‚Ü‚½‚Í CDMA ‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢B');
+					throw new GArgumentsError('type å±æ€§ã« WAVE ã¾ãŸã¯ MIDI ã¾ãŸã¯ CDMA ã‚’æŒ‡å®šã—ã¦ãã ã•ã„ã€‚');
 				switch(elm.type)
 				{
 				case 'WAVE':	bgmBuffers_.addWaveTypeBuffer(); break;
 				case 'MIDI':	bgmBuffers_.addMidiTypeBuffer(); break;
 				case 'CDMA':	bgmBuffers_.addCdmaTypeBuffer(); break;
 				default:
-					throw new GArgumentsError('type ‘®«w’è‚Å‚«‚é’l‚Í WAVE ‚Ü‚½‚Í MIDI ‚Ü‚½‚Í CDMA ‚Å‚·B');
+					throw new GArgumentsError('type å±æ€§æŒ‡å®šã§ãã‚‹å€¤ã¯ WAVE ã¾ãŸã¯ MIDI ã¾ãŸã¯ CDMA ã§ã™ã€‚');
 				}
 			} incontextof this,
 

@@ -5,13 +5,13 @@
 
 
 /**
- * ���̃N���X�� new �ł��܂���B
+ * このクラスは new できません。
 **/
 class GRadioGroup
 {
 	function GRadioGroup()
 	{
-		throw new GClassObjectConstructorCalledError('GRadioGroup �N���X����C���X�^���X�𐶐����鎖�͂ł��܂���B');
+		throw new GClassObjectConstructorCalledError('GRadioGroup クラスからインスタンスを生成する事はできません。');
 	}
 
 	function getGroup(name)
@@ -24,7 +24,7 @@ class GRadioGroup
 		}
 	}
 
-	/* name �O���[�v�� id �������ڂɃ`�F�b�N������ */
+	/* name グループの id を持つ項目にチェックを入れる */
 	function state(name, id)
 	{
 		with(GRadioGroup)
@@ -51,15 +51,15 @@ class GRadioGroup
 
 		with(GRadioGroup)
 		{
-			// �폜
+			// 削除
 			if(name === void)
 			{
 				.remove(obj);
 			}
-			// �ǉ�
+			// 追加
 			else
 			{
-				// �Â��O���[�v����폜
+				// 古いグループから削除
 				if(obj.group !== void)
 					.remove(obj);
 
@@ -77,10 +77,10 @@ class GRadioGroup
 			return;
 
 		// NOTE:
-		// ���̒i�K�� obj.group �O���[�v�����݂��Ȃ��ꍇ
-		// getGroup() �͋�� obj.group �O���[�v���쐬���邪
-		// obj.group �O���[�v���獀�ڂ��폜�����Ƃ�������
-		// �����͐��������\���������̂Ŗ��͂Ȃ��B
+		// この段階で obj.group グループが存在しない場合
+		// getGroup() は空の obj.group グループを作成するが
+		// obj.group グループから項目が削除されるという事は
+		// いつかは生成される可能性が高いので問題はない。
 		var g = GRadioGroup.getGroup(obj.group);
 		g.remove(obj);
 		obj.group_ = void;
@@ -93,12 +93,12 @@ class GRadioGroup
 			var g = .getGroup(obj.group);
 
 			if(g.find(obj) == -1)
-				throw new Exception(@"&obj.group; �O���[�v�ɓo�^����Ă��Ȃ��I�u�W�F�N�g�̃C�x���g���������悤�Ƃ��܂����B");
+				throw new Exception(@"&obj.group; グループに登録されていないオブジェクトのイベントを処理しようとしました。");
 
-			// obj ���`�F�b�N���ꂽ
+			// obj がチェックされた
 			if(obj.checked)
 			{
-				// �O���[�v�� obj �ȊO��S�Ĕ�`�F�b�N��
+				// グループの obj 以外を全て非チェックに
 				for(var i = 0; i < g.count; i++)
 				{
 					if(g[i] !== obj && g[i].checked)
@@ -108,7 +108,7 @@ class GRadioGroup
 					}
 				}
 			}
-			// obj ����`�F�b�N�ɂ��ꂽ
+			// obj が非チェックにされた
 			else
 			{
 				obj.checked_ = true;

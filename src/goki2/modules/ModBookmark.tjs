@@ -10,8 +10,8 @@ class ModBookmark extends GModule
 	var possibleSave_ = false;
 	var possibleLoad_ = true;
 
-	var storeOnLabelPassed = true;					// ƒZ[ƒu‰Â”\‚Èƒ‰ƒxƒ‹’Ê‰ß‚ÉƒXƒgƒA‚·‚é‚©‚Ç‚¤‚©
-	var storeAndSave = true;						// true ‚È‚çƒZ[ƒu‚àƒXƒgƒA‚à‚µ‚È‚¢
+	var storeOnLabelPassed = true;					// ã‚»ãƒ¼ãƒ–å¯èƒ½ãªãƒ©ãƒ™ãƒ«é€šéæ™‚ã«ã‚¹ãƒˆã‚¢ã™ã‚‹ã‹ã©ã†ã‹
+	var storeAndSave = true;						// true ãªã‚‰ã‚»ãƒ¼ãƒ–ã‚‚ã‚¹ãƒˆã‚¢ã‚‚ã—ãªã„
 
 	var storeSkipping = false;
 
@@ -30,25 +30,25 @@ class ModBookmark extends GModule
 		entries : %[]
 	];
 
-	var currentLabelName_ = '';						// Œ»İ‚Ìƒ‰ƒxƒ‹–¼
-	var currentPageName_ = '';						// Œ»İ‚Ìƒy[ƒW–¼
-	var currentReadingFlagName = '';				// Œ»İ‚ÌŠù“Çƒtƒ‰ƒO–¼
-	var readingFlagRecording = true;				// Šù“Çƒtƒ‰ƒO‚Ì‹L˜^‚ğs‚¤‚©‚Ç‚¤‚©
-	var cancelSkipQuery = false;					// ƒ‰ƒxƒ‹’Ê‰ß‚ÉƒXƒLƒbƒv‚ğƒLƒƒƒ“ƒZƒ‹‚·‚é‚©‚Ç‚¤‚©
+	var currentLabelName_ = '';						// ç¾åœ¨ã®ãƒ©ãƒ™ãƒ«å
+	var currentPageName_ = '';						// ç¾åœ¨ã®ãƒšãƒ¼ã‚¸å
+	var currentReadingFlagName = '';				// ç¾åœ¨ã®æ—¢èª­ãƒ•ãƒ©ã‚°å
+	var readingFlagRecording = true;				// æ—¢èª­ãƒ•ãƒ©ã‚°ã®è¨˜éŒ²ã‚’è¡Œã†ã‹ã©ã†ã‹
+	var cancelSkipQuery = false;					// ãƒ©ãƒ™ãƒ«é€šéæ™‚ã«ã‚¹ã‚­ãƒƒãƒ—ã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã™ã‚‹ã‹ã©ã†ã‹
 
-	var userFlags_ = %[];							// ƒZ[ƒuƒf[ƒ^
-	var temporaryFlags_ = %[];						// ˆê•Ï”—Ìˆæ
+	var userFlags_ = %[];							// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+	var temporaryFlags_ = %[];						// ä¸€æ™‚å¤‰æ•°é ˜åŸŸ
 
-	var startAnchorEnabled_ = false;				// Å‰‚É–ß‚é‹@”\‚ª—LŒø‚©‚Ç‚¤‚©
+	var startAnchorEnabled_ = false;				// æœ€åˆã«æˆ»ã‚‹æ©Ÿèƒ½ãŒæœ‰åŠ¹ã‹ã©ã†ã‹
 
-	var recordAnchorEnabled_ = false;				// ˆê‚Â‘O‚É–ß‚é‹@”\‚ªg‚¦‚é‚©‚Ç‚¤‚©
-	var recordAnchorStack_ = [];					// “¯‹@”\—p‚ÌƒXƒ^ƒbƒN
-	var recordAnchorStackSize_ = 5;					// “¯‹@”\—p‚ÌƒXƒ^ƒbƒN‚ÌÅ‘å[“x
+	var recordAnchorEnabled_ = false;				// ä¸€ã¤å‰ã«æˆ»ã‚‹æ©Ÿèƒ½ãŒä½¿ãˆã‚‹ã‹ã©ã†ã‹
+	var recordAnchorStack_ = [];					// åŒæ©Ÿèƒ½ç”¨ã®ã‚¹ã‚¿ãƒƒã‚¯
+	var recordAnchorStackSize_ = 5;					// åŒæ©Ÿèƒ½ç”¨ã®ã‚¹ã‚¿ãƒƒã‚¯ã®æœ€å¤§æ·±åº¦
 
-	var systemUserFlags_ = %[];						// ŠO•”—pƒtƒ‰ƒO—Ìˆæ
-	var systemCoreFlags_ = %[];						// Šù“Çƒtƒ‰ƒO‚È‚Ç
+	var systemUserFlags_ = %[];						// å¤–éƒ¨ç”¨ãƒ•ãƒ©ã‚°é ˜åŸŸ
+	var systemCoreFlags_ = %[];						// æ—¢èª­ãƒ•ãƒ©ã‚°ãªã©
 
-	var systemFlagsLoaded_ = false;					// system****Flags ‚ğƒ[ƒh‚µ‚½‚©‚Ç‚¤‚©
+	var systemFlagsLoaded_ = false;					// system****Flags ã‚’ãƒ­ãƒ¼ãƒ‰ã—ãŸã‹ã©ã†ã‹
 
 	function ModBookmark(container, name)
 	{
@@ -208,9 +208,9 @@ class ModBookmark extends GModule
 	}
 
 	/**
-	 * \brief Šù“Çˆ—
-	 * \brief label ‚ªŠù“Ç‚È‚ç true ‚ğ•Ô‚·B
-	 * \brief ‚»‚êˆÈŠO‚È‚ç‚Î false ‚ğ•Ô‚·B
+	 * \brief æ—¢èª­å‡¦ç†
+	 * \brief label ãŒæ—¢èª­ãªã‚‰ true ã‚’è¿”ã™ã€‚
+	 * \brief ãã‚Œä»¥å¤–ãªã‚‰ã° false ã‚’è¿”ã™ã€‚
 	**/
 	function readingRecord(label)
 	{
@@ -221,11 +221,11 @@ class ModBookmark extends GModule
 	}
 
 	/**
-	 * \brief ’¼‘O‚ÌƒZ[ƒu‰Â”\ƒ‰ƒxƒ‹ˆÊ’u‚ğ•Û‘¶‚µ‚Ü‚·B
+	 * \brief ç›´å‰ã®ã‚»ãƒ¼ãƒ–å¯èƒ½ãƒ©ãƒ™ãƒ«ä½ç½®ã‚’ä¿å­˜ã—ã¾ã™ã€‚
 	**/
 	function saveStartAnchor()
 	{
-		// ƒZ[ƒu‚µ‚È‚¢
+		// ã‚»ãƒ¼ãƒ–ã—ãªã„
 		if(!storeAndSave)
 			return;
 
@@ -234,11 +234,11 @@ class ModBookmark extends GModule
 		container.callHandler("onSaveStartAnchor", userFlags_);
 
 		// NOTE:
-		// ƒ†[ƒU[ƒtƒ‰ƒO‚Íí‚ÉŒ»İ‚Ìó‘Ô‚Ì‚à‚Ì‚ğ•Û‘¶‚·‚éB
+		// ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ•ãƒ©ã‚°ã¯å¸¸ã«ç¾åœ¨ã®çŠ¶æ…‹ã®ã‚‚ã®ã‚’ä¿å­˜ã™ã‚‹ã€‚
 		temp.save("startAnchorUser", userFlags_);
 
 		// NOTE:
-		// ƒVƒXƒeƒ€ƒtƒ‰ƒO‚ÍAŒ»İ‚Ìó‘Ô‚©’¼‘O‚Ìƒ‰ƒxƒ‹“_‚Ì‚à‚Ì‚©‚ğ‘I‚ÔB
+		// ã‚·ã‚¹ãƒ†ãƒ ãƒ•ãƒ©ã‚°ã¯ã€ç¾åœ¨ã®çŠ¶æ…‹ã‹ç›´å‰ã®ãƒ©ãƒ™ãƒ«æ™‚ç‚¹ã®ã‚‚ã®ã‹ã‚’é¸ã¶ã€‚
 		var core;
 
 		if(storeOnLabelPassed)
@@ -267,19 +267,19 @@ class ModBookmark extends GModule
 	}
 
 	/*
-	 * \brief ƒXƒ^[ƒgˆÊ’u‚Æ‚µ‚Ä•Û‘¶‚³‚ê‚½ˆÊ’u‚É–ß‚è‚Ü‚·B
+	 * \brief ã‚¹ã‚¿ãƒ¼ãƒˆä½ç½®ã¨ã—ã¦ä¿å­˜ã•ã‚ŒãŸä½ç½®ã«æˆ»ã‚Šã¾ã™ã€‚
 	**/
 	function loadStartAnchor(ask = true)
 	{
 		if(!startAnchorEnabled_)
 			return;
 
-		// TODO: ask ƒtƒH[ƒ€ŒÄ‚Ño‚µ
+		// TODO: ask ãƒ•ã‚©ãƒ¼ãƒ å‘¼ã³å‡ºã—
 		loadStartAnchor_private_();
 	}
 
 	/*
-	 * \brief ƒXƒ^[ƒgˆÊ’u‚Æ‚µ‚Ä•Û‘¶‚³‚ê‚½ˆÊ’u‚ğíœ‚µ‚Ü‚·B
+	 * \brief ã‚¹ã‚¿ãƒ¼ãƒˆä½ç½®ã¨ã—ã¦ä¿å­˜ã•ã‚ŒãŸä½ç½®ã‚’å‰Šé™¤ã—ã¾ã™ã€‚
 	**/
 	function removeStartAnchor()
 	{
@@ -337,8 +337,8 @@ class ModBookmark extends GModule
 	}
 
 	/**
-	 * \brief ÀÛ‚ÌƒZ[ƒuƒf[ƒ^‚Ì“ˆêƒXƒgƒŒ[ƒW–¼‚ğ•Ô‚µ‚Ü‚·B
-	 * \brief “ü—Í‚³‚ê‚½ƒtƒ@ƒCƒ‹–¼‚©‚ç“ˆêƒXƒgƒŒ[ƒW–¼‚Éì¬‚µ‚Ä•Ô‚µ‚Ü‚·B
+	 * \brief å®Ÿéš›ã®ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®çµ±ä¸€ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸åã‚’è¿”ã—ã¾ã™ã€‚
+	 * \brief å…¥åŠ›ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«åã‹ã‚‰çµ±ä¸€ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸åã«ä½œæˆã—ã¦è¿”ã—ã¾ã™ã€‚
 	**/
 	function makeSaveDataStorageName(fileName)
 	{
@@ -346,7 +346,7 @@ class ModBookmark extends GModule
 	}
 
 	/**
-	 * \brief ƒVƒXƒeƒ€ƒf[ƒ^—p‚Ìƒtƒ@ƒCƒ‹–¼‚ğ•Ô‚µ‚Ü‚·B
+	 * \brief ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ç”¨ã®ãƒ•ã‚¡ã‚¤ãƒ«åã‚’è¿”ã—ã¾ã™ã€‚
 	**/
 	function makeSystemSaveDataFileName(name)
 	{
@@ -356,7 +356,7 @@ class ModBookmark extends GModule
 	}
 
 	/**
-	 * \brief ’Êí‚ÌƒZ[ƒuƒf[ƒ^—p‚Ìƒtƒ@ƒCƒ‹–¼‚ğ•Ô‚µ‚Ü‚·B
+	 * \brief é€šå¸¸ã®ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ç”¨ã®ãƒ•ã‚¡ã‚¤ãƒ«åã‚’è¿”ã—ã¾ã™ã€‚
 	**/
 	function makeSaveDataFileName(number, ext = void)
 	{
@@ -372,12 +372,12 @@ class ModBookmark extends GModule
 	}
 
 	/**
-	 * \brief ƒZ[ƒuƒf[ƒ^‚ÉŠÖ‚·‚éî•ñ‚ğ•Ô‚µ‚Ü‚·B
+	 * \brief ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã«é–¢ã™ã‚‹æƒ…å ±ã‚’è¿”ã—ã¾ã™ã€‚
 	 *
-	 * \remarks å‚Èî•ñ‚Í‰º‹L‚Ì’Ê‚è‚Å‚·B
-	 * \remarks     .date: ƒ^ƒCƒ€ƒXƒ^ƒ“ƒv
-	 * \remarks .pageName: ƒy[ƒW–¼iÅŒã‚É’Ê‰ß‚µ‚½ƒZ[ƒu‰Â”\ƒ‰ƒxƒ‹‚Ìƒy[ƒW–¼j
-	 * \remarks  .summary: ƒZ[ƒuƒf[ƒ^ŠT—vBi©—R‚Éİ’è‰Â”\j
+	 * \remarks ä¸»ãªæƒ…å ±ã¯ä¸‹è¨˜ã®é€šã‚Šã§ã™ã€‚
+	 * \remarks     .date: ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—
+	 * \remarks .pageName: ãƒšãƒ¼ã‚¸åï¼ˆæœ€å¾Œã«é€šéã—ãŸã‚»ãƒ¼ãƒ–å¯èƒ½ãƒ©ãƒ™ãƒ«ã®ãƒšãƒ¼ã‚¸åï¼‰
+	 * \remarks  .summary: ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ¦‚è¦ã€‚ï¼ˆè‡ªç”±ã«è¨­å®šå¯èƒ½ï¼‰
 	**/
 	function getSaveDataInfoByNumber(number, ext = void)
 	{
@@ -385,7 +385,7 @@ class ModBookmark extends GModule
 	}
 
 	/**
-	 * \brief “¯ã
+	 * \brief åŒä¸Š
 	**/
 	function getSaveDataInfo(key)
 	{
@@ -399,7 +399,7 @@ class ModBookmark extends GModule
 	}
 
 	/**
-	 * \brief ƒZ[ƒuƒf[ƒ^‚Ì‘¶İŠm”F
+	 * \brief ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®å­˜åœ¨ç¢ºèª
 	**/
 	function isExistentSaveDataByNumber(number, ext = void)
 	{
@@ -407,7 +407,7 @@ class ModBookmark extends GModule
 	}
 
 	/**
-	 * \brief “¯ã
+	 * \brief åŒä¸Š
 	**/
 	function isExistentSaveData(fileName)
 	{
@@ -415,7 +415,7 @@ class ModBookmark extends GModule
 	}
 
 	/**
-	 * \brief ƒVƒXƒeƒ€•Ï”‚Ì•Û‘¶
+	 * \brief ã‚·ã‚¹ãƒ†ãƒ å¤‰æ•°ã®ä¿å­˜
 	**/
 	function saveSystemVariables()
 	{
@@ -426,7 +426,7 @@ class ModBookmark extends GModule
 		{
 			data = %[
 				title : System.title,
-				id : void, // TODO: Œã‚Å
+				id : void, // TODO: å¾Œã§
 				major : .conductor.majorVersionNumber,
 				minor : .conductor.minorVersionNumber,
 				special : .conductor.specialVersionString,
@@ -436,7 +436,7 @@ class ModBookmark extends GModule
 				context : context_
 			];
 
-			// •Û‘¶‘O‚É’Ê’m
+			// ä¿å­˜å‰ã«é€šçŸ¥
 			container.callHandler("onSaveSystemVariables", data.user);
 		}
 
@@ -450,7 +450,7 @@ class ModBookmark extends GModule
 	}
 
 	/**
-	 * \brief ƒVƒXƒeƒ€•Ï”‚Ì•œŒ³
+	 * \brief ã‚·ã‚¹ãƒ†ãƒ å¤‰æ•°ã®å¾©å…ƒ
 	**/
 	function loadSystemVariables()
 	{
@@ -462,22 +462,22 @@ class ModBookmark extends GModule
 			var fileName = makeSystemSaveDataFileName('system');
 
 			if(!Storages.isExistentStorage(.makeStoragePath(fileName)))
-				return /* ƒtƒ@ƒCƒ‹‚ª‚È‚¢ */;
+				return /* ãƒ•ã‚¡ã‚¤ãƒ«ãŒãªã„ */;
 
 			.load(fileName, data, ctx.mode);
 
-			// ‘Ã“–«ƒ`ƒFƒbƒN
+			// å¦¥å½“æ€§ãƒã‚§ãƒƒã‚¯
 			if(!(data instanceof 'Dictionary'))
 			{
-				// Dictionary ‚Å‚Í‚È‚¢ê‡‚ÍŠmÀ‚Éƒtƒ@ƒCƒ‹‚ª‚¨‚©‚µ‚¢B
-				abort(@"u&fileName;v‚Í‰ó‚ê‚Ä‚¢‚é‚©u&System.title;v‚ÌƒZ[ƒuƒf[ƒ^‚Å‚Í‚ ‚è‚Ü‚¹‚ñB");
+				// Dictionary ã§ã¯ãªã„å ´åˆã¯ç¢ºå®Ÿã«ãƒ•ã‚¡ã‚¤ãƒ«ãŒãŠã‹ã—ã„ã€‚
+				abort(@"ã€Œ&fileName;ã€ã¯å£Šã‚Œã¦ã„ã‚‹ã‹ã€Œ&System.title;ã€ã®ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã§ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚");
 			}
 			else
 			{
-				// ID‚ªˆá‚¤ê‡‚Í abort() ‚·‚é
+				// IDãŒé•ã†å ´åˆã¯ abort() ã™ã‚‹
 				if(data.id != void)
 				{
-					var message = @"‚±‚ÌƒZ[ƒuƒf[ƒ^‚Íu&data.title;v—p‚ÌƒZ[ƒuƒf[ƒ^‚Å‚·B";
+					var message = @"ã“ã®ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¯ã€Œ&data.title;ã€ç”¨ã®ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã§ã™ã€‚";
 
 					message += @"(version &data.major;.&data.minor;";
 					message += @" [&data.special;]" if data.special != void;
@@ -485,16 +485,16 @@ class ModBookmark extends GModule
 
 					abort(message);
 				}
-				// ƒZ[ƒuƒf[ƒ^‚Ìƒo[ƒWƒ‡ƒ“‚Ì•û‚ªV‚µ‚¢ê‡‚Í abort() ‚·‚éB
+				// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã®æ–¹ãŒæ–°ã—ã„å ´åˆã¯ abort() ã™ã‚‹ã€‚
 				with(window.conductor)
 				{
 					if(data.major > .majorVersionNumber || data.minor > .minorVersionNumber)
 					{
 						abort(
-							@"Œ»İ‚Ìƒo[ƒWƒ‡ƒ“‚æ‚è‚àV‚µ‚¢ƒo[ƒWƒ‡ƒ“‚ÌƒZ[ƒuƒf[ƒ^‚Å‚·B\n" +
-							@"ÅV‚Ìƒo[ƒWƒ‡ƒ“‚ÉXV‚µ‚Ä‚­‚¾‚³‚¢B\n" +
-							@"Œ»İ‚Ìƒo[ƒWƒ‡ƒ“F&.majorVersionNumber;.&.minorVersionNumber;\n" +
-							@"ƒZ[ƒuƒf[ƒ^‚Ìƒo[ƒWƒ‡ƒ“F&data.major;.&data.minor;"
+							@"ç¾åœ¨ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚ˆã‚Šã‚‚æ–°ã—ã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã®ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã§ã™ã€‚\n" +
+							@"æœ€æ–°ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã«æ›´æ–°ã—ã¦ãã ã•ã„ã€‚\n" +
+							@"ç¾åœ¨ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼š&.majorVersionNumber;.&.minorVersionNumber;\n" +
+							@"ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼š&data.major;.&data.minor;"
 						);
 					}
 				}
@@ -508,12 +508,12 @@ class ModBookmark extends GModule
 
 		container.callHandler("onLoadSystemVariables", data.user);
 
-		// ƒtƒ‹ƒXƒNƒŠ[ƒ“ó‘Ô‚ğ•œŒ³‚·‚é
+		// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³çŠ¶æ…‹ã‚’å¾©å…ƒã™ã‚‹
 		window.fullScreen = data.fullScreen;
 
 		log('==== load system variables');
 
-		// ƒ[ƒh‚µ‚½
+		// ãƒ­ãƒ¼ãƒ‰ã—ãŸ
 		systemFlagsLoaded_ = true;
 	}
 
@@ -545,10 +545,11 @@ class ModBookmark extends GModule
 	}
 
 	/**
-	 * \breif ’Êíƒf[ƒ^‚Ì•Û‘¶
+	 * \breif é€šå¸¸ãƒ‡ãƒ¼ã‚¿ã®ä¿å­˜
 	**/
 	function save(number, summary = '')
 	{
+		dm(@"save : &number;");
 		if(save_private_(makeSaveDataFileName(number), summary))
 			context_.lastSaveNumber = number;
 	}
@@ -556,7 +557,7 @@ class ModBookmark extends GModule
 	/**/
 	function save_private_(fileName, summary)
 	{
-		// ƒZ[ƒu‚µ‚È‚¢
+		// ã‚»ãƒ¼ãƒ–ã—ãªã„
 		if(!storeAndSave)
 			return;
 
@@ -573,7 +574,7 @@ class ModBookmark extends GModule
 		var ctx = context_;
 		var mode = ctx.mode;
 
-		// ƒTƒ€ƒlƒCƒ‹‚ª•K—v‚È‚çæ‚É•Û‘¶‚·‚é
+		// ã‚µãƒ ãƒã‚¤ãƒ«ãŒå¿…è¦ãªã‚‰å…ˆã«ä¿å­˜ã™ã‚‹
 		if(ctx.format != '')
 		{
 			var snapshot = container.get('ModSnapshot');
@@ -581,26 +582,26 @@ class ModBookmark extends GModule
 
 			if(snapshot === void)
 			{
-				// ƒXƒiƒbƒvƒVƒ‡ƒbƒg‚ª–³‚¢ê‡B
-				// Œ»İ‚Ìƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚Ì“à—e‚ğƒTƒ€ƒlƒCƒ‹‚Æ‚·‚éB
+				// ã‚¹ãƒŠãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆãŒç„¡ã„å ´åˆã€‚
+				// ç¾åœ¨ã®ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã®å†…å®¹ã‚’ã‚µãƒ ãƒã‚¤ãƒ«ã¨ã™ã‚‹ã€‚
 				var src = window.primaryLayer;
 
 				if(src === null)
-					throw new IllegalException("ƒXƒiƒbƒvƒVƒ‡ƒbƒg‚ğæ“¾‚µ‚æ‚¤‚Æ‚µ‚Ü‚µ‚½‚ªƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½B");
+					throw new IllegalException("ã‚¹ãƒŠãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆã‚’å–å¾—ã—ã‚ˆã†ã¨ã—ã¾ã—ãŸãŒãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚");
 
 				work.setSize(src.width, src.height);
 				work.piledCopy(0, 0, src, Math.abs(src.imageLeft), Math.abs(src.imageTop), src.width, src.height);
 			}
 			else
 			{
-				// ƒXƒiƒbƒvƒVƒ‡ƒbƒg‚ª‚ ‚éê‡B
-				// ƒXƒiƒbƒvƒVƒ‡ƒbƒg‚ğ“Ç‚İ‚ñ‚Åg‚¤B
+				// ã‚¹ãƒŠãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆãŒã‚ã‚‹å ´åˆã€‚
+				// ã‚¹ãƒŠãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆã‚’èª­ã¿è¾¼ã‚“ã§ä½¿ã†ã€‚
 				snapshot.lockSnapshot();
 				snapshot.getSnapshotImage(work);
 				snapshot.unlockSnapshot();
 			}
 
-			// ƒTƒ€ƒlƒCƒ‹‚ğì‚é
+			// ã‚µãƒ ãƒã‚¤ãƒ«ã‚’ä½œã‚‹
 			var layer = new Layer(window, window.primaryLayer);
 
 			layer.face = dfAlpha;
@@ -611,10 +612,10 @@ class ModBookmark extends GModule
 				work, 0, 0, work.imageWidth, work.imageHeight
 			);
 
-			// ƒTƒ€ƒlƒCƒ‹‚ğ•Û‘¶
+			// ã‚µãƒ ãƒã‚¤ãƒ«ã‚’ä¿å­˜
 			saveLocation.save(fileName, layer, ctx.format);
 
-			// ƒIƒtƒZƒbƒg
+			// ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 			mode += @"o&ctx.thumbnailInfo.size;";
 
 			invalidate layer;
@@ -630,17 +631,18 @@ class ModBookmark extends GModule
 
 		container.callHandler("onSave", data.user, data.core);
 
-		// ó‘Ô•Û‘¶
+		// çŠ¶æ…‹ä¿å­˜
+		saveLocation.openShell();
 		saveLocation.save(fileName, data, mode);
 
-		// ƒVƒXƒeƒ€•Ï”‚ğ•Û‘¶
+		// ã‚·ã‚¹ãƒ†ãƒ å¤‰æ•°ã‚’ä¿å­˜
 		saveSystemVariables();
 
 		return true;
 	}
 
 	/**
-	 * \breif ’Êíƒf[ƒ^‚Ì•œŒ³
+	 * \breif é€šå¸¸ãƒ‡ãƒ¼ã‚¿ã®å¾©å…ƒ
 	**/
 	function load(number)
 	{
@@ -649,12 +651,12 @@ class ModBookmark extends GModule
 	}
 
 	/**
-	 * \breif “¯ã
+	 * \breif åŒä¸Š
 	**/
 	function load_private_(fileName)
 	{
 		if(!isExistentSaveData(fileName))
-			throw new Exception(@"ƒZ[ƒuƒf[ƒ^u&fileName;v‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½B");
+			throw new Exception(@"ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã€Œ&fileName;ã€ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚");
 
 		if(!possibleLoad_)
 			return false;
@@ -690,7 +692,7 @@ class ModBookmark extends GModule
 		var fileName = makeSaveDataFileName(src);
 
 		if(!isExistentSaveData(fileName))
-			throw new Exception(@"ƒZ[ƒuƒf[ƒ^u&fileName;v‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½B");
+			throw new Exception(@"ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã€Œ&fileName;ã€ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚");
 
 		var ctx = context_;
 		var mode = ctx.mode;
@@ -740,7 +742,7 @@ class ModBookmark extends GModule
 	}
 
 	/**
-	 * \brief ƒTƒ€ƒlƒCƒ‹‚Ì‚³‚Ü‚´‚Ü‚ÈƒTƒCƒY‚ğŒvZ‚µ‚Ü‚·B
+	 * \brief ã‚µãƒ ãƒã‚¤ãƒ«ã®ã•ã¾ã–ã¾ãªã‚µã‚¤ã‚ºã‚’è¨ˆç®—ã—ã¾ã™ã€‚
 	**/
 	function calculateThumbnailSize_private_(context)
 	{
@@ -749,10 +751,10 @@ class ModBookmark extends GModule
 
 		if(iw === "auto" && ih === "auto")
 		{
-			// FIXME: ƒfƒtƒHƒ‹ƒg‚Ìk¬—¦‚Ék¬‚µ‚Ä‚à‚¢‚¢‚©‚à‚µ‚ê‚ñ
-			// FIXME: ‚ ‚ñ‚Ü‚±‚Ì’ö“x‚ÅƒGƒ‰[‚É‚·‚ñ‚Ì‚à‚ ‚ê‚â‚µcc
+			// FIXME: ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ç¸®å°ç‡ã«ç¸®å°ã—ã¦ã‚‚ã„ã„ã‹ã‚‚ã—ã‚Œã‚“
+			// FIXME: ã‚ã‚“ã¾ã“ã®ç¨‹åº¦ã§ã‚¨ãƒ©ãƒ¼ã«ã™ã‚“ã®ã‚‚ã‚ã‚Œã‚„ã—â€¦â€¦
 			throw new GRuntimeError(
-				"ƒTƒ€ƒlƒCƒ‹ƒTƒCƒY‚ğŒvZ‚µ‚æ‚¤‚Æ‚µ‚Ü‚µ‚½‚ªA•‚Æ‚‚³‚Ì—¼•û‚ª 'auto' ‚Å‚·B"
+				"ã‚µãƒ ãƒã‚¤ãƒ«ã‚µã‚¤ã‚ºã‚’è¨ˆç®—ã—ã‚ˆã†ã¨ã—ã¾ã—ãŸãŒã€å¹…ã¨é«˜ã•ã®ä¸¡æ–¹ãŒ 'auto' ã§ã™ã€‚"
 			);
 		}
 
@@ -766,7 +768,7 @@ class ModBookmark extends GModule
 		var w = iw;
 		var h = ih;
 
-		// ƒAƒXƒyƒNƒg”ä‚ğŒÅ’è‚·‚é•K—v‚ª‚ ‚ê‚Î‰æ‘œƒTƒCƒY‚ğ’²®‚·‚é
+		// ã‚¢ã‚¹ãƒšã‚¯ãƒˆæ¯”ã‚’å›ºå®šã™ã‚‹å¿…è¦ãŒã‚ã‚Œã°ç”»åƒã‚µã‚¤ã‚ºã‚’èª¿æ•´ã™ã‚‹
 		if(context.keepAspectRatio)
 		{
 			if(w < h)
@@ -785,7 +787,7 @@ class ModBookmark extends GModule
 		iw = (int)iw;
 		ih = (int)ih;
 
-		// bmp ƒtƒ@ƒCƒ‹ƒTƒCƒY
+		// bmp ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚º
 		var size = 0;
 		switch(context.format)
 		{
@@ -838,7 +840,7 @@ class ModBookmark extends GModule
 	{
 		super.restore(...);
 
-		// ‚±‚Ì“_‚Å true ‚ªŠm’è‚·‚é
+		// ã“ã®æ™‚ç‚¹ã§ true ãŒç¢ºå®šã™ã‚‹
 		storeAndSave = true;
 
 		storeOnLabelPassed = dic.storeOnLabelPassed;
@@ -899,11 +901,11 @@ class ModBookmark extends GModule
 
 				if(storeOnLabelPassed)
 				{
-					// ƒXƒLƒbƒv’†‚Í store ‚·‚é•K—v‚ª‚È‚¢
-					// ‚½‚¾‚µAfarstLabelProcessed ‚ª false ‚È‚ç‚Î‹­§“I‚É store ‚·‚é
-					// ‚Ü‚½‚ÍAƒ‰ƒxƒ‹–¼‚ª *force_store ‚È‚ç‚Î‹­§“I‚É store ‚·‚é
-					// ‚Ü‚½‚ÍA‹N“®Œã‚Ü‚¾ˆê“x‚à store ‚µ‚Ä‚¢‚È‚¢‚È‚ç‚Î‹­§“I‚É store ‚·‚é
-					// ‚Ü‚½‚ÍAstoreSkipping ‚ª false ‚È‚ç‚Î store ‚·‚é
+					// ã‚¹ã‚­ãƒƒãƒ—ä¸­ã¯ store ã™ã‚‹å¿…è¦ãŒãªã„
+					// ãŸã ã—ã€farstLabelProcessed ãŒ false ãªã‚‰ã°å¼·åˆ¶çš„ã« store ã™ã‚‹
+					// ã¾ãŸã¯ã€ãƒ©ãƒ™ãƒ«åãŒ *force_store ãªã‚‰ã°å¼·åˆ¶çš„ã« store ã™ã‚‹
+					// ã¾ãŸã¯ã€èµ·å‹•å¾Œã¾ã ä¸€åº¦ã‚‚ store ã—ã¦ã„ãªã„ãªã‚‰ã°å¼·åˆ¶çš„ã« store ã™ã‚‹
+					// ã¾ãŸã¯ã€storeSkipping ãŒ false ãªã‚‰ã° store ã™ã‚‹
 					if((modMessage !== void && !modMessage.longSkipping) ||
 						!firstLabelProcessed ||
 						regOnForceStored_static_.test(label) ||
@@ -918,8 +920,8 @@ class ModBookmark extends GModule
 					}
 					else
 					{
-						// ƒZ[ƒu‰Â”\‚Èƒ‰ƒxƒ‹‚ğ store ‚¹‚¸‚ÉƒXƒLƒbƒv‚µ‚½
-						// ‚±‚Ìê‡AƒZ[ƒu‰Â”\‚Èó‘Ô‚Æ‚Í‚¢‚¦‚È‚¢
+						// ã‚»ãƒ¼ãƒ–å¯èƒ½ãªãƒ©ãƒ™ãƒ«ã‚’ store ã›ãšã«ã‚¹ã‚­ãƒƒãƒ—ã—ãŸ
+						// ã“ã®å ´åˆã€ã‚»ãƒ¼ãƒ–å¯èƒ½ãªçŠ¶æ…‹ã¨ã¯ã„ãˆãªã„
 						possibleSave_ = false;
 					}
 				}
@@ -942,7 +944,7 @@ class ModBookmark extends GModule
 		{
 			var obj = window.getLocation(name);
 			if(obj === void)
-				throw new GRuntimeError(@"•Û‘¶æ &name; ‚Í–¢’è‹`‚Å‚·B");
+				throw new GRuntimeError(@"ä¿å­˜å…ˆ &name; ã¯æœªå®šç¾©ã§ã™ã€‚");
 			return obj;
 		}
 	}

@@ -6,10 +6,10 @@
 **/
 
 [
-	%['caption'=>string('”g–äŽ¾‘–'), 'ruby'=>string('ƒI[ƒo[ƒhƒ‰ƒCƒu')],
-	%['caption'=>string('ŽRF‚Ì”g–äŽ¾‘–'), 'ruby'=>string('ƒTƒ“ƒ‰ƒCƒgƒCƒGƒ[EƒI[ƒo[ƒhƒ‰ƒCƒu')],
-	%['caption'=>string('”êF‚Ì”g–äŽ¾‘–'), 'ruby'=>string('ƒXƒJ[ƒŒƒbƒgEƒI[ƒo[ƒhƒ‰ƒCƒu')],
-	%['caption'=>string('Â—Î”g–äŽ¾‘–'), 'ruby'=>string('ƒ^[ƒRƒCƒYƒuƒ‹[EƒI[ƒo[ƒhƒ‰ƒCƒu')],
-	%['caption'=>string('‹âF‚Ì”g–äŽ¾‘–'), 'ruby'=>string('ƒƒ^ƒ‹ƒVƒ‹ƒo[EƒI[ƒo[ƒhƒ‰ƒCƒu')],
-	%['caption'=>string('”g–ä—‰QŽ¾‘–'), 'ruby'=>string('ƒgƒ‹ƒl[ƒfƒBEƒI[ƒo[ƒhƒ‰ƒCƒu')]
+	%['caption'=>string('æ³¢ç´‹ç–¾èµ°'), 'ruby'=>string('ã‚ªãƒ¼ãƒãƒ¼ãƒ‰ãƒ©ã‚¤ãƒ–')],
+	%['caption'=>string('å±±å¹è‰²ã®æ³¢ç´‹ç–¾èµ°'), 'ruby'=>string('ã‚µãƒ³ãƒ©ã‚¤ãƒˆã‚¤ã‚¨ãƒ­ãƒ¼ãƒ»ã‚ªãƒ¼ãƒãƒ¼ãƒ‰ãƒ©ã‚¤ãƒ–')],
+	%['caption'=>string('ç·‹è‰²ã®æ³¢ç´‹ç–¾èµ°'), 'ruby'=>string('ã‚¹ã‚«ãƒ¼ãƒ¬ãƒƒãƒˆãƒ»ã‚ªãƒ¼ãƒãƒ¼ãƒ‰ãƒ©ã‚¤ãƒ–')],
+	%['caption'=>string('é’ç·‘æ³¢ç´‹ç–¾èµ°'), 'ruby'=>string('ã‚¿ãƒ¼ã‚³ã‚¤ã‚ºãƒ–ãƒ«ãƒ¼ãƒ»ã‚ªãƒ¼ãƒãƒ¼ãƒ‰ãƒ©ã‚¤ãƒ–')],
+	%['caption'=>string('éŠ€è‰²ã®æ³¢ç´‹ç–¾èµ°'), 'ruby'=>string('ãƒ¡ã‚¿ãƒ«ã‚·ãƒ«ãƒãƒ¼ãƒ»ã‚ªãƒ¼ãƒãƒ¼ãƒ‰ãƒ©ã‚¤ãƒ–')],
+	%['caption'=>string('æ³¢ç´‹ä¹±æ¸¦ç–¾èµ°'), 'ruby'=>string('ãƒˆãƒ«ãƒãƒ¼ãƒ‡ã‚£ãƒ»ã‚ªãƒ¼ãƒãƒ¼ãƒ‰ãƒ©ã‚¤ãƒ–')]
 ]

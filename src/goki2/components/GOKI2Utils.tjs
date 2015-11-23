@@ -3,34 +3,34 @@
 **/
 
 
-/*! \brief í‚É true ‚ğ•Ô‚·‚¾‚¯‚ÌŠÖ”‚Å‚·B
+/*! \brief å¸¸ã« true ã‚’è¿”ã™ã ã‘ã®é–¢æ•°ã§ã™ã€‚
 **/
 function alwaysTrue()	{ return true; }
-/*! \brief í‚É false ‚ğ•Ô‚·‚¾‚¯‚ÌŠÖ”‚Å‚·B
+/*! \brief å¸¸ã« false ã‚’è¿”ã™ã ã‘ã®é–¢æ•°ã§ã™ã€‚
 **/
 function alwaysFalse()	{ return false; }
-/*! \brief í‚É void ‚ğ•Ô‚·‚¾‚¯‚ÌŠÖ”‚Å‚·B
+/*! \brief å¸¸ã« void ã‚’è¿”ã™ã ã‘ã®é–¢æ•°ã§ã™ã€‚
 **/
 function alwaysVoid()	{ return void; }
-/*! \brief í‚É null ‚ğ•Ô‚·‚¾‚¯‚ÌŠÖ”‚Å‚·B
+/*! \brief å¸¸ã« null ã‚’è¿”ã™ã ã‘ã®é–¢æ•°ã§ã™ã€‚
 **/
 function alwaysNull()	{ return null; }
 
-/*! \brief “`“‚Ì dm ŠÖ”B
+/*! \brief ä¼çµ±ã® dm é–¢æ•°ã€‚
 **/
 function dm(msg)		{ /* Do nothing. */ }
-/*! \brief ƒƒOo—ÍŠÖ”B
+/*! \brief ãƒ­ã‚°å‡ºåŠ›é–¢æ•°ã€‚
 **/
 function log(msg)		{ Debug.message(msg); }
-/*! \brief warning —pƒƒOo—ÍŠÖ”B
+/*! \brief warning ç”¨ãƒ­ã‚°å‡ºåŠ›é–¢æ•°ã€‚
 **/
 function warn(msg)		{ Debug.message(@"#### &msg;"); }
-/*! \brief error —pƒƒOo—ÍŠÖ”B
+/*! \brief error ç”¨ãƒ­ã‚°å‡ºåŠ›é–¢æ•°ã€‚
 **/
 function err(msg)		{ Debug.message(@"!!!! &msg;"); }
 
 
-/*! \brief GOKI2 ‚Ìƒo[ƒWƒ‡ƒ“î•ñ‚ğˆµ‚¤ƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg‚Å‚·B
+/*! \brief GOKI2 ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³æƒ…å ±ã‚’æ‰±ã†ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã§ã™ã€‚
 **/
 class GOKI2VersionInfo
 {
@@ -39,7 +39,7 @@ class GOKI2VersionInfo
 	/**/
 	function GOKI2VersionInfo()
 	{
-		throw new GClassObjectConstructorCalledError('GOKI2VersionInfo ƒNƒ‰ƒX‚ÌƒIƒuƒWƒFƒNƒg‚Íì¬‚Å‚«‚Ü‚¹‚ñB');
+		throw new GClassObjectConstructorCalledError('GOKI2VersionInfo ã‚¯ãƒ©ã‚¹ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¯ä½œæˆã§ãã¾ã›ã‚“ã€‚');
 	}
 
 	/// \endcond
@@ -88,7 +88,7 @@ class GOKI2VersionInfo
 }
 
 
-/*! \brief ƒIƒuƒWƒFƒNƒg‚ÉŠÖ‚·‚éî•ñ‚È‚Ç‚ğˆµ‚¤ƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg‚Å‚·B
+/*! \brief ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«é–¢ã™ã‚‹æƒ…å ±ãªã©ã‚’æ‰±ã†ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã§ã™ã€‚
 **/
 class GObjectUtils
 {
@@ -97,7 +97,7 @@ class GObjectUtils
 	/**/
 	function GObjectUtils()
 	{
-		throw new GClassObjectConstructorCalledError('GObjectUtils ƒNƒ‰ƒX‚ÌƒIƒuƒWƒFƒNƒg‚Íì¬‚Å‚«‚Ü‚¹‚ñB');
+		throw new GClassObjectConstructorCalledError('GObjectUtils ã‚¯ãƒ©ã‚¹ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¯ä½œæˆã§ãã¾ã›ã‚“ã€‚');
 	}
 
 	/**/
@@ -112,11 +112,11 @@ class GObjectUtils
 
 	/// \endcond
 
-	/*! \brief ƒIƒuƒWƒFƒNƒg‚ğˆ•ª‚µ‚Ü‚·B
+	/*! \brief ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å‡¦åˆ†ã—ã¾ã™ã€‚
 	 *
-	 * \remarks dispose() ‚ÍÅ‰‚Ì obj ˆø”‚Í–³Œø‰»‚µ‚Ü‚¹‚ñ‚ª
-	 * \remarks destroy() ‚ÍÅ‰‚Ì obj ˆø”‚à–³Œø‰»‚µ‚Ü‚·B
-	 * \remarks ‚Â‚Ü‚è dispose(new Layer(...)); ‚Í‰½‚à‚µ‚Ü‚¹‚ñB
+	 * \remarks dispose() ã¯æœ€åˆã® obj å¼•æ•°ã¯ç„¡åŠ¹åŒ–ã—ã¾ã›ã‚“ãŒ
+	 * \remarks destroy() ã¯æœ€åˆã® obj å¼•æ•°ã‚‚ç„¡åŠ¹åŒ–ã—ã¾ã™ã€‚
+	 * \remarks ã¤ã¾ã‚Š dispose(new Layer(...)); ã¯ä½•ã‚‚ã—ã¾ã›ã‚“ã€‚
 	**/
 	function dispose(obj)
 	{
@@ -139,10 +139,10 @@ class GObjectUtils
 		}
 	}
 
-	/*! \brief ƒIƒuƒWƒFƒNƒg‚ğˆ•ª‚µ‚Ü‚·B
+	/*! \brief ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å‡¦åˆ†ã—ã¾ã™ã€‚
 	 *
-	 * \remarks dispose() ‚ÍÅ‰‚Ì obj ˆø”‚Í–³Œø‰»‚µ‚Ü‚¹‚ñ‚ª
-	 * \remarks destroy() ‚ÍÅ‰‚Ì obj ˆø”‚à–³Œø‰»‚µ‚Ü‚·B
+	 * \remarks dispose() ã¯æœ€åˆã® obj å¼•æ•°ã¯ç„¡åŠ¹åŒ–ã—ã¾ã›ã‚“ãŒ
+	 * \remarks destroy() ã¯æœ€åˆã® obj å¼•æ•°ã‚‚ç„¡åŠ¹åŒ–ã—ã¾ã™ã€‚
 	**/
 	function destroy(obj)
 	{
@@ -187,13 +187,13 @@ class GObjectUtils
 		return GObjectUtils.tjsStorageNameMarks_[name];
 	}
 
-	/*! \brief ƒIƒuƒWƒFƒNƒg‚ÌƒNƒ‰ƒX–¼‚ğ•Ô‚µ‚Ü‚·B
+	/*! \brief ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚¯ãƒ©ã‚¹åã‚’è¿”ã—ã¾ã™ã€‚
 	 *
-	 * \param [obj] ƒNƒ‰ƒX–¼‚ğæ“¾‚µ‚½‚¢ƒIƒuƒWƒFƒNƒg‚ğw’è‚µ‚Ü‚·B
+	 * \param [obj] ã‚¯ãƒ©ã‚¹åã‚’å–å¾—ã—ãŸã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æŒ‡å®šã—ã¾ã™ã€‚
 	 *
-	 * \return ƒNƒ‰ƒX–¼‚ğ•¶š—ñ‚Å•Ô‚µ‚Ü‚·B
+	 * \return ã‚¯ãƒ©ã‚¹åã‚’æ–‡å­—åˆ—ã§è¿”ã—ã¾ã™ã€‚
 	 *
-	 * \remarks obj ‚ÉƒIƒuƒWƒFƒNƒgŒ^ˆÈŠO‚ğw’è‚µ‚½ê‡‚Ì“®ì‚ÍAŒ»İ–¢’è‹`‚Å‚·B
+	 * \remarks obj ã«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‹ä»¥å¤–ã‚’æŒ‡å®šã—ãŸå ´åˆã®å‹•ä½œã¯ã€ç¾åœ¨æœªå®šç¾©ã§ã™ã€‚
 	**/
 	function getClassName(obj)
 	{
@@ -203,12 +203,12 @@ class GObjectUtils
 		return classTree[0];
 	}
 
-	/*! \brief ƒIƒuƒWƒFƒNƒg‚ª name ‚Åw’è‚³‚ê‚½ƒNƒ‰ƒX‚ğŒp³‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚Ü‚·B
+	/*! \brief ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒ name ã§æŒ‡å®šã•ã‚ŒãŸã‚¯ãƒ©ã‚¹ã‚’ç¶™æ‰¿ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã¾ã™ã€‚
 	 *
-	 * \param [obj] ’²‚×‚½‚¢ƒIƒuƒWƒFƒNƒg‚ğw’è‚µ‚Ü‚·B
-	 * \param [name] Œp³‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚½‚¢ƒNƒ‰ƒX‚Ì–¼‘O‚ğ•¶š—ñ‚Åw’è‚µ‚Ü‚·B
+	 * \param [obj] èª¿ã¹ãŸã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æŒ‡å®šã—ã¾ã™ã€‚
+	 * \param [name] ç¶™æ‰¿ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ãŸã„ã‚¯ãƒ©ã‚¹ã®åå‰ã‚’æ–‡å­—åˆ—ã§æŒ‡å®šã—ã¾ã™ã€‚
 	 *
-	 * \return Œp³‚µ‚Ä‚¢‚ê‚Î true ‚ğ•Ô‚µ‚Ü‚·B‚»‚êˆÈŠO‚Å‚Í false ‚ğ•Ô‚µ‚Ü‚·B
+	 * \return ç¶™æ‰¿ã—ã¦ã„ã‚Œã° true ã‚’è¿”ã—ã¾ã™ã€‚ãã‚Œä»¥å¤–ã§ã¯ false ã‚’è¿”ã—ã¾ã™ã€‚
 	**/
 	function inheritance(obj, name)
 	{
@@ -223,37 +223,37 @@ class GObjectUtils
 		return false;
 	}
 
-	/*! \brief w’è‚³‚ê‚½ƒIƒuƒWƒFƒNƒg‚Ì•¡»‚ğì¬‚µ‚Ü‚·B
+	/*! \brief æŒ‡å®šã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è¤‡è£½ã‚’ä½œæˆã—ã¾ã™ã€‚
 	 *
-	 * ‚±‚Ìƒƒ\ƒbƒh‚Í•¡»‚³‚ê‚½ƒIƒuƒWƒFƒNƒg‚ª assignStruct() ƒƒ\ƒbƒh‚ğ
-	 * ‚Á‚Ä‚¢‚ê‚ÎAorigin ‚ğˆø”‚É‚µ‚Ä assignStruct() ƒƒ\ƒbƒh‚ğŒÄ‚Ño‚µ‚Ü‚·B
+	 * ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã¯è¤‡è£½ã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒ assignStruct() ãƒ¡ã‚½ãƒƒãƒ‰ã‚’
+	 * æŒã£ã¦ã„ã‚Œã°ã€origin ã‚’å¼•æ•°ã«ã—ã¦ assignStruct() ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã³å‡ºã—ã¾ã™ã€‚
 	 *
-	 * —áF
+	 * ä¾‹ï¼š
 	 *  var dic = %[value1 : 0, value2 : 10];
 	 *  var cloneDic = GObjectUtils.clone(dic);
 	 *  log(@"[original] value1: &dic.value1;, value2: &dic.value2;");
 	 *  log(@"   [clone] value1: &cloneDic.value1;, value2: &cloneDic.value2;");
 	 *
-	 * o—ÍF
+	 * å‡ºåŠ›ï¼š
 	 *  [original] value1: 0, value2: 10
 	 *     [clone] value1: 0, value2: 10
 	 *
-	 * \param [origin] Œ³‚Æ‚È‚éƒIƒuƒWƒFƒNƒg‚ğw’è‚µ‚Ü‚·B
-	 * \param [constructorArguments*] •¡»‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^‚Ö‚Ìˆø”‚ª‚ ‚éê‡‚Í‚±‚±‚Éw’è‚µ‚Ü‚·B
+	 * \param [origin] å…ƒã¨ãªã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æŒ‡å®šã—ã¾ã™ã€‚
+	 * \param [constructorArguments*] è¤‡è£½ã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã¸ã®å¼•æ•°ãŒã‚ã‚‹å ´åˆã¯ã“ã“ã«æŒ‡å®šã—ã¾ã™ã€‚
 	 *
-	 * \return ì¬‚³‚ê‚½•¡»ƒIƒuƒWƒFƒNƒg‚ğ•Ô‚µ‚Ü‚·B
+	 * \return ä½œæˆã•ã‚ŒãŸè¤‡è£½ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è¿”ã—ã¾ã™ã€‚
 	 *
-	 * \remarks origin ‚ÌƒNƒ‰ƒX‚ª global ƒl[ƒ€ƒXƒy[ƒXã‚É‘¶İ‚µ‚Ä‚¢‚È‚¯‚ê‚Î‚È‚è‚Ü‚¹‚ñB
-	 * \remarks ‚¢‚í‚ä‚éƒNƒ‰ƒX“àƒNƒ‰ƒX‚Ì•¡»‚Íì¬‚Å‚«‚Ü‚¹‚ñ‚Ì‚Å’ˆÓ‚µ‚Ä‚­‚¾‚³‚¢B
+	 * \remarks origin ã®ã‚¯ãƒ©ã‚¹ãŒ global ãƒãƒ¼ãƒ ã‚¹ãƒšãƒ¼ã‚¹ä¸Šã«å­˜åœ¨ã—ã¦ã„ãªã‘ã‚Œã°ãªã‚Šã¾ã›ã‚“ã€‚
+	 * \remarks ã„ã‚ã‚†ã‚‹ã‚¯ãƒ©ã‚¹å†…ã‚¯ãƒ©ã‚¹ã®è¤‡è£½ã¯ä½œæˆã§ãã¾ã›ã‚“ã®ã§æ³¨æ„ã—ã¦ãã ã•ã„ã€‚
 	**/
 	function clone(origin, constructorArguments*)
 	{
 		if(typeof(origin) != 'Object' || origin === null || !isvalid(origin))
-			throw new GArgumentsError('GObjectUtils#clone() ‚ª•¡»‚Å‚«‚é‚Ì‚Í Object Œ^‚Ì—LŒø‚ÈƒCƒ“ƒXƒ^ƒ“ƒX‚Ì‚İ‚Å‚·B');
+			throw new GArgumentsError('GObjectUtils#clone() ãŒè¤‡è£½ã§ãã‚‹ã®ã¯ Object å‹ã®æœ‰åŠ¹ãªã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ã¿ã§ã™ã€‚');
 
 		var obj = GObjectUtils.constructFromObject_private_(origin, constructorArguments);
 
-		// NOTE: obj ‚ª assignStruct ƒƒ\ƒbƒh‚ğ‚Á‚Ä‚¢‚é‚È‚ç‚ÎŒÄ‚Ño‚·B
+		// NOTE: obj ãŒ assignStruct ãƒ¡ã‚½ãƒƒãƒ‰ã‚’æŒã£ã¦ã„ã‚‹ãªã‚‰ã°å‘¼ã³å‡ºã™ã€‚
 		if(obj instanceof 'Dictionary')
 			GObjectUtils.copyDictionary(obj, origin);
 		else
@@ -263,30 +263,30 @@ class GObjectUtils
 		return obj;
 	}
 
-	/*! \brief w’è‚³‚ê‚½ƒIƒuƒWƒFƒNƒg‚ÌŒy‚¢•¡»‚ğì¬‚µ‚Ü‚·B
+	/*! \brief æŒ‡å®šã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è»½ã„è¤‡è£½ã‚’ä½œæˆã—ã¾ã™ã€‚
 	 *
-	 * ‚±‚Ìƒƒ\ƒbƒh‚ÍA•¡»‚³‚ê‚½ƒIƒuƒWƒFƒNƒg‚ª assign() ƒƒ\ƒbƒh‚ğ
-	 * ‚Á‚Ä‚¢‚ê‚ÎAorigin ‚ğˆø”‚É‚µ‚Ä assign() ƒƒ\ƒbƒh‚ğŒÄ‚Ño‚·“_‚Ì‚İ
-	 * GObjectUtils#clone() ‚Æ‚Íˆá‚¢‚Ü‚·B
+	 * ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã¯ã€è¤‡è£½ã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒ assign() ãƒ¡ã‚½ãƒƒãƒ‰ã‚’
+	 * æŒã£ã¦ã„ã‚Œã°ã€origin ã‚’å¼•æ•°ã«ã—ã¦ assign() ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã³å‡ºã™ç‚¹ã®ã¿
+	 * GObjectUtils#clone() ã¨ã¯é•ã„ã¾ã™ã€‚
 	 *
-	 * ‚»‚êˆÈŠO‚Í GObjectUtils#clone() ‚Æ‚Ü‚Á‚½‚­“¯‚¶‚Å‚·B
+	 * ãã‚Œä»¥å¤–ã¯ GObjectUtils#clone() ã¨ã¾ã£ãŸãåŒã˜ã§ã™ã€‚
 	 *
-	 * \param [origin] Œ³‚Æ‚È‚éƒIƒuƒWƒFƒNƒg‚ğw’è‚µ‚Ü‚·B
-	 * \param [constructorArguments*] •¡»‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^‚Ö‚Ìˆø”‚ª‚ ‚éê‡‚Í‚±‚±‚Éw’è‚µ‚Ü‚·B
+	 * \param [origin] å…ƒã¨ãªã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æŒ‡å®šã—ã¾ã™ã€‚
+	 * \param [constructorArguments*] è¤‡è£½ã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã¸ã®å¼•æ•°ãŒã‚ã‚‹å ´åˆã¯ã“ã“ã«æŒ‡å®šã—ã¾ã™ã€‚
 	 *
-	 * \return ì¬‚³‚ê‚½•¡»ƒIƒuƒWƒFƒNƒg‚ğ•Ô‚µ‚Ü‚·B
+	 * \return ä½œæˆã•ã‚ŒãŸè¤‡è£½ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è¿”ã—ã¾ã™ã€‚
 	 *
-	 * \remarks origin ‚ÌƒNƒ‰ƒX‚ª global ƒl[ƒ€ƒXƒy[ƒXã‚É‘¶İ‚µ‚Ä‚¢‚È‚¯‚ê‚Î‚È‚è‚Ü‚¹‚ñB
-	 * \remarks ‚¢‚í‚ä‚éƒNƒ‰ƒX“àƒNƒ‰ƒX‚Ì•¡»‚Íì¬‚Å‚«‚Ü‚¹‚ñ‚Ì‚Å’ˆÓ‚µ‚Ä‚­‚¾‚³‚¢B
+	 * \remarks origin ã®ã‚¯ãƒ©ã‚¹ãŒ global ãƒãƒ¼ãƒ ã‚¹ãƒšãƒ¼ã‚¹ä¸Šã«å­˜åœ¨ã—ã¦ã„ãªã‘ã‚Œã°ãªã‚Šã¾ã›ã‚“ã€‚
+	 * \remarks ã„ã‚ã‚†ã‚‹ã‚¯ãƒ©ã‚¹å†…ã‚¯ãƒ©ã‚¹ã®è¤‡è£½ã¯ä½œæˆã§ãã¾ã›ã‚“ã®ã§æ³¨æ„ã—ã¦ãã ã•ã„ã€‚
 	**/
 	function duplicate(origin, constructorArguments*)
 	{
 		if(typeof(origin) != 'Object' || origin === null || !isvalid(origin))
-			throw new GArgumentsError('GObjectUtils#duplicate() ‚ª•¡»‚Å‚«‚é‚Ì‚Í Object Œ^‚Ì—LŒø‚ÈƒCƒ“ƒXƒ^ƒ“ƒX‚Ì‚İ‚Å‚·B');
+			throw new GArgumentsError('GObjectUtils#duplicate() ãŒè¤‡è£½ã§ãã‚‹ã®ã¯ Object å‹ã®æœ‰åŠ¹ãªã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ã¿ã§ã™ã€‚');
 
 		var obj = GObjectUtils.constructFromObject_private_(origin, constructorArguments);
 
-		// NOTE: obj ‚ª assign ƒƒ\ƒbƒh‚ğ‚Á‚Ä‚¢‚é‚È‚ç‚ÎŒÄ‚Ño‚·B
+		// NOTE: obj ãŒ assign ãƒ¡ã‚½ãƒƒãƒ‰ã‚’æŒã£ã¦ã„ã‚‹ãªã‚‰ã°å‘¼ã³å‡ºã™ã€‚
 		if(obj instanceof 'Dictionary')
 			GObjectUtils.assignDictionary(obj, origin);
 		else
@@ -305,18 +305,18 @@ class GObjectUtils
 
 			obj = new global[className](arguments*);
 		} catch (e) {
-			throw new GFatalError('‹g—¢‹g—¢‚Ìƒo[ƒWƒ‡ƒ“‚ªŒÃ‚¢‰Â”\«‚ª‚ ‚è‚Ü‚·B');
+			throw new GFatalError('å‰é‡Œå‰é‡Œã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãŒå¤ã„å¯èƒ½æ€§ãŒã‚ã‚Šã¾ã™ã€‚');
 		}
 
 		return obj;
 	}
 
-	/*! \brief Dictionary ƒIƒuƒWƒFƒNƒg‚Ì union —pƒ†[ƒeƒBƒŠƒeƒBƒƒ\ƒbƒhB
+	/*! \brief Dictionary ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã® union ç”¨ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ãƒ¡ã‚½ãƒƒãƒ‰ã€‚
 	 *
-	 * \param [dst] ã‘‚«æ Dictionary ƒIƒuƒWƒFƒNƒg‚ğw’è‚µ‚Ü‚·B
-	 * \param [src] ã‘‚«Œ³ Dictionary ƒIƒuƒWƒFƒNƒg‚ğw’è‚µ‚Ü‚·B
+	 * \param [dst] ä¸Šæ›¸ãå…ˆ Dictionary ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æŒ‡å®šã—ã¾ã™ã€‚
+	 * \param [src] ä¸Šæ›¸ãå…ƒ Dictionary ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æŒ‡å®šã—ã¾ã™ã€‚
 	 *
-	 * \return dst ‚ğ•Ô‚µ‚Ü‚·B
+	 * \return dst ã‚’è¿”ã—ã¾ã™ã€‚
 	**/
 	function unionDictionary(dst, src)
 	{
@@ -326,12 +326,12 @@ class GObjectUtils
 		return dst;
 	}
 
-	/*! \brief Dictionary ƒIƒuƒWƒFƒNƒg‚Ì assign —pƒ†[ƒeƒBƒŠƒeƒBƒƒ\ƒbƒhB
+	/*! \brief Dictionary ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã® assign ç”¨ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ãƒ¡ã‚½ãƒƒãƒ‰ã€‚
 	 *
-	 * \param [dst] ƒAƒTƒCƒ“æ Dictionary ƒIƒuƒWƒFƒNƒg‚ğw’è‚µ‚Ü‚·B
-	 * \param [src] ƒAƒTƒCƒ“Œ³ Dictionary ƒIƒuƒWƒFƒNƒg‚ğw’è‚µ‚Ü‚·B
+	 * \param [dst] ã‚¢ã‚µã‚¤ãƒ³å…ˆ Dictionary ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æŒ‡å®šã—ã¾ã™ã€‚
+	 * \param [src] ã‚¢ã‚µã‚¤ãƒ³å…ƒ Dictionary ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æŒ‡å®šã—ã¾ã™ã€‚
 	 *
-	 * \return dst ‚ğ•Ô‚µ‚Ü‚·B
+	 * \return dst ã‚’è¿”ã—ã¾ã™ã€‚
 	**/
 	function assignDictionary(dst, src)
 	{
@@ -341,12 +341,12 @@ class GObjectUtils
 		return dst;
 	}
 
-	/*! \brief Dictionary ƒIƒuƒWƒFƒNƒg‚Ì deep assign —pƒ†[ƒeƒBƒŠƒeƒBƒƒ\ƒbƒhB
+	/*! \brief Dictionary ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã® deep assign ç”¨ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ãƒ¡ã‚½ãƒƒãƒ‰ã€‚
 	 *
-	 * \param [dst] ƒRƒs[æ Dictionary ƒIƒuƒWƒFƒNƒg‚ğw’è‚µ‚Ü‚·B
-	 * \param [src] ƒRƒs[Œ³ Dictionary ƒIƒuƒWƒFƒNƒg‚ğw’è‚µ‚Ü‚·B
+	 * \param [dst] ã‚³ãƒ”ãƒ¼å…ˆ Dictionary ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æŒ‡å®šã—ã¾ã™ã€‚
+	 * \param [src] ã‚³ãƒ”ãƒ¼å…ƒ Dictionary ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æŒ‡å®šã—ã¾ã™ã€‚
 	 *
-	 * \return dst ‚ğ•Ô‚µ‚Ü‚·B
+	 * \return dst ã‚’è¿”ã—ã¾ã™ã€‚
 	**/
 	function copyDictionary(dst, src)
 	{
@@ -356,11 +356,11 @@ class GObjectUtils
 		return dst;
 	}
 
-	/*! \brief Dictionary ƒIƒuƒWƒFƒNƒg‚Ì clear —pƒ†[ƒeƒBƒŠƒeƒBƒƒ\ƒbƒhB
+	/*! \brief Dictionary ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã® clear ç”¨ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ãƒ¡ã‚½ãƒƒãƒ‰ã€‚
 	 *
-	 * \param [dic] ƒNƒŠƒA‚µ‚½‚¢ Dictionary ƒIƒuƒWƒFƒNƒg‚ğw’è‚µ‚Ü‚·B
+	 * \param [dic] ã‚¯ãƒªã‚¢ã—ãŸã„ Dictionary ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æŒ‡å®šã—ã¾ã™ã€‚
 	 *
-	 * \return dic ‚ğ•Ô‚µ‚Ü‚·B
+	 * \return dic ã‚’è¿”ã—ã¾ã™ã€‚
 	**/
 	function clearDictionary(dic)
 	{
@@ -369,20 +369,20 @@ class GObjectUtils
 		return dic;
 	}
 
-	/*! \brief “ü—Í‚ğ^‹U’l (true or false) ‚É•ÏŠ·‚µ‚Ü‚·B
+	/*! \brief å…¥åŠ›ã‚’çœŸå½å€¤ (true or false) ã«å¤‰æ›ã—ã¾ã™ã€‚
 	 *
-	 * \param [obj] ^‹U’l‚É•ÏŠ·‚µ‚½‚¢’l‚ğw’è‚µ‚Ü‚·B
-	 * \param [vb:false:] obj ‚ª '‹ó’l' ‚Ìê‡‚Ì^‹U’l‚ğw’è‚µ‚Ü‚·B
+	 * \param [obj] çœŸå½å€¤ã«å¤‰æ›ã—ãŸã„å€¤ã‚’æŒ‡å®šã—ã¾ã™ã€‚
+	 * \param [vb:false:] obj ãŒ 'ç©ºå€¤' ã®å ´åˆã®çœŸå½å€¤ã‚’æŒ‡å®šã—ã¾ã™ã€‚
 	 *
-	 * \return Œ‹‰Ê‚ğ^‹U’l (true or false) ‚Å•Ô‚µ‚Ü‚·B
+	 * \return çµæœã‚’çœŸå½å€¤ (true or false) ã§è¿”ã—ã¾ã™ã€‚
 	 *
-	 * \remarks '‹ó’l' ‚ÆŒ©‚È‚³‚ê‚é‚Ì‚Í void/null/NaN/'' ‚Å‚·B
-	 * \remarks obj ‚ª 'Object' ‚Ìê‡A'‹ó’l' ‚Í obj.toBoolean() ‚ÌÀ‘•‚ÉˆË‘¶‚µ‚Ü‚·B
-	 * \remarks ‚Ü‚½Aobj.toBoolean() ‚ğ‚½‚È‚¢ê‡‚ÍAí‚É true ‚ğ•Ô‚µ‚Ü‚·B
+	 * \remarks 'ç©ºå€¤' ã¨è¦‹ãªã•ã‚Œã‚‹ã®ã¯ void/null/NaN/'' ã§ã™ã€‚
+	 * \remarks obj ãŒ 'Object' ã®å ´åˆã€'ç©ºå€¤' ã¯ obj.toBoolean() ã®å®Ÿè£…ã«ä¾å­˜ã—ã¾ã™ã€‚
+	 * \remarks ã¾ãŸã€obj.toBoolean() ã‚’æŒãŸãªã„å ´åˆã¯ã€å¸¸ã« true ã‚’è¿”ã—ã¾ã™ã€‚
 	**/
 	function toBoolean(obj, vb = false)
 	{
-		// NOTE: “ü—Í‚ÍM—p‚µ‚È‚¢B‚¿‚á‚ñ‚Æ•]‰¿‚·‚éB
+		// NOTE: å…¥åŠ›ã¯ä¿¡ç”¨ã—ãªã„ã€‚ã¡ã‚ƒã‚“ã¨è©•ä¾¡ã™ã‚‹ã€‚
 		var v = (+vb) ? true : false;
 
 		switch(typeof(obj))
@@ -403,7 +403,7 @@ class GObjectUtils
 			return (obj === 0.0 ? false : true);
 
 		case 'Object':
-			// NOTE: null ‹y‚Ñ–³Œø‰»‚³‚ê‚½ƒIƒuƒWƒFƒNƒg‚Í '‹ó’l' ‚ÆŒ©‚È‚µ‚Ü‚·B
+			// NOTE: null åŠã³ç„¡åŠ¹åŒ–ã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¯ 'ç©ºå€¤' ã¨è¦‹ãªã—ã¾ã™ã€‚
 			if(obj === null || !isvalid(obj))
 				return v;
 			if((typeof(obj.toBoolean) !== 'undefined') && obj.toBoolean instanceof 'Function')
@@ -420,19 +420,19 @@ class GObjectUtils
 			return +obj ? true : false;
 
 		case 'Octet':
-			throw new GNotImplementedError('GObjectUtils#toBoolean( Octet ) ‚ÌŒÄ‚Ño‚µ‚ÍÀ‘•‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB');
+			throw new GNotImplementedError('GObjectUtils#toBoolean( Octet ) ã®å‘¼ã³å‡ºã—ã¯å®Ÿè£…ã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚');
 		}
 
 		throw new GFatalError('Dead code.');
 	}
 
-	/*! \brief ƒIƒuƒWƒFƒNƒg‚Ì’l‚ğ^‹U’l‚Å•Ô‚µ‚Ü‚·B
+	/*! \brief ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å€¤ã‚’çœŸå½å€¤ã§è¿”ã—ã¾ã™ã€‚
 	 *
-	 * \param [obj] ƒIƒuƒWƒFƒNƒg‚ğw’è‚µ‚Ü‚·B
-	 * \param [name] ’l‚Ì–¼‘O‚ğw’è‚µ‚Ü‚·B
-	 * \param [vv:false:] ’l‚ª '‹ó’l' ‚Ìê‡‚Ì^‹U’l‚ğw’è‚µ‚Ü‚·B
+	 * \param [obj] ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æŒ‡å®šã—ã¾ã™ã€‚
+	 * \param [name] å€¤ã®åå‰ã‚’æŒ‡å®šã—ã¾ã™ã€‚
+	 * \param [vv:false:] å€¤ãŒ 'ç©ºå€¤' ã®å ´åˆã®çœŸå½å€¤ã‚’æŒ‡å®šã—ã¾ã™ã€‚
 	 *
-	 * \return Œ‹‰Ê‚ğ^‹U’l (true or false) ‚Å•Ô‚µ‚Ü‚·B
+	 * \return çµæœã‚’çœŸå½å€¤ (true or false) ã§è¿”ã—ã¾ã™ã€‚
 	**/
 	function getBoolean(obj, name, vv = false)
 	{
@@ -445,17 +445,17 @@ class GObjectUtils
 		if(typeof(obj[@"no_&name;"]) != 'undefined')
 			return !GObjectUtils.toBoolean(obj[@"no_&name;"], false);
 
-		// NOTE: d—l‚É global ‚ğQÆ‚·‚é“®ì‚ğ’Ç‰Á‚·‚é‚©ŒŸ“¢B
+		// NOTE: ä»•æ§˜ã« global ã‚’å‚ç…§ã™ã‚‹å‹•ä½œã‚’è¿½åŠ ã™ã‚‹ã‹æ¤œè¨ã€‚
 
 		return vv;
 	}
 
-	/*! \brief ƒIƒuƒWƒFƒNƒg‚Éw’è‚Ì’l‚ª‘¶İ‚·‚é‚©’²‚×‚éB
+	/*! \brief ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«æŒ‡å®šã®å€¤ãŒå­˜åœ¨ã™ã‚‹ã‹èª¿ã¹ã‚‹ã€‚
 	 *
-	 * \param [obj] ƒIƒuƒWƒFƒNƒg‚ğw’è‚µ‚Ü‚·B
-	 * \param [name] ’l‚Ì–¼‘O‚ğw’è‚µ‚Ü‚·B
+	 * \param [obj] ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æŒ‡å®šã—ã¾ã™ã€‚
+	 * \param [name] å€¤ã®åå‰ã‚’æŒ‡å®šã—ã¾ã™ã€‚
 	 *
-	 * \return Œ‹‰Ê‚ğ^‹U’l (true or false) ‚Å•Ô‚µ‚Ü‚·B
+	 * \return çµæœã‚’çœŸå½å€¤ (true or false) ã§è¿”ã—ã¾ã™ã€‚
 	**/
 	function hasValue(obj, name)
 	{
@@ -463,29 +463,29 @@ class GObjectUtils
 	}
 
 	/**
-	 * \brief fileName ‚É‘Î‚µ‚Ä©“®ŒŸõƒpƒXã‚Å—LŒø‚ÈƒXƒgƒŒ[ƒW–¼‚Æ‚È‚éƒvƒŒƒtƒBƒbƒNƒX‚ğ
-	 * \brief ì¬‚µ‚Ä•Ô‚µ‚Ü‚·B
-	 * \brief ƒvƒŒƒtƒBƒbƒNƒX‚Í•”•ªƒpƒX‚©A‚Ü‚½‚ÍƒXƒgƒŒ[ƒW–¼‚Ìˆê•”‚Å‚·B
+	 * \brief fileName ã«å¯¾ã—ã¦è‡ªå‹•æ¤œç´¢ãƒ‘ã‚¹ä¸Šã§æœ‰åŠ¹ãªã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸åã¨ãªã‚‹ãƒ—ãƒ¬ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚’
+	 * \brief ä½œæˆã—ã¦è¿”ã—ã¾ã™ã€‚
+	 * \brief ãƒ—ãƒ¬ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã¯éƒ¨åˆ†ãƒ‘ã‚¹ã‹ã€ã¾ãŸã¯ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸åã®ä¸€éƒ¨ã§ã™ã€‚
 	 *
-	 * \remarks    subDirectoryName: ƒA[ƒJƒCƒu‚ÉŠÜ‚Ü‚ê‚È‚¢ƒpƒX‚ğw’è‚µ‚Ü‚·B
-	 * \remarks partOfDirectoryPath: ƒA[ƒJƒCƒu‚ÉŠÜ‚Ü‚ê‚éƒpƒX‚ğw’è‚µ‚Ü‚·B
-	 * \remarks            fileName: Œ³‚É‚È‚éƒtƒ@ƒCƒ‹–¼‚ğw’è‚µ‚Ü‚·B
-	 * \remarks         extensions*: Šg’£q‚ÌƒŠƒXƒg‚ğw’è‚µ‚Ü‚·B
+	 * \remarks    subDirectoryName: ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã«å«ã¾ã‚Œãªã„ãƒ‘ã‚¹ã‚’æŒ‡å®šã—ã¾ã™ã€‚
+	 * \remarks partOfDirectoryPath: ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã«å«ã¾ã‚Œã‚‹ãƒ‘ã‚¹ã‚’æŒ‡å®šã—ã¾ã™ã€‚
+	 * \remarks            fileName: å…ƒã«ãªã‚‹ãƒ•ã‚¡ã‚¤ãƒ«åã‚’æŒ‡å®šã—ã¾ã™ã€‚
+	 * \remarks         extensions*: æ‹¡å¼µå­ã®ãƒªã‚¹ãƒˆã‚’æŒ‡å®šã—ã¾ã™ã€‚
 	 *
-	 * \return Å‰‚ÉŒ©‚Â‚©‚Á‚½—LŒø‚ÈƒvƒŒƒtƒBƒbƒNƒX‚ğ•Ô‚µ‚Ü‚·B
-	 * \return ‰½‚àŒ©‚Â‚©‚ç‚È‚©‚Á‚½ê‡‚Í void ‚ğ•Ô‚µ‚Ü‚·B
-	 * \return y—áz
+	 * \return æœ€åˆã«è¦‹ã¤ã‹ã£ãŸæœ‰åŠ¹ãªãƒ—ãƒ¬ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚’è¿”ã—ã¾ã™ã€‚
+	 * \return ä½•ã‚‚è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸå ´åˆã¯ void ã‚’è¿”ã—ã¾ã™ã€‚
+	 * \return ã€ä¾‹ã€‘
 	 * \return  var prefix = existStoragePrefixOnKrkrAutoPathSystem('image', 'A', 'anger', graphicFileExtensions*);
 	 * \return  dm(prefix);    // 'A_'
 	 * \return                 // 'image/A/'
-	 * \return                 // ã‹L‚Ì“àAæ‚ÉŒ©‚Â‚©‚Á‚½‚à‚Ì‚ªƒƒO‚Éo—Í‚³‚ê‚Ü‚·B
+	 * \return                 // ä¸Šè¨˜ã®å†…ã€å…ˆã«è¦‹ã¤ã‹ã£ãŸã‚‚ã®ãŒãƒ­ã‚°ã«å‡ºåŠ›ã•ã‚Œã¾ã™ã€‚
 	**/
 	var _static_regExistStoragePathOnKrkrAutoPathSystem = new RegExp('\/', 'g');
 	function existStoragePrefixOnKrkrAutoPathSystem(subDirectoryName, partOfDirectoryPath, fileName, extensions*)
 	{
 		var prefix = void;
 
-		// “ü—Íƒ`ƒFƒbƒN
+		// å…¥åŠ›ãƒã‚§ãƒƒã‚¯
 		if(subDirectoryName == void)
 			subDirectoryName = '';
 		else
@@ -497,19 +497,19 @@ class GObjectUtils
 		if(partOfDirectoryPath[partOfDirectoryPath.length - 1] == '/')
 			partOfDirectoryPath = partOfDirectoryPath.substring(0, partOfDirectoryPath.length - 1);
 
-		// ‘æˆê—Dæ‡ˆÊ
+		// ç¬¬ä¸€å„ªå…ˆé †ä½
 		prefix = @"&partOfDirectoryPath.replace(_static_regExistStoragePathOnKrkrAutoPathSystem, '_');_";
 		if(getExistentStorageNameAndExtension(@"&prefix;&fileName;", extensions*) !== void)
 			return prefix;
 
-		// ‘æ“ñ—Dæ‡ˆÊ
+		// ç¬¬äºŒå„ªå…ˆé †ä½
 		prefix = @"&subDirectoryName;/&partOfDirectoryPath;/";
 		if(getExistentStorageNameAndExtension(@"&prefix;&fileName;", extensions*) !== void)
 			return prefix;
 
 		// NOTE:
-		// ˆÈ‰ºAd—lŠO‚Ì“®ì‚Å‚·B
-		// ‚±‚Ì“®ì‚ÉˆË‘¶‚µ‚È‚¢‚Å‚­‚¾‚³‚¢B
+		// ä»¥ä¸‹ã€ä»•æ§˜å¤–ã®å‹•ä½œã§ã™ã€‚
+		// ã“ã®å‹•ä½œã«ä¾å­˜ã—ãªã„ã§ãã ã•ã„ã€‚
 		prefix = @"&subDirectoryName;_&partOfDirectoryPath.replace(_static_regExistStoragePathOnKrkrAutoPathSystem, '_');_";
 		if(getExistentStorageNameAndExtension(@"&prefix;&fileName;", extensions*) !== void)
 		if(prefix !== void)
@@ -519,14 +519,14 @@ class GObjectUtils
 	}
 }
 
-// NOTE: GObjectUtils ƒNƒ‰ƒX‰Šú‰»
+// NOTE: GObjectUtils ã‚¯ãƒ©ã‚¹åˆæœŸåŒ–
 GObjectUtils.initialize();
 delete GObjectUtils.initialize;
 
 
-/*! \brief ‚s‚i‚rƒXƒNƒŠƒvƒg“Ç‚İ‚İ—pƒ†[ƒeƒBƒŠƒeƒB‚Å‚·B
+/*! \brief ï¼´ï¼ªï¼³ã‚¹ã‚¯ãƒªãƒ—ãƒˆèª­ã¿è¾¼ã¿ç”¨ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ã§ã™ã€‚
  *
- * \param [storage] “Ç‚İ‚İ‚½‚¢‚s‚i‚rƒXƒNƒŠƒvƒgƒtƒ@ƒCƒ‹–¼‚ğw’è‚µ‚Ü‚·B
+ * \param [storage] èª­ã¿è¾¼ã¿ãŸã„ï¼´ï¼ªï¼³ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ•ã‚¡ã‚¤ãƒ«åã‚’æŒ‡å®šã—ã¾ã™ã€‚
 **/
 function loadTJS(storage)
 {
@@ -547,34 +547,34 @@ function loadTJS(storage)
 	log(@"loadTJS('&storage;') successed. (&System.getTickCount() - tick; ms)");
 }
 
-/*! \brief ‘½d“Ç‚İ‚İ‚ğ‚µ‚È‚¢‚s‚i‚rƒXƒNƒŠƒvƒg“Ç‚İ‚İ—pƒ†[ƒeƒBƒŠƒeƒB‚Å‚·B
+/*! \brief å¤šé‡èª­ã¿è¾¼ã¿ã‚’ã—ãªã„ï¼´ï¼ªï¼³ã‚¹ã‚¯ãƒªãƒ—ãƒˆèª­ã¿è¾¼ã¿ç”¨ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ã§ã™ã€‚
  *
- * \param [storage] “Ç‚İ‚İ‚½‚¢‚s‚i‚rƒXƒNƒŠƒvƒgƒtƒ@ƒCƒ‹–¼‚ğw’è‚µ‚Ü‚·B
+ * \param [storage] èª­ã¿è¾¼ã¿ãŸã„ï¼´ï¼ªï¼³ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ•ã‚¡ã‚¤ãƒ«åã‚’æŒ‡å®šã—ã¾ã™ã€‚
 **/
 function loadTJSOnce(storage)
 {
 	loadTJS(storage) if !GObjectUtils.getTJSStorageNameMark(storage);
 }
 
-/*! \brief ƒNƒ‰ƒX‚Ì“Ç‚İ‚İ—pƒ†[ƒeƒBƒŠƒeƒB‚Å‚·B
+/*! \brief ã‚¯ãƒ©ã‚¹ã®èª­ã¿è¾¼ã¿ç”¨ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ã§ã™ã€‚
  *
- * loadClassOnDemand() ‚É‘Î‰‚·‚é‚½‚ß‚¾‚¯‚ÌŠÖ”‚Å‚·B
- * “Á‚ÉˆÓ–¡‚Í‚ ‚è‚Ü‚¹‚ñB
+ * loadClassOnDemand() ã«å¯¾å¿œã™ã‚‹ãŸã‚ã ã‘ã®é–¢æ•°ã§ã™ã€‚
+ * ç‰¹ã«æ„å‘³ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚
  *
- * \param [name] “Ç‚İ‚İ‚½‚¢ƒNƒ‰ƒX–¼‚ğw’è‚µ‚Ü‚·B
- * \param [storage:@"&name;.tjs":] ƒNƒ‰ƒX–¼‚ÆƒXƒgƒŒ[ƒW–¼‚ªˆÙ‚È‚éê‡‚±‚¿‚ç‚ÉƒXƒgƒŒ[ƒW–¼‚ğw’è‚µ‚Ü‚·B
+ * \param [name] èª­ã¿è¾¼ã¿ãŸã„ã‚¯ãƒ©ã‚¹åã‚’æŒ‡å®šã—ã¾ã™ã€‚
+ * \param [storage:@"&name;.tjs":] ã‚¯ãƒ©ã‚¹åã¨ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸åãŒç•°ãªã‚‹å ´åˆã“ã¡ã‚‰ã«ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸åã‚’æŒ‡å®šã—ã¾ã™ã€‚
 **/
 function loadClass(name, storage = @"&name;.tjs")
 {
 	loadTJS(storage);
 }
 
-/*! \brief ƒNƒ‰ƒX‚ÌƒIƒ“ƒfƒ}ƒ“ƒhƒ[ƒfƒBƒ“ƒO—pƒ†[ƒeƒBƒŠƒeƒB‚Å‚·B
+/*! \brief ã‚¯ãƒ©ã‚¹ã®ã‚ªãƒ³ãƒ‡ãƒãƒ³ãƒ‰ãƒ­ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ç”¨ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ã§ã™ã€‚
  *
- * ƒNƒ‰ƒX‚ÉƒAƒNƒZƒX‚³‚ê‚½“_‚Åw’è‚³‚ê‚½‚s‚i‚rƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚İ‚Ü‚·B
+ * ã‚¯ãƒ©ã‚¹ã«ã‚¢ã‚¯ã‚»ã‚¹ã•ã‚ŒãŸæ™‚ç‚¹ã§æŒ‡å®šã•ã‚ŒãŸï¼´ï¼ªï¼³ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã¿ã¾ã™ã€‚
  *
- * \param [name] “Ç‚İ‚İ‚½‚¢ƒNƒ‰ƒX–¼‚ğw’è‚µ‚Ü‚·B
- * \param [storage:@"&name;.tjs":] ƒNƒ‰ƒX–¼‚ÆƒXƒgƒŒ[ƒW–¼‚ªˆÙ‚È‚éê‡‚±‚¿‚ç‚ÉƒXƒgƒŒ[ƒW–¼‚ğw’è‚µ‚Ü‚·B
+ * \param [name] èª­ã¿è¾¼ã¿ãŸã„ã‚¯ãƒ©ã‚¹åã‚’æŒ‡å®šã—ã¾ã™ã€‚
+ * \param [storage:@"&name;.tjs":] ã‚¯ãƒ©ã‚¹åã¨ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸åãŒç•°ãªã‚‹å ´åˆã“ã¡ã‚‰ã«ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸åã‚’æŒ‡å®šã—ã¾ã™ã€‚
 **/
 function loadClassOnDemand(name, storage = @"&name;.tjs")
 {
@@ -583,7 +583,7 @@ function loadClassOnDemand(name, storage = @"&name;.tjs")
 	Scripts.exec(src.sprintf(name, storage, name));
 }
 
-/*! \brief ÀsƒTƒCƒNƒ‹’²®—pƒNƒ‰ƒX‚Å‚·B
+/*! \brief å®Ÿè¡Œã‚µã‚¤ã‚¯ãƒ«èª¿æ•´ç”¨ã‚¯ãƒ©ã‚¹ã§ã™ã€‚
 **/
 class GAnotherExclusiveCycle
 {
@@ -604,26 +604,26 @@ class GAnotherExclusiveCycle
 		invalidate trigger_;
 	}
 
-	/*! \brief ƒgƒŠƒK[‚ğˆø‚«‚Ü‚·B
+	/*! \brief ãƒˆãƒªã‚¬ãƒ¼ã‚’å¼•ãã¾ã™ã€‚
 	**/
 	function trigger()
 	{
 		trigger_.trigger();
 	}
 
-	/*! \brief ƒgƒŠƒK[‚ğƒLƒƒƒ“ƒZƒ‹‚µ‚Ü‚·B
+	/*! \brief ãƒˆãƒªã‚¬ãƒ¼ã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ã¾ã™ã€‚
 	**/
 	function cancel()
 	{
 		trigger_.cancel();
 	}
 
-	/*! \brief ƒnƒ“ƒhƒ‰‚ğƒLƒ…[‚ÌÅŒã‚É’Ç‰Á‚µ‚Ü‚·B
+	/*! \brief ãƒãƒ³ãƒ‰ãƒ©ã‚’ã‚­ãƒ¥ãƒ¼ã®æœ€å¾Œã«è¿½åŠ ã—ã¾ã™ã€‚
 	 *
-	 * \param [handler] ’Ç‰Á‚µ‚½‚¢ƒnƒ“ƒhƒ‰‚ğw’è‚µ‚Ü‚·B
-	 * \param [arguments*] ƒnƒ“ƒhƒ‰‚Ö‚Ìˆø”‚ğw’è‚µ‚Ü‚·B
+	 * \param [handler] è¿½åŠ ã—ãŸã„ãƒãƒ³ãƒ‰ãƒ©ã‚’æŒ‡å®šã—ã¾ã™ã€‚
+	 * \param [arguments*] ãƒãƒ³ãƒ‰ãƒ©ã¸ã®å¼•æ•°ã‚’æŒ‡å®šã—ã¾ã™ã€‚
 	 *
-	 * \remarks ƒnƒ“ƒhƒ‰‚ÍŠÖ”Œ^ˆÈŠO‚ğw’è‚·‚é‚Æ–³‹‚³‚ê‚Ü‚·B
+	 * \remarks ãƒãƒ³ãƒ‰ãƒ©ã¯é–¢æ•°å‹ä»¥å¤–ã‚’æŒ‡å®šã™ã‚‹ã¨ç„¡è¦–ã•ã‚Œã¾ã™ã€‚
 	**/
 	function add(handler, arguments*)
 	{
@@ -635,14 +635,14 @@ class GAnotherExclusiveCycle
 		trigger();
 	}
 
-	/*! \brief ƒnƒ“ƒhƒ‰‚ğƒLƒ…[‚Ìw’èˆÊ’u‚É’Ç‰Á‚µ‚Ü‚·B
+	/*! \brief ãƒãƒ³ãƒ‰ãƒ©ã‚’ã‚­ãƒ¥ãƒ¼ã®æŒ‡å®šä½ç½®ã«è¿½åŠ ã—ã¾ã™ã€‚
 	 *
-	 * \param [index] ’Ç‰Á‚µ‚½‚¢ˆÊ’u‚ğƒCƒ“ƒfƒbƒNƒX‚Åw’è‚µ‚Ü‚·B
-	 * \param [handler] ’Ç‰Á‚µ‚½‚¢ƒnƒ“ƒhƒ‰‚ğw’è‚µ‚Ü‚·B
-	 * \param [arguments*] ƒnƒ“ƒhƒ‰‚Ö‚Ìˆø”‚ğw’è‚µ‚Ü‚·B
+	 * \param [index] è¿½åŠ ã—ãŸã„ä½ç½®ã‚’ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã§æŒ‡å®šã—ã¾ã™ã€‚
+	 * \param [handler] è¿½åŠ ã—ãŸã„ãƒãƒ³ãƒ‰ãƒ©ã‚’æŒ‡å®šã—ã¾ã™ã€‚
+	 * \param [arguments*] ãƒãƒ³ãƒ‰ãƒ©ã¸ã®å¼•æ•°ã‚’æŒ‡å®šã—ã¾ã™ã€‚
 	 *
-	 * \remarks ƒnƒ“ƒhƒ‰‚ÍŠÖ”Œ^ˆÈŠO‚ğw’è‚·‚é‚Æ–³‹‚³‚ê‚Ü‚·B
-	 * \remarks ‚Ü‚½Aindex ‚Éw’è‚Å‚«‚é’l‚Í Array#insert() ‚Æ“¯‚¶‚à‚Ì‚Å‚·B
+	 * \remarks ãƒãƒ³ãƒ‰ãƒ©ã¯é–¢æ•°å‹ä»¥å¤–ã‚’æŒ‡å®šã™ã‚‹ã¨ç„¡è¦–ã•ã‚Œã¾ã™ã€‚
+	 * \remarks ã¾ãŸã€index ã«æŒ‡å®šã§ãã‚‹å€¤ã¯ Array#insert() ã¨åŒã˜ã‚‚ã®ã§ã™ã€‚
 	**/
 	function insert(index, handler, arguments*)
 	{
@@ -654,42 +654,42 @@ class GAnotherExclusiveCycle
 		trigger();
 	}
 
-	/*! \brief ƒnƒ“ƒhƒ‰‚ğƒLƒ…[‚ÌÅŒã‚É’Ç‰Á‚µ‚Ü‚·B
+	/*! \brief ãƒãƒ³ãƒ‰ãƒ©ã‚’ã‚­ãƒ¥ãƒ¼ã®æœ€å¾Œã«è¿½åŠ ã—ã¾ã™ã€‚
 	 *
-	 * ‚±‚Ìƒƒ\ƒbƒh‚Í GAnotherExclusiveCycle#add() ‚Æ‚Ù‚Ú“¯‚¶“®ì‚ğ‚µ‚Ü‚·‚ª
-	 * Šù‚ÉƒLƒ…[‚É handler ‚ª‘¶İ‚µ‚Ä‚¢‚éê‡‚ÍAV‚µ‚­’Ç‰Á‚µ‚Ü‚¹‚ñB
+	 * ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã¯ GAnotherExclusiveCycle#add() ã¨ã»ã¼åŒã˜å‹•ä½œã‚’ã—ã¾ã™ãŒ
+	 * æ—¢ã«ã‚­ãƒ¥ãƒ¼ã« handler ãŒå­˜åœ¨ã—ã¦ã„ã‚‹å ´åˆã¯ã€æ–°ã—ãè¿½åŠ ã—ã¾ã›ã‚“ã€‚
 	 *
-	 * \param [handler] ’Ç‰Á‚µ‚½‚¢ƒnƒ“ƒhƒ‰‚ğw’è‚µ‚Ü‚·B
-	 * \param [arguments*] ƒnƒ“ƒhƒ‰‚Ö‚Ìˆø”‚ğw’è‚µ‚Ü‚·B
+	 * \param [handler] è¿½åŠ ã—ãŸã„ãƒãƒ³ãƒ‰ãƒ©ã‚’æŒ‡å®šã—ã¾ã™ã€‚
+	 * \param [arguments*] ãƒãƒ³ãƒ‰ãƒ©ã¸ã®å¼•æ•°ã‚’æŒ‡å®šã—ã¾ã™ã€‚
 	 *
-	 * \remarks ‚±‚Ìƒƒ\ƒbƒh‚Í handler ‚Ì’Ç‰Á‚ªs‚í‚ê‚È‚­‚Ä‚à•K‚¸ƒgƒŠƒK[‚ğˆø‚«‚Ü‚·B
+	 * \remarks ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã¯ handler ã®è¿½åŠ ãŒè¡Œã‚ã‚Œãªãã¦ã‚‚å¿…ãšãƒˆãƒªã‚¬ãƒ¼ã‚’å¼•ãã¾ã™ã€‚
 	**/
 	function uniqueAdd(handler, arguments*)
 	{
 		if(find(handler) == -1)
 			add(...);
 
-		// NOTE: cancel() ‚³‚ê‚Ä‚¢‚é‰Â”\«‚ğl—¶‚µ‚Ä trigger() ‚Í•K‚¸ŒÄ‚Ño‚·B
+		// NOTE: cancel() ã•ã‚Œã¦ã„ã‚‹å¯èƒ½æ€§ã‚’è€ƒæ…®ã—ã¦ trigger() ã¯å¿…ãšå‘¼ã³å‡ºã™ã€‚
 		trigger();
 	}
 
-	/*! \brief ƒnƒ“ƒhƒ‰‚ğƒLƒ…[‚Ìw’èˆÊ’u‚É’Ç‰Á‚µ‚Ü‚·B
+	/*! \brief ãƒãƒ³ãƒ‰ãƒ©ã‚’ã‚­ãƒ¥ãƒ¼ã®æŒ‡å®šä½ç½®ã«è¿½åŠ ã—ã¾ã™ã€‚
 	 *
-	 * ‚±‚Ìƒƒ\ƒbƒh‚Í GAnotherExclusiveCycle#insert() ‚Æ‚Ù‚Ú“¯‚¶“®ì‚ğ‚µ‚Ü‚·‚ª
-	 * Šù‚ÉƒLƒ…[‚É handler ‚ª‘¶İ‚µ‚Ä‚¢‚éê‡‚ÍAV‚µ‚­’Ç‰Á‚µ‚Ü‚¹‚ñB
+	 * ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã¯ GAnotherExclusiveCycle#insert() ã¨ã»ã¼åŒã˜å‹•ä½œã‚’ã—ã¾ã™ãŒ
+	 * æ—¢ã«ã‚­ãƒ¥ãƒ¼ã« handler ãŒå­˜åœ¨ã—ã¦ã„ã‚‹å ´åˆã¯ã€æ–°ã—ãè¿½åŠ ã—ã¾ã›ã‚“ã€‚
 	 *
-	 * \param [index] ’Ç‰Á‚µ‚½‚¢ˆÊ’u‚ğƒCƒ“ƒfƒbƒNƒX‚Åw’è‚µ‚Ü‚·B
-	 * \param [handler] ’Ç‰Á‚µ‚½‚¢ƒnƒ“ƒhƒ‰‚ğw’è‚µ‚Ü‚·B
-	 * \param [arguments*] ƒnƒ“ƒhƒ‰‚Ö‚Ìˆø”‚ğw’è‚µ‚Ü‚·B
+	 * \param [index] è¿½åŠ ã—ãŸã„ä½ç½®ã‚’ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã§æŒ‡å®šã—ã¾ã™ã€‚
+	 * \param [handler] è¿½åŠ ã—ãŸã„ãƒãƒ³ãƒ‰ãƒ©ã‚’æŒ‡å®šã—ã¾ã™ã€‚
+	 * \param [arguments*] ãƒãƒ³ãƒ‰ãƒ©ã¸ã®å¼•æ•°ã‚’æŒ‡å®šã—ã¾ã™ã€‚
 	 *
-	 * \remarks ‚±‚Ìƒƒ\ƒbƒh‚Í handler ‚Ì’Ç‰Á‚ªs‚í‚ê‚È‚­‚Ä‚à•K‚¸ƒgƒŠƒK[‚ğˆø‚«‚Ü‚·B
+	 * \remarks ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã¯ handler ã®è¿½åŠ ãŒè¡Œã‚ã‚Œãªãã¦ã‚‚å¿…ãšãƒˆãƒªã‚¬ãƒ¼ã‚’å¼•ãã¾ã™ã€‚
 	**/
 	function uniqueInsert(index, handler, arguments*)
 	{
 		if(find(handler) == -1)
 			insert(...);
 
-		// NOTE: cancel() ‚³‚ê‚Ä‚¢‚é‰Â”\«‚ğl—¶‚µ‚Ä trigger() ‚Í•K‚¸ŒÄ‚Ño‚·B
+		// NOTE: cancel() ã•ã‚Œã¦ã„ã‚‹å¯èƒ½æ€§ã‚’è€ƒæ…®ã—ã¦ trigger() ã¯å¿…ãšå‘¼ã³å‡ºã™ã€‚
 		trigger();
 	}
 
@@ -821,7 +821,7 @@ class GDispatcher
 	}
 }
 
-/*! ƒIƒuƒWƒFƒNƒg‚Ìõ–½ŠÇ——pƒIƒuƒWƒFƒNƒg‚Å‚·B
+/*! ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å¯¿å‘½ç®¡ç†ç”¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã§ã™ã€‚
 **/
 class GFamily
 {
@@ -881,7 +881,7 @@ class GFamily
 	}
 }
 
-/*! ƒfƒXƒgƒ‰ƒNƒg‘ãsƒIƒuƒWƒFƒNƒg
+/*! ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ãƒˆä»£è¡Œã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 **/
 class GDestructor
 {
@@ -905,10 +905,10 @@ class GDestructor
 
 /**
  * NOTE:
- * ‚±‚ê‚Í GYesNoDialogLayer i‚Ü‚½‚Í”h¶ƒNƒ‰ƒXjê—p‚ÌƒLƒƒƒbƒVƒ…ƒVƒXƒeƒ€‚Å‚·B
+ * ã“ã‚Œã¯ GYesNoDialogLayer ï¼ˆã¾ãŸã¯æ´¾ç”Ÿã‚¯ãƒ©ã‚¹ï¼‰å°‚ç”¨ã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚·ã‚¹ãƒ†ãƒ ã§ã™ã€‚
  *
- * ƒŒƒCƒ„ƒ^ƒCƒv‚Ìƒ_ƒCƒAƒƒO‚ÍƒEƒCƒ“ƒhƒEƒ^ƒCƒv‚Ì‚æ‚¤‚É‹CŒy‚É“¯ŠúÀs‚ª‚Å‚«‚È‚¢‚Ì‚Å
- * ‚Ù‚¤‚Á‚Ä‚¨‚¯‚Î‚f‚b‚ÉE‚³‚ê‚é‚Ì‚Å‚Ç‚±‚©‚ÅQÆ‚ğ•Û‚µ‚È‚¯‚ê‚Î‚È‚ç‚È‚¢B
+ * ãƒ¬ã‚¤ãƒ¤ã‚¿ã‚¤ãƒ—ã®ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã¯ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¤ãƒ—ã®ã‚ˆã†ã«æ°—è»½ã«åŒæœŸå®Ÿè¡ŒãŒã§ããªã„ã®ã§
+ * ã»ã†ã£ã¦ãŠã‘ã°ï¼§ï¼£ã«æ®ºã•ã‚Œã‚‹ã®ã§ã©ã“ã‹ã§å‚ç…§ã‚’ä¿æŒã—ãªã‘ã‚Œã°ãªã‚‰ãªã„ã€‚
 **/
 global['@GYesNoDialogLayer#object_cache'] = [];
 function getYesNoDialogLayerCacheMemory()
@@ -926,9 +926,9 @@ function pushYesNoDialogLayerForCache(obj)
 	}
 	else
 	{
-		worn(@"GYesNoDialogLayer ê—p‚ÌƒLƒƒƒbƒVƒ…‚É–³ŠÖŒW‚ÌƒIƒuƒWƒFƒNƒg‚ğ“o˜^‚µ‚æ‚¤‚Æ‚µ‚Ü‚µ‚½B");
-		worn('‚±‚ÌŒÄ‚Ño‚µ‚Í’P‚É–³‹‚³‚ê‚Ü‚·B');
-		worn(@"“o˜^‚µ‚æ‚¤‚Æ‚µ‚½ƒIƒuƒWƒFƒNƒgƒNƒ‰ƒX–¼F'&getInstanceClassName(obj);'");
+		worn(@"GYesNoDialogLayer å°‚ç”¨ã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã«ç„¡é–¢ä¿‚ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç™»éŒ²ã—ã‚ˆã†ã¨ã—ã¾ã—ãŸã€‚");
+		worn('ã“ã®å‘¼ã³å‡ºã—ã¯å˜ã«ç„¡è¦–ã•ã‚Œã¾ã™ã€‚');
+		worn(@"ç™»éŒ²ã—ã‚ˆã†ã¨ã—ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚¯ãƒ©ã‚¹åï¼š'&getInstanceClassName(obj);'");
 	}
 }
 
@@ -982,7 +982,7 @@ function removeYesNoDialogLayerFromCache(id)
 	var c = arr.count;
 
 	// NOTE:
-	// íœ‚Í‚µ‚Ü‚·‚ª–³Œø‰»‚Í‚µ‚Ü‚¹‚ñB
+	// å‰Šé™¤ã¯ã—ã¾ã™ãŒç„¡åŠ¹åŒ–ã¯ã—ã¾ã›ã‚“ã€‚
 	for(var i = 0; i < c; i++)
 	{
 		if(!(arr[i] isvalid))
@@ -1020,7 +1020,7 @@ function disposeYesNoDialogLayerCache()
 	arr.clear();
 }
 
-// ŸYesNoƒ_ƒCƒAƒƒO
+// â—†YesNoãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 //
 function createYesNoDialogLayer()
 {
@@ -1034,9 +1034,9 @@ function createYesNoDialogWindow()
 }
 
 //
-// ‘æˆêˆø”‚ª Layer ”h¶ƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚Å‚ ‚ê‚Î
-// ƒŒƒCƒ„‚É‚æ‚éÀ‘•‚ğ•Ô‚µ‚Ü‚·B
-// ‚»‚¤‚Å‚È‚¯‚ê‚ÎƒEƒCƒ“ƒhƒE‚É‚æ‚éÀ‘•‚ğ•Ô‚µ‚Ü‚·B
+// ç¬¬ä¸€å¼•æ•°ãŒ Layer æ´¾ç”Ÿã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã§ã‚ã‚Œã°
+// ãƒ¬ã‚¤ãƒ¤ã«ã‚ˆã‚‹å®Ÿè£…ã‚’è¿”ã—ã¾ã™ã€‚
+// ãã†ã§ãªã‘ã‚Œã°ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã«ã‚ˆã‚‹å®Ÿè£…ã‚’è¿”ã—ã¾ã™ã€‚
 function createYesNoDialog(firstArg, args*)
 {
 	var obj;
@@ -1057,15 +1057,15 @@ function createYesNoDialog(firstArg, args*)
 	else
 	{
 		// FIXME:
-		// ˆø”‚Ìƒ`ƒFƒbƒN‚µ‚½•û‚ª‚¢‚¢‚ñ‚¾‚¯‚ÇA
-		// –Ê“|‚È‚Ì‚Å•ú’u
+		// å¼•æ•°ã®ãƒã‚§ãƒƒã‚¯ã—ãŸæ–¹ãŒã„ã„ã‚“ã ã‘ã©ã€
+		// é¢å€’ãªã®ã§æ”¾ç½®
 		obj = createYesNoDialogWindow(...);
 	}
 
 	return obj;
 }
 
-// ŸYesNoŠm”F
+// â—†YesNoç¢ºèª
 function askYesNo(firstArg, args*)
 {
 	var parent, message, caption, yesHandler, noHandler;
@@ -1074,7 +1074,7 @@ function askYesNo(firstArg, args*)
 	if(firstArg instanceof 'Layer')
 	{
 		// NOTE:
-		// ‚±‚¿‚ç‚Í”ñ“¯ŠúÀs‚É‚È‚è‚Ü‚·B
+		// ã“ã¡ã‚‰ã¯éåŒæœŸå®Ÿè¡Œã«ãªã‚Šã¾ã™ã€‚
 		parent = firstArg;
 		message = args[0];
 		caption = args[1];
@@ -1096,7 +1096,7 @@ function askYesNo(firstArg, args*)
 	else
 	{
 		// NOTE:
-		// ‚±‚¿‚ç‚Í“¯ŠúÀs‚É‚È‚è‚Ü‚·B
+		// ã“ã¡ã‚‰ã¯åŒæœŸå®Ÿè¡Œã«ãªã‚Šã¾ã™ã€‚
 		parent = void;
 		message = firstArg;
 		caption = args[0];
@@ -1122,17 +1122,17 @@ function askYesNo(firstArg, args*)
 	return dialog;
 }
 
-// ŸYesNo‚ÆŸ‰ñ‚àŠm”F‚·‚é‚©‚Ç‚¤‚©Šm”F
+// â—†YesNoã¨æ¬¡å›ã‚‚ç¢ºèªã™ã‚‹ã‹ã©ã†ã‹ç¢ºèª
 function askYesNoConfirm(firstArg, args*)
 {
-	var checkMessage = 'Ÿ‰ñ‚©‚ç‚ÍŠm”F‚µ‚È‚¢';
+	var checkMessage = 'æ¬¡å›ã‹ã‚‰ã¯ç¢ºèªã—ãªã„';
 	var parent, message, caption, initialCheckedStatus, yesHandler, noHandler;
 	var dialog;
 
 	if(firstArg instanceof 'Layer')
 	{
 		// NOTE:
-		// ‚±‚¿‚ç‚Í”ñ“¯ŠúÀs‚É‚È‚è‚Ü‚·B
+		// ã“ã¡ã‚‰ã¯éåŒæœŸå®Ÿè¡Œã«ãªã‚Šã¾ã™ã€‚
 		parent = firstArg;
 		message = args[0];
 		caption = args[1];
@@ -1156,7 +1156,7 @@ function askYesNoConfirm(firstArg, args*)
 	else
 	{
 		// NOTE:
-		// ‚±‚¿‚ç‚Í“¯ŠúÀs‚É‚È‚è‚Ü‚·B
+		// ã“ã¡ã‚‰ã¯åŒæœŸå®Ÿè¡Œã«ãªã‚Šã¾ã™ã€‚
 		parent = void;
 		message = firstArg;
 		caption = args[0];
@@ -1190,13 +1190,13 @@ global.soundFileExtensions = ['.ogg', '.tcw', '.wav'];
 global.scriptFileExtensions = ['.gs', '.ks', '.gss', '.kss', '.asd', '.asdx'];
 global.otherFileExtensions = ['.dic', '.ary', '.txt'];
 
-/*! \brief w’è‚³‚ê‚½ƒXƒgƒŒ[ƒW–¼‚É‚Â‚¢‚Äw’è‚ÌŠg’£q‚ª‘¶İ‚·‚é‚©Šm”F‚µ‚Ü‚·B
+/*! \brief æŒ‡å®šã•ã‚ŒãŸã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸åã«ã¤ã„ã¦æŒ‡å®šã®æ‹¡å¼µå­ãŒå­˜åœ¨ã™ã‚‹ã‹ç¢ºèªã—ã¾ã™ã€‚
  *
- * \param [storage] ’²‚×‚½‚¢ƒXƒgƒŒ[ƒW–¼‚ÌŠg’£q‚ğœ‚¢‚½ƒtƒ@ƒCƒ‹–¼‚ğw’è‚µ‚Ü‚·B
- * \param [extensions*] ’²‚×‚½‚¢Šg’£q‚ğw’è‚µ‚Ü‚·B
+ * \param [storage] èª¿ã¹ãŸã„ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸åã®æ‹¡å¼µå­ã‚’é™¤ã„ãŸãƒ•ã‚¡ã‚¤ãƒ«åã‚’æŒ‡å®šã—ã¾ã™ã€‚
+ * \param [extensions*] èª¿ã¹ãŸã„æ‹¡å¼µå­ã‚’æŒ‡å®šã—ã¾ã™ã€‚
  *
- * \return w’è‚³‚ê‚½ storage ‚É‘Î‚µ‚ÄÅ‰‚ÉŒ©‚Â‚©‚Á‚½ extensions ‚ÌƒCƒ“ƒfƒbƒNƒX‚ğ•Ô‚µ‚Ü‚·B
- * \return Œ©‚Â‚©‚ç‚È‚©‚Á‚½ê‡‚Í -1 ‚ğ•Ô‚µ‚Ü‚·B
+ * \return æŒ‡å®šã•ã‚ŒãŸ storage ã«å¯¾ã—ã¦æœ€åˆã«è¦‹ã¤ã‹ã£ãŸ extensions ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’è¿”ã—ã¾ã™ã€‚
+ * \return è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸå ´åˆã¯ -1 ã‚’è¿”ã—ã¾ã™ã€‚
 **/
 function findExistentStorageExtension(storage, extensions*)
 {
@@ -1212,13 +1212,13 @@ function findExistentStorageExtension(storage, extensions*)
 	return -1;
 }
 
-/*! \brief w’è‚³‚ê‚½ƒXƒgƒŒ[ƒW–¼‚É‚Â‚¢‚Äw’è‚ÌŠg’£q‚ª‘¶İ‚·‚é‚©Šm”F‚µ‚Ü‚·B
+/*! \brief æŒ‡å®šã•ã‚ŒãŸã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸åã«ã¤ã„ã¦æŒ‡å®šã®æ‹¡å¼µå­ãŒå­˜åœ¨ã™ã‚‹ã‹ç¢ºèªã—ã¾ã™ã€‚
  *
- * \param [storage] ’²‚×‚½‚¢ƒXƒgƒŒ[ƒW–¼‚ÌŠg’£q‚ğœ‚¢‚½ƒtƒ@ƒCƒ‹–¼‚ğw’è‚µ‚Ü‚·B
- * \param [extensions*] ’²‚×‚½‚¢Šg’£q‚ğw’è‚µ‚Ü‚·B
+ * \param [storage] èª¿ã¹ãŸã„ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸åã®æ‹¡å¼µå­ã‚’é™¤ã„ãŸãƒ•ã‚¡ã‚¤ãƒ«åã‚’æŒ‡å®šã—ã¾ã™ã€‚
+ * \param [extensions*] èª¿ã¹ãŸã„æ‹¡å¼µå­ã‚’æŒ‡å®šã—ã¾ã™ã€‚
  *
- * \return w’è‚³‚ê‚½ storage ‚É‚Â‚¢‚ÄAÅ‰‚ÉŒ©‚Â‚©‚Á‚½Šg’£q‚ğŒq‚°‚½ƒXƒgƒŒ[ƒW–¼‚ğ•Ô‚µ‚Ü‚·B
- * \return Œ©‚Â‚©‚ç‚È‚©‚Á‚½ê‡‚Í void ‚ğ•Ô‚µ‚Ü‚·B
+ * \return æŒ‡å®šã•ã‚ŒãŸ storage ã«ã¤ã„ã¦ã€æœ€åˆã«è¦‹ã¤ã‹ã£ãŸæ‹¡å¼µå­ã‚’ç¹‹ã’ãŸã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸åã‚’è¿”ã—ã¾ã™ã€‚
+ * \return è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸå ´åˆã¯ void ã‚’è¿”ã—ã¾ã™ã€‚
 **/
 function getExistentStorageNameAndExtension(storage, extensions*)
 {
@@ -1230,7 +1230,7 @@ function getExistentStorageNameAndExtension(storage, extensions*)
 	return void;
 }
 
-/*! \brief min ` max ‚Ì—”‚ğ•Ô‚·B
+/*! \brief min ï½ max ã®ä¹±æ•°ã‚’è¿”ã™ã€‚
 **/
 function intRandom(min = 0, max = 0)
 {
@@ -1239,12 +1239,12 @@ function intRandom(min = 0, max = 0)
 	return int(Math.random() * (max - min + 1)) + min;
 }
 
-/* s—ñŒvZ */
+/* è¡Œåˆ—è¨ˆç®— */
 
 /**
- * “x”–@‚É‚¨‚¯‚éŠp“x angle ‚ğƒ‰ƒWƒAƒ“Šp‚É•ÏŠ·‚µ‚Ä•Ô‚·B
+ * åº¦æ•°æ³•ã«ãŠã‘ã‚‹è§’åº¦ angle ã‚’ãƒ©ã‚¸ã‚¢ãƒ³è§’ã«å¤‰æ›ã—ã¦è¿”ã™ã€‚
  *
- * angle = 0 ` 360 ‚Ì”ÍˆÍ‚Ì®”A‚Ü‚½‚ÍÀ”B
+ * angle = 0 ï½ 360 ã®ç¯„å›²ã®æ•´æ•°ã€ã¾ãŸã¯å®Ÿæ•°ã€‚
 **/
 function toRadian(angle)
 {
@@ -1252,11 +1252,11 @@ function toRadian(angle)
 }
 
 /**
- * ‰ñ“]ˆÚ“®s—ñ‚ğì¬‚µ‚Ä•Ô‚·B
+ * å›è»¢ç§»å‹•è¡Œåˆ—ã‚’ä½œæˆã—ã¦è¿”ã™ã€‚
  *
- * rad = ‰ñ“]Špiƒ‰ƒWƒAƒ“j
- * tx  = ‚wˆÚ“®—Ê
- * ty  = ‚xˆÚ“®—Ê
+ * rad = å›è»¢è§’ï¼ˆãƒ©ã‚¸ã‚¢ãƒ³ï¼‰
+ * tx  = ï¼¸ç§»å‹•é‡
+ * ty  = ï¼¹ç§»å‹•é‡
 **/
 function rotateM(radx, rady = radx, tx = 0, ty = 0)
 {
@@ -1273,10 +1273,10 @@ function rotateM(radx, rady = radx, tx = 0, ty = 0)
 }
 
 /**
- * Šg‘åk¬s—ñ‚ğì¬‚µ‚Ä•Ô‚·B
+ * æ‹¡å¤§ç¸®å°è¡Œåˆ—ã‚’ä½œæˆã—ã¦è¿”ã™ã€‚
  *
- * sx = ‚wƒXƒP[ƒ‹
- * sy = ‚xƒXƒP[ƒ‹
+ * sx = ï¼¸ã‚¹ã‚±ãƒ¼ãƒ«
+ * sy = ï¼¹ã‚¹ã‚±ãƒ¼ãƒ«
 **/
 function scaleM(sx, sy = sx)
 {
@@ -1290,10 +1290,10 @@ function scaleM(sx, sy = sx)
 }
 
 /**
- * ˆÚ“®s—ñ‚ğì¬‚µ‚Ä•Ô‚·B
+ * ç§»å‹•è¡Œåˆ—ã‚’ä½œæˆã—ã¦è¿”ã™ã€‚
  *
- * tx = ‚wˆÚ“®—Ê
- * ty = ‚xˆÚ“®—Ê
+ * tx = ï¼¸ç§»å‹•é‡
+ * ty = ï¼¹ç§»å‹•é‡
 **/
 function transM(tx, ty)
 {
@@ -1307,7 +1307,7 @@ function transM(tx, ty)
 }
 
 /**
- * s—ñ‚Ì˜a
+ * è¡Œåˆ—ã®å’Œ
 **/
 function addM(m1, m2)
 {
@@ -1319,7 +1319,7 @@ function addM(m1, m2)
 }
 
 /**
- * s—ñ‚Ì·
+ * è¡Œåˆ—ã®å·®
 **/
 function subM(m1, m2)
 {
@@ -1331,7 +1331,7 @@ function subM(m1, m2)
 }
 
 /**
- * s—ñ‚ÌÏ
+ * è¡Œåˆ—ã®ç©
 **/
 function mulM(m1, m2)
 {

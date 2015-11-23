@@ -22,8 +22,8 @@ class ModADV extends GModule
 
 	var defaultCharacterName = '';
 
-	var lastCharacterName_ = '';				// ÅŒã‚É setCharacterImageByElm() ‚Å‘€ì‚µ‚½ƒLƒƒƒ‰–¼
-	var activeCharacterName_ = '';				// Œ»İƒeƒLƒXƒg‚ğo—Í‚µ‚Ä‚¢‚éƒLƒƒƒ‰–¼
+	var lastCharacterName_ = '';				// æœ€å¾Œã« setCharacterImageByElm() ã§æ“ä½œã—ãŸã‚­ãƒ£ãƒ©å
+	var activeCharacterName_ = '';				// ç¾åœ¨ãƒ†ã‚­ã‚¹ãƒˆã‚’å‡ºåŠ›ã—ã¦ã„ã‚‹ã‚­ãƒ£ãƒ©å
 	var inNextChPlayVoice_ = false;
 	var lastPlayedVoiceCharacterName_ = '';
 
@@ -119,7 +119,7 @@ class ModADV extends GModule
 						{
 							if(.autoWaitChEnabled_)
 							{
-								// ©“®ƒEƒFƒCƒg
+								// è‡ªå‹•ã‚¦ã‚§ã‚¤ãƒˆ
 								var idx;
 								if((idx = .autoWaitChChars.indexOf(elm.text)) != -1)
 								{
@@ -196,7 +196,7 @@ class ModADV extends GModule
 				with(container.modMessage)
 				{
 					if(.current == null)
-						throw new GRuntimeError("ƒJƒŒƒ“ƒgƒƒbƒZ[ƒWƒŒƒCƒ„‚ªİ’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB");
+						throw new GRuntimeError("ã‚«ãƒ¬ãƒ³ãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ¬ã‚¤ãƒ¤ãŒè¨­å®šã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚");
 					if(.skipping)
 						.current.visible = true;
 					else
@@ -228,7 +228,7 @@ class ModADV extends GModule
 						%[tagname : 'stop_transition', layer : 'base'],
 						'er'
 					);
-					// ƒXƒLƒbƒv’†‚Í‰½‚à‚·‚é•K—v‚Í‚È‚¢
+					// ã‚¹ã‚­ãƒƒãƒ—ä¸­ã¯ä½•ã‚‚ã™ã‚‹å¿…è¦ã¯ãªã„
 					if(.skipping)
 						return 'next';
 					if(.autoMode)
@@ -297,7 +297,7 @@ class ModADV extends GModule
 		var name = elm.name;
 
 		if(name == '')
-			throw new GRuntimeError("ƒLƒƒƒ‰ƒNƒ^[‚ğ•ÒW‚µ‚æ‚¤‚Æ‚µ‚Ü‚µ‚½‚ª–¼‘O‚ªw’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB");
+			throw new GRuntimeError("ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚’ç·¨é›†ã—ã‚ˆã†ã¨ã—ã¾ã—ãŸãŒåå‰ãŒæŒ‡å®šã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚");
 
 		var char = getCharacter(name);
 
@@ -352,14 +352,14 @@ class ModADV extends GModule
 	}
 
 	/**
-	 * \brief ŠÔ‘Ñî•ñ‚Ìì¬B
+	 * \brief æ™‚é–“å¸¯æƒ…å ±ã®ä½œæˆã€‚
 	**/
 	function makeTimeZone(elm)
 	{
 		var name = elm.name;
 
 		if(name === void)
-			throw new Exception("ŠÔ‘Ñî•ñ‚ğì¬‚µ‚æ‚¤‚Æ‚µ‚Ü‚µ‚½‚ªA–¼‘O‚ªw’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB");
+			throw new Exception("æ™‚é–“å¸¯æƒ…å ±ã‚’ä½œæˆã—ã‚ˆã†ã¨ã—ã¾ã—ãŸãŒã€åå‰ãŒæŒ‡å®šã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚");
 
 		var arr = timeZone_;
 		var c = arr.count;
@@ -367,14 +367,14 @@ class ModADV extends GModule
 		for(var i = 0; i < c; i++)
 		{
 			if(arr[i].name == name)
-				throw new GRuntimeError("u&name;v‚ÌŠÔ‘Ñî•ñ‚ğì¬‚µ‚æ‚¤‚Æ‚µ‚Ü‚µ‚½‚ªA“¯‚¶–¼‘O‚ÌŠÔ‘Ñî•ñ‚ªŠù‚É‘¶İ‚µ‚Ä‚¢‚Ü‚·B");
+				throw new GRuntimeError("ã€Œ&name;ã€ã®æ™‚é–“å¸¯æƒ…å ±ã‚’ä½œæˆã—ã‚ˆã†ã¨ã—ã¾ã—ãŸãŒã€åŒã˜åå‰ã®æ™‚é–“å¸¯æƒ…å ±ãŒæ—¢ã«å­˜åœ¨ã—ã¦ã„ã¾ã™ã€‚");
 		}
 
 		var tz = %[name : name, stand : elm.stand];
 
 		window.conductor.setRedirectTag(name, 'set-timezone');
 
-		// ‰½‚à‘I‘ğ‚³‚ê‚Ä‚¢‚È‚¢ó‘Ô‚È‚ç‚Î¡’Ç‰Á‚³‚ê‚½ŠÔ‘Ñ‚ğ‘I‘ğ‚·‚éB
+		// ä½•ã‚‚é¸æŠã•ã‚Œã¦ã„ãªã„çŠ¶æ…‹ãªã‚‰ã°ä»Šè¿½åŠ ã•ã‚ŒãŸæ™‚é–“å¸¯ã‚’é¸æŠã™ã‚‹ã€‚
 		if(currentTimeZone_ == -1)
 			setCurrentTimeZone(name);
 	}
@@ -416,7 +416,7 @@ class ModADV extends GModule
 
 		with(getCharacter(name))
 		{
-			// ƒŒƒCƒ„[‚ªŠ„‚è“–‚Ä‚ç‚ê‚Ä‚¢‚È‚¢‚Ì‚Å–¢g—p‚ÌƒŒƒCƒ„[‚ğŠ„‚è“–‚Ä‚éB
+			// ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒå‰²ã‚Šå½“ã¦ã‚‰ã‚Œã¦ã„ãªã„ã®ã§æœªä½¿ç”¨ã®ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å‰²ã‚Šå½“ã¦ã‚‹ã€‚
 			if(.cvLayerIndex === void)
 			{
 				var max = cvLayers.count;
@@ -430,23 +430,23 @@ class ModADV extends GModule
 					break;
 				}
 
-				// Š„‚è“–‚Ä‚ç‚ê‚È‚©‚Á‚½B
+				// å‰²ã‚Šå½“ã¦ã‚‰ã‚Œãªã‹ã£ãŸã€‚
 				if(.cvLayerIndex === void)
-					throw new GRuntimeError(@"u&cvLayers.prefix;vƒŒƒCƒ„[ƒOƒ‹[ƒv‚ÌƒŒƒCƒ„[‚ª•s‘«‚µ‚Ä‚¢‚Ü‚·B");
+					throw new GRuntimeError(@"ã€Œ&cvLayers.prefix;ã€ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚°ãƒ«ãƒ¼ãƒ—ã®ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒä¸è¶³ã—ã¦ã„ã¾ã™ã€‚");
 			}
 
-			// ‹£‡‚µ‚Ä‚È‚¢‚©ƒ`ƒFƒbƒN
+			// ç«¶åˆã—ã¦ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 			if(users[.cvLayerIndex] != name)
 			{
 				throw new Exception(
-					@"ƒŒƒCƒ„[Š—LÒ‚Ì‹£‡‚ª”­¶‚µ‚Ü‚µ‚½B\n" +
-					@"Š—LÒ‚`u&name;v\n" +
-					@"Š—LÒ‚au&users[.cvLayerIndex];v"
+					@"ãƒ¬ã‚¤ãƒ¤ãƒ¼æ‰€æœ‰è€…ã®ç«¶åˆãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚\n" +
+					@"æ‰€æœ‰è€…ï¼¡ã€Œ&name;ã€\n" +
+					@"æ‰€æœ‰è€…ï¼¢ã€Œ&users[.cvLayerIndex];ã€"
 				);
 			}
 
 			if((layer = cvLayers.at(.cvLayerIndex, fore)) === void)
-				throw new Exception(@"ƒŒƒCƒ„[u&cvLayers.prefix;&.cvLayerIndex;v‚ğæ“¾‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B");
+				throw new Exception(@"ãƒ¬ã‚¤ãƒ¤ãƒ¼ã€Œ&cvLayers.prefix;&.cvLayerIndex;ã€ã‚’å–å¾—ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚");
 		}
 
 		return layer;
@@ -472,14 +472,14 @@ class ModADV extends GModule
 		var char = getCharacter(name);
 
 		if(char === void)
-			throw new GRuntimeError(@"ƒLƒƒƒ‰ƒNƒ^[u&name;v‚ª–¢’è‹`‚Å‚·B");
+			throw new GRuntimeError(@"ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã€Œ&name;ã€ãŒæœªå®šç¾©ã§ã™ã€‚");
 
 		lastCharacterName_ = name;
 
-		// ƒ{ƒCƒXÄ¶”»’è
-		// ‚±‚±‚Å‚ÍÄ¶‚Ís‚í‚È‚¢
+		// ãƒœã‚¤ã‚¹å†ç”Ÿåˆ¤å®š
+		// ã“ã“ã§ã¯å†ç”Ÿã¯è¡Œã‚ãªã„
 		inNextChPlayVoice_ = ((char.hasVoice && !GObjectUtils.getBoolean(elm, 'voice')) ? true : false);
-		// ƒ{ƒCƒX”Ô†‚ÌƒI[ƒo[ƒ‰ƒCƒh
+		// ãƒœã‚¤ã‚¹ç•ªå·ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰
 		char.voice = +elm.voice if elm.voice !== void;
 
 		if(!char.hasImage)
@@ -506,7 +506,7 @@ class ModADV extends GModule
 
 			if(getExistentStorageNameAndExtension(@"&storage;", graphicFileExtensions*) === void)
 			{
-				log(@"‰æ‘œ &storage; ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½B");
+				log(@"ç”»åƒ &storage; ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚");
 				return false;
 			}
 
@@ -536,14 +536,14 @@ class ModADV extends GModule
 			imageLoaded = true;
 		}
 
-		// ÅI“I‚ÉƒŒƒCƒ„‚ª”ñ•\¦‚É‚È‚éê‡‚ÍŠ—LŒ ‚ğ”jŠü‚·‚éB
+		// æœ€çµ‚çš„ã«ãƒ¬ã‚¤ãƒ¤ãŒéè¡¨ç¤ºã«ãªã‚‹å ´åˆã¯æ‰€æœ‰æ¨©ã‚’ç ´æ£„ã™ã‚‹ã€‚
 		if(!layer.visible)
 		{
 			freeCVLayer_private_(name);
 			layer.clearImages();
 		}
 
-		// ƒgƒ‰ƒ“ƒWƒVƒ‡ƒ“—pƒpƒ‰ƒ[ƒ^‚ÌƒfƒtƒHƒ‹ƒg’l‚ğİ’è
+		// ãƒˆãƒ©ãƒ³ã‚¸ã‚·ãƒ§ãƒ³ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã‚’è¨­å®š
 		if(imageLoaded)
 		{
 			elm.layer = 'base';
@@ -563,20 +563,20 @@ class ModADV extends GModule
 
 		var char = getCharacter(name);
 		if(char === void)
-			throw new GRuntimeError(@"ƒLƒƒƒ‰ƒNƒ^[u&name;v‚Ìƒ{ƒCƒX‚ğÄ¶‚µ‚æ‚¤‚Æ‚µ‚Ü‚µ‚½‚ªA‘¶İ‚µ‚È‚¢ƒLƒƒƒ‰ƒNƒ^[‚Å‚·B");
+			throw new GRuntimeError(@"ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã€Œ&name;ã€ã®ãƒœã‚¤ã‚¹ã‚’å†ç”Ÿã—ã‚ˆã†ã¨ã—ã¾ã—ãŸãŒã€å­˜åœ¨ã—ãªã„ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã§ã™ã€‚");
 
 		var storage;
 
-		// ƒXƒgƒŒ[ƒWƒpƒX‚ğì¬
+		// ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ãƒ‘ã‚¹ã‚’ä½œæˆ
 		storage = char.voiceStorageFormat.sprintf(char.voice);
 		char.voice++ if char.autoVoice;
 
 		if(getExistentStorageNameAndExtension(storage, soundFileExtensions*) === void)
 			return false;
 
-		// TODO: —š—ğ‚Éƒ{ƒCƒX‚ğİ’è
+		// TODO: å±¥æ­´ã«ãƒœã‚¤ã‚¹ã‚’è¨­å®š
 
-		// ’·‚¢ƒXƒLƒbƒv’†‚Å‚ ‚ê‚ÎÄ¶‚Ís‚í‚È‚¢
+		// é•·ã„ã‚¹ã‚­ãƒƒãƒ—ä¸­ã§ã‚ã‚Œã°å†ç”Ÿã¯è¡Œã‚ãªã„
 		if(window.modules.modMessage.longSkipping)
 			return false;
 
@@ -610,8 +610,8 @@ class ModADV extends GModule
 	}
 
 	/**
-	 * \remaks       elm: ƒgƒ‰ƒ“ƒWƒVƒ‡ƒ“ƒpƒ‰ƒ[ƒ^BÚ‚µ‚­‚Í ModImage#beginTransitionByElm() ‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
-	 * \remaks conductor: ÀsŒ³‚ÌƒRƒ“ƒ_ƒNƒ^BÚ‚µ‚­‚Íci‚’‚™
+	 * \remaks       elm: ãƒˆãƒ©ãƒ³ã‚¸ã‚·ãƒ§ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã€‚è©³ã—ãã¯ ModImage#beginTransitionByElm() ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚
+	 * \remaks conductor: å®Ÿè¡Œå…ƒã®ã‚³ãƒ³ãƒ€ã‚¯ã‚¿ã€‚è©³ã—ãã¯â€¦ï¼ˆï½’ï½™
 	**/
 	function reservedTransition(elm, conductor = void)
 	{
@@ -652,15 +652,15 @@ class ModADV extends GModule
 		var modMessage = container.modMessage;
 		var char = getCharacter(name);
 
-		// ƒJƒŒƒ“ƒgİ’è
+		// ã‚«ãƒ¬ãƒ³ãƒˆè¨­å®š
 		modMessage.setCurrentLayer(char.messageLevel);
 
-		// ƒJƒŒƒ“ƒg‚Ìİ’è
+		// ã‚«ãƒ¬ãƒ³ãƒˆã®è¨­å®š
 		with(modMessage.current)
 		{
 		}
 
-		// TODO: —š—ğ‚Ìİ’è
+		// TODO: å±¥æ­´ã®è¨­å®š
 
 		activeCharacterName_ = name;
 	}

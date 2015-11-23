@@ -2,27 +2,27 @@
 ; * $Revision: 77 $
 ;**/
 
-; NOTE: �p�b�`�Ȃǂ̃����[�X���ɂ͂��̃t�@�C�������������ăA�[�J�C�u�Ɋ܂߂鎖�������߂��܂��B
+; NOTE: パッチなどのリリース時にはこのファイルを書きかえてアーカイブに含める事をお勧めします。
 
-; ���Q�[���o�[�W����
+; ◆ゲームバージョン
 ;
-; �o�[�W�����̕t�����͌l�̎��R�ł��B
-; �������A�Ǘ��ł��Ȃ���ΈӖ��͂���܂���̂Ōv��I�ɗ��p���Ă��������B
+; バージョンの付け方は個人の自由です。
+; ただし、管理できなければ意味はありませんので計画的に利用してください。
 ;
-; GOKI2 �̃o�[�W�����\�L�� 'TITLE X.Y [special string] {XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX}' �Ƃ����`�����̗p���Ă��܂��B
+; GOKI2 のバージョン表記は 'TITLE X.Y [special string] {XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX}' という形式を採用しています。
 ;
-; ��F
+; 例：
 ;  @version title='GOKI2' major=1 minor=0 special='Sample application'
 ;
-; �o�[�W�����\���F
+; バージョン表示：
 ;  'version 1.0 [web trial]'
 ;
 @version title='Test' major=1 minor=0 special='Sample application.'
 
-; ����d�N���h�~
+; ◆二重起動防止
 ;
-; ���̃^�O�������������_�œ����A�v���P�[�V�������N�����Ă����
-; ���̎|�����[�U�[�ɕ񍐂��āA�ォ��N�����ꂽ�Q�[���͏I�����܂��B
+; このタグを処理した時点で同じアプリケーションが起動していれば
+; その旨をユーザーに報告して、後から起動されたゲームは終了します。
 @single
 
 

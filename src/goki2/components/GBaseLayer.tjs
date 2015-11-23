@@ -18,7 +18,7 @@ class GBaseLayer extends GLayer
 	/**/
 	function assign(src)
 	{
-		// NOTE: •\¦ó‘Ô‚¾‚¯‚Í“¯Šú‚³‚¹‚È‚¢B
+		// NOTE: è¡¨ç¤ºçŠ¶æ…‹ã ã‘ã¯åŒæœŸã•ã›ãªã„ã€‚
 		var backup = visible;
 
 		super.assign(src);

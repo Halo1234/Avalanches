@@ -8,16 +8,18 @@
 @show_message layer=message0
 
 *label|
-@input name=f.test prompt=“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B title=“ü—Í
+@input name=f.test prompt=å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚ title=å…¥åŠ›
 
 @trace exp=f.test
 
-[ƒnƒ][emb exp=f.test]“ü—Í‚ÌƒeƒXƒg‚Å‚·B
+@save place=0
+
+[ãƒãƒ­][emb exp=f.test]å…¥åŠ›ã®ãƒ†ã‚¹ãƒˆã§ã™ã€‚[p][cm]
 
 *label|
-@copy_bookmark source=0 destination=1
+;@copy_bookmark source=0 destination=1
 
-ƒZ[ƒuƒf[ƒ^ƒRƒs[‚µ‚Ü‚µ‚½B[p][cm]
+ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ”ãƒ¼ã—ã¾ã—ãŸã€‚[p][cm]
 
 @hide_message layer=message0
 

@@ -21,7 +21,7 @@ property modTypingProcessorUnstableValue
 	getter		{ return 1; }
 }
 
-/*! \brief Še’lŒŸØ—pŠÖ”
+/*! \brief å„å€¤æ¤œè¨¼ç”¨é–¢æ•°
 **/
 function isModTypingProcessorAcceptedValue(value)
 {
@@ -36,9 +36,9 @@ function isModTypingProcessorUnstableValue(value)
 	return (value === modTypingProcessorUnstableValue ? true : false);
 }
 
-/*! \brief ƒ[ƒhƒNƒ‰ƒX
+/*! \brief ãƒ¯ãƒ¼ãƒ‰ã‚¯ãƒ©ã‚¹
  *
- * ƒ[ƒh‚ÍƒLƒƒƒvƒVƒ‡ƒ“‚Æƒ‹ƒr‚Å\¬‚³‚ê‚éƒIƒuƒWƒFƒNƒg‚Å‚·B
+ * ãƒ¯ãƒ¼ãƒ‰ã¯ã‚­ãƒ£ãƒ—ã‚·ãƒ§ãƒ³ã¨ãƒ«ãƒ“ã§æ§‹æˆã•ã‚Œã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã§ã™ã€‚
 **/
 class TypingWord
 {
@@ -47,11 +47,11 @@ class TypingWord
 	var caption_ = '';
 	var ruby_ = '';
 
-	var acceptRubyCount_ = 0;			// “ü—Í‚³‚ê‚½ƒ‹ƒr‚Ì•¶š”B
-	var acceptRomanString_ = [];		// Œ»İ‚Ü‚Å‚Éó—‚³‚ê‚½ƒ‹ƒr‚ÌÀÛ‚É“ü—Í‚³‚ê‚½ƒ[ƒ}š•¶š—ñB
-	var candidate_;						// Œ»İ“ü—Í’†‚Ìƒ‹ƒri•¶šj‚ÌÚ×B
+	var acceptRubyCount_ = 0;			// å…¥åŠ›ã•ã‚ŒãŸãƒ«ãƒ“ã®æ–‡å­—æ•°ã€‚
+	var acceptRomanString_ = [];		// ç¾åœ¨ã¾ã§ã«å—ç†ã•ã‚ŒãŸãƒ«ãƒ“ã®å®Ÿéš›ã«å…¥åŠ›ã•ã‚ŒãŸãƒ­ãƒ¼ãƒå­—æ–‡å­—åˆ—ã€‚
+	var candidate_;						// ç¾åœ¨å…¥åŠ›ä¸­ã®ãƒ«ãƒ“ï¼ˆæ–‡å­—ï¼‰ã®è©³ç´°ã€‚
 
-	var lastResult_;					// ÅŒã‚Ì“ü—Í‚ÌŒ‹‰ÊB
+	var lastResult_;					// æœ€å¾Œã®å…¥åŠ›ã®çµæœã€‚
 
 	/**/
 	function TypingWord(processor, caption, ruby)
@@ -64,7 +64,7 @@ class TypingWord
 	/**/
 	function finalize()
 	{
-		// NOTE: •K—v‚È‚µ
+		// NOTE: å¿…è¦ãªã—
 		//processor_ = void;
 		//caption_ = ruby_ = '';
 	}
@@ -108,13 +108,13 @@ class TypingWord
 		} catch (e) {
 			throw new GRuntimeError(
 				@"&e.message;\n\n" +
-				@"’PŒêFu&caption_;v\n" +
-				@"ƒ‹ƒrFu&ruby_;v"
+				@"å˜èªï¼šã€Œ&caption_;ã€\n" +
+				@"ãƒ«ãƒ“ï¼šã€Œ&ruby_;ã€"
 			);
 		}
 	}
 
-	/*! \brief index •¶š–ÚˆÈ~‚Ì“ü—ÍŒó•â‚ğ•Ô‚µ‚Ü‚·B
+	/*! \brief index æ–‡å­—ç›®ä»¥é™ã®å…¥åŠ›å€™è£œã‚’è¿”ã—ã¾ã™ã€‚
 	**/
 	function getCandidate(index)
 	{
@@ -130,26 +130,26 @@ class TypingWord
 		];
 
 		if(candidate.targets.count <= 0)
-			throw new GRuntimeError('“ü—ÍŒó•â‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½B');
+			throw new GRuntimeError('å…¥åŠ›å€™è£œãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚');
 
 		return candidate;
 	}
 
-	/*! \brief Å‰‚Ì•¶š‚ÌŒó•â‚É‚Â‚¢‚Ä‚Ìî•ñ‚ğ•Ô‚µ‚Ü‚·B
+	/*! \brief æœ€åˆã®æ–‡å­—ã®å€™è£œã«ã¤ã„ã¦ã®æƒ…å ±ã‚’è¿”ã—ã¾ã™ã€‚
 	**/
 	function getFirstRubyCandidate()
 	{
 		if(ruby_.length <= 0)
-			throw new GRuntimeError('Å‰‚Ì•¶š‚Ì“ü—ÍŒó•â‚ğæ“¾‚µ‚æ‚¤‚Æ‚µ‚Ü‚µ‚½‚ªƒ[ƒh‚ª‹ó•¶š—ñ‚Å‚·B');
+			throw new GRuntimeError('æœ€åˆã®æ–‡å­—ã®å…¥åŠ›å€™è£œã‚’å–å¾—ã—ã‚ˆã†ã¨ã—ã¾ã—ãŸãŒãƒ¯ãƒ¼ãƒ‰ãŒç©ºæ–‡å­—åˆ—ã§ã™ã€‚');
 		return getCandidate(0);
 	}
 
-	/*! \brief Œ»İ‚Ì“ü—ÍŒó•â‚ğ•Ô‚µ‚Ü‚·B
+	/*! \brief ç¾åœ¨ã®å…¥åŠ›å€™è£œã‚’è¿”ã—ã¾ã™ã€‚
 	**/
 	function getCurrentRubyCandidate()
 	{
 		if(accepted)
-			throw new GRuntimeError('ó—ó‘Ô‚ÌƒIƒuƒWƒFƒNƒg‚Ì“ü—ÍŒó•â‚ğæ“¾‚µ‚æ‚¤‚Æ‚µ‚Ü‚µ‚½B');
+			throw new GRuntimeError('å—ç†çŠ¶æ…‹ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å…¥åŠ›å€™è£œã‚’å–å¾—ã—ã‚ˆã†ã¨ã—ã¾ã—ãŸã€‚');
 
 		var result = candidate_;
 
@@ -214,7 +214,7 @@ class TypingWord
 		return work.join('');
 	}
 
-	/*! \brief checkCharacter_private_() ‚Æ‚Ù‚Ú“¯‚¶“®ì‚Å‚ªA“Áêƒpƒ^[ƒ“‚É‚Íƒ}ƒbƒ`‚µ‚Ü‚¹‚ñB
+	/*! \brief checkCharacter_private_() ã¨ã»ã¼åŒã˜å‹•ä½œã§ãŒã€ç‰¹æ®Šãƒ‘ã‚¿ãƒ¼ãƒ³ã«ã¯ãƒãƒƒãƒã—ã¾ã›ã‚“ã€‚
 	**/
 	function checkCharacterNoPattern_private_(candidate, ch)
 	{
@@ -242,7 +242,7 @@ class TypingWord
 		return '';
 	}
 
-	/*! \brief candidate ‚ª ch ‚ğó‚¯•t‚¯‚é‚È‚çó‚¯•t‚¯‚½•¶ši‚Ü‚½‚Íƒpƒ^[ƒ“j‚ğ•Ô‚µ‚Ü‚·B
+	/*! \brief candidate ãŒ ch ã‚’å—ã‘ä»˜ã‘ã‚‹ãªã‚‰å—ã‘ä»˜ã‘ãŸæ–‡å­—ï¼ˆã¾ãŸã¯ãƒ‘ã‚¿ãƒ¼ãƒ³ï¼‰ã‚’è¿”ã—ã¾ã™ã€‚
 	**/
 	function checkCharacter_private_(candidate, ch)
 	{
@@ -263,9 +263,9 @@ class TypingWord
 				if(c == '\\*')
 				{
 					if(arc + 1 != work.romans[j].count)
-						throw new GRuntimeError(@"“Áêƒpƒ^[ƒ“u&c;v‚ª•¶š‚ÌÅŒã‚Ì“ü—ÍˆÈŠO‚ÅŒ»‚ê‚Ü‚µ‚½B");
+						throw new GRuntimeError(@"ç‰¹æ®Šãƒ‘ã‚¿ãƒ¼ãƒ³ã€Œ&c;ã€ãŒæ–‡å­—ã®æœ€å¾Œã®å…¥åŠ›ä»¥å¤–ã§ç¾ã‚Œã¾ã—ãŸã€‚");
 
-					// NOTE: Ÿ‚Ì•¶š‚ªó‚¯“ü‚ê‚ç‚ê‚é‚È‚ç‚ÎŒ»İ‚Ì•¶š‚ğŠ®—¹‚Æ‚·‚éB
+					// NOTE: æ¬¡ã®æ–‡å­—ãŒå—ã‘å…¥ã‚Œã‚‰ã‚Œã‚‹ãªã‚‰ã°ç¾åœ¨ã®æ–‡å­—ã‚’å®Œäº†ã¨ã™ã‚‹ã€‚
 					var nc = getCandidate(candidate.position + work.target.length);
 
 					if(checkCharacterNoPattern_private_(nc, ch) != '')
@@ -282,7 +282,7 @@ class TypingWord
 		return '';
 	}
 
-	/*! \brief •¶š ch ‚ğ“ü—Í‚µ‚Ü‚·B
+	/*! \brief æ–‡å­— ch ã‚’å…¥åŠ›ã—ã¾ã™ã€‚
 	**/
 	function input(ch)
 	{
@@ -294,16 +294,16 @@ class TypingWord
 
 		//dm(@"pattern: &pattern;");
 
-		// ƒpƒ^[ƒ“ƒqƒbƒg–³‚µ
+		// ãƒ‘ã‚¿ãƒ¼ãƒ³ãƒ’ãƒƒãƒˆç„¡ã—
 		if(pattern == '')
 			return (lastResult_ = modTypingProcessorDeniedValue);
 
-		// pattern ‚Éƒqƒbƒg‚µ‚½‚Ì‚ÅA“à•”ó‘Ô‚ğXV‚·‚éB
+		// pattern ã«ãƒ’ãƒƒãƒˆã—ãŸã®ã§ã€å†…éƒ¨çŠ¶æ…‹ã‚’æ›´æ–°ã™ã‚‹ã€‚
 		var targets = candidate.targets;
 		var ar = candidate.acceptRomans;
 		var arc = ar.count;
 
-		// •K—v‚È‚­‚È‚Á‚½Œó•â‚ğíœ‚·‚éB
+		// å¿…è¦ãªããªã£ãŸå€™è£œã‚’å‰Šé™¤ã™ã‚‹ã€‚
 		for(var i = targets.count - 1; i >= 0; i--)
 		{
 			if(targets[i] === null)
@@ -319,16 +319,16 @@ class TypingWord
 
 				if(pattern == c)
 				{
-					// Œ»İ‚ÌŒó•â‚ÅŠm’è‚µ‚½B
+					// ç¾åœ¨ã®å€™è£œã§ç¢ºå®šã—ãŸã€‚
 					if(arc + 1 == p.count)
 					{
 						acceptRubyCount_ += work.target.length;
 						acceptRomanString_.push(ar*);
 						candidate_ = void;
 
-						// NOTE: Å“K‰»‚ª‰Â”\B
-						// ch ‚ªó‚¯•t‚¯‚ç‚ê‚é‚Ì‚ÍŠm’è‚µ‚Ä‚¢‚é‚Ì‚Å
-						// –³‘Ê‚Æ‚¢‚¦‚Î–³‘Ê‚Å‚Í‚ ‚éB
+						// NOTE: æœ€é©åŒ–ãŒå¯èƒ½ã€‚
+						// ch ãŒå—ã‘ä»˜ã‘ã‚‰ã‚Œã‚‹ã®ã¯ç¢ºå®šã—ã¦ã„ã‚‹ã®ã§
+						// ç„¡é§„ã¨ã„ãˆã°ç„¡é§„ã§ã¯ã‚ã‚‹ã€‚
 						if(pattern == "\\*")
 							return input(ch);
 
@@ -470,9 +470,9 @@ class TypingWord
 	}
 }
 
-/*! \brief ƒ[ƒhƒvƒƒZƒbƒT
+/*! \brief ãƒ¯ãƒ¼ãƒ‰ãƒ—ãƒ­ã‚»ãƒƒã‚µ
  *
- * ŠeŒ¾Œê‘Î‰‚Í”h¶æ‚Ås‚Á‚Ä‚­‚¾‚³‚¢B
+ * å„è¨€èªå¯¾å¿œã¯æ´¾ç”Ÿå…ˆã§è¡Œã£ã¦ãã ã•ã„ã€‚
 **/
 class TypingWordProcessor
 {
@@ -512,10 +512,10 @@ class TypingWordProcessor
 		romanTable_ = symbolTable_ = void;
 
 		if(!Storages.isExistentStorage(symbolStorage))
-			throw new GNotFoundStorageError(@"w’è‚³‚ê‚½Œ¾Œê‚Ìƒ[ƒ}š‘Î‰•\‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½BŒ¾ŒêF'&language;'");
+			throw new GNotFoundStorageError(@"æŒ‡å®šã•ã‚ŒãŸè¨€èªã®ãƒ­ãƒ¼ãƒå­—å¯¾å¿œè¡¨ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚è¨€èªï¼š'&language;'");
 		romanTable_ = Scripts.evalStorage(baseStorage, '');
 
-		// ƒVƒ“ƒ{ƒ‹ƒe[ƒuƒ‹‚Í‚ ‚ê‚Î“Ç‚İ‚Ş
+		// ã‚·ãƒ³ãƒœãƒ«ãƒ†ãƒ¼ãƒ–ãƒ«ã¯ã‚ã‚Œã°èª­ã¿è¾¼ã‚€
 		if(Storages.isExistentStorage(symbolStorage))
 		{
 			symbolTable_ = Scripts.evalStorage(symbolStorage, '');
@@ -528,7 +528,7 @@ class TypingWordProcessor
 	function loadWords(storage)
 	{
 		if(!Storages.isExistentStorage(storage))
-			throw new GNotFoundStorageError(@"ƒXƒgƒŒ[ƒWu&storage;v‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½B");
+			throw new GNotFoundStorageError(@"ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ã€Œ&storage;ã€ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚");
 
 		var source = Scripts.evalStorage(storage);
 		var cwFunc = createTypingWord;
@@ -587,18 +587,18 @@ class TypingWordProcessor
 		words_.clear();
 	}
 
-	/*! \brief text ˆø”‚©‚çÅ‰‚Ì‚Pƒ‚[ƒ‰‚ğ’Šo‚µ‚Ü‚·B
+	/*! \brief text å¼•æ•°ã‹ã‚‰æœ€åˆã®ï¼‘ãƒ¢ãƒ¼ãƒ©ã‚’æŠ½å‡ºã—ã¾ã™ã€‚
 	 *
-	 * \return ’Šo‚³‚ê‚½‚Pƒ‚[ƒ‰•ª‚ÌƒeƒLƒXƒg‚ğ•Ô‚µ‚Ü‚·B
+	 * \return æŠ½å‡ºã•ã‚ŒãŸï¼‘ãƒ¢ãƒ¼ãƒ©åˆ†ã®ãƒ†ã‚­ã‚¹ãƒˆã‚’è¿”ã—ã¾ã™ã€‚
 	**/
 	function getFirstMora(text)
 	{
 		return text[0];
 	}
 
-	/*! \brief text ˆø”‚ÌÅ‰‚Ì‚Pƒ‚[ƒ‰‚É‘Î‚·‚éƒ[ƒ}š‘Î‰•\‚ğ•Ô‚µ‚Ü‚·B
+	/*! \brief text å¼•æ•°ã®æœ€åˆã®ï¼‘ãƒ¢ãƒ¼ãƒ©ã«å¯¾ã™ã‚‹ãƒ­ãƒ¼ãƒå­—å¯¾å¿œè¡¨ã‚’è¿”ã—ã¾ã™ã€‚
 	 *
-	 * \remarks •Ô‚è’l‚Í‰º‹L\‘¢‚Ì Dictionary ‚Ì”z—ñ‚ğ•Ô‚µ‚Ä‚­‚¾‚³‚¢B
+	 * \remarks è¿”ã‚Šå€¤ã¯ä¸‹è¨˜æ§‹é€ ã® Dictionary ã®é…åˆ—ã‚’è¿”ã—ã¦ãã ã•ã„ã€‚
 	 * \remarks 
 	 * \remarks struct {
 	 * \remarks     String  target;
@@ -608,10 +608,10 @@ class TypingWordProcessor
 	 * \remarks     ]       romans;
 	 * \remarks }
 	 * \remarks 
-	 * \remarks target : ‘Î‰‚·‚é•¶š—ñ‚Å‚·B
-	 * \remarks romans : target ‚Ìƒ[ƒ}š•¶š—ñ‚Å‚·B
+	 * \remarks target : å¯¾å¿œã™ã‚‹æ–‡å­—åˆ—ã§ã™ã€‚
+	 * \remarks romans : target ã®ãƒ­ãƒ¼ãƒå­—æ–‡å­—åˆ—ã§ã™ã€‚
 	 * \remarks 
-	 * \remarks ‚±‚Ì”z—ñ‚Í target ‚Ì’·‚¢‚à‚Ì‚©‚ç‡‚É•À‚×‚Ä•Ô‚µ‚Ä‚­‚¾‚³‚¢B
+	 * \remarks ã“ã®é…åˆ—ã¯ target ã®é•·ã„ã‚‚ã®ã‹ã‚‰é †ã«ä¸¦ã¹ã¦è¿”ã—ã¦ãã ã•ã„ã€‚
 	**/
 	function getRomanStringTable(text)
 	{
@@ -625,14 +625,14 @@ class TypingWordProcessor
 		record = table[key];
 
 		if(record === void)
-			throw new GRuntimeError(@"u&key;v‚É‘Î‰‚·‚éƒ[ƒ}š‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½B");
+			throw new GRuntimeError(@"ã€Œ&key;ã€ã«å¯¾å¿œã™ã‚‹ãƒ­ãƒ¼ãƒå­—ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚");
 
 		result.push(%[target : key, romans: GObjectUtils.clone(record)]);
 
 		return result;
 	}
 
-	/*! \brief text ‚É‘Î‚·‚éÅ’Z‚Ìƒ[ƒ}š•¶š—ñ‚ğ•Ô‚·B
+	/*! \brief text ã«å¯¾ã™ã‚‹æœ€çŸ­ã®ãƒ­ãƒ¼ãƒå­—æ–‡å­—åˆ—ã‚’è¿”ã™ã€‚
 	**/
 	function getShortestString(text)
 	{
@@ -653,17 +653,17 @@ class TypingWordProcessor
 		} catch(e) {
 			throw new GRuntimeError(
 				@"&e.message;\n" +
-				@"“ü—ÍFu&text;v"
+				@"å…¥åŠ›ï¼šã€Œ&text;ã€"
 			);
 		}
 
 		return str;
 	}
 
-	/*! \brief V‚µ‚¢ƒ[ƒh‚ğƒ‰ƒ“ƒ_ƒ€‚Å’Š‘I‚·‚éB
+	/*! \brief æ–°ã—ã„ãƒ¯ãƒ¼ãƒ‰ã‚’ãƒ©ãƒ³ãƒ€ãƒ ã§æŠ½é¸ã™ã‚‹ã€‚
 	 *
-	 * \return ’Š‘I‚µ‚½ƒ[ƒh‚ğ•Ô‚µ‚Ü‚·B
-	 * \return Œ»İA•Ô‚¹‚éƒ[ƒh‚ª–³‚¢ê‡‚Í void ‚ğ•Ô‚µ‚Ü‚·B
+	 * \return æŠ½é¸ã—ãŸãƒ¯ãƒ¼ãƒ‰ã‚’è¿”ã—ã¾ã™ã€‚
+	 * \return ç¾åœ¨ã€è¿”ã›ã‚‹ãƒ¯ãƒ¼ãƒ‰ãŒç„¡ã„å ´åˆã¯ void ã‚’è¿”ã—ã¾ã™ã€‚
 	**/
 	function getNewWordAtRandom(banInitials = [])
 	{
@@ -680,7 +680,7 @@ class TypingWordProcessor
 			}*/
 
 			// FIXME:
-			// “K“–‚É’Š‘I‚·‚éB
+			// é©å½“ã«æŠ½é¸ã™ã‚‹ã€‚
 			for(var i = 0; i < max; i++)
 			{
 				if(index >= max)
@@ -818,7 +818,7 @@ class TypingWordProcessor
 	}
 }
 
-/*! \brief “ú–{Œê‘Î‰”Åƒ[ƒhƒvƒƒZƒbƒT
+/*! \brief æ—¥æœ¬èªå¯¾å¿œç‰ˆãƒ¯ãƒ¼ãƒ‰ãƒ—ãƒ­ã‚»ãƒƒã‚µ
 **/
 class TypingWordProcessorForJapanese extends TypingWordProcessor
 {
@@ -827,37 +827,37 @@ class TypingWordProcessorForJapanese extends TypingWordProcessor
 		super.TypingWordProcessor(...);
 	}
 
-	/*! \brief “ú–{Œê‘Î‰”ÅB
+	/*! \brief æ—¥æœ¬èªå¯¾å¿œç‰ˆã€‚
 	 *
-	 * \return ’Šo‚³‚ê‚½‚Pƒ‚[ƒ‰•ªi—áŠO‚ ‚èj‚ÌƒeƒLƒXƒg‚ğ•Ô‚µ‚Ü‚·B
+	 * \return æŠ½å‡ºã•ã‚ŒãŸï¼‘ãƒ¢ãƒ¼ãƒ©åˆ†ï¼ˆä¾‹å¤–ã‚ã‚Šï¼‰ã®ãƒ†ã‚­ã‚¹ãƒˆã‚’è¿”ã—ã¾ã™ã€‚
 	 *
-	 * \remarks Å‰‚Ì‚P•¶š–Ú‚ªÌ‚Ä‰¼–¼‚Ìê‡‚Í‘£‰¹‚©‚Ç‚¤‚©‚ÅˆÈ‰º‚Ì‚æ‚¤‚Éˆ—‚ª•ª‚©‚ê‚Ü‚·B
+	 * \remarks æœ€åˆã®ï¼‘æ–‡å­—ç›®ãŒæ¨ã¦ä»®åã®å ´åˆã¯ä¿ƒéŸ³ã‹ã©ã†ã‹ã§ä»¥ä¸‹ã®ã‚ˆã†ã«å‡¦ç†ãŒåˆ†ã‹ã‚Œã¾ã™ã€‚
 	 * \remarks 
-	 * \remarks EÅ‰‚Ì•¶š‚ª‘£‰¹‚Ìê‡
-	 * \remarks @‚Q•¶š–Ú‚ª•ê‰¹‚©ƒis‚Å‚ ‚ê‚Î‘£‰¹‚Ì‚İi‚Â‚Ü‚èuƒbvj‚ğ•Ô‚µ‚Ü‚·B
-	 * \remarks @‚»‚êˆÈŠO‚Ìê‡Ÿ‚Ìƒ‚[ƒ‰‚Æ‡‚í‚¹‚Äi—á‚¦‚Îuƒbƒ^vuƒbƒMƒƒv‚È‚Çj•Ô‚µ‚Ü‚·B
+	 * \remarks ãƒ»æœ€åˆã®æ–‡å­—ãŒä¿ƒéŸ³ã®å ´åˆ
+	 * \remarks ã€€ï¼’æ–‡å­—ç›®ãŒæ¯éŸ³ã‹ãƒŠè¡Œã§ã‚ã‚Œã°ä¿ƒéŸ³ã®ã¿ï¼ˆã¤ã¾ã‚Šã€Œãƒƒã€ï¼‰ã‚’è¿”ã—ã¾ã™ã€‚
+	 * \remarks ã€€ãã‚Œä»¥å¤–ã®å ´åˆæ¬¡ã®ãƒ¢ãƒ¼ãƒ©ã¨åˆã‚ã›ã¦ï¼ˆä¾‹ãˆã°ã€Œãƒƒã‚¿ã€ã€Œãƒƒã‚®ãƒ£ã€ãªã©ï¼‰è¿”ã—ã¾ã™ã€‚
 	 * \remarks 
-	 * \remarks EÅ‰‚Ì•¶š‚ª‘£‰¹‚Å‚È‚¢ê‡
-	 * \remarks @‚»‚Ì‚Ü‚ÜÌ‚Ä‰¼–¼‚Ì‚İ‚ğ•Ô‚µ‚Ü‚·B
+	 * \remarks ãƒ»æœ€åˆã®æ–‡å­—ãŒä¿ƒéŸ³ã§ãªã„å ´åˆ
+	 * \remarks ã€€ãã®ã¾ã¾æ¨ã¦ä»®åã®ã¿ã‚’è¿”ã—ã¾ã™ã€‚
 	 * \remarks 
-	 * \remarks Å‰‚Ì‚P•¶š–Ú‚ªÌ‚Ä‰¼–¼‚Å‚Í‚È‚¢ê‡‚Í‚Q•¶š–Ú‚É‚æ‚Á‚Äˆ—‚ª•ª‚©‚ê‚Ü‚·B
+	 * \remarks æœ€åˆã®ï¼‘æ–‡å­—ç›®ãŒæ¨ã¦ä»®åã§ã¯ãªã„å ´åˆã¯ï¼’æ–‡å­—ç›®ã«ã‚ˆã£ã¦å‡¦ç†ãŒåˆ†ã‹ã‚Œã¾ã™ã€‚
 	 * \remarks 
-	 * \remarks E‚Q•¶š–Ú‚ªuƒ@ƒBƒDƒFƒHƒƒƒ…ƒ‡v‚Ì‚¢‚¸‚ê‚©‚Ìê‡
-	 * \remarks @‰Â”\‚Å‚ ‚ê‚ÎX‰¹‚Æ‚µ‚Äˆ—‚·‚éB
-	 * \remarks @uƒƒƒv‚È‚Ç‚Í‚Q•¶š–Ú‚ªÌ‚Ä‰¼–¼‚Å‚Í‚ ‚é‚ª
-	 * \remarks @X‰¹‚Å‚Í‚È‚¢‚Ì‚Åuƒv‚ğ•Ô‚µ‚Ü‚·B
+	 * \remarks ãƒ»ï¼’æ–‡å­—ç›®ãŒã€Œã‚¡ã‚£ã‚¥ã‚§ã‚©ãƒ£ãƒ¥ãƒ§ã€ã®ã„ãšã‚Œã‹ã®å ´åˆ
+	 * \remarks ã€€å¯èƒ½ã§ã‚ã‚Œã°æ‹—éŸ³ã¨ã—ã¦å‡¦ç†ã™ã‚‹ã€‚
+	 * \remarks ã€€ã€Œãƒ¯ãƒ£ã€ãªã©ã¯ï¼’æ–‡å­—ç›®ãŒæ¨ã¦ä»®åã§ã¯ã‚ã‚‹ãŒ
+	 * \remarks ã€€æ‹—éŸ³ã§ã¯ãªã„ã®ã§ã€Œãƒ¯ã€ã‚’è¿”ã—ã¾ã™ã€‚
 	 * \remarks 
-	 * \remarks E‚P•¶š–Ú‚ªuƒ“v‚©‚ÂA‚Q•¶š–Ú‚ª•ê‰¹‚©ƒis‚Ìê‡
-	 * \remarks @“Áê‚È›‰¹‚Æ‚µ‚Ä‚Qƒ‚[ƒ‰‚ğ•Ô‚µ‚Ü‚·B
+	 * \remarks ãƒ»ï¼‘æ–‡å­—ç›®ãŒã€Œãƒ³ã€ã‹ã¤ã€ï¼’æ–‡å­—ç›®ãŒæ¯éŸ³ã‹ãƒŠè¡Œã®å ´åˆ
+	 * \remarks ã€€ç‰¹æ®Šãªæ’¥éŸ³ã¨ã—ã¦ï¼’ãƒ¢ãƒ¼ãƒ©ã‚’è¿”ã—ã¾ã™ã€‚
 	 * \remarks 
-	 * \remarks ‚»‚Ì‘¼A‹L†‚â’·‰¹‚Í‘S‚Ä‚Pƒ‚[ƒ‰‚ÆŒ©‚È‚µ‚Ä‚»‚Ì‚Ü‚Ü‚P•¶š‚¾‚¯‚ğ•Ô‚µ‚Ü‚·B
+	 * \remarks ãã®ä»–ã€è¨˜å·ã‚„é•·éŸ³ã¯å…¨ã¦ï¼‘ãƒ¢ãƒ¼ãƒ©ã¨è¦‹ãªã—ã¦ãã®ã¾ã¾ï¼‘æ–‡å­—ã ã‘ã‚’è¿”ã—ã¾ã™ã€‚
 	 * \remarks 
-	 * \remarks text ‚ª‚P•¶š‚µ‚©‚È‚¢ê‡‚Í‚»‚Ì‚P•¶š‚ğ•Ô‚µ‚Ü‚·B
+	 * \remarks text ãŒï¼‘æ–‡å­—ã—ã‹ãªã„å ´åˆã¯ãã®ï¼‘æ–‡å­—ã‚’è¿”ã—ã¾ã™ã€‚
 	**/
 	function getFirstMora(text)
 	{
 		if(typeof(text) != 'String' || text.length <= 0)
-			throw new GArgumentsError(@"u&text;v‚Í•¶š—ñ‚Å‚Í‚È‚¢‚©A‹ó•¶š—ñ‚Å‚·B");
+			throw new GArgumentsError(@"ã€Œ&text;ã€ã¯æ–‡å­—åˆ—ã§ã¯ãªã„ã‹ã€ç©ºæ–‡å­—åˆ—ã§ã™ã€‚");
 
 		var mora = text[0];
 
@@ -865,45 +865,45 @@ class TypingWordProcessorForJapanese extends TypingWordProcessor
 		{
 			var ch = text[1];
 
-			// ‚P•¶š–Ú‚ªÌ‚Ä‰¼–¼
+			// ï¼‘æ–‡å­—ç›®ãŒæ¨ã¦ä»®å
 			if(isSmallKANA_private_(mora))
 			{
-				// NOTE: uƒbƒMƒƒv‚Ì‚æ‚¤‚Èê‡‚ğl—¶‚·‚éB
-				if(mora === 'ƒb' && !isVowelOrNALine_private_(ch) && !isSymbol_private_(ch) && !isSmallKANA_private_(ch))
+				// NOTE: ã€Œãƒƒã‚®ãƒ£ã€ã®ã‚ˆã†ãªå ´åˆã‚’è€ƒæ…®ã™ã‚‹ã€‚
+				if(mora === 'ãƒƒ' && !isVowelOrNALine_private_(ch) && !isSymbol_private_(ch) && !isSmallKANA_private_(ch))
 					mora += getFirstMora(text.substring(1));
 			}
-			// ‚P•¶š–Ú‚ªÌ‚Ä‰¼–¼‚Å‚Í‚È‚¢
+			// ï¼‘æ–‡å­—ç›®ãŒæ¨ã¦ä»®åã§ã¯ãªã„
 			else
 			{
-				// NOTE: “Áê‚È›‰¹
-				if(mora === 'ƒ“' && isVowelOrNALine_private_(ch))
+				// NOTE: ç‰¹æ®Šãªæ’¥éŸ³
+				if(mora === 'ãƒ³' && isVowelOrNALine_private_(ch))
 					mora += ch;
 				else
-				// NOTE: X‰¹
+				// NOTE: æ‹—éŸ³
 				if(romanTable_[mora + ch] !== void)
 					mora += ch;
 			}
 		}
 
 		if(mora.length <= 0)
-			throw new GRuntimeError(@"•¶š—ñ‚Ìƒp[ƒX’†‚É—\Šú‚µ‚È‚¢—áŠO‚ª”­¶‚µ‚Ü‚µ‚½B\n“ü—Í‚³‚ê‚½•¶š—ñu&text;v");
+			throw new GRuntimeError(@"æ–‡å­—åˆ—ã®ãƒ‘ãƒ¼ã‚¹ä¸­ã«äºˆæœŸã—ãªã„ä¾‹å¤–ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚\nå…¥åŠ›ã•ã‚ŒãŸæ–‡å­—åˆ—ã€Œ&text;ã€");
 
 		return mora;
 	}
 
-	/*! \brief “ú–{Œê‘Î‰”ÅB
+	/*! \brief æ—¥æœ¬èªå¯¾å¿œç‰ˆã€‚
 	 *
-	 * \remarks text ‚ÌÅ‰‚Ì‚Pƒ‚[ƒ‰‚É‘Î‚·‚éƒ[ƒ}š•¶š—ñ‚ğ•Ô‚µ‚Ü‚·B
-	 * \remarks ‚½‚¾‚µA‚Pƒ‚[ƒ‰‚ªX‰¹‚È‚Ç‚Q•¶š‚ÅŒ`¬‚³‚ê‚Ä‚¢‚éê‡‚Í
-	 * \remarks Å‰‚Ì‚P•¶š‚¾‚¯‚Ìƒ[ƒ}š•¶š—ñ‚à“¯‚É•Ô‚µ‚Ü‚·B
+	 * \remarks text ã®æœ€åˆã®ï¼‘ãƒ¢ãƒ¼ãƒ©ã«å¯¾ã™ã‚‹ãƒ­ãƒ¼ãƒå­—æ–‡å­—åˆ—ã‚’è¿”ã—ã¾ã™ã€‚
+	 * \remarks ãŸã ã—ã€ï¼‘ãƒ¢ãƒ¼ãƒ©ãŒæ‹—éŸ³ãªã©ï¼’æ–‡å­—ã§å½¢æˆã•ã‚Œã¦ã„ã‚‹å ´åˆã¯
+	 * \remarks æœ€åˆã®ï¼‘æ–‡å­—ã ã‘ã®ãƒ­ãƒ¼ãƒå­—æ–‡å­—åˆ—ã‚‚åŒæ™‚ã«è¿”ã—ã¾ã™ã€‚
 	 * \remarks 
-	 * \remarks “Áê‚È“ü—Í•¶š‚Æ‚µ‚Ä '\\*' ‚ª‚ ‚è‚Ü‚·B
-	 * \remarks ‚±‚ê‚Í“ü—Í‚ÌƒVƒ‡[ƒgƒJƒbƒg—p‚Ì•¶š‚ÅA
-	 * \remarks uŸ‚Ì•¶š‚Ì“ü—Í‚ªó‚¯“ü‚ê‚ç‚ê‚é‚È‚ç‚ÎŒ»İ‚Ì•¶š‚Ì“ü—Í‚ğŠ®—¹‚µ‚Ä‚à‚æ‚¢v
-	 * \remarks ‚Æ‚¢‚¤ˆÓ–¡‚Å‚·B
-	 * \remarks ˆê”Ê“I‚É‚Íuƒ“v‚Ì“ü—Íˆ—‚É‚Ì‚İg‚í‚ê‚Ü‚·‚ªAd—lã‚Í“Á‚ÉŒÀ’è‚µ‚Ä‚¢‚Ü‚¹‚ñB
+	 * \remarks ç‰¹æ®Šãªå…¥åŠ›æ–‡å­—ã¨ã—ã¦ '\\*' ãŒã‚ã‚Šã¾ã™ã€‚
+	 * \remarks ã“ã‚Œã¯å…¥åŠ›ã®ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆç”¨ã®æ–‡å­—ã§ã€
+	 * \remarks ã€Œæ¬¡ã®æ–‡å­—ã®å…¥åŠ›ãŒå—ã‘å…¥ã‚Œã‚‰ã‚Œã‚‹ãªã‚‰ã°ç¾åœ¨ã®æ–‡å­—ã®å…¥åŠ›ã‚’å®Œäº†ã—ã¦ã‚‚ã‚ˆã„ã€
+	 * \remarks ã¨ã„ã†æ„å‘³ã§ã™ã€‚
+	 * \remarks ä¸€èˆ¬çš„ã«ã¯ã€Œãƒ³ã€ã®å…¥åŠ›å‡¦ç†ã«ã®ã¿ä½¿ã‚ã‚Œã¾ã™ãŒã€ä»•æ§˜ä¸Šã¯ç‰¹ã«é™å®šã—ã¦ã„ã¾ã›ã‚“ã€‚
 	 * \remarks 
-	 * \remarks ¦–{—ˆuƒ“v—p‚Ìˆ—‚È‚Ì‚Å‘¼‚Ì•¶š‚Å‚±‚ê‚ğg‚Á‚½ê‡‚Ç‚¤‚È‚é‚©‚ÍŒŸØ‚µ‚Ä‚Ü‚¹‚ñB
+	 * \remarks â€»æœ¬æ¥ã€Œãƒ³ã€ç”¨ã®å‡¦ç†ãªã®ã§ä»–ã®æ–‡å­—ã§ã“ã‚Œã‚’ä½¿ã£ãŸå ´åˆã©ã†ãªã‚‹ã‹ã¯æ¤œè¨¼ã—ã¦ã¾ã›ã‚“ã€‚
 	**/
 	function getRomanStringTable(text)
 	{
@@ -916,7 +916,7 @@ class TypingWordProcessorForJapanese extends TypingWordProcessor
 		key = mora[0];
 		record = table[key];
 		if(record === void)
-			throw new GRuntimeError(@"u&key;v‚É‘Î‰‚·‚éƒ[ƒ}š‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½B");
+			throw new GRuntimeError(@"ã€Œ&key;ã€ã«å¯¾å¿œã™ã‚‹ãƒ­ãƒ¼ãƒå­—ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚");
 
 		work = GObjectUtils.clone(record);
 		work.push(record*); // ????
@@ -925,10 +925,10 @@ class TypingWordProcessorForJapanese extends TypingWordProcessor
 		if(mora.length >= 2)
 		{
 			// NOTE:
-			// ‚P•¶š–Ú‚ª›‰¹‚Æ‚¢‚¤–‚Í“Áê‚È›‰¹B
-			if(key == 'ƒ“')
+			// ï¼‘æ–‡å­—ç›®ãŒæ’¥éŸ³ã¨ã„ã†äº‹ã¯ç‰¹æ®Šãªæ’¥éŸ³ã€‚
+			if(key == 'ãƒ³')
 			{
-				// ‚±‚Ìê‡A“Áê“ü—Í‚Å‚ÌƒVƒ‡[ƒgƒJƒbƒg‚Í‚Å‚«‚È‚¢‚Ì‚ÅŒó•â‚©‚çíœ‚·‚éB
+				// ã“ã®å ´åˆã€ç‰¹æ®Šå…¥åŠ›ã§ã®ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã¯ã§ããªã„ã®ã§å€™è£œã‹ã‚‰å‰Šé™¤ã™ã‚‹ã€‚
 				for(var i = 0; i < work.count; i++)
 				{
 					if(work[i].find('\\*') != -1)
@@ -937,15 +937,15 @@ class TypingWordProcessorForJapanese extends TypingWordProcessor
 				work.remove(null);
 
 				if(work.count == 0)
-					throw new GRuntimeError(@"u&key;v‚É‘Î‚·‚éƒ[ƒ}š‘Î‰‚ª“Áê“ü—Í‚µ‚©Œ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½B");
+					throw new GRuntimeError(@"ã€Œ&key;ã€ã«å¯¾ã™ã‚‹ãƒ­ãƒ¼ãƒå­—å¯¾å¿œãŒç‰¹æ®Šå…¥åŠ›ã—ã‹è¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚");
 			}
 			else
 			// NOTE:
-			// ‚P•¶š–Ú‚ªÌ‚Ä‰¼–¼‚Æ‚¢‚¤–‚Í’Zk‰Â”\‚È‘£‰¹B
+			// ï¼‘æ–‡å­—ç›®ãŒæ¨ã¦ä»®åã¨ã„ã†äº‹ã¯çŸ­ç¸®å¯èƒ½ãªä¿ƒéŸ³ã€‚
 			if(isSmallKANA_private_(key))
 			{
-				// ‚±‚Ìê‡AŸ‚Ìƒ‚[ƒ‰‚ÌÅ‰‚Ìq‰¹‚ğ‚P‰ñ‘½‚­“ü—Í‚·‚ê‚Î
-				// ‚Qƒ‚[ƒ‰•ª‚Ì“ü—Í‚ª‰Â”\B
+				// ã“ã®å ´åˆã€æ¬¡ã®ãƒ¢ãƒ¼ãƒ©ã®æœ€åˆã®å­éŸ³ã‚’ï¼‘å›å¤šãå…¥åŠ›ã™ã‚Œã°
+				// ï¼’ãƒ¢ãƒ¼ãƒ©åˆ†ã®å…¥åŠ›ãŒå¯èƒ½ã€‚
 				var next = getRomanStringTable(mora.substring(1));
 				var c = next.count;
 
@@ -965,12 +965,12 @@ class TypingWordProcessorForJapanese extends TypingWordProcessor
 			}
 			else
 			// NOTE:
-			// ‚P•¶š–Ú‚ª›‰¹‚Å‚à‘£‰¹‚Å‚à‚È‚¢‚Æ‚¢‚¤–‚ÍX‰¹B
+			// ï¼‘æ–‡å­—ç›®ãŒæ’¥éŸ³ã§ã‚‚ä¿ƒéŸ³ã§ã‚‚ãªã„ã¨ã„ã†äº‹ã¯æ‹—éŸ³ã€‚
 			{
-				// “Á‚É•K—v‚Èˆ—‚Í‚È‚¢B
+				// ç‰¹ã«å¿…è¦ãªå‡¦ç†ã¯ãªã„ã€‚
 				record = table[mora];
 				if(record === void)
-					throw new GRuntimeError(@"u&mora;v‚Ìƒ[ƒ}š‘Î‰‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½B");
+					throw new GRuntimeError(@"ã€Œ&mora;ã€ã®ãƒ­ãƒ¼ãƒå­—å¯¾å¿œãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚");
 
 				work = [];
 				work.push(record*);
@@ -980,8 +980,8 @@ class TypingWordProcessorForJapanese extends TypingWordProcessor
 
 		var c = result.count;
 
-		// ‘S‚Ä‚ÌŒó•â‚É‘Î‚µ‚ÄA
-		// ‚»‚ê‚ªÅŒã‚Ì•¶š‚Ìê‡‚Í '\\*' ‚ğ‚ÂŒó•â‚ğíœ‚·‚éB
+		// å…¨ã¦ã®å€™è£œã«å¯¾ã—ã¦ã€
+		// ãã‚ŒãŒæœ€å¾Œã®æ–‡å­—ã®å ´åˆã¯ '\\*' ã‚’æŒã¤å€™è£œã‚’å‰Šé™¤ã™ã‚‹ã€‚
 		for(var i = 0; i < c; i++)
 		{
 			var work = result[i];
@@ -997,63 +997,63 @@ class TypingWordProcessorForJapanese extends TypingWordProcessor
 			work.romans.remove(null);
 
 			if(work.romans.count == 0)
-				throw new GRuntimeError(@"u&work.target;v‚É‘Î‚·‚éƒ[ƒ}š‘Î‰‚ª“Áê“ü—Í‚µ‚©Œ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½B");
+				throw new GRuntimeError(@"ã€Œ&work.target;ã€ã«å¯¾ã™ã‚‹ãƒ­ãƒ¼ãƒå­—å¯¾å¿œãŒç‰¹æ®Šå…¥åŠ›ã—ã‹è¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚");
 		}
 
 		return result;
 	}
 
-	/*! \brief Ì‚Ä‰¼–¼”»’èB
+	/*! \brief æ¨ã¦ä»®ååˆ¤å®šã€‚
 	 *
-	 * \return ch ‚ªÌ‚Ä‰¼–¼‚È‚ç‚Î true ‚ğ•Ô‚·B
-	 * \return ‚»‚êˆÈŠO‚Å‚Í false ‚ğ•Ô‚µ‚Ü‚·B
+	 * \return ch ãŒæ¨ã¦ä»®åãªã‚‰ã° true ã‚’è¿”ã™ã€‚
+	 * \return ãã‚Œä»¥å¤–ã§ã¯ false ã‚’è¿”ã—ã¾ã™ã€‚
 	**/
 	function isSmallKANA_private_(ch)
 	{
 		switch(ch)
 		{
-		case 'ƒ@': case 'ƒB': case 'ƒD': case 'ƒF': case 'ƒH':
-		case 'ƒb':
-		case 'ƒƒ': case 'ƒ…': case 'ƒ‡':
-		case 'ƒ':
+		case 'ã‚¡': case 'ã‚£': case 'ã‚¥': case 'ã‚§': case 'ã‚©':
+		case 'ãƒƒ':
+		case 'ãƒ£': case 'ãƒ¥': case 'ãƒ§':
+		case 'ãƒ®':
 			return true;
 		}
 		return false;
 	}
 
-	/*! \brief •ê‰¹‚Ü‚½‚ÍƒisA‚Ü‚½‚Íuƒ“v”»’èB
+	/*! \brief æ¯éŸ³ã¾ãŸã¯ãƒŠè¡Œã€ã¾ãŸã¯ã€Œãƒ³ã€åˆ¤å®šã€‚
 	 *
-	 * \return ch ‚ª•ê‰¹‚©ƒisA‚Ü‚½‚Íuƒ“v‚È‚ç‚Î true ‚ğ•Ô‚·B
-	 * \return ‚»‚êˆÈŠO‚Ìê‡‚Í false ‚ğ•Ô‚µ‚Ü‚·B
+	 * \return ch ãŒæ¯éŸ³ã‹ãƒŠè¡Œã€ã¾ãŸã¯ã€Œãƒ³ã€ãªã‚‰ã° true ã‚’è¿”ã™ã€‚
+	 * \return ãã‚Œä»¥å¤–ã®å ´åˆã¯ false ã‚’è¿”ã—ã¾ã™ã€‚
 	**/
 	function isVowelOrNALine_private_(ch)
 	{
 		switch(ch)
 		{
-		case 'ƒA': case 'ƒC': case 'ƒE': case 'ƒG': case 'ƒI':
-		case 'ƒi': case 'ƒj': case 'ƒk': case 'ƒl': case 'ƒm':
-		case 'ƒ“':
+		case 'ã‚¢': case 'ã‚¤': case 'ã‚¦': case 'ã‚¨': case 'ã‚ª':
+		case 'ãƒŠ': case 'ãƒ‹': case 'ãƒŒ': case 'ãƒ': case 'ãƒ':
+		case 'ãƒ³':
 			return true;
 		}
 		return false;
 	}
 
-	/*! \brief uƒ“v‚Ì“Áê“ü—Í‚Ì•s‰Â”\”»’èB
+	/*! \brief ã€Œãƒ³ã€ã®ç‰¹æ®Šå…¥åŠ›ã®ä¸å¯èƒ½åˆ¤å®šã€‚
 	 *
-	 * \return ch ‚ªuƒ“v‚©‚Â“Áê“ü—Í‚ª‰Â”\‚È‚ç‚Î true ‚ğ•Ô‚µ‚Ü‚·B
-	 * \return ‚»‚êˆÈŠO‚È‚ç‚Î false ‚ğ•Ô‚·B
+	 * \return ch ãŒã€Œãƒ³ã€ã‹ã¤ç‰¹æ®Šå…¥åŠ›ãŒå¯èƒ½ãªã‚‰ã° true ã‚’è¿”ã—ã¾ã™ã€‚
+	 * \return ãã‚Œä»¥å¤–ãªã‚‰ã° false ã‚’è¿”ã™ã€‚
 	**/
 	function isSpecialSyllabicNasal_private_(ch)
 	{
-		if(ch[0] == 'ƒ“' && !isVowelOrNALine_private_(ch[1]))
+		if(ch[0] == 'ãƒ³' && !isVowelOrNALine_private_(ch[1]))
 			return true;
 		return false;
 	}
 
-	/*! \brief ‹L†”»’èB
+	/*! \brief è¨˜å·åˆ¤å®šã€‚
 	 *
-	 * \return ch ‚ª‹L†‚È‚ç‚Î true ‚ğ•Ô‚·B
-	 * \return ‚»‚êˆÈŠO‚Ìê‡‚Í false ‚ğ•Ô‚µ‚Ü‚·B
+	 * \return ch ãŒè¨˜å·ãªã‚‰ã° true ã‚’è¿”ã™ã€‚
+	 * \return ãã‚Œä»¥å¤–ã®å ´åˆã¯ false ã‚’è¿”ã—ã¾ã™ã€‚
 	**/
 	function isSymbol_private_(ch)
 	{
@@ -1061,7 +1061,7 @@ class TypingWordProcessorForJapanese extends TypingWordProcessor
 	}
 }
 
-/*! \brief ƒ[ƒh•\¦—p‚ÌƒŒƒCƒ„
+/*! \brief ãƒ¯ãƒ¼ãƒ‰è¡¨ç¤ºç”¨ã®ãƒ¬ã‚¤ãƒ¤
 **/
 class TypingWordLayer extends GWidgetLayer
 {
@@ -1145,7 +1145,7 @@ class TypingWordLayer extends GWidgetLayer
 		mw = font.getTextWidth(work);
 		mh = font.getTextHeight(work);
 
-		// ƒTƒCƒYŒvZ
+		// ã‚µã‚¤ã‚ºè¨ˆç®—
 		var h = ch + rh + mh + ls + (heightMargin_ << 1);
 		var w;
 
@@ -1154,10 +1154,10 @@ class TypingWordLayer extends GWidgetLayer
 		w = mw if w < mw;
 		w += (widthMargin_ << 1);
 
-		// ƒTƒCƒY•ÏX
+		// ã‚µã‚¤ã‚ºå¤‰æ›´
 		setSize(w, h);
 
-		// ƒNƒŠƒbƒsƒ“ƒO
+		// ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°
 		if(left < 0)
 			left = 0;
 		if(right > parent.width)
@@ -1179,7 +1179,7 @@ class TypingWordLayer extends GWidgetLayer
 		}
 		else
 		{
-			// NOTE: ‘«‘~‚¯‚é‚¾‚¯‘«‘~‚¢‚Ä‚İ‚éB
+			// NOTE: è¶³æ»ã‘ã‚‹ã ã‘è¶³æ»ã„ã¦ã¿ã‚‹ã€‚
 			var dtFunc = drawText;
 			var crFunc = colorRect;
 			var gtwFunc = font.getTextWidth;
@@ -1239,7 +1239,7 @@ class TypingWordLayer extends GWidgetLayer
 		if(edgeColor == clNone)
 		{
 			offy += 2;
-			// ƒ‹ƒr
+			// ãƒ«ãƒ“
 			if(!invisibleRuby_)
 			{
 				font.height = rubyFontSize_;
@@ -1249,13 +1249,13 @@ class TypingWordLayer extends GWidgetLayer
 				);
 				offy += font.getTextHeight(word.ruby) + lineSpace_;
 			}
-			// ƒLƒƒƒvƒVƒ‡ƒ“
+			// ã‚­ãƒ£ãƒ—ã‚·ãƒ§ãƒ³
 			font.height = captionFontSize_;
 			drawText(
 				offx + alignToWidth(captionAlign, word.caption), offy,
 				word.caption, color, 255
 			);
-			// ‰¹‘f
+			// éŸ³ç´ 
 			offy += font.getTextHeight(word.caption) + lineSpace_;
 			font.height = romanFontSize_;
 			drawWord_private_(
@@ -1275,7 +1275,7 @@ class TypingWordLayer extends GWidgetLayer
 	function input(ch)
 	{
 		if(word_ === void)
-			throw new GRuntimeError('ƒ[ƒh‚ªİ’è‚³‚ê‚Ä‚¢‚È‚¢ƒIƒuƒWƒFƒNƒg‚É“ü—Í‚µ‚Ü‚µ‚½B');
+			throw new GRuntimeError('ãƒ¯ãƒ¼ãƒ‰ãŒè¨­å®šã•ã‚Œã¦ã„ãªã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å…¥åŠ›ã—ã¾ã—ãŸã€‚');
 
 		var ret = word_.input(ch);
 
@@ -1299,11 +1299,11 @@ class TypingWordLayer extends GWidgetLayer
 }
 
 
-/*! \brief ƒ^ƒCƒsƒ“ƒOƒIƒuƒWƒFƒNƒg
+/*! \brief ã‚¿ã‚¤ãƒ”ãƒ³ã‚°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  *
- * Å’áŒÀ“x‚ÌÀ‘•‚Å‚·B
- * ƒQ[ƒ€‚ç‚µ‚³‚ğ’Ç‹‚·‚é‚È‚ç‚Î‚±‚ÌƒIƒuƒWƒFƒNƒg‚ğ”h¶‚³‚¹‚Ä
- * ‰‰o‚ğ‰Á‚¦‚é‚×‚«‚Å‚·B
+ * æœ€ä½é™åº¦ã®å®Ÿè£…ã§ã™ã€‚
+ * ã‚²ãƒ¼ãƒ ã‚‰ã—ã•ã‚’è¿½æ±‚ã™ã‚‹ãªã‚‰ã°ã“ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ´¾ç”Ÿã•ã›ã¦
+ * æ¼”å‡ºã‚’åŠ ãˆã‚‹ã¹ãã§ã™ã€‚
 **/
 class TypingObjectLayer extends GLayer
 {
@@ -1377,7 +1377,7 @@ class TypingObjectLayer extends GLayer
 		var ret = wordLayer_.input(ch);
 
 		// NOTE:
-		// •K—v‚È‚ç‚ÎƒŒƒCƒ„XVB
+		// å¿…è¦ãªã‚‰ã°ãƒ¬ã‚¤ãƒ¤æ›´æ–°ã€‚
 
 		return ret;
 	}
@@ -1401,11 +1401,11 @@ class TypingObjectLayer extends GLayer
 }
 
 
-/*! \brief ƒL[ˆ—‚ğs‚¤‚½‚ß‚Ìƒx[ƒXƒŒƒCƒ„
+/*! \brief ã‚­ãƒ¼å‡¦ç†ã‚’è¡Œã†ãŸã‚ã®ãƒ™ãƒ¼ã‚¹ãƒ¬ã‚¤ãƒ¤
  *
- * Å’áŒÀ“x‚ÌÀ‘•‚Å‚·B
- * ƒQ[ƒ€‚ç‚µ‚³‚ğ’Ç‹‚·‚é‚È‚ç‚Î‚±‚ÌƒIƒuƒWƒFƒNƒg‚ğ”h¶‚³‚¹‚Ä
- * ‰‰o‚ğ‰Á‚¦‚é‚×‚«‚Å‚·B
+ * æœ€ä½é™åº¦ã®å®Ÿè£…ã§ã™ã€‚
+ * ã‚²ãƒ¼ãƒ ã‚‰ã—ã•ã‚’è¿½æ±‚ã™ã‚‹ãªã‚‰ã°ã“ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ´¾ç”Ÿã•ã›ã¦
+ * æ¼”å‡ºã‚’åŠ ãˆã‚‹ã¹ãã§ã™ã€‚
 **/
 class TypingBaseLayer extends GLayer
 {
@@ -1511,7 +1511,7 @@ class TypingBaseLayer extends GLayer
 		return usedInitials;
 	}
 
-	/*! \brief V‚µ‚¢ƒ[ƒh‚ğƒ‰ƒ“ƒ_ƒ€‚Å•\¦‚·‚éB
+	/*! \brief æ–°ã—ã„ãƒ¯ãƒ¼ãƒ‰ã‚’ãƒ©ãƒ³ãƒ€ãƒ ã§è¡¨ç¤ºã™ã‚‹ã€‚
 	**/
 	function showNewWordAtRandom()
 	{
@@ -1567,10 +1567,10 @@ class TypingBaseLayer extends GLayer
 		visible = enabled = false;
 	}
 
-	/*! \brief ƒIƒuƒWƒFƒNƒg‚ÉƒL[‚ğ“ü—Í‚µ‚Ü‚·B
+	/*! \brief ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ã‚­ãƒ¼ã‚’å…¥åŠ›ã—ã¾ã™ã€‚
 	 *
-	 * \return “ü—Í‚ğˆ—‚µ‚½ƒIƒuƒWƒFƒNƒg‚ğ•Ô‚µ‚Ü‚·B
-	 * \return ‚»‚êˆÈŠOi‰½‚àƒ[ƒh‚ª‘¶İ‚µ‚È‚¢“™j‚Å‚Í void ‚ğ•Ô‚µ‚Ü‚·B
+	 * \return å…¥åŠ›ã‚’å‡¦ç†ã—ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è¿”ã—ã¾ã™ã€‚
+	 * \return ãã‚Œä»¥å¤–ï¼ˆä½•ã‚‚ãƒ¯ãƒ¼ãƒ‰ãŒå­˜åœ¨ã—ãªã„ç­‰ï¼‰ã§ã¯ void ã‚’è¿”ã—ã¾ã™ã€‚
 	**/
 	function inputKey(key, shift)
 	{
@@ -1610,9 +1610,9 @@ class TypingBaseLayer extends GLayer
 
 		if(obj !== void)
 		{
-			//log(@"y“ü—Í '&key;'z");
+			//log(@"ã€å…¥åŠ› '&key;'ã€‘");
 
-			// “ü—Í‚ªŠ®—¹‚µ‚½‚çƒAƒNƒeƒBƒuƒIƒuƒWƒFƒNƒg‚ÌQÆ‚ğŠO‚µ‚Ä‚¨‚­B
+			// å…¥åŠ›ãŒå®Œäº†ã—ãŸã‚‰ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‚ç…§ã‚’å¤–ã—ã¦ãŠãã€‚
 			if(obj.accepted)
 			{
 				releaseObjectLayer_private_(obj);
@@ -1726,15 +1726,15 @@ class ModTypingProcessor extends GModule
 				{
 					var obj = void;
 
-					// ƒ^[ƒQƒbƒg•\¦
+					// ã‚¿ãƒ¼ã‚²ãƒƒãƒˆè¡¨ç¤º
 					if(elm.caption == 'random' || elm.ruby == 'random' || (elm.caption === void && elm.ruby === void))
 					{
-						// word ‚ğƒ‰ƒ“ƒ_ƒ€’Š‘I
+						// word ã‚’ãƒ©ãƒ³ãƒ€ãƒ æŠ½é¸
 						obj = .showNewWordAtRandom();
 					}
 					else
 					{
-						// caption or ruby ‚É‚æ‚éw’è
+						// caption or ruby ã«ã‚ˆã‚‹æŒ‡å®š
 						if(elm.caption !== void)
 							obj = .showNewWordByCaption(elm.caption);
 						else
@@ -1750,15 +1750,15 @@ class ModTypingProcessor extends GModule
 							obj.setSizeToImageSize();
 						}
 
-						// ƒ^[ƒQƒbƒg‚Ì•\¦ˆÊ’u
+						// ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®è¡¨ç¤ºä½ç½®
 						switch(elm.position)
 						{
 						case 'random':	elm.left = elm.top = 'random'; break;
 						case 'center':	elm.left = elm.top = 'center'; break;
 						}
 
-						// (left, top) ‚Åw’è‚³‚ê‚½ˆÊ’u‚É•\¦
-						// ‚½‚¾‚µAŠe’l‚ª 'random' ‚È‚ç‚Î baseLayer ‚Ì”ÍˆÍ‚Éû‚Ü‚é”ÍˆÍ‚Åƒ‰ƒ“ƒ_ƒ€ˆÊ’u‚É•\¦
+						// (left, top) ã§æŒ‡å®šã•ã‚ŒãŸä½ç½®ã«è¡¨ç¤º
+						// ãŸã ã—ã€å„å€¤ãŒ 'random' ãªã‚‰ã° baseLayer ã®ç¯„å›²ã«åã¾ã‚‹ç¯„å›²ã§ãƒ©ãƒ³ãƒ€ãƒ ä½ç½®ã«è¡¨ç¤º
 						var width = obj.parent.width;
 						var height = obj.parent.height;
 						var left = +elm.left;
@@ -1788,14 +1788,14 @@ class ModTypingProcessor extends GModule
 
 						//dm(@"&left;(&elm.left;), &top;(&elm.top;)");
 						obj.setCenterPos(left, top);
-						// w’èŠÔ‚ª—L‚éê‡‚Íw’èŠÔŒo‰ßŒã‚É©“®“I‚ÉÁ–Å‚·‚éİ’è‚ğs‚¤
+						// æŒ‡å®šæ™‚é–“ãŒæœ‰ã‚‹å ´åˆã¯æŒ‡å®šæ™‚é–“çµŒéå¾Œã«è‡ªå‹•çš„ã«æ¶ˆæ»…ã™ã‚‹è¨­å®šã‚’è¡Œã†
 					}
 					else
 					{
 						if(elm.caption !== void)
-							warn(@"&elm.caption; ‚Í‘¶İ‚µ‚Ü‚¹‚ñB");
+							warn(@"&elm.caption; ã¯å­˜åœ¨ã—ã¾ã›ã‚“ã€‚");
 						if(elm.ruby !== void)
-							warn(@"&elm.ruby; ‚Í‘¶İ‚µ‚Ü‚¹‚ñB");
+							warn(@"&elm.ruby; ã¯å­˜åœ¨ã—ã¾ã›ã‚“ã€‚");
 					}
 				}
 			} incontextof this,

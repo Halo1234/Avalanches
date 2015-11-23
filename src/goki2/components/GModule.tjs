@@ -3,7 +3,7 @@
 **/
 
 
-/*! \brief ���W���[����{�N���X
+/*! \brief モジュール基本クラス
 **/
 class GModule
 {
@@ -26,17 +26,17 @@ class GModule
 		clearAliases();
 	}
 
-	/*! brief �v���O�C����̃E�C���h�E�ɒǉ�����^�O�n���h�����쐬���܂��B
+	/*! brief プラグイン先のウインドウに追加するタグハンドラを作成します。
 	 *
-	 * �E�C���h�E�ɒǉ��^�㏑���������^�O������΂����ō쐬���܂��B
-	 * �����ǉ�����K�v���Ȃ���� void ��Ԃ��Ă��������B
+	 * ウインドウに追加／上書きしたいタグがあればここで作成します。
+	 * 何も追加する必要がなければ void を返してください。
 	 *
-	 * �^�O�n���h���̃t�H�[�}�b�g�͈ȉ��̎����z��`���ɂȂ�܂��B
+	 * タグハンドラのフォーマットは以下の辞書配列形式になります。
 	 *
 	 * %[ 'TAG-NAME' => function (elements, conductor) { ... } incontextof this, ... any tag handlers ... ]
 	 *
-	 * \remarks �^�O�n���h���� conductor �����͎��s���̃R���_�N�^���n����܂��B
-	 * \remarks ����͕K�v�Ȃ���Ώȗ����č\���܂���B
+	 * \remarks タグハンドラの conductor 引数は実行元のコンダクタが渡されます。
+	 * \remarks これは必要なければ省略して構いません。
 	**/
 	function createExtensionTagHandlers()
 	{
@@ -68,11 +68,11 @@ class GModule
 		var rm = container_.eraseAlias;
 		var ad = container_.addAlias;
 
-		// �K�v�̂Ȃ��ʖ����폜
+		// 必要のない別名を削除
 		for(var i = arr.count - 1; i >= 0; i--)
 			rm(arr[i]) if dic.aliases.find(arr[i]) == -1;
 
-		// �K�v�ȕʖ���ǉ�
+		// 必要な別名を追加
 		for(var i = dic.aliases.count - 1; i >= 0; i--)
 			ad(this, dic.aliases[i]);
 	}
@@ -80,8 +80,8 @@ class GModule
 	/**/
 	function onAttach(name)
 	{
-		// NOTE: �������g�ŕʖ���o�^����ꍇ�͂��̃^�C�~���O�ōs���ĉ������B
-		// NOTE: �R���X�g���N�^���ł͓o�^�ł��܂���B
+		// NOTE: 自分自身で別名を登録する場合はこのタイミングで行って下さい。
+		// NOTE: コンストラクタ内では登録できません。
 	}
 
 	/**/

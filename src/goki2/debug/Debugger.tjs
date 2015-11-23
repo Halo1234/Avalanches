@@ -3,7 +3,7 @@
 **/
 
 
-// NOTE: dm() ‘‚«‚©‚¦
+// NOTE: dm() æ›¸ãã‹ãˆ
 function dm(msg)	{ Debug.message(msg); }
 
 

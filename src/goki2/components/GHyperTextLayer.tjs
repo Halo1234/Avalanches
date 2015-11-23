@@ -80,9 +80,9 @@ class GVerticalLayout
 		indentPosition = 0;
 	}
 
-	/*! \brief �s�̃T�C�Y��Ԃ��B
+	/*! \brief 行のサイズを返す。
 	 *
-	 * \remarks ���݂̍s�̃T�C�Y�ł͂���܂���B
+	 * \remarks 現在の行のサイズではありません。
 	**/
 	function getLineSize()
 	{
@@ -416,9 +416,9 @@ class GHorizontalLayout
 		indentPosition = 0;
 	}
 
-	/*! \brief �s�̃T�C�Y��Ԃ��B
+	/*! \brief 行のサイズを返す。
 	 *
-	 * \remarks ���݂̍s�̃T�C�Y�ł͂���܂���B
+	 * \remarks 現在の行のサイズではありません。
 	**/
 	function getLineSize()
 	{
@@ -576,7 +576,7 @@ class GHorizontalLayout
 
 		if(marginTop_ > top)
 			top = marginTop_;
-		// NOTE: top ���}�[�W���𒴂��鎖�͎��ۂ̂Ƃ��날�肦�Ȃ��̂ŕK�v�Ȃ��B
+		// NOTE: top がマージンを超える事は実際のところありえないので必要ない。
 		//if((layer_.height - marginBottom_) < (top + rubyHeight_))
 		//	top = layer_.height - marginBottom_;
 
@@ -680,14 +680,14 @@ class GHorizontalLayout
 /**/
 class GHyperTextLayer extends GWidgetLayer
 {
-	var wwFollowingStrong_ =									//!< \brief �s��(��)�֑�����
-		'�@%),:;]}���߁B�C�A�D�F�G�J�K�R�S�T�U�X�f�h�j�l�n�p�r�t�v�x�z��������������!?�I�H';
-	var wwFollowingWeak_ =										//!< \brief �s��(��)�֑�����
-		' .�������������E�����������������@�B�D�F�H�b������������';
-	var wwLeading = 											//!< \brief �s���֑�����
-		'\\$([{��e�g�i�k�m�o�q�s�u�w�y������';
-	var wwFollowing_ = wwFollowingStrong_ + wwFollowingWeak_;	//!< \brief �s���֑�����
-	var wwRightCh = 1;											//!< \brief ���[�h���b�v�̂��߂ɂ����Ă���������
+	var wwFollowingStrong_ =									//!< \brief 行頭(強)禁則文字
+		'　%),:;]}｡｣ﾞﾟ。，、．：；゛゜ヽヾゝゞ々’”）〕］｝〉》」』】°′″℃￠％‰!?！？';
+	var wwFollowingWeak_ =										//!< \brief 行頭(弱)禁則文字
+		' .､･ｧｨｩｪｫｬｭｮｯｰ・ぁぃぅぇぉっゃゅょゎァィゥェォッャュョヮヵヶ';
+	var wwLeading = 											//!< \brief 行末禁則文字
+		'\\$([{｢‘“（〔［｛〈《「『【￥＄￡';
+	var wwFollowing_ = wwFollowingStrong_ + wwFollowingWeak_;	//!< \brief 行頭禁則文字
+	var wwRightCh = 1;											//!< \brief ワードラップのためにあけておく文字数
 
 	var layoutModeCache_ = 'horizontal';
 	var layoutMode_ = layoutModeCache_;
@@ -703,13 +703,13 @@ class GHyperTextLayer extends GWidgetLayer
 	var marginModified_ = false;
 	var reservedLineSize = 0;
 	var characterSpace = 0;
-	var fontFaceCache_ = '�l�r �o�S�V�b�N';
+	var fontFaceCache_ = 'ＭＳ Ｐゴシック';
 	var fontSizeCache_ = 24;
 	var italicCache_ = false;
 	var boldCache_ = false;
 	var strikeoutCache_ = false;
 	var underlineCache_ = false;
-	var rubyFontFaceCache_ = '�l�r �o�S�V�b�N';
+	var rubyFontFaceCache_ = 'ＭＳ Ｐゴシック';
 	var rubyFontSizeCache_ = 8;
 	var rubyItalicCache_ = false;
 	var rubyBoldCache_ = false;
@@ -732,14 +732,14 @@ class GHyperTextLayer extends GWidgetLayer
 		super.GWidgetLayer(...);
 		hitThreshold = 0;
 
-		// NOTE: ���C�A�E�g�͍�蒼������������\��������̂ő�s�I�u�W�F�N�g��ʂ��Ĕj������B
+		// NOTE: レイアウトは作り直しが発生する可能性があるので代行オブジェクトを通して破棄する。
 		family.receive(new GDestructor(resetLayout));
 	}
 
 	/**/
 	function drawCaption(offx = 0, offy = 0, color = captionColor, edge = edgeColor, shadow = shadowColor, shadowOffsetX = shadowOffsetX_, shadowOffsetY = shadowOffsetY_, shadowExtent = shadowExtent_)
 	{
-		// NOTE: �ĕ`��̎��ɂ̂݌Ăяo����܂��B�h����Ŏ������Ă��������B
+		// NOTE: 再描画の時にのみ呼び出されます。派生先で実装してください。
 	}
 
 	/**/
@@ -751,7 +751,7 @@ class GHyperTextLayer extends GWidgetLayer
 		{
 		case 'horizontal':	obj = new GHorizontalLayout(layer); break;
 		case 'vertical':	obj = new GVerticalLayout(layer); break;
-		default:			throw new GArgumentsError(@"&layoutMode_; �͖���`�̃��C�A�E�g�ł��B");
+		default:			throw new GArgumentsError(@"&layoutMode_; は未定義のレイアウトです。");
 		}
 
 		obj.setMargin(marginLeftCache_, marginTopCache_, marginRightCache_, marginBottomCache_);
@@ -823,12 +823,12 @@ class GHyperTextLayer extends GWidgetLayer
 		edgeColorCache_ = color;
 	}
 
-	/*! \brief �^�O�i�����j�o�́B
+	/*! \brief タグ（文字）出力。
 	 *
-	 * \param [tag] �o�͂���^�O���w�肵�܂��B
+	 * \param [tag] 出力するタグを指定します。
 	 *
-	 * \return �o�͂ł����ꍇ�� true ��Ԃ��܂��B
-	 * \return ����ȊO�ł� false ��Ԃ��܂��B
+	 * \return 出力できた場合は true を返します。
+	 * \return それ以外では false を返します。
 	**/
 	function output(tag, storeContents = true)
 	{
@@ -1067,7 +1067,7 @@ class GHyperTextLayer extends GWidgetLayer
 		with(layout)
 		{
 			if(font.face[0] != '@')
-				throw new GRuntimeError('�c�������[�h�ȊO�ł͏c�����\���͂ł��܂���B');
+				throw new GRuntimeError('縦書きモード以外では縦中横表示はできません。');
 
 			var f = font;
 			var face = f.face;
@@ -1159,7 +1159,7 @@ class GHyperTextLayer extends GWidgetLayer
 			h = .getTextHeight(text);
 		}
 
-		// NOTE: resetFont() �ł͂Ȃ����ɒ��ӁB
+		// NOTE: resetFont() ではない事に注意。
 		font.face = face;
 		font.height = height;
 		font.angle = angle;
@@ -1280,7 +1280,7 @@ class GHyperTextLayer extends GWidgetLayer
 	/**/
 	function onRenderCharacter(ch, left, top, width, height)
 	{
-		// NOTE: �����Ńe�L�X�g��`�悵�Ă��������B
+		// NOTE: ここでテキストを描画してください。
 	}
 
 	/**/
@@ -1291,14 +1291,14 @@ class GHyperTextLayer extends GWidgetLayer
 	/**/
 	function onRenderRubyText(text, width, height)
 	{
-		// NOTE: �����Ń��r��`�悵�Ă��������B
-		// �\���ʒu�͎��̕����̕`��ʒu�Ɉˑ�����̂ł�����Œ������Ă��������B
+		// NOTE: ここでルビを描画してください。
+		// 表示位置は次の文字の描画位置に依存するのでそちらで調整してください。
 	}
 
 	/**/
 	function onEraseText()
 	{
-		// NOTE: �����Ńe�L�X�g���������Ă��������B
+		// NOTE: ここでテキストを消去してください。
 	}
 
 	/**/

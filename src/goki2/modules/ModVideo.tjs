@@ -393,8 +393,8 @@ class ModVideo extends GModule
 	function onSoundMasterVolumeChanged(volume, oldVolume)
 	{
 		// NOTE:
-		// �r�f�I���ʂ̐ݒ荀�ڂ����݂��Ȃ��̂�
-		// �}�X�^�[�{�����[���ɂ��킹��`�Ŗ��Ȃ��B
+		// ビデオ音量の設定項目が存在しないので
+		// マスターボリュームにあわせる形で問題ない。
 		videoBuffers_.each(
 			setAudioVolume_private_, volume
 		);

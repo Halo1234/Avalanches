@@ -107,22 +107,22 @@ class GHistoryLayer extends GHyperTextLayer
 	var highLightLayer_;
 	var textLayer_;
 
-	var historyData_ = [];			//!< \brief —š—ğƒf[ƒ^
-	var actionData_ = [];			//!< \brief ƒAƒNƒVƒ‡ƒ“ƒf[ƒ^
-	var historyDataMax_ = 400;		//!< \brief —š—ğ‚ÌÅ‘åŒ”
-	var writePointer_ = 0;			//!< \brief ‘‚«‚İƒ|ƒCƒ“ƒ^
+	var historyData_ = [];			//!< \brief å±¥æ­´ãƒ‡ãƒ¼ã‚¿
+	var actionData_ = [];			//!< \brief ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+	var historyDataMax_ = 400;		//!< \brief å±¥æ­´ã®æœ€å¤§ä»¶æ•°
+	var writePointer_ = 0;			//!< \brief æ›¸ãè¾¼ã¿ãƒã‚¤ãƒ³ã‚¿
 
-	var pageAction_ = [];			// Œ»İ‘‚«‚İ’†‚Ìƒy[ƒW‚ÌƒAƒNƒVƒ‡ƒ“ƒf[ƒ^
-	var currentAction_ = void;		// Œ»İ‚ÌƒAƒNƒVƒ‡ƒ“
-	var currentActionID_ = 0;		// Œ»İ‚ÌƒAƒNƒVƒ‡ƒ“‚h‚c
-	var enterActionID_ = void;		// ÅŒã‚É enter ‚µ‚½ƒAƒNƒVƒ‡ƒ“‚h‚c
+	var pageAction_ = [];			// ç¾åœ¨æ›¸ãè¾¼ã¿ä¸­ã®ãƒšãƒ¼ã‚¸ã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+	var currentAction_ = void;		// ç¾åœ¨ã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
+	var currentActionID_ = 0;		// ç¾åœ¨ã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ï¼©ï¼¤
+	var enterActionID_ = void;		// æœ€å¾Œã« enter ã—ãŸã‚¢ã‚¯ã‚·ãƒ§ãƒ³ï¼©ï¼¤
 
-	var displayTopIndex_ = 0;		//!< \brief Œ»İˆê”Ô‰ºi‰Ej‚É•\¦‚³‚ê‚Ä‚¢‚és‚ÌƒCƒ“ƒfƒbƒNƒX
-	var displayLineCount_ = 0;		//!< \brief Œ»İ•\¦‚µ‚Ä‚¢‚és”
-	var displayPageSize_ = 0;		//!< \brief Œ»İ•\¦‚µ‚Ä‚¢‚éƒy[ƒW‚ÌƒTƒCƒY
-	var firstPage_ = false;			//!< \brief Œ»İ‚Ìƒy[ƒW‚ªÅ‰‚Ìƒy[ƒW‚©‚Ç‚¤‚©
-	var lastPage_ = false;			//!< \brief Œ»İ‚Ìƒy[ƒW‚ªÅŒã‚Ìƒy[ƒW‚©‚Ç‚¤‚©
-	var lastShowingTick_ = 0;		//!< \brief ÅŒã‚É•\¦‚³‚ê‚½ tick
+	var displayTopIndex_ = 0;		//!< \brief ç¾åœ¨ä¸€ç•ªä¸‹ï¼ˆå³ï¼‰ã«è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹è¡Œã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	var displayLineCount_ = 0;		//!< \brief ç¾åœ¨è¡¨ç¤ºã—ã¦ã„ã‚‹è¡Œæ•°
+	var displayPageSize_ = 0;		//!< \brief ç¾åœ¨è¡¨ç¤ºã—ã¦ã„ã‚‹ãƒšãƒ¼ã‚¸ã®ã‚µã‚¤ã‚º
+	var firstPage_ = false;			//!< \brief ç¾åœ¨ã®ãƒšãƒ¼ã‚¸ãŒæœ€åˆã®ãƒšãƒ¼ã‚¸ã‹ã©ã†ã‹
+	var lastPage_ = false;			//!< \brief ç¾åœ¨ã®ãƒšãƒ¼ã‚¸ãŒæœ€å¾Œã®ãƒšãƒ¼ã‚¸ã‹ã©ã†ã‹
+	var lastShowingTick_ = 0;		//!< \brief æœ€å¾Œã«è¡¨ç¤ºã•ã‚ŒãŸ tick
 
 	var lastBaseLine_ = void;
 
@@ -143,7 +143,7 @@ class GHistoryLayer extends GHyperTextLayer
 		{
 		case 'horizontal':	obj = new GHistoryHorizontalLayout(layer); break;
 		case 'vertical':	obj = new GHistoryVerticalLayout(layer); break;
-		default:			throw new GArgumentsError(@"&layoutMode; ‚Í–¢’è‹`‚ÌƒŒƒCƒAƒEƒg‚Å‚·B");
+		default:			throw new GArgumentsError(@"&layoutMode; ã¯æœªå®šç¾©ã®ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã§ã™ã€‚");
 		}
 
 		obj.setMargin(marginLeftCache, marginTopCache, marginRightCache, marginBottomCache);
@@ -395,7 +395,7 @@ class GHistoryLayer extends GHyperTextLayer
 
 		var layer = textLayer;
 
-		// ‚¢‚ë‚¢‚ë‰Šú‰»
+		// ã„ã‚ã„ã‚åˆæœŸåŒ–
 		firstPage_ = (displayTopIndex_ == lastDataIndex ? true : false);
 		lastPage_ = true;
 		displayLineCount_ = 0;
@@ -478,7 +478,7 @@ class GHistoryLayer extends GHyperTextLayer
 
 		if(layoutMode == 'horizontal')
 		{
-			// Ÿ‚É•\¦‚·‚×‚«s‚ğ“¾‚é
+			// æ¬¡ã«è¡¨ç¤ºã™ã¹ãè¡Œã‚’å¾—ã‚‹
 			var newLine = getHistoryDisplay(displayLineCount_);
 			var oldLine = getHistoryDisplay(displayTopIndex_);
 			var oldDataSize = displayPageSize_;
@@ -486,12 +486,12 @@ class GHistoryLayer extends GHyperTextLayer
 			var newLineSize = layout.lineSize + layout.lineSpace;
 			var pageSize = height - layout.marginTop - layout.marginBottom;
 
-			// ˆê”Ô‰º‚Ìs‚ÍŠmÀ‚É“ü‚è‚«‚ç‚È‚¢‚Ì‚Å’Ç‚¢o‚·
+			// ä¸€ç•ªä¸‹ã®è¡Œã¯ç¢ºå®Ÿã«å…¥ã‚Šãã‚‰ãªã„ã®ã§è¿½ã„å‡ºã™
 			oldDataSize -= layout.lineSize + layout.lineSpace;
 			displayTopIndex_ = historyDataMax_ - 1 if (--displayTopIndex_) < 0;
 
-			// newLine ‚Í•K‚¸•\¦‚µ‚È‚¯‚ê‚Î‚È‚ç‚È‚¢
-			// ˆê”Ô‰º‚Ì“ü‚è‚«‚ç‚È‚¢s‚ğ‘S•”ƒy[ƒW‚©‚ç’Ç‚¢o‚·
+			// newLine ã¯å¿…ãšè¡¨ç¤ºã—ãªã‘ã‚Œã°ãªã‚‰ãªã„
+			// ä¸€ç•ªä¸‹ã®å…¥ã‚Šãã‚‰ãªã„è¡Œã‚’å…¨éƒ¨ãƒšãƒ¼ã‚¸ã‹ã‚‰è¿½ã„å‡ºã™
 			while(oldDataSize + newLineSize > pageSize && oldDataCount != 0)
 			{
 				oldLine = getHistoryDisplay(oldDataCount);
@@ -504,7 +504,7 @@ class GHistoryLayer extends GHyperTextLayer
 				lastPage_ = true;
 			firstPage_ = false;
 
-			// ŒÃ‚¢ƒf[ƒ^‚ğƒXƒNƒ[ƒ‹
+			// å¤ã„ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
 			var layer = textLayer;
 			var scrollSize = displayPageSize_ - oldDataSize;
 			layer.copyRect(0, height - layout.marginBottom - oldDataSize, layer, 0, height - layout.marginBottom - displayPageSize_, width, oldDataSize);
@@ -514,7 +514,7 @@ class GHistoryLayer extends GHyperTextLayer
 				//onScrollLine(i);
 			}
 
-			// V‚µ‚¢ƒf[ƒ^‚ğ•`‰æ
+			// æ–°ã—ã„ãƒ‡ãƒ¼ã‚¿ã‚’æç”»
 			newLine[0].baseLine = height - layout.marginBottom - oldDataSize - newLine[0].lineSpace;
 			drawLine(displayLineCount_ - 1);
 
@@ -523,7 +523,7 @@ class GHistoryLayer extends GHyperTextLayer
 		else
 		if(layoutMode == 'vertical')
 		{
-			// Ÿ‚É•\¦‚·‚×‚«s‚ğ“¾‚é
+			// æ¬¡ã«è¡¨ç¤ºã™ã¹ãè¡Œã‚’å¾—ã‚‹
 			var newLine = getHistoryDisplay(displayLineCount_);
 			var oldLine = getHistoryDisplay(displayTopIndex_);
 			var oldDataSize = displayPageSize_;
@@ -531,12 +531,12 @@ class GHistoryLayer extends GHyperTextLayer
 			var newLineSize = layout.lineSize + layout.lineSpace;
 			var pageSize = width - layout.marginLeft - layout.marginRight;
 
-			// ˆê”Ô¶‚Ìs‚ÍŠmÀ‚É“ü‚è‚«‚ç‚È‚¢‚Ì‚Å’Ç‚¢o‚·
+			// ä¸€ç•ªå·¦ã®è¡Œã¯ç¢ºå®Ÿã«å…¥ã‚Šãã‚‰ãªã„ã®ã§è¿½ã„å‡ºã™
 			oldDataSize -= layout.lineSize + layout.lineSpace;
 			displayTopIndex_ = historyDataMax_ - 1 if (--displayTopIndex_) < 0;
 
-			// newLine ‚Í•K‚¸•\¦‚µ‚È‚¯‚ê‚Î‚È‚ç‚È‚¢
-			// ˆê”Ô‰º‚Ì“ü‚è‚«‚ç‚È‚¢s‚ğ‘S•”ƒy[ƒW‚©‚ç’Ç‚¢o‚·
+			// newLine ã¯å¿…ãšè¡¨ç¤ºã—ãªã‘ã‚Œã°ãªã‚‰ãªã„
+			// ä¸€ç•ªä¸‹ã®å…¥ã‚Šãã‚‰ãªã„è¡Œã‚’å…¨éƒ¨ãƒšãƒ¼ã‚¸ã‹ã‚‰è¿½ã„å‡ºã™
 			while(oldDataSize + newLineSize > pageSize && oldDataCount != 0)
 			{
 				oldLine = getHistoryDisplay(oldDataCount);
@@ -549,7 +549,7 @@ class GHistoryLayer extends GHyperTextLayer
 				lastPage_ = true;
 			firstPage_ = false;
 
-			// ŒÃ‚¢ƒf[ƒ^‚ğƒXƒNƒ[ƒ‹
+			// å¤ã„ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
 			var layer = textLayer;
 			var scrollSize = displayPageSize_ - oldDataSize;
 			layer.copyRect(
@@ -568,7 +568,7 @@ class GHistoryLayer extends GHyperTextLayer
 				//onScrollLine(i);
 			}
 
-			// V‚µ‚¢ƒf[ƒ^‚ğ•`‰æ
+			// æ–°ã—ã„ãƒ‡ãƒ¼ã‚¿ã‚’æç”»
 			if(lastBaseLine_ === void)
 				lastBaseLine_ = layout.baseLine;
 			newLine[0].baseLine = lastBaseLine_ - (layout.lineSize + layout.lineSpace);
@@ -589,7 +589,7 @@ class GHistoryLayer extends GHyperTextLayer
 
 		if(layoutMode == 'horizontal')
 		{
-			// Ÿ‚É•\¦‚·‚×‚«s‚ğ“¾‚é
+			// æ¬¡ã«è¡¨ç¤ºã™ã¹ãè¡Œã‚’å¾—ã‚‹
 			var newLine = getHistoryDisplay(-1);
 			var oldLine = getHistoryDisplay(displayLineCount_ - 1);
 			var oldDataSize = displayPageSize_;
@@ -597,12 +597,12 @@ class GHistoryLayer extends GHyperTextLayer
 			var newLineSize = layout.lineSize + layout.lineSpace;
 			var pageSize = height - layout.marginTop - layout.marginBottom;
 
-			// ˆê”Ôã‚Ìs‚ÍŠmÀ‚É“ü‚è‚«‚ç‚È‚¢‚Ì‚Å’Ç‚¢o‚·
+			// ä¸€ç•ªä¸Šã®è¡Œã¯ç¢ºå®Ÿã«å…¥ã‚Šãã‚‰ãªã„ã®ã§è¿½ã„å‡ºã™
 			oldDataSize -= layout.lineSize + layout.lineSpace;
 			displayTopIndex_ = 0 if (++displayTopIndex_) >= historyDataMax_;
 
-			// newLine ‚Í•K‚¸•\¦‚µ‚È‚¯‚ê‚Î‚È‚ç‚È‚¢
-			// ˆê”Ôã‚Ì“ü‚è‚«‚ç‚È‚¢s‚ğ‘S•”ƒy[ƒW‚©‚ç’Ç‚¢o‚·
+			// newLine ã¯å¿…ãšè¡¨ç¤ºã—ãªã‘ã‚Œã°ãªã‚‰ãªã„
+			// ä¸€ç•ªä¸Šã®å…¥ã‚Šãã‚‰ãªã„è¡Œã‚’å…¨éƒ¨ãƒšãƒ¼ã‚¸ã‹ã‚‰è¿½ã„å‡ºã™
 			while(oldDataSize + newLineSize > pageSize && oldDataCount != 0)
 			{
 				oldLine = getHistoryDisplay(0);
@@ -615,7 +615,7 @@ class GHistoryLayer extends GHyperTextLayer
 				firstPage_ = true;
 			lastPage_ = false;
 
-			// ŒÃ‚¢ƒf[ƒ^‚ğƒXƒNƒ[ƒ‹
+			// å¤ã„ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
 			var layer = textLayer;
 			var scrollSize = displayPageSize_ - oldDataSize;
 			layer.copyRect(0, height - layout.marginBottom - oldDataSize - newLineSize, layer, 0, height - layout.marginBottom - oldDataSize, width, oldDataSize);
@@ -626,7 +626,7 @@ class GHistoryLayer extends GHyperTextLayer
 				//onScrollLine(i);
 			}
 
-			// V‚µ‚¢ƒf[ƒ^‚ğ•`‰æ
+			// æ–°ã—ã„ãƒ‡ãƒ¼ã‚¿ã‚’æç”»
 			newLine[0].baseLine = height - layout.marginBottom - newLine[0].lineSpace;
 			drawLine(0);
 
@@ -635,7 +635,7 @@ class GHistoryLayer extends GHyperTextLayer
 		else
 		if(layoutMode == 'vertical')
 		{
-			// Ÿ‚É•\¦‚·‚×‚«s‚ğ“¾‚é
+			// æ¬¡ã«è¡¨ç¤ºã™ã¹ãè¡Œã‚’å¾—ã‚‹
 			var newLine = getHistoryDisplay(-1);
 			var oldLine = getHistoryDisplay(displayLineCount_ - 1);
 			var oldDataSize = displayPageSize_;
@@ -643,12 +643,12 @@ class GHistoryLayer extends GHyperTextLayer
 			var newLineSize = layout.lineSize + layout.lineSpace;
 			var pageSize = width - layout.marginLeft - layout.marginRight;
 
-			// ˆê”Ôã‚Ìs‚ÍŠmÀ‚É“ü‚è‚«‚ç‚È‚¢‚Ì‚Å’Ç‚¢o‚·
+			// ä¸€ç•ªä¸Šã®è¡Œã¯ç¢ºå®Ÿã«å…¥ã‚Šãã‚‰ãªã„ã®ã§è¿½ã„å‡ºã™
 			oldDataSize -= layout.lineSize + layout.lineSpace;
 			displayTopIndex_ = 0 if (++displayTopIndex_) >= historyDataMax_;
 
-			// newLine ‚Í•K‚¸•\¦‚µ‚È‚¯‚ê‚Î‚È‚ç‚È‚¢
-			// ˆê”Ôã‚Ì“ü‚è‚«‚ç‚È‚¢s‚ğ‘S•”ƒy[ƒW‚©‚ç’Ç‚¢o‚·
+			// newLine ã¯å¿…ãšè¡¨ç¤ºã—ãªã‘ã‚Œã°ãªã‚‰ãªã„
+			// ä¸€ç•ªä¸Šã®å…¥ã‚Šãã‚‰ãªã„è¡Œã‚’å…¨éƒ¨ãƒšãƒ¼ã‚¸ã‹ã‚‰è¿½ã„å‡ºã™
 			while(oldDataSize + newLineSize > pageSize && oldDataCount != 0)
 			{
 				oldLine = getHistoryDisplay(0);
@@ -663,7 +663,7 @@ class GHistoryLayer extends GHyperTextLayer
 
 			layout.resetPosition();
 
-			// ŒÃ‚¢ƒf[ƒ^‚ğƒXƒNƒ[ƒ‹
+			// å¤ã„ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
 			var layer = textLayer;
 			var scrollSize = displayPageSize_ - oldDataSize;
 			layer.copyRect(
@@ -682,7 +682,7 @@ class GHistoryLayer extends GHyperTextLayer
 				//onScrollLine(i);
 			}
 
-			// V‚µ‚¢ƒf[ƒ^‚ğ•`‰æ
+			// æ–°ã—ã„ãƒ‡ãƒ¼ã‚¿ã‚’æç”»
 			newLine[0].baseLine = layout.baseLine;
 			layout.resetPosition();
 			drawLine(0);
@@ -792,18 +792,18 @@ class GHistoryLayer extends GHyperTextLayer
 		if(tick - lastShowingTick_ <= 500)
 			return;
 
-		// è‘O‚É‰ñ“]
+		// æ‰‹å‰ã«å›è»¢
 		if(delta < 0)
 		{
-			// ‰º‚ÉƒXƒNƒ[ƒ‹‚·‚é
-			// ƒXƒNƒ[ƒ‹‚Å‚«‚È‚¢‚È‚ç hide ‚·‚é
+			// ä¸‹ã«ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã™ã‚‹
+			// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã§ããªã„ãªã‚‰ hide ã™ã‚‹
 			if(!scrollDown())
 				hide();
 		}
-		// ‰œ‚É‰ñ“]
+		// å¥¥ã«å›è»¢
 		else
 		{
-			// ã‚ÉƒXƒNƒ[ƒ‹‚·‚é
+			// ä¸Šã«ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã™ã‚‹
 			scrollUp();
 		}
 	}
@@ -861,7 +861,7 @@ class GHistoryLayer extends GHyperTextLayer
 		}
 	}
 
-	/* ƒAƒNƒVƒ‡ƒ“—Ìˆæ“à‚ÉƒJ[ƒ\ƒ‹‚ªi“ü‚µ‚½‚Æ‚«‚ÉŒÄ‚Î‚ê‚é */
+	/* ã‚¢ã‚¯ã‚·ãƒ§ãƒ³é ˜åŸŸå†…ã«ã‚«ãƒ¼ã‚½ãƒ«ãŒé€²å…¥ã—ãŸã¨ãã«å‘¼ã°ã‚Œã‚‹ */
 	function onEnterActionData(id)
 	{
 		var count = displayLineCount_;
@@ -884,7 +884,7 @@ class GHistoryLayer extends GHyperTextLayer
 
 	}
 
-	/* ƒAƒNƒVƒ‡ƒ“‚ªƒNƒŠƒbƒN‚³‚ê‚½‚Æ‚«‚ÉŒÄ‚Î‚ê‚Ü‚· */
+	/* ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãŒã‚¯ãƒªãƒƒã‚¯ã•ã‚ŒãŸã¨ãã«å‘¼ã°ã‚Œã¾ã™ */
 	function onActionClick(id)
 	{
 		var count = displayLineCount_;
@@ -953,7 +953,7 @@ class GHistoryLayer extends GHyperTextLayer
 		}
 	}
 
-	/* ƒI[ƒo[ƒ‰ƒCƒh */
+	/* ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ */
 	function onMouseUp(x, y, button, shift)
 	{
 		switch(button)

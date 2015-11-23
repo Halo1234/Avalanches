@@ -4,7 +4,7 @@
 */
 
 
-/*! \brief ƒTƒEƒ“ƒhƒoƒbƒtƒ@
+/*! \brief ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡
 **/
 class GWaveSoundBuffer extends WaveSoundBuffer
 {
@@ -12,10 +12,10 @@ class GWaveSoundBuffer extends WaveSoundBuffer
 	var handler = void;
 
 	var currentStorage_ = '';
-	var fadeStatus_ = 'stable';		//  'stable': ƒtƒF[ƒh‚µ‚Ä‚¢‚È‚¢
-									//    'fade': ƒtƒF[ƒh’†
-									// 'fadeout': ƒtƒF[ƒhƒAƒEƒg’†
-									//   'pause': ƒtƒF[ƒhƒ|[ƒY’†
+	var fadeStatus_ = 'stable';		//  'stable': ãƒ•ã‚§ãƒ¼ãƒ‰ã—ã¦ã„ãªã„
+									//    'fade': ãƒ•ã‚§ãƒ¼ãƒ‰ä¸­
+									// 'fadeout': ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆä¸­
+									//   'pause': ãƒ•ã‚§ãƒ¼ãƒ‰ãƒãƒ¼ã‚ºä¸­
 	var prevStatus_ = 'unload';
 
 	/**/
@@ -48,12 +48,12 @@ class GWaveSoundBuffer extends WaveSoundBuffer
 		fadeStatus_ = 'pause';
 	}
 
-	/*! \brief ŠO•”ƒCƒxƒ“ƒg’Ê’mB
+	/*! \brief å¤–éƒ¨ã‚¤ãƒ™ãƒ³ãƒˆé€šçŸ¥ã€‚
 	 *
-	 * \param [message] ƒCƒxƒ“ƒg–¼‚ğ•¶š—ñ‚Åw’è‚µ‚Ü‚·B
-	 * \param [elements] ƒnƒ“ƒhƒ‰‚É“n‚·ˆø”‚ğw’è‚µ‚Ü‚·B
+	 * \param [message] ã‚¤ãƒ™ãƒ³ãƒˆåã‚’æ–‡å­—åˆ—ã§æŒ‡å®šã—ã¾ã™ã€‚
+	 * \param [elements] ãƒãƒ³ãƒ‰ãƒ©ã«æ¸¡ã™å¼•æ•°ã‚’æŒ‡å®šã—ã¾ã™ã€‚
 	 *
-	 * \return ƒnƒ“ƒhƒ‰‚ª•Ô‚·’l‚ğ•Ô‚µ‚Ü‚·B
+	 * \return ãƒãƒ³ãƒ‰ãƒ©ãŒè¿”ã™å€¤ã‚’è¿”ã—ã¾ã™ã€‚
 	**/
 	function callHandler(message, elements = void)
 	{
@@ -107,7 +107,7 @@ class GWaveSoundBuffer extends WaveSoundBuffer
 			stopFade() if fadeStatus_ == 'fadeout';
 			super.play();
 		} catch (e) {
-			worn(@"&currentStorage_; ‚ÌÄ¶‚É¸”s‚µ‚Ü‚µ‚½B");
+			worn(@"&currentStorage_; ã®å†ç”Ÿã«å¤±æ•—ã—ã¾ã—ãŸã€‚");
 			worn(e.message);
 		}
 	}
@@ -119,11 +119,11 @@ class GWaveSoundBuffer extends WaveSoundBuffer
 			super.stop();
 		} catch (e) {
 			// NOTE:
-			// ‚¹‚ß‚Ä restore() ‚ÉÄ“Ç‚İ‚İ‚µ‚È‚¢‚æ‚¤‚É‚·‚éB
+			// ã›ã‚ã¦ restore() æ™‚ã«å†èª­ã¿è¾¼ã¿ã—ãªã„ã‚ˆã†ã«ã™ã‚‹ã€‚
 			currentStorage_ = '';
 			fadeStatus_ = 'stable';
 
-			worn("Ä¶’†‚Ì &currentStorage_; ‚Ì’â~‚É¸”s‚µ‚Ü‚µ‚½B");
+			worn("å†ç”Ÿä¸­ã® &currentStorage_; ã®åœæ­¢ã«å¤±æ•—ã—ã¾ã—ãŸã€‚");
 			worn(e.message);
 		}
 	}
@@ -135,7 +135,7 @@ class GWaveSoundBuffer extends WaveSoundBuffer
 			super.fade(to, time, delay);
 			fadeStatus_ = 'fade';
 		} catch (e) {
-			worn(@"&currentStorage_; ‚ÌƒtƒFƒCƒh‚É¸”s‚µ‚Ü‚µ‚½B");
+			worn(@"&currentStorage_; ã®ãƒ•ã‚§ã‚¤ãƒ‰ã«å¤±æ•—ã—ã¾ã—ãŸã€‚");
 			worn(e.message);
 		}
 	}
@@ -147,7 +147,7 @@ class GWaveSoundBuffer extends WaveSoundBuffer
 			super.stopFade();
 			fadeStatus_ = 'stable';
 		} catch (e) {
-			worn(@"&currentStorage_; ‚ÌƒtƒFƒCƒh’â~‚É¸”s‚µ‚Ü‚µ‚½B");
+			worn(@"&currentStorage_; ã®ãƒ•ã‚§ã‚¤ãƒ‰åœæ­¢ã«å¤±æ•—ã—ã¾ã—ãŸã€‚");
 			worn(e.message);
 		}
 	}
@@ -177,7 +177,7 @@ class GWaveSoundBuffer extends WaveSoundBuffer
 
 		looping = dic.looping;
 
-		// NOTE: ƒtƒF[ƒhƒAƒEƒgŒã‚Í•K‚¸ 0 ‚É‚È‚Á‚Ä‚¢‚é‚Ì‚Å‚±‚Ìƒ^ƒCƒ~ƒ“ƒO‚ÅŒ³‚É–ß‚µ‚Ä‚¨‚­B
+		// NOTE: ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå¾Œã¯å¿…ãš 0 ã«ãªã£ã¦ã„ã‚‹ã®ã§ã“ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§å…ƒã«æˆ»ã—ã¦ãŠãã€‚
 		volume = 100000;
 
 		(dic.status == 'play' ? play : stop)();

@@ -3,7 +3,7 @@
 **/
 
 
-/*! \brief ƒCƒeƒŒ[ƒ^‚ÌŠî–{ƒNƒ‰ƒX‚Å‚·B
+/*! \brief ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿ã®åŸºæœ¬ã‚¯ãƒ©ã‚¹ã§ã™ã€‚
 **/
 class GIterator
 {
@@ -44,7 +44,7 @@ class GIterator
 
 		if(c < count)
 		{
-			// ‘‚¦‚é
+			// å¢—ãˆã‚‹
 			var name, obj;
 
 			for(var i = c; i < count; i++)
@@ -57,7 +57,7 @@ class GIterator
 		else
 		if(c > count)
 		{
-			// Œ¸‚é
+			// æ¸›ã‚‹
 			var obj;
 
 			for(var i = c - 1; i >= count; i--)
@@ -75,7 +75,7 @@ class GIterator
 	{
 		var keys = keys_;
 
-		// NOTE: ƒGƒ‰[‚É‚Í‚µ‚È‚¢B
+		// NOTE: ã‚¨ãƒ©ãƒ¼ã«ã¯ã—ãªã„ã€‚
 		if(index >= keys.count)
 			return void;
 

@@ -6,18 +6,18 @@
 if(typeof(global.exceptionControls) !== 'undefined')
 {
 	throw new Exception(
-		"GOKI2 —áŠOˆ—‹@\‚ÍŠù‚É“o˜^‚³‚ê‚Ä‚¢‚é‚©AŠO•”ƒVƒXƒeƒ€‚Æ‹£‡‚µ‚Ä‚¢‚Ü‚·B\n" +
-		"‚±‚ÌƒGƒ‰[‚Í GOKI2ExceptionControls.tjs ‚ğ‚Q‰ñˆÈã“Ç‚İ‚ñ‚¾‚É”­¶‚·‚é–‚ª‚ ‚è‚Ü‚·B"
+		"GOKI2 ä¾‹å¤–å‡¦ç†æ©Ÿæ§‹ã¯æ—¢ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‹ã€å¤–éƒ¨ã‚·ã‚¹ãƒ†ãƒ ã¨ç«¶åˆã—ã¦ã„ã¾ã™ã€‚\n" +
+		"ã“ã®ã‚¨ãƒ©ãƒ¼ã¯ GOKI2ExceptionControls.tjs ã‚’ï¼’å›ä»¥ä¸Šèª­ã¿è¾¼ã‚“ã æ™‚ã«ç™ºç”Ÿã™ã‚‹äº‹ãŒã‚ã‚Šã¾ã™ã€‚"
 	);
 }
 
-/*! \brief GOKI2 —p—áŠOˆ——pƒNƒ‰ƒXB
+/*! \brief GOKI2 ç”¨ä¾‹å¤–å‡¦ç†ç”¨ã‚¯ãƒ©ã‚¹ã€‚
  *
- * g‚¢•û‚Í exceptionControls.addExceptionHandler() ‚É
- * “o˜^‚·‚é—áŠOƒNƒ‰ƒX–¼‚Æ‘Î‰‚·‚é—áŠOƒnƒ“ƒhƒ‰‚ğ“n‚µ‚ÄŒÄ‚Ño‚·‚¾‚¯‚Å‚·B
+ * ä½¿ã„æ–¹ã¯ exceptionControls.addExceptionHandler() ã«
+ * ç™»éŒ²ã™ã‚‹ä¾‹å¤–ã‚¯ãƒ©ã‚¹åã¨å¯¾å¿œã™ã‚‹ä¾‹å¤–ãƒãƒ³ãƒ‰ãƒ©ã‚’æ¸¡ã—ã¦å‘¼ã³å‡ºã™ã ã‘ã§ã™ã€‚
  *
- * \remarks ‚±‚ÌƒNƒ‰ƒX‚ÌƒIƒuƒWƒFƒNƒg‚ÍƒRƒ“ƒeƒLƒXƒg“à‚Åí‚Éˆê‚Â‚¾‚¯‘¶İ‚·‚é‚×‚«‚Å‚·B
- * \remarks ‚Ü‚½AÅ‰‚Ìˆê‚Â‚Ìì¬‚ğœ‚¢‚Äì¬‚³‚ê‚é‚×‚«‚Å‚Í‚ ‚è‚Ü‚¹‚ñB
+ * \remarks ã“ã®ã‚¯ãƒ©ã‚¹ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¯ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆå†…ã§å¸¸ã«ä¸€ã¤ã ã‘å­˜åœ¨ã™ã‚‹ã¹ãã§ã™ã€‚
+ * \remarks ã¾ãŸã€æœ€åˆã®ä¸€ã¤ã®ä½œæˆã‚’é™¤ã„ã¦ä½œæˆã•ã‚Œã‚‹ã¹ãã§ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚
 **/
 class GOKI2ExceptionControls
 {
@@ -71,7 +71,7 @@ class GOKI2ExceptionControls
 		if(exception === null)
 			return false;
 
-		// —áŠO‚Ì“à—e‚ğƒRƒ“ƒ\[ƒ‹ƒƒO‚Éc‚·
+		// ä¾‹å¤–ã®å†…å®¹ã‚’ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ãƒ­ã‚°ã«æ®‹ã™
 		if(typeof(exception.trace) !== 'undefined')
 			Debug.message(@"trace: &exception.trace;");
 		Debug.message(exception.message);
@@ -99,24 +99,24 @@ class GOKI2ExceptionControls
 }
 
 
-// NOTE: Å‰‚Ìˆê‚Â‚ğì¬‚µ‚ÄƒNƒ‰ƒX’è‹`‚ğíœ‚·‚éB
+// NOTE: æœ€åˆã®ä¸€ã¤ã‚’ä½œæˆã—ã¦ã‚¯ãƒ©ã‚¹å®šç¾©ã‚’å‰Šé™¤ã™ã‚‹ã€‚
 global.exceptionControls = new GOKI2ExceptionControls();
 delete GOKI2ExceptionControls;
 
 
-/*! \brief ƒfƒtƒHƒ‹ƒg‚Ì—áŠOƒnƒ“ƒhƒ‰‚Å‚·B
+/*! \brief ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ä¾‹å¤–ãƒãƒ³ãƒ‰ãƒ©ã§ã™ã€‚
  *
- * \param [ec] GOKI2ExceptionControls ƒNƒ‰ƒX‚ÌƒIƒuƒWƒFƒNƒg‚ª“n‚³‚ê‚Ü‚·B
+ * \param [ec] GOKI2ExceptionControls ã‚¯ãƒ©ã‚¹ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒæ¸¡ã•ã‚Œã¾ã™ã€‚
 **/
 function goki2DefaultExceptionHandler(ec)
 {
-	// NOTE: ‹g—¢‹g—¢‚Éˆ—‚ğ”C‚¹‚éB
+	// NOTE: å‰é‡Œå‰é‡Œã«å‡¦ç†ã‚’ä»»ã›ã‚‹ã€‚
 	return false;
 }
 
-/*! \brief ƒGƒ‰[ƒƒbƒZ[ƒW‚ğ•\¦‚·‚é‚¾‚¯‚Ì—áŠOƒnƒ“ƒhƒ‰‚Å‚·B
+/*! \brief ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã™ã‚‹ã ã‘ã®ä¾‹å¤–ãƒãƒ³ãƒ‰ãƒ©ã§ã™ã€‚
  *
- * \param [ec] GOKI2ExceptionControls ƒNƒ‰ƒX‚ÌƒIƒuƒWƒFƒNƒg‚ª“n‚³‚ê‚Ü‚·B
+ * \param [ec] GOKI2ExceptionControls ã‚¯ãƒ©ã‚¹ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒæ¸¡ã•ã‚Œã¾ã™ã€‚
 **/
 function goki2DisplayOnlyExceptionHandler(ec)
 {
@@ -126,9 +126,9 @@ function goki2DisplayOnlyExceptionHandler(ec)
 	return true;
 }
 
-/*! \brief ‹­§“I‚ÉƒƒO‚ğo—Í‚·‚éˆÈŠO‚Í goki2DisplayOnlyExceptionHandler() ‚Æ“¯‚¶“®ì‚ğ‚·‚é—áŠOƒnƒ“ƒhƒ‰‚Å‚·B
+/*! \brief å¼·åˆ¶çš„ã«ãƒ­ã‚°ã‚’å‡ºåŠ›ã™ã‚‹ä»¥å¤–ã¯ goki2DisplayOnlyExceptionHandler() ã¨åŒã˜å‹•ä½œã‚’ã™ã‚‹ä¾‹å¤–ãƒãƒ³ãƒ‰ãƒ©ã§ã™ã€‚
  *
- * \param [ec] GOKI2ExceptionControls ƒNƒ‰ƒX‚ÌƒIƒuƒWƒFƒNƒg‚ª“n‚³‚ê‚Ü‚·B
+ * \param [ec] GOKI2ExceptionControls ã‚¯ãƒ©ã‚¹ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒæ¸¡ã•ã‚Œã¾ã™ã€‚
 **/
 function goki2ReportExceptionHandler(ec)
 {
@@ -137,7 +137,7 @@ function goki2ReportExceptionHandler(ec)
 	return goki2DisplayOnlyExceptionHandler(ec);
 }
 
-/*! \brief GOKI2 —p—áŠOƒNƒ‰ƒX
+/*! \brief GOKI2 ç”¨ä¾‹å¤–ã‚¯ãƒ©ã‚¹
  *
  * +Exception
  *  +GException
@@ -160,107 +160,107 @@ class GException extends Exception
 	}
 }
 
-/*! \brief Às‚ÌÄŠJ‚ª¢“ï‚È’v–½“I‚ÈƒGƒ‰[‚Å‚·B
+/*! \brief å®Ÿè¡Œã®å†é–‹ãŒå›°é›£ãªè‡´å‘½çš„ãªã‚¨ãƒ©ãƒ¼ã§ã™ã€‚
 **/
 class GFatalError extends GException
 {
-	function GFatalError(message = '’v–½“I‚ÈƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B')
+	function GFatalError(message = 'è‡´å‘½çš„ãªã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚')
 	{
 		super.GException(...);
 	}
 }
 
-/*! \brief ƒAƒNƒZƒX•s‰Â”\‚ÈƒvƒƒpƒeƒB‚È‚Ç‚ÉƒAƒNƒZƒX‚µ‚½‚É”­¶‚·‚éƒGƒ‰[‚Å‚·B
+/*! \brief ã‚¢ã‚¯ã‚»ã‚¹ä¸å¯èƒ½ãªãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãªã©ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãŸæ™‚ã«ç™ºç”Ÿã™ã‚‹ã‚¨ãƒ©ãƒ¼ã§ã™ã€‚
 **/
 class GImpossibleAccessError extends GFatalError
 {
-	function GImpossibleAccessError(message = 'ƒAƒNƒZƒX•s‰Â”\‚Èƒƒ“ƒo‚ğQÆ‚µ‚Ü‚µ‚½B')
+	function GImpossibleAccessError(message = 'ã‚¢ã‚¯ã‚»ã‚¹ä¸å¯èƒ½ãªãƒ¡ãƒ³ãƒã‚’å‚ç…§ã—ã¾ã—ãŸã€‚')
 	{
 		super.GFatalError(...);
 	}
 }
 
-/*! \brief ƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^‚ğŒÄ‚Ño‚µ‚½‚É”­¶‚·‚éƒGƒ‰[‚Å‚·B
+/*! \brief ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã‚’å‘¼ã³å‡ºã—ãŸæ™‚ã«ç™ºç”Ÿã™ã‚‹ã‚¨ãƒ©ãƒ¼ã§ã™ã€‚
 **/
 class GClassObjectConstructorCalledError extends GFatalError
 {
-	function GClassObjectConstructorCalledError(message = 'ƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg‚Íì¬‚Å‚«‚Ü‚¹‚ñB')
+	function GClassObjectConstructorCalledError(message = 'ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¯ä½œæˆã§ãã¾ã›ã‚“ã€‚')
 	{
 		super.GFatalError(...);
 	}
 }
 
-/*! \brief –¢À‘•‹@”\‚ÉƒAƒNƒZƒX‚µ‚½‚É”­¶‚·‚éƒGƒ‰[‚Å‚·B
+/*! \brief æœªå®Ÿè£…æ©Ÿèƒ½ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãŸæ™‚ã«ç™ºç”Ÿã™ã‚‹ã‚¨ãƒ©ãƒ¼ã§ã™ã€‚
 **/
 class GNotImplementedError extends GFatalError
 {
-	function GNotImplementedError(message = '‚±‚Ì‹@”\‚ÍÀ‘•‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB')
+	function GNotImplementedError(message = 'ã“ã®æ©Ÿèƒ½ã¯å®Ÿè£…ã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚')
 	{
 		super.GFatalError(...);
 	}
 }
 
-/*! \brief ‘S‚Ä‚ÌŠî–{“I‚ÈƒGƒ‰[‚Ìe‚É‚È‚éƒGƒ‰[‚Å‚·B
+/*! \brief å…¨ã¦ã®åŸºæœ¬çš„ãªã‚¨ãƒ©ãƒ¼ã®è¦ªã«ãªã‚‹ã‚¨ãƒ©ãƒ¼ã§ã™ã€‚
 **/
 class GStandardError extends GException
 {
-	function GStandardError(message = 'ˆê”ÊƒGƒ‰[‚Å‚·B')
+	function GStandardError(message = 'ä¸€èˆ¬ã‚¨ãƒ©ãƒ¼ã§ã™ã€‚')
 	{
 		super.GException(...);
 	}
 }
 
-/*! \brief ˆø”‚Ì“à—e‚ªŠÔˆá‚Á‚Ä‚¢‚é‚É”­¶‚·‚éƒGƒ‰[‚Å‚·B
+/*! \brief å¼•æ•°ã®å†…å®¹ãŒé–“é•ã£ã¦ã„ã‚‹æ™‚ã«ç™ºç”Ÿã™ã‚‹ã‚¨ãƒ©ãƒ¼ã§ã™ã€‚
 **/
 class GArgumentsError extends GStandardError
 {
-	function GArgumentsError(message = 'ˆø”‚Ì“à—e‚ªŠÔˆá‚Á‚Ä‚¢‚Ü‚·B')
+	function GArgumentsError(message = 'å¼•æ•°ã®å†…å®¹ãŒé–“é•ã£ã¦ã„ã¾ã™ã€‚')
 	{
 		super.GStandardError(...);
 	}
 }
 
-/*! \brief “üo—Í‚Å–â‘è‚ª”­¶‚µ‚½‚É”­¶‚·‚éƒGƒ‰[‚Å‚·B
+/*! \brief å…¥å‡ºåŠ›ã§å•é¡ŒãŒç™ºç”Ÿã—ãŸæ™‚ã«ç™ºç”Ÿã™ã‚‹ã‚¨ãƒ©ãƒ¼ã§ã™ã€‚
 **/
 class GIOError extends GStandardError
 {
-	function GIOError(message = '“üo—ÍƒGƒ‰[‚Å‚·B')
+	function GIOError(message = 'å…¥å‡ºåŠ›ã‚¨ãƒ©ãƒ¼ã§ã™ã€‚')
 	{
 		super.GStandardError(...);
 	}
 }
 
-/*! \brief w’è‚³‚ê‚½ƒXƒgƒŒ[ƒW‚ªŒ©‚Â‚©‚ç‚È‚¢‚É”­¶‚·‚éƒGƒ‰[‚Å‚·B
+/*! \brief æŒ‡å®šã•ã‚ŒãŸã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ãŒè¦‹ã¤ã‹ã‚‰ãªã„æ™‚ã«ç™ºç”Ÿã™ã‚‹ã‚¨ãƒ©ãƒ¼ã§ã™ã€‚
 **/
 class GNotFoundStorageError extends GIOError
 {
-	function GNotFoundStorageError(message = 'w’è‚³‚ê‚½ƒXƒgƒŒ[ƒW‚ÍŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½B')
+	function GNotFoundStorageError(message = 'æŒ‡å®šã•ã‚ŒãŸã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ã¯è¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚')
 	{
 		super.GIOError(...);
 	}
 }
 
-/*! \brief ”z—ñ‚â«‘”z—ñ‚ğˆµ‚¤ƒIƒuƒWƒFƒNƒg‚É‘Î‚µ‚Ä”ÍˆÍŠO‚Ì“Y‚¦š‚ğw’è‚µ‚½‚É”­¶‚·‚éƒGƒ‰[‚Å‚·B
+/*! \brief é…åˆ—ã‚„è¾æ›¸é…åˆ—ã‚’æ‰±ã†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å¯¾ã—ã¦ç¯„å›²å¤–ã®æ·»ãˆå­—ã‚’æŒ‡å®šã—ãŸæ™‚ã«ç™ºç”Ÿã™ã‚‹ã‚¨ãƒ©ãƒ¼ã§ã™ã€‚
 **/
 class GOutOfRangeError extends GStandardError
 {
-	function GOutOfRangeError(message = '”ÍˆÍŠO‚Å‚·B')
+	function GOutOfRangeError(message = 'ç¯„å›²å¤–ã§ã™ã€‚')
 	{
 		super.GStandardError(...);
 	}
 }
 
-/*! \brief ‚ ‚ç‚ä‚éÀs‚ÌƒGƒ‰[‚Å‚·B
+/*! \brief ã‚ã‚‰ã‚†ã‚‹å®Ÿè¡Œæ™‚ã®ã‚¨ãƒ©ãƒ¼ã§ã™ã€‚
 **/
 class GRuntimeError extends GStandardError
 {
-	function GRuntimeError(message = 'ÀsƒGƒ‰[‚Å‚·B')
+	function GRuntimeError(message = 'å®Ÿè¡Œæ™‚ã‚¨ãƒ©ãƒ¼ã§ã™ã€‚')
 	{
 		super.GStandardError(...);
 	}
 }
 
-// NOTE: —áŠO“o˜^
+// NOTE: ä¾‹å¤–ç™»éŒ²
 with(exceptionControls)
 {
 	.addExceptionHandler('Exception', goki2DefaultExceptionHandler);

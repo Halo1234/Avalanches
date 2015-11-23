@@ -17,7 +17,7 @@
 @video visible=false
 @close_video
 
-ƒrƒfƒI‚ğÄ¶‚µ‚Ü‚µ‚½B[p][cm]
+ãƒ“ãƒ‡ã‚ªã‚’å†ç”Ÿã—ã¾ã—ãŸã€‚[p][cm]
 
 *label|
 @set_video_layer layer=0 page=fore channel=1
@@ -29,7 +29,7 @@
 
 @play_video
 
-ƒŒƒCƒ„‚ÅƒrƒfƒI‚ğÄ¶‚µ‚Ü‚µ‚½B[p][cm]
+ãƒ¬ã‚¤ãƒ¤ã§ãƒ“ãƒ‡ã‚ªã‚’å†ç”Ÿã—ã¾ã—ãŸã€‚[p][cm]
 
 @wait_video
 @stop_video
@@ -37,6 +37,6 @@
 
 @hide_message layer=message0
 
-@log message="ƒeƒXƒgI—¹‚µ‚Ü‚µ‚½B"
+@log message="ãƒ†ã‚¹ãƒˆçµ‚äº†ã—ã¾ã—ãŸã€‚"
 
 

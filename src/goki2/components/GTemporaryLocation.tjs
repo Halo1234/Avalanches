@@ -9,10 +9,10 @@ class GTemporaryLocation extends GLocation
 {
 	var temporaryLocation_ = %[];
 
-	/*! \brief �R���X�g���N�^�B
+	/*! \brief コンストラクタ。
 	 *
-	 * \param [locationName] ���P�[�V���������w�肵�܂��B
-	 * \param [indexName:'':] �w�肵�Ă��K����������܂��B
+	 * \param [locationName] ロケーション名を指定します。
+	 * \param [indexName:'':] 指定しても必ず無視されます。
 	**/
 	function GTemporaryLocation(locationName, indexName = '')
 	{
@@ -38,22 +38,22 @@ class GTemporaryLocation extends GLocation
 		return (typeof(temporaryLocation_[name]) === 'undefined' ? false : true);
 	}
 
-	/*! \brief �����z����Z�[�u���܂��B
+	/*! \brief 辞書配列をセーブします。
 	 *
-	 * �I�v�V�����͈ȉ��̒ʂ�ł��B
+	 * オプションは以下の通りです。
 	 *
-	 * 'a' �Q�ƃR�s�[���܂��B
-	 * 'c' ���S�R�s�[���܂��B�i�f�t�H���g�̓���j
-	 * 'u' �㏑���R�s�[���܂��B
+	 * 'a' 参照コピーします。
+	 * 'c' 完全コピーします。（デフォルトの動作）
+	 * 'u' 上書きコピーします。
 	 *
-	 * \param [storage] �ۑ����鎫���z��̖��O���w�肵�܂��B
-	 * \param [obj] �ۑ����鎫���z����w�肵�܂��B
-	 * \param [option:'':] �I�v�V����������ꍇ�͎w�肵�܂��B
+	 * \param [storage] 保存する辞書配列の名前を指定します。
+	 * \param [obj] 保存する辞書配列を指定します。
+	 * \param [option:'':] オプションがある場合は指定します。
 	 *
-	 * \return obj ��Ԃ��܂��B
+	 * \return obj を返します。
 	 *
-	 * \remarks ��������I�v�V�����������w�肳�ꂽ�ꍇ��
-	 * \remarks ���X�g�̂���ʂ̃I�v�V�������D�悳��܂��B
+	 * \remarks 競合するオプションが複数指定された場合は
+	 * \remarks リストのより上位のオプションが優先されます。
 	**/
 	function saveDictionary(storage, obj, option = '')
 	{
@@ -114,21 +114,21 @@ class GTemporaryLocation extends GLocation
 		return obj;
 	}
 
-	/*! \biref ���C���[���Z�[�u���܂��B
+	/*! \biref レイヤーをセーブします。
 	 *
-	 * �I�v�V�����͈ȉ��̒ʂ�ł��B
+	 * オプションは以下の通りです。
 	 *
-	 * 'p' �q���C�����S�ďd�ˍ��킹���摜���Z�[�u���܂��B
-	 * 'c' �������g�̉摜�݂̂��Z�[�u���܂��B�i�f�t�H���g�̓���j
+	 * 'p' 子レイヤも全て重ね合わせた画像をセーブします。
+	 * 'c' 自分自身の画像のみをセーブします。（デフォルトの動作）
 	 *
-	 * \param [storage] �ۑ����郌�C���[�̖��O���w�肵�܂��B
-	 * \param [obj] �ۑ����郌�C���[���w�肵�܂��B
-	 * \param [option:'':] �I�v�V����������ꍇ�͎w�肵�܂��B
+	 * \param [storage] 保存するレイヤーの名前を指定します。
+	 * \param [obj] 保存するレイヤーを指定します。
+	 * \param [option:'':] オプションがある場合は指定します。
 	 *
-	 * \return obj ��Ԃ��܂��B
+	 * \return obj を返します。
 	 *
-	 * \remarks ��������I�v�V�����������w�肳�ꂽ�ꍇ��
-	 * \remarks ���X�g�̂���ʂ̃I�v�V�������D�悳��܂��B
+	 * \remarks 競合するオプションが複数指定された場合は
+	 * \remarks リストのより上位のオプションが優先されます。
 	**/
 	function saveLayer(storage, obj, option = '')
 	{
@@ -156,7 +156,7 @@ class GTemporaryLocation extends GLocation
 			layer.assignImages(obj);
 		}
 
-		// NOTE: �\�����Ă͂Ȃ�Ȃ����C���ł��B
+		// NOTE: 表示してはならないレイヤです。
 		layer.visible = false;
 
 		temporaryLocation_[storage] = layer;
@@ -172,7 +172,7 @@ class GTemporaryLocation extends GLocation
 		if(!(work instanceof 'Layer'))
 		{
 			throw new GArgumentsError(
-				@"'&storage;' �ŃZ�[�u����Ă���I�u�W�F�N�g�̓��C���ł͂���܂���B"
+				@"'&storage;' でセーブされているオブジェクトはレイヤではありません。"
 			);
 		}
 

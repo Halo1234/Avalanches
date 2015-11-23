@@ -5,46 +5,46 @@
 *label|
 
 @add_bgm_buffer type=WAVE
-@log message="‚a‚f‚lƒoƒbƒtƒ@‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B"
+@log message="ï¼¢ï¼§ï¼­ãƒãƒƒãƒ•ã‚¡ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚"
 
 @se_buffers count=1
-@log message="Œø‰Ê‰¹ƒoƒbƒtƒ@‚ğ‚Ğ‚Æ‚ÂŠm•Û‚µ‚Ü‚µ‚½B"
+@log message="åŠ¹æœéŸ³ãƒãƒƒãƒ•ã‚¡ã‚’ã²ã¨ã¤ç¢ºä¿ã—ã¾ã—ãŸã€‚"
 
 @show_message layer=message0
 
 *label|
 @fadein_bgm storage=bgm001.ogg time=2000
-‚a‚f‚l‚ğÄ¶‚µ‚Ü‚µ‚½B[p][cm]
+ï¼¢ï¼§ï¼­ã‚’å†ç”Ÿã—ã¾ã—ãŸã€‚[p][cm]
 
 *label|
 @pause_bgm
-‚a‚f‚l‚ğˆê’â~‚µ‚Ü‚µ‚½B[p][cm]
+ï¼¢ï¼§ï¼­ã‚’ä¸€æ™‚åœæ­¢ã—ã¾ã—ãŸã€‚[p][cm]
 
 *label|
 @resume_bgm
-‚a‚f‚l‚ğÄŠJ‚µ‚Ü‚µ‚½B[p][cm]
+ï¼¢ï¼§ï¼­ã‚’å†é–‹ã—ã¾ã—ãŸã€‚[p][cm]
 
 *label|
 @play_se buffer=0 storage=se001
-‚r‚d‚ğÄ¶‚µ‚Ü‚µ‚½B[p][cm]
+ï¼³ï¼¥ã‚’å†ç”Ÿã—ã¾ã—ãŸã€‚[p][cm]
 
 *label|
 @play_se buffer=0 storage=se001 loop
-‚r‚d‚ğƒ‹[ƒvÄ¶‚µ‚Ü‚·B[p][cm]
+ï¼³ï¼¥ã‚’ãƒ«ãƒ¼ãƒ—å†ç”Ÿã—ã¾ã™ã€‚[p][cm]
 
 *label|
 @stop_se buffer=0
-‚r‚d‚ğ’â~‚µ‚Ü‚·B[p][cm]
+ï¼³ï¼¥ã‚’åœæ­¢ã—ã¾ã™ã€‚[p][cm]
 
 *label|
 @fadeout_bgm time=2000
-‚a‚f‚l‚ğ’â~‚µ‚Ü‚µ‚½B[p][cm]
+ï¼¢ï¼§ï¼­ã‚’åœæ­¢ã—ã¾ã—ãŸã€‚[p][cm]
 
 @free_bgm_buffers
-@log message="‚a‚f‚lƒoƒbƒtƒ@‚ğŠJ•ú‚µ‚Ü‚µ‚½B"
+@log message="ï¼¢ï¼§ï¼­ãƒãƒƒãƒ•ã‚¡ã‚’é–‹æ”¾ã—ã¾ã—ãŸã€‚"
 
 @hide_message layer=message0
 
-@log message="ƒeƒXƒgI—¹‚µ‚Ü‚µ‚½B"
+@log message="ãƒ†ã‚¹ãƒˆçµ‚äº†ã—ã¾ã—ãŸã€‚"
 
 

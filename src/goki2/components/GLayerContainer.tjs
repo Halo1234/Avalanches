@@ -3,10 +3,10 @@
 **/
 
 
-/*! \brief GLayer ”h¶ƒNƒ‰ƒXê—p‚ÌƒRƒ“ƒeƒiƒNƒ‰ƒX‚Å‚·B
+/*! \brief GLayer æ´¾ç”Ÿã‚¯ãƒ©ã‚¹å°‚ç”¨ã®ã‚³ãƒ³ãƒ†ãƒŠã‚¯ãƒ©ã‚¹ã§ã™ã€‚
  *
- * e‚ÆA‚»‚Ì’¼Ú‚Ìq‚ÌŠÇ—‚ğ–Ú“I‚Æ‚µ‚½ƒRƒ“ƒeƒi‚Å‚·B
- * ‚³‚ç‚É•¡G‚ÈƒcƒŠ[‚ğŠÇ—‚µ‚½‚¢ê‡‚ÍAê—p‚ÌƒRƒ“ƒeƒi‚ğÀ‘•‚µ‚Ä‚­‚¾‚³‚¢B
+ * è¦ªã¨ã€ãã®ç›´æ¥ã®å­ã®ç®¡ç†ã‚’ç›®çš„ã¨ã—ãŸã‚³ãƒ³ãƒ†ãƒŠã§ã™ã€‚
+ * ã•ã‚‰ã«è¤‡é›‘ãªãƒ„ãƒªãƒ¼ã‚’ç®¡ç†ã—ãŸã„å ´åˆã¯ã€å°‚ç”¨ã®ã‚³ãƒ³ãƒ†ãƒŠã‚’å®Ÿè£…ã—ã¦ãã ã•ã„ã€‚
 **/
 class GLayerContainer extends GContainer
 {
@@ -27,7 +27,7 @@ class GLayerContainer extends GContainer
 		super.GContainer(window);
 
 		if(parentLayer.isPrimary && doubleBuffering)
-			throw new Exception('ƒ_ƒuƒ‹ƒoƒbƒtƒ@ƒŠƒ“ƒO‚ğs‚¤ê‡‚ÍeƒŒƒCƒ„‚Éƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚Í—˜—p‚Å‚«‚Ü‚¹‚ñB');
+			throw new Exception('ãƒ€ãƒ–ãƒ«ãƒãƒƒãƒ•ã‚¡ãƒªãƒ³ã‚°ã‚’è¡Œã†å ´åˆã¯è¦ªãƒ¬ã‚¤ãƒ¤ã«ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã¯åˆ©ç”¨ã§ãã¾ã›ã‚“ã€‚');
 
 		if(parentLayer.name == '')
 			parentLayer.name = parentLayerName_;
@@ -68,17 +68,17 @@ class GLayerContainer extends GContainer
 		{
 			if(children && doubleBuffering_)
 			{
-				// NOTE: ‚±‚±‚É—ˆ‚é‚Æ‚¢‚¤–‚ÍAq‚ ‚è‚Åƒgƒ‰ƒ“ƒWƒVƒ‡ƒ“‚µ‚½‚Ì‚Å‘S‚Äˆ—‚·‚é
+				// NOTE: ã“ã“ã«æ¥ã‚‹ã¨ã„ã†äº‹ã¯ã€å­ã‚ã‚Šã§ãƒˆãƒ©ãƒ³ã‚¸ã‚·ãƒ§ãƒ³ã—ãŸã®ã§å…¨ã¦å‡¦ç†ã™ã‚‹
 				if(exchange)
 				{
-					// exchange ‚ª^‚È‚ç‚Î“ü‚ê‘Ö‚¦‚Ì‚İs‚¤B
+					// exchange ãŒçœŸãªã‚‰ã°å…¥ã‚Œæ›¿ãˆã®ã¿è¡Œã†ã€‚
 					each(
 						function (obj) { obj.exchange(obj.mirror); } incontextof this
 					);
 				}
 				else
 				{
-					// exchange ‚ª‹U‚È‚ç‚ÎƒAƒTƒCƒ“‚Æ“ü‚ê‘Ö‚¦‚ğs‚¤B
+					// exchange ãŒå½ãªã‚‰ã°ã‚¢ã‚µã‚¤ãƒ³ã¨å…¥ã‚Œæ›¿ãˆã‚’è¡Œã†ã€‚
 					each(
 						function (obj) {
 							obj = obj.mirror if obj.offScreen;
@@ -90,7 +90,7 @@ class GLayerContainer extends GContainer
 			}
 			else
 			{
-				// NOTE: ‚±‚±‚É—ˆ‚é‚Æ‚¢‚¤–‚ÍAq‚È‚µ‚Åƒgƒ‰ƒ“ƒWƒVƒ‡ƒ“‚µ‚½‚Ì‚Åe‚Ì‚İˆ—‚·‚éB
+				// NOTE: ã“ã“ã«æ¥ã‚‹ã¨ã„ã†äº‹ã¯ã€å­ãªã—ã§ãƒˆãƒ©ãƒ³ã‚¸ã‚·ãƒ§ãƒ³ã—ãŸã®ã§è¦ªã®ã¿å‡¦ç†ã™ã‚‹ã€‚
 				dest.assignToMirror();
 				dest.exchange(src);
 			}
@@ -102,7 +102,7 @@ class GLayerContainer extends GContainer
 	{
 		if(src !== null)
 		{
-			// children = true ‚©‚Â‚±‚ÌƒRƒ“ƒeƒi‚É‚±‚¢‚Â‚Ìq‚ª‚ ‚éê‡‚Í‘z’è‚µ‚Ä‚¢‚È‚¢
+			// children = true ã‹ã¤ã“ã®ã‚³ãƒ³ãƒ†ãƒŠã«ã“ã„ã¤ã®å­ãŒã‚ã‚‹å ´åˆã¯æƒ³å®šã—ã¦ã„ãªã„
 			dest.exchange(src);
 		}
 	}
@@ -111,19 +111,19 @@ class GLayerContainer extends GContainer
 	function flip(name = parentLayerName_, children = true, exchange = false)
 	{
 		if(!doubleBuffering_)
-			return name; // NOTE: ‰½‚à‚µ‚È‚¢
+			return name; // NOTE: ä½•ã‚‚ã—ãªã„
 
 		var target = get(name);
 
 		if(target === void)
-			throw new GArgumentsError(@"ƒŒƒCƒ„‚ğ“ü‚ê‘Ö‚¦‚æ‚¤‚Æ‚µ‚Ü‚µ‚½‚ª '&name;' ƒŒƒCƒ„‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½B");
+			throw new GArgumentsError(@"ãƒ¬ã‚¤ãƒ¤ã‚’å…¥ã‚Œæ›¿ãˆã‚ˆã†ã¨ã—ã¾ã—ãŸãŒ '&name;' ãƒ¬ã‚¤ãƒ¤ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚");
 
 		if(name == parentLayerName_)
 		{
-			// NOTE: ‚±‚±‚É—ˆ‚é‚Æ‚¢‚¤–‚ÍAe‚Ì“ü‚ê‘Ö‚¦B
+			// NOTE: ã“ã“ã«æ¥ã‚‹ã¨ã„ã†äº‹ã¯ã€è¦ªã®å…¥ã‚Œæ›¿ãˆã€‚
 			if(children)
 			{
-				// NOTE: ‚±‚±‚É—ˆ‚é‚Æ‚¢‚¤–‚ÍAq‚à“ü‚ê‘Ö‚¦‚éB
+				// NOTE: ã“ã“ã«æ¥ã‚‹ã¨ã„ã†äº‹ã¯ã€å­ã‚‚å…¥ã‚Œæ›¿ãˆã‚‹ã€‚
 				if(exchange)
 				{
 					with(target.mirror)
@@ -152,7 +152,7 @@ class GLayerContainer extends GContainer
 			}
 			else
 			{
-				// NOTE: ‚±‚±‚É—ˆ‚é‚Æ‚¢‚¤–‚ÍAe‚¾‚¯“ü‚ê‘Ö‚¦‚éB
+				// NOTE: ã“ã“ã«æ¥ã‚‹ã¨ã„ã†äº‹ã¯ã€è¦ªã ã‘å…¥ã‚Œæ›¿ãˆã‚‹ã€‚
 				if(exchange)
 				{
 					with(target.mirror)
@@ -165,7 +165,7 @@ class GLayerContainer extends GContainer
 							target.absolute <-> .absolute;
 					}
 
-					// q‚Ìe‚ğ“ü‚ê‘Ö‚¦‚éB
+					// å­ã®è¦ªã‚’å…¥ã‚Œæ›¿ãˆã‚‹ã€‚
 					each(
 						function (obj, key) {
 							obj.parent <-> obj.mirror.parent if !isParentLayer(obj);
@@ -180,10 +180,10 @@ class GLayerContainer extends GContainer
 		}
 		else
 		{
-			// NOTE: ‚±‚±‚É—ˆ‚é‚Æ‚¢‚¤–‚ÍAq‚Ì“ü‚ê‘Ö‚¦
+			// NOTE: ã“ã“ã«æ¥ã‚‹ã¨ã„ã†äº‹ã¯ã€å­ã®å…¥ã‚Œæ›¿ãˆ
 			with(target.mirror)
 			{
-				// NOTE: children ‚ª^‚ÅA‚±‚ÌƒRƒ“ƒeƒi‚É target ‚Ìq‚ª‚ ‚éê‡‚Ì“®ì‚Í–¢’è‹`‚Å‚·B
+				// NOTE: children ãŒçœŸã§ã€ã“ã®ã‚³ãƒ³ãƒ†ãƒŠã« target ã®å­ãŒã‚ã‚‹å ´åˆã®å‹•ä½œã¯æœªå®šç¾©ã§ã™ã€‚
 				target.visible <-> .visible;
 				target.left <-> .left;
 				target.top <-> .top;
@@ -237,7 +237,7 @@ class GLayerContainer extends GContainer
 			}
 			backLayer.name = name;
 
-			// NOTE: ƒ_ƒuƒ‹ƒoƒbƒtƒ@ƒŠƒ“ƒO‚Ì remove() •û®‚É‚æ‚é–³Œø‰»‚Í GFamily ‚ğ—˜—p‚·‚é–‚Å‰ğŒˆ‚·‚éB
+			// NOTE: ãƒ€ãƒ–ãƒ«ãƒãƒƒãƒ•ã‚¡ãƒªãƒ³ã‚°æ™‚ã® remove() æ–¹å¼ã«ã‚ˆã‚‹ç„¡åŠ¹åŒ–ã¯ GFamily ã‚’åˆ©ç”¨ã™ã‚‹äº‹ã§è§£æ±ºã™ã‚‹ã€‚
 			foreLayer.family.receive(backLayer);
 			backLayer.family.receive(foreLayer);
 		}
@@ -278,7 +278,7 @@ class GLayerContainer extends GContainer
 		var arr = [];
 		var name, layer;
 
-		// NOTE: objects_ ‚Í GContainer ‚Ìƒvƒ‰ƒCƒx[ƒgƒƒ“ƒo‚Å‚·B
+		// NOTE: objects_ ã¯ GContainer ã®ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆãƒ¡ãƒ³ãƒã§ã™ã€‚
 		arr.assign(objects_);
 
 		for(var i = arr.count - 2; i >= 0; i -= 2)
@@ -325,7 +325,7 @@ class GLayerContainer extends GContainer
 	/**/
 	function find(obj)
 	{
-		// TODO: Å“K‰»‘ÎÛ‚Å‚·Bobjects_ ‚ğ’¼Ú‘€ì‚µ‚½•û‚ª‚¢‚¢B
+		// TODO: æœ€é©åŒ–å¯¾è±¡ã§ã™ã€‚objects_ ã‚’ç›´æ¥æ“ä½œã—ãŸæ–¹ãŒã„ã„ã€‚
 
 		var name = super.find(obj);
 

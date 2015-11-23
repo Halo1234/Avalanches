@@ -3,7 +3,7 @@
 **/
 
 
-/*! \brief ƒŒƒCƒ„ê—p‚ÌƒCƒeƒŒ[ƒ^Šî–{ƒNƒ‰ƒX‚Å‚·B
+/*! \brief ãƒ¬ã‚¤ãƒ¤å°‚ç”¨ã®ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿åŸºæœ¬ã‚¯ãƒ©ã‚¹ã§ã™ã€‚
 **/
 class GLayerIterator extends GIterator
 {
@@ -50,7 +50,7 @@ class GLayerIterator extends GIterator
 
 		if(c < count)
 		{
-			// ‘‚¦‚é
+			// å¢—ãˆã‚‹
 			var name, obj;
 
 			for(var i = c; i < count; i++)
@@ -63,7 +63,7 @@ class GLayerIterator extends GIterator
 		else
 		if(c > count)
 		{
-			// Œ¸‚é
+			// æ¸›ã‚‹
 			var obj;
 
 			for(var i = c - 1; i >= count; i--)
@@ -107,7 +107,7 @@ class GLayerIterator extends GIterator
 	/**/
 	function find(obj)
 	{
-		// TODO: Å“K‰»‘ÎÛ‚Å‚·B
+		// TODO: æœ€é©åŒ–å¯¾è±¡ã§ã™ã€‚
 
 		var index = super.find(obj);
 
@@ -153,7 +153,7 @@ class GLayerIterator extends GIterator
 	/**/
 	function onLayerEvent(obj, event, elm)
 	{
-		// NOTE: ƒI[ƒo[ƒ‰ƒCƒh‚µ‚Ä‚­‚¾‚³‚¢B
+		// NOTE: ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã—ã¦ãã ã•ã„ã€‚
 	}
 
 	property absoluteBase

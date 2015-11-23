@@ -5,12 +5,12 @@
 
 
 /**
- * ˆÙ‚È‚é GFormLayer “¯m‚Å softFocus ‚ÌƒtƒH[ƒJƒXˆÚ“®‚ğs‚¢‚½‚¢ê‡‚Í
- * GFormLayer#focusable ‚É false ‚ğİ’è‚µ‚Ä GWindow#softFocus ‚É’Ç‰Á‚·‚é•û–@‚ª‚ ‚è‚Ü‚·B
- * ‰º‹L‚Ì—á‚Å‚Í GWindow#focusedLayer ‚ª null ‚Ì‚É–îˆóƒL[‚ğ‰Ÿ‚·‚Æ
- * formA ‚Æ formB ‚Ì softFocus ‚ª‡”Ô‚ÉƒtƒH[ƒJƒX‚³‚ê‚Ü‚·B
+ * ç•°ãªã‚‹ GFormLayer åŒå£«ã§ softFocus ã®ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ç§»å‹•ã‚’è¡Œã„ãŸã„å ´åˆã¯
+ * GFormLayer#focusable ã« false ã‚’è¨­å®šã—ã¦ GWindow#softFocus ã«è¿½åŠ ã™ã‚‹æ–¹æ³•ãŒã‚ã‚Šã¾ã™ã€‚
+ * ä¸‹è¨˜ã®ä¾‹ã§ã¯ GWindow#focusedLayer ãŒ null ã®æ™‚ã«çŸ¢å°ã‚­ãƒ¼ã‚’æŠ¼ã™ã¨
+ * formA ã¨ formB ã® softFocus ãŒé †ç•ªã«ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã•ã‚Œã¾ã™ã€‚
  *
- * —áF
+ * ä¾‹ï¼š
  *  var formA = new GFormLayer(window, window.primaryLayer);
  *  var formB = new GFormLayer(window, window.primaryLayer);
  *
@@ -23,8 +23,8 @@ class GFormLayer extends GWidgetLayer
 {
 	var softFocus_;
 
-	var clickCancel = false;				// click() ‚Å show()/hide() ‚ğƒLƒƒƒ“ƒZƒ‹‚·‚é‚©‚Ç‚¤‚©
-	var rclickHide = true;					// rclick() ‚Å hide() ‚ğŒÄ‚Ô‚©‚Ç‚¤‚©
+	var clickCancel = false;				// click() ã§ show()/hide() ã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã™ã‚‹ã‹ã©ã†ã‹
+	var rclickHide = true;					// rclick() ã§ hide() ã‚’å‘¼ã¶ã‹ã©ã†ã‹
 	var softFocusDisableInShowHideRunning = true;
 	var softFocusEnabledBackup_ = true;
 
@@ -39,8 +39,8 @@ class GFormLayer extends GWidgetLayer
 	function finalize()
 	{
 		// NOTE:
-		// softFocus_ ‚Í family ‚É“ü‚ê‚é‚Æ–³Œø‰»‚·‚éƒ^ƒCƒ~ƒ“ƒO‚ª•s’è‚É‚È‚é‚Ì‚Å
-		// ‚±‚±‚Å–¾¦“I‚É–³Œø‰»‚µ‚Ü‚·B
+		// softFocus_ ã¯ family ã«å…¥ã‚Œã‚‹ã¨ç„¡åŠ¹åŒ–ã™ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒä¸å®šã«ãªã‚‹ã®ã§
+		// ã“ã“ã§æ˜ç¤ºçš„ã«ç„¡åŠ¹åŒ–ã—ã¾ã™ã€‚
 		invalidate softFocus_ if softFocus_ !== void;
 
 		super.finalize(...);
@@ -72,9 +72,9 @@ class GFormLayer extends GWidgetLayer
 	}
 
 	/**
-	 * ƒtƒH[ƒJƒX‚ª•ÏX‚³‚ê‚½‚ÉŒÄ‚Î‚ê‚Ü‚·B
-	 * focused ‚ª false ‚È‚ç‰½‚àƒtƒH[ƒJƒX‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB
-	 * ‚»‚êˆÈŠO‚Í‰½‚©‚ªƒtƒH[ƒJƒX‚³‚ê‚Ä‚¢‚Ü‚·B
+	 * ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ãŒå¤‰æ›´ã•ã‚ŒãŸæ™‚ã«å‘¼ã°ã‚Œã¾ã™ã€‚
+	 * focused ãŒ false ãªã‚‰ä½•ã‚‚ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚
+	 * ãã‚Œä»¥å¤–ã¯ä½•ã‹ãŒãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã•ã‚Œã¦ã„ã¾ã™ã€‚
 	**/
 	function onFocusChanged(focused)
 	{

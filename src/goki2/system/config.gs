@@ -3,56 +3,56 @@
 ;**/
 
 
-; ���X�N���v�g�L���[
+; ◆スクリプトキュー
 ;
-; storage: �ǉ��������X�N���v�g�t�@�C�����ł��B
+; storage: 追加したいスクリプトファイル名です。
 ;
 @que storage=testcase
 
 
-; �����s�̈�����
+; ◆改行の扱い方
 ;
-; ignore: ���s�R�[�h�� r �^�O�Ƃ��Ĉ������ǂ���
+; ignore: 改行コードを r タグとして扱うかどうか
 @cr_handling ignore
 
 
-; ���E�C���h�E�̐ݒ�
+; ◆ウインドウの設定
 ;
-;                caption: �E�C���h�E�̃^�C�g���o�[�ɕ\�����镶����ł��B
-;                  width: �E�C���h�E�̕��ł��B�i���m�ɂ̓N���C�A���g�̈�̕��ł��j
-;                 height: �E�C���h�E�̍����ł��B�i���m�ɂ̓N���C�A���g�̈�̍����ł��j
-; fix-position-to-center: �w�肷��ƃE�C���h�E�����ʒu���f�X�N�g�b�v�����ɐݒ肳��܂��B
-;              alt-enter: �w�肷��� Alt+Enter �ŃX�N���[�����[�h��؂�ւ��鎖���ł���悤�ɂȂ�܂��B
-;                visible: �w�肷��ƃE�C���h�E��\�����܂��B
+;                caption: ウインドウのタイトルバーに表示する文字列です。
+;                  width: ウインドウの幅です。（正確にはクライアント領域の幅です）
+;                 height: ウインドウの高さです。（正確にはクライアント領域の高さです）
+; fix-position-to-center: 指定するとウインドウ初期位置がデスクトップ中央に設定されます。
+;              alt-enter: 指定すると Alt+Enter でスクリーンモードを切り替える事ができるようになります。
+;                visible: 指定するとウインドウを表示します。
 ;
 @window width=800 height=600 fix-position-to-center alt-enter
 
 
-; ���������E�F�C�g
+; ◆初期化ウェイト
 @wait time=400 !skip !click
 
 
-; ���e���W���[���ݒ�
+; ◆各モジュール設定
 ;
-; �ǂݍ��񂾃��W���[���̐ݒ肪�K�v�ł���΂����ōs���Ă��������B
-; ���W���[���̐ݒ�ɂ��Ă͊e���W���[���̐������Q�Ƃ��Ă��������B
+; 読み込んだモジュールの設定が必要であればここで行ってください。
+; モジュールの設定については各モジュールの説明を参照してください。
 ;
-; �R�R����
+; ココから
 
-; �R�R�܂�
+; ココまで
 
 
-; ���o�[�W�������
+; ◆バージョン情報
 ;
-; message: �v���Z�b�g���A�܂��͔C�ӂ̕�������w�肵�܂��B
+; message: プリセット名、または任意の文字列を指定します。
 ;
 @notice message=version
-@notice message=�V�X�e���������������܂����B
+@notice message=システム初期化完了しました。
 
 
-; ���E�C���h�E�̕\��
+; ◆ウインドウの表示
 ;
-; ����őS�Ă̐ݒ肪�I������̂ŃE�C���h�E��\������B
+; これで全ての設定が終わったのでウインドウを表示する。
 ;
 @window visible
 

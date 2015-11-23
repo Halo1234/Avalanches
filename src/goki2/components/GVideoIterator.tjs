@@ -19,12 +19,12 @@ class GVideoIterator extends GIterator
 
 	function onVideoEvent(obj, event, elm)
 	{
-		// �K�v�Ȃ�I�[�o�[���C�h���邱��
+		// 必要ならオーバーライドすること
 	}
 
 	property prefix
 	{
-		// ���Ȃ炸�h����ł������ӂȂ��̂ɃI�[�o�[���C�h���Ă��������B
+		// かならず派生先でこれを一意なものにオーバーライドしてください。
 		getter		{ return 'video'; }
 	}
 }

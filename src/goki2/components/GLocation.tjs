@@ -11,10 +11,10 @@ class GLocation
 
 	var index_ = [];
 
-	/*! \brief ƒRƒ“ƒXƒgƒ‰ƒNƒ^B
+	/*! \brief ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚
 	 *
-	 * \param [location] ƒtƒHƒ‹ƒ_‚ğ“ˆêƒXƒgƒŒ[ƒW‚Åw’è‚µ‚Ü‚·B
-	 * \param [indexName:'':] ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚ğì¬‚·‚éê‡‚Íƒtƒ@ƒCƒ‹–¼‚ğw’è‚µ‚Ü‚·B
+	 * \param [location] ãƒ•ã‚©ãƒ«ãƒ€ã‚’çµ±ä¸€ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ã§æŒ‡å®šã—ã¾ã™ã€‚
+	 * \param [indexName:'':] ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½œæˆã™ã‚‹å ´åˆã¯ãƒ•ã‚¡ã‚¤ãƒ«åã‚’æŒ‡å®šã—ã¾ã™ã€‚
 	**/
 	function GLocation(location, indexName = '')
 	{
@@ -80,27 +80,27 @@ class GLocation
 		return name;
 	}
 
-	/*! \brief w’è‚³‚ê‚½–¼‘O‚ÌƒIƒuƒWƒFƒNƒg‚Ì‘¶İ‚ğŠm”F‚µ‚Ü‚·B
+	/*! \brief æŒ‡å®šã•ã‚ŒãŸåå‰ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å­˜åœ¨ã‚’ç¢ºèªã—ã¾ã™ã€‚
 	 *
-	 * \param [name] ‘¶İ‚ğŠm”F‚µ‚½‚¢ƒIƒuƒWƒFƒNƒg‚Ì–¼‘O‚ğw’è‚µ‚Ü‚·B
+	 * \param [name] å­˜åœ¨ã‚’ç¢ºèªã—ãŸã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®åå‰ã‚’æŒ‡å®šã—ã¾ã™ã€‚
 	 *
-	 * \return name ‚ªŠù‚É‘¶İ‚µ‚Ä‚¢‚ê‚Î true ‚ğ•Ô‚µ‚Ü‚·B
-	 * \return ‚»‚êˆÈŠO‚Å‚Í false ‚ğ•Ô‚µ‚Ü‚·B
+	 * \return name ãŒæ—¢ã«å­˜åœ¨ã—ã¦ã„ã‚Œã° true ã‚’è¿”ã—ã¾ã™ã€‚
+	 * \return ãã‚Œä»¥å¤–ã§ã¯ false ã‚’è¿”ã—ã¾ã™ã€‚
 	 *
-	 * \remarks –Àã Storages.isExistentStorage() ‚Ì–ß‚è’l‚ª‚»‚Ì‚Ü‚Ü–ß‚è’l‚Æ‚È‚è‚Ü‚·B
+	 * \remarks äº‹å®Ÿä¸Š Storages.isExistentStorage() ã®æˆ»ã‚Šå€¤ãŒãã®ã¾ã¾æˆ»ã‚Šå€¤ã¨ãªã‚Šã¾ã™ã€‚
 	**/
 	function exist(name)
 	{
 		return Storages.isExistentStorage(makeStoragePath(name));
 	}
 
-	/*! \brief ƒIƒuƒWƒFƒNƒg‚ğƒZ[ƒu‚µ‚Ü‚·B
+	/*! \brief ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ã‚»ãƒ¼ãƒ–ã—ã¾ã™ã€‚
 	 *
-	 * \param [name] ”CˆÓ‚Ì–¼‘O‚ğw’è‚µ‚Ü‚·B
-	 * \param [obj] •Û‘¶‚µ‚½‚¢ƒIƒuƒWƒFƒNƒg‚ğw’è‚µ‚Ü‚·B
-	 * \param [option:'':] Array#save() ‚È‚Ç‚Ìà–¾‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+	 * \param [name] ä»»æ„ã®åå‰ã‚’æŒ‡å®šã—ã¾ã™ã€‚
+	 * \param [obj] ä¿å­˜ã—ãŸã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æŒ‡å®šã—ã¾ã™ã€‚
+	 * \param [option:'':] Array#save() ãªã©ã®èª¬æ˜ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚
 	 *
-	 * \return obj ‚ğ•Ô‚µ‚Ü‚·B
+	 * \return obj ã‚’è¿”ã—ã¾ã™ã€‚
 	**/
 	function save(name, obj, option = '')
 	{
@@ -118,9 +118,9 @@ class GLocation
 		return saveOtherObject(storage, obj, option);
 	}
 
-	/*! \brief ƒIƒuƒWƒFƒNƒg‚ğƒ[ƒh‚µ‚Ü‚·B
+	/*! \brief ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™ã€‚
 	 *
-	 * \return obj ‚ğ•Ô‚µ‚Ü‚·B
+	 * \return obj ã‚’è¿”ã—ã¾ã™ã€‚
 	**/
 	function load(name, obj, option)
 	{
@@ -185,13 +185,13 @@ class GLocation
 	/**/
 	function saveOtherObject(storage, obj, option = '')
 	{
-		throw new GRuntimeError(@"•s–¾‚ÈƒIƒuƒWƒFƒNƒg‚Ì‚½‚ß &storage; ‚ğƒZ[ƒu‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B");
+		throw new GRuntimeError(@"ä¸æ˜ãªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ãŸã‚ &storage; ã‚’ã‚»ãƒ¼ãƒ–ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚");
 	}
 
 	/**/
 	function loadOtherObject(storage, obj, option)
 	{
-		throw new GRuntimeError(@"•s–¾‚ÈƒIƒuƒWƒFƒNƒg‚Ì‚½‚ß &storage; ‚ğƒ[ƒh‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B");
+		throw new GRuntimeError(@"ä¸æ˜ãªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ãŸã‚ &storage; ã‚’ãƒ­ãƒ¼ãƒ‰ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚");
 	}
 
 	/**/
@@ -215,7 +215,7 @@ class GLocation
 
 	property index
 	{
-		// NOTE: “Ç‚İæ‚èê—p‚Å‚·B
+		// NOTE: èª­ã¿å–ã‚Šå°‚ç”¨ã§ã™ã€‚
 		getter		{ return GObjectUtils.clone(index_); }
 	}
 }

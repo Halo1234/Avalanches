@@ -3,7 +3,7 @@
 **/
 
 
-/*! \brief �R���e�i��{�N���X
+/*! \brief コンテナ基本クラス
 **/
 class GContainer
 {
@@ -42,7 +42,7 @@ class GContainer
 	function add(name, obj)
 	{
 		if(name == '')
-			throw new GRuntimeError('���O�̖����I�u�W�F�N�g�̓R���e�i�ɒǉ��ł��܂���B');
+			throw new GRuntimeError('名前の無いオブジェクトはコンテナに追加できません。');
 
 		if(typeof(objects_[name]) !== 'undefined')
 			erase(name);
@@ -73,8 +73,8 @@ class GContainer
 
 		for(var i = arr.count - 2; i >= 0; i -= 2)
 		{
-			// NOTE: �萔�Ȃǂ͗��p����Ă���\�������邽��
-			// NOTE: ��΂ɔ��Ȃ����[�J���I�u�W�F�N�g�Ń}�[�N����B
+			// NOTE: 定数などは利用されている可能性があるため
+			// NOTE: 絶対に被らないローカルオブジェクトでマークする。
 			if(arr[i + 1] === obj)
 				arr[i] = arr[i + 1] = arr;
 		}
@@ -92,12 +92,12 @@ class GContainer
 		return (name == '' ? void : objects_[name]);
 	}
 
-	/*! \brief �I�u�W�F�N�g���������܂��B
+	/*! \brief オブジェクトを検索します。
 	 *
-	 * \param [obj] �����������I�u�W�F�N�g���w�肵�܂��B
+	 * \param [obj] 検索したいオブジェクトを指定します。
 	 *
-	 * \return �o�^����Ă��閼�O��Ԃ��܂��B
-	 * \return �w�肳�ꂽ�I�u�W�F�N�g���o�^����Ă��Ȃ��ꍇ�͋󕶎����Ԃ��܂��B
+	 * \return 登録されている名前を返します。
+	 * \return 指定されたオブジェクトが登録されていない場合は空文字列を返します。
 	**/
 	function find(obj)
 	{
@@ -114,13 +114,13 @@ class GContainer
 		return '';
 	}
 
-	/*! \brief �C�e���[�V����
+	/*! \brief イテレーション
 	 *
-	 * block �̎d�l�͈ȉ��̒ʂ�ł��B
+	 * block の仕様は以下の通りです。
 	 *
 	 * function block(object, name, arguments, ...)
 	 *
-	 * \remarks ���������L�� (valid �ȃI�u�W�F�N�g) �ł��鎖�͕ۏႳ��܂���B
+	 * \remarks 第一引数が有効 (valid なオブジェクト) である事は保障されません。
 	**/
 	function each(block, arguments*)
 	{
