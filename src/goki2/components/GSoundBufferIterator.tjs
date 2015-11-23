@@ -64,7 +64,7 @@ class GSoundBufferIterator extends GIterator
 	/**/
 	property prefix
 	{
-		// ã‹ãªã‚‰ãšæ´¾ç”Ÿå…ˆã§ã“ã‚Œã‚’ä¸€æ„ãªã‚‚ã®ã«ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã—ã¦ãã ã•ã„ã€‚
+		// ‚©‚È‚ç‚¸”h¶æ‚Å‚±‚ê‚ğˆêˆÓ‚È‚à‚Ì‚ÉƒI[ƒo[ƒ‰ƒCƒh‚µ‚Ä‚­‚¾‚³‚¢B
 		getter		{ return "buffer"; }
 	}
 

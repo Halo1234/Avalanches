@@ -2,20 +2,20 @@
 ; * $Revision$
 ;**/
 
-@!make_character image=ç«‹ã¡çµµæœ‰ã‚Š->true,ç«‹ã¡çµµç„¡ã—->false
-@!make_character voice=ãƒœã‚¤ã‚¹æœ‰ã‚Š->true,ãƒœã‚¤ã‚¹ç„¡ã—->false
+@!make_character image=—§‚¿ŠG—L‚è->true,—§‚¿ŠG–³‚µ->false
+@!make_character voice=ƒ{ƒCƒX—L‚è->true,ƒ{ƒCƒX–³‚µ->false
 
-@make_character name=åœ°æ–‡ actual-viewing-name-string=''
-@make_character name=ãƒãƒ­ voice_group=halo ç«‹ã¡çµµæœ‰ã‚Š ãƒœã‚¤ã‚¹æœ‰ã‚Š
+@make_character name=’n•¶ actual-viewing-name-string=''
+@make_character name=ƒnƒ voice_group=halo —§‚¿ŠG—L‚è ƒ{ƒCƒX—L‚è
 
-@!character centerx=å·¦->200,ä¸­->400,å³->600,ä¸­å·¦->300,ä¸­å³->500,å·¦ç«¯->100,å³ç«¯->700
-@!character grayscale=ã‚»ãƒ”ã‚¢->true rgamma=ã‚»ãƒ”ã‚¢->1.5 ggamma=ã‚»ãƒ”ã‚¢->1.3
-@!character visible=è¡¨ç¤º->true,æ¶ˆåŽ»->false
+@!character centerx=¶->200,’†->400,‰E->600,’†¶->300,’†‰E->500,¶’[->100,‰E’[->700
+@!character grayscale=ƒZƒsƒA->true rgamma=ƒZƒsƒA->1.5 ggamma=ƒZƒsƒA->1.3
+@!character visible=•\Ž¦->true,Á‹Ž->false
 @!character no_voice=nv->true
 
-@!ãƒãƒ­ /storage=A_<POSE>_<FACE>
-@!ãƒãƒ­ face=è¡¨æƒ…ï¼‘->face1
-@!ãƒãƒ­ pose=ãƒãƒ¼ã‚ºï¼‘->pose1,ãƒãƒ¼ã‚ºï¼’->pose2
+@!ƒnƒ /storage=A_<POSE>_<FACE>
+@!ƒnƒ face=•\î‚P->face1
+@!ƒnƒ pose=ƒ|[ƒY‚P->pose1,ƒ|[ƒY‚Q->pose2
 
 @history_option storage=HistoryBack margin_left=10 margin_top=10 margin_right=10 margin_bottom=10
 @message_option layer=message0 left=10 top=400 width=780 height=190 margin_left=20 margin_top=20 margin_right=20 margin_bottom=20 opacity=128 color=0x000000 shadow_color=0xFFFF0000 current
@@ -25,52 +25,52 @@
 @using_mod_adv
 
 *label|
-@ãƒãƒ­ ãƒãƒ¼ã‚ºï¼‘ è¡¨æƒ…ï¼‘ è¡¨ç¤º
+@ƒnƒ ƒ|[ƒY‚P •\î‚P •\Ž¦
 
 ;@cursor default_cursor=&crCross
 
-[ãƒãƒ­]ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ãƒ†ã‚¹ãƒˆã§ã™ã€‚
-æ”¹è¡Œã—ã¾ã™ã€‚
+[ƒnƒ]ƒƒbƒZ[ƒW‚ÌƒeƒXƒg‚Å‚·B
+‰üs‚µ‚Ü‚·B
 
 *label|
-@ãƒãƒ­ ãƒãƒ¼ã‚ºï¼’ è¡¨æƒ…ï¼‘
+@ƒnƒ ƒ|[ƒY‚Q •\î‚P
 
-[ãƒãƒ­]ãƒãƒ¼ã‚ºï¼’ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚
-
-*label|
-[ãƒãƒ­]å±¥æ­´ã‚’åŸ‹ã‚ã¾ã™ã€‚
+[ƒnƒ]ƒ|[ƒY‚Q‚ð•\Ž¦‚µ‚Ü‚·B
 
 *label|
-[ãƒãƒ­]å±¥æ­´ã‚’åŸ‹ã‚ã¾ã™ï¼’ã€‚
+[ƒnƒ]—š—ð‚ð–„‚ß‚Ü‚·B
 
 *label|
-[ãƒãƒ­]å±¥æ­´ã‚’åŸ‹ã‚ã¾ã™ï¼“ã€‚
+[ƒnƒ]—š—ð‚ð–„‚ß‚Ü‚·‚QB
 
 *label|
-[ãƒãƒ­]å±¥æ­´ã‚’åŸ‹ã‚ã¾ã™ï¼”ã€‚
+[ƒnƒ]—š—ð‚ð–„‚ß‚Ü‚·‚RB
 
 *label|
-[ãƒãƒ­]å±¥æ­´ã‚’åŸ‹ã‚ã¾ã™ï¼•ã€‚
+[ƒnƒ]—š—ð‚ð–„‚ß‚Ü‚·‚SB
 
 *label|
-[ãƒãƒ­]å±¥æ­´ã‚’åŸ‹ã‚ã¾ã™ï¼–ã€‚
+[ƒnƒ]—š—ð‚ð–„‚ß‚Ü‚·‚TB
 
 *label|
-[ãƒãƒ­]å±¥æ­´ã‚’åŸ‹ã‚ã¾ã™ï¼—ã€‚
+[ƒnƒ]—š—ð‚ð–„‚ß‚Ü‚·‚UB
 
 *label|
-[ãƒãƒ­]å±¥æ­´ã‚’åŸ‹ã‚ã¾ã™ï¼˜ã€‚
+[ƒnƒ]—š—ð‚ð–„‚ß‚Ü‚·‚VB
 
 *label|
-[ãƒãƒ­]å±¥æ­´ã‚’åŸ‹ã‚ã¾ã™ï¼™ã€‚
+[ƒnƒ]—š—ð‚ð–„‚ß‚Ü‚·‚WB
 
 *label|
-[ãƒãƒ­]å±¥æ­´ã‚’åŸ‹ã‚ã¾ã™ï¼‘ï¼ã€‚
+[ƒnƒ]—š—ð‚ð–„‚ß‚Ü‚·‚XB
 
 *label|
-@ãƒãƒ­ æ¶ˆåŽ»
+[ƒnƒ]—š—ð‚ð–„‚ß‚Ü‚·‚P‚OB
 
-[ãƒãƒ­]ãƒ†ã‚¹ãƒˆçµ‚äº†ã§ã™ã€‚
+*label|
+@ƒnƒ Á‹Ž
+
+[ƒnƒ]ƒeƒXƒgI—¹‚Å‚·B
 
 @not_using_mod_adv
 

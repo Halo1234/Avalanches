@@ -3,34 +3,34 @@
 **/
 
 
-/*! \brief GOKI2 ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦åŸºæœ¬ã‚¯ãƒ©ã‚¹
+/*! \brief GOKI2 ƒEƒCƒ“ƒhƒEŠî–{ƒNƒ‰ƒX
 **/
 class GWindow extends Window
 {
-	var temporaryLocation_;					//!< \brief ä¸€æ™‚çš„ãªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‡ºåŠ›å…ˆ
-	var locations_ = %[];					//!< \brief ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‡ºåŠ›å…ˆ
+	var temporaryLocation_;					//!< \brief ˆê“I‚ÈƒIƒuƒWƒFƒNƒgo—Íæ
+	var locations_ = %[];					//!< \brief ƒIƒuƒWƒFƒNƒgo—Íæ
 
-	var modules_;							//!< \brief æ‹¡å¼µãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
-	var mainConductor_;						//!< \brief ãƒ¡ã‚¤ãƒ³ã‚³ãƒ³ãƒ€ã‚¯ã‚¿
-	var conductor_;							//!< \brief ã‚³ãƒ³ãƒ€ã‚¯ã‚¿
-	var softFocus_;							//!< \brief ã‚½ãƒ•ãƒˆãƒ•ã‚©ãƒ¼ã‚«ã‚¹
+	var modules_;							//!< \brief Šg’£ƒ‚ƒWƒ…[ƒ‹
+	var mainConductor_;						//!< \brief ƒƒCƒ“ƒRƒ“ƒ_ƒNƒ^
+	var conductor_;							//!< \brief ƒRƒ“ƒ_ƒNƒ^
+	var softFocus_;							//!< \brief ƒ\ƒtƒgƒtƒH[ƒJƒX
 
-	var thisTagHandlers_;					//!< \brief ã“ã®ã‚¯ãƒ©ã‚¹ãŒæä¾›ã™ã‚‹ã‚¿ã‚°ãƒãƒ³ãƒ‰ãƒ©
-	var tagHandlers_ = %[];					//!< \brief ã‚¿ã‚°ãƒãƒ³ãƒ‰ãƒ©
+	var thisTagHandlers_;					//!< \brief ‚±‚ÌƒNƒ‰ƒX‚ª’ñ‹Ÿ‚·‚éƒ^ƒOƒnƒ“ƒhƒ‰
+	var tagHandlers_ = %[];					//!< \brief ƒ^ƒOƒnƒ“ƒhƒ‰
 
 	var temporaryLayer_;
 	var temporaryCache_ = [];
 
-	var scWidth = 600;						//!< \brief ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å¹…
-	var scHeight = 480;						//!< \brief ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é«˜ã•
+	var scWidth = 600;						//!< \brief ƒEƒCƒ“ƒhƒE•
+	var scHeight = 480;						//!< \brief ƒEƒCƒ“ƒhƒE‚‚³
 
-	var fullScreened_ = false;				// å†…éƒ¨ç”¨
-	var altEnterScreenModeChange = false;	//!< \brief true ã«è¨­å®šã™ã‚‹ã¨ Alt+Enter ã§ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã‚’åˆ‡ã‚Šæ›¿ãˆã¾ã™ã€‚
+	var fullScreened_ = false;				// “à•”—p
+	var altEnterScreenModeChange = false;	//!< \brief true ‚Éİ’è‚·‚é‚Æ Alt+Enter ‚ÅƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚ğØ‚è‘Ö‚¦‚Ü‚·B
 
 	/**
 	 * NOTE:
-	 * window ãŒé•ã†å ´åˆã®å‹•ä½œã«ã¤ã„ã¦ã¯æœªå®šç¾©ã§ã™ã€‚
-	 * æ³¨æ„ã—ã¦ä½¿ã†äº‹ã€‚
+	 * window ‚ªˆá‚¤ê‡‚Ì“®ì‚É‚Â‚¢‚Ä‚Í–¢’è‹`‚Å‚·B
+	 * ’ˆÓ‚µ‚Äg‚¤–B
 	**/
 	class GTemporaryLayer extends Layer
 	{
@@ -78,8 +78,8 @@ class GWindow extends Window
 		fixPrimaryLayerSizeToInnerSize();
 
 		borderStyle = bsSingle;
-		//innerSunken = true;
-		//showScrollBars = false;
+		innerSunken = true;
+		showScrollBars = false;
 
 		thisTagHandlers_ = createTagHandlers();
 		unifyTagHandlers();
@@ -158,7 +158,7 @@ class GWindow extends Window
 	/**/
 	function askClose(yesHandler, noHandler)
 	{
-		askYesNo(primaryLayer, 'çµ‚äº†ã—ã¾ã™ã‹ï¼Ÿ', 'çµ‚äº†ç¢ºèª', yesHandler, noHandler);
+		askYesNo(primaryLayer, 'I—¹‚µ‚Ü‚·‚©H', 'I—¹Šm”F', yesHandler, noHandler);
 	}
 
 	/**/
@@ -190,7 +190,7 @@ class GWindow extends Window
 			/* @load_module */
 			'load_module' => function (elm) {
 				if(elm.name == void)
-					throw new GRuntimeError('name å±æ€§ãŒæŒ‡å®šã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚');
+					throw new GRuntimeError('name ‘®«‚ªw’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB');
 				with(modules_)
 				{
 					var mod = .load(elm.name, GObjectUtils.getBoolean(elm, 'automation', true));
@@ -211,7 +211,7 @@ class GWindow extends Window
 			'single' => function (elm) {
 				if(!System.createAppLock(System.exePath.replace(/[^A-Za-z]/g, '_')))
 				{
-					System.inform(System.title + 'ã¯ã™ã§ã«èµ·å‹•ã—ã¦ã„ã¾ã™');
+					System.inform(System.title + '‚Í‚·‚Å‚É‹N“®‚µ‚Ä‚¢‚Ü‚·');
 					System.exit();
 				}
 			} incontextof this,
@@ -252,12 +252,12 @@ class GWindow extends Window
 
 		if(arr.count == 0)
 		{
-			// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã«ä½•ã‚‚å­˜åœ¨ã—ãªã„ã®ã§æ–°ã—ãä½œã‚‹
+			// ƒLƒƒƒbƒVƒ…‚É‰½‚à‘¶İ‚µ‚È‚¢‚Ì‚ÅV‚µ‚­ì‚é
 			obj = new global.GWindow.GTemporaryLayer(this, owner);
 		}
 		else
 		{
-			// è¦ªã‚’ owner ã«å¤‰æ›´ã™ã‚‹
+			// e‚ğ owner ‚É•ÏX‚·‚é
 			obj = arr.pop();
 			obj.parent = owner;
 		}
@@ -277,23 +277,23 @@ class GWindow extends Window
 		);
 	}
 
-	/*! \brief ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã‚’ç¢ºå®šã•ã›ã¾ã™ã€‚
+	/*! \brief ƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚ğŠm’è‚³‚¹‚Ü‚·B
 	**/
 	function fixScreenMode()
 	{
 		var fs = fullScreened_;
 
-		// NOTE: ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒéè¡¨ç¤ºä¸­ã¯ç”»é¢ã‚µã‚¤ã‚ºãŒç¢ºå®šã—ã¦ã„ãªã„å¯èƒ½æ€§ãŒã‚ã‚‹ã€‚
-		// NOTE: ãã®ãŸã‚ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã®åˆ‡ã‚Šæ›¿ãˆã¯ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒè¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹äº‹ã‚’æ¡ä»¶ã«ã—ã¾ã™ã€‚
+		// NOTE: ƒEƒCƒ“ƒhƒE‚ª”ñ•\¦’†‚Í‰æ–ÊƒTƒCƒY‚ªŠm’è‚µ‚Ä‚¢‚È‚¢‰Â”\«‚ª‚ ‚éB
+		// NOTE: ‚»‚Ì‚½‚ßƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚ÌØ‚è‘Ö‚¦‚ÍƒEƒCƒ“ƒhƒE‚ª•\¦‚³‚ê‚Ä‚¢‚é–‚ğğŒ‚É‚µ‚Ü‚·B
 		if(super.fullScreen != fs && super.visible)
 		{
 			try {
 				super.fullScreen = fs;
 			} catch(e) {
 				if(fs)
-					warn('ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã«ç§»è¡Œã§ãã¾ã›ã‚“ã§ã—ãŸã€‚');
+					warn('ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚ÉˆÚs‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B');
 				else
-					warn('ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã«ç§»è¡Œã§ãã¾ã›ã‚“ã§ã—ãŸã€‚');
+					warn('ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚ÉˆÚs‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B');
 				warn(e.message);
 			}
 
@@ -306,7 +306,7 @@ class GWindow extends Window
 	{
 		if(!value && super.fullScreen)
 		{
-			warn('ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ä¸­ã¯ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’éè¡¨ç¤ºã«ã¯ã§ãã¾ã›ã‚“ã€‚');
+			warn('ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh’†‚ÍƒEƒCƒ“ƒhƒE‚ğ”ñ•\¦‚É‚Í‚Å‚«‚Ü‚¹‚ñB');
 		}
 		else
 		{
@@ -342,7 +342,7 @@ class GWindow extends Window
 	function removeLocation(name)
 	{
 		if(name == '')
-			throw GRuntimeError('ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³åã‚’æŒ‡å®šã—ã¦ãã ã•ã„ã€‚');
+			throw GRuntimeError('ƒƒP[ƒVƒ‡ƒ“–¼‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢B');
 
 		if(locations_[name] !== void)
 		{
@@ -380,7 +380,7 @@ class GWindow extends Window
 
 	function shutdown(ask = false)
 	{
-		// ã‚³ãƒ³ãƒ€ã‚¯ã‚¿ã‚’åœæ­¢ã•ã›ã‚‹
+		// ƒRƒ“ƒ_ƒNƒ^‚ğ’â~‚³‚¹‚é
 		if(GObjectUtils.shutdownBackupStorage === void)
 			GObjectUtils.shutdownBackupStorage = conductor_.suspended;
 		conductor_.suspended = true;
@@ -410,11 +410,11 @@ class GWindow extends Window
 	/**/
 	function onLoadModule(module)
 	{
-		// FIXME: é¢å€’ãªã®ã§å…¨éƒ¨å†çµ±åˆã—ã¦ã„ã‚‹ã€‚
+		// FIXME: –Ê“|‚È‚Ì‚Å‘S•”Ä“‡‚µ‚Ä‚¢‚éB
 		unifyTagHandlers() if module.tagHandlers !== void;
 	}
 
-	/*! \brief ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®è¡¨ç¤ºçŠ¶æ…‹ãŒå¤‰æ›´ã•ã‚ŒãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã¾ã™ã€‚
+	/*! \brief ƒEƒCƒ“ƒhƒE‚Ì•\¦ó‘Ô‚ª•ÏX‚³‚ê‚½‚ÉŒÄ‚Ño‚³‚ê‚Ü‚·B
 	**/
 	function onVisibleStateChanged()
 	{
@@ -572,7 +572,7 @@ class GWindow extends Window
 			if(temporaryLayer_ === void)
 			{
 				temporaryLayer_ = new GLayer(this, this.primaryLayer);
-				temporaryLayer_.name = 'ä½œæ¥­ç”¨ãƒ¬ã‚¤ãƒ¤';
+				temporaryLayer_.name = 'ì‹Æ—pƒŒƒCƒ„';
 			}
 			return temporaryLayer_;
 		}

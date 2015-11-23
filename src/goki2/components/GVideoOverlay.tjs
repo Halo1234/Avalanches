@@ -27,7 +27,7 @@ class GVideoOverlay extends VideoOverlay
 		this.handler = handler;
 		this.name = GObjectUtils.getClassName(this);
 
-		// open() ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰
+		// open() ƒI[ƒo[ƒ‰ƒCƒh
 		open = openTryMixerMode;
 	}
 
@@ -38,13 +38,13 @@ class GVideoOverlay extends VideoOverlay
 	}
 
 	/*
-	 * \brief mode ãŒ vomOverlay ãªã‚‰ vomMixer ã§é–‹ãäº‹ã‚’è©¦è¡Œã™ã‚‹ open() ãƒ©ãƒƒãƒ‘ãƒ¼
+	 * \brief mode ‚ª vomOverlay ‚È‚ç vomMixer ‚ÅŠJ‚­Ž–‚ðŽŽs‚·‚é open() ƒ‰ƒbƒp[
 	**/
 	function openTryMixerMode(storage)
 	{
 		videoStorage_ = '';
 
-		// ã‚‚ã— mode ãŒ vomOverlay ã§ã‚ã‚Œã° vomMixer ã‚’è©¦è¡Œã—ã¦ã¿ã‚‹
+		// ‚à‚µ mode ‚ª vomOverlay ‚Å‚ ‚ê‚Î vomMixer ‚ðŽŽs‚µ‚Ä‚Ý‚é
 		if(mode == vomOverlay)
 		{
 			var ret = true;
@@ -54,9 +54,9 @@ class GVideoOverlay extends VideoOverlay
 				super.open(storage);
 				videoStorage_ = storage;
 			} catch(e) {
-				// vomMixer ã§ã¯ãƒ€ãƒ¡ã ã£ãŸã®ã§ vomOverlay ã«æˆ»ã—ã¦ãƒªãƒˆãƒ©ã‚¤
+				// vomMixer ‚Å‚Íƒ_ƒ‚¾‚Á‚½‚Ì‚Å vomOverlay ‚É–ß‚µ‚ÄƒŠƒgƒ‰ƒC
 				worn("!!---GVideoOverlay");
-				worn("!!---vomMixer ã®è©¦è¡Œã«å¤±æ•—ã—ã¾ã—ãŸã€‚");
+				worn("!!---vomMixer ‚ÌŽŽs‚ÉŽ¸”s‚µ‚Ü‚µ‚½B");
 				mode = vomOverlay;
 				ret = openAcceptMode(storage);
 				open = openAcceptMode;
@@ -78,7 +78,7 @@ class GVideoOverlay extends VideoOverlay
 		} catch(e) {
 			if(e.message.indexOf(".dll") != -1)
 				throw e;
-			worn(@"ãƒ ãƒ¼ãƒ“ãƒ¼ &storage; ã‚’é–‹ã‘ã¾ã›ã‚“ã€‚");
+			worn(@"ƒ€[ƒr[ &storage; ‚ðŠJ‚¯‚Ü‚¹‚ñB");
 			worn(@">> &e.message;");
 
 			return false;
@@ -112,7 +112,7 @@ class GVideoOverlay extends VideoOverlay
 		} catch(e) {
 			if(e.message.indexOf(".dll") != -1)
 				throw e;
-			worn(@"ãƒ ãƒ¼ãƒ“ãƒ¼ &_videoStorage; ã‚’å†ç”Ÿã§ãã¾ã›ã‚“ã€‚");
+			worn(@"ƒ€[ƒr[ &_videoStorage; ‚ðÄ¶‚Å‚«‚Ü‚¹‚ñB");
 			worn(@">> &e.message;");
 		}
 	}
@@ -138,7 +138,7 @@ class GVideoOverlay extends VideoOverlay
 			} catch(e) {
 				if(e.message.indexOf(".dll") != -1)
 					throw e;
-				worn(@"ãƒ ãƒ¼ãƒ“ãƒ¼ &_videoStorage; ã‚’å†é–‹ã§ãã¾ã›ã‚“ã€‚");
+				worn(@"ƒ€[ƒr[ &_videoStorage; ‚ðÄŠJ‚Å‚«‚Ü‚¹‚ñB");
 				worn(@">> &e.message;");
 			}
 		}
@@ -216,7 +216,7 @@ class GVideoOverlay extends VideoOverlay
 		if(dic.lastStatus != 'unload')
 		{
 			open(videoStorage_);
-			// ã“ã®è¨­å®šã¯å¿…ãš frame ã‚ˆã‚Šå…ˆã«è¡Œã†ã“ã¨
+			// ‚±‚ÌÝ’è‚Í•K‚¸ frame ‚æ‚èæ‚És‚¤‚±‚Æ
 			periodEventFrame = dic.periodEventFrame;
 			if(dic.frame >= 0)
 				frame = dic.frame;

@@ -3,16 +3,16 @@
 **/
 
 
-/*! \brief ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«å°‚ç”¨ã‚³ãƒ³ãƒ†ãƒŠ
+/*! \brief ƒ‚ƒWƒ…[ƒ‹ê—pƒRƒ“ƒeƒi
 **/
 class GModuleContainer extends GContainer
 {
-	var keys_ = [];				//<! \brief èª­ã¿è¾¼ã¾ã‚Œã¦ã„ã‚‹ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«åã€‚å¾Œã«èª­ã¿è¾¼ã¾ã‚ŒãŸãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«åãŒå…ˆé ­ã«ãªã‚Šã¾ã™ã€‚
+	var keys_ = [];				//<! \brief “Ç‚İ‚Ü‚ê‚Ä‚¢‚éƒ‚ƒWƒ…[ƒ‹–¼BŒã‚É“Ç‚İ‚Ü‚ê‚½ƒ‚ƒWƒ…[ƒ‹–¼‚ªæ“ª‚É‚È‚è‚Ü‚·B
 	var noticeHandlers_ = [];
 
-	/*! \brief ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	/*! \brief ƒRƒ“ƒXƒgƒ‰ƒNƒ^
 	 *
-	 * \param [window] ãƒ—ãƒ©ã‚°ã‚¤ãƒ³å…ˆã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æŒ‡å®šã—ã¾ã™ã€‚
+	 * \param [window] ƒvƒ‰ƒOƒCƒ“æ‚ÌƒEƒCƒ“ƒhƒEƒIƒuƒWƒFƒNƒg‚ğw’è‚µ‚Ü‚·B
 	**/
 	function GModuleContainer(window)
 	{
@@ -34,7 +34,7 @@ class GModuleContainer extends GContainer
 		case 'String':		mod = get(nameOrModule); break;
 		case 'Object':		mod = nameOrModule if find(nameOrModule) != ''; break;
 		default:
-			throw new GArgumentsError('nameOrModule å¼•æ•°ã«ã¯åå‰ (String) ã‹ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ« (GModule æ´¾ç”Ÿã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ) ã‚’æŒ‡å®šã—ã¦ãã ã•ã„ã€‚');
+			throw new GArgumentsError('nameOrModule ˆø”‚É‚Í–¼‘O (String) ‚©ƒ‚ƒWƒ…[ƒ‹ (GModule ”h¶ƒIƒuƒWƒFƒNƒg) ‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢B');
 		}
 
 		return (mod == void ? false : true);
@@ -45,17 +45,17 @@ class GModuleContainer extends GContainer
 	{
 		var mod = super.get(name);
 
-		// ç«¶åˆç¢ºèª
+		// ‹£‡Šm”F
 		if(mod !== void)
 			return mod;
 
 		if(typeof(global[name]) === 'undefined')
 		{
-			// ã‚¯ãƒ©ã‚¹ãŒè¦‹ã¤ã‹ã‚‰ãªã„ã®ã§ã€ã‚¯ãƒ©ã‚¹åã¨åŒã˜åå‰ã§ *.tjs ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã‚’è©¦ã™ã€‚
+			// ƒNƒ‰ƒX‚ªŒ©‚Â‚©‚ç‚È‚¢‚Ì‚ÅAƒNƒ‰ƒX–¼‚Æ“¯‚¶–¼‘O‚Å *.tjs ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ‚ğ‚·B
 			var storage = @"&name;.tjs";
 
 			if(!Storages.isExistentStorage(storage))
-				throw new GRuntimeError(@"'&name;' ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚");
+				throw new GRuntimeError(@"'&name;' ƒ‚ƒWƒ…[ƒ‹‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½B");
 
 			loadTJSOnce(storage);
 		}
@@ -64,7 +64,7 @@ class GModuleContainer extends GContainer
 			mod = new global[name](this, name);
 		} catch(e) {
 			throw new GRuntimeError(
-				@"'&name;' ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®ãƒ­ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã«å¤±æ•—ã—ã¾ã—ãŸã€‚\n" +
+				@"'&name;' ƒ‚ƒWƒ…[ƒ‹‚Ìƒ[ƒfƒBƒ“ƒO‚É¸”s‚µ‚Ü‚µ‚½B\n" +
 				e.message
 			);
 		}
@@ -78,10 +78,10 @@ class GModuleContainer extends GContainer
 			addAlias(mod, str) if str != orig;
 		}
 
-		// NOTE: add/push ã¯ä¸å¯ã§ã™ã€‚æ³¨æ„ã—ã¦ãã ã•ã„ã€‚
+		// NOTE: add/push ‚Í•s‰Â‚Å‚·B’ˆÓ‚µ‚Ä‚­‚¾‚³‚¢B
 		keys_.unshift(name);
 
-		// ãƒ­ãƒ¼ãƒ‰å®Œäº†
+		// ƒ[ƒhŠ®—¹
 		notice('onLoadModule', mod);
 		mod.onAttach(name);
 
@@ -98,7 +98,7 @@ class GModuleContainer extends GContainer
 		case 'String':		mod = get(nameOrModule); break;
 		case 'Object':		mod = nameOrModule if find(nameOrModule) != ''; break;
 		default:
-			throw new GArgumentsError('nameOrModule å¼•æ•°ã«ã¯åå‰ (String) ã‹ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ« (GModule æ´¾ç”Ÿã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ) ã‚’æŒ‡å®šã—ã¦ãã ã•ã„ã€‚');
+			throw new GArgumentsError('nameOrModule ˆø”‚É‚Í–¼‘O (String) ‚©ƒ‚ƒWƒ…[ƒ‹ (GModule ”h¶ƒIƒuƒWƒFƒNƒg) ‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢B');
 		}
 
 		if(mod !== void)
@@ -108,7 +108,7 @@ class GModuleContainer extends GContainer
 			keys_.remove(mod.name);
 			super.erase(mod.name);
 
-			// ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰å®Œäº†
+			// ƒAƒ“ƒ[ƒhŠ®—¹
 			notice('onUnloadModule', mod);
 
 			invalidate mod;
@@ -126,34 +126,34 @@ class GModuleContainer extends GContainer
 		case 'String':		mod = get(nameOrModule); break;
 		case 'Object':		mod = nameOrModule if find(nameOrModule) != ''; break;
 		default:
-			throw new GArgumentsError('nameOrModule å¼•æ•°ã«ã¯åå‰ (String) ã‹ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ« (GModule æ´¾ç”Ÿã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ) ã‚’æŒ‡å®šã—ã¦ãã ã•ã„ã€‚');
+			throw new GArgumentsError('nameOrModule ˆø”‚É‚Í–¼‘O (String) ‚©ƒ‚ƒWƒ…[ƒ‹ (GModule ”h¶ƒIƒuƒWƒFƒNƒg) ‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢B');
 		}
 
 		if(work !== void)
 		{
-			// ã™ã§ã«ç™»éŒ²æ¸ˆã¿ãªã‚‰ã°ä½•ã‚‚ã—ãªã„ã€‚
+			// ‚·‚Å‚É“o˜^Ï‚İ‚È‚ç‚Î‰½‚à‚µ‚È‚¢B
 			if(work.name == mod.name)
 				return;
 
 			throw new GRuntimeError(
-				@"ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®åˆ¥å '&alias;' ã®ç«¶åˆã€‚\n" +
-				@"æ—¢ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«: '&work.name;'\n" +
-				@"ç™»éŒ²ã—ã‚ˆã†ã¨ã—ãŸãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«: '&mod.name;'"
+				@"ƒ‚ƒWƒ…[ƒ‹‚Ì•Ê–¼ '&alias;' ‚Ì‹£‡B\n" +
+				@"Šù‚É“o˜^‚³‚ê‚Ä‚¢‚éƒ‚ƒWƒ…[ƒ‹: '&work.name;'\n" +
+				@"“o˜^‚µ‚æ‚¤‚Æ‚µ‚½ƒ‚ƒWƒ…[ƒ‹: '&mod.name;'"
 			);
 		}
 
 		super.add(alias, mod);
 
-		// ç™»éŒ²å®Œäº†
+		// “o˜^Š®—¹
 		mod.onRegistAlias(alias);
 	}
 
 	/**/
 	function eraseAlias(alias)
 	{
-		// keys_ ã«åå‰ãŒè¼‰ã£ã¦ã„ã‚‹ã¨ã„ã†äº‹ã¯ã‚¨ã‚¤ãƒªã‚¢ã‚¹ã§ã¯ãªã„
+		// keys_ ‚É–¼‘O‚ªÚ‚Á‚Ä‚¢‚é‚Æ‚¢‚¤–‚ÍƒGƒCƒŠƒAƒX‚Å‚Í‚È‚¢
 		if(keys_.find(alias) != -1)
-			throw new GArgumentsError(@"ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®åˆ¥åã‚’å‰Šé™¤ã—ã‚ˆã†ã¨ã—ã¾ã—ãŸãŒ &alias; ã¯åˆ¥åã§ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚");
+			throw new GArgumentsError(@"ƒ‚ƒWƒ…[ƒ‹‚Ì•Ê–¼‚ğíœ‚µ‚æ‚¤‚Æ‚µ‚Ü‚µ‚½‚ª &alias; ‚Í•Ê–¼‚Å‚Í‚ ‚è‚Ü‚¹‚ñB");
 
 		var mod = super.get(alias);
 
@@ -161,16 +161,16 @@ class GModuleContainer extends GContainer
 		{
 			super.erase(alias);
 
-			// å‰Šé™¤å®Œäº†
+			// íœŠ®—¹
 			mod.onUnregistAlias(alias);
 		}
 	}
 
-	/*! \brief ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®ã‚¿ã‚°ãƒãƒ³ãƒ‰ãƒ©ã‚’çµ±åˆã™ã‚‹ã€‚
+	/*! \brief ƒ‚ƒWƒ…[ƒ‹‚Ìƒ^ƒOƒnƒ“ƒhƒ‰‚ğ“‡‚·‚éB
 	 *
-	 * \param [destination] çµ±åˆå…ˆã®è¾æ›¸é…åˆ—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æŒ‡å®šã—ã¾ã™ã€‚
+	 * \param [destination] “‡æ‚Ì«‘”z—ñƒIƒuƒWƒFƒNƒg‚ğw’è‚µ‚Ü‚·B
 	 *
-	 * \return çµ±åˆã—ãŸè¾æ›¸é…åˆ—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è¿”ã—ã¾ã™ã€‚ã¤ã¾ã‚Š destination ã‚’è¿”ã—ã¾ã™ã€‚
+	 * \return “‡‚µ‚½«‘”z—ñƒIƒuƒWƒFƒNƒg‚ğ•Ô‚µ‚Ü‚·B‚Â‚Ü‚è destination ‚ğ•Ô‚µ‚Ü‚·B
 	**/
 	function unifyTagHandlers(destination)
 	{
@@ -232,19 +232,19 @@ class GModuleContainer extends GContainer
 	/**/
 	function add(name, obj)
 	{
-		throw new GImpossibleAccessError('GModuleContainer#add() ãƒ¡ã‚½ãƒƒãƒ‰ã¯åˆ©ç”¨ã§ãã¾ã›ã‚“ã€‚ä»£ã‚ã‚Šã« load() ãƒ¡ã‚½ãƒƒãƒ‰ã‚’åˆ©ç”¨ã—ã¦ãã ã•ã„ã€‚');
+		throw new GImpossibleAccessError('GModuleContainer#add() ƒƒ\ƒbƒh‚Í—˜—p‚Å‚«‚Ü‚¹‚ñB‘ã‚í‚è‚É load() ƒƒ\ƒbƒh‚ğ—˜—p‚µ‚Ä‚­‚¾‚³‚¢B');
 	}
 
 	/**/
 	function erase(name)
 	{
-		throw new GImpossibleAccessError('GModuleContainer#erase() ãƒ¡ã‚½ãƒƒãƒ‰ã¯åˆ©ç”¨ã§ãã¾ã›ã‚“ã€‚ä»£ã‚ã‚Šã« unload() ãƒ¡ã‚½ãƒƒãƒ‰ã‚’åˆ©ç”¨ã—ã¦ãã ã•ã„ã€‚');
+		throw new GImpossibleAccessError('GModuleContainer#erase() ƒƒ\ƒbƒh‚Í—˜—p‚Å‚«‚Ü‚¹‚ñB‘ã‚í‚è‚É unload() ƒƒ\ƒbƒh‚ğ—˜—p‚µ‚Ä‚­‚¾‚³‚¢B');
 	}
 
 	/**/
 	function remove(obj)
 	{
-		throw new GImpossibleAccessError('GModuleContainer#remove() ãƒ¡ã‚½ãƒƒãƒ‰ã¯åˆ©ç”¨ã§ãã¾ã›ã‚“ã€‚ä»£ã‚ã‚Šã« unload() ãƒ¡ã‚½ãƒƒãƒ‰ã‚’åˆ©ç”¨ã—ã¦ãã ã•ã„ã€‚');
+		throw new GImpossibleAccessError('GModuleContainer#remove() ƒƒ\ƒbƒh‚Í—˜—p‚Å‚«‚Ü‚¹‚ñB‘ã‚í‚è‚É unload() ƒƒ\ƒbƒh‚ğ—˜—p‚µ‚Ä‚­‚¾‚³‚¢B');
 	}
 
 	/**/
@@ -262,7 +262,7 @@ class GModuleContainer extends GContainer
 		var dic = super.store(tick);
 		var arr = keys_;
 
-		// å…¨ã¦ã®ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®çŠ¶æ…‹ã‚’ä¿å­˜ã™ã‚‹ã€‚
+		// ‘S‚Ä‚Ìƒ‚ƒWƒ…[ƒ‹‚Ìó‘Ô‚ğ•Û‘¶‚·‚éB
 		dic.modules = %[];
 		for(var i = arr.count - 1; i >= 0; i--)
 		{
@@ -281,18 +281,18 @@ class GModuleContainer extends GContainer
 
 		super.restore(dic, tick);
 
-		// å¿…è¦ã®ãªã„ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚’ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰
+		// •K—v‚Ì‚È‚¢ƒ‚ƒWƒ…[ƒ‹‚ğƒAƒ“ƒ[ƒh
 		for(var i = arr.count - 1; i >= 0; i--)
 			unload(arr[i]) if dic.keys.find(arr[i]) == -1;
 
-		// å¿…è¦ãªãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚’å¾©å…ƒ
+		// •K—v‚Èƒ‚ƒWƒ…[ƒ‹‚ğ•œŒ³
 		for(var i = dic.keys.count - 1; i >= 0; i--)
 		{
 			with(load(dic.keys[i]))
 				.restore(dic.modules[dic.keys[i]], tick);
 		}
 
-		// ã‚­ãƒ¼é…åˆ—å¾©å…ƒ
+		// ƒL[”z—ñ•œŒ³
 		keys_.assign(dic.keys);
 	}
 }

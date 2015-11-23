@@ -3,21 +3,19 @@
 **/
 
 
-// NOTE: GOKI2 åˆæœŸåŒ–ã€‚
+// NOTE: GOKI2 ‰Šú‰»B
 try {
 	var tick = System.getTickCount();
 	Scripts.execStorage('GOKI2.tjs');
-	log(@"GOKI2 ã®åˆæœŸåŒ–ãŒå®Œäº†ã—ã¾ã—ãŸã€‚ (&System.getTickCount() - tick; ms)");
+	log(@"GOKI2 ‚Ì‰Šú‰»‚ªŠ®—¹‚µ‚Ü‚µ‚½B (&System.getTickCount() - tick; ms)");
 } catch(e) {
 	abort(
-		"GOKI2 ã®åˆæœŸåŒ–ã«å¤±æ•—ã—ã¾ã—ãŸã€‚\n" +
-		"å¼·åˆ¶çµ‚äº†ã—ã¾ã™ã€‚\n" +
+		"GOKI2 ‚Ì‰Šú‰»‚É¸”s‚µ‚Ü‚µ‚½B\n" +
+		"‹­§I—¹‚µ‚Ü‚·B\n" +
 		"\n" +
 		@"!>> &e.message;"
 	);
 }
-
-Plugins.link('KAGParser.dll');
 
 loadTJS('MainWindow.tjs');
 
@@ -25,13 +23,13 @@ GMainWindow = MainWindow;
 
 var window = new GMainWindow();
 
-// NOTE: construct -> version -> config ã®é †ã«å®Ÿè¡Œã€‚
+// NOTE: construct -> version -> config ‚Ì‡‚ÉÀsB
 with(window.conductor)
 {
 	.pushScript('construct', 'version', 'config');
 	.jumpNextScript();
 }
 
-//Debug.console.visible = true;
+Debug.console.visible = true;
 
 

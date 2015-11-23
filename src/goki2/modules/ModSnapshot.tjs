@@ -2,7 +2,7 @@
  * $Revision: 337 $
 **/
 
-/*! \brief ã‚¹ãƒŠãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆæ©Ÿèƒ½ã€‚
+/*! \brief ƒXƒiƒbƒvƒVƒ‡ƒbƒg‹@”\B
 **/
 class ModSnapshot extends GModule
 {
@@ -28,9 +28,9 @@ class ModSnapshot extends GModule
 		];
 	}
 
-	/*! \brief ä¿å­˜ã•ã‚Œã¦ã„ã‚‹ã‚¹ãƒŠãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆã‚’å–å¾—ã—ã¾ã™ã€‚
+	/*! \brief •Û‘¶‚³‚ê‚Ä‚¢‚éƒXƒiƒbƒvƒVƒ‡ƒbƒg‚ğæ“¾‚µ‚Ü‚·B
 	 *
-	 * \param [layer] ã‚¹ãƒŠãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆç”»åƒã‚’å—ã‘å–ã‚‹ãƒ¬ã‚¤ãƒ¤ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æŒ‡å®šã—ã¾ã™ã€‚
+	 * \param [layer] ƒXƒiƒbƒvƒVƒ‡ƒbƒg‰æ‘œ‚ğó‚¯æ‚éƒŒƒCƒ„ƒIƒuƒWƒFƒNƒg‚ğw’è‚µ‚Ü‚·B
 	**/
 	function getImage(layer)
 	{
@@ -55,7 +55,7 @@ class ModSnapshot extends GModule
 	function unlock()
 	{
 		if(lockCount_-- <= 0)
-			throw new GRuntimeError('ãƒ­ãƒƒã‚¯ã‚«ã‚¦ãƒ³ã‚¿ãŒã‚¢ãƒ³ãƒ€ãƒ¼ãƒ•ãƒ­ãƒ¼ã—ã¾ã—ãŸã€‚[in ModSnapshot#unlock()]');
+			throw new GRuntimeError('ƒƒbƒNƒJƒEƒ“ƒ^‚ªƒAƒ“ƒ_[ƒtƒ[‚µ‚Ü‚µ‚½B[in ModSnapshot#unlock()]');
 		if(lockCount_ == 0)
 			container.window.temporaryLocation.remove('snapshot');
 	}

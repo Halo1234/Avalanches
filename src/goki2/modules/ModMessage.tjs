@@ -46,22 +46,22 @@ class ModMessage extends GModule
 
 	var hiddenMessageLayers = false;
 
-	var /* const */ smNotSkip = 0;		// ã‚¹ã‚­ãƒƒãƒ—ã—ãªã„
-	var /* const */ smNextWait = 1;		// æ¬¡ã®ã‚¯ãƒªãƒƒã‚¯å¾…ã¡ã¾ã§ã‚¹ã‚­ãƒƒãƒ—
-	var /* const */ smPageEnd = 2;		// ãƒšãƒ¼ã‚¸æœ«ã¾ã§ã‚¹ã‚­ãƒƒãƒ—
-	var /* const */ smNextStop = 3;		// æ¬¡ã®åœæ­¢ã¾ã§ã‚¹ã‚­ãƒƒãƒ—
-	var /* const */ smNotRead = 100;	// æ¬¡ã®æœªèª­éƒ¨åˆ†ã¾ã§ã‚¹ã‚­ãƒƒãƒ—
-	var /* const */ smCancel = 101;		// ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚Œã‚‹ã¾ã§ã‚¹ã‚­ãƒƒãƒ—
+	var /* const */ smNotSkip = 0;		// ƒXƒLƒbƒv‚µ‚È‚¢
+	var /* const */ smNextWait = 1;		// Ÿ‚ÌƒNƒŠƒbƒN‘Ò‚¿‚Ü‚ÅƒXƒLƒbƒv
+	var /* const */ smPageEnd = 2;		// ƒy[ƒW––‚Ü‚ÅƒXƒLƒbƒv
+	var /* const */ smNextStop = 3;		// Ÿ‚Ì’â~‚Ü‚ÅƒXƒLƒbƒv
+	var /* const */ smNotRead = 100;	// Ÿ‚Ì–¢“Ç•”•ª‚Ü‚ÅƒXƒLƒbƒv
+	var /* const */ smCancel = 101;		// ƒLƒƒƒ“ƒZƒ‹‚³‚ê‚é‚Ü‚ÅƒXƒLƒbƒv
 										//
-										// skipMode ãŒå–ã‚Šã†ã‚‹å€¤
-										// skipMode <= 0 ã¯éã‚¹ã‚­ãƒƒãƒ—çŠ¶æ…‹ã¨ã—ã¦ãã ã•ã„ã€‚
-										// skipMode >= 1 ã¯ã‚¹ã‚­ãƒƒãƒ—çŠ¶æ…‹ã¨ã—ã¦ãã ã•ã„ã€‚
-										// skipMode >= 100 ã¯é•·ã„ã‚¹ã‚­ãƒƒãƒ—çŠ¶æ…‹ã¨ã—ã¦ãã ã•ã„ã€‚
+										// skipMode ‚ªæ‚è‚¤‚é’l
+										// skipMode <= 0 ‚Í”ñƒXƒLƒbƒvó‘Ô‚Æ‚µ‚Ä‚­‚¾‚³‚¢B
+										// skipMode >= 1 ‚ÍƒXƒLƒbƒvó‘Ô‚Æ‚µ‚Ä‚­‚¾‚³‚¢B
+										// skipMode >= 100 ‚Í’·‚¢ƒXƒLƒbƒvó‘Ô‚Æ‚µ‚Ä‚­‚¾‚³‚¢B
 
-	var skipMode_ = smNotSkip;			// ç¾åœ¨ã®ã‚¹ã‚­ãƒƒãƒ—çŠ¶æ…‹
+	var skipMode_ = smNotSkip;			// Œ»İ‚ÌƒXƒLƒbƒvó‘Ô
 
-	var clickSkipEnabled = true;		// ã‚¯ãƒªãƒƒã‚¯ã‚¹ã‚­ãƒƒãƒ—ãŒæœ‰åŠ¹ã‹ã©ã†ã‹
-	var nextSkipEnabled = true;			// æ¬¡ã®åœæ­¢ã¾ã§ã‚¹ã‚­ãƒƒãƒ—ãŒæœ‰åŠ¹ã‹ã©ã†ã‹
+	var clickSkipEnabled = true;		// ƒNƒŠƒbƒNƒXƒLƒbƒv‚ª—LŒø‚©‚Ç‚¤‚©
+	var nextSkipEnabled = true;			// Ÿ‚Ì’â~‚Ü‚ÅƒXƒLƒbƒv‚ª—LŒø‚©‚Ç‚¤‚©
 
 	var lastClickGlyphVisible = false;
 	var lastClickGlyphMessageName;
@@ -278,7 +278,7 @@ class ModMessage extends GModule
 						{
 							if(autoWaitChEnabled_)
 							{
-								// è‡ªå‹•ã‚¦ã‚§ã‚¤ãƒˆ
+								// ©“®ƒEƒFƒCƒg
 								var idx;
 								if((idx = autoWaitChChars.indexOf(elm.text)) != -1)
 								{
@@ -332,8 +332,8 @@ class ModMessage extends GModule
 				if(current_ !== null)
 				{
 					// NOTE:
-					// æ”¹è¡Œã§ããªã„å ´åˆ p ã§ç½®ãæ›ãˆã‚‹ã€‚
-					// ï¼ˆæ¬¡ã®ãƒšãƒ¼ã‚¸ã®è¡Œé ­ã«æ”¹è¡Œã¯å¿…è¦ãªã„ï¼‰
+					// ‰üs‚Å‚«‚È‚¢ê‡ p ‚Å’u‚«Š·‚¦‚éB
+					// iŸ‚Ìƒy[ƒW‚Ìs“ª‚É‰üs‚Í•K—v‚È‚¢j
 					if(!current_.reline())
 						c.pendingTag('p');
 
@@ -595,9 +595,9 @@ class ModMessage extends GModule
 
 					return 'stop';
 				}
-				// EOFå‡¦ç†
-				// è‡ªå‹•å®Ÿè¡Œä¸­ãªã‚‰ next ã‚¿ã‚°ã‚’è¿½åŠ 
-				// æ‰‹å‹•å®Ÿè¡Œä¸­ãªã‚‰ end ã‚’è¿½åŠ ã™ã‚‹
+				// EOFˆ—
+				// ©“®Às’†‚È‚ç next ƒ^ƒO‚ğ’Ç‰Á
+				// è“®Às’†‚È‚ç end ‚ğ’Ç‰Á‚·‚é
 				c.pendingTag(c.autoJump ? 'next' : 'end');
 			} incontextof this,
 
@@ -1128,7 +1128,7 @@ class ModMessage extends GModule
 		if(elm.layer == '')
 		{
 			if(current_ === null)
-				throw new GRuntimeError('layer å±æ€§ãŒæŒ‡å®šã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚');
+				throw new GRuntimeError('layer ‘®«‚ªw’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB');
 
 			return current_;
 		}
@@ -1138,7 +1138,7 @@ class ModMessage extends GModule
 		layer = layerContainer_.get(elm.layer);
 
 		if(layer === void)
-			throw new GRuntimeError(@"ãƒ¬ã‚¤ãƒ¤ãƒ¼ &elm.layer; ã¯å­˜åœ¨ã—ã¾ã›ã‚“ã€‚");
+			throw new GRuntimeError(@"ƒŒƒCƒ„[ &elm.layer; ‚Í‘¶İ‚µ‚Ü‚¹‚ñB");
 
 		return layer;
 	}
@@ -1155,7 +1155,7 @@ class ModMessage extends GModule
 			break;
 		case 'Integer':
 			if(indexOrName < 0 || indexOrName >= messageLayers_.count)
-				throw new GOutOfRangeError(@"å­˜åœ¨ã—ãªã„ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å€¤ã‚’æŒ‡å®šã—ã¾ã—ãŸã€‚ï¼ˆæœ‰åŠ¹ç¯„å›²ï¼š0 ï½ &messageLayers_.count - 1;ï¼‰");
+				throw new GOutOfRangeError(@"‘¶İ‚µ‚È‚¢ƒCƒ“ƒfƒbƒNƒX’l‚ğw’è‚µ‚Ü‚µ‚½Bi—LŒø”ÍˆÍF0 ` &messageLayers_.count - 1;j");
 			layer = messageLayers_.at(indexOrName);
 			break;
 		default:
@@ -1174,9 +1174,9 @@ class ModMessage extends GModule
 		{
 			if(!.visible)
 			{
-				// å±¥æ­´ãŒè¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹é–“ã¯ã‚³ãƒ³ãƒ€ã‚¯ã‚¿ã‚’å®Œå…¨åœæ­¢ã•ã›ã‚‹
+				// —š—ğ‚ª•\¦‚³‚ê‚Ä‚¢‚éŠÔ‚ÍƒRƒ“ƒ_ƒNƒ^‚ğŠ®‘S’â~‚³‚¹‚é
 				window.conductor.suspended = true;
-				// å±¥æ­´ãƒ¬ã‚¤ãƒ¤ã‚’è¡¨ç¤ºã™ã‚‹
+				// —š—ğƒŒƒCƒ„‚ğ•\¦‚·‚é
 				.show();
 
 				container.callHandler('onShowHistoryLayer');
@@ -1321,8 +1321,8 @@ class ModMessage extends GModule
 	/**/
 	function onHistoryLayerEvent(obj, message, elm)
 	{
-		// å±¥æ­´ãƒ¬ã‚¤ãƒ¤ãŒéè¡¨ç¤ºã«ã•ã‚Œã‚‹å ´åˆ
-		// ã‚³ãƒ³ãƒ€ã‚¯ã‚¿ã®åœæ­¢çŠ¶æ…‹ã‚’è§£é™¤ã—ãªã‘ã‚Œã°ãªã‚‰ãªã„
+		// —š—ğƒŒƒCƒ„‚ª”ñ•\¦‚É‚³‚ê‚éê‡
+		// ƒRƒ“ƒ_ƒNƒ^‚Ì’â~ó‘Ô‚ğ‰ğœ‚µ‚È‚¯‚ê‚Î‚È‚ç‚È‚¢
 		switch(message)
 		{
 		case 'onHideCompleted':
@@ -1393,15 +1393,15 @@ class ModMessage extends GModule
 
 			return true;
 		}
-		// å±¥æ­´ãŒè¡¨ç¤ºä¸­
+		// —š—ğ‚ª•\¦’†
 		if(historyLayer.visible)
 		{
-			// ã“ã“ã«ãã‚‹ã¨ã„ã†ã“ã¨ã¯å±¥æ­´ãŒè¡¨ç¤ºåŠ¹æœã‚’å®Ÿè¡Œä¸­
-			// èª­ã¿æ¨ã¦ã‚‹
+			// ‚±‚±‚É‚­‚é‚Æ‚¢‚¤‚±‚Æ‚Í—š—ğ‚ª•\¦Œø‰Ê‚ğÀs’†
+			// “Ç‚İÌ‚Ä‚é
 			return true;
 		}
 		else
-		// å±¥æ­´ãŒè¡¨ç¤ºã•ã‚Œã¦ã„ãªã„ã€ã‹ã¤ãƒ›ã‚¤ãƒ¼ãƒ«ãŒå¥¥ã«å›ã•ã‚ŒãŸã€‚
+		// —š—ğ‚ª•\¦‚³‚ê‚Ä‚¢‚È‚¢A‚©‚ÂƒzƒC[ƒ‹‚ª‰œ‚É‰ñ‚³‚ê‚½B
 		if(delta > 0)
 		{
 			showHistoryLayer();
@@ -1445,7 +1445,7 @@ class ModMessage extends GModule
 	{
 		var modBookmark = window.modules.get('modBookmark');
 
-		// modBookmark ãŒå­˜åœ¨ã—ãªã„å ´åˆã¯æ—¢èª­ã‚¹ã‚­ãƒƒãƒ—ã¯å³åº§ã«ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã™ã‚‹
+		// modBookmark ‚ª‘¶İ‚µ‚È‚¢ê‡‚ÍŠù“ÇƒXƒLƒbƒv‚Í‘¦À‚ÉƒLƒƒƒ“ƒZƒ‹‚·‚é
 		if(modBookmark === void && longSkipping)
 			cancelNotReadSkip();
 	}

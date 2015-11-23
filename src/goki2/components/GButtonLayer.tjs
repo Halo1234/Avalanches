@@ -55,22 +55,22 @@ class GButtonLayer extends GWidgetLayer
 		colorRect(0, 0, imageWidth, h, 0, -255);
 		colorRect(0, 0, imageWidth, h, bodyColor, op) if bodyColor != clNone;
 
-		// é€šå¸¸çŠ¶æ…‹ã¨ãƒ­ãƒ¼ãƒ«ã‚ªãƒ¼ãƒãƒ¼çŠ¶æ…‹
+		// ’Êíó‘Ô‚Æƒ[ƒ‹ƒI[ƒo[ó‘Ô
 		op = op >> 1;
 		colorRect(0, 0, w + w, 1, 0xFFFFFF, op);
 		colorRect(0, 1, 1, h - 2, 0xFFFFFF, op);
 		colorRect(w + w - 1, 1, 1, h - 1, 0x000000, op);
 		colorRect(1, h - 1, w + w - 2, 1, 0x000000, op);
-		// é€šå¸¸çŠ¶æ…‹ã¨ãƒ­ãƒ¼ãƒ«ã‚ªãƒ¼ãƒãƒ¼çŠ¶æ…‹ã®å¢ƒç•Œç·š
+		// ’Êíó‘Ô‚Æƒ[ƒ‹ƒI[ƒo[ó‘Ô‚Ì‹«ŠEü
 		colorRect(w - 1, 1, 1, h - 2, 0x000000, op);
 		colorRect(w, 1, 1, h - 2, 0xFFFFFF, op);
-		// æŠ¼ã—ä¸‹ã’çŠ¶æ…‹
+		// ‰Ÿ‚µ‰º‚°ó‘Ô
 		colorRect(w + w, 0, w, 1, 0x000000, op);
 		colorRect(w + w, 1, 1, h - 2, 0x000000, op);
 		colorRect((w * 4) - 1, 1, 1, h - 1, 0xFFFFFF, op);
 		colorRect((w + w) + 1, h - 1, w - 2, 1, 0xFFFFFF, op);
 
-		// ãƒã‚¤ãƒ©ã‚¤ãƒˆ
+		// ƒnƒCƒ‰ƒCƒg
 		op = op >> 1;
 		colorRect(w + 1, 1, w + w - 2, h - 2, clHighlight, op);
 		colorRect(w + w + 1, 1, (w * 3) - 2, h - 2, clHighlight, op);

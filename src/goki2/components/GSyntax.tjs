@@ -3,15 +3,15 @@
 **/
 
 
-/*! \brief æ‹¡å¼µæ§‹æ–‡ã‚’å‡¦ç†ã—ã¾ã™ã€‚
+/*! \brief Šg’£\•¶‚ğˆ—‚µ‚Ü‚·B
 **/
 class GSyntax
 {
-	var tagname_ = '';				// å…ƒã®ã‚¿ã‚°å
+	var tagname_ = '';				// Œ³‚Ìƒ^ƒO–¼
 
-	var elementConvertNames_ = [];	// å¤‰æ›ã™ã¹ãå±æ€§åã®ãƒªã‚¹ãƒˆ
-	var patternNames_ = [];			// ãƒ‘ã‚¿ãƒ¼ãƒ³ç”Ÿæˆé–¢æ•°ã‚’æŒã¤å±æ€§åã®ãƒªã‚¹ãƒˆ
-	var groupFlagNames_ = [];		// ã‚°ãƒ«ãƒ¼ãƒ—åã®ãƒªã‚¹ãƒˆ
+	var elementConvertNames_ = [];	// •ÏŠ·‚·‚×‚«‘®«–¼‚ÌƒŠƒXƒg
+	var patternNames_ = [];			// ƒpƒ^[ƒ“¶¬ŠÖ”‚ğ‚Â‘®«–¼‚ÌƒŠƒXƒg
+	var groupFlagNames_ = [];		// ƒOƒ‹[ƒv–¼‚ÌƒŠƒXƒg
 
 	var elementConvert_ = %[];
 	var pattern_ = %[];
@@ -28,14 +28,14 @@ class GSyntax
 	{
 	}
 
-	/*! \brief å±æ€§å¤‰æ›ã‚’è¨­å®šã—ã¾ã™ã€‚
+	/*! \brief ‘®«•ÏŠ·‚ğİ’è‚µ‚Ü‚·B
 	**/
 	function setElementConvert(name, convert*)
 	{
 		var list = elementConvertNames_;
 		var econv = elementConvert_;
 
-		dm(@">>>> &name; ã®å¤‰æ›æŒ‡å®šã€‚");
+		dm(@">>>> &name; ‚Ì•ÏŠ·w’èB");
 
 		var tokens, key;
 		for(var i = 0; i < convert.count; i++)
@@ -44,7 +44,7 @@ class GSyntax
 			if(tokens.count > 2)
 			{
 				throw new GRuntimeError(
-					"å¤‰æ›æŒ‡å®š '->' ãŒè¤‡æ•°å›ç¾ã‚Œã¾ã—ãŸã€‚\n" +
+					"•ÏŠ·w’è '->' ‚ª•¡”‰ñŒ»‚ê‚Ü‚µ‚½B\n" +
 					@"'&convert[i];'\n"
 				);
 			}
@@ -77,7 +77,7 @@ class GSyntax
 					.value = tokens[0];
 				}
 
-				dm(@"'&key;' ã¯ &.target;='&.value;' ã«å¤‰æ›ã•ã‚Œã¾ã™ã€‚");
+				dm(@"'&key;' ‚Í &.target;='&.value;' ‚É•ÏŠ·‚³‚ê‚Ü‚·B");
 			}
 
 			list.add(key) if list.find(key) == -1;
@@ -86,17 +86,17 @@ class GSyntax
 		dm("<<<<");
 	}
 
-	/*! \brief ãƒ‘ã‚¿ãƒ¼ãƒ³å¤‰æ›ã‚’è¨­å®šã—ã¾ã™ã€‚
+	/*! \brief ƒpƒ^[ƒ“•ÏŠ·‚ğİ’è‚µ‚Ü‚·B
 	**/
 	function setPattern(name, pattern)
 	{
 		var ret = [];
 
-		dm(@">>>> ç”Ÿæˆé–¢æ•° &name; ã®å®šç¾©");
-		dm(@"å…¥åŠ›ã•ã‚ŒãŸãƒ‘ã‚¿ãƒ¼ãƒ³æ–‡å­—åˆ—ï¼š'&pattern;'");
+		dm(@">>>> ¶¬ŠÖ” &name; ‚Ì’è‹`");
+		dm(@"“ü—Í‚³‚ê‚½ƒpƒ^[ƒ“•¶š—ñF'&pattern;'");
 
 		try {
-			// ç°¡å˜ãªæ§‹æ–‡ãƒã‚§ãƒƒã‚¯
+			// ŠÈ’P‚È\•¶ƒ`ƒFƒbƒN
 			var ltFlag = false;
 			var colonFlag = false;
 
@@ -105,34 +105,34 @@ class GSyntax
 				if(pattern[i] == '<')
 				{
 					if(colonFlag)
-						throw new GRuntimeError('ãƒ‘ã‚¿ãƒ¼ãƒ³æŒ‡å®š :ï½: ã®ä¸­ã« < ã¯ä½¿ãˆã¾ã›ã‚“ã€‚');
+						throw new GRuntimeError('ƒpƒ^[ƒ“w’è :`: ‚Ì’†‚É < ‚Íg‚¦‚Ü‚¹‚ñB');
 					if(ltFlag)
-						throw new GRuntimeError('ãƒ‘ã‚¿ãƒ¼ãƒ³æŒ‡å®š <> ã¯ãƒã‚¹ãƒˆã™ã‚‹äº‹ã¯ã§ãã¾ã›ã‚“ã€‚');
+						throw new GRuntimeError('ƒpƒ^[ƒ“w’è <> ‚ÍƒlƒXƒg‚·‚é–‚Í‚Å‚«‚Ü‚¹‚ñB');
 					ltFlag = true;
 				}
 				else
 				if(pattern[i] == '>')
 				{
 					if(!ltFlag)
-						throw new GRuntimeError('ä½™åˆ†ãª > ãŒã‚ã‚Šã¾ã™ã€‚');
+						throw new GRuntimeError('—]•ª‚È > ‚ª‚ ‚è‚Ü‚·B');
 					if(i >= 1 && pattern[i - 1] == '<')
-						throw new GRuntimeError('åå‰ã®ç„¡ã„ç½®æ›æŒ‡å®šãŒã‚ã‚Šã¾ã™ã€‚');
+						throw new GRuntimeError('–¼‘O‚Ì–³‚¢’uŠ·w’è‚ª‚ ‚è‚Ü‚·B');
 					ltFlag = false;
 				}
 				else
 				if(pattern[i] == ':')
 				{
 					if(ltFlag)
-						throw new GRuntimeError('ãƒ‘ã‚¿ãƒ¼ãƒ³æŒ‡å®š <ï½> ã®ä¸­ã« : ã¯ä½¿ãˆã¾ã›ã‚“ã€‚');
+						throw new GRuntimeError('ƒpƒ^[ƒ“w’è <`> ‚Ì’†‚É : ‚Íg‚¦‚Ü‚¹‚ñB');
 					if(colonFlag && i >= 1 && pattern[i - 1] == ':')
-						throw new GRuntimeError('åå‰ã®ç„¡ã„ç½®æ›æŒ‡å®šãŒã‚ã‚Šã¾ã™ã€‚');
+						throw new GRuntimeError('–¼‘O‚Ì–³‚¢’uŠ·w’è‚ª‚ ‚è‚Ü‚·B');
 					colonFlag = !colonFlag;
 				}
 			}
 			if(ltFlag)
-				throw new GRuntimeError('< ã§é–‹å§‹ã•ã‚ŒãŸãƒ‘ã‚¿ãƒ¼ãƒ³æŒ‡å®šãŒ > ã§é–‰ã˜ã‚‰ã‚Œã¦ã„ã¾ã›ã‚“ã€‚');
+				throw new GRuntimeError('< ‚ÅŠJn‚³‚ê‚½ƒpƒ^[ƒ“w’è‚ª > ‚Å•Â‚¶‚ç‚ê‚Ä‚¢‚Ü‚¹‚ñB');
 			if(colonFlag)
-				throw new GRuntimeError(': ãŒé–‰ã˜ã‚‰ã‚Œã¦ã„ãªã„éƒ¨åˆ†ãŒã‚ã‚Šã¾ã™ã€‚');
+				throw new GRuntimeError(': ‚ª•Â‚¶‚ç‚ê‚Ä‚¢‚È‚¢•”•ª‚ª‚ ‚è‚Ü‚·B');
 
 			var reg = new RegExp('<([^<>]*)>', 'g');
 			var src = "function (s, p) {\n";
@@ -144,16 +144,16 @@ class GSyntax
 				return "&p['" + token + "'];";
 			} incontextof this;
 
-			// ã¾ãš <name> å½¢å¼ã‹ã‚‰ p['&name;'] å½¢å¼ã«å¤‰æ›ã™ã‚‹ã€‚
+			// ‚Ü‚¸ <name> Œ`®‚©‚ç p['&name;'] Œ`®‚É•ÏŠ·‚·‚éB
 			tokens.clear();
 			pattern = pattern.replace(reg, block);
 
-			// <ï½> æŒ‡å®šã¯çµ¶å¯¾æŒ‡å®šãªã®ã§å±æ€§ãŒå­˜åœ¨ã—ãªã„å ´åˆã¯ void ã§ãªã‘ã‚Œã°ãªã‚‰ãªã„ã€‚
+			// <`> w’è‚Íâ‘Îw’è‚È‚Ì‚Å‘®«‚ª‘¶İ‚µ‚È‚¢ê‡‚Í void ‚Å‚È‚¯‚ê‚Î‚È‚ç‚È‚¢B
 			for(var i = 0; i < tokens.count; i++)
 				src += @"if(p['&tokens[i];'] === void) return void;\n"; 
 			ret.push(tokens*);
 
-			// æ¬¡ã« :name: å½¢å¼ã‹ã‚‰ p['&name;'] å½¢å¼ã«å¤‰æ›ã™ã‚‹ã€‚
+			// Ÿ‚É :name: Œ`®‚©‚ç p['&name;'] Œ`®‚É•ÏŠ·‚·‚éB
 			reg.compile(":([^:]*):", "g");
 			tokens.clear();
 			pattern = pattern.replace(reg, block);
@@ -161,7 +161,7 @@ class GSyntax
 
 			src += @'return @"&pattern;";\n};';
 
-			dm(@"ç”Ÿæˆé–¢æ•°ï¼š\n&src;\n<<<<");
+			dm(@"¶¬ŠÖ”F\n&src;\n<<<<");
 
 			pattern_[name] = ((Scripts.eval(src)) incontextof global);
 
@@ -177,7 +177,7 @@ class GSyntax
 		return ret;
 	}
 
-	/*! \brief ã‚°ãƒ«ãƒ¼ãƒ—ã«å±æ€§ã‚’è¿½åŠ ã™ã‚‹ã€‚
+	/*! \brief ƒOƒ‹[ƒv‚É‘®«‚ğ’Ç‰Á‚·‚éB
 	**/
 	function setGroup(name, elements*)
 	{
@@ -194,10 +194,10 @@ class GSyntax
 			.add(name) if .find(name) == -1;
 	}
 
-	/*! \brief å¤‰æ›å‡¦ç†æœ¬ä½“ã§ã™ã€‚
+	/*! \brief •ÏŠ·ˆ—–{‘Ì‚Å‚·B
 	 *
-	 * \param [input] å¤‰æ›å…ƒã®è¾æ›¸é…åˆ—ã‚’æŒ‡å®šã—ã¾ã™ã€‚
-	 * \param [output:input:] å¤‰æ›å…ˆãŒå…¥åŠ›ã¨é•ã†å ´åˆã«è¾æ›¸é…åˆ—ã‚’æŒ‡å®šã—ã¾ã™ã€‚
+	 * \param [input] •ÏŠ·Œ³‚Ì«‘”z—ñ‚ğw’è‚µ‚Ü‚·B
+	 * \param [output:input:] •ÏŠ·æ‚ª“ü—Í‚Æˆá‚¤ê‡‚É«‘”z—ñ‚ğw’è‚µ‚Ü‚·B
 	**/
 	function translate(input, output = input)
 	{
@@ -215,30 +215,30 @@ class GSyntax
 
 		for(var i = 0; i < c; i += 2)
 		{
-			// ã‚°ãƒ«ãƒ¼ãƒ—ãƒ•ãƒ©ã‚°
+			// ƒOƒ‹[ƒvƒtƒ‰ƒO
 			outputGroupFlag_private_(key = arr[i], output);
 
 			if(econv[key] === void)
 				continue;
 
-			// å±æ€§å¤‰æ›
+			// ‘®«•ÏŠ·
 			for(var j = 0; j < econv[key].count; j++)
 			{
 				with(econv[key][j])
 				{
 					output[.target] = .value;
-					dm(@"'&key;' ã‚’ '&.target;=&.value;' ã«å¤‰æ›ã—ã¾ã—ãŸã€‚");
+					dm(@"'&key;' ‚ğ '&.target;=&.value;' ‚É•ÏŠ·‚µ‚Ü‚µ‚½B");
 				}
 			}
 		}
 
-		// ãƒ‘ã‚¿ãƒ¼ãƒ³
+		// ƒpƒ^[ƒ“
 		c = ptrnns.count;
 		for(var i = 0; i < c; i++)
 		{
 			key = ptrnns[i];
 
-			// ã™ã§ã«å±æ€§ãŒå­˜åœ¨ã™ã‚‹ã€ã¾ãŸã¯ãƒ‘ã‚¿ãƒ¼ãƒ³ãŒç„¡ã‘ã‚Œã°ä½•ã‚‚ã—ãªã„ã€‚
+			// ‚·‚Å‚É‘®«‚ª‘¶İ‚·‚éA‚Ü‚½‚Íƒpƒ^[ƒ“‚ª–³‚¯‚ê‚Î‰½‚à‚µ‚È‚¢B
 			if(output[key] !== void || ptrn[key] === void)
 				continue;
 
@@ -246,9 +246,9 @@ class GSyntax
 			if(value !== void)
 			{
 				output[key] = value;
-				dm(@"'&key;=&value;' ã‚’ç”Ÿæˆã—ã¾ã—ãŸã€‚");
+				dm(@"'&key;=&value;' ‚ğ¶¬‚µ‚Ü‚µ‚½B");
 
-				// ã‚°ãƒ«ãƒ¼ãƒ—ãƒ•ãƒ©ã‚°
+				// ƒOƒ‹[ƒvƒtƒ‰ƒO
 				outputGroupFlag_private_(key, output);
 			}
 		}

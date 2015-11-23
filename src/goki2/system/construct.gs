@@ -2,23 +2,23 @@
 ; * $Revision: 341 $
 ;**/
 
-; NOTE: ここでプロジェクトに必要な機能を読み込んでください。
-; NOTE: 最初に生成されるメインウインドウはデフォルトでは、何の機能も持っていません。
+; NOTE: �����Ńv���W�F�N�g�ɕK�v�ȋ@�\��ǂݍ���ł��������B
+; NOTE: �ŏ��ɐ�������郁�C���E�C���h�E�̓f�t�H���g�ł́A���̋@�\�������Ă��܂���B
 
 
-; ◆プラグイン読み込み
+; ���v���O�C���ǂݍ���
 ;
-;  Windows の場合、主に *.dll ファイルになります。
+;  Windows �̏ꍇ�A��� *.dll �t�@�C���ɂȂ�܂��B
 
-; ogg デコーダ
+; ogg �f�R�[�_
 @load_plugin name=wuvorbis.dll
 
 
-; ◆モジュール読み込み
+; �����W���[���ǂݍ���
 ;
-; ここでプロジェクトに必要なモジュールを読み込んでください。
+; �����Ńv���W�F�N�g�ɕK�v�ȃ��W���[����ǂݍ���ł��������B
 
-; ここまで
+; �����܂�
 ;
 
 

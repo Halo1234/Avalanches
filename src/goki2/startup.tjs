@@ -3,15 +3,15 @@
 **/
 
 
-/*! \brief 例外 exception を再スローします。
- *         この関数は決して戻りません。
+/*! \brief ��O exception ���ăX���[���܂��B
+ *         ���̊֐��͌����Ė߂�܂���B
  *
- * この関数は可読性維持のためだけに存在しています。
- * そのため catch した例外のみを対象にしてください。
+ * ���̊֐��͉ǐ��ێ��̂��߂����ɑ��݂��Ă��܂��B
+ * ���̂��� catch ������O�݂̂�Ώۂɂ��Ă��������B
  *
- * \param [exception] Exception クラス派生のオブジェクトを指定します。
+ * \param [exception] Exception �N���X�h���̃I�u�W�F�N�g���w�肵�܂��B
  *
- * \return 決して戻りません。
+ * \return �����Ė߂�܂���B
 **/
 function raiseUpException(exception)
 {
@@ -19,20 +19,20 @@ function raiseUpException(exception)
 	throw exception;
 }
 
-/*! \brief エラーログを出力して、コアを強制的に終了させます。
- *         この関数は決して戻りません。
+/*! \brief �G���[���O���o�͂��āA�R�A�������I�ɏI�������܂��B
+ *         ���̊֐��͌����Ė߂�܂���B
  *
- * 通常はこの関数はあまり利用されない事が望ましいです。
- * ただし、システムの初期化中などの特殊な条件下で
- * エラー発生時に終了する手段として利用する事を想定しています。
- * また、開発中にコンソールから abort() などとする事で
- * 操作不能な状態でも終了できる場合があります。
- * コンソールすら操作不能な場合は利用できません。
+ * �ʏ�͂��̊֐��͂��܂藘�p����Ȃ������]�܂����ł��B
+ * �������A�V�X�e���̏��������Ȃǂ̓���ȏ�������
+ * �G���[�������ɏI�������i�Ƃ��ė��p���鎖��z�肵�Ă��܂��B
+ * �܂��A�J�����ɃR���\�[������ abort() �ȂǂƂ��鎖��
+ * ����s�\�ȏ�Ԃł��I���ł���ꍇ������܂��B
+ * �R���\�[�����瑀��s�\�ȏꍇ�͗��p�ł��܂���B
  *
- * \param [message] エラーメッセージの詳細を指定します。
- * \param [caption:'Abort'] エラーメッセージのキャプションを指定します。
+ * \param [message] �G���[���b�Z�[�W�̏ڍׂ��w�肵�܂��B
+ * \param [caption:'Abort'] �G���[���b�Z�[�W�̃L���v�V�������w�肵�܂��B
  *
- * \return 決して戻りません。
+ * \return �����Ė߂�܂���B
 **/
 function abort(message, caption = 'Abort')
 {
@@ -45,24 +45,24 @@ function abort(message, caption = 'Abort')
 		System.inform(message, caption);
 		System.exit();
 	} catch (e) {
-		// NOTE: 最後の望みをかけてもう一度 System.exit() する。
+		// NOTE: �Ō�̖]�݂������Ă�����x System.exit() ����B
 		System.exit();
-		// NOTE: 諦める。
+		// NOTE: ���߂�B
 		raiseUpException(e);
 	}
 
 	throw new Exception('Terminate abort function. This is dead code.');
 }
 
-/*! \brief path が存在すれば自動検索パスに追加します。
+/*! \brief path �����݂���Ύ��������p�X�ɒǉ����܂��B
  *
- * path が存在しなければ何もしません。
- * それ以外は path を自動検索パスに追加します。
+ * path �����݂��Ȃ���Ή������܂���B
+ * ����ȊO�� path �����������p�X�ɒǉ����܂��B
  *
- * \param [path] 追加したいＸＰ３アーカイブのパスを統一ストレージ形式で指定します。
+ * \param [path] �ǉ��������w�o�R�A�[�J�C�u�̃p�X�𓝈�X�g���[�W�`���Ŏw�肵�܂��B
  *
- * \return path が存在しなければ false を返します。
- *         それ以外は true を返します。
+ * \return path �����݂��Ȃ���� false ��Ԃ��܂��B
+ *         ����ȊO�� true ��Ԃ��܂��B
 **/
 function addXP3ArchiveToKrkrAutoPath(path)
 {
@@ -76,15 +76,15 @@ function addXP3ArchiveToKrkrAutoPath(path)
 	return false;
 }
 
-/*! \brief addXP3ArchiveToKrkrAutoPath() で追加した自動検索パスを削除します。
+/*! \brief addXP3ArchiveToKrkrAutoPath() �Œǉ��������������p�X���폜���܂��B
  *
- * path が存在しなければ何もしません。
- * それ以外は path を自動検索パスから削除します。
+ * path �����݂��Ȃ���Ή������܂���B
+ * ����ȊO�� path �����������p�X����폜���܂��B
  *
- * \param [path] 削除したいＸＰ３アーカイブのパスを統一ストレージ形式で指定します。
+ * \param [path] �폜�������w�o�R�A�[�J�C�u�̃p�X�𓝈�X�g���[�W�`���Ŏw�肵�܂��B
  *
- * \return path が存在しなければ false を返します。
- *         それ以外は true を返します。
+ * \return path �����݂��Ȃ���� false ��Ԃ��܂��B
+ *         ����ȊO�� true ��Ԃ��܂��B
 **/
 function removeXP3ArchiveFromKrkrAutoPath(path)
 {
@@ -98,13 +98,13 @@ function removeXP3ArchiveFromKrkrAutoPath(path)
 	return false;
 }
 
-/*! \brief 自動検索パス追加用ユーティリティ関数
+/*! \brief ���������p�X�ǉ��p���[�e�B���e�B�֐�
  *
- * path 上に name.xp3 が存在すれば path/name.xp3 を自動検索パスに追加します。
- * そうでなければ name/ フォルダを自動検索パスに追加します。
+ * path ��� name.xp3 �����݂���� path/name.xp3 �����������p�X�ɒǉ����܂��B
+ * �����łȂ���� name/ �t�H���_�����������p�X�ɒǉ����܂��B
  *
- * \param [name] 一般的に開発環境のフォルダ名をそのまま指定します。
- * \param [path:System.exePath:] ＸＰ３アーカイブが存在するハズのパスを統一ストレージ形式で指定します。
+ * \param [name] ��ʓI�ɊJ�����̃t�H���_�������̂܂܎w�肵�܂��B
+ * \param [path:System.exePath:] �w�o�R�A�[�J�C�u�����݂���n�Y�̃p�X�𓝈�X�g���[�W�`���Ŏw�肵�܂��B
 **/
 function addAutoPath(name, path = System.exePath)
 {
@@ -112,13 +112,13 @@ function addAutoPath(name, path = System.exePath)
 		Storages.addAutoPath(@"&name;/");
 }
 
-/*! \brief 自動検索パス削除用ユーティリティ関数
+/*! \brief ���������p�X�폜�p���[�e�B���e�B�֐�
  *
- * path 上に name.xp3 が存在すれば path/name.xp3 を自動検索パスから削除します。
- * そうでなければ name/ フォルダを自動検索パスから削除します。
+ * path ��� name.xp3 �����݂���� path/name.xp3 �����������p�X����폜���܂��B
+ * �����łȂ���� name/ �t�H���_�����������p�X����폜���܂��B
  *
- * \param [name] 一般的に開発環境のフォルダ名をそのまま指定します。
- * \param [path:System.exePath:] ＸＰ３アーカイブが存在するハズのパスを統一ストレージ形式で指定します。
+ * \param [name] ��ʓI�ɊJ�����̃t�H���_�������̂܂܎w�肵�܂��B
+ * \param [path:System.exePath:] �w�o�R�A�[�J�C�u�����݂���n�Y�̃p�X�𓝈�X�g���[�W�`���Ŏw�肵�܂��B
 **/
 function removeAutoPath(name, path = System.exePath)
 {
@@ -127,7 +127,7 @@ function removeAutoPath(name, path = System.exePath)
 }
 
 
-// NOTE: 初期化中のログ出力先を一時的にデスクトップに変更する。
+// NOTE: ���������̃��O�o�͐���ꎞ�I�Ƀf�X�N�g�b�v�ɕύX����B
 try {
 	var shellFolderPath = "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders\\Desktop";
 	var desktopPath = System.readRegValue(@"HKEY_CURRENT_USER\\&shellFolderPath;");
@@ -138,32 +138,32 @@ try {
 		Debug.logLocation = desktopPath;
 } catch (e) {
 	abort(
-		"エラーログ出力先の変更に失敗しました。\n" +
-		"強制終了します。\n" +
+		"�G���[���O�o�͐�̕ύX�Ɏ��s���܂����B\n" +
+		"�����I�����܂��B\n" +
 		"\n" +
 		@"&e.message;"
 	);
 }
 
 
-// NOTE: 自動検索パスの初期化。
+// NOTE: ���������p�X�̏������B
 try {
 
 	var path = [];
 
-	// 自動検索パスに追加するフォルダのリストを読み込む。
+	// ���������p�X�ɒǉ�����t�H���_�̃��X�g��ǂݍ��ށB
 	path.load('krkr_autopath.ary');
 
-	// 自動検索パスの登録
+	// ���������p�X�̓o�^
 	for(var i = 0; i < path.count; i++)
 		addAutoPath(path[i]);
 
 	global['goki2UpdateInitializerFunctions'] = [];
 
-	// NOTE: 追加のアーカイブは、念のため KAG/GOKI と名前がかぶらないようにしておく。
+	// NOTE: �ǉ��̃A�[�J�C�u�́A�O�̂��� KAG/GOKI �Ɩ��O�����Ԃ�Ȃ��悤�ɂ��Ă����B
 	for(var i = 1; addXP3ArchiveToKrkrAutoPath("update%03d.xp3".sprintf(i)); i++)
 	{
-		// NOTE: updateXXXInitializer の呼び出しは後で初期化が終わってから行う。
+		// NOTE: updateXXXInitializer �̌Ăяo���͌�ŏ��������I����Ă���s���B
 		var handler = global["update%03dInitializer".sprintf(i)];
 
 		goki2UpdateInitializerFunctions.push(handler) if handler instanceof 'Function';
@@ -171,28 +171,28 @@ try {
 
 } catch (e) {
 	abort(
-		"自動検索パスの初期化に失敗しました。\n" +
-		"強制終了します。\n" +
+		"���������p�X�̏������Ɏ��s���܂����B\n" +
+		"�����I�����܂��B\n" +
 		"\n" +
 		e.message
 	);
 }
 
 
-// NOTE: 起動スクリプトを実行する。
+// NOTE: �N���X�N���v�g�����s����B
 try {
 	Scripts.execStorage('Initialize.tjs');
 } catch(e) {
 	abort(
-		"起動スクリプトの実行に失敗しました。\n" +
-		"強制終了します。\n" +
+		"�N���X�N���v�g�̎��s�Ɏ��s���܂����B\n" +
+		"�����I�����܂��B\n" +
 		"\n" +
 		e.message
 	);
 }
 
-// NOTE: updateXXXInitializer 呼び出し。
-/*{ // FIXME: バージョン番号がこの段階では設定されていない。
+// NOTE: updateXXXInitializer �Ăяo���B
+/*{ // FIXME: �o�[�W�����ԍ������̒i�K�ł͐ݒ肳��Ă��Ȃ��B
 	var c = goki2UpdateInitializerFunctions.count;
 
 	with(window.conductor)
@@ -202,7 +202,7 @@ try {
 	}
 }*/
 
-// NOTE: コマンドラインオプションの制御
+// NOTE: �R�}���h���C���I�v�V�����̐���
 {
 	var disableHotKeys = [
 		//#Begin the list of hot-keys to disable.

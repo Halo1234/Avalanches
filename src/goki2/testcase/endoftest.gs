@@ -3,7 +3,7 @@
 ;**/
 
 
-@log message="繝�繧ｹ繝育ｵゆｺ�"
+@log message="テスト終了"
 @s
 
 

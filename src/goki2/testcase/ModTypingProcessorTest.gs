@@ -5,32 +5,32 @@
 *label|
 
 @load_roman_table language=japanese
-@log message="æ—¥æœ¬èªãƒ­ãƒ¼ãƒå­—å¯¾å¿œè¡¨èª­ã¿è¾¼ã¿ã«æˆåŠŸã—ã¾ã—ãŸã€‚"
+@log message="“ú–{Œêƒ[ƒ}š‘Î‰•\“Ç‚İ‚İ‚É¬Œ÷‚µ‚Ü‚µ‚½B"
 
-@add_typing_word caption="å¤©ä¸Šä¸çŸ¥å”¯æˆ‘ç‹¬æ" ruby="ãƒã‚³ãƒ¯ãƒ¬"
-@add_typing_word caption="æš—ã„å®¿" ruby="ãƒ›ãƒ†ãƒ«ãƒ»ãƒ©ãƒ•ãƒ¬ã‚·ã‚¢"
-@add_typing_word caption="é›»å…‰çŸ³ç«" ruby="ãƒ‡ãƒ³ã‚³ã‚¦ã‚»ãƒƒã‚«"
-@add_typing_word caption="é›·æŒ" ruby="ã‚¤ã‚ºãƒ„ã‚·"
-@add_typing_word caption="ç¥é€Ÿ" ruby="ã‚«ãƒ³ãƒ ãƒ«"
-@add_typing_word caption="è½é›·" ruby="ãƒŠãƒ«ã‚«ãƒŸ"
-@add_typing_word caption="ç–¾é¢¨è¿…é›·" ruby="ã‚·ãƒƒãƒ—ã‚¦ã‚¸ãƒ³ãƒ©ã‚¤"
+@add_typing_word caption="“Vã•s’m—B‰ä“Æ‘¹" ruby="ƒnƒRƒƒŒ"
+@add_typing_word caption="ˆÃ‚¢h" ruby="ƒzƒeƒ‹Eƒ‰ƒtƒŒƒVƒA"
+@add_typing_word caption="“dŒõÎ‰Î" ruby="ƒfƒ“ƒRƒEƒZƒbƒJ"
+@add_typing_word caption="—‹¶" ruby="ƒCƒYƒcƒV"
+@add_typing_word caption="_‘¬" ruby="ƒJƒ“ƒ€ƒ‹"
+@add_typing_word caption="——‹" ruby="ƒiƒ‹ƒJƒ~"
+@add_typing_word caption="¾•—v—‹" ruby="ƒVƒbƒvƒEƒWƒ“ƒ‰ƒC"
 
 @dump_typing_word_list
 
-@remove_typing_word caption="é›»å…‰çŸ³ç«"
-@remove_typing_word ruby="ã‚¤ã‚ºãƒ„ã‚·"
-@remove_typing_word caption="ç¥é€Ÿ" ruby="ã‚«ãƒ³ãƒ ãƒ«"
-@log message="ãƒ¯ãƒ¼ãƒ‰ã‚’ï¼“ã¤å‰Šé™¤ã—ã¾ã—ãŸã€‚"
+@remove_typing_word caption="“dŒõÎ‰Î"
+@remove_typing_word ruby="ƒCƒYƒcƒV"
+@remove_typing_word caption="_‘¬" ruby="ƒJƒ“ƒ€ƒ‹"
+@log message="ƒ[ƒh‚ğ‚R‚Âíœ‚µ‚Ü‚µ‚½B"
 
 @dump_typing_word_list
 
 @clear_typing_word_list
-@log message="ãƒ¯ãƒ¼ãƒ‰å…¨ã¦å‰Šé™¤ã—ã¾ã—ãŸã€‚"
+@log message="ƒ[ƒh‘S‚Äíœ‚µ‚Ü‚µ‚½B"
 
 @dump_typing_word_list
 
 @load_typing_words storage=HAMON_Skills.dic
-@log message="ãƒ¯ãƒ¼ãƒ‰ãƒªã‚¹ãƒˆã‚’èª­ã¿è¾¼ã¿ã¾ã—ãŸã€‚"
+@log message="ƒ[ƒhƒŠƒXƒg‚ğ“Ç‚İ‚İ‚Ü‚µ‚½B"
 
 @dump_typing_word_list
 
@@ -38,37 +38,37 @@
 
 *label|
 @typing_start
-@log message="ã‚¿ã‚¤ãƒ”ãƒ³ã‚°ã®å—ä»˜ã‚’é–‹å§‹ã—ã¾ã—ãŸã€‚"
+@log message="ƒ^ƒCƒsƒ“ƒO‚Ìó•t‚ğŠJn‚µ‚Ü‚µ‚½B"
 
 @show_typing_target position=center count=1
-@log message="ã‚¿ã‚¤ãƒ”ãƒ³ã‚°ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚’ãƒ©ãƒ³ãƒ€ãƒ ã§ä¸€ã¤è¡¨ç¤ºã—ã¾ã—ãŸã€‚"
+@log message="ƒ^ƒCƒsƒ“ƒOƒ^[ƒQƒbƒg‚ğƒ‰ƒ“ƒ_ƒ€‚Åˆê‚Â•\¦‚µ‚Ü‚µ‚½B"
 
 @wait_typing target_count=0
 
 
 *label|
-@show_typing_target left=100 top=random caption="æ³¢ç´‹ç–¾èµ°"
-@log message="ã‚¿ã‚¤ãƒ”ãƒ³ã‚°ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚’ caption å±æ€§ã‚’æŒ‡å®šã—ã¦è¡¨ç¤ºã—ã¾ã—ãŸã€‚"
+@show_typing_target left=100 top=random caption="”g–ä¾‘–"
+@log message="ƒ^ƒCƒsƒ“ƒOƒ^[ƒQƒbƒg‚ğ caption ‘®«‚ğw’è‚µ‚Ä•\¦‚µ‚Ü‚µ‚½B"
 
-@show_typing_target left=random top=100 ruby="ã‚µãƒ³ãƒ©ã‚¤ãƒˆã‚¤ã‚¨ãƒ­ãƒ¼ãƒ»ã‚ªãƒ¼ãƒãƒ¼ãƒ‰ãƒ©ã‚¤ãƒ–"
-@log message="ã‚¿ã‚¤ãƒ”ãƒ³ã‚°ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚’ ruby å±æ€§ã‚’æŒ‡å®šã—ã¦è¡¨ç¤ºã—ã¾ã—ãŸã€‚"
+@show_typing_target left=random top=100 ruby="ƒTƒ“ƒ‰ƒCƒgƒCƒGƒ[EƒI[ƒo[ƒhƒ‰ƒCƒu"
+@log message="ƒ^ƒCƒsƒ“ƒOƒ^[ƒQƒbƒg‚ğ ruby ‘®«‚ğw’è‚µ‚Ä•\¦‚µ‚Ü‚µ‚½B"
 
-; ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãŒæ®‹ã‚Šï¼‘ã¤ã«ãªã‚‹ã¾ã§å¾…ã¤ã€‚
+; ƒ^[ƒQƒbƒg‚ªc‚è‚P‚Â‚É‚È‚é‚Ü‚Å‘Ò‚ÂB
 @wait_typing target_count=1
 
 
 *label|
-@show_typing_target position=random ruby="ã‚¤ã‚ºãƒ„ã‚·"
-@show_typing_target position=random caption="ç¥é€Ÿ"
-@log message="å­˜åœ¨ã—ãªã„ã‚¿ã‚¤ãƒ”ãƒ³ã‚°ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚’æŒ‡å®šã—ã¾ã—ãŸã€‚ãƒ¯ãƒ¼ãƒ‹ãƒ³ã‚°ãŒï¼’ã¤ãƒ­ã‚°ã«è¡¨ç¤ºã•ã‚Œã¦ã„ã‚Œã°æˆåŠŸã§ã™ã€‚"
+@show_typing_target position=random ruby="ƒCƒYƒcƒV"
+@show_typing_target position=random caption="_‘¬"
+@log message="‘¶İ‚µ‚È‚¢ƒ^ƒCƒsƒ“ƒOƒ^[ƒQƒbƒg‚ğw’è‚µ‚Ü‚µ‚½Bƒ[ƒjƒ“ƒO‚ª‚Q‚ÂƒƒO‚É•\¦‚³‚ê‚Ä‚¢‚ê‚Î¬Œ÷‚Å‚·B"
 
 @wait_typing target_count=0
 
 
-@log message="å…¨ã¦ã®ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®å…¥åŠ›ã‚’å®Œäº†ã—ã¾ã—ãŸã€‚"
+@log message="‘S‚Ä‚Ìƒ^[ƒQƒbƒg‚Ì“ü—Í‚ğŠ®—¹‚µ‚Ü‚µ‚½B"
 
 *label|
 @typing_end
-@log message="ã‚¿ã‚¤ãƒ”ãƒ³ã‚°ã®å—ä»˜ã‚’çµ‚äº†ã—ã¾ã—ãŸã€‚"
+@log message="ƒ^ƒCƒsƒ“ƒO‚Ìó•t‚ğI—¹‚µ‚Ü‚µ‚½B"
 
 

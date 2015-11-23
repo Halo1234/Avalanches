@@ -9,25 +9,25 @@ global.widgetInitializeHeight = 32;
 global.widgetCaptionAlignMargin = 4;
 
 
-/*! \brief ã‚¦ã‚£ã‚¸ãƒƒãƒˆãƒ¬ã‚¤ãƒ¤
+/*! \brief ƒEƒBƒWƒbƒgƒŒƒCƒ„
 **/
 class GWidgetLayer extends GLayer
 {
-	var id;								//!< \brief ã”è‡ªç”±ã«
+	var id;								//!< \brief ‚²©—R‚É
 
-	var bodyColor_ = clAppWorkSpace;	//!< \brief æœ¬ä½“ã®è‰²
-	var bodyOpacity_ = 255;				//!< \brief æœ¬ä½“ä¸é€æ˜åº¦
-	var caption_ = '';					//!< \brief ã‚­ãƒ£ãƒ—ã‚·ãƒ§ãƒ³ã¨ã—ã¦è¡¨ç¤ºã™ã‚‹ãƒ†ã‚­ã‚¹ãƒˆ
-	var captionAlign_ = 'center';		//!< \brief ã‚­ãƒ£ãƒ—ã‚·ãƒ§ãƒ³æ–‡å­—åˆ—ã®ã‚¢ãƒ©ã‚¤ãƒ³
-	var captionColor_ = clBtnText;		//!< \brief ã‚­ãƒ£ãƒ—ã‚·ãƒ§ãƒ³æ–‡å­—åˆ—ã®è‰²
-	var shadowColor_ = clNone;			//!< \brief ã‚­ãƒ£ãƒ—ã‚·ãƒ§ãƒ³æ–‡å­—åˆ—ã®å½±ã‚«ãƒ©ãƒ¼
-	var edgeColor_ = clNone;			//!< \brief ã‚­ãƒ£ãƒ—ã‚·ãƒ§ãƒ³æ–‡å­—åˆ—ã®ã‚¨ãƒƒã‚¸ã‚«ãƒ©ãƒ¼
+	var bodyColor_ = clAppWorkSpace;	//!< \brief –{‘Ì‚ÌF
+	var bodyOpacity_ = 255;				//!< \brief –{‘Ì•s“§–¾“x
+	var caption_ = '';					//!< \brief ƒLƒƒƒvƒVƒ‡ƒ“‚Æ‚µ‚Ä•\¦‚·‚éƒeƒLƒXƒg
+	var captionAlign_ = 'center';		//!< \brief ƒLƒƒƒvƒVƒ‡ƒ“•¶š—ñ‚ÌƒAƒ‰ƒCƒ“
+	var captionColor_ = clBtnText;		//!< \brief ƒLƒƒƒvƒVƒ‡ƒ“•¶š—ñ‚ÌF
+	var shadowColor_ = clNone;			//!< \brief ƒLƒƒƒvƒVƒ‡ƒ“•¶š—ñ‚Ì‰eƒJƒ‰[
+	var edgeColor_ = clNone;			//!< \brief ƒLƒƒƒvƒVƒ‡ƒ“•¶š—ñ‚ÌƒGƒbƒWƒJƒ‰[
 
-	var mouseCentering = false;			//!< \brief ãƒ•ã‚©ãƒ¼ã‚«ã‚¹æ™‚ã«ãƒã‚¦ã‚¹ã‚«ãƒ¼ã‚½ãƒ«ã‚’ã‚»ãƒ³ã‚¿ãƒªãƒ³ã‚°ã™ã‚‹ã‹ã©ã†ã‹
+	var mouseCentering = false;			//!< \brief ƒtƒH[ƒJƒX‚Éƒ}ƒEƒXƒJ[ƒ\ƒ‹‚ğƒZƒ“ƒ^ƒŠƒ“ƒO‚·‚é‚©‚Ç‚¤‚©
 
-	var callOnUpdateState_ = false;		//!< \brief onUpdateState() ã‚’å‘¼ã¶ã‹ã©ã†ã‹
-	var callOnEraseBackGround_ = false;	//!< \brief onEraseBackGround() ã‚’å‘¼ã¶ã‹ã©ã†ã‹
-	var prevCursorOnLayer_ = false;		//!< \brief æœ€å¾Œã« onMouseMove ã‚’é€šéã—ãŸæ™‚ã® cursorOnLayer ã®å€¤
+	var callOnUpdateState_ = false;		//!< \brief onUpdateState() ‚ğŒÄ‚Ô‚©‚Ç‚¤‚©
+	var callOnEraseBackGround_ = false;	//!< \brief onEraseBackGround() ‚ğŒÄ‚Ô‚©‚Ç‚¤‚©
+	var prevCursorOnLayer_ = false;		//!< \brief ÅŒã‚É onMouseMove ‚ğ’Ê‰ß‚µ‚½‚Ì cursorOnLayer ‚Ì’l
 
 	/**/
 	function GWidgetLayer(window, parent, handler)
@@ -38,28 +38,28 @@ class GWidgetLayer extends GLayer
 		setSize(global.widgetInitializeWidth, global.widgetInitializeHeight);
 	}
 
-	/*! \brief ã‚¦ã‚£ã‚¸ãƒƒãƒˆå¹… width ã‹ã‚‰å¿…è¦ãªãƒãƒƒãƒ•ã‚¡å¹…ã‚’è¿”ã™ã€‚
+	/*! \brief ƒEƒBƒWƒbƒg• width ‚©‚ç•K—v‚Èƒoƒbƒtƒ@•‚ğ•Ô‚·B
 	**/
 	function widthToImageWidth(width)
 	{
 		return width;
 	}
 
-	/*! \brief ã‚¦ã‚£ã‚¸ãƒƒãƒˆé«˜ã• height ã‹ã‚‰å¿…è¦ãªãƒãƒƒãƒ•ã‚¡é«˜ã•ã‚’è¿”ã™ã€‚
+	/*! \brief ƒEƒBƒWƒbƒg‚‚³ height ‚©‚ç•K—v‚Èƒoƒbƒtƒ@‚‚³‚ğ•Ô‚·B
 	**/
 	function heightToImageHeight(height)
 	{
 		return height;
 	}
 
-	/*! \brief ç”»åƒå¹… bufferWidth ã‹ã‚‰ã‚¦ã‚£ã‚¸ãƒƒãƒˆå¹…ã‚’è¿”ã™ã€‚
+	/*! \brief ‰æ‘œ• bufferWidth ‚©‚çƒEƒBƒWƒbƒg•‚ğ•Ô‚·B
 	**/
 	function imageWidthToWidth(bufferWidth)
 	{
 		return bufferWidth;
 	}
 
-	/*! \brief ç”»åƒé«˜ã• bufferHeight ã‹ã‚‰ã‚¦ã‚£ã‚¸ãƒƒãƒˆé«˜ã•ã‚’è¿”ã™ã€‚
+	/*! \brief ‰æ‘œ‚‚³ bufferHeight ‚©‚çƒEƒBƒWƒbƒg‚‚³‚ğ•Ô‚·B
 	**/
 	function imageHeightToHeight(bufferHeight)
 	{
@@ -317,8 +317,8 @@ class GWidgetLayer extends GLayer
 	{
 		super.onFocus(...);
 
-		// ã‚»ãƒ³ã‚¿ãƒªãƒ³ã‚°æ©Ÿèƒ½ãŒï¼¯ï¼®ã‹ã¤ã€
-		// ã‚«ãƒ¼ã‚½ãƒ«ãŒãƒ¬ã‚¤ãƒ¤å†…ã«å­˜åœ¨ã—ãªã‘ã‚Œã°ã‚»ãƒ³ã‚¿ãƒªãƒ³ã‚°ã™ã‚‹
+		// ƒZƒ“ƒ^ƒŠƒ“ƒO‹@”\‚ª‚n‚m‚©‚ÂA
+		// ƒJ[ƒ\ƒ‹‚ªƒŒƒCƒ„“à‚É‘¶İ‚µ‚È‚¯‚ê‚ÎƒZƒ“ƒ^ƒŠƒ“ƒO‚·‚é
 		if(mouseCentering && !cursorOnLayer)
 			centeringMouseCursor();
 	}

@@ -4,11 +4,11 @@
 **/
 
 
-// kWidgets åˆæœŸåŒ–ã‚¹ã‚¤ãƒƒãƒ
+// kWidgets ‰Šú‰»ƒXƒCƒbƒ`
 if(System.getArgument('-with-kwidgets') == 'yes')
 	loadTJS('KInitialize.tjs');
 
-// ãƒ‡ãƒãƒƒã‚¬èª­ã¿è¾¼ã¿
+// ƒfƒoƒbƒK“Ç‚Ýž‚Ý
 if(Storages.isExistentStorage('Debugger.tjs'))
 	loadTJS('Debugger.tjs');
 

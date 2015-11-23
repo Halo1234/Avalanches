@@ -8,27 +8,27 @@
 
 @message_option layer=message0 left=10 top=400 width=780 height=190 margin_left=20 margin_top=20 margin_right=20 margin_bottom=20 opacity=128 color=0x000000 current
 @using_mod_message
-@log message="å‡ºåŠ›å…ˆã‚’ ModMessage ã«å¤‰æ›´ã—ã¾ã™ã€‚"
+@log message="o—Íæ‚ğ ModMessage ‚É•ÏX‚µ‚Ü‚·B"
 
 @cr_handling ignore
 
 @show_message layer=message0
-@log message="ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ¬ã‚¤ãƒ¤ï¼ã‚’è¡¨ç¤ºã—ã¾ã—ãŸã€‚"
+@log message="ƒƒbƒZ[ƒWƒŒƒCƒ„‚O‚ğ•\¦‚µ‚Ü‚µ‚½B"
 
 @click_skip !enabled
 
 *label|
 @hidden_message
-ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ¬ã‚¤ãƒ¤ã®ãƒ†ã‚¹ãƒˆã§ã™ã€‚[p]
+ƒƒbƒZ[ƒWƒŒƒCƒ„‚ÌƒeƒXƒg‚Å‚·B[p]
 
 *label|
-çµµæ–‡å­—[graph storage=char character alt=(èµ¤)]ã®ãƒ†ã‚¹ãƒˆã§ã™ã€‚[p][cm]
+ŠG•¶š[graph storage=char character alt=(Ô)]‚ÌƒeƒXƒg‚Å‚·B[p][cm]
 
 *label|
-æ”¹è¡Œã®ãƒ†ã‚¹ãƒˆã§ã™ã€‚[r][history_action exp=System.inform('hoge')]ï¼’è¡Œç›®ã®ãƒ†ã‚­ã‚¹ãƒˆ[end_history_action]ã§ã™ã€‚[p][cm]
+‰üs‚ÌƒeƒXƒg‚Å‚·B[r][history_action exp=System.inform('hoge')]‚Qs–Ú‚ÌƒeƒLƒXƒg[end_history_action]‚Å‚·B[p][cm]
 
 *label|
-ãƒªãƒ³ã‚¯ã®[locate x=100 y=100][link storage=ModMessageTest target=*next]ãƒ†ã‚¹ãƒˆ[end_link]ã§ã™ã€‚
+ƒŠƒ“ƒN‚Ì[locate x=100 y=100][link storage=ModMessageTest target=*next]ƒeƒXƒg[end_link]‚Å‚·B
 [button graphic=button target=*next2][checkbox caption=hogehogehoge name=f.test][edit caption=hoge name=f.test2 length=100][p]
 
 [commit]
@@ -39,56 +39,56 @@
 @lock_link
 @click_skip enabled
 
-@auto_wait_ch enabled chars=ã€ã€‚ time=10,50
-è‡ªå‹•ã‚¦ã‚§ã‚¤ãƒˆã®ã€ãƒ†ã‚¹ãƒˆã§ã™ã€‚[p]
+@auto_wait_ch enabled chars=AB time=10,50
+©“®ƒEƒFƒCƒg‚ÌAƒeƒXƒg‚Å‚·B[p]
 
 *label|
 @unlock_link
-ãƒªãƒ³ã‚¯ã®ãƒ­ãƒƒã‚¯ã‚’è§£é™¤ã—ã¾ã™ã€‚[p][cm]
+ƒŠƒ“ƒN‚ÌƒƒbƒN‚ğ‰ğœ‚µ‚Ü‚·B[p][cm]
 
 @line_parameters line_size=24
 
 *label|
-ã“ã‚Œã¯ã€[font face='ï¼­ï¼³ ï¼°æ˜æœ' shadow_color=0x000000 size=24][indent]ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆ[reset_font]ã®ãƒ†ã‚¹ãƒˆã§ã™ã€‚[r]
-æ­£ã—ãè¡¨ç¤ºã•ã‚Œã¦ã„ã¾ã™ã‹ï¼Ÿ[end_indent][p][cm]
+‚±‚ê‚ÍA[font face='‚l‚r ‚o–¾’©' shadow_color=0x000000 size=24][indent]ƒCƒ“ƒfƒ“ƒg[reset_font]‚ÌƒeƒXƒg‚Å‚·B[r]
+³‚µ‚­•\¦‚³‚ê‚Ä‚¢‚Ü‚·‚©H[end_indent][p][cm]
 
 *label|
-ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆè§£é™¤ã—ã¾ã™ã€‚[p][cm]
+ƒCƒ“ƒfƒ“ƒg‰ğœ‚µ‚Ü‚·B[p][cm]
 
 *label|
-ãƒ«ãƒ“ã®ãƒ†ã‚¹ãƒˆã§ã™ã€‚[r]
-å¤©ä¸Š[ruby text=ãƒ]ä¸[ruby text=ã‚³]çŸ¥[ruby text=ãƒ¯]å”¯[ruby text=ãƒ¬]æˆ‘ç‹¬æ[r]
-æš—[ruby text=ãƒ›ãƒ†ãƒ«ãƒ»ãƒ©ãƒ•ãƒ¬ã‚·ã‚¢]ã„å®¿[p][cm]
+ƒ‹ƒr‚ÌƒeƒXƒg‚Å‚·B[r]
+“Vã[ruby text=ƒn]•s[ruby text=ƒR]’m[ruby text=ƒ]—B[ruby text=ƒŒ]‰ä“Æ‘¹[r]
+ˆÃ[ruby text=ƒzƒeƒ‹Eƒ‰ƒtƒŒƒVƒA]‚¢h[p][cm]
 
 @default_font_parameters size=24
 @reset_font
 
 *label|
-ãƒ¯ãƒ¼ãƒ‰ãƒ©ãƒƒãƒ—ã®ãƒ†ã‚¹ãƒˆã§ã™ã€‚ãƒ¯ãƒ¼ãƒ‰ãƒ©ãƒƒãƒ—ã®ãƒ†ã‚¹ãƒˆã§ã™ã€‚ãƒ¯ãƒ¼ãƒ‰ãƒ©ãƒƒãƒ—ã®ãƒ†ã‚¹ãƒˆã§ã™ã€‚ãƒ¯ãƒ¼ãƒ‰ãƒ©ãƒƒãƒ—ã®ãƒ†ã‚¹ãƒˆã§ã™ã€‚ãƒ¯ãƒ¼ãƒ‰ãƒ©ãƒƒãƒ—ã®ãƒ†ã‚¹ãƒˆã§ã™ã€‚[p][cm]
+ƒ[ƒhƒ‰ƒbƒv‚ÌƒeƒXƒg‚Å‚·Bƒ[ƒhƒ‰ƒbƒv‚ÌƒeƒXƒg‚Å‚·Bƒ[ƒhƒ‰ƒbƒv‚ÌƒeƒXƒg‚Å‚·Bƒ[ƒhƒ‰ƒbƒv‚ÌƒeƒXƒg‚Å‚·Bƒ[ƒhƒ‰ƒbƒv‚ÌƒeƒXƒg‚Å‚·B[p][cm]
 
 @message_option layout_mode=vertical
 
 *label|
-ç¸¦æ›¸ãã®[link storage=ModMessageTest target=*next2]ãƒ†ã‚¹ãƒˆ[end_link]ã§ã™ã€‚[p][cm]
+c‘‚«‚Ì[link storage=ModMessageTest target=*next2]ƒeƒXƒg[end_link]‚Å‚·B[p][cm]
 
 *next2|
-ç¸¦ä¸­æ¨ªã®ãƒ†ã‚¹ãƒˆã§ã™ã€‚[horizontal_ch text=12]æœˆ[horizontal_ch text='31-----' expand]æ—¥ã€‚[r]
-æ”¹è¡Œã—ã¾ã™ã†ã†ã†ã†ã†ã†ã†ã†ã†ã†ã†ã†ã€‚[p]
+c’†‰¡‚ÌƒeƒXƒg‚Å‚·B[horizontal_ch text=12]Œ[horizontal_ch text='31-----' expand]“úB[r]
+‰üs‚µ‚Ü‚·‚¤‚¤‚¤‚¤‚¤‚¤‚¤‚¤‚¤‚¤‚¤‚¤B[p]
 
 @default_font_parameters size=12
 @reset_font
 
 *label|
-[ruby text=ã‹ã„]æ”¹[ruby text=ãã‚‡ã†]è¡Œã®ãƒ†ã‚¹ãƒˆã§ã™ã€‚[r]
-[ruby text=ã‹ã„]æ”¹[ruby text=ãã‚‡ã†]è¡Œã®ãƒ†ã‚¹ãƒˆã§ã™ã€‚[r]
-[ruby text=ã‹ã„]æ”¹[ruby text=ãã‚‡ã†]è¡Œã®ãƒ†ã‚¹ãƒˆçµ‚äº†ã§ã™ã€‚[p][cm]
+[ruby text=‚©‚¢]‰ü[ruby text=‚¬‚å‚¤]s‚ÌƒeƒXƒg‚Å‚·B[r]
+[ruby text=‚©‚¢]‰ü[ruby text=‚¬‚å‚¤]s‚ÌƒeƒXƒg‚Å‚·B[r]
+[ruby text=‚©‚¢]‰ü[ruby text=‚¬‚å‚¤]s‚ÌƒeƒXƒgI—¹‚Å‚·B[p][cm]
 
 @message_option layout_mode=horizontal
 
 *label|
-ãƒ†ã‚¹ãƒˆçµ‚äº†ã§ã™ã€‚[p][cm]
+ƒeƒXƒgI—¹‚Å‚·B[p][cm]
 
 @hide_message layer=message0
-@log message="ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ¬ã‚¤ãƒ¤ï¼ã‚’æ¶ˆå»ã—ã¾ã—ãŸã€‚"
+@log message="ƒƒbƒZ[ƒWƒŒƒCƒ„‚O‚ğÁ‹‚µ‚Ü‚µ‚½B"
 
 

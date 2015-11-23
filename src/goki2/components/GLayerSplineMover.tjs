@@ -1,6 +1,6 @@
 /*
- * KAGから引っ張ってきたコード
- * いずれ書き直す
+ * KAG������������Ă����R�[�h
+ * �����ꏑ������
 **/
 
 
@@ -48,11 +48,11 @@ class GLayerSplineMover
 
 		if(path.count < 9)
 		{
-			// 3 点以下 ( 指定するのはそのうちの2点 ) は補完できない
-			throw new GRuntimeError('2 点以上を指定してください');
+			// 3 �_�ȉ� ( �w�肷��̂͂��̂�����2�_ ) �͕⊮�ł��Ȃ�
+			throw new GRuntimeError('2 �_�ȏ���w�肵�Ă�������');
 		}
 
-		// スプライン補間に必要なワークを計算
+		// �X�v���C����ԂɕK�v�ȃ��[�N���v�Z
 		var points = path.count \ 3;
 		var tmpx = [], tmpy = [];
 		var tx = zx, ty = zy;
@@ -96,7 +96,7 @@ class GLayerSplineMover
 
 	function start(delay)
 	{
-		// 移動を開始する
+		// �ړ����J�n����
 		if(delay != 0)
 		{
 			delayTimer = new Timer(onDelayTimer, '');
@@ -106,24 +106,24 @@ class GLayerSplineMover
 		}
 		else
 		{
-			System.addContinuousHandler(handler); // ContinuousHandlers に追加
+			System.addContinuousHandler(handler); // ContinuousHandlers �ɒǉ�
 			moving = true;
 		}
 	}
 
 	function onDelayTimer()
 	{
-		// delayTimer が発動した
+		// delayTimer ����������
 		delayTimer.enabled = false;
 		System.addContinuousHandler(handler);
 	}
 
 	function stop()
 	{
-		// 移動を終わる
+		// �ړ����I���
 		if(moving)
 		{
-			// 最終位置に移動
+			// �ŏI�ʒu�Ɉړ�
 			if(owner_ isvalid)
 			{
 				var idx = int(pointCount*3);
@@ -139,7 +139,7 @@ class GLayerSplineMover
 
 	function handler(tick)
 	{
-		// 移動中に呼ばれる
+		// �ړ����ɌĂ΂��
 		if(nextStop || !(owner_ isvalid)) { stop();  return; }
 		if(first) startTick = tick, first = false;
 		tick -= startTick;
@@ -155,14 +155,14 @@ class GLayerSplineMover
 
 		if(accel < 0)
 		{
-			// 上弦 ( 最初が動きが早く、徐々に遅くなる )
+			// �㌷ ( �ŏ��������������A���X�ɒx���Ȃ� )
 			tick = 1.0 - tick / totalTime;
 			tick = Math.pow(tick, -accel);
 			tick = int ( (1.0 - tick) * totalTime );
 		}
 		else if(accel > 0)
 		{
-			// 下弦 ( 最初は動きが遅く、徐々に早くなる )
+			// ���� ( �ŏ��͓������x���A���X�ɑ����Ȃ� )
 			tick = tick / totalTime;
 			tick = Math.pow(tick, accel);
 			tick = int ( tick * totalTime );

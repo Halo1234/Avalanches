@@ -27,10 +27,10 @@ class GYesNoDialogLayer extends GFormLayer
 	var noHandler = void;
 
 	var result_ = '';		// 'yes' or 'no'
-	var checked_ = false;	// true ãªã‚‰ on
-							// false ãªã‚‰ off
+	var checked_ = false;	// true ‚È‚ç on
+							// false ‚È‚ç off
 
-	var autoInvalidateAtHideCompleted = false;		// ã“ã®å€¤ã‚’ true ã«è¨­å®šã™ã‚‹ã¨éè¡¨ç¤ºãŒå®Œäº†ã—ãŸå¾Œã§è‡ªèº«ã‚’ invalidate ã—ã¾ã™ã€‚
+	var autoInvalidateAtHideCompleted = false;		// ‚±‚Ì’l‚ğ true ‚Éİ’è‚·‚é‚Æ”ñ•\¦‚ªŠ®—¹‚µ‚½Œã‚Å©g‚ğ invalidate ‚µ‚Ü‚·B
 
 	function GYesNoDialogLayer(window, parent, handler)
 	{
@@ -40,17 +40,17 @@ class GYesNoDialogLayer extends GFormLayer
 		rclickHide = false;
 
 		// NOTE:
-		// ã“ã®ãƒ¬ã‚¤ãƒ¤ã‚ˆã‚Šå¾Œã‚ã«ã‚ã‚‹ãƒ¬ã‚¤ãƒ¤ãŒæ“ä½œã§ãã¦ã¯ã¾ãšã„ã®ã§
-		// è‡ªèº«ã‚’ã‚¬ãƒ¼ãƒ‰ãƒ¬ã‚¤ãƒ¤ã¨ã—ã¦ãã®ä¸Šã«ãƒ•ã‚©ãƒ¼ãƒ ã‚’è¨­ç½®ã™ã‚‹ã€‚
+		// ‚±‚ÌƒŒƒCƒ„‚æ‚èŒã‚ë‚É‚ ‚éƒŒƒCƒ„‚ª‘€ì‚Å‚«‚Ä‚Í‚Ü‚¸‚¢‚Ì‚Å
+		// ©g‚ğƒK[ƒhƒŒƒCƒ„‚Æ‚µ‚Ä‚»‚Ìã‚ÉƒtƒH[ƒ€‚ğİ’u‚·‚éB
 		setSize(window.scWidth, window.scHeight);
 
 		// NOTE:
-		// å‚ç…§å€¤ã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®è­˜åˆ¥å­ã¨ã—ã¦ä»£ç”¨ã€‚
+		// QÆ’l‚ğƒfƒtƒHƒ‹ƒg‚Ì¯•Êq‚Æ‚µ‚Ä‘ã—pB
 		id = this;
 
 		family.receive(mainFormLayer_ = createFormLayer(window, this, onFormEvent));
 
-		var captions = ['ã¯ã„', 'ã„ã„ãˆ'];
+		var captions = ['‚Í‚¢', '‚¢‚¢‚¦'];
 		var ids = ['yes', 'no'];
 		var focus = softFocus;
 		var obj;
@@ -129,7 +129,7 @@ class GYesNoDialogLayer extends GFormLayer
 	}
 
 	/**
-	 * è‡ªåˆ†è‡ªèº«ã®å‚ç…§ã‚’ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã«è¿½åŠ ï¼å‰Šé™¤ã—ã¾ã™ã€‚
+	 * ©•ª©g‚ÌQÆ‚ğƒLƒƒƒbƒVƒ…‚É’Ç‰Á^íœ‚µ‚Ü‚·B
 	**/
 	function pushToCache()
 	{
@@ -156,7 +156,7 @@ class GYesNoDialogLayer extends GFormLayer
 			{
 				var tw = .font.getTextWidth(messageText);
 				var th = .font.getTextHeight(messageText);
-				var w = tw + /* ä½™ç™½ */40;
+				var w = tw + /* —]”’ */40;
 				var h = (th << 1) + 60 + (checkMessageText != '' ? 10 : 0);
 
 				w = 200 if w < 200;

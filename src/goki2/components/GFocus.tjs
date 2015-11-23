@@ -5,10 +5,10 @@
 
 
 /**
- * GLayer/GFocus ã‚’é …ç›®ã¨ã—ã¦æ‰±ã†äº‹ã‚’ç›®æ¨™ã¨ã—ã¦ã„ã¾ã™ã€‚
+ * GLayer/GFocus ‚ğ€–Ú‚Æ‚µ‚Äˆµ‚¤–‚ğ–Ú•W‚Æ‚µ‚Ä‚¢‚Ü‚·B
  *
- * ä¸€æ¬¡å…ƒã®ã‚½ãƒ•ãƒˆãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã‚¨ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚¿ãƒ¼ã§ã™ã€‚
- * äºŒæ¬¡å…ƒç®¡ç†ã‚’è¡Œã†å ´åˆã¯ GFocus2D ã‚’åˆ©ç”¨ã—ã¦ãã ã•ã„ã€‚
+ * ˆêŸŒ³‚Ìƒ\ƒtƒgƒtƒH[ƒJƒXƒGƒ~ƒ…ƒŒ[ƒ^[‚Å‚·B
+ * “ñŸŒ³ŠÇ—‚ğs‚¤ê‡‚Í GFocus2D ‚ğ—˜—p‚µ‚Ä‚­‚¾‚³‚¢B
 **/
 class GFocus
 {
@@ -17,14 +17,14 @@ class GFocus
 	var items_ = [];
 	var focusItemIndex_ = -1;
 
-	var clickToKill = true;					// click() å‘¼ã³å‡ºã—å¾Œã« kill() ã™ã‚‹ã‹ã©ã†ã‹
-	var terminate = false;					// æœ€å¾Œã®é …ç›®ã®æ¬¡ã«ä»®æƒ³ã®é …ç›®ã‚’è¿½åŠ ã™ã‚‹ã‹ã©ã†ã‹
+	var clickToKill = true;					// click() ŒÄ‚Ño‚µŒã‚É kill() ‚·‚é‚©‚Ç‚¤‚©
+	var terminate = false;					// ÅŒã‚Ì€–Ú‚ÌŸ‚É‰¼‘z‚Ì€–Ú‚ğ’Ç‰Á‚·‚é‚©‚Ç‚¤‚©
 	var visible_ = true;
 	var enabled_ = true;
 
-	var originalEnabledProperties_ = [];	// å…ƒã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+	var originalEnabledProperties_ = [];	// Œ³‚ÌƒvƒƒpƒeƒB
 	var originalVisibleProperties_ = [];	//
-	var originalEnabledValueCache_ = [];	// å…ƒã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®å€¤
+	var originalEnabledValueCache_ = [];	// Œ³‚ÌƒvƒƒpƒeƒB‚Ì’l
 	var originalVisibleValueCache_ = [];	//
 
 	function GFocus(name = void)
@@ -38,8 +38,8 @@ class GFocus
 	}
 
 	/**
-	 * add()/insert()/remove() ã¯ item å¼•æ•°ã‚’ãã®ã¾ã¾è¿”ã—ã¾ã™ã€‚
-	 * â€»å®Ÿéš›ã«è¿½åŠ ï¼å‰Šé™¤ãŒè¡Œã‚ã‚Œãªãã¦ã‚‚å¿…ãšè¿”ã—ã¾ã™ã€‚
+	 * add()/insert()/remove() ‚Í item ˆø”‚ğ‚»‚Ì‚Ü‚Ü•Ô‚µ‚Ü‚·B
+	 * ¦ÀÛ‚É’Ç‰Á^íœ‚ªs‚í‚ê‚È‚­‚Ä‚à•K‚¸•Ô‚µ‚Ü‚·B
 	**/
 	function add(item)
 	{
@@ -49,9 +49,9 @@ class GFocus
 			{
 				.add(item);
 
-				// ã“ã®ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ãŒç„¡åŠ¹ãªã‚‰ã°é …ç›®ã‚‚ç„¡åŠ¹åŒ–ã™ã‚‹
+				// ‚±‚ÌƒtƒH[ƒJƒX‚ª–³Œø‚È‚ç‚Î€–Ú‚à–³Œø‰»‚·‚é
 				exchangeEnabledPropertyBypass_private_(.count - 1) if !enabled;
-				// ã“ã®ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ãŒä¸å¯è¦–ãªã‚‰ã°é …ç›®ã‚‚ä¸å¯è¦–ã«ã™ã‚‹
+				// ‚±‚ÌƒtƒH[ƒJƒX‚ª•s‰Â‹‚È‚ç‚Î€–Ú‚à•s‰Â‹‚É‚·‚é
 				exchangeVisiblePropertyBypass_private_(.count - 1) if !visible;
 			}
 		}
@@ -67,9 +67,9 @@ class GFocus
 			{
 				.insert(index, item);
 
-				// ã“ã®ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ãŒç„¡åŠ¹ãªã‚‰ã°é …ç›®ã‚‚ç„¡åŠ¹åŒ–ã™ã‚‹
+				// ‚±‚ÌƒtƒH[ƒJƒX‚ª–³Œø‚È‚ç‚Î€–Ú‚à–³Œø‰»‚·‚é
 				exchangeEnabledPropertyBypass_private_(index) if !enabled;
-				// ã“ã®ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ãŒä¸å¯è¦–ãªã‚‰ã°é …ç›®ã‚‚ä¸å¯è¦–ã«ã™ã‚‹
+				// ‚±‚ÌƒtƒH[ƒJƒX‚ª•s‰Â‹‚È‚ç‚Î€–Ú‚à•s‰Â‹‚É‚·‚é
 				exchangeVisiblePropertyBypass_private_(index) if !visible;
 			}
 		}
@@ -93,7 +93,7 @@ class GFocus
 			if(focusItemIndex_ != -1 && enabled && visible)
 			{
 				// NOTE:
-				// GFocus ãŒãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã•ã‚Œã‚‹å ´åˆã¯ç§»å‹•æ–¹å‘ãŒã‚ã‹ã‚‰ãªã„ã®ã§ä½•ã‚‚ã—ãªã„ã€‚
+				// GFocus ‚ªƒtƒH[ƒJƒX‚³‚ê‚éê‡‚ÍˆÚ“®•ûŒü‚ª‚í‚©‚ç‚È‚¢‚Ì‚Å‰½‚à‚µ‚È‚¢B
 				if(!(items[focusItemIndex_] instanceof 'GFocus'))
 					onFocused(items[focusItemIndex_]);
 			}
@@ -115,7 +115,7 @@ class GFocus
 			}
 		}
 		items.clear();
-		focusItemIndex_ = -1;	// kill() ã‚’å‘¼ã°ãªã„
+		focusItemIndex_ = -1;	// kill() ‚ğŒÄ‚Î‚È‚¢
 	}
 
 	function at(index)
@@ -145,10 +145,10 @@ class GFocus
 	}
 
 	/**
-	 * ä¸€æ¬¡å…ƒç®¡ç†ãªã®ã§ moveLeft()/moveUp ã¨ moveRight()/moveDown() ã¯
-	 * åŸºæœ¬çš„ã«ã¯åŒã˜å‡¦ç†ã‚’è¡Œã£ã¦ã„ã¾ã™ã€‚
-	 * ä¸‹ä½ã® GFocus/GFocus2D ã«æ–¹å‘ã‚’ä¼æ’­ã•ã›ã‚‹ãŸã‚ã«
-	 * åŒã˜ã‚ˆã†ãªå‡¦ç†ã§ã‚‚ã“ã®ã‚ˆã†ãªå®Ÿè£…ã«ãªã£ã¦ã„ã¾ã™ã€‚
+	 * ˆêŸŒ³ŠÇ—‚È‚Ì‚Å moveLeft()/moveUp ‚Æ moveRight()/moveDown() ‚Í
+	 * Šî–{“I‚É‚Í“¯‚¶ˆ—‚ğs‚Á‚Ä‚¢‚Ü‚·B
+	 * ‰ºˆÊ‚Ì GFocus/GFocus2D ‚É•ûŒü‚ğ“`”d‚³‚¹‚é‚½‚ß‚É
+	 * “¯‚¶‚æ‚¤‚Èˆ—‚Å‚à‚±‚Ì‚æ‚¤‚ÈÀ‘•‚É‚È‚Á‚Ä‚¢‚Ü‚·B
 	**/
 	function moveLeft(loop = false)
 	{
@@ -156,43 +156,43 @@ class GFocus
 		var count = items.count;
 		var f = focusItemIndex_;
 
-		// ç§»å‹•ä¸å¯
+		// ˆÚ“®•s‰Â
 		if(!visible_ || !enabled_ || count <= 0)
 			return false;
-		// å‰ã«ã„ã‘ãªã„
+		// ‘O‚É‚¢‚¯‚È‚¢
 		if(f == 0 && !loop)
 		{
-			// æœ€åˆã®é …ç›®ãŒ GFocus ãªã‚‰ moveLeft ã‚’å‘¼ã³å‡ºã—ã¦ã‚„ã‚‹
+			// Å‰‚Ì€–Ú‚ª GFocus ‚È‚ç moveLeft ‚ğŒÄ‚Ño‚µ‚Ä‚â‚é
 			if(items[0] instanceof "GFocus")
 			{
 				if(items[0].moveLeft(false))
 					return true;
 			}
-			// ç§»å‹•ã§ããªã„
+			// ˆÚ“®‚Å‚«‚È‚¢
 			kill();
 			return false;
 		}
 
-		// ã“ã®æ™‚ç‚¹ã§ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã•ã‚Œã¦ã„ã‚‹é …ç›®ã¯æœ€åˆã®é …ç›®ã§ã¯ãªã„äº‹ãŒç¢ºå®š
-		// ç¾åœ¨ã®é …ç›®ãŒ GFocus ãªã‚‰ moveLeft ã‚’å‘¼ã³å‡ºã—ã¦ã‚„ã‚‹
+		// ‚±‚Ì“_‚ÅƒtƒH[ƒJƒX‚³‚ê‚Ä‚¢‚é€–Ú‚ÍÅ‰‚Ì€–Ú‚Å‚Í‚È‚¢–‚ªŠm’è
+		// Œ»İ‚Ì€–Ú‚ª GFocus ‚È‚ç moveLeft ‚ğŒÄ‚Ño‚µ‚Ä‚â‚é
 		if(f != -1 && items[f] instanceof "GFocus")
 		{
 			if(items[f].moveLeft(false))
 				return true;
-			// å‰ã«ã„ã‘ãªã‹ã£ãŸ
-			// ã“ã®å ´åˆã“ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®æ¬¡ã®é …ç›®ã¸ç§»å‹•ã•ã›ã‚‹å¿…è¦ãŒã‚ã‚‹ãŒ
-			// items[f]ãŒãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã‚’æŒã£ã¦ã„ã‚‹çŠ¶æ…‹ã¯å¥½ã¾ã—ããªã„ã®ã§æ®ºã™
+			// ‘O‚É‚¢‚¯‚È‚©‚Á‚½
+			// ‚±‚Ìê‡‚±‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ÌŸ‚Ì€–Ú‚ÖˆÚ“®‚³‚¹‚é•K—v‚ª‚ ‚é‚ª
+			// items[f]‚ªƒtƒH[ƒJƒX‚ğ‚Á‚Ä‚¢‚éó‘Ô‚ÍD‚Ü‚µ‚­‚È‚¢‚Ì‚ÅE‚·
 			items[f].kill();
 		}
 
-		// å‰ã®é …ç›®ã«ç§»å‹•ã™ã‚‹
+		// ‘O‚Ì€–Ú‚ÉˆÚ“®‚·‚é
 		f--;
 		for(var i = 0; i < count; i++, f--)
 		{
 			if(f < 0)
 			{
-				// ãƒ«ãƒ¼ãƒ—ã—ãªã„ãªã‚‰æŠœã‘ã‚‹ã€‚
-				// ãŸã ã—ã‚‚ã¨ã‚‚ã¨ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã‚’æŒã£ã¦ã„ãªã„å ´åˆï¼‘å›ã¯ãƒ«ãƒ¼ãƒ—ã™ã‚‹ã€‚
+				// ƒ‹[ƒv‚µ‚È‚¢‚È‚ç”²‚¯‚éB
+				// ‚½‚¾‚µ‚à‚Æ‚à‚ÆƒtƒH[ƒJƒX‚ğ‚Á‚Ä‚¢‚È‚¢ê‡‚P‰ñ‚Íƒ‹[ƒv‚·‚éB
 				if(!loop && focusItemIndex_ != -1)
 					break;
 				f = terminate ? count : count - 1;
@@ -205,7 +205,7 @@ class GFocus
 				return true;
 			}
 
-			// è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ã€ã‹ã¤æœ‰åŠ¹ãªçŠ¶æ…‹ã§ã‚ã‚Œã°æ±ºå®š
+			// •\¦‚³‚ê‚Ä‚¢‚éA‚©‚Â—LŒø‚Èó‘Ô‚Å‚ ‚ê‚ÎŒˆ’è
 			if(items[f].visible && items[f].enabled)
 			{
 				if(items[f] instanceof "GFocus")
@@ -218,7 +218,7 @@ class GFocus
 				}
 				else
 				{
-					// æ›´æ–°
+					// XV
 					onFocused(items[focusItemIndex_ = f]);
 					return true;
 				}
@@ -236,37 +236,37 @@ class GFocus
 		var count = items.count;
 		var f = focusItemIndex_;
 
-		// ç§»å‹•ä¸å¯
+		// ˆÚ“®•s‰Â
 		if(!visible_ || !enabled_ || count <= 0)
 			return false;
-		// æ¬¡ã«ã„ã‘ãªã„
+		// Ÿ‚É‚¢‚¯‚È‚¢
 		if(f == (count - 1) && !loop)
 		{
-			// æœ€å¾Œã®é …ç›®ãŒ GFocus ãªã‚‰ moveRight ã‚’å‘¼ã³å‡ºã—ã¦ã‚„ã‚‹
+			// ÅŒã‚Ì€–Ú‚ª GFocus ‚È‚ç moveRight ‚ğŒÄ‚Ño‚µ‚Ä‚â‚é
 			if(items[f] instanceof "GFocus")
 			{
 				if(items[f].moveRight(false))
 					return true;
 			}
-			// ç§»å‹•ã§ããªã„
+			// ˆÚ“®‚Å‚«‚È‚¢
 			kill();
 			return false;
 		}
 
-		// ã“ã®æ™‚ç‚¹ã§ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã•ã‚Œã¦ã„ã‚‹é …ç›®ã¯æœ€å¾Œã®é …ç›®ã§ã¯ãªã„ã‹ã€
-		// ã‚¿ãƒ¼ãƒŸãƒãƒ¼ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã©ã¡ã‚‰ã‹ã€‚
-		// ç¾åœ¨ã®é …ç›®ãŒ GFocus ãªã‚‰ moveRight ã‚’å‘¼ã³å‡ºã—ã¦ã‚„ã‚‹
+		// ‚±‚Ì“_‚ÅƒtƒH[ƒJƒX‚³‚ê‚Ä‚¢‚é€–Ú‚ÍÅŒã‚Ì€–Ú‚Å‚Í‚È‚¢‚©A
+		// ƒ^[ƒ~ƒl[ƒgƒIƒuƒWƒFƒNƒg‚Ì‚Ç‚¿‚ç‚©B
+		// Œ»İ‚Ì€–Ú‚ª GFocus ‚È‚ç moveRight ‚ğŒÄ‚Ño‚µ‚Ä‚â‚é
 		if(f != -1 && items[f] instanceof "GFocus")
 		{
 			if(items[f].moveRight(false))
 				return true;
-			// æ¬¡ã«ã„ã‘ãªã‹ã£ãŸ
-			// ã“ã®å ´åˆã“ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®æ¬¡ã®é …ç›®ã¸ç§»å‹•ã•ã›ã‚‹å¿…è¦ãŒã‚ã‚‹ãŒ
-			// items[f]ãŒãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã‚’æŒã£ã¦ã„ã‚‹çŠ¶æ…‹ã¯å¥½ã¾ã—ããªã„ã®ã§æ®ºã™
+			// Ÿ‚É‚¢‚¯‚È‚©‚Á‚½
+			// ‚±‚Ìê‡‚±‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ÌŸ‚Ì€–Ú‚ÖˆÚ“®‚³‚¹‚é•K—v‚ª‚ ‚é‚ª
+			// items[f]‚ªƒtƒH[ƒJƒX‚ğ‚Á‚Ä‚¢‚éó‘Ô‚ÍD‚Ü‚µ‚­‚È‚¢‚Ì‚ÅE‚·
 			items[f].kill();
 		}
 
-		// æ¬¡ã®é …ç›®ã«ç§»å‹•ã™ã‚‹
+		// Ÿ‚Ì€–Ú‚ÉˆÚ“®‚·‚é
 		f++;
 		for(var i = 0; i < count; i++, f++)
 		{
@@ -274,7 +274,7 @@ class GFocus
 			{
 				if(!terminate || (terminate && f > items.count))
 				{
-					// ãƒ«ãƒ¼ãƒ—ã—ãªã„ãªã‚‰æŠœã‘ã‚‹
+					// ƒ‹[ƒv‚µ‚È‚¢‚È‚ç”²‚¯‚é
 					if(!loop)
 						break;
 					f = 0;
@@ -288,7 +288,7 @@ class GFocus
 				return true;
 			}
 
-			// è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ã€ã‹ã¤æœ‰åŠ¹ãªçŠ¶æ…‹ã§ã‚ã‚Œã°å‡¦ç†ã™ã‚‹ã€‚
+			// •\¦‚³‚ê‚Ä‚¢‚éA‚©‚Â—LŒø‚Èó‘Ô‚Å‚ ‚ê‚Îˆ—‚·‚éB
 			if(items[f].visible && items[f].enabled)
 			{
 				if(items[f] instanceof "GFocus")
@@ -301,7 +301,7 @@ class GFocus
 				}
 				else
 				{
-					// æ›´æ–°
+					// XV
 					onFocused(items[focusItemIndex_ = f]);
 					return true;
 				}
@@ -319,44 +319,44 @@ class GFocus
 		var count = items.count;
 		var f = focusItemIndex_;
 
-		// ç§»å‹•ä¸å¯
+		// ˆÚ“®•s‰Â
 		if(!visible_ || !enabled_ || count <= 0)
 			return false;
-		// å‰ã«ã„ã‘ãªã„
+		// ‘O‚É‚¢‚¯‚È‚¢
 		if(f == 0 && !loop)
 		{
-			// æœ€åˆã®é …ç›®ãŒ GFocus ãªã‚‰ moveUp ã‚’å‘¼ã³å‡ºã—ã¦ã‚„ã‚‹
+			// Å‰‚Ì€–Ú‚ª GFocus ‚È‚ç moveUp ‚ğŒÄ‚Ño‚µ‚Ä‚â‚é
 			if(items[0] instanceof "GFocus")
 			{
 				if(items[0].moveUp(false))
 					return true;
 			}
-			// ç§»å‹•ã§ããªã„
-			// å¿…è¦ãªã‚‰ã°ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã‚’æ®ºã™
+			// ˆÚ“®‚Å‚«‚È‚¢
+			// •K—v‚È‚ç‚ÎƒtƒH[ƒJƒX‚ğE‚·
 			kill();
 			return false;
 		}
 
-		// ã“ã®æ™‚ç‚¹ã§ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã•ã‚Œã¦ã„ã‚‹é …ç›®ã¯æœ€åˆã®é …ç›®ã§ã¯ãªã„äº‹ãŒç¢ºå®š
-		// ç¾åœ¨ã®é …ç›®ãŒ GFocus ãªã‚‰ moveUp ã‚’å‘¼ã³å‡ºã—ã¦ã‚„ã‚‹
+		// ‚±‚Ì“_‚ÅƒtƒH[ƒJƒX‚³‚ê‚Ä‚¢‚é€–Ú‚ÍÅ‰‚Ì€–Ú‚Å‚Í‚È‚¢–‚ªŠm’è
+		// Œ»İ‚Ì€–Ú‚ª GFocus ‚È‚ç moveUp ‚ğŒÄ‚Ño‚µ‚Ä‚â‚é
 		if(f != -1 && items[f] instanceof "GFocus")
 		{
 			if(items[f].moveUp(false))
 				return true;
-			// å‰ã«ã„ã‘ãªã‹ã£ãŸ
-			// ã“ã®å ´åˆã“ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®æ¬¡ã®é …ç›®ã¸ç§»å‹•ã•ã›ã‚‹å¿…è¦ãŒã‚ã‚‹ãŒ
-			// items[f]ãŒãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã‚’æŒã£ã¦ã„ã‚‹çŠ¶æ…‹ã¯å¥½ã¾ã—ããªã„ã®ã§æ®ºã™
+			// ‘O‚É‚¢‚¯‚È‚©‚Á‚½
+			// ‚±‚Ìê‡‚±‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ÌŸ‚Ì€–Ú‚ÖˆÚ“®‚³‚¹‚é•K—v‚ª‚ ‚é‚ª
+			// items[f]‚ªƒtƒH[ƒJƒX‚ğ‚Á‚Ä‚¢‚éó‘Ô‚ÍD‚Ü‚µ‚­‚È‚¢‚Ì‚ÅE‚·
 			items[f].kill();
 		}
 
-		// å‰ã®é …ç›®ã«ç§»å‹•ã™ã‚‹
+		// ‘O‚Ì€–Ú‚ÉˆÚ“®‚·‚é
 		f--;
 		for(var i = 0; i < count; i++, f--)
 		{
 			if(f < 0)
 			{
-				// ãƒ«ãƒ¼ãƒ—ã—ãªã„ãªã‚‰æŠœã‘ã‚‹ã€‚
-				// ãŸã ã—ã‚‚ã¨ã‚‚ã¨ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã‚’æŒã£ã¦ã„ãªã„å ´åˆï¼‘å›ã¯ãƒ«ãƒ¼ãƒ—ã™ã‚‹ã€‚
+				// ƒ‹[ƒv‚µ‚È‚¢‚È‚ç”²‚¯‚éB
+				// ‚½‚¾‚µ‚à‚Æ‚à‚ÆƒtƒH[ƒJƒX‚ğ‚Á‚Ä‚¢‚È‚¢ê‡‚P‰ñ‚Íƒ‹[ƒv‚·‚éB
 				if(!loop && focusItemIndex_ != -1)
 					break;
 				f = terminate ? count : count - 1;
@@ -369,7 +369,7 @@ class GFocus
 				return true;
 			}
 
-			// è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ã€ã‹ã¤æœ‰åŠ¹ãªçŠ¶æ…‹ã§ã‚ã‚Œã°æ±ºå®š
+			// •\¦‚³‚ê‚Ä‚¢‚éA‚©‚Â—LŒø‚Èó‘Ô‚Å‚ ‚ê‚ÎŒˆ’è
 			if(items[f].visible && items[f].enabled)
 			{
 				if(items[f] instanceof "GFocus")
@@ -382,7 +382,7 @@ class GFocus
 				}
 				else
 				{
-					// æ›´æ–°
+					// XV
 					onFocused(items[focusItemIndex_ = f]);
 					return true;
 				}
@@ -400,38 +400,38 @@ class GFocus
 		var count = items.count;
 		var f = focusItemIndex_;
 
-		// ç§»å‹•ä¸å¯
+		// ˆÚ“®•s‰Â
 		if(!visible_ || !enabled_ || count <= 0)
 			return false;
-		// æ¬¡ã«ã„ã‘ãªã„
+		// Ÿ‚É‚¢‚¯‚È‚¢
 		if(f == (count - 1) && !loop)
 		{
-			// æœ€å¾Œã®é …ç›®ãŒ GFocus ãªã‚‰ moveDown ã‚’å‘¼ã³å‡ºã—ã¦ã‚„ã‚‹
+			// ÅŒã‚Ì€–Ú‚ª GFocus ‚È‚ç moveDown ‚ğŒÄ‚Ño‚µ‚Ä‚â‚é
 			if(items[f] instanceof "GFocus")
 			{
 				if(items[f].moveDown(false))
 					return true;
 			}
-			// ç§»å‹•ã§ããªã„
-			// å¿…è¦ãªã‚‰ã°ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã‚’æ®ºã™
+			// ˆÚ“®‚Å‚«‚È‚¢
+			// •K—v‚È‚ç‚ÎƒtƒH[ƒJƒX‚ğE‚·
 			kill();
 			return false;
 		}
 
-		// ã“ã®æ™‚ç‚¹ã§ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã•ã‚Œã¦ã„ã‚‹é …ç›®ã¯æœ€å¾Œã®é …ç›®ã§ã¯ãªã„ã‹ã€
-		// ã‚¿ãƒ¼ãƒŸãƒãƒ¼ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã©ã¡ã‚‰ã‹ã€‚
-		// ç¾åœ¨ã®é …ç›®ãŒ GFocus ãªã‚‰ moveDown ã‚’å‘¼ã³å‡ºã—ã¦ã‚„ã‚‹
+		// ‚±‚Ì“_‚ÅƒtƒH[ƒJƒX‚³‚ê‚Ä‚¢‚é€–Ú‚ÍÅŒã‚Ì€–Ú‚Å‚Í‚È‚¢‚©A
+		// ƒ^[ƒ~ƒl[ƒgƒIƒuƒWƒFƒNƒg‚Ì‚Ç‚¿‚ç‚©B
+		// Œ»İ‚Ì€–Ú‚ª GFocus ‚È‚ç moveDown ‚ğŒÄ‚Ño‚µ‚Ä‚â‚é
 		if(f != -1 && items[f] instanceof "GFocus")
 		{
 			if(items[f].moveDown(false))
 				return true;
-			// æ¬¡ã«ã„ã‘ãªã‹ã£ãŸ
-			// ã“ã®å ´åˆã“ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®æ¬¡ã®é …ç›®ã¸ç§»å‹•ã•ã›ã‚‹å¿…è¦ãŒã‚ã‚‹ãŒ
-			// items[f]ãŒãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã‚’æŒã£ã¦ã„ã‚‹çŠ¶æ…‹ã¯å¥½ã¾ã—ããªã„ã®ã§æ®ºã™
+			// Ÿ‚É‚¢‚¯‚È‚©‚Á‚½
+			// ‚±‚Ìê‡‚±‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ÌŸ‚Ì€–Ú‚ÖˆÚ“®‚³‚¹‚é•K—v‚ª‚ ‚é‚ª
+			// items[f]‚ªƒtƒH[ƒJƒX‚ğ‚Á‚Ä‚¢‚éó‘Ô‚ÍD‚Ü‚µ‚­‚È‚¢‚Ì‚ÅE‚·
 			items[f].kill();
 		}
 
-		// æ¬¡ã®é …ç›®ã«ç§»å‹•ã™ã‚‹
+		// Ÿ‚Ì€–Ú‚ÉˆÚ“®‚·‚é
 		f++;
 		for(var i = 0; i < count; i++, f++)
 		{
@@ -439,7 +439,7 @@ class GFocus
 			{
 				if(!terminate || (terminate && f > items.count))
 				{
-					// ãƒ«ãƒ¼ãƒ—ã—ãªã„ãªã‚‰æŠœã‘ã‚‹
+					// ƒ‹[ƒv‚µ‚È‚¢‚È‚ç”²‚¯‚é
 					if(!loop)
 						break;
 					f = 0;
@@ -453,7 +453,7 @@ class GFocus
 				return true;
 			}
 
-			// è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ã€ã‹ã¤æœ‰åŠ¹ãªçŠ¶æ…‹ã§ã‚ã‚Œã°å‡¦ç†ã™ã‚‹ã€‚
+			// •\¦‚³‚ê‚Ä‚¢‚éA‚©‚Â—LŒø‚Èó‘Ô‚Å‚ ‚ê‚Îˆ—‚·‚éB
 			if(items[f].visible && items[f].enabled)
 			{
 				if(items[f] instanceof "GFocus")
@@ -466,7 +466,7 @@ class GFocus
 				}
 				else
 				{
-					// æ›´æ–°
+					// XV
 					onFocused(items[focusItemIndex_ = f]);
 					return true;
 				}
@@ -576,8 +576,8 @@ class GFocus
 	}
 
 	/**
-	 * ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ãŒç§»å‹•ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã¾ã™ã€‚
-	 * terminated ãªçŠ¶æ…‹ã«ãªã£ãŸæ™‚ã¯å‘¼ã³å‡ºã•ã‚Œã¾ã›ã‚“ã€‚
+	 * ƒtƒH[ƒJƒX‚ªˆÚ“®‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚Ü‚·B
+	 * terminated ‚Èó‘Ô‚É‚È‚Á‚½‚ÍŒÄ‚Ño‚³‚ê‚Ü‚¹‚ñB
 	**/
 	function onFocused(item)
 	{
@@ -588,15 +588,15 @@ class GFocus
 	}
 
 	/**
-	 * terminated ãªçŠ¶æ…‹ã«ãªã£ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã¾ã™ã€‚
+	 * terminated ‚Èó‘Ô‚É‚È‚Á‚½‚ÉŒÄ‚Ño‚³‚ê‚Ü‚·B
 	**/
 	function onTerminateObjectFocused()
 	{
 	}
 
 	/**
-	 * kill() ã•ã‚ŒãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã¾ã™ã€‚
-	 * terminated ãªçŠ¶æ…‹ã«ãªã£ãŸæ™‚ã¯å‘¼ã³å‡ºã•ã‚Œã¾ã›ã‚“ã€‚
+	 * kill() ‚³‚ê‚½‚ÉŒÄ‚Ño‚³‚ê‚Ü‚·B
+	 * terminated ‚Èó‘Ô‚É‚È‚Á‚½‚ÍŒÄ‚Ño‚³‚ê‚Ü‚¹‚ñB
 	**/
 	function onKillFocus()
 	{
@@ -620,8 +620,8 @@ class GFocus
 	property focusWidget
 	{
 		// NOTE:
-		// ã“ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãŒ GFocus ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’è¿”ã™äº‹ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚
-		// ãŸã ã—æœ€çµ‚çš„ã« teminated ãªå ´åˆã¯ void ã‚’è¿”ã—ã¾ã™ã€‚
+		// ‚±‚ÌƒvƒƒpƒeƒB‚ª GFocus ‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ•Ô‚·–‚Í‚ ‚è‚Ü‚¹‚ñB
+		// ‚½‚¾‚µÅI“I‚É teminated ‚Èê‡‚Í void ‚ğ•Ô‚µ‚Ü‚·B
 		getter		{ return ((focusItem instanceof "GFocus") ? focusItem.focusWidget : focusItem); }
 	}
 
@@ -630,7 +630,7 @@ class GFocus
 		getter		{ return (terminate && focusItemIndex_ == items_.count); }
 	}
 
-	/* è¡¨ç¤ºï¼éè¡¨ç¤ºçŠ¶æ…‹ */
+	/* •\¦^”ñ•\¦ó‘Ô */
 	property visible
 	{
 		setter(x)
@@ -660,7 +660,7 @@ class GFocus
 		getter		{ return visible_; }
 	}
 
-	/* æœ‰åŠ¹ï¼ç„¡åŠ¹çŠ¶æ…‹ */
+	/* —LŒø^–³Œøó‘Ô */
 	property enabled
 	{
 		setter(x)
@@ -704,7 +704,7 @@ class GFocus
 }
 
 /**
- * GFocus ã®ãƒ‡ãƒãƒƒã‚°ãƒ—ãƒªãƒ³ãƒˆç”¨
+ * GFocus ‚ÌƒfƒoƒbƒOƒvƒŠƒ“ƒg—p
 **/
 function dumpGFocusItems(sFocus, level = 0)
 {
