@@ -61,8 +61,6 @@ class ModBookmark extends GModule
 		}
 
 		calculateThumbnailSize_private_(context_);
-
-		loadSystemVariables();
 	}
 
 	function finalize()
@@ -155,14 +153,19 @@ class ModBookmark extends GModule
 				load(+elm.place);
 			} incontextof this,
 
-			/**/
+			/* @save_temporary */
 			'save_temporary' => function (elm) {
 				saveTemporary(+elm.place);
 			} incontextof this,
 
-			/**/
+			/* @load_temporary */
 			'load_temporary' => function (elm) {
 				loadTemporary(+elm.place);
+			} incontextof this,
+
+			/* @load_system_variables */
+			'load_system_variables' => function (elm) {
+				loadSystemVariables();
 			} incontextof this,
 		];
 	}

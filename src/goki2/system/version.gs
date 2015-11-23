@@ -19,6 +19,9 @@
 ;
 @version title='Test' major=1 minor=0 special='Sample application.'
 
+; システム変数読み込み
+@load_system_variables
+
 ; ◆二重起動防止
 ;
 ; このタグを処理した時点で同じアプリケーションが起動していれば
