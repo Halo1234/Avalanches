@@ -160,7 +160,7 @@ class ModADV extends GModule
 						return;
 					//.cancelSkip() if .skipping && !.longSkipping;
 					if(.current.splitingPage)
-						c.interruptTag('er');
+						c.interruptTag('clear_message_layers');
 					else
 						c.interruptTag('store_history_data');
 					if(.longSkipping)
