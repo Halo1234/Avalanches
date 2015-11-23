@@ -18,6 +18,21 @@
 ;
 ; ここでプロジェクトに必要なモジュールを読み込んでください。
 
+; ブックマーク機能
+@load_module name=ModBookmark
+; ADV機能
+@load_module name=ModADV
+; 画像関連機能
+@load_module name=ModImage
+; メッセージレイヤ関連機能
+@load_module name=ModMessage
+; 音楽関連機能
+@load_module name=ModSound
+; ビデオ関連機能
+@load_module name=ModVideo
+; 右クリック関連機能
+@load_module name=ModRightClick
+
 ; ここまで
 ;
 

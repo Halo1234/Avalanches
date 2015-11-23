@@ -4,8 +4,6 @@
 
 *label|
 
-@cv_layers count=1
-
 @show_message layer=message0
 
 *label|

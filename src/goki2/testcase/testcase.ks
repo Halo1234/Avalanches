@@ -3,16 +3,9 @@
 ;**/
 
 
-@load_module name=ModBookmark
 @load_module name=ModSaveLoadMenuItems
 @load_module name=ModSystemMenuItems
-@load_module name=ModADV
-@load_module name=ModImage
-@load_module name=ModMessage
-@load_module name=ModSound
-@load_module name=ModVideo
 @load_module name=ModTypingProcessor
-@load_module name=ModRightClick
 
 @que storage=ModRightClickTest
 @que storage=ModADVTest

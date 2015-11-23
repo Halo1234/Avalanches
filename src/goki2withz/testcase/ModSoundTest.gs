@@ -4,12 +4,6 @@
 
 *label|
 
-@add_bgm_buffer type=WAVE
-@log message="ＢＧＭバッファを追加しました。"
-
-@se_buffers count=1
-@log message="効果音バッファをひとつ確保しました。"
-
 @show_message layer=message0
 
 *label|

@@ -4,9 +4,6 @@
 
 *label|
 
-@message_layers count=1
-
-@message_option layer=message0 left=10 top=400 width=780 height=190 margin_left=20 margin_top=20 margin_right=20 margin_bottom=20 opacity=128 color=0x000000 current
 @using_mod_message
 @log message="出力先を ModMessage に変更します。"
 

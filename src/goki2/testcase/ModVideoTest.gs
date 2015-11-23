@@ -6,8 +6,6 @@
 
 @show_message layer=message0
 
-@video_buffers count=1
-
 *label|
 @video left=0 top=0 width=800 height=600 visible
 @open_video storage=sample.wmv
