@@ -724,6 +724,32 @@ class ModADV extends GModule
 
 		GObjectUtils.assignDictionary(transitionParameters_, dic.transitionParameters);
 	}
+
+	/**/
+	function onScenarioLoaded(storage)
+	{
+		var chars = characters_;
+		var arr = mobCharacterNames_;
+		var count = arr.count;
+		var ch, name;
+
+		for(var i = 0; i < count; i++)
+		{
+			name = arr[i];
+			invalidate chars[name];
+			delete chars[name];
+			arr.remove(name);
+		}
+		// ボイス番号クリア
+		arr = characterNames_;
+		count = arr.count;
+		for(var i = 0; i < count; i++)
+		{
+			name = arr[i];
+			ch = getCharacter(name);
+			ch.voice = 0;
+		}
+	}
 }
 
 

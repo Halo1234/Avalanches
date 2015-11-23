@@ -5,6 +5,8 @@
 
 @using_mod_adv
 
+@cr_handling !ignore
+
 *label|
 @ハロ ポーズ１ 表情１ 表示
 
