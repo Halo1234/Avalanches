@@ -159,7 +159,7 @@ class GWaveSoundBuffer extends WaveSoundBuffer
 			name : name, currentStorage : currentStorage_, looping : looping
 		];
 
-		if(!looping || fadeStatus_ == 'fadeout')
+		if(fadeStatus_ == 'fadeout')
 			dic.status = 'stop';
 		else
 			dic.status = status;

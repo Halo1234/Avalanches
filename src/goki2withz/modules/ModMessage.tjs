@@ -1056,7 +1056,6 @@ class ModMessage extends GModule
 	/**/
 	function clearMessageLayersWithHistoryLayer(reset)
 	{
-		dm('clearMessageLayersWithHistoryLayer');
 		messageLayers_.each(clearMessageLayer_private_);
 		historyLayer_.clear() if outputHistory;
 		if(reset && messageLayers_.count > 0)
