@@ -8,7 +8,7 @@
 @cr_handling !ignore
 
 *label|
-@ハロ ポーズ１ 表情１ 表示
+@ハロ ポーズ１ 表情１ 中 表示
 
 ;@cursor default_cursor=&crCross
 

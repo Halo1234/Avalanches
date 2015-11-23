@@ -178,6 +178,13 @@
 @!character visible=表示->true,消去->false
 @!character no_voice=nv->true
 
+; サンプルキャラクター設定
+;
+; タグの仕様は character タグと同じです。
+@!ハロ /storage=A_<POSE>_<FACE>
+@!ハロ face=表情１->face1
+@!ハロ pose=ポーズ１->pose1,ポーズ２->pose2
+
 ; 時間帯を定義します。
 ;
 ;   name: 時間帯名を指定します。ここで指定した名前がそのままタグになります。
@@ -186,13 +193,6 @@
 @make_time_zone name=夕 prefix=ev
 @make_time_zone name=夜 prefix=ng
 
-; サンプルキャラクター設定
-;
-; タグの仕様は character タグと同じです。
-@!ハロ /storage=A_<POSE>_<FACE>
-@!ハロ face=表情１->face1
-@!ハロ pose=ポーズ１->pose1,ポーズ２->pose2
-
 ; サンプル背景
 ;
 ;    name: 名前を指定します。この名前がそのままタグ名になります。
@@ -200,6 +200,7 @@
 @make_stage name=白 storage=白
 @make_stage name=黒 storage=黒
 @make_stage name=赤 storage=赤
+
 ; ココまで
 
 
