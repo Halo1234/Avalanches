@@ -549,7 +549,7 @@ class GMessageLayer extends GHyperTextLayer
 		);
 		obj.exp = elm.name;
 		obj.width = +elm.length if elm.length !== void;
-		obj.text = elm.caption if elm.caption !== void;
+		obj.text = Scripts.eval(elm.name) if elm.name !== void;
 		obj.bodyColor = +elm.background_color if elm.background_color !== void;
 		obj.captionColor = +elm.color if elm.color !== void;
 		obj.bodyOpacity = +elm.opacity if elm.opacity !== void;
@@ -614,11 +614,11 @@ class GMessageLayer extends GHyperTextLayer
 	}
 
 	/**/
-	function loadPageGlyph(storage)
+	function loadPageGlyph(storage, key)
 	{
 		with(pageGlyphLayer_)
 		{
-			.loadImages(storage);
+			.loadImages(storage, key);
 			.conductor.loadScenario(Storages.chopStorageExt(storage));
 		}
 	}
@@ -650,11 +650,11 @@ class GMessageLayer extends GHyperTextLayer
 	}
 
 	/**/
-	function loadLineGlyph(storage)
+	function loadLineGlyph(storage, key)
 	{
 		with(lineGlyphLayer_)
 		{
-			.loadImages(storage);
+			.loadImages(storage, key);
 			.conductor.loadScenario(Storages.chopStorageExt(storage));
 		}
 	}

@@ -114,6 +114,14 @@ class GVerticalLayout
 	}
 
 	/**/
+	function resetLineParameters()
+	{
+		lineSpace = layer.lineSpaceCache_;
+		layer.characterSpace = characterSpaceCache_;
+		layer.reservedLineSize = reservedLineSizeCache_;
+	}
+
+	/**/
 	function resetRubyFont()
 	{
 		with(layer_)
@@ -447,6 +455,14 @@ class GHorizontalLayout
 	}
 
 	/**/
+	function resetLineParameters()
+	{
+		lineSpace = layer.lineSpaceCache_;
+		layer.characterSpace = characterSpaceCache_;
+		layer.reservedLineSize = reservedLineSizeCache_;
+	}
+
+	/**/
 	function resetRubyFont()
 	{
 		with(layer_)
@@ -702,7 +718,10 @@ class GHyperTextLayer extends GWidgetLayer
 	var marginBottomCache_ = 0;
 	var marginModified_ = false;
 	var reservedLineSize = 0;
+	var reservedLineSizeCache_ = 0;
 	var characterSpace = 0;
+	var characterSpaceCache_ = 0;
+	var lineSpaceCache_ = 8;
 	var fontFaceCache_ = '‚l‚r ‚oƒSƒVƒbƒN';
 	var fontSizeCache_ = 24;
 	var italicCache_ = false;
@@ -917,9 +936,16 @@ class GHyperTextLayer extends GWidgetLayer
 			}
 			break;
 
+		case 'default_line_parameters':
+			reservedLineSizeCache_ = +tag.line_size if tag.line_size !== void;
+			characterSpaceCache_ = +tag.character_space if tag.character_space !== void;
+			lineSpaceCache_ = +tag.line_space if tag.line_space !== void;
+			break;
+
 		case 'line_parameters':
 			reservedLineSize = +tag.line_size if tag.line_size !== void;
 			characterSpace = +tag.character_space if tag.character_space !== void;
+			layout.lineSpace = +tag.line_space if tag.line_space !== void;
 			break;
 
 		case 'font':
@@ -929,6 +955,7 @@ class GHyperTextLayer extends GWidgetLayer
 			font.bold = GObjectUtils.toBoolean(tag.bold) if tag.bold !== void;
 			font.strikeout = GObjectUtils.toBoolean(tag.strikeout) if tag.strikeout !== void;
 			font.underline = GObjectUtils.toBoolean(tag.underline) if tag.underline !== void;
+			setRubyFontSize(tag.ruby_size) if tag.ruby_size !== void;
 			if(tag.shadow_color !== void)
 			{
 				if(tag.shadow_color == 'clNone')
@@ -948,6 +975,9 @@ class GHyperTextLayer extends GWidgetLayer
 		case 'reset_font':
 			layout.resetFont();
 			break;
+
+		case 'reset_line_parameters':
+			layout.resetLineParameters();
 		}
 
 		if(storeContents)
@@ -1196,7 +1226,10 @@ class GHyperTextLayer extends GWidgetLayer
 		dic.marginBottomCache = marginBottomCache_;
 		dic.marginModified = marginModified_;
 		dic.reservedLineSize = reservedLineSize;
+		dic.reservedLineSizeCache = reservedLineSizeCache_;
 		dic.characterSpace = characterSpace;
+		dic.characterSpaceCache = characterSpaceCache_;
+		dic.lineSpaceCache = lineSpaceCache_;
 		dic.fontFaceCache = fontFaceCache_;
 		dic.fontSizeCache = fontSizeCache_;
 		dic.italicCache = italicCache_;
@@ -1241,6 +1274,50 @@ class GHyperTextLayer extends GWidgetLayer
 		marginBottomCache_ = dic.marginBottomCache;
 		marginModified_ = dic.marginModified;
 		reservedLineSize = dic.reservedLineSize;
+		reservedLineSizeCache = dic.reservedLineSizeCache;
+		characterSpaceCache_ = dic.characterSpaceCache;
+		lineSpaceCache_ = dic.lineSpaceCache;
+		fontFaceCache_ = dic.fontFaceCache;
+		fontSizeCache_ = dic.fontSizeCache;
+		italicCache_ = dic.italicCache;
+		boldCache_ = dic.boldCache;
+		strikeoutCache_ = dic.strikeoutCache;
+		underlineCache_ = dic.underlineCache;
+		rubyFontFaceCache_ = dic.rubyFontFaceCache;
+		rubyFontSizeCache_ = dic.rubyFontSizeCache;
+		rubyItalicCache_ = dic.rubyItalicCache;
+		rubyBoldCache_ = dic.rubyBoldCache;
+		rubyStrikeoutCache_ = dic.rubyStrikeoutCache;
+		rubyUnderlineCache_ = dic.rubyUnderlineCache;
+		shadowColorCache_ = dic.shadowColorCache;
+		shadowOffsetX_ = dic.shadowOffsetX;
+		shadowOffsetY_ = dic.shadowOffsetY;
+		shadowExtent_ = dic.shadowExtent;
+		edgeColorCache_ = dic.edgeColorCache;
+
+		dic.lastCharacter = lastCharacter_;
+
+		dic.contents = [];
+		dic.contents.assignStruct(contents_);
+
+		return dic;
+	}
+
+	/**/
+	function restore(dic, tick)
+	{
+		super.restore(...);
+
+		layoutModeCache_ = dic.layoutModeCache;
+		layoutMode_ = dic.layoutMode;
+		resetLayout();
+		layout.restore(dic.layout) if dic.layout !== void;
+
+		outputting_ = dic.outputting;
+
+		marginLeftCache_ = dic.marginLeftCache;
+		marginTopCache_ = dic.marginTopCache;
+		marginRightCache_ = dic.marginRightCache;
 		characterSpace = dic.characterSpace;
 		fontFaceCache_ = dic.fontFaceCache;
 		fontSizeCache_ = dic.fontSizeCache;

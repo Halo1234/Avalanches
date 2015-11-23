@@ -174,6 +174,11 @@ class ModMessage extends GModule
 				}
 			} incontextof this,
 
+			/* @current */
+			'current' => function (elm) {
+				setCurrentLayer(elm.layer) if elm.layer !== void;
+			} incontextof this,
+
 			/* @history_option */
 			'history_option' => function (elm) {
 				with(historyLayer_)
@@ -209,6 +214,17 @@ class ModMessage extends GModule
 				}
 			} incontextof this,
 
+			/* @default_line_parameters */
+			'default_line_parameters' => function (elm) {
+				with(findByElm(elm))
+				{
+					elm.original_tagname = elm.tagname;
+					elm.tagname = 'default_line_parameters';
+
+					.output(elm);
+				}
+			} incontextof this,
+
 			/* @line_parameters */
 			'line_parameters' => function (elm) {
 				with(findByElm(elm))
@@ -237,6 +253,17 @@ class ModMessage extends GModule
 				{
 					elm.original_tagname = elm.tagname;
 					elm.tagname = 'reset_font';
+
+					.output(elm);
+				}
+			} incontextof this,
+
+			/* @reset_line_parameters */
+			'reset_line_parameters' => function (elm) {
+				with(findByElm(elm))
+				{
+					elm.original_tagname = elm.tagname;
+					elm.tagname = 'reset_line_parameters';
 
 					.output(elm);
 				}
@@ -634,17 +661,20 @@ class ModMessage extends GModule
 				if(elm.speed == 'nowait')
 					outputInterval = 0;
 				else
+				if(elm.speed == 'user')
+					outputInterval;
+				else
 					outputInterval = +elm.speed;
 			} incontextof this,
 
-			/* @nowait */
-			'nowait' => function (elm) {
+			/* @no_wait */
+			'no_wait' => function (elm) {
 				beforeNoWaitOutputInterval = outputInterval;
 				outputInterval = 0;
 			} incontextof this,
 
-			/* @end_nowait */
-			'end_nowait' => function (elm) {
+			/* @end_no_wait */
+			'end_no_wait' => function (elm) {
 				outputInterval = beforeNoWaitOutputInterval;
 			} incontextof this,
 
@@ -654,6 +684,8 @@ class ModMessage extends GModule
 				{
 					with(current_)
 					{
+						.loadPageGlyph(elm.page, elm.page_key);
+						.loadLineGlyph(elm.line, elm.line_key);
 						.fixGlyphPosition = GObjectUtils.getBoolean(elm, 'fix') if GObjectUtils.hasValue(elm, 'fix');
 						.glyphPositionX = +elm.left if elm.left !== void;
 						.glyphPositionY = +elm.top if elm.top !== void;
@@ -661,7 +693,7 @@ class ModMessage extends GModule
 				}
 			} incontextof this,
 
-			/**/
+			/* @graph */
 			'graph' => function (elm) {
 				if(current_ !== null)
 				{

@@ -7,7 +7,7 @@
 ;
 ; storage: 追加したいスクリプトファイル名です。
 ;
-@que storage=testcase
+@que storage=KAGCompatible,testcase
 
 
 ; ◆改行の扱い方
