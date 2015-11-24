@@ -249,23 +249,27 @@ class GHistoryLayer extends GHyperTextLayer
 		ptr = 0 if ptr > hdmax;
 		for(var i = 0; i < max1; i++)
 		{
-			line = allocHistory_private_(ptr);
-
-			for(var j = 0; j < cnts[i].count; j++)
+			if(cnts[i] !== void)
 			{
-				if(cnts[i][j].tagname == 'ch' || cnts[i][j].tagname == 'horizontal_ch')
+				line = allocHistory_private_(ptr);
+
+				for(var j = 0; j < cnts[i].count; j++)
 				{
-					cnts[i][j].tagname = 'ch';
-					line.push(cnts[i][j]);
+					if(cnts[i][j].tagname == 'ch' || cnts[i][j].tagname == 'horizontal_ch')
+					{
+						cnts[i][j].tagname = 'ch';
+						line.push(cnts[i][j]);
+					}
 				}
-			}
-			if(pact[i] !== void)
-			{
-				action = allocActionData_private_(ptr);
-				action.assign(pact[i]);
-			}
 
-			ptr = 0 if ++ptr > hdmax;
+				if(pact[i] !== void)
+				{
+					action = allocActionData_private_(ptr);
+					action.assign(pact[i]);
+				}
+
+				ptr = 0 if ++ptr > hdmax;
+			}
 		}
 
 		freeHistory_private_(ptr);
