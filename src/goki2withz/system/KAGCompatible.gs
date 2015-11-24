@@ -122,7 +122,7 @@
 @redirect alias=image name=load_image
 @redirect alias=img name=load_image
 
-@macro
+@macro name=laycount
 @cv_layers count=%layers
 @message_layers count=%messages
 @endmacro

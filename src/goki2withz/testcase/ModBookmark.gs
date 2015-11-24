@@ -14,6 +14,7 @@
 [ハロ][emb exp=f.test]入力のテストです。
 
 *label|
+@save place=0
 @copy_bookmark source=0 destination=1
 
 セーブデータコピーしました。[p][cm]
