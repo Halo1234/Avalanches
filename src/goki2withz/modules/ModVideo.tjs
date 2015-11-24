@@ -100,8 +100,8 @@ class ModVideo extends GModule
 					{
 						switch(elm.mode)
 						{
-						case "layer":	.mode = vomLayer; break;
-						case "mixer":	.mode = vomMixer; break;
+						case 'layer':	.mode = vomLayer; break;
+						case 'mixer':	.mode = vomMixer; break;
 						default:		.mode = vomOverlay; break;
 						}
 					}

@@ -466,7 +466,7 @@ class GMessageLayer extends GHyperTextLayer
 			start : layout.characterPosition,
 			end : void,
 			object : obj,
-			id : currentLinkID_++
+			id : ++currentLinkID_
 		];
 
 		obj.loadImages(elm.graphic, elm.graphic_key) if elm.graphic !== void;
@@ -503,7 +503,7 @@ class GMessageLayer extends GHyperTextLayer
 			start : layout.characterPosition,
 			end : void,
 			object : obj,
-			id : currentLinkID_++
+			id : ++currentLinkID_
 		];
 
 		obj.loadImages(elm.graphic, elm.graphic_key) if elm.graphic !== void;
@@ -540,7 +540,7 @@ class GMessageLayer extends GHyperTextLayer
 			start : layout.characterPosition,
 			end : void,
 			object : obj,
-			id : currentLinkID_++
+			id : ++currentLinkID_
 		];
 
 		obj.setPos(
@@ -592,12 +592,16 @@ class GMessageLayer extends GHyperTextLayer
 	/**/
 	function highLightLink(link)
 	{
+		var arr = [];
+		arr.assign(link.object);
+		for(var i = 0; i < arr.count; i+=2)
+			dm(@"&arr[i]; = &arr[i + 1];");
 		linkLayer_.fillRect(
 			layout.getLineLeft(link.start, link.baseLine, link.lineSize),
 			layout.getLineTop(link.start, link.baseLine, link.lineSize),
 			layout.getLineWidth(link.lineSize, link.end - link.start),
 			layout.getLineHeight(link.lineSize, link.end - link.start),
-			0xFF000000 | clHighlight
+			0xFF000000 | link.object.color
 		);
 	}
 

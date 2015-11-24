@@ -322,7 +322,7 @@ class ModSound extends GModule
 				{
 					if(!.fadeStatus == 'stable')
 						return;
-					if(!GObjectUtils.toBoolean(elm.canskip, false))
+					if(!GObjectUtils.toBoolean(elm, 'skip', false))
 						c.waitSignal(%[@"&.name;_fade" => null]);
 					else
 						.stopFade();
@@ -335,7 +335,7 @@ class ModSound extends GModule
 				{
 					if(!.playing || .looping)
 						return;
-					if(!GObjectUtils.toBoolean(elm.canskip, false))
+					if(!GObjectUtils.toBoolean(elm, 'skip', false))
 						c.waitSignal(%[@"&.name;_stop" => null]);
 					else
 						.stop();
@@ -348,6 +348,7 @@ class ModSound extends GModule
 				{
 					.looping = GObjectUtils.toBoolean(elm.loop, false);
 					.open(elm.storage);
+					.setLabel(elm.label) if elm.label !== void;
 					.fadein(+elm.time, +elm.delay);
 				}
 			} incontextof this,
@@ -402,7 +403,7 @@ class ModSound extends GModule
 				{
 					if(!.fadeStatus == 'stable')
 						return;
-					if(!GObjectUtils.toBoolean(elm.canskip, false))
+					if(!GObjectUtils.toBoolean(elm, 'skip', false))
 						c.waitSignal(%[@"&.name;_fade" => null]);
 					else
 						.stopFade();
@@ -415,7 +416,7 @@ class ModSound extends GModule
 				{
 					if(!.playing || .looping)
 						return;
-					if(!GObjectUtils.toBoolean(elm.canskip, false))
+					if(!GObjectUtils.toBoolean(elm, 'skip', false))
 						c.waitSignal(%[@"&.name;_stop" => null]);
 					else
 						.stop();
@@ -484,7 +485,7 @@ class ModSound extends GModule
 				{
 					if(!.fadeStatus == 'stable')
 						return;
-					if(!GObjectUtils.toBoolean(elm.canskip, false))
+					if(!GObjectUtils.toBoolean(elm, 'skip', false))
 						c.waitSignal(%[@"&.name;_fade" => null]);
 					else
 						.stopFade();
@@ -497,7 +498,7 @@ class ModSound extends GModule
 				{
 					if(!.playing || .looping)
 						return;
-					if(!GObjectUtils.toBoolean(elm.canskip, false))
+					if(!GObjectUtils.toBoolean(elm, 'skip', false))
 						c.waitSignal(%[@"&.name;_stop" => null]);
 					else
 						.stop();
@@ -634,7 +635,7 @@ class ModSound extends GModule
 				}
 			} incontextof this,
 
-			/**/
+			/* @clear_bgm_label */
 			'clear_bgm_label' => function (elm) {
 				with(findBGMBufferByElm(elm))
 				{
@@ -656,7 +657,7 @@ class ModSound extends GModule
 				{
 					if(!.fadeStatus == 'stable')
 						return;
-					if(!toBoolean(elm.canskip, false))
+					if(!toBoolean(elm, 'skip', false))
 						c.waitSignal(%[@"&.name;_fade" => null]);
 					else
 						.stopFade();
@@ -669,7 +670,7 @@ class ModSound extends GModule
 				{
 					if(!.playing || .looping)
 						return;
-					if(!GObjectUtils.toBoolean(elm.canskip, false))
+					if(!GObjectUtils.toBoolean(elm, 'skip', false))
 						c.waitSignal(%[@"&.name;_stop" => null]);
 					else
 						.stop();

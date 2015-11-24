@@ -278,12 +278,13 @@ class ModImage extends GModule
 
 						.mover.time = +elm.time if elm.time !== void;
 						.mover.delay = +elm.delay if elm.delay !== void;
+						.mover.accel = +elm.accel if elm.accel !== void;
 						.mover.start();
 					}
 				}
 			} incontextof this,
 
-			/**/
+			/* @stop_move */
 			'stop_move' => function (elm) {
 				with(findByElm(elm).mover)
 				{

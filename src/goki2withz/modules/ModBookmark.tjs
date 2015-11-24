@@ -130,7 +130,7 @@ class ModBookmark extends GModule
 
 			/* @go_back */
 			'go_back' => function (elm) {
-				popRecordAnchor();
+				popRecordAnchor(+elm.ask);
 			} incontextof this,
 
 			/* @start_anchor */
@@ -140,7 +140,7 @@ class ModBookmark extends GModule
 
 			/* @go_to_start */
 			'go_to_start' => function (elm) {
-				loadStartAnchor();
+				loadStartAnchor(+elm.ask);
 			} incontextof this,
 
 			/* @save */
@@ -317,7 +317,7 @@ class ModBookmark extends GModule
 	}
 
 	/**/
-	function popRecordAnchor()
+	function popRecordAnchor(ask)
 	{
 		if(!recordAnchorEnabled_)
 			return false;
