@@ -55,7 +55,7 @@
 @video_buffers count=1
 
 ; メッセージ履歴設定
-@history_option width=800 height=600 margin_left=10 margin_top=10 margin_right=10 margin_bottom=10
+@history_option width=800 height=600 margin_left=10 margin_top=10 margin_right=10 margin_bottom=10 color=0x000000
 
 ; メッセージレイヤ設定
 @message_option layer=message0 left=10 top=400 width=780 height=190 margin_left=10 margin_top=10 margin_right=10 margin_bottom=10 opacity=128 color=0x000000 shadow_color=0xFFFF0000 current
@@ -103,6 +103,9 @@
 ;
 @!make_character image=立ち絵有り->true,立ち絵無し->false
 @!make_character voice=ボイス有り->true,ボイス無し->false
+
+@redirect alias=mob name=make_character
+@!mob /mob=true
 
 ; キャラクター作成
 ;
