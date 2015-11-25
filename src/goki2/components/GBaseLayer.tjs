@@ -13,6 +13,12 @@ class GBaseLayer extends GLayer
 
 		hitThreshold = 0;
 		type = ltOpaque;
+		neutralColor = 0x000000;
+	}
+
+	function clearImages()
+	{
+		super.clearImages(0xFF000000);
 	}
 
 	/**/

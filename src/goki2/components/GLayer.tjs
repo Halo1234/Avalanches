@@ -25,7 +25,7 @@ class GLayer extends Layer
 
 	var loadImagesStorage_ = void;
 	var loadImagesColorKey_ = clNone;
-	var clearImagesColor_ = neutralColor;
+	var clearImagesColor_ = 0x000000;
 
 	var prerenderedFontStorage_ = '';
 
