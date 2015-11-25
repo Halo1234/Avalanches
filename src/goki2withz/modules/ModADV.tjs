@@ -807,7 +807,7 @@ class ModADV extends GModule
 	}
 
 	/**/
-	function onScenarioLoaded(storage)
+	function onConductorScenarioLoaded(storage)
 	{
 		var chars = characters_;
 		var arr = mobCharacterNames_;
