@@ -511,7 +511,7 @@ class TypingWordProcessor
 
 		romanTable_ = symbolTable_ = void;
 
-		if(!Storages.isExistentStorage(symbolStorage))
+		if(!Storages.isExistentStorage(baseStorage))
 			throw new GNotFoundStorageError(@"指定された言語のローマ字対応表が見つかりませんでした。言語：'&language;'");
 		romanTable_ = Scripts.evalStorage(baseStorage, '');
 
