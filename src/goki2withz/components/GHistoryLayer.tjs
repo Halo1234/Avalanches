@@ -144,13 +144,13 @@ class GHistoryLayer extends GHyperTextLayer
 		{
 		case 'horizontal':
 			obj.vertical = true;
-			obj.setSize(18, height - marginTopCache_ - marginBottomCache_);
-			obj.setPos(width - obj.width, marginTopCache_);
+			obj.setSize(18, height - marginTopCache - marginBottomCache);
+			obj.setPos(width - obj.width, marginTopCache);
 			break;
 		case 'vertical':
 			obj.vertical = false;
-			obj.setSize(width - marginLeftCache_ - marginRightCache_, 18);
-			obj.setPos(marginLeftCache_, height - obj.height);
+			obj.setSize(width - marginLeftCache - marginRightCache, 18);
+			obj.setPos(marginLeftCache, height - obj.height);
 			break;
 		}
 
