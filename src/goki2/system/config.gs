@@ -55,7 +55,7 @@
 @video_buffers count=1
 
 ; メッセージ履歴設定
-@history_option width=800 height=600 margin_left=10 margin_top=10 margin_right=10 margin_bottom=10 color=0x000000
+@history_option width=800 height=600 margin_left=18 margin_top=18 margin_right=18 margin_bottom=18 color=0x000000
 
 ; メッセージレイヤ設定
 @message_option layer=message0 left=10 top=400 width=780 height=190 margin_left=10 margin_top=10 margin_right=10 margin_bottom=10 opacity=128 color=0x000000 shadow_color=0xFFFF0000 current

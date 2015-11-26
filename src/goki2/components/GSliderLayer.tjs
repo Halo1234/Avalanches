@@ -1,0 +1,371 @@
+/*
+ $Author$
+ $Revision$
+*/
+
+
+/**/
+class GSliderButtonLayer extends GButtonLayer
+{
+	function GSliderButtonLayer(window, parent, handler)
+	{
+		super.GButtonLayer(...);
+		visible = true;
+	}
+
+	function onMouseMove(x, y, shift)
+	{
+		callHandler('onSliderMove', %[x : x, y : y, shift : shift]) if pushed;
+	}
+
+	property cursorOnLayer
+	{
+		getter		{ return true; }
+	}
+}
+
+/*! \brief 縦置きのスライダーコントロールの位置計算、及び値計算用
+**/
+class GVerticalSliderPositionAdapter
+{
+	var owner;
+
+	function GVerticalSliderPositionAdapter(owner)
+	{
+		this.owner = owner;
+	}
+
+	function finalize()
+	{
+	}
+
+	/*! \brief value の位置にスライダを移動
+	**/
+	function setSliderPos(value)
+	{
+		var slider = owner.sliderLayer;
+		var min = slider.height >> 1;
+		var max = owner.height - min;
+		var vr = owner.max - owner.min;
+		var pr = max - min;
+		var left = owner.width >> 1;
+		var top = max;
+
+		if(vr != 0)
+			top = (int)((pr / vr) * (owner.max - value + owner.min)) + min;
+		slider.setCenterPos(left, top);
+		owner.onValue(value);
+	}
+
+	/*! \brief pos の位置にスライダを移動して value を返す
+	**/
+	function setSliderPosByPixel(x, y)
+	{
+		var slider = owner.sliderLayer;
+		var min = slider.height >> 1;
+		var max = owner.height - min;
+		var vr = owner.max - owner.min;
+		var pr = max - min;
+		var value = min;
+
+		y = (y < min ? min : (y > max ? max : y));
+
+		if(vr != 0)
+			value = (int)(((max - y) / (pr / vr)) + 0.5) + owner.min;
+		setSliderPos(value);
+
+		return value;
+	}
+}
+
+
+/*! \brief 横置きのスライダーコントロールの位置計算、及び値計算用
+**/
+class GHorizontalSliderPositionAdapter
+{
+	var owner;
+
+	function GHorizontalSliderPositionAdapter(owner)
+	{
+		this.owner = owner;
+	}
+
+	function finalize()
+	{
+	}
+
+	/*! \brief value の位置にスライダを移動
+	**/
+	function setSliderPos(value)
+	{
+		var slider = owner.sliderLayer;
+		var min = slider.width >> 1;
+		var max = owner.width - min;
+		var vr = owner.max - owner.min;
+		var pr = max - min;
+		var left = min;
+		var top = owner.height >> 1;
+
+		if(vr != 0)
+			left = (int)((pr / vr) * (value - owner.min)) + min;
+		slider.setCenterPos(left, top);
+		owner.onValue(value);
+	}
+
+	/*! \brief pos の位置にスライダを移動して value を返す
+	**/
+	function setSliderPosByPixel(x, y)
+	{
+		var slider = owner.sliderLayer;
+		var min = slider.width >> 1;
+		var max = owner.width - min;
+		var vr = owner.max - owner.min;
+		var pr = max - min;
+		var value = min;
+
+		x = (x < min ? min : (x > max ? max : x));
+
+		if(vr != 0)
+			value = (int)(((x - min) / (pr / vr)) + 0.5) + owner.min;
+		setSliderPos(value);
+
+		return value;
+	}
+}
+
+
+/**/
+class GSliderLayer extends GButtonLayer
+{
+	var sliderLayer_;
+
+	var min_ = 0;
+	var max_ = 0;
+	var value_ = 0;
+	var vertical_ = false;
+	var onSliderMoveInterval = 50;
+	var onSliderMoveTick_ = 0;
+
+	var layout_;
+
+	function GSliderLayer(window, parent, handler)
+	{
+		super.GButtonLayer(...);
+
+		fixSliderSize();
+
+		// NOTE: レイアウトは作り直しが発生する可能性があるので代行オブジェクトを通して破棄する。
+		family.receive(new GDestructor(resetLayout));
+	}
+
+	function createSliderButton(window, parent, handler)
+	{
+		return new GSliderButtonLayer(window, parent, handler);
+	}
+
+	function createLayout(owner)
+	{
+		if(vertical_)
+			return new GVerticalSliderPositionAdapter(owner);
+		return new GHorizontalSliderPositionAdapter(owner);
+	}
+
+	/**/
+	function resetLayout()
+	{
+		if(layout_ !== void)
+		{
+			invalidate layout_ if layout_ !== void;
+			layout_ = void;
+		}
+	}
+
+	/*! \brief スライダつまみの位置を調整する
+	**/
+	function setSliderPos(v)
+	{
+		v = (v > max ? max : (v < min ? min : v));
+		layout.setSliderPos(value_ = v);
+	}
+
+	/*! \brief スライダつまみの位置を調整する
+	**/
+	function setSliderPosByPixel(x, y)
+	{
+		value_ = layout.setSliderPosByPixel(x, y);
+	}
+
+	/*! \brief スライダつまみのサイズを調整する
+	**/
+	function fixSliderSize()
+	{
+		var w = 32, h = 32;
+
+		if(width >= height)
+			h = height;
+		else
+			w = width;
+		sliderLayer_.setSize(w, h);
+	}
+
+	function assign(src)
+	{
+		super.assign(src);
+
+		with(src)
+		{
+			sliderLayer_.assign(.sliderLayer_);
+			min_ = .min_;
+			max_ = .max_;
+			value_ = .value_;
+		}
+	}
+
+	function loadImages(storage, key = clNone)
+	{
+		var arr = storage.split('/', , true);
+
+		if(arr.count > 1)
+			sliderLayer_.loadImages(arr[1]);
+
+		return super.loadImages(arr[0], key);
+	}
+
+	function setSizeToImageSize()
+	{
+		super.setSizeToImageSize(...);
+		setSliderPos(value_);
+	}
+
+	function widthToImageWidth(width)
+	{
+		return width;
+	}
+
+	function imageWidthToWidth(bufferWidth)
+	{
+		return bufferWidth;
+	}
+
+	/*! \brief スライダつまみからのイベント
+	**/
+	function onSliderButton(obj, event, elm)
+	{
+		var tick;
+
+		switch(event)
+		{
+		case 'onSliderMove':
+			elm.x += obj.left;
+			elm.y += obj.top;
+			setSliderPosByPixel(elm.x, elm.y);
+			tick = System.getTickCount();
+			if(onSliderMoveInterval == 0 || onSliderMoveInterval < (tick - onSliderMoveTick_))
+			{
+				onSliderMoveTick_ = tick;
+				callHandler('onSliderMove', elm);
+			}
+			break;
+		}
+	}
+
+	/*! \brief 値が変化した時によばれます
+	**/
+	function onValue(value)
+	{
+		// NOTE:
+		// 結局 onSliderMove とほぼ同じタイミングで呼び出されている。
+		// 引数が違うだけなのでこのハンドラの意味が薄い。
+		// どうするか要検討。
+	}
+
+	function onMouseDown(x, y, button, shift)
+	{
+		super.onMouseDown(...);
+		if(button == mbLeft)
+		{
+			var tick = System.getTickCount();
+
+			if(onSliderMoveInterval == 0 || onSliderMoveInterval < (tick - onSliderMoveTick_))
+			{
+				onSliderMoveTick_ = tick;
+				setSliderPosByPixel(x, y);
+				callHandler('onSliderMove', %[x : x, y : y, button : button, shift : shift]);
+			}
+		}
+	}
+
+	function onMouseMove(x, y, shift)
+	{
+		super.onMouseMove(...);
+
+		if(pushed)
+		{
+			var tick = System.getTickCount();
+
+			if(onSliderMoveInterval == 0 || onSliderMoveInterval < (tick - onSliderMoveTick_))
+			{
+				onSliderMoveTick_ = tick;
+				setSliderPosByPixel(x, y);
+				callHandler('onSliderMove', %[x : x, y : y, shift : shift]);
+			}
+		}
+	}
+
+	function onUpdateState()
+	{
+		// 何もしない
+	}
+
+	property vertical
+	{
+		setter(x)
+		{
+			if(x != vertical_)
+			{
+				vertical_ = x;
+				resetLayout();
+				setSliderPos(value_);
+			}
+		}
+		getter		{ return vertical_; }
+	}
+
+	property layout
+	{
+		getter
+		{
+			layout_ = createLayout(this) if layout_ === void;
+			return layout_;
+		}
+	}
+
+	property sliderLayer
+	{
+		getter
+		{
+			family.receive(sliderLayer_ = createSliderButton(window, this, onSliderButton)) if sliderLayer_ === void;
+			return sliderLayer_;
+		}
+	}
+
+	property min
+	{
+		setter(x)	{ min_ = x; value = x if x > value_; }
+		getter		{ return min_; }
+	}
+
+	property max
+	{
+		setter(x)	{ max_ = x; value = x if x < value_; }
+		getter		{ return max_; }
+	}
+
+	property value
+	{
+		setter(x)	{ setSliderPos(x); }
+		getter		{ return value_; }
+	}
+}
+
+

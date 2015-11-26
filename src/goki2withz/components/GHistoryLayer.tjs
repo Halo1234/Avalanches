@@ -106,6 +106,7 @@ class GHistoryLayer extends GHyperTextLayer
 {
 	var highLightLayer_;
 	var textLayer_;
+	var sliderLayer_;
 
 	var historyData_ = [];			//!< \brief 履歴データ
 	var actionData_ = [];			//!< \brief アクションデータ
@@ -135,16 +136,58 @@ class GHistoryLayer extends GHyperTextLayer
 	}
 
 	/**/
+	function createSliderLayer(window, parent, handler)
+	{
+		var obj = new GSliderLayer(...);
+
+		switch(layoutMode)
+		{
+		case 'horizontal':
+			obj.vertical = true;
+			obj.setSize(18, height - marginTopCache_ - marginBottomCache_);
+			obj.setPos(width - obj.width, marginTopCache_);
+			break;
+		case 'vertical':
+			obj.vertical = false;
+			obj.setSize(width - marginLeftCache_ - marginRightCache_, 18);
+			obj.setPos(marginLeftCache_, height - obj.height);
+			break;
+		}
+
+		obj.visible = true;
+
+		return obj;
+	}
+
+	/**/
+	function resetLayout()
+	{
+		super.resetLayout();
+		if(sliderLayer_ !== void)
+		{
+			invalidate sliderLayer_;
+			sliderLayer_ = void;
+		}
+	}
+
+	/**/
 	function createLayout(layer)
 	{
 		var obj;
 
 		switch(layoutMode)
 		{
-		case 'horizontal':	obj = new GHistoryHorizontalLayout(layer); break;
-		case 'vertical':	obj = new GHistoryVerticalLayout(layer); break;
-		default:			throw new GArgumentsError(@"&layoutMode; は未定義のレイアウトです。");
+		case 'horizontal':
+			obj = new GHistoryHorizontalLayout(layer);
+			break;
+		case 'vertical':
+			obj = new GHistoryVerticalLayout(layer);
+			break;
+		default:
+			throw new GArgumentsError(@"&layoutMode; は未定義のレイアウトです。");
 		}
+
+		sliderLayer_ = createSliderLayer(window, this, onSliderEvent);
 
 		obj.setMargin(marginLeftCache, marginTopCache, marginRightCache, marginBottomCache);
 
@@ -416,17 +459,17 @@ class GHistoryLayer extends GHyperTextLayer
 		{
 			while(data !== void)
 			{
-				data[0].baseLine = .baseLine;
-				data[0].lineSize = .lineSize;
-
-				drawLine(displayLineCount_++);
-				displayPageSize_ += .lineSize + .lineSpace;
-
 				if(!.possibleReline())
 				{
 					lastPage_ = false;
 					break;
 				}
+
+				data[0].baseLine = .baseLine;
+				data[0].lineSize = .lineSize;
+
+				drawLine(displayLineCount_++);
+				displayPageSize_ += .lineSize + .lineSpace;
 
 				data = getHistoryDisplay(displayLineCount_);
 			}
@@ -511,16 +554,24 @@ class GHistoryLayer extends GHyperTextLayer
 			// 古いデータをスクロール
 			var layer = textLayer;
 			var scrollSize = displayPageSize_ - oldDataSize;
+			var data;
 			layer.copyRect(0, height - layout.marginBottom - oldDataSize, layer, 0, height - layout.marginBottom - displayPageSize_, width, oldDataSize);
 			for(var i = 0; i < oldDataCount; i++)
 			{
-				getHistoryDisplay(i)[0].baseLine += scrollSize;
-				//onScrollLine(i);
+				data = getHistoryDisplay(i);
+				if(data !== void)
+				{
+					data[0].baseLine += scrollSize;
+				}
+				onScrollLine(i);
 			}
 
 			// 新しいデータを描画
-			newLine[0].baseLine = height - layout.marginBottom - oldDataSize - newLine[0].lineSpace;
-			drawLine(displayLineCount_ - 1);
+			if(newLine !== void)
+			{
+				newLine[0].baseLine = height - layout.marginBottom - oldDataSize - newLine[0].lineSpace;
+				drawLine(displayLineCount_ - 1);
+			}
 
 			displayPageSize_ = oldDataSize + newLineSize;
 		}
@@ -569,7 +620,7 @@ class GHistoryLayer extends GHyperTextLayer
 			for(var i = 0; i < oldDataCount; i++)
 			{
 				getHistoryDisplay(i)[0].baseLine += scrollSize;
-				//onScrollLine(i);
+				onScrollLine(i);
 			}
 
 			// 新しいデータを描画
@@ -627,7 +678,7 @@ class GHistoryLayer extends GHyperTextLayer
 			for(var i = 0; i < oldDataCount; i++)
 			{
 				getHistoryDisplay(i)[0].baseLine -= scrollSize;
-				//onScrollLine(i);
+				onScrollLine(i);
 			}
 
 			// 新しいデータを描画
@@ -683,7 +734,7 @@ class GHistoryLayer extends GHyperTextLayer
 			for(var i = 0; i < oldDataCount; i++)
 			{
 				getHistoryDisplay(i)[0].baseLine -= scrollSize;
-				//onScrollLine(i);
+				onScrollLine(i);
 			}
 
 			// 新しいデータを描画
@@ -741,6 +792,9 @@ class GHistoryLayer extends GHyperTextLayer
 
 		focus();
 
+		sliderLayer_.max = historyDataCount - displayLineCount - 1;
+		sliderLayer_.value = 0;
+
 		super.showComplete();
 	}
 
@@ -777,6 +831,13 @@ class GHistoryLayer extends GHyperTextLayer
 	}
 
 	/**/
+	function onSliderEvent(obj, message, elm)
+	{
+		if(message == 'onSliderMove')
+			pageTopLine = obj.value;
+	}
+
+	/**/
 	function onNewLine()
 	{
 		internalBeginAction_private_();
@@ -786,6 +847,13 @@ class GHistoryLayer extends GHyperTextLayer
 	function onEndLine()
 	{
 		internalEndAction_private_();
+	}
+
+	/*! \brief 行がスクロールされた時に呼ばれる。
+	**/
+	function onScrollLine(line)
+	{
+		sliderLayer_.value = pageTopLine;
 	}
 
 	function onMouseWheel(shift, delta, x, y)
@@ -969,6 +1037,41 @@ class GHistoryLayer extends GHyperTextLayer
 		case mbRight:
 			hide();
 			break;
+		}
+	}
+
+	/**/
+	property historyDataCount
+	{
+		getter		{ return historyData_.count; }
+	}
+
+	/**/
+	property displayLineCount
+	{
+		getter		{ return displayLineCount_; }
+	}
+
+	/*! \brief 現在のページの一番最初の行番号
+	**/
+	property pageTopLine
+	{
+		setter(x)
+		{
+			x = historyDataMax_ - 1 if x >= historyDataMax_;
+
+			var idx = lastDataIndex - x;
+			if(idx < 0)
+				idx += historyDataMax_;
+			displayTopIndex_ = idx;
+
+			drawPage();
+		}
+		getter
+		{
+			var line = lastDataIndex - displayTopIndex_;
+			line += historyDataMax_ if line < 0;
+			return line;
 		}
 	}
 

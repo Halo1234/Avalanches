@@ -29,7 +29,7 @@ Scripts.execStorage('GOKI2Utils.tjs');
 		'GLayerColorCorrection', 'GLayerConductor',
 		'GLayerContainer', 'GLayerIterator',
 		'GWidgetLayer',
-		'GFormLayer', 'GButtonLayer', 'GCheckBoxLayer', 'GEditLayer',
+		'GFormLayer', 'GButtonLayer', 'GCheckBoxLayer', 'GEditLayer', 'GSliderLayer',
 		'GSyntax', 'GConductor',
 		'GLocation', 'GTemporaryLocation',
 		'GWaveSoundBuffer', 'GWaveSoundBuffer2',
