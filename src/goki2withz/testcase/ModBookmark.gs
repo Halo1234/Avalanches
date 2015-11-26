@@ -7,15 +7,15 @@
 @show_message layer=message0
 
 *label|
-@input name=f.test prompt=入力してください。 title=入力
+[input name=f.test prompt=入力してください。 title=入力]
 
-@trace exp=f.test
+[trace exp=f.test]
 
-[ハロ][emb exp=f.test]入力のテストです。
+[ハロ][emb exp=f.test]入力のテストです。[p][cm]
 
 *label|
 @save place=0
-@copy_bookmark source=0 destination=1
+@copybookmark from=0 to=1
 
 セーブデータコピーしました。[p][cm]
 

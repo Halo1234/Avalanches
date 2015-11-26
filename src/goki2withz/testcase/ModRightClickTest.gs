@@ -13,13 +13,13 @@
 @show_message layer=message0
 
 *label|
-@right_click enabled jump target=*right_click_1
+@rclick enabled jump target=*right_click_1
 右クリックのテストです。[p][cm]
 
 *right_click_1
 
 *label|
-@right_click enabled call storage=ModRightClickTest target=*right_click_2
+@rclick enabled call storage=ModRightClickTest target=*right_click_2
 右クリックサブルーチンのテストです。[p][cm]
 
 @jump target=*next

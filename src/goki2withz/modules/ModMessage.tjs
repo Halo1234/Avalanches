@@ -1463,12 +1463,15 @@ class ModMessage extends GModule
 	/**/
 	function onWindowKeyDown(key, shift)
 	{
-		if(shift & ssRepeat)
-			return;
-		switch(key)
+		if(window.focusedLayer === null)
 		{
-		case skipKey:			enterSkipToSkipCancel(); break;
-		case notReadSkipKey:	enterSkipToNotRead(); break;
+			if(shift & ssRepeat)
+				return;
+			switch(key)
+			{
+			case skipKey:			enterSkipToSkipCancel(); break;
+			case notReadSkipKey:	enterSkipToNotRead(); break;
+			}
 		}
 	}
 

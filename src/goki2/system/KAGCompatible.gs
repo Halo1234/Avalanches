@@ -117,7 +117,7 @@
 @redirect alias=copylay name=copy_layer
 @!copylay source_layer=<SRCLAYER> destination_layer=<DESTLAYER> source_page=<SRCPAGE> destination_page=<DESTPAGE>
 
-@redirect alias=freeimage name=free_image
+@redirect alias=freeimage name=clear_image
 
 @redirect alias=image name=load_image
 @redirect alias=img name=load_image
