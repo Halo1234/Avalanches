@@ -107,10 +107,10 @@
 @!wheel /sound_effect=<SE> /sound_effect_buffer_number=<SEBUF>
 
 @redirect alias=animstart name=start_animation
-@!animstart index=<SEG>
+@!animstart /index=<SEG>
 
 @redirect alias=animstop name=stop_animation
-@!animstop index=<SEG>
+@!animstop /index=<SEG>
 
 @redirect alias=backlay name=assign_image
 
@@ -121,6 +121,8 @@
 
 @redirect alias=image name=load_image
 @redirect alias=img name=load_image
+
+@!load_image /gray_scale=<GRAYSCALE> /r_gamma=<RGAMMA> /g_gamma=<GGAMMA> /b_gamma=<BGAMMA> /r_floor=<RFLOOR> /g_floor=<GFLOOR> /b_floor=<BFLOOR> /r_ceil=<RCEIL> /g_ceil=<GCEIL> /b_ceil=<BCEIL> /clip_left=<CLIPLEFT> /clip_top=<CLIPTOP> /clip_width=<CLIPWIDTH> /clip_height=<CLIPHEIGHT> /flip_ud=<FLIPUD> /flip_lr=<FLIPLR>
 
 @macro name=laycount
 @cv_layers count=%layers
@@ -142,6 +144,7 @@
 @redirect alias=trans name=transition
 
 @redirect alias=wa name=wait_animation
+@!wa /index=<SEG>
 
 @redirect alias=wm name=wait_move
 
