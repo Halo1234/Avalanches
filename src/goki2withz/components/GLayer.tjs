@@ -698,16 +698,19 @@ class GLayer extends Layer
 	/**/
 	function click(x, y, shift)
 	{
+		return false;
 	}
 
 	/**/
 	function rclick(x, y, shift)
 	{
+		return false;
 	}
 
 	/**/
 	function mclick(x, y, shift)
 	{
+		return false;
 	}
 
 	/**/

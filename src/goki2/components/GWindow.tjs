@@ -466,7 +466,16 @@ class GWindow extends Window
 			case VK_UP:		return softFocus.moveUp(true);
 			case VK_RIGHT:	return softFocus.moveRight(true);
 			case VK_DOWN:	return softFocus.moveDown(true);
-			case VK_RETURN:	return softFocus.click();
+			case VK_RETURN:
+				var ret = softFocus.click();
+
+				if(!ret)
+				{
+					leftClick();
+					ret = true;
+				}
+
+				return ret;
 			}
 		}
 

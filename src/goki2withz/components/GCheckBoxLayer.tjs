@@ -228,6 +228,8 @@ class GCheckBoxLayer extends GButtonLayer
 		updateState();
 
 		onCheckStateChanged();
+
+		return true;
 	}
 
 	function widthToImageWidth(width)
