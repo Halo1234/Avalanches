@@ -91,7 +91,7 @@ class GLayerMover extends GTimeLine
 		{
 			for(var i = 0; i < c; i++)
 			{
-				if(arr[i].type_ != 'normal' || arr[i]._transform)
+				if(arr[i].type_ != 'normal' || arr[i].transform_)
 					continue;
 				if(!arr[i].isUserHandler_ && arr[i].handler_ !== void)
 				{
@@ -236,7 +236,7 @@ class GLayerMover extends GTimeLine
 				frame.sx = +.sx if .sx !== void;
 				frame.sy = +.sy if .sy !== void;
 
-				frame._transform = true;
+				frame.transform_ = true;
 				transformEventCount_++;
 			}
 		}
@@ -286,11 +286,11 @@ class GLayerMover extends GTimeLine
 			{
 				if(arr[i].position_ <= frame.position_)
 				{
-					prev = i if arr[i].type_ == 'normal' && !arr[i]._transform;
+					prev = i if arr[i].type_ == 'normal' && !arr[i].transform_;
 					continue;
 				}
 
-				next = i if arr[i].type_ == 'normal' && !arr[i]._transform;
+				next = i if arr[i].type_ == 'normal' && !arr[i].transform_;
 				index = i;
 
 				break;
@@ -303,7 +303,7 @@ class GLayerMover extends GTimeLine
 			{
 				for(var i = index + 1; i < c; i++)
 				{
-					if(arr[i].type_ != 'normal' || arr[i]._transform)
+					if(arr[i].type_ != 'normal' || arr[i].transform_)
 						continue;
 
 					next = i;
@@ -680,7 +680,7 @@ class GLayerMover extends GTimeLine
 		{
 			for(var i = index; i < c; i++)
 			{
-				if(events[i].type_ != 'normal' || events[i]._transform)
+				if(events[i].type_ != 'normal' || events[i].transform_)
 					continue;
 				next = i;
 				break;
