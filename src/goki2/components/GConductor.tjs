@@ -29,6 +29,8 @@ class GConductor extends KAGParser
 	var breathBound = 1;				//!< \brief ブレス状態に移行するまでの breath の数
 	var breathCount_ = 0;				//!< \brief 現在の breath の数
 
+	var firstLabelProcessed_ = false;	//!< \brief 現在のスクリプトの最初のセーブ可能なラベルを処理したかどうか
+
 	var timeOrigin_;
 
 	var interrupted_ = false;			//!< \brief interrupt 状態ならば true になります。
@@ -925,6 +927,7 @@ class GConductor extends KAGParser
 		}
 
 		timer_.enabled = false;
+		firstLabelProcessed_ = false;
 		startLabelName_ = '';
 		pendingTags_.clear();
 		resetInterrupt();
@@ -935,6 +938,7 @@ class GConductor extends KAGParser
 	function goToLabel(label)
 	{
 		try {
+			firstLabelProcessed_ = false;
 			startLabelName_ = label;
 			resetInterrupt();
 			super.goToLabel(label);
@@ -1008,6 +1012,8 @@ class GConductor extends KAGParser
 			lastProcessedTag_ = .lastProcessedTag_;
 			lastActualProcessedTag_ = .lastActualProcessedTag_;
 
+			firstLabelProcessed_ = .firstLabelProcessed_;
+
 			pendingTags_.assignStruct(.pendingTags_);
 			breathTags_.assign(.breathTags_);
 			breathBound = .breathBound;
@@ -1031,6 +1037,8 @@ class GConductor extends KAGParser
 		dic.lastProcessedTag = lastProcessedTag_;
 		dic.lastActualProcessedTag = lastActualProcessedTag_;
 
+		dic.firstLabelProcessed = firstLabelProcessed_;
+
 		dic.pendingTags = pendingTags_;
 
 		dic.scriptQue = scriptQue_;
@@ -1047,6 +1055,8 @@ class GConductor extends KAGParser
 		startLabelName_ = dic.startLabelName;
 		lastProcessedTag_ = dic.lastProcessedTag;
 		lastActualProcessedTag_ = dic.lastActualProcessedTag;
+
+		firstLabelProcessed_ = dic.firstLabelProcessed;
 
 		pendingTags_ = dic.pendingTags;
 
@@ -1187,7 +1197,9 @@ class GConductor extends KAGParser
 	/**/
 	function onLabel(label, pagename)
 	{
-		window.modules.callHandler('onConductorLabel', label, pagename);
+		window.modules.callHandler('onConductorLabel', label, pagename, firstLabelProcessed_);
+
+		firstLabelProcessed_ = true if pagename !== void;
 	}
 
 	property window
@@ -1228,6 +1240,11 @@ class GConductor extends KAGParser
 	property lastActualProcessedTag
 	{
 		getter		{ return lastActualProcessedTag_; }
+	}
+
+	property firstLabelProcessed
+	{
+		getter		{ return firstLabelProcessed_; }
 	}
 
 	property interrupted

@@ -11,7 +11,7 @@ class ModBookmark extends GModule
 	var possibleLoad_ = true;
 
 	var storeOnLabelPassed = true;					// セーブ可能なラベル通過時にストアするかどうか
-	var storeAndSave = true;						// true ならセーブもストアもしない
+	var storeAndSave = true;						// false ならセーブもストアもしない
 
 	var storeSkipping = false;
 
@@ -94,7 +94,7 @@ class ModBookmark extends GModule
 					calculateThumbnailSize_private_(context_);
 				}
 				storeOnLabelPassed = GObjectUtils.getBoolean(elm, 'store_on_label_passed') if GObjectUtils.hasValue(elm, 'store_on_label_passed');
-				storeAndSave = GOBjectUtils.getBoolean(elm, 'store_and_save') if GObjectUtils.hasValue(elm, 'store_and_save');
+				storeAndSave = GObjectUtils.getBoolean(elm, 'store_and_save') if GObjectUtils.hasValue(elm, 'store_and_save');
 			} incontextof this,
 
 			/* @clear_system_variables */
@@ -116,6 +116,11 @@ class ModBookmark extends GModule
 			'disable_store' => function (elm) {
 				possibleSave_ = !GObjectUtils.getBoolean(elm, 'store', true);
 				possibleLoad_ = !GObjectUtils.getBoolean(elm, 'restore', false);
+			} incontextof this,
+
+			/* @store */
+			'store' => function (elm) {
+				storeAndSave = GObjectUtils.getBoolean(elm, 'enabled') if GObjectUtils.hasValue(elm, 'enabled');
 			} incontextof this,
 
 			/* @erase_bookmark */
@@ -559,15 +564,12 @@ class ModBookmark extends GModule
 	/**/
 	function save_private_(fileName, summary)
 	{
-		dm('save_private_');
 		// セーブしない
 		if(!storeAndSave)
-			return;
-		dm('storeAndSave');
+			return false;
 
 		if(!possibleSave_)
 			return false;
-		dm('possibleSave');
 
 		var data = %[user : userFlags_];
 
@@ -831,11 +833,6 @@ class ModBookmark extends GModule
 		dic.recordAnchorEnabled = recordAnchorEnabled_;
 		dic.recordAnchorStackSize = recordAnchorStackSize_;
 
-		if(!dic.storeOnLabelPassed)
-		{
-			dic.fp = window.conductor.storeFilePointer(tick);
-		}
-
 		return dic;
 	}
 
@@ -861,14 +858,6 @@ class ModBookmark extends GModule
 
 		recordAnchorEnabled_ = dic.recordAnchorEnabled;
 		recordAnchorStackSize_ = dic.recordAnchorStackSize;
-
-		with(window.conductor)
-		{
-			if(dic.storeOnLabelPassed)
-				.start();
-			else
-				.restoreFilePointer(dic.fp, tick);
-		}
 	}
 
 	/**/
@@ -909,11 +898,12 @@ class ModBookmark extends GModule
 					// または、ラベル名が *force_store ならば強制的に store する
 					// または、起動後まだ一度も store していないならば強制的に store する
 					// または、storeSkipping が false ならば store する
-					if((modMessage !== void && !modMessage.longSkipping) ||
+					if(storeAndSave &&
+						((modMessage !== void && !modMessage.longSkipping) ||
 						!firstLabelProcessed ||
 						regOnForceStored_static_.test(label) ||
 						!firstStored_ ||
-						!storeSkipping)
+						!storeSkipping))
 					{
 						.temporaryLocation.save('core', .store());
 
