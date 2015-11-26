@@ -166,7 +166,7 @@ class ModMessage extends GModule
 					.bodyOpacity = +elm.opacity if elm.opacity !== void;
 					.setShadowColor(+elm.shadow_color) if elm.shadow_color !== void;
 					.setEdgeColor(+elm.edge_color) if elm.edge_color !== void;
-					setCurrentLayer(.name) if GObjectUtils.toBoolean(elm.current);
+					setCurrentLayer(.name) if GObjectUtils.toBoolean(elm, 'current');
 					if(elm.margin_left !== void && elm.margin_top !== void && elm.margin_top !== void && elm.margin_bottom !== void)
 						.setMargin(+elm.margin_left, +elm.margin_top, +elm.margin_right, +elm.margin_bottom);
 					.visible = elm.visible if elm.visible !== void;
@@ -388,7 +388,7 @@ class ModMessage extends GModule
 					else
 					{
 						showPageGlyph();
-						c.waitSignal(%[left_click : current_.hidePageGlyph]);
+						c.waitSignal(%[left_click : hidePageGlyph]);
 					}
 				}
 			} incontextof this,
@@ -406,8 +406,8 @@ class ModMessage extends GModule
 					}
 					else
 					{
-						current_.showLineGlyph();
-						c.waitSignal(%[left_click : current_.hidePageGlyph]);
+						showLineGlyph();
+						c.waitSignal(%[left_click : hideLineGlyph]);
 					}
 				}
 			} incontextof this,
@@ -842,12 +842,32 @@ class ModMessage extends GModule
 	}
 
 	/**/
+	function hidePageGlyph()
+	{
+		if(current_ !== null)
+		{
+			current_.hidePageGlyph();
+			lastClickGlyphVisible = false if window.conductor == window.mainConductor;
+		}
+	}
+
+	/**/
 	function showLineGlyph()
 	{
 		if(current_ !== null)
 		{
 			current_.showLineGlyph();
 			storeClickGlyphState('line');
+		}
+	}
+
+	/**/
+	function hideLineGlyph()
+	{
+		if(current_ !== null)
+		{
+			current_.hideLineGlyph();
+			lastClickGlyphVisible = false if window.conductor == window.mainConductor;
 		}
 	}
 

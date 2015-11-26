@@ -124,20 +124,39 @@ class ModRightClick extends GModule
 	{
 		if(!rightClickEnabled)
 			return;
+
+		var mod;
+
 		if(rightClickJump)
 		{
+			if((mod = container.get('modMessage')) !== void)
+			{
+				if(mod.current !== null)
+				{
+					mod.current.hidePageGlyph();
+					mod.current.hideLineGlyph();
+				}
+			}
+
 			window.conductor.jumpScenario(rightClickStorage, rightClickTarget);
 			window.conductor.start();
 		}
 		else
 		if(rightClickCall && window.conductor != conductor_)
 		{
+			if((mod = container.get('modMessage')) !== void)
+			{
+				if(mod.current !== null)
+				{
+					mod.current.hidePageGlyph();
+					mod.current.hideLineGlyph();
+				}
+			}
+
 			callExtraConductor(rightClickStorage, rightClickTarget);
 		}
 		else
 		{
-			var mod;
-
 			if((mod = container.get('modMessage')) !== void)
 				mod.switchMessageLayerHiddenByUser();
 		}

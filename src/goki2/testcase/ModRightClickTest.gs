@@ -19,7 +19,7 @@
 *right_click_1
 
 *label|
-@right_click enabled call target=*right_click_2
+@right_click enabled call storage=ModRightClickTest target=*right_click_2
 右クリックサブルーチンのテストです。[p][cm]
 
 @jump target=*next
