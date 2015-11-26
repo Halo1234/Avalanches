@@ -140,7 +140,10 @@ class ModBookmark extends GModule
 
 			/* @start_anchor */
 			'start_anchor' => function (elm) {
-				saveStartAnchor();
+				if(GObjectUtils.getBoolean(elm, 'enabled', true))
+					saveStartAnchor();
+				else
+					startAnchorEnabled_ = false;
 			} incontextof this,
 
 			/* @go_to_start */
@@ -241,9 +244,7 @@ class ModBookmark extends GModule
 
 		container.callHandler("onSaveStartAnchor", userFlags_);
 
-		// NOTE:
-		// ユーザーフラグは常に現在の状態のものを保存する。
-		temp.save("startAnchorUser", userFlags_);
+		//temp.save("startAnchorUser", userFlags_);
 
 		// NOTE:
 		// システムフラグは、現在の状態か直前のラベル時点のものかを選ぶ。
@@ -265,10 +266,8 @@ class ModBookmark extends GModule
 		{
 			var temp = .temporaryLocation;
 
-			temp.load('startAnchorUser', userFlags_);
+			//temp.load('startAnchorUser', userFlags_);
 			.restore(temp.load('startAnchorCore', %[]));
-
-			setAskTitleFlag(noConfirm);
 
 			container.callHandler('onLoadStartAnchor', userFlags_);
 		}
@@ -295,7 +294,7 @@ class ModBookmark extends GModule
 		{
 			with(window.temporaryLocation)
 			{
-				.remove('startAnchorUser');
+				//.remove('startAnchorUser');
 				.remove('startAnchorCore');
 			}
 
