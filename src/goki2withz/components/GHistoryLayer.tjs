@@ -555,7 +555,15 @@ class GHistoryLayer extends GHyperTextLayer
 			var layer = textLayer;
 			var scrollSize = displayPageSize_ - oldDataSize;
 			var data;
-			layer.copyRect(0, height - layout.marginBottom - oldDataSize, layer, 0, height - layout.marginBottom - displayPageSize_, width, oldDataSize);
+			layer.copyRect(
+				0,
+				height - layout.marginBottom - oldDataSize,
+				layer,
+				0,
+				height - layout.marginBottom - displayPageSize_,
+				width,
+				oldDataSize
+			);
 			for(var i = 0; i < oldDataCount; i++)
 			{
 				data = getHistoryDisplay(i);
@@ -608,10 +616,10 @@ class GHistoryLayer extends GHyperTextLayer
 			var layer = textLayer;
 			var scrollSize = displayPageSize_ - oldDataSize;
 			layer.copyRect(
-				width - layout.marginRight - displayPageSize_ - layout.lineSize - layout.lineSpace,
+				width - layout.marginRight - displayPageSize_ - layout.lineSize,
 				0,
 				layer,
-				width - layout.marginRight - oldDataSize - layout.lineSize - layout.lineSpace,
+				width - layout.marginRight - oldDataSize - layout.lineSize,
 				0,
 				oldDataSize,
 				height
@@ -673,7 +681,15 @@ class GHistoryLayer extends GHyperTextLayer
 			// 古いデータをスクロール
 			var layer = textLayer;
 			var scrollSize = displayPageSize_ - oldDataSize;
-			layer.copyRect(0, height - layout.marginBottom - oldDataSize - newLineSize, layer, 0, height - layout.marginBottom - oldDataSize, width, oldDataSize);
+			layer.copyRect(
+				0,
+				height - layout.marginBottom - oldDataSize - newLineSize,
+				layer,
+				0,
+				height - layout.marginBottom - oldDataSize,
+				width,
+				oldDataSize
+			);
 
 			for(var i = 0; i < oldDataCount; i++)
 			{
