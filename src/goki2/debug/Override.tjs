@@ -12,4 +12,6 @@ if(System.getArgument('-with-kwidgets') == 'yes')
 if(Storages.isExistentStorage('Debugger.tjs'))
 	loadTJS('Debugger.tjs');
 
+Debug.console.visible = true;
+
 

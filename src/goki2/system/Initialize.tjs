@@ -30,6 +30,4 @@ with(window.conductor)
 	.jumpNextScript();
 }
 
-Debug.console.visible = true;
-
 
