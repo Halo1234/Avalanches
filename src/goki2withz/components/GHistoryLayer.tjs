@@ -808,8 +808,16 @@ class GHistoryLayer extends GHyperTextLayer
 
 		focus();
 
-		sliderLayer_.max = historyDataCount - displayLineCount - 1;
-		sliderLayer_.value = 0;
+		if(lastPage_)
+		{
+			sliderLayer_.enabled = false;
+		}
+		else
+		{
+			sliderLayer_.max = historyDataCount - displayLineCount - 1;
+			sliderLayer_.value = 0;
+			sliderLayer_.enabled = true;
+		}
 
 		super.showComplete();
 	}
