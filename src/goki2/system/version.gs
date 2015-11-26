@@ -15,7 +15,7 @@
 ;  @version title='GOKI2' major=1 minor=0 special='Sample application'
 ;
 ; バージョン表示：
-;  'version 1.0 [web trial]'
+;  'GOKI2: version 1.0 [Sample application]'
 ;
 @version title='Test' major=1 minor=0 special='Sample application.'
 
