@@ -17,8 +17,6 @@ try {
 	);
 }
 
-Plugins.link('KAGParser.dll');
-
 loadTJS('MainWindow.tjs');
 
 GMainWindow = MainWindow;
