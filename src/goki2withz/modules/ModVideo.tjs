@@ -176,7 +176,7 @@ class ModVideo extends GModule
 			'play_video' => function (elm) {
 				with(videoBuffers.at(+elm.slot))
 				{
-					.play(elm.storage, GObjectUtils.toBoolean(elm, 'loop'));
+					.play(elm.storage, GObjectUtils.getBoolean(elm, 'loop'));
 				}
 			} incontextof this,
 
@@ -223,18 +223,17 @@ class ModVideo extends GModule
 
 			/* @wait_video */
 			'wait_video' => function (elm, c) {
-				var iterator = videoBuffers;
-				with(iterator.at(+elm.slot))
+				with(videoBuffers.at(+elm.slot))
 				{
 					//dm("playing : " + .playing);
 					if(.canWaitStop)
 					{
 						var event = @"&.name;_video_end";
 						dispatcher_.makeOneShot(event, c.signal, event);
-						if(!GObjectUtils.toBoolean(elm, 'skip'))
+						if(!GObjectUtils.getBoolean(elm, 'skip') || !isClickSkipEnabled())
 							c.waitSignal(%[event => null]);
 						else
-						if(window.modules.isLoaded('ModMessage') && !window.modules.modMessage.longSkipping)
+						if(!isLongSkipping())
 							c.waitSignal(%[left_click : .stop, event => null]);
 						else
 							.stop();
@@ -387,6 +386,36 @@ class ModVideo extends GModule
 	function stopBuffers_private_(buffer)
 	{
 		buffer.stop();
+	}
+
+	/**/
+	function isLongSkipping()
+	{
+		with(window.modules)
+		{
+			if(.isLoaded('modMessage'))
+			{
+				if(.modMessage.longSkipping)
+					return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**/
+	function isClickSkipEnabled()
+	{
+		with(window.modules)
+		{
+			if(.isLoaded('modMessage'))
+			{
+				if(!.modMessage.clickSkipEnabled)
+					return false;
+			}
+		}
+
+		return true;
 	}
 
 	/**/

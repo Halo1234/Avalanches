@@ -11,7 +11,7 @@
 
 @show_message layer=message0
 
-@click_skip !enabled
+;@click_skip !enabled
 
 *label|
 @hidden_message

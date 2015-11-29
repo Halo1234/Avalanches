@@ -3,221 +3,221 @@
 ;**/
 
 
-; ���X�N���v�g�L���[
+; ◆スクリプトキュー
 ;
-; storage: �ǉ��������X�N���v�g�t�@�C�����ł��B
+; storage: 追加したいスクリプトファイル名です。
 ;
 @que storage=KAGCompatible,first
 
 
-; �����s�̈�����
+; ◆改行の扱い方
 ;
-; ignore: false ���w�肷��Ɖ��s�R�[�h�� r �^�O�Ƃ��Ĉ����܂��B
+; ignore: false を指定すると改行コードを r タグとして扱います。
 @cr_handling ignore
 
 
-; ���E�C���h�E�̐ݒ�
+; ◆ウインドウの設定
 ;
-;                caption: �E�C���h�E�̃^�C�g���o�[�ɕ\�����镶����ł��B
-;                  width: �E�C���h�E�̕��ł��B�i���m�ɂ̓N���C�A���g�̈�̕��ł��j
-;                 height: �E�C���h�E�̍����ł��B�i���m�ɂ̓N���C�A���g�̈�̍����ł��j
-; fix_position_to_center: �w�肷��ƃE�C���h�E�����ʒu���f�X�N�g�b�v�����ɐݒ肳��܂��B
-;              alt_enter: �w�肷��� Alt+Enter �ŃX�N���[�����[�h��؂�ւ��鎖���ł���悤�ɂȂ�܂��B
-;                visible: �w�肷��ƃE�C���h�E��\�����܂��B
+;                caption: ウインドウのタイトルバーに表示する文字列です。
+;                  width: ウインドウの幅です。（正確にはクライアント領域の幅です）
+;                 height: ウインドウの高さです。（正確にはクライアント領域の高さです）
+; fix_position_to_center: 指定するとウインドウ初期位置がデスクトップ中央に設定されます。
+;              alt_enter: 指定すると Alt+Enter でスクリーンモードを切り替える事ができるようになります。
+;                visible: 指定するとウインドウを表示します。
 ;
 @window width=800 height=600 fix_position_to_center alt_enter
 
 
-; ���e���W���[���ݒ�
+; ◆各モジュール設定
 ;
-; �ǂݍ��񂾃��W���[���̐ݒ肪�K�v�ł���΂����ōs���Ă��������B
-; ���W���[���̐ݒ�ɂ��Ă͊e���W���[���̐������Q�Ƃ��Ă��������B
+; 読み込んだモジュールの設定が必要であればここで行ってください。
+; モジュールの設定については各モジュールの説明を参照してください。
 ;
-; �R�R����
+; ココから
 
-; �O�i���C���̐�
+; 前景レイヤの数
 @cv_layers count=1
 
-; ���b�Z�[�W���C���̐�
+; メッセージレイヤの数
 @message_layers count=1
 
-; ���ʉ��o�b�t�@�̐�
+; 効果音バッファの数
 @se_buffers count=1
 
-; �{�C�X�o�b�t�@�̐�
+; ボイスバッファの数
 @voice_buffers count=1
 
-; �r�f�I�o�b�t�@�̐�
+; ビデオバッファの数
 @video_buffers count=1
 
-; ���b�Z�[�W����ݒ�
+; メッセージ履歴設定
 @history_option width=800 height=600 margin_left=18 margin_top=18 margin_right=18 margin_bottom=18 color=0x000000
 
-; ���b�Z�[�W���C���ݒ�
+; メッセージレイヤ設定
 @message_option layer=message0 left=10 top=400 width=780 height=190 margin_left=10 margin_top=10 margin_right=10 margin_bottom=10 opacity=128 color=0x000000 shadow_color=0xFFFF0000 current
 
-; BGM�o�b�t�@�ǉ�
+; BGMバッファ追加
 @add_bgm_buffer type=WAVE
 
-; �L�����N�^�[��`
+; キャラクター定義
 ;
-; �^�O���� ! �Ŏn�܂�^�O�̓^�O�̊g���\���ݒ���s������ȃ^�O�ɂȂ�܂��B
-; ����͂��ׂẴ^�O�ɑ΂��ėL���Ȑݒ�ł��B
+; タグ名が ! で始まるタグはタグの拡張構文設定を行う特殊なタグになります。
+; これはすべてのタグに対して有効な設定です。
 ;
-; ������=���O->�l �̌`���Œu�����s�������ł��܂��B
-; ���̎w��̓^�O�̑������Ɂu���O�v�����ꂽ���� ������=�l �ɒu������܂��B
+; 属性名=名前->値 の形式で置換を行う事ができます。
+; この指定はタグの属性名に「名前」が現れた時に 属性名=値 に置換されます。
 ;
-; ��F
-;  @!make_character image=�����G�L��->true
-;   ^ ! �}�[�N���u�L��v���ɒ���
+; 例：
+;  @!make_character image=立ち絵有り->true
+;   ^ ! マークが「有る」事に注意
 ;  ;
-;  ; ����� image=true �ɒu������܂��B
-;  @make_character name=�n�� �����G�L��
-;   ^ ! �}�[�N���u�����v���ɒ���
+;  ; これは image=true に置換されます。
+;  @make_character name=ハロ 立ち絵有り
+;   ^ ! マークが「無い」事に注意
 ;
-; ����ɒu���̓J���}�ŋ�؂��ĕ��������Ɏw�肷�鎖���ł��܂��B
+; さらに置換はカンマで区切って複数同時に指定する事もできます。
 ;
-; ��F
-;  @!make_character image=�����G�L��->true,�����G����->true
+; 例：
+;  @!make_character image=立ち絵有り->true,立ち絵無し->true
 ;
-; /�Ŏn�܂鑮���ɂ̓p�^�[����ݒ�ł��܂��B
-; <VALUE> �ň͂܂ꂽ�l�͂��̑����l�Œu������܂��B
-; �܂��p�^�[�����̂��ׂĂ̒l���w�肳��Ă��Ȃ�����p�^�[���͐�������܂���B
+; /で始まる属性にはパターンを設定できます。
+; <VALUE> で囲まれた値はその属性値で置換されます。
+; またパターン中のすべての値が指定されていない限りパターンは生成されません。
 ;
-; ��F
-;  @!�n�� /storage=A_<POSE>_<FACE>
-;         ^ / ���u�L��v���ɒ���
+; 例：
+;  @!ハロ /storage=A_<POSE>_<FACE>
+;         ^ / が「有る」事に注意
 ;  ;
-;  ; ����� storage=A_�|�[�Y�P_�\��P �ɒu������܂��B
-;  @�n�� pose=�|�[�Y�P face=�\��P
+;  ; これは storage=A_ポーズ１_表情１ に置換されます。
+;  @ハロ pose=ポーズ１ face=表情１
 ;  ;
-;  ; ����ɒu����ݒ肷�鎖���ł��܂��B
-;  @!�n�� pose=�|�[�Y�P->pose1 face=�\��P->face1
+;  ; さらに置換を設定する事もできます。
+;  @!ハロ pose=ポーズ１->pose1 face=表情１->face1
 ;  ;
-;  ; ����� storage=A_pose1_face1 �ɒu������܂��B
-;  @�n�� �|�[�Y�P �\��P
+;  ; これは storage=A_pose1_face1 に置換されます。
+;  @ハロ ポーズ１ 表情１
 ;
-@!make_character image=�����G�L��->true,�����G����->false
-@!make_character voice=�{�C�X�L��->true,�{�C�X����->false
+@!make_character image=立ち絵有り->true,立ち絵無し->false
+@!make_character voice=ボイス有り->true,ボイス無し->false
 
 @redirect alias=mob name=make_character
 @!mob /mob=true
 
-; �L�����N�^�[�쐬
+; キャラクター作成
 ;
-;                 name: �L�����N�^�[�����w�肵�܂��B
-;                       �����Ŏw�肵�����O�����̂܂܃^�O���ɂȂ�܂��B
-;                  mob: true ���w�肷��ƂP�̃X�N���v�g�t�@�C�����ł̂ݗL���ȃL�����N�^�[���쐬���܂��B
-;           auto_voice: �����{�C�X�Đ����s���ꍇ�� true ���w�肵�܂��B
-; voice_storage_format: �{�C�X�t�@�C���̃t�H�[�}�b�g���w�肵�܂��B
-;                       ����͈�̔ԍ��������Ƃ��Ď󂯎�� sprintf() �̈����ł��B
-;                       ��F halo_voice_%03d
-;                       �f�t�H���g�ł́u���O%03d�v�ł��B�i���O�� name �Ŏw�肵��������j
-;                image: �����G�Ȃǂ̃O���t�B�b�N�����ꍇ�� true ���w�肵�܂��B
-;                voice: �{�C�X�����ꍇ�� true ���w�肵�܂��B
-@make_character name=�n��
-@make_character name=�n�� �����G�L�� �{�C�X�L��
+;                 name: キャラクター名を指定します。
+;                       ここで指定した名前がそのままタグ名になります。
+;                  mob: true を指定すると１つのスクリプトファイル内でのみ有効なキャラクターを作成します。
+;           auto_voice: 自動ボイス再生を行う場合に true を指定します。
+; voice_storage_format: ボイスファイルのフォーマットを指定します。
+;                       これは一つの番号を引数として受け取る sprintf() の引数です。
+;                       例： halo_voice_%03d
+;                       デフォルトでは「名前%03d」です。（名前は name で指定した文字列）
+;                image: 立ち絵などのグラフィックを持つ場合に true を指定します。
+;                voice: ボイスを持つ場合に true を指定します。
+@make_character name=地文
+@make_character name=ハロ 立ち絵有り ボイス有り
 
-; character �^�O�͂��ׂẴL�����N�^�^�O�̎��̂ł��B
-; ���̃^�O�ɑ΂��Ċg���\����ݒ肷��Ƃ��ׂẴL�����N�^�^�O�ɓK������܂��B
+; character タグはすべてのキャラクタタグの実体です。
+; このタグに対して拡張構文を設定するとすべてのキャラクタタグに適応されます。
 ;
-; ��F
-;  @!character gray_scale=�Z�s�A->true r_gamma=�Z�s�A->1.5 g_gamma=�Z�s�A->1.3
-;   ^ ! �}�[�N�ɒ���
+; 例：
+;  @!character gray_scale=セピア->true r_gamma=セピア->1.5 g_gamma=セピア->1.3
+;   ^ ! マークに注意
 ;  ;
-;  ; ����� gray_scale=true r_gamma=1.5 g_gamma=1.3 �ɒu������܂��B
-;  @�n�� �Z�s�A
+;  ; これは gray_scale=true r_gamma=1.5 g_gamma=1.3 に置換されます。
+;  @ハロ セピア
 ;  ;
-;  ; ��������l�ɒu������܂��B
-;  @�n�� �Z�s�A
+;  ; これも同様に置換されます。
+;  @地文 セピア
 ;
-; character �^�O�̎d�l
+; character タグの仕様
 ;
-;      storage: �摜�t�@�C�������w�肵�܂��B
-;          key: �摜�̃L�[�l���w�肵�܂��B
-;  asd_storage: ASD�t�@�C�������w�肵�܂��B
-;   gray_scale: true ���w�肷��ƃO���C�X�P�[�������܂��B
-;      r_gamma: Gamma�l���w�肵�܂��B
-;      g_gamma: Gamma�l���w�肵�܂��B
-;      b_gamma: Gamma�l���w�肵�܂��B
-;      r_floor: Floor�l���w�肵�܂��B
-;      g_floor: Floor�l���w�肵�܂��B
-;      b_floor: Floor�l���w�肵�܂��B
-;       r_ceil: Ceil�l���w�肵�܂��B
-;       g_ceil: Ceil�l���w�肵�܂��B
-;       b_ceil: Ceil�l���w�肵�܂��B
-;       mcolor: �u�����h����F���w�肵�܂��B
-;     mopacity: �u�����h����F�̕s�����x���w�肵�܂��B
-;         mode: ���߃��[�h���w�肵�܂��B
-;      flip_ud: true ���w�肷��Ə㉺�����ւ��܂��B
-;      flip_lr: true ���w�肷��ƍ��E�����ւ��܂��B
-;    clip_left: �摜�̃N���b�s���O���W���w�肵�܂��B
-;     clip_top: �摜�̃N���b�s���O���W���w�肵�܂��B
-;   clip_width: �摜�̃N���b�s���O���W���w�肵�܂��B
-;  clip_height: �摜�̃N���b�s���O���W���w�肵�܂��B
-;     center_x: �摜���S�ʒu��X���W�l�ł��B
-;     center_y: �摜���S�ʒu��Y���W�l�ł��B
-;         left: �摜�̍�����\���ʒu���w�肵�܂��B
-;          top: �摜�̍�����\���ʒu���w�肵�܂��B
-;        right: �摜�̉E�����\���ʒu���w�肵�܂��B
-;       bottom: �摜�̉E�����\���ʒu���w�肵�܂��B
-;      opacity: �摜�̕s�����x���w�肵�܂��B
-;        index: �摜�̏d�ˍ��킹�������w�肵�܂��B
-;        voice: true ���w�肷��ƃ{�C�X���Đ����܂��B�����w�肵�Ȃ���� true �Ƃ݂Ȃ��܂��B
-; voice_number: �{�C�X�ԍ����w�肵�܂��B�����w�肵�Ȃ���Ύ����Ŋ��蓖�Ă��܂��B
-;         time: �g�����W�V�����̎��Ԃ��w�肵�܂��B�����w�肵�Ȃ���� 200 �ɂȂ�܂��B
-;        vague: �g�����W�V�����̞B���l���w�肵�܂��B�����w�肵�Ȃ���� 128 �ɂȂ�܂��B
-;       method: �g�����W�V�����̃^�C�v���w�肵�܂��B�����w�肵�Ȃ���Α��̒l���琄������܂��B    
-;         from: �X�N���[���g�����W�V�����̈����ł��Bleft, top, right, bottom �̂����ꂩ���w�肵�܂��B
-;         stay: �X�N���[���g�����W�V�����̈����ł��Bstayfore, stayback, nostay �̂����ꂩ���w�肵�܂��B
-;         rule: ���[���摜���w�肵�܂��B
-;     children: �g�����W�V�����̑ΏۂɎq���C�����܂߂邩�ǂ������w�肵�܂��B�����w�肵�Ȃ���� true �ɂȂ�܂��B
-@!character center_x=��->200,��->400,�E->600,����->300,���E->500,���[->100,�E�[->700
-@!character gray_scale=�Z�s�A->true r_gamma=�Z�s�A->1.5 g_gamma=�Z�s�A->1.3
-@!character visible=�\��->true,����->false
+;      storage: 画像ファイル名を指定します。
+;          key: 画像のキー値を指定します。
+;  asd_storage: ASDファイル名を指定します。
+;   gray_scale: true を指定するとグレイスケール化します。
+;      r_gamma: Gamma値を指定します。
+;      g_gamma: Gamma値を指定します。
+;      b_gamma: Gamma値を指定します。
+;      r_floor: Floor値を指定します。
+;      g_floor: Floor値を指定します。
+;      b_floor: Floor値を指定します。
+;       r_ceil: Ceil値を指定します。
+;       g_ceil: Ceil値を指定します。
+;       b_ceil: Ceil値を指定します。
+;       mcolor: ブレンドする色を指定します。
+;     mopacity: ブレンドする色の不透明度を指定します。
+;         mode: 透過モードを指定します。
+;      flip_ud: true を指定すると上下を入れ替えます。
+;      flip_lr: true を指定すると左右を入れ替えます。
+;    clip_left: 画像のクリッピング座標を指定します。
+;     clip_top: 画像のクリッピング座標を指定します。
+;   clip_width: 画像のクリッピング座標を指定します。
+;  clip_height: 画像のクリッピング座標を指定します。
+;     center_x: 画像中心位置のX座標値です。
+;     center_y: 画像中心位置のY座標値です。
+;         left: 画像の左上隅表示位置を指定します。
+;          top: 画像の左上隅表示位置を指定します。
+;        right: 画像の右下隅表示位置を指定します。
+;       bottom: 画像の右下隅表示位置を指定します。
+;      opacity: 画像の不透明度を指定します。
+;        index: 画像の重ね合わせ順序を指定します。
+;        voice: true を指定するとボイスを再生します。何も指定しなければ true とみなします。
+; voice_number: ボイス番号を指定します。何も指定しなければ自動で割り当てられます。
+;         time: トランジションの時間を指定します。何も指定しなければ 200 になります。
+;        vague: トランジションの曖昧値を指定します。何も指定しなければ 128 になります。
+;       method: トランジションのタイプを指定します。何も指定しなければ他の値から推測されます。    
+;         from: スクロールトランジションの引数です。left, top, right, bottom のいずれかを指定します。
+;         stay: スクロールトランジションの引数です。stayfore, stayback, nostay のいずれかを指定します。
+;         rule: ルール画像を指定します。
+;     children: トランジションの対象に子レイヤも含めるかどうかを指定します。何も指定しなければ true になります。
+@!character center_x=左->200,中->400,右->600,中左->300,中右->500,左端->100,右端->700
+@!character gray_scale=セピア->true r_gamma=セピア->1.5 g_gamma=セピア->1.3
+@!character visible=表示->true,消去->false
 @!character no_voice=nv->true
 
-; �T���v���L�����N�^�[�ݒ�
+; サンプルキャラクター設定
 ;
-; �^�O�̎d�l�� character �^�O�Ɠ����ł��B
-@!�n�� /storage=A_<POSE>_<FACE>
-@!�n�� face=�\��P->face1
-@!�n�� pose=�|�[�Y�P->pose1,�|�[�Y�Q->pose2
+; タグの仕様は character タグと同じです。
+@!ハロ /storage=A_<POSE>_<FACE>
+@!ハロ face=表情１->face1
+@!ハロ pose=ポーズ１->pose1,ポーズ２->pose2
 
-; ���ԑт��`���܂��B
+; 時間帯を定義します。
 ;
-;   name: ���ԑі����w�肵�܂��B�����Ŏw�肵�����O�����̂܂܃^�O�ɂȂ�܂��B
-; prefix: �����G�̃t�@�C�����Ȃǂ̖����ɂ��镶������w�肵�܂��B
-@make_time_zone name=�� prefix=''
-@make_time_zone name=�[ prefix=ev
-@make_time_zone name=�� prefix=ng
+;   name: 時間帯名を指定します。ここで指定した名前がそのままタグになります。
+; prefix: 立ち絵のファイル名などの末尾につける文字列を指定します。
+@make_time_zone name=朝 prefix=''
+@make_time_zone name=夕 prefix=ev
+@make_time_zone name=夜 prefix=ng
 
-; �T���v���w�i
+; サンプル背景
 ;
-;    name: ���O���w�肵�܂��B���̖��O�����̂܂܃^�O���ɂȂ�܂��B
-; storage: �w�i�Ƃ��ēǂݍ��ރt�@�C�������w�肵�܂��B
-@make_stage name=�� storage=��
-@make_stage name=�� storage=��
-@make_stage name=�� storage=��
+;    name: 名前を指定します。この名前がそのままタグ名になります。
+; storage: 背景として読み込むファイル名を指定します。
+@make_stage name=白 storage=白
+@make_stage name=黒 storage=黒
+@make_stage name=赤 storage=赤
 
-; �R�R�܂�
+; ココまで
 
 
-; ���������E�F�C�g
+; ◆初期化ウェイト
 @wait time=400 !skip !click
 
 
-; ���o�[�W�������
+; ◆バージョン情報
 ;
-; message: �v���Z�b�g���A�܂��͔C�ӂ̕�������w�肵�܂��B
+; message: プリセット名、または任意の文字列を指定します。
 ;
 @notice message=version
-@notice message=�V�X�e���������������܂����B
+@notice message=システム初期化完了しました。
 
 
-; ���E�C���h�E�̕\��
+; ◆ウインドウの表示
 ;
-; ����őS�Ă̐ݒ肪�I������̂ŃE�C���h�E��\������B
+; これで全ての設定が終わったのでウインドウを表示する。
 ;
 @window visible
 

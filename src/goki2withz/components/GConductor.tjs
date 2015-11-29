@@ -92,7 +92,7 @@ class GConductor extends KAGParser
 
 			/**/
 			'cr_handling' => function (elm) {
-				ignoreCR = GObjectUtils.toBoolean(elm.ignore);
+				ignoreCR = GObjectUtils.getBoolean(elm, 'ignore');
 			} incontextof this,
 
 			/* @version */

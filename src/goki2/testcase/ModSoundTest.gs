@@ -40,6 +40,6 @@
 
 @hide_message layer=message0
 
-@click_skip enabled
+@clickskip enabled
 
 

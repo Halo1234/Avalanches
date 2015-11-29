@@ -322,7 +322,7 @@ class ModSound extends GModule
 				{
 					if(!.fadeStatus == 'stable')
 						return;
-					if(!GObjectUtils.toBoolean(elm, 'skip', false) || !isClickSkipEnabled())
+					if(!GObjectUtils.getBoolean(elm, 'skip', false) || !isClickSkipEnabled())
 						c.waitSignal(%[@"&.name;_fade" => null]);
 					else
 						c.waitSignal(%[left_click : .stopFade, @"&.name;_fade" => null]);
@@ -335,7 +335,7 @@ class ModSound extends GModule
 				{
 					if(!.playing || .looping)
 						return;
-					if(!GObjectUtils.toBoolean(elm, 'skip', false) || !isClickSkipEnabled())
+					if(!GObjectUtils.getBoolean(elm, 'skip', false) || !isClickSkipEnabled())
 						c.waitSignal(%[@"&.name;_stop" => null]);
 					else
 						c.waitSignal(%[left_click : .stop, @"&.name;_stop" => null]);
@@ -403,7 +403,7 @@ class ModSound extends GModule
 				{
 					if(!.fadeStatus == 'stable')
 						return;
-					if(!GObjectUtils.toBoolean(elm, 'skip', false) || !isClickSkipEnabled())
+					if(!GObjectUtils.getBoolean(elm, 'skip', false) || !isClickSkipEnabled())
 						c.waitSignal(%[@"&.name;_fade" => null]);
 					else
 						c.waitSignal(%[left_click : .stopFade, @"&.name;_fade" => null]);
@@ -416,7 +416,7 @@ class ModSound extends GModule
 				{
 					if(!.playing || .looping)
 						return;
-					if(!GObjectUtils.toBoolean(elm, 'skip', false) || !isClickSkipEnabled())
+					if(!GObjectUtils.getBoolean(elm, 'skip', false) || !isClickSkipEnabled())
 						c.waitSignal(%[@"&.name;_stop" => null]);
 					else
 						c.waitSignal(%[left_click : .stop, @"&.name;_stop" => null]);
@@ -485,7 +485,7 @@ class ModSound extends GModule
 				{
 					if(!.fadeStatus == 'stable')
 						return;
-					if(!GObjectUtils.toBoolean(elm, 'skip', false) || !isClickSkipEnabled())
+					if(!GObjectUtils.getBoolean(elm, 'skip', false) || !isClickSkipEnabled())
 						c.waitSignal(%[@"&.name;_fade" => null]);
 					else
 						c.waitSignal(%[left_click : .stopFade, @"&.name;_fade" => null]);
@@ -498,7 +498,7 @@ class ModSound extends GModule
 				{
 					if(!.playing || .looping)
 						return;
-					if(!GObjectUtils.toBoolean(elm, 'skip', false) || !isClickSkipEnabled())
+					if(!GObjectUtils.getBoolean(elm, 'skip', false) || !isClickSkipEnabled())
 						c.waitSignal(%[@"&.name;_stop" => null]);
 					else
 						c.waitSignal(%[left_click : .stop, @"&.name;_stop" => null]);
@@ -657,7 +657,7 @@ class ModSound extends GModule
 				{
 					if(!.fadeStatus == 'stable')
 						return;
-					if(!GObjectUtils.toBoolean(elm, 'skip', false) || !isClickSkipEnabled())
+					if(!GObjectUtils.getBoolean(elm, 'skip', false) || !isClickSkipEnabled())
 						c.waitSignal(%[@"&.name;_fade" => null]);
 					else
 						c.waitSignal(%[left_click : .stopFade, @"&.name;_fade" => null]);
@@ -670,7 +670,7 @@ class ModSound extends GModule
 				{
 					if(!.playing || .looping)
 						return;
-					if(!GObjectUtils.toBoolean(elm, 'skip', false) || !isClickSkipEnabled())
+					if(!GObjectUtils.getBoolean(elm, 'skip', false) || !isClickSkipEnabled())
 						c.waitSignal(%[@"&.name;_stop" => null]);
 					else
 						c.waitSignal(%[left_click : .stop, @"&.name;_stop" => null]);

@@ -10,7 +10,7 @@
 @video left=0 top=0 width=800 height=600 visible
 @openvideo storage=sample.wmv
 @playvideo
-@wv
+@wv canskip
 @stopvideo
 @video visible=false
 
@@ -28,7 +28,7 @@
 
 レイヤでビデオを再生しました。[p][cm]
 
-@wv
+@wv canskip
 @stopvideo
 
 @hide_message layer=message0
