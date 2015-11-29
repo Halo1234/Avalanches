@@ -55,8 +55,8 @@ class GVideoOverlay extends VideoOverlay
 				videoStorage_ = storage;
 			} catch(e) {
 				// vomMixer ではダメだったので vomOverlay に戻してリトライ
-				worn("!!---GVideoOverlay");
-				worn("!!---vomMixer の試行に失敗しました。");
+				warn("!!---GVideoOverlay");
+				warn("!!---vomMixer の試行に失敗しました。");
 				mode = vomOverlay;
 				ret = openAcceptMode(storage);
 				open = openAcceptMode;
@@ -78,8 +78,8 @@ class GVideoOverlay extends VideoOverlay
 		} catch(e) {
 			if(e.message.indexOf(".dll") != -1)
 				throw e;
-			worn(@"ムービー &storage; を開けません。");
-			worn(@">> &e.message;");
+			warn(@"ムービー &storage; を開けません。");
+			warn(@">> &e.message;");
 
 			return false;
 		}
@@ -112,8 +112,8 @@ class GVideoOverlay extends VideoOverlay
 		} catch(e) {
 			if(e.message.indexOf(".dll") != -1)
 				throw e;
-			worn(@"ムービー &_videoStorage; を再生できません。");
-			worn(@">> &e.message;");
+			warn(@"ムービー &_videoStorage; を再生できません。");
+			warn(@">> &e.message;");
 		}
 	}
 
@@ -138,8 +138,8 @@ class GVideoOverlay extends VideoOverlay
 			} catch(e) {
 				if(e.message.indexOf(".dll") != -1)
 					throw e;
-				worn(@"ムービー &_videoStorage; を再開できません。");
-				worn(@">> &e.message;");
+				warn(@"ムービー &_videoStorage; を再開できません。");
+				warn(@">> &e.message;");
 			}
 		}
 	}

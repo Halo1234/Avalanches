@@ -107,8 +107,8 @@ class GWaveSoundBuffer extends WaveSoundBuffer
 			stopFade() if fadeStatus_ == 'fadeout';
 			super.play();
 		} catch (e) {
-			worn(@"&currentStorage_; の再生に失敗しました。");
-			worn(e.message);
+			warn(@"&currentStorage_; の再生に失敗しました。");
+			warn(e.message);
 		}
 	}
 
@@ -123,8 +123,8 @@ class GWaveSoundBuffer extends WaveSoundBuffer
 			currentStorage_ = '';
 			fadeStatus_ = 'stable';
 
-			worn("再生中の &currentStorage_; の停止に失敗しました。");
-			worn(e.message);
+			warn("再生中の &currentStorage_; の停止に失敗しました。");
+			warn(e.message);
 		}
 	}
 
@@ -135,8 +135,8 @@ class GWaveSoundBuffer extends WaveSoundBuffer
 			super.fade(to, time, delay);
 			fadeStatus_ = 'fade';
 		} catch (e) {
-			worn(@"&currentStorage_; のフェイドに失敗しました。");
-			worn(e.message);
+			warn(@"&currentStorage_; のフェイドに失敗しました。");
+			warn(e.message);
 		}
 	}
 
@@ -147,8 +147,8 @@ class GWaveSoundBuffer extends WaveSoundBuffer
 			super.stopFade();
 			fadeStatus_ = 'stable';
 		} catch (e) {
-			worn(@"&currentStorage_; のフェイド停止に失敗しました。");
-			worn(e.message);
+			warn(@"&currentStorage_; のフェイド停止に失敗しました。");
+			warn(e.message);
 		}
 	}
 

@@ -926,9 +926,9 @@ function pushYesNoDialogLayerForCache(obj)
 	}
 	else
 	{
-		worn(@"GYesNoDialogLayer 専用のキャッシュに無関係のオブジェクトを登録しようとしました。");
-		worn('この呼び出しは単に無視されます。');
-		worn(@"登録しようとしたオブジェクトクラス名：'&getInstanceClassName(obj);'");
+		warn(@"GYesNoDialogLayer 専用のキャッシュに無関係のオブジェクトを登録しようとしました。");
+		warn('この呼び出しは単に無視されます。');
+		warn(@"登録しようとしたオブジェクトクラス名：'&getInstanceClassName(obj);'");
 	}
 }
 
