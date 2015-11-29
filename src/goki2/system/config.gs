@@ -28,10 +28,6 @@
 @window width=800 height=600 fix_position_to_center alt_enter
 
 
-; ◆初期化ウェイト
-@wait time=400 !skip !click
-
-
 ; ◆各モジュール設定
 ;
 ; 読み込んだモジュールの設定が必要であればここで行ってください。
@@ -205,6 +201,10 @@
 @make_stage name=赤 storage=赤
 
 ; ココまで
+
+
+; ◆初期化ウェイト
+@wait time=400 !skip !click
 
 
 ; ◆バージョン情報
