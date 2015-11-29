@@ -55,8 +55,12 @@ class ModBookmark extends GModule
 
 		with(window)
 		{
+			var path = @"&System.exePath;/savedata/";
+
 			if(.getLocation(name) === void)
-				.makeLocation(name, @"&System.exePath;/savedata", '');
+				.makeLocation(name, path, '');
+
+			Debug.logLocation = path;
 		}
 
 		calculateThumbnailSize_private_(context_);
