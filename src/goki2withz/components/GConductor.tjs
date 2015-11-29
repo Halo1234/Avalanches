@@ -1065,7 +1065,11 @@ class GConductor extends KAGParser
 
 		ignoreCR = dic.ignoreCR;
 
+		GObjectUtils.clearDictionary(signalHandlers_);
+
 		super.restore(dic);
+
+		start();
 	}
 
 	/*! \brief

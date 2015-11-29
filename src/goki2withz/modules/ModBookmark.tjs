@@ -40,6 +40,7 @@ class ModBookmark extends GModule
 
 	var startAnchorEnabled_ = false;				// 最初に戻る機能が有効かどうか
 
+	var pushRecordAnchorInNextLabel_ = false;
 	var recordAnchorEnabled_ = false;				// 一つ前に戻る機能が使えるかどうか
 	var recordAnchorStack_ = [];					// 同機能用のスタック
 	var recordAnchorStackSize_ = 5;					// 同機能用のスタックの最大深度
@@ -295,11 +296,8 @@ class ModBookmark extends GModule
 	}
 
 	/**/
-	function pushRecordAnchor()
+	function internalPushRecordAnchor_private_()
 	{
-		if(!storeAndSave)
-			return false;
-
 		var data = %[core : %[], user : userFlags_];
 
 		window.temporaryLocation.load('core', data.core);
@@ -309,7 +307,19 @@ class ModBookmark extends GModule
 		if(recordAnchorStack_.count > recordAnchorStackSize_)
 			recordAnchorStack_.shift();
 
-		recordAnchorEnabled_ = true;
+		if(recordAnchorStack_.count > 0)
+			recordAnchorEnabled_ = true;
+		else
+			recordAnchorEnabled_ = false;
+	}
+
+	/**/
+	function pushRecordAnchor()
+	{
+		if(!storeAndSave)
+			return false;
+
+		pushRecordAnchorInNextLabel_ = true;
 
 		return true;
 	}
@@ -329,7 +339,7 @@ class ModBookmark extends GModule
 
 		var data = recordAnchorStack_.pop();
 
-		GObjectUtils.assignDictionary(userFlags, data.user);
+		GObjectUtils.assignDictionary(userFlags_, data.user);
 		window.restore(data.core);
 
 		return true;
@@ -864,44 +874,47 @@ class ModBookmark extends GModule
 
 		if(name !== void)
 		{
-			with(window)
+			if(modMessage !== void)
 			{
-				if(modMessage !== void)
+				if(!readingRecord(label))
+					modMessage.cancelNotReadSkip();
+				if(cancelSkipQuery && modMessage.longSkipping)
 				{
-					if(!readingRecord(label))
-						modMessage.cancelNotReadSkip();
-					if(cancelSkipQuery && modMessage.longSkipping)
-					{
-						modMessage.cancelSkip();
-						cancelSkipQuery = false;
-					}
+					modMessage.cancelSkip();
+					cancelSkipQuery = false;
 				}
-				currentLabelName_ = label;
-				currentPageName_ = name;
+			}
+			currentLabelName_ = label;
+			currentPageName_ = name;
 
-				// farstLabelProcessed が false ならば強制的に store する
-				// または、ラベル名が *force_store ならば強制的に store する
-				// または、起動後まだ一度も store していないならば強制的に store する
-				// または、storeSkipping が false ならば store する
-				if(storeAndSave &&
-					((modMessage !== void && !modMessage.longSkipping) ||
-					!firstLabelProcessed ||
-					regOnForceStored_static_.test(label) ||
-					!firstStored_ ||
-					!storeSkipping))
-				{
-					.temporaryLocation.save('core', .store());
+			if(pushRecordAnchorInNextLabel_)
+			{
+				internalPushRecordAnchor_private_();
+				pushRecordAnchorInNextLabel_ = false;
+			}
 
-					firstStored_ = true;
-					possibleSave_ = true;
-					possibleLoad_ = true;
-				}
-				else
-				{
-					// セーブ可能なラベルを store せずにスキップした
-					// この場合、セーブ可能な状態とはいえない
-					possibleSave_ = false;
-				}
+			// farstLabelProcessed が false ならば強制的に store する
+			// または、ラベル名が *force_store ならば強制的に store する
+			// または、起動後まだ一度も store していないならば強制的に store する
+			// または、storeSkipping が false ならば store する
+			if(storeAndSave &&
+				((modMessage !== void && !modMessage.longSkipping) ||
+				!firstLabelProcessed ||
+				regOnForceStored_static_.test(label) ||
+				!firstStored_ ||
+				!storeSkipping))
+			{
+				window.temporaryLocation.save('core', window.store());
+
+				firstStored_ = true;
+				possibleSave_ = true;
+				possibleLoad_ = true;
+			}
+			else
+			{
+				// セーブ可能なラベルを store せずにスキップした
+				// この場合、セーブ可能な状態とはいえない
+				possibleSave_ = false;
 			}
 		}
 

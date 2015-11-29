@@ -10,6 +10,8 @@ class ModSaveLoadMenuItems extends GMenuModule
 	var save_;
 	var load_;
 
+	var popRecordAnchor_;
+
 	var saveItems_ = [];
 	var loadItems_ = [];
 
@@ -45,6 +47,10 @@ class ModSaveLoadMenuItems extends GMenuModule
 				add(loadItems_[i] = createMenuItem(window, load_, date, '', onLoadItem));
 			}
 		}
+
+		add(createMenuItem(window, topItem, '-', ''));
+
+		add(popRecordAnchor_ = createMenuItem(window, topItem, 'ˆê‚Â‘O‚É–ß‚é', '', onPopRecordAnchor));
 	}
 
 	function extensionTagHandlers()
@@ -72,6 +78,16 @@ class ModSaveLoadMenuItems extends GMenuModule
 		var bookmark = container.get('ModBookmark');
 
 		bookmark.load(index);
+	}
+
+	function onPopRecordAnchor()
+	{
+		var bookmark = container.get('ModBookmark');
+
+		if(bookmark !== void)
+		{
+			bookmark.popRecordAnchor();
+		}
 	}
 
 	function onSave(user, core)

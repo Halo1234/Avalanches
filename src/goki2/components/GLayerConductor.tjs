@@ -159,6 +159,28 @@ class GCellLayerConductor extends GConductor
 	}
 
 	/**/
+	function store(dic)
+	{
+		var dic = super.store(...);
+
+		dic.startLoopLabelName = startLoopLabelName_;
+		dic.looping = looping_;
+		dic.endLoop = endLoop_;
+
+		return dic;
+	}
+
+	/**/
+	function restore(dic, tick)
+	{
+		super.restore(...);
+
+		startLoopLabelName_ = dic.startLoopLabelName;
+		looping_ = dic.looping;
+		endLoop_ = dic.endLoop;
+	}
+
+	/**/
 	function onStop()
 	{
 		with(layer)
@@ -242,7 +264,9 @@ class GLayerConductor extends GCellLayerConductor
 		var c = cells.count;
 
 		for(var i = 0; i < c; i++)
+		{
 			cells[i].clearImages() if cells[i] !== void;
+		}
 	}
 
 	/**/

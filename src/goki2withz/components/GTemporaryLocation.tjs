@@ -57,21 +57,14 @@ class GTemporaryLocation extends GLocation
 	**/
 	function saveDictionary(storage, obj, option = '')
 	{
-		if(option != '')
-		{
-			if(option.indexOf('a') != -1)
-				temporaryLocation_[storage] = GObjectUtils.assignDictionary(%[], obj);
-			else
-			if(option.indexOf('c') != -1 || option == '')
-				temporaryLocation_[storage] = GObjectUtils.copyDictionary(%[], obj);
-			else
-			if(option.indexOf('u') != -1)
-				temporaryLocation_[storage] = GObjectUtils.unionDictionary(%[], obj);
-		}
+		if(option.indexOf('a') != -1)
+			temporaryLocation_[storage] = GObjectUtils.assignDictionary(%[], obj);
 		else
-		{
+		if(option.indexOf('c') != -1 || option == '')
 			temporaryLocation_[storage] = GObjectUtils.copyDictionary(%[], obj);
-		}
+		else
+		if(option.indexOf('u') != -1)
+			temporaryLocation_[storage] = GObjectUtils.unionDictionary(%[], obj);
 
 		return obj;
 	}
@@ -79,21 +72,14 @@ class GTemporaryLocation extends GLocation
 	/**/
 	function loadDictionary(storage, obj, option = '')
 	{
-		if(option != '')
-		{
-			if(option.indexOf('a') != -1)
-				GObjectUtils.assignDictionary(obj, temporaryLocation_[storage]);
-			else
-			if(option.indexOf('c') != -1 || option == '')
-				GObjectUtils.copyDictionary(obj, temporaryLocation_[storage]);
-			else
-			if(option.indexOf('u') != -1)
-				GObjectUtils.unionDictionary(obj, temporaryLocation_[storage]);
-		}
+		if(option.indexOf('a') != -1)
+			GObjectUtils.assignDictionary(obj, temporaryLocation_[storage]);
 		else
-		{
+		if(option.indexOf('c') != -1 || option == '')
 			GObjectUtils.copyDictionary(obj, temporaryLocation_[storage]);
-		}
+		else
+		if(option.indexOf('u') != -1)
+			GObjectUtils.unionDictionary(obj, temporaryLocation_[storage]);
 
 		return obj;
 	}

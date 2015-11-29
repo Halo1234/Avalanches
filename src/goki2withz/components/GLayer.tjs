@@ -272,7 +272,12 @@ class GLayer extends Layer
 		flipUpDown_ = false;
 		super.fillRect(0, 0, imageWidth, imageHeight, clearImagesColor_ = value) if hasImage;
 
-		conductor_.clear() if conductor_ !== void;
+		if(conductor_ !== void)
+		{
+			conductor_.clear();
+			invalidate conductor_;
+			conductor_ = void;
+		}
 		colorCorrection_.clear() if colorCorrection_ !== void;
 	}
 

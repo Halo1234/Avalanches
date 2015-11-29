@@ -7,6 +7,7 @@
 @show_message layer=message0
 
 *label|
+[record]
 [input name=f.test prompt=入力してください。 title=入力]
 
 [trace exp=f.test]
@@ -14,6 +15,7 @@
 [ハロ][emb exp=f.test]入力のテストです。[p][cm]
 
 *label|
+[record]
 @save place=0
 @copybookmark from=0 to=1
 
