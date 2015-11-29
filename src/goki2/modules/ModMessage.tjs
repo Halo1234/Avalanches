@@ -799,6 +799,37 @@ class ModMessage extends GModule
 	}
 
 	/**/
+	function usingModMessage()
+	{
+		with(window.conductor)
+		{
+			.setRedirectTag('ch', 'ch_mod_message');
+			.setRedirectTag('ruby', 'ruby_mod_message');
+			.setRedirectTag('r', 'r_mod_message');
+			.setRedirectTag('p', 'p_mod_message');
+			.setRedirectTag('l', 'l_mod_message');
+			.setRedirectTag('er', 'erase_message');
+			.setRedirectTag('cm', 'clear_message_layers_with_history');
+			.setRedirectTag('ct', 'reset_message_layer');
+		}
+	}
+
+	/**/
+	function notUsingModMessage()
+	{
+		with(window.conductor)
+		{
+			.deleteRedirectTag('ch');
+			.deleteRedirectTag('ruby');
+			.deleteRedirectTag('r');
+			.deleteRedirectTag('p');
+			.deleteRedirectTag('l');
+			.deleteRedirectTag('er');
+			.deleteRedirectTag('cm');
+		}
+	}
+
+	/**/
 	function storeClickGlyphState(which)
 	{
 		if(window.conductor == window.mainConductor)
@@ -1138,37 +1169,6 @@ class ModMessage extends GModule
 	function isLongSkip(mode)
 	{
 		return mode >= 100;
-	}
-
-	/**/
-	function usingModMessage()
-	{
-		with(window.conductor)
-		{
-			.setRedirectTag('ch', 'ch_mod_message');
-			.setRedirectTag('ruby', 'ruby_mod_message');
-			.setRedirectTag('r', 'r_mod_message');
-			.setRedirectTag('p', 'p_mod_message');
-			.setRedirectTag('l', 'l_mod_message');
-			.setRedirectTag('er', 'erase_message');
-			.setRedirectTag('cm', 'clear_message_layers_with_history');
-			.setRedirectTag('ct', 'reset_message_layer');
-		}
-	}
-
-	/**/
-	function notUsingModMessage()
-	{
-		with(window.conductor)
-		{
-			.deleteRedirectTag('ch');
-			.deleteRedirectTag('ruby');
-			.deleteRedirectTag('r');
-			.deleteRedirectTag('p');
-			.deleteRedirectTag('l');
-			.deleteRedirectTag('er');
-			.deleteRedirectTag('cm');
-		}
 	}
 
 	/**/
