@@ -322,10 +322,10 @@ class ModSound extends GModule
 				{
 					if(!.fadeStatus == 'stable')
 						return;
-					if(!GObjectUtils.toBoolean(elm, 'skip', false))
+					if(!GObjectUtils.toBoolean(elm, 'skip', false) || !isClickSkipEnabled())
 						c.waitSignal(%[@"&.name;_fade" => null]);
 					else
-						.stopFade();
+						c.waitSignal(%[left_click : .stopFade, @"&.name;_fade" => null]);
 				}
 			} incontextof this,
 
@@ -335,10 +335,10 @@ class ModSound extends GModule
 				{
 					if(!.playing || .looping)
 						return;
-					if(!GObjectUtils.toBoolean(elm, 'skip', false))
+					if(!GObjectUtils.toBoolean(elm, 'skip', false) || !isClickSkipEnabled())
 						c.waitSignal(%[@"&.name;_stop" => null]);
 					else
-						.stop();
+						c.waitSignal(%[left_click : .stop, @"&.name;_stop" => null]);
 				}
 			} incontextof this,
 
@@ -403,10 +403,10 @@ class ModSound extends GModule
 				{
 					if(!.fadeStatus == 'stable')
 						return;
-					if(!GObjectUtils.toBoolean(elm, 'skip', false))
+					if(!GObjectUtils.toBoolean(elm, 'skip', false) || !isClickSkipEnabled())
 						c.waitSignal(%[@"&.name;_fade" => null]);
 					else
-						.stopFade();
+						c.waitSignal(%[left_click : .stopFade, @"&.name;_fade" => null]);
 				}
 			} incontextof this,
 
@@ -416,10 +416,10 @@ class ModSound extends GModule
 				{
 					if(!.playing || .looping)
 						return;
-					if(!GObjectUtils.toBoolean(elm, 'skip', false))
+					if(!GObjectUtils.toBoolean(elm, 'skip', false) || !isClickSkipEnabled())
 						c.waitSignal(%[@"&.name;_stop" => null]);
 					else
-						.stop();
+						c.waitSignal(%[left_click : .stop, @"&.name;_stop" => null]);
 				}
 			} incontextof this,
 
@@ -485,10 +485,10 @@ class ModSound extends GModule
 				{
 					if(!.fadeStatus == 'stable')
 						return;
-					if(!GObjectUtils.toBoolean(elm, 'skip', false))
+					if(!GObjectUtils.toBoolean(elm, 'skip', false) || !isClickSkipEnabled())
 						c.waitSignal(%[@"&.name;_fade" => null]);
 					else
-						.stopFade();
+						c.waitSignal(%[left_click : .stopFade, @"&.name;_fade" => null]);
 				}
 			} incontextof this,
 
@@ -498,10 +498,10 @@ class ModSound extends GModule
 				{
 					if(!.playing || .looping)
 						return;
-					if(!GObjectUtils.toBoolean(elm, 'skip', false))
+					if(!GObjectUtils.toBoolean(elm, 'skip', false) || !isClickSkipEnabled())
 						c.waitSignal(%[@"&.name;_stop" => null]);
 					else
-						.stop();
+						c.waitSignal(%[left_click : .stop, @"&.name;_stop" => null]);
 				}
 			} incontextof this,
 
@@ -657,10 +657,10 @@ class ModSound extends GModule
 				{
 					if(!.fadeStatus == 'stable')
 						return;
-					if(!toBoolean(elm, 'skip', false))
+					if(!GObjectUtils.toBoolean(elm, 'skip', false) || !isClickSkipEnabled())
 						c.waitSignal(%[@"&.name;_fade" => null]);
 					else
-						.stopFade();
+						c.waitSignal(%[left_click : .stopFade, @"&.name;_fade" => null]);
 				}
 			} incontextof this,
 
@@ -670,10 +670,10 @@ class ModSound extends GModule
 				{
 					if(!.playing || .looping)
 						return;
-					if(!GObjectUtils.toBoolean(elm, 'skip', false))
+					if(!GObjectUtils.toBoolean(elm, 'skip', false) || !isClickSkipEnabled())
 						c.waitSignal(%[@"&.name;_stop" => null]);
 					else
-						.stop();
+						c.waitSignal(%[left_click : .stop, @"&.name;_stop" => null]);
 				}
 			} incontextof this,
 
@@ -727,6 +727,21 @@ class ModSound extends GModule
 		stopSystemSoundBuffers();
 		stopSoundEffectBuffers();
 		stopVoiceBuffers();
+	}
+
+	/**/
+	function isClickSkipEnabled()
+	{
+		with(window.modules)
+		{
+			if(.isLoaded('modMessage'))
+			{
+				if(!.modMessage.clickSkipEnabled)
+					return false;
+			}
+		}
+
+		return true;
 	}
 
 	/**/

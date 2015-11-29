@@ -6,7 +6,6 @@
 
 @show_message layer=message0
 
-;@click_skip !enabled
 *label|
 @fadeinbgm storage=bgm001.ogg time=2000
 ＢＧＭを再生しました。[p][cm]
@@ -31,8 +30,9 @@
 ＳＥをループ再生します。[p][cm]
 
 *label|
-@stopse buf=0
-ＳＥを停止します。[p][cm]
+@fadeoutse time=4000 buf=0
+@wf buf=0
+ＳＥをフェードアウトします。[p][cm]
 
 *label|
 @fadeoutbgm time=2000
@@ -40,6 +40,6 @@
 
 @hide_message layer=message0
 
-@log message="テスト終了しました。"
+@click_skip enabled
 
 

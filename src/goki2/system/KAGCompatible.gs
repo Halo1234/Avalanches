@@ -211,6 +211,8 @@
 @redirect alias=playvo name=play_voice
 @!playvo /buffer=<BUF> /label=<START>
 
+@redirect alias=playss name=play_system_sound
+
 @redirect alias=playvideo name=play_video
 
 @redirect alias=preparevideo name=prepare_video
@@ -222,6 +224,9 @@
 @redirect alias=seopt name=se_option
 @!seopt /buffer=<BUF>
 
+@redirect alias=ssopt name=system_sound_option
+@!ssopt /buffer=<BUF>
+
 @redirect alias=setbgmlabel name=set_bgm_label
 
 @redirect alias=setbgmstop name=set_bgm_stop
@@ -230,6 +235,9 @@
 
 @redirect alias=stopse name=stop_se
 @!stopse /buffer=<BUF>
+
+@redirect alias=stopss name=stop_system_sound
+@!stopss /buffer=<BUF>
 
 @redirect alias=stopvideo name=stop_video
 
@@ -246,6 +254,9 @@
 @redirect alias=wf name=wait_se_fade
 @!wf /buffer=<BUF> /skip=<CANSKIP>
 
+@redirect alias=wsf name=wait_system_sound_fade
+@!wsf /buffer=<BUF> /skip=<CANSKIP>
+
 @redirect alias=wl name=wait_bgm_stop
 @!wl /skip=<CANSKIP>
 
@@ -253,6 +264,9 @@
 
 @redirect alias=ws name=wait_se_stop
 @!ws /buffer=<BUF> /skip=<CANSKIP>
+
+@redirect alias=wss name=wait_system_sound_stop
+@!wss /buffer=<BUF> /skip=<CANSKIP>
 
 @redirect alias=wv name=wait_video
 @!wv /skip=<CANSKIP>
