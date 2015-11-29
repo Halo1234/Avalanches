@@ -769,10 +769,9 @@ class GLayerMover extends GTimeLine
 		if(useTransform_)
 		{
 			if(targetLayer_ === void)
-			{
-				with(targetLayer_ = src.getRenderingTarget())
-					.setSize(.parent.width, .parent.height);
-			}
+				targetLayer_ = src.getRenderingTarget();
+
+			targetLayer_.setSize(.parent.width, .parent.height);
 
 			if(withChildrens_)
 			{
@@ -819,15 +818,16 @@ class GLayerMover extends GTimeLine
 
 	function onStopTimeLine(paused)
 	{
-		if(!paused)
+		with(owner)
 		{
-			with(owner)
+			if(!paused)
 			{
 				if(targetLayer_ !== void)
 					.releaseRenderingTarget(targetLayer_);
 				targetLayer_ = void;
-				.callHandler('onStopMover', %[paused : paused]);
 			}
+
+			.callHandler('onStopMover', %[paused : paused]);
 		}
 	}
 
