@@ -31,7 +31,7 @@
 
 *label|
 @fadeoutse time=4000 buf=0
-@wf buf=0
+@wf canskip buf=0
 ＳＥをフェードアウトします。[p][cm]
 
 *label|
