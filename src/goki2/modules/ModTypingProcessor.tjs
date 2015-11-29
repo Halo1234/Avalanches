@@ -185,7 +185,7 @@ class TypingWord
 					return candidate.targets[candidate.current];
 			}
 		} catch(e) {
-			worn(e.message);
+			warn(e.message);
 		}
 
 		return void;
