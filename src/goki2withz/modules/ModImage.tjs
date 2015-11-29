@@ -287,58 +287,16 @@ class ModImage extends GModule
 			} incontextof this,
 
 			/* @wait_transition */
-			'wait_transition' => function (elm, c) {
-				waitTransitionByElm(elm, c);
-			} incontextof this,
+			'wait_transition' => waitTransitionByElm,
 
 			/* @wait_animation */
-			'wait_animation' => function (elm, c) {
-				waitAnimationByElm(elm, c);
-			} incontextof this,
+			'wait_animation' => waitAnimationByElm,
 
 			/* @wait_shake */
-			'wait_shake' => function (elm, c) {
-				with(findByElm(elm))
-				{
-					if(!.shaker.running || .shaker.endlessRunning)
-						return;
-					var modMessage = container.get('modMessage');
-					var skip = GObjectUtils.getBoolean(elm, 'skip', true);
-					var trigger = @"&.name;_end_of_shake";
-					dispatcher_.makeOneShot(trigger, c.signal, trigger);
-					if(modMessage !== void && modMessage.skipping && skip)
-					{
-						.shaker.stop();
-						return 'breath';
-					}
-					if(skip)
-						c.waitSignal(%[left_click : .shaker.stop, @"&trigger;" => null]);
-					else
-						c.waitSignal(%[@"&trigger;" => null]);
-				}
-			} incontextof this,
+			'wait_shake' => waitShakeByElm,
 
 			/* @wait_move */
-			'wait_move' => function (elm, c) {
-				with(findByElm(elm))
-				{
-					if(!.mover.running || .mover.endlessRunning)
-						return;
-					var modMessage = container.get('modMessage');
-					var skip = GObjectUtils.getBoolean(elm, 'skip', true);
-					var trigger = @"&.name;_end_of_move";
-					dispatcher_.makeOneShot(trigger, c.signal, trigger);
-					if(modMessage !== void && modMessage.skipping && skip)
-					{
-						.mover.stop();
-						return 'breath';
-					}
-					if(skip)
-						c.waitSignal(%[left_click : .mover.stop, @"&trigger;" => null]);
-					else
-						c.waitSignal(%[@"&trigger;" => null]);
-				}
-			} incontextof this,
+			'wait_move' => waitMoveByElm,
 
 		];
 	}
@@ -362,6 +320,21 @@ class ModImage extends GModule
 	}
 
 	/**/
+	function isClickSkipEnabled()
+	{
+		with(window.modules)
+		{
+			if(.isLoaded('modMessage'))
+			{
+				if(!.modMessage.clickSkipEnabled)
+					return false;
+			}
+		}
+
+		return true;
+	}
+
+	/**/
 	function isLongSkipping()
 	{
 		with(window.modules)
@@ -369,6 +342,21 @@ class ModImage extends GModule
 			if(.isLoaded('modMessage'))
 			{
 				if(.modMessage.longSkipping)
+					return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**/
+	function isSkipping()
+	{
+		with(window.modules)
+		{
+			if(.isLoaded('modMessage'))
+			{
+				if(.modMessage.skipping)
 					return true;
 			}
 		}
@@ -682,9 +670,9 @@ class ModImage extends GModule
 
 		dispatcher_.makeOneShot(event, conductor.signal, event);
 
-		if(gbFunc(elm, 'skip', true))
+		if(gbFunc(elm, 'skip', true) && isClickSkipEnabled())
 		{
-			if(isLongSkipping())
+			if(isSkipping())
 			{
 				// TODO: スキップ処理を実行中ならば即座にトランジションを停止する。
 				layer.stopTransition();
@@ -706,7 +694,7 @@ class ModImage extends GModule
 	{
 		var layer = findByElm(elm);
 
-		if(isLongSkipping())
+		if(isLongSkipping() && isClickSkipEnabled())
 			return;
 
 		if(elm.index === void)
@@ -726,6 +714,60 @@ class ModImage extends GModule
 
 			if(layer.conductor.canWaitStopForCell(+elm.index))
 				conductor.waitSignal(%[@"&event;" => null]);
+		}
+	}
+
+	/**/
+	function waitShakeByElm(elm, conductor)
+	{
+		with(findByElm(elm))
+		{
+			if(!.shaker.running || .shaker.endlessRunning)
+				return;
+
+			var skip = GObjectUtils.getBoolean(elm, 'skip', true);
+			var trigger = @"&.name;_end_of_shake";
+			var clickSkipEnabled = isClickSkipEnabled();
+
+			dispatcher_.makeOneShot(trigger, conductor.signal, trigger);
+
+			if(isSkipping() && skip && clickSkipEnabled)
+			{
+				.shaker.stop();
+				return 'breath';
+			}
+
+			if(skip && clickSkipEnabled)
+				conductor.waitSignal(%[left_click : .shaker.stop, @"&trigger;" => null]);
+			else
+				conductor.waitSignal(%[@"&trigger;" => null]);
+		}
+	}
+
+	/**/
+	function waitMoveByElm(elm, conductor)
+	{
+		with(findByElm(elm))
+		{
+			if(!.mover.running || .mover.endlessRunning)
+				return;
+
+			var skip = GObjectUtils.getBoolean(elm, 'skip', true);
+			var trigger = @"&.name;_end_of_move";
+			var clickSkipEnabled = isClickSkipEnabled();
+
+			dispatcher_.makeOneShot(trigger, conductor.signal, trigger);
+
+			if(isSkipping() && skip && clickSkipEnabled)
+			{
+				.mover.stop();
+				return 'breath';
+			}
+
+			if(skip && clickSkipEnabled)
+				conductor.waitSignal(%[left_click : .mover.stop, @"&trigger;" => null]);
+			else
+				conductor.waitSignal(%[@"&trigger;" => null]);
 		}
 	}
 
