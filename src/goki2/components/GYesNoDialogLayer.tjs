@@ -10,6 +10,7 @@ class GYesNoDialogMainFormLayer extends GFormLayer
 	function GYesNoDialogMainFormLayer(window, parent, handler)
 	{
 		super.GFormLayer(...);
+		rclickHide = false;
 	}
 
 	function drawCaption(offx = 0, offy = 0, color = clNone, edge = clNone)
