@@ -95,6 +95,7 @@ class ModBookmark extends GModule
 					.storagePrefix = elm.prefix if elm.prefix !== void;
 					.storageSuffix = elm.suffix if elm.suffix !== void;
 					.mode = elm.mode if elm.mode !== void;
+					storeSkipping = GObjectUtils.getBoolean(elm, 'store_skipping') if GObjectUtils.hasValue(elm, 'store_skipping');
 					calculateThumbnailSize_private_(context_);
 				}
 				storeAndSave = GObjectUtils.getBoolean(elm, 'store_and_save') if GObjectUtils.hasValue(elm, 'store_and_save');

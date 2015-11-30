@@ -48,6 +48,7 @@
 @style linesize=24
 
 *label|
+[autowc !enabled]
 これは、[font face='ＭＳ Ｐ明朝' shadowcolor=0x000000 size=24][indent]インデント[resetfont]のテストです。[r]
 正しく表示されていますか？[endindent][p][cm]
 
