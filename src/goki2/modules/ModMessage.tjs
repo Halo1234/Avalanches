@@ -295,6 +295,9 @@ class ModMessage extends GModule
 
 					if(.showHideMover.running)
 					{
+						if(!clickSkipEnabled)
+							c.waitSignal(%[@"&event;" => null]);
+						else
 						if(longSkipping)
 							.cancelShowHide();
 						else
@@ -319,10 +322,16 @@ class ModMessage extends GModule
 				{
 					var event = @"&.name;_hide_completed";
 
-					if(longSkipping)
-						.cancelShowHide();
-					else
-						c.waitSignal(%[left_click : .cancelShowHide, @"&event;" => null]);
+					if(.showHideMover.running)
+					{
+						if(!clickSkipEnabled)
+							c.waitSignal(%[@"&event;" => null]);
+						else
+						if(longSkipping)
+							.cancelShowHide();
+						else
+							c.waitSignal(%[left_click : .cancelShowHide, @"&event;" => null]);
+					}
 				}
 			} incontextof this,
 
