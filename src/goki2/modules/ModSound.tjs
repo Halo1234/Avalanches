@@ -272,7 +272,7 @@ class ModSound extends GModule
 			'fadein_system_sound' => function (elm) {
 				with(findSystemSoundBufferByElm(elm))
 				{
-					.looping = GObjectUtils.toBoolean(elm.loop, false);
+					.looping = GObjectUtils.getBoolean(elm, 'loop', false);
 					.open(elm.storage);
 					.fadein(+elm.time, +elm.delay);
 				}
@@ -294,7 +294,7 @@ class ModSound extends GModule
 			'play_system_sound' => function (elm) {
 				with(findSystemSoundBufferByElm(elm))
 				{
-					.looping = GObjectUtils.toBoolean(elm.loop, false);
+					.looping = GObjectUtils.getBoolean(elm, 'loop', false);
 					.open(elm.storage);
 					.play();
 				}
@@ -346,7 +346,7 @@ class ModSound extends GModule
 			'fadein_se' => function (elm) {
 				with(findSoundEffectBufferByElm(elm))
 				{
-					.looping = GObjectUtils.toBoolean(elm.loop, false);
+					.looping = GObjectUtils.getBoolean(elm, 'loop', false);
 					.open(elm.storage);
 					.setLabel(elm.label) if elm.label !== void;
 					.fadein(+elm.time, +elm.delay);
@@ -375,7 +375,7 @@ class ModSound extends GModule
 			'play_se' => function (elm) {
 				with(findSoundEffectBufferByElm(elm))
 				{
-					.looping = GObjectUtils.toBoolean(elm.loop, false);
+					.looping = GObjectUtils.getBoolean(elm, 'loop', false);
 					.open(elm.storage);
 					.play();
 				}
@@ -433,7 +433,7 @@ class ModSound extends GModule
 			'fadein_voice' => function (elm) {
 				with(findVoiceBufferByElm(elm))
 				{
-					.looping = GObjectUtils.toBoolean(elm.loop, false);
+					.looping = GObjectUtils.getBoolean(elm, 'loop', false);
 					.open(elm.storage);
 					.setLabel(elm.label) if elm.label !== void;
 					.fadein(+elm.time, +elm.delay);
@@ -462,7 +462,7 @@ class ModSound extends GModule
 			'play_voice' => function (elm) {
 				with(findVoiceBufferByElm(elm))
 				{
-					.looping = GObjectUtils.toBoolean(elm.loop, false);
+					.looping = GObjectUtils.getBoolean(elm, 'loop', false);
 					.open(elm.storage);
 					.setLabel(elm.label) if elm.label !== void;
 					.play();
@@ -581,7 +581,7 @@ class ModSound extends GModule
 			'fadein_bgm' => function (elm) {
 				with(findBGMBufferByElm(elm))
 				{
-					.looping = GObjectUtils.toBoolean(elm.loop, false);
+					.looping = GObjectUtils.getBoolean(elm, 'loop', false);
 					.open(elm.storage);
 					GObjectUtils.clearDictionary(bgmLabelInfos_[.name]) if bgmLabelInfos_[.name] !== void;
 					.setLabel(elm.label) if elm.label !== void;
@@ -623,7 +623,7 @@ class ModSound extends GModule
 			'play_bgm' => function (elm) {
 				with(findBGMBufferByElm(elm))
 				{
-					.looping = GObjectUtils.toBoolean(elm.loop, false);
+					.looping = GObjectUtils.getBoolean(elm, 'loop', false);
 					.open(elm.storage);
 					GObjectUtils.clearDictionary(bgmLabelInfos_[.name]) if bgmLabelInfos_[.name] !== void;
 					.setLabel(elm.label) if elm.label !== void;
@@ -641,7 +641,7 @@ class ModSound extends GModule
 			'exchange_bgm' => function (elm) {
 				with(findBGMBufferByElm(elm))
 				{
-					.looping = GObjectUtils.toBoolean(elm.loop, true);
+					.looping = GObjectUtils.getBoolean(elm, 'loop', true);
 					.crossfade(elm.storage, +elm.time, +elm.overlap, +elm.delay);
 					GObjectUtils.clearDictionary(bgmLabelInfos_[.name]) if bgmLabelInfos_[.name] !== void;
 				}

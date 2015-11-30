@@ -138,7 +138,7 @@ class ModBookmark extends GModule
 
 			/* @go_back */
 			'go_back' => function (elm) {
-				popRecordAnchor(+elm.ask);
+				popRecordAnchor(GObjectUtils.getBoolean(elm, 'ask'));
 			} incontextof this,
 
 			/* @start_anchor */
@@ -151,7 +151,7 @@ class ModBookmark extends GModule
 
 			/* @go_to_start */
 			'go_to_start' => function (elm) {
-				loadStartAnchor(+elm.ask);
+				loadStartAnchor(GObjectUtils.getBoolean(elm, 'ask'));
 			} incontextof this,
 
 			/* @save */

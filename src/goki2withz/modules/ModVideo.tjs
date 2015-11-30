@@ -109,7 +109,7 @@ class ModVideo extends GModule
 					.audioVolume = +elm.volume * 1000 if elm.volume !== void;
 					.audioBalance = +elm.pan * 1000 if elm.pan !== void;
 					.selectAudioStream(+elm.audio_stream_number) if elm.audio_stream_number !== void;
-					.visible = +elm.visible if elm.visible !== void;
+					.visible = GObjectUtils.getBoolean(elm, 'visible') if GObjectUtils.hasValue(elm, 'visible');
 				}
 			} incontextof this,
 

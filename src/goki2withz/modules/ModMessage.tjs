@@ -169,7 +169,7 @@ class ModMessage extends GModule
 					setCurrentLayer(.name) if GObjectUtils.getBoolean(elm, 'current');
 					if(elm.margin_left !== void && elm.margin_top !== void && elm.margin_top !== void && elm.margin_bottom !== void)
 						.setMargin(+elm.margin_left, +elm.margin_top, +elm.margin_right, +elm.margin_bottom);
-					.visible = elm.visible if elm.visible !== void;
+					.visible = GObjectUtils.getBoolean(elm, 'visible') if GObjectUtils.hasValue(elm, 'visible');
 					.layoutMode = elm.layout_mode if elm.layout_mode !== void;
 				}
 			} incontextof this,
@@ -198,8 +198,8 @@ class ModMessage extends GModule
 					.layoutMode = elm.layout_mode if elm.layout_mode !== void;
 					.setFontSize(+elm.font_size) if elm.font_size !== void;
 					.setFontFace(elm.font_face) if elm.font_face !== void;
-					historyEnabled = +elm.enabled if elm.enabled !== void;
-					outputHistory = +elm.output if elm.output !== void;
+					historyEnabled = GObjectUtils.getBoolean(elm, 'enabled') if GObjectUtils.hasValue(elm, 'enabled');
+					outputHistory = GObjectUtils.getBoolean(elm, 'output') if GObjectUtils.hasValue(elm, 'output');
 				}
 			} incontextof this,
 

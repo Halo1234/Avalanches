@@ -581,7 +581,7 @@ class ModImage extends GModule
 	{
 		with(layerContainer_)
 		{
-			var children = GObjectUtils.toBoolean(elm.children, true);
+			var children = GObjectUtils.getBoolean(elm, 'children', true);
 			var time = (elm.time === void ? 1000 : +elm.time);
 			var layerName = (elm.layer === void ? .parentLayerName : elm.layer);
 
@@ -593,7 +593,7 @@ class ModImage extends GModule
 			{
 				conductor.setControlCode('break') if conductor !== void;
 
-				return .flip(layerName, children, GObjectUtils.toBoolean(elm.exchange));
+				return .flip(layerName, children, GObjectUtils.getBoolean(elm, 'exchange'));
 			}
 
 			elm.time = time;

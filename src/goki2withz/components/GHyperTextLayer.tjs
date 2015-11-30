@@ -901,7 +901,7 @@ class GHyperTextLayer extends GWidgetLayer
 				outputting_ = true;
 			}
 
-			if(!renderHorizontalCharacter(tag.text, +tag.expand))
+			if(!renderHorizontalCharacter(tag.text, GObjectUtis.getBoolean(tag, 'expand', false)))
 			{
 				splitingPage_ = true;
 				return false;
@@ -915,25 +915,19 @@ class GHyperTextLayer extends GWidgetLayer
 		case 'default_font_parameters':
 			setFontFace(tag.face) if tag.face !== void;
 			setFontSize(tag.size) if tag.size !== void;
-			setItalic(GObjectUtils.toBoolean(tag.italic)) if tag.italic !== void;
+			setItalic(GObjectUtils.getBoolean(tag, 'italic')) if GObjectUtils.hasValue(tag, 'italic');
 			setRubyFontSize(tag.ruby_size) if tag.ruby_size !== void;
-			setBold(GObjectUtils.toBoolean(tag.bold)) if tag.bold !== void;
-			setStrikeout(GObjectUtils.toBoolean(tag.strikeout)) if tag.strikeout !== void;
-			setUnderline(GObjectUtils.toBoolean(tag.underline)) if tag.underline !== void;
-			if(tag.shadow_color !== void)
-			{
-				if(tag.shadow_color == 'clNone')
-					setShadowColor(clNone);
-				else
-					setShadowColor(+tag.shadow_color);
-			}
-			if(tag.edge_color !== void)
-			{
-				if(tag.edge_color == 'clNone')
-					setEdgeColor(clNone);
-				else
-					setEdgeColor(+tag.edge_color);
-			}
+			setBold(GObjectUtils.getBoolean(tag, 'bold')) if GObjectUtis.hasValue(tag, 'bold');
+			setStrikeout(GObjectUtils.getBoolean(tag, 'strikeout')) if GObjectUtils.hasValue(tag, 'strikeout');
+			setUnderline(GObjectUtils.getBoolean(tag, 'underline')) if GObjectUtils.hasValue(tag, 'underline');
+			if(GObjectUtils.getBoolean(tag, 'shadow', false))
+				setShadowColor(+tag.shadow_color);
+			else
+				setShadowColor(clNone);
+			if(GObjectUtils.getBoolean(tag, 'edge', false))
+				setEdgeColor(+tag.edge_color);
+			else
+				setEdgeColor(clNone);
 			break;
 
 		case 'default_line_parameters':
@@ -951,25 +945,19 @@ class GHyperTextLayer extends GWidgetLayer
 		case 'font':
 			font.face = tag.face if tag.face !== void;
 			font.height = +tag.size if tag.size !== void;
-			font.italic = GObjectUtils.toBoolean(tag.italic) if tag.italic !== void;
-			font.bold = GObjectUtils.toBoolean(tag.bold) if tag.bold !== void;
-			font.strikeout = GObjectUtils.toBoolean(tag.strikeout) if tag.strikeout !== void;
-			font.underline = GObjectUtils.toBoolean(tag.underline) if tag.underline !== void;
+			font.italic = GObjectUtils.getBoolean(tag, 'italic') if GObjectUtils.hasValue(tag, 'italic');
+			font.bold = GObjectUtils.getBoolean(tag, 'bold') if GObjectUtils.hasValue(tag, 'bold');
+			font.strikeout = GObjectUtils.getBoolean(tag, 'strikeout') if GObjectUtils.hasValue(tag, 'strikeout');
+			font.underline = GObjectUtils.getBoolean(tag, 'underline') if GObjectUtils.hasValue(tag, 'underline');
 			setRubyFontSize(tag.ruby_size) if tag.ruby_size !== void;
-			if(tag.shadow_color !== void)
-			{
-				if(tag.shadow_color == 'clNone')
-					shadowColor = clNone;
-				else
-					shadowColor = +tag.shadow_color;
-			}
-			if(tag.edge_color !== void)
-			{
-				if(tag.edge_color == 'clNone')
-					edgeColor = clNone;
-				else
-					edgeColor = +tag.edge_color;
-			}
+			if(GObjectUtils.getBoolean(tag, 'shadow', false))
+				shadowColor = +tag.shadow_color;
+			else
+				shadowColor = clNone;
+			if(GObjectUtils.getBoolean(tag, 'edge'))
+				edgeColor = +tag.edge_color;
+			else
+				edgeColor = clNone;
 			break;
 
 		case 'reset_font':

@@ -111,7 +111,7 @@ class GConductor extends KAGParser
 
 			/* @que */
 			'que' => function (elm) {
-				clearScriptQue() if GObjectUtils.toBoolean(elm.clear);
+				clearScriptQue() if GObjectUtils.getBoolean(elm, 'clear');
 				pushScript(elm.storage.split(', ', , true)*) if elm.storage !== void;
 			} incontextof this,
 
@@ -128,7 +128,7 @@ class GConductor extends KAGParser
 
 			/* @auto_jump */
 			'auto_jump' => function (elm) {
-				if(GObjectUtils.toBoolean(elm.off))
+				if(GObjectUtils.getBoolean(elm, 'off'))
 					autoJump = false;
 				else
 				//if(+elm.on) off ‚¶‚á‚È‚¢‚È‚ç on ‚¾‚Æ‰ðŽß‚·‚é
@@ -160,7 +160,7 @@ class GConductor extends KAGParser
 
 			/* @redirect */
 			'redirect' => function (elm) {
-				(GObjectUtils.toBoolean(elm.remove) ? deleteRedirectTag : setRedirectTag)(elm.alias, elm.name);
+				(GObjectUtils.getBoolean(elm, 'remove') ? deleteRedirectTag : setRedirectTag)(elm.alias, elm.name);
 			} incontextof this,
 
 			/* @notice */
