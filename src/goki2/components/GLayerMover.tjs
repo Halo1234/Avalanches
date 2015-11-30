@@ -392,7 +392,7 @@ class GLayerMover extends GTimeLine
 			if(.angle !== void || .ax !== void || .ay !== void || .scale !== void || .sx !== void || .sy !== void)
 			{
 				// 仕様上許可しない
-				throw new Exception("拡大／縮小／回転は単独フレームではサポートされません。");
+				throw new GRuntimeError("拡大／縮小／回転は単独フレームではサポートされません。");
 			}
 		}
 
@@ -785,12 +785,12 @@ class GLayerMover extends GTimeLine
 	function onStartTimeLine()
 	{
 		if(events_.count <= 0)
-			throw new Exception("変換が何も設定されていませんがアクションを開始しようとしました。");
+			throw new GRuntimeError("変換が何も設定されていませんがアクションを開始しようとしました。");
 
 		resetPointer();
 
 		if(pointer_ == -1 && alonePointer_ == -1)
-			throw new Exception("開始可能なイベントが見つかりませんでした。");
+			throw new GRuntimeError("開始可能なイベントが見つかりませんでした。");
 
 		onInitialize_private_();
 
