@@ -281,9 +281,16 @@ class ModMessage extends GModule
 			'show_message' => function (elm) {
 				with(findByElm(elm))
 				{
-					.showHideType = elm.type if elm.type !== void;
-					.showHideTime = +elm.time if elm.time !== void;
-					.show();
+					if(skipping)
+					{
+						.visible = true;
+					}
+					else
+					{
+						.showHideType = elm.type if elm.type !== void;
+						.showHideTime = +elm.time if elm.time !== void;
+						.show();
+					}
 				}
 			} incontextof this,
 
@@ -310,9 +317,16 @@ class ModMessage extends GModule
 			'hide_message' => function (elm, c) {
 				with(findByElm(elm))
 				{
-					.showHideType = elm.type if elm.type !== void;
-					.showHideTime = +elm.time if elm.time !== void;
-					.hide();
+					if(skipping)
+					{
+						.visible = false;
+					}
+					else
+					{
+						.showHideType = elm.type if elm.type !== void;
+						.showHideTime = +elm.time if elm.time !== void;
+						.hide();
+					}
 				}
 			} incontextof this,
 
