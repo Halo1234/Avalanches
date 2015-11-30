@@ -186,7 +186,7 @@ class GLayerMover extends GTimeLine
 
 		var frame = %[
 			type_ : 'normal',
-			time_ : time, position_ : position, _accel : 0,
+			time_ : time, position_ : position, accel_ : 0,
 			prev_ : void, next_ : void,
 			handler_ : void, isUserHandler_ : false
 		];
@@ -200,7 +200,7 @@ class GLayerMover extends GTimeLine
 				frame.handler_ = .handler;
 			}
 
-			frame._accel = +.accel if .accel !== void;
+			frame.accel_ = +.accel if .accel !== void;
 
 			frame.x = target.stringTo(.x) if .x !== void;
 			frame.y = target.stringTo(.y) if .y !== void;
@@ -578,7 +578,7 @@ class GLayerMover extends GTimeLine
 				else
 					lines.push('var m = rotateM(0);');
 
-				lines.push('if(layer.fixPositionToCenter) {');
+				//lines.push('if(layer.fixPositionToCenter) {');
 				lines.push('var rx = width >> 1;');
 				lines.push('var ry = height >> 1;');
 
@@ -595,22 +595,6 @@ class GLayerMover extends GTimeLine
 				// 移動
 				lines.push('m = mulM(m, transM(x, y));');
 				lines.push('m = mulM(m, transM(rx, ry));');
-
-				lines.push('} else {');
-
-				// スケーリング（必要ならば）
-				if(sx && sy)
-					lines.push('m = mulM(m, scaleM(sx, sy));');
-				else
-				if(sx)
-					lines.push('m = mulM(m, scaleM(sx, 1.0));');
-				else
-				if(sy)
-					lines.push('m = mulM(m, scaleM(1.0, sy));');
-				// 移動
-				lines.push('m = mulM(m, transM(x, y));');
-
-				lines.push('}');
 
 				// 描画本体
 				lines.push('with(targetLayer_) {');
@@ -771,7 +755,7 @@ class GLayerMover extends GTimeLine
 			if(targetLayer_ === void)
 				targetLayer_ = src.getRenderingTarget();
 
-			targetLayer_.setSize(.parent.width, .parent.height);
+			targetLayer_.setSize(src.parent.width, src.parent.height);
 
 			if(withChildrens_)
 			{
@@ -885,7 +869,7 @@ class GLayerMover extends GTimeLine
 			{
 				var localStep = localizeTime(src.position_, step, dst.position_ - src.position_);
 
-				localStep = applyAccelTo(localStep, src._accel) if src._accel !== void;
+				localStep = applyAccelTo(localStep, src.accel_) if src.accel_ !== void;
 
 				src.handler_(localStep, layer, ox, oy, src, dst);
 			}
@@ -939,7 +923,7 @@ class GLayerMover extends GTimeLine
 			{
 				var localStep = localizeTime(src.position_, step, dst.position_ - src.position_);
 
-				localStep = applyAccelTo(localStep, src._accel) if src._accel !== void;
+				localStep = applyAccelTo(localStep, src.accel_) if src.accel_ !== void;
 
 				src.handler_(localStep, layer, ox, oy, src, dst);
 			}

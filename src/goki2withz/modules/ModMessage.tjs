@@ -280,13 +280,50 @@ class ModMessage extends GModule
 			/* @show_message */
 			'show_message' => function (elm) {
 				with(findByElm(elm))
+				{
+					.showHideType = elm.type if elm.type !== void;
+					.showHideTime = +elm.time if elm.time !== void;
 					.show();
+				}
+			} incontextof this,
+
+			/* @wait_show_message */
+			'wait_show_message' => function (elm, c) {
+				with(findByElm(elm))
+				{
+					var event = @"&.name;_show_completed";
+
+					if(.showHideMover.running)
+					{
+						if(longSkipping)
+							.cancelShowHide();
+						else
+							c.waitSignal(%[left_click : .cancelShowHide, @"&event;" => null]);
+					}
+				}
 			} incontextof this,
 
 			/* @hide_message */
 			'hide_message' => function (elm, c) {
 				with(findByElm(elm))
+				{
+					.showHideType = elm.type if elm.type !== void;
+					.showHideTime = +elm.time if elm.time !== void;
 					.hide();
+				}
+			} incontextof this,
+
+			/* @wait_hide_message */
+			'wait_hide_message' => function (elm, c) {
+				with(findByElm(elm))
+				{
+					var event = @"&.name;_hide_completed";
+
+					if(longSkipping)
+						.cancelShowHide();
+					else
+						c.waitSignal(%[left_click : .cancelShowHide, @"&event;" => null]);
+				}
 			} incontextof this,
 
 			/* @ch_mod_message */
@@ -1367,6 +1404,16 @@ class ModMessage extends GModule
 
 		case 'onLeaveLink':
 			Script.eval(elm.onLeaveExp) if elm.onLeaveExp !== void;
+			break;
+
+		case 'onShowCompleted':
+			dm("onShowCompleted");
+			dm(@"&obj.name;_show_completed");
+			window.conductor.signal(@"&obj.name;_show_completed");
+			break;
+
+		case 'onHideCompleted':
+			window.conductor.signal(@"&obj.name;_hide_completed");
 			break;
 		}
 	}

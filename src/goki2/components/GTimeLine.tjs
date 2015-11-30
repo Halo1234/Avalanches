@@ -16,7 +16,7 @@ class GTimeLine
 	var tickDiff_;				//!> \brief resume() 用
 	var looping = false;		//!> \brief ループしてるかどうか
 	var inDelay_ = false;		//!> \brief 開始遅延待ち中かどうか
-	var processInterval_ = 6;	//!> \brief onProcess 発生周期
+	var processInterval_ = 6;	//!> \brief onProcessTimeLine 発生周期
 
 	var restartAtNextTime_ = false;
 	var handler_ = void;
@@ -190,19 +190,19 @@ class GTimeLine
 	 * this のハンドラが呼び出された場合は true を返します。
 	 * それ以外ならば false を返します。
 	 *
-	 * onStart/onStop
+	 * onStartTimeLine/onStopTimeLine
 	 * それぞれタイムラインの開始前/停止後に発生します。
 	 *
-	 * onBegin/onEnd
-	 * それぞれタイムライン始点/終点で onProcess の後/前に発生します。
+	 * onBeginTimeLine/onEndTimeLine
+	 * それぞれタイムライン始点/終点で onProcessTimeLine の後/前に発生します。
 	 *
-	 * onRestart
-	 * 実行中に最初からやり直す時に onProcess の前に発生します。
+	 * onRestartTimeLine
+	 * 実行中に最初からやり直す時に onProcessTimeLine の前に発生します。
 	 *
-	 * onResume
-	 * タイムラインが再開される時に onProcess の前に発生します。
+	 * onResumeTimeLine
+	 * タイムラインが再開される時に onProcessTimeLine の前に発生します。
 	 *
-	 * onProcess
+	 * onProcessTimeLine
 	 * タイムライン実行中に定期的に発生します。
 	**/
 	function notify(message, arg*)
@@ -365,7 +365,7 @@ class GTimeLine
 	}
 
 	/**
-	 * onProcess() 呼び出し周期とタイムライン終点（ms 単位）
+	 * onProcessTimeLine() 呼び出し周期とタイムライン終点（ms 単位）
 	 *
 	 * タイムラインは 0.0 (0 ms) を始点。
 	 * 1.0 (N ms | N = time プロパティ値) を終点と考えます。

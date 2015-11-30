@@ -694,7 +694,7 @@ class GHorizontalLayout
 }
 
 /**/
-class GHyperTextLayer extends GWidgetLayer
+class GHyperTextLayer extends GFormLayer
 {
 	var wwFollowingStrong_ =									//!< \brief 行頭(強)禁則文字
 		'　%),:;]}｡｣ﾞﾟ。，、．：；゛゜ヽヾゝゞ々’”）〕］｝〉》」』】°′″℃￠％‰!?！？';
@@ -748,8 +748,9 @@ class GHyperTextLayer extends GWidgetLayer
 	/**/
 	function GHyperTextLayer(window, parent, handler)
 	{
-		super.GWidgetLayer(...);
+		super.GFormLayer(...);
 		hitThreshold = 0;
+		rclickHide = false;
 
 		// NOTE: レイアウトは作り直しが発生する可能性があるので代行オブジェクトを通して破棄する。
 		family.receive(new GDestructor(resetLayout));
@@ -901,7 +902,7 @@ class GHyperTextLayer extends GWidgetLayer
 				outputting_ = true;
 			}
 
-			if(!renderHorizontalCharacter(tag.text, GObjectUtis.getBoolean(tag, 'expand', false)))
+			if(!renderHorizontalCharacter(tag.text, GObjectUtils.getBoolean(tag, 'expand', false)))
 			{
 				splitingPage_ = true;
 				return false;
@@ -917,7 +918,7 @@ class GHyperTextLayer extends GWidgetLayer
 			setFontSize(tag.size) if tag.size !== void;
 			setItalic(GObjectUtils.getBoolean(tag, 'italic')) if GObjectUtils.hasValue(tag, 'italic');
 			setRubyFontSize(tag.ruby_size) if tag.ruby_size !== void;
-			setBold(GObjectUtils.getBoolean(tag, 'bold')) if GObjectUtis.hasValue(tag, 'bold');
+			setBold(GObjectUtils.getBoolean(tag, 'bold')) if GObjectUtils.hasValue(tag, 'bold');
 			setStrikeout(GObjectUtils.getBoolean(tag, 'strikeout')) if GObjectUtils.hasValue(tag, 'strikeout');
 			setUnderline(GObjectUtils.getBoolean(tag, 'underline')) if GObjectUtils.hasValue(tag, 'underline');
 			if(GObjectUtils.getBoolean(tag, 'shadow', false))

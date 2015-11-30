@@ -9,16 +9,17 @@
 
 @cr_handling ignore
 
-@show_message layer=message0
+@show_message layer=message0 type=vista
+@wait_show_message
 
 ;@click_skip !enabled
 
 *label|
-@hidden_message
 メッセージレイヤのテストです。[p]
 
 *label|
-@waitclick
+@hidden_message
+;@waitclick
 
 絵文字[graph storage=char character alt=(赤)]のテストです。[p][cm]
 

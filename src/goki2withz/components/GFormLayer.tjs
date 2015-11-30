@@ -23,6 +23,10 @@ class GFormLayer extends GWidgetLayer
 {
 	var softFocus_;
 
+	var showHideType_ = '';
+	var showHideTime = 200;
+	var showHideMover_;
+
 	var clickCancel = false;				// click() で show()/hide() をキャンセルするかどうか
 	var rclickHide = true;					// rclick() で hide() を呼ぶかどうか
 	var softFocusDisableInShowHideRunning = true;
@@ -34,6 +38,7 @@ class GFormLayer extends GWidgetLayer
 		focusable = true;
 		bodyColor = clAppWorkSpace;
 		captionColor = clHighlightText;
+		showHideType = 'vista';
 	}
 
 	function finalize()
@@ -56,6 +61,50 @@ class GFormLayer extends GWidgetLayer
 		return obj;
 	}
 
+	/*
+	 * \brief show()/hide() による表示/非表示効果のタイプを指定する事ができます。
+	 *
+	 * \remarks 利用可能な効果は下記のとおりです。
+	 * \remarks
+	 * \remarks      '': 効果を行いません。
+	 * \remarks  'fade': 通常のフェードイン/フェードアウト効果です。
+	 * \remarks 'vista': Windows Vista/7 の Aero のような効果です。
+	 *
+	 * これらは必要に応じて派生先で拡張するとよいでしょう。
+	**/
+	function setShowHideType(type)
+	{
+		showHideType_ = type;
+
+		switch(type)
+		{
+		case '':
+			break;
+
+		case 'fade':
+			with(showHideMover)
+			{
+				.useTransform = false;
+				.withChildrens = false;
+				.looping = false;
+			}
+			break;
+
+		case 'vista':
+			with(showHideMover)
+			{
+				.useTransform = true;
+				.withChildrens = true;
+				.looping = false;
+			}
+			break;
+
+		default:
+			onUnknownShowHideMethodType(type, showHideMover);
+			break;
+		}
+	}
+
 	function click(x, y, shift)
 	{
 		if(clickCancel && (showRunning || hideRunning))
@@ -69,6 +118,99 @@ class GFormLayer extends GWidgetLayer
 		else
 		if(rclickHide)
 			hide();
+	}
+
+	function beginShowEffect()
+	{
+		switch(showHideType_)
+		{
+		case '':
+			super.beginShowEffect(...);
+			break;
+
+		case 'fade':
+			with(showHideMover)
+			{
+				.clear();
+				.addFrame(0.0, %[opacity : 0]);
+				.addFrame(1.0, %[opacity : 255]);
+				.time = showHideTime;
+				.delay = 0;
+				.accel = 0;
+				.start();
+			}
+			break;
+
+		case 'vista':
+			with(showHideMover)
+			{
+				.clear();
+				.addFrame(0.0, %[scale : 0.95, opacity : 0]);
+				.addFrame(1.0, %[scale : 1.0, opacity : 255]);
+				.time = showHideTime;
+				.delay = 0;
+				.accel = 1.8;
+				.start();
+			}
+			break;
+
+		default:
+			onUnknownShowMethod(showHideType_, showHideMover);
+			break;
+		}
+	}
+
+	function beginHideEffect()
+	{
+		switch(showHideType_)
+		{
+		case '':
+			super.beginHideEffect(...);
+			break;
+
+		case 'fade':
+			with(showHideMover)
+			{
+				.clear();
+				.addFrame(0.0, %[opacity : 255]);
+				.addFrame(1.0, %[opacity : 0]);
+				.delay = 0;
+				.accel = 0;
+				.start();
+			}
+			break;
+
+		case 'vista':
+			with(showHideMover)
+			{
+				.clear();
+				.addFrame(0.0, %[scale : 1.0, opacity : 255]);
+				.addFrame(1.0, %[scale : 0.95, opacity : 0]);
+				.delay = 0;
+				.accel = -1.8;
+				.start();
+			}
+			break;
+
+		default:
+			onUnknownHideMethod(showHideType_, showHideMover);
+			break;
+		}
+	}
+
+	function onUnknownShowHideMethodType(type, mover)
+	{
+		throw new GArgumentsError(@"'&type;' は未定義の表示／非表示タイプです。");
+	}
+
+	function onUnknownShowMethod(type, mover)
+	{
+		throw new GArgumentsError(@"レイヤーを表示しようとしましたが '&type;' は未定義の効果タイプです。");
+	}
+
+	function onUnknownHideMethod(type, mover)
+	{
+		throw new GArgumentsError(@"レイヤーを非表示にしようとしましたが '&type;' は未定義の効果タイプです。");
 	}
 
 	/**
@@ -114,11 +256,69 @@ class GFormLayer extends GWidgetLayer
 
 	function onInterruptShowHide(drawFinalFrame)
 	{
+		if(showHideType_ != '')
+		{
+			if(drawFinalFrame)
+				showHideMover.stop();
+			else
+				showHideMover.pause();
+		}
+	}
+
+	function onStartTimeLine(event)
+	{
+		if(event === showHideMover)
+		{
+			focus();
+
+			if(softFocusDisableInShowHideRunning && softFocus_ !== void)
+			{
+				softFocusEnabledBackup_ = softFocus.enabled;
+				softFocus.enabled = false;
+			}
+		}
+	}
+
+	function onStopTimeLine(event, paused)
+	{
+		if(event === showHideMover)
+		{
+			if(paused)
+			{
+				stopShowHideOperation(false);
+				return;
+			}
+			else
+			if(showRunning)
+			{
+				if(softFocusDisableInShowHideRunning && softFocus_ !== void)
+					softFocus.enabled = softFocusEnabledBackup_;
+				showComplete();
+			}
+			else
+			if(hideRunning)
+			{
+				if(softFocusDisableInShowHideRunning && softFocus_ !== void)
+					softFocus.enabled = softFocusEnabledBackup_;
+				hideComplete();
+			}
+		}
 	}
 
 	property softFocus
 	{
 		getter		{ return softFocus_ === void ? (softFocus_ = createFocus()) : softFocus_; }
+	}
+
+	property showHideType
+	{
+		setter(x)	{ setShowHideType(x); }
+		getter		{ return showHideType_; }
+	}
+
+	property showHideMover
+	{
+		getter		{ return showHideMover_ === void ? family.receive(showHideMover_ = createMover(this)) : showHideMover_; }
 	}
 
 	property visible
