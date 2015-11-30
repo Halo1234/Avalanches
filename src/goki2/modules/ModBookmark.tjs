@@ -959,6 +959,18 @@ class ModBookmark extends GModule
 			return obj;
 		}
 	}
+
+	/**/
+	property possibleSave
+	{
+		getter		{ return possibleSave_; }
+	}
+
+	/**/
+	property possibleLoad
+	{
+		getter		{ return possibleLoad_; }
+	}
 }
 
 
