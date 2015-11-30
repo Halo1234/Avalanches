@@ -3,6 +3,8 @@
 **/
 
 
+Plugins.link('KAGParser.dll');
+
 /*! \brief コンダクタ基本クラス。
 **/
 class GConductor extends KAGParser
