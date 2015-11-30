@@ -592,10 +592,6 @@ class GMessageLayer extends GHyperTextLayer
 	/**/
 	function highLightLink(link)
 	{
-		var arr = [];
-		arr.assign(link.object);
-		for(var i = 0; i < arr.count; i+=2)
-			dm(@"&arr[i]; = &arr[i + 1];");
 		linkLayer_.fillRect(
 			layout.getLineLeft(link.start, link.baseLine, link.lineSize),
 			layout.getLineTop(link.start, link.baseLine, link.lineSize),

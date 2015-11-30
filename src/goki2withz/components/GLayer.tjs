@@ -580,8 +580,6 @@ class GLayer extends Layer
 	/**/
 	function show()
 	{
-		if(showRunning_)
-			return false;
 		if(hideRunning_)
 			cancelShowHide();
 
@@ -617,8 +615,6 @@ class GLayer extends Layer
 	/**/
 	function hide()
 	{
-		if(hideRunning_)
-			return false;
 		if(showRunning_)
 			cancelShowHide();
 

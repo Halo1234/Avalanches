@@ -424,11 +424,13 @@ class ModMessage extends GModule
 						c.interruptTag('clear_message_layers');
 					else
 						c.interruptTag('store_history_data');
+
 					if(longSkipping)
 						return 'break';
 					else
 					if(skipping)
 						cancelSkip();
+
 					if(autoMode_)
 					{
 						return autoPageWait;
@@ -479,16 +481,19 @@ class ModMessage extends GModule
 			/* @clear_message_layers_with_history */
 			'clear_message_layers_with_history' => function (elm) {
 				clearMessageLayersWithHistoryLayer(false);
+				return 'breath';
 			} incontextof this,
 
 			/* @reset_message_layer */
 			'reset_message_layer' => function (elm) {
 				clearMessageLayersWithHistoryLayer(true);
+				return 'breath';
 			} incontextof this,
 
 			/* @clear_message_layers */
 			'clear_message_layers' => function (elm) {
 				clearMessageLayers();
+				return 'breath';
 			} incontextof this,
 
 			/* @erase_message */

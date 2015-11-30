@@ -24,9 +24,11 @@
 絵文字[graph storage=char character alt=(赤)]のテストです。[p][cm]
 
 *label|
+[nowait]
 改行のテストです。[r][hact exp=System.inform('hoge')]２行目のテキスト[endhact]です。[p][cm]
 
 *label|
+[endnowait]
 リンクの[locate x=100 y=100][link storage=ModMessageTest target=*next]テスト[endlink]です。
 [button graphic=button target=*next2][checkbox caption=hogehogehoge name=f.test][edit caption=hoge name=f.test2 length=100][p]
 
