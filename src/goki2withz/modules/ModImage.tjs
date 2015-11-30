@@ -157,12 +157,12 @@ class ModImage extends GModule
 			} incontextof this,
 
 			/* @copy_layer */
-			'copy_layer' => function (elm) {
+			/*'copy_layer' => function (elm) {
 				with(findByElm(elm, false, 'destination_'))
 				{
 					.assign(findByElm(elm, false, 'source_'));
 				}
-			} incontextof this,
+			} incontextof this,*/
 
 			/* @start_animation */
 			'start_animation' => function (elm) {
