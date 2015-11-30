@@ -36,6 +36,7 @@ class ModMessage extends GModule
 
 	var current_ = null;
 	var outputInterval = 20;
+	var userOutputInterval_ = 20;
 	var beforeNoWaitOutputInterval;
 	var autoWaitChEnabled_ = false;
 	var autoWaitChChars_ = '';
@@ -171,6 +172,7 @@ class ModMessage extends GModule
 						.setMargin(+elm.margin_left, +elm.margin_top, +elm.margin_right, +elm.margin_bottom);
 					.visible = GObjectUtils.getBoolean(elm, 'visible') if GObjectUtils.hasValue(elm, 'visible');
 					.layoutMode = elm.layout_mode if elm.layout_mode !== void;
+					userOutputInterval_ = +elm.interval if elm.interval !== void;
 				}
 			} incontextof this,
 
@@ -662,7 +664,7 @@ class ModMessage extends GModule
 					outputInterval = 0;
 				else
 				if(elm.speed == 'user')
-					outputInterval;
+					outputInterval = userOutputInterval_;
 				else
 					outputInterval = +elm.speed;
 			} incontextof this,

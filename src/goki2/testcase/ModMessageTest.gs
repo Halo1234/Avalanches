@@ -18,6 +18,8 @@
 メッセージレイヤのテストです。[p]
 
 *label|
+@waitclick
+
 絵文字[graph storage=char character alt=(赤)]のテストです。[p][cm]
 
 *label|

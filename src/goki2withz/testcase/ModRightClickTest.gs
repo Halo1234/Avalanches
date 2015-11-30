@@ -13,7 +13,7 @@
 @show_message layer=message0
 
 *label|
-@rclick enabled jump target=*right_click_1
+@rclick enabled jump storage=ModRightClickTest target=*right_click_1
 右クリックのテストです。[p][cm]
 
 *right_click_1
