@@ -21,6 +21,10 @@
 
 セーブデータコピーしました。[p][cm]
 
+*label|
+@erasebookmark place=1
+セーブデータ削除しました。[p][cm]
+
 @hide_message layer=message0
 
 

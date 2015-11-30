@@ -255,7 +255,7 @@ class ModBookmark extends GModule
 		startAnchorEnabled_ = true;
 	}
 
-	function loadStartAnchor_private_(noConfirm = true)
+	function loadStartAnchor_private_()
 	{
 		with(window)
 		{
@@ -275,8 +275,14 @@ class ModBookmark extends GModule
 		if(!startAnchorEnabled_)
 			return;
 
-		// TODO: ask フォーム呼び出し
-		loadStartAnchor_private_();
+		if(ask)
+		{
+			askYesNo(window.primaryLayer, '最初に戻りますか？', '最初に戻る確認', loadStartAnchor_private_, alwaysVoid);
+		}
+		else
+		{
+			loadStartAnchor_private_();
+		}
 	}
 
 	/*
@@ -325,7 +331,16 @@ class ModBookmark extends GModule
 	}
 
 	/**/
-	function popRecordAnchor(ask)
+	function popRecordAnchor_private_()
+	{
+		var data = recordAnchorStack_.pop();
+
+		GObjectUtils.assignDictionary(userFlags_, data.user);
+		window.restore(data.core);
+	}
+
+	/**/
+	function popRecordAnchor(ask = true)
 	{
 		if(!recordAnchorEnabled_)
 			return false;
@@ -337,10 +352,14 @@ class ModBookmark extends GModule
 			return false;
 		}
 
-		var data = recordAnchorStack_.pop();
-
-		GObjectUtils.assignDictionary(userFlags_, data.user);
-		window.restore(data.core);
+		if(ask)
+		{
+			askYesNo(window.primaryLayer, '一つ前に戻りますか？', '一つ前に戻る確認', popRecordAnchor_private_, alwaysVoid);
+		}
+		else
+		{
+			popRecordAnchor_private_();
+		}
 
 		return true;
 	}
@@ -855,6 +874,8 @@ class ModBookmark extends GModule
 		recordAnchorStackSize_ = dic.recordAnchorStackSize;
 
 		startAnchorEnabled_ = dic.startAnchorEnabled;
+
+		pushRecordAnchorInNextLabel_ = false;
 	}
 
 	/**/
