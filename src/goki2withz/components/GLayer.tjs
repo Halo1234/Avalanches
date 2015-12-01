@@ -275,6 +275,7 @@ class GLayer extends Layer
 
 		if(conductor_ !== void)
 		{
+			conductor.clear();
 			invalidate conductor_;
 			conductor_ = void;
 		}
