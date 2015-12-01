@@ -1703,6 +1703,8 @@ class ModTypingProcessor extends GModule
 
 			/* @add_typing_word */
 			'add_typing_word' => function (elm) {
+				if(elm.caption == '' || elm.ruby == '')
+					throw new GRuntimeError(@"caption ‚Æ ruby ‘®«‚Í•K{‚Å‚·B");
 				baseLayer_.processor.addWord(elm.caption, elm.ruby);
 			} incontextof this,
 
