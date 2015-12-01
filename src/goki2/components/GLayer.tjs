@@ -98,6 +98,7 @@ class GLayer extends Layer
 
 		key = adjustColorKey(key);
 		colorCorrection.clear();
+		partialImages_.clear();
 
 		return super.loadImages(loadImagesStorage_ = storage, loadImagesColorKey_ = key);
 	}
@@ -274,7 +275,6 @@ class GLayer extends Layer
 
 		if(conductor_ !== void)
 		{
-			conductor_.clear();
 			invalidate conductor_;
 			conductor_ = void;
 		}
