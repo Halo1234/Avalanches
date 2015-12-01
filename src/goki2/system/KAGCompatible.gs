@@ -121,8 +121,8 @@
 
 @redirect alias=backlay name=assign_image
 
-;@redirect alias=copylay name=copy_layer
-;@!copylay source_layer=<SRCLAYER> destination_layer=<DESTLAYER> source_page=<SRCPAGE> destination_page=<DESTPAGE>
+@redirect alias=copylay name=copy_layer
+@!copylay source_layer=<SRCLAYER> destination_layer=<DESTLAYER> source_page=<SRCPAGE> destination_page=<DESTPAGE>
 
 @redirect alias=freeimage name=clear_image
 

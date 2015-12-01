@@ -312,10 +312,27 @@ class GLayer extends Layer
 	**/
 	function assign(src)
 	{
-		assignImages(src);
-
 		mirror_ = src;
 		src.mirror_ = this;
+
+		assignNoMirror(src);
+
+		return this;
+	}
+
+	/**/
+	function assignToMirror()
+	{
+		if(mirror_ === null)
+			throw new GRuntimeError('ミラーレイヤにアサインしましたが、ミラーレイヤが設定されていません。');
+
+		assign(mirror_);
+	}
+
+	/**/
+	function assignNoMirror(src)
+	{
+		assignImages(src);
 
 		with(src)
 		{
@@ -362,15 +379,6 @@ class GLayer extends Layer
 		resetMouseState();
 
 		return this;
-	}
-
-	/**/
-	function assignToMirror()
-	{
-		if(mirror_ === null)
-			throw new GRuntimeError('ミラーレイヤにアサインしましたが、ミラーレイヤが設定されていません。');
-
-		assign(mirror_);
 	}
 
 	/**/
