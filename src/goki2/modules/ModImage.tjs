@@ -491,18 +491,18 @@ class ModImage extends GModule
 		// êFï‚ê≥
 		with(layer.colorCorrection)
 		{
-			.grayScale = +elm.gray_scale if elm.gray_scale !== void;
-			.rGamma = +elm.r_gamma if elm.r_gamma !== void;
-			.gGamma = +elm.g_gamma if elm.g_gamma !== void;
-			.bGamma = +elm.b_gamma if elm.b_gamma !== void;
-			.rFloor = +elm.r_floor if elm.r_floor !== void;
-			.gFloor = +elm.g_floor if elm.g_floor !== void;
-			.bFloor = +elm.b_floor if elm.b_floor !== void;
-			.rCeil = +elm.r_ceil if elm.r_ceil !== void;
-			.gCeil = +elm.g_ceil if elm.g_ceil !== void;
-			.bCeil = +elm.b_ceil if elm.b_ceil !== void;
-			.color = +elm.mcolor if elm.mcolor !== void;
-			.opacity = +elm.mopacity if elm.mopacity !== void;
+			.grayScale = (elm.gray_scale === void ? false : +elm.gray_scale);
+			.rGamma = (elm.r_gamma === void ? 1.0 : +elm.r_gamma);
+			.gGamma = (elm.g_gamma === void ? 1.0 : +elm.g_gamma);
+			.bGamma = (elm.b_gamma === void ? 1.0 : +elm.b_gamma);
+			.rFloor = (elm.r_floor === void ? 0 : +elm.r_floor);
+			.gFloor = (elm.g_floor === void ? 0 : +elm.g_floor);
+			.bFloor = (elm.b_floor === void ? 0 : +elm.b_floor);
+			.rCeil = (elm.r_ceil === void ? 255 : +elm.r_ceil);
+			.gCeil = (elm.g_ceil === void ? 255 : +elm.g_ceil);
+			.bCeil = (elm.b_ceil === void ? 255 : +elm.b_ceil);
+			.color = (elm.mcolor === void ? clNone : +elm.mcolor);
+			.opacity = +elm.mopacity;
 			.mode = elm.mode if elm.mode !== void;
 
 			.apply();

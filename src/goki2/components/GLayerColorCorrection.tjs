@@ -38,27 +38,9 @@ class GLayerColorCorrection
 
 		if(color !== clNone)
 		{
-			if(mode === void || mode == 'omPsNormal')
-			{
-				target.face = dfOpaque;
-				target.colorRect(0, 0, iw, ih, color, opacity);
-			}
-			else
-			{
-				var w = 128, h = 64;
-				var c = color, o = opacity;
-				var m = target.stringTo(mode);
-				var l = window.temporaryLayer;
-
-				l.setSize(w, h);
-				l.fillRect(0, 0, w, h, (o << 24) + c);
-
-				for(var y = 0; y < ih; y += h)
-				{
-					for(var x = 0; x < iw; x += w)
-						target.operateRect(x, y, l, 0, 0, w, h, m);
-				}
-			}
+			target.face = dfOpaque;
+			target.holdAlpha = true;
+			target.colorRect(0, 0, iw, ih, color, opacity);
 		}
 
 		target.face = oldFace;
