@@ -106,7 +106,7 @@ class GLayerSplineMover
 		}
 		else
 		{
-			System.addContinuousHandler(handler); // ContinuousHandlers ‚É’Ç‰Á
+			System.addContinuousHandler(handler);
 			moving = true;
 		}
 	}
