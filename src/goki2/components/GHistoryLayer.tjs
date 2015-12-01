@@ -132,6 +132,7 @@ class GHistoryLayer extends GHyperTextLayer
 	function GHistoryLayer(window, parent, handler)
 	{
 		super.GHyperTextLayer(...);
+		focusable = true;
 	}
 
 	/**/
