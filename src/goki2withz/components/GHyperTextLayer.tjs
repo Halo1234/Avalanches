@@ -751,6 +751,7 @@ class GHyperTextLayer extends GFormLayer
 		super.GFormLayer(...);
 		hitThreshold = 0;
 		rclickHide = false;
+		focusable = false;
 
 		// NOTE: レイアウトは作り直しが発生する可能性があるので代行オブジェクトを通して破棄する。
 		family.receive(new GDestructor(resetLayout));
