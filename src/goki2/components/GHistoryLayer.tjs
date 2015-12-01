@@ -132,7 +132,6 @@ class GHistoryLayer extends GHyperTextLayer
 	function GHistoryLayer(window, parent, handler)
 	{
 		super.GHyperTextLayer(...);
-		focusable = true;
 	}
 
 	/**/
@@ -798,15 +797,13 @@ class GHistoryLayer extends GHyperTextLayer
 	{
 		drawFirstPage();
 
-		anotherCycle.uniqueAdd(showComplete);
+		super.beginShowEffect();
 	}
 
 	/**/
 	function showComplete()
 	{
 		lastShowingTick_ = System.getTickCount();
-
-		focus();
 
 		if(lastPage_)
 		{
