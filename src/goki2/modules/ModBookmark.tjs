@@ -12,7 +12,7 @@ class ModBookmark extends GModule
 
 	var storeAndSave = true;						// false ならセーブもストアもしない
 
-	var storeSkipping = false;
+	var storeSkipping = false;						// true ならばスキップ時に store() を呼び出さない
 
 	var context_ = %[
 		name : '',

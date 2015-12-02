@@ -91,6 +91,7 @@ class ModMessage extends GModule
 
 	var skipKey = VK_CONTROL;
 	var notReadSkipKey = VK_S;
+	var autoModeKey = VK_A;
 
 	function ModMessage(container, name)
 	{
@@ -146,6 +147,13 @@ class ModMessage extends GModule
 					.absoluteBase = +elm.base if elm.base !== void;
 					.absoluteStep = +elm.step if elm.step !== void;
 				}
+			} incontextof this,
+
+			/**/
+			'skip_key' => function (elm) {
+				skipKey = elm.skip_key if elm.skip_key !== void;
+				notReadSkipKey = elm.not_read_skip_key if elm.not_read_skip_key !== void;
+				autoModeKey = elm.auto_mode_key if elm.auto_mode_key !== void;
 			} incontextof this,
 
 			/* @message_option */
@@ -640,7 +648,7 @@ class ModMessage extends GModule
 				clickSkipEnabled = GObjectUtils.getBoolean(elm, 'enabled') if GObjectUtils.hasValue(elm, 'enabled');
 				if(modBookmark !== void && modBookmark.storeSkipping)
 				{
-					modBookmark.cancelSkipQuery = true;
+					modBookmark.cancelSkipQuery = true if !clickSkipEnabled;
 				}
 				else
 				{
@@ -673,7 +681,7 @@ class ModMessage extends GModule
 				var modBookmark = container.get('modBookmark');
 				if(nextSkipEnabled && skipMode_ == smNextStop)
 				{
-					if(modBookmark !== void && !modBookmark.possibleSave)
+					if(modBookmark !== void && modBookmark.storeSkipping)
 					{
 						modBookmark.cancelSkipQuery = true;
 					}
@@ -714,10 +722,15 @@ class ModMessage extends GModule
 				var modBookmark = container.get('modBookmark');
 				if(modBookmark !== void)
 				{
-					modBookmark.cancelSkipQuery = true;
-					return 0;
+					if(modBookmark.storeSkipping)
+						modBookmark.cancelSkipQuery = true;
+					else
+						cancelSkip();
 				}
-				cancelSkip();
+				else
+				{
+					cancelSkip();
+				}
 			} incontextof this,
 
 			/* @current */
@@ -1352,6 +1365,8 @@ class ModMessage extends GModule
 		dic.autoMode = autoMode_;
 		dic.clickToAutoModeCancel = clickToAutoModeCancel;
 		dic.skipKey = skipKey;
+		dic.notReadSkipKey = notReadSkipKey;
+		dic.autoModeKey = autoModeKey;
 
 		return dic;
 	}
@@ -1392,6 +1407,8 @@ class ModMessage extends GModule
 		autoMode_ = dic.autoMode;
 		clickToAutoModeCancel = dic.clickToAutoModeCancel;
 		skipKey = dic.skipKey;
+		notReadSkipKey = dic.notReadSkipKey;
+		autoModeKey = dic.autoModeKey;
 	}
 
 	/**/
@@ -1491,7 +1508,7 @@ class ModMessage extends GModule
 		{
 			if(longSkipping)
 			{
-				if(container.isLoaded('modBookmark'))
+				if(container.isLoaded('modBookmark') && container.modBookmark.storeSkipping)
 					container.modBookmark.cancelSkipQuery = true;
 				else
 					cancelSkip();
@@ -1550,6 +1567,7 @@ class ModMessage extends GModule
 			{
 			case skipKey:			enterSkipToSkipCancel(); break;
 			case notReadSkipKey:	enterSkipToNotRead(); break;
+			case autoModeKey:		enterAutoMode(); break;
 			}
 		}
 	}
@@ -1562,8 +1580,10 @@ class ModMessage extends GModule
 		case skipKey:
 			if(container.isLoaded('modBookmark'))
 			{
-				if(container.isLoaded('modMessage') && container.modMessage.longSkipping)
+				if(container.isLoaded('modMessage') && container.modMessage.longSkipping && container.modBookmark.stoerSkipping)
 					container.modBookmark.cancelSkipQuery = true;
+				else
+					cancelSkip();
 			}
 			else
 			{
