@@ -3,8 +3,6 @@
 ;**/
 
 
-@load_module name=ModSaveLoadMenuItems
-@load_module name=ModSystemMenuItems
 @load_module name=ModTypingProcessor
 
 @que storage=ModRightClickTest
