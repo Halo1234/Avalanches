@@ -155,10 +155,10 @@
 @!wa /index=<SEG>
 
 @redirect alias=wm name=wait_move
-@!wm /skip=<CANSKIP> /no_skip=<NOCANSKIP>
+@!wm /skip=<CANSKIP> /no_skip=<NOCANSKIP> !skip=<!CANSKIP>
 
 @redirect alias=wt name=wait_transition
-@!wt /skip=<CANSKIP> /no_skip=<NOCANSKIP>
+@!wt /skip=<CANSKIP> /no_skip=<NOCANSKIP> !skip=<!CANSKIP>
 
 @redirect alias=bgmopt name=bgm_option
 @!bgmopt /master_volume=<GVOLUME>
@@ -262,27 +262,27 @@
 @redirect alias=videosegloop name=set_video_segment_loop
 
 @redirect alias=wb name=wait_bgm_fade
-@!wb /skip=<CANSKIP> /no_skip=<NOCANSKIP>
+@!wb /skip=<CANSKIP> /no_skip=<NOCANSKIP> !skip=<!CANSKIP>
 
 @redirect alias=wf name=wait_se_fade
-@!wf /buffer=<BUF> /skip=<CANSKIP> /no_skip=<NOCANSKIP>
+@!wf /buffer=<BUF> /skip=<CANSKIP> /no_skip=<NOCANSKIP> !skip=<!CANSKIP>
 
 @redirect alias=wsf name=wait_system_sound_fade
-@!wsf /buffer=<BUF> /skip=<CANSKIP> /no_skip=<NOCANSKIP>
+@!wsf /buffer=<BUF> /skip=<CANSKIP> /no_skip=<NOCANSKIP> !skip=<!CANSKIP>
 
 @redirect alias=wl name=wait_bgm_stop
-@!wl /skip=<CANSKIP> /no_skip=<NOCANSKIP>
+@!wl /skip=<CANSKIP> /no_skip=<NOCANSKIP> !skip=<!CANSKIP>
 
 @redirect alias=wp name=wait_period_event
 
 @redirect alias=ws name=wait_se_stop
-@!ws /buffer=<BUF> /skip=<CANSKIP> /no_skip=<NOCANSKIP>
+@!ws /buffer=<BUF> /skip=<CANSKIP> /no_skip=<NOCANSKIP> !skip=<!CANSKIP>
 
 @redirect alias=wss name=wait_system_sound_stop
-@!wss /buffer=<BUF> /skip=<CANSKIP> /no_skip=<NOCANSKIP>
+@!wss /buffer=<BUF> /skip=<CANSKIP> /no_skip=<NOCANSKIP> !skip=<!CANSKIP>
 
 @redirect alias=wv name=wait_video
-@!wv /skip=<CANSKIP> /no_skip=<NOCANSKIP>
+@!wv /skip=<CANSKIP> /no_skip=<NOCANSKIP> !skip=<!CANSKIP>
 
 @redirect alias=xchgbgm name=exchange_bgm
 @!xchgbgm /no_loop=<NOLOOP>
@@ -290,7 +290,7 @@
 @redirect alias=clearvar name=clear_variables
 
 @redirect alias=waittrig name=wait_trigger
-@!waittrig on_skip=<ONSKIP> skip=<CANSKIP> /no_skip=<NOCANSKIP>
+@!waittrig on_skip=<ONSKIP> skip=<CANSKIP> /no_skip=<NOCANSKIP> !skip=<!CANSKIP>
 
 @redirect alias=copybookmark name=copy_bookmark
 @!copybookmark /destination=<TO> /source=<FROM>
