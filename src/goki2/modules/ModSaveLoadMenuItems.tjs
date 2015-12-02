@@ -33,7 +33,7 @@ class ModSaveLoadMenuItems extends GMenuModule
 				var info = bookmark.getSaveDataInfoByNumber(i);
 				var date = @"&i; : ----/--/-- --:--";
 
-				if(info !== void && info.date !== void)
+				if(info !== void && info.enabled)
 				{
 					var obj = new Date();
 
@@ -59,40 +59,20 @@ class ModSaveLoadMenuItems extends GMenuModule
 
 			/* @saveload_menu */
 			'saveload_menu' => function (elm) {
+				save_.enabled = GObjectUtils.getBoolean(elm, 'save') if GObjectUtils.hasValue(elm, 'save');
+				load_.enabled = GObjectUtils.getBoolean(elm, 'load') if GObjectUtils.hasValue(elm, 'load');
+				popRecordAnchor_.enabled = GObjectUtils.getBoolean(elm, 'record') if GObjectUtils.hasValue(elm, 'record');
 			} incontextof this,
 
 		];
 	}
 
-	function onSaveItem(item)
-	{
-		var index = saveItems_.find(item);
-		var bookmark = container.get('ModBookmark');
-
-		bookmark.save(index);
-	}
-
-	function onLoadItem(item)
-	{
-		var index = loadItems_.find(item);
-		var bookmark = container.get('ModBookmark');
-
-		bookmark.load(index);
-	}
-
-	function onPopRecordAnchor()
+	function updateSaveItems()
 	{
 		var bookmark = container.get('ModBookmark');
 
-		if(bookmark !== void)
-		{
-			bookmark.popRecordAnchor();
-		}
-	}
-
-	function onSave(user, core)
-	{
-		var bookmark = container.get('ModBookmark');
+		if(bookmark === void)
+			return false;
 
 		for(var i = 0; i < 10; i++)
 		{
@@ -114,8 +94,54 @@ class ModSaveLoadMenuItems extends GMenuModule
 		}
 	}
 
+	function onSaveItem(item)
+	{
+		var index = saveItems_.find(item);
+		var bookmark = container.get('ModBookmark');
+
+		if(bookmark !== void)
+		{
+			bookmark.save(index);
+		}
+	}
+
+	function onLoadItem(item)
+	{
+		var index = loadItems_.find(item);
+		var bookmark = container.get('ModBookmark');
+
+		if(bookmark !== void)
+		{
+			with(bookmark.getSaveDataInfoByNumber(index))
+			{
+				if(.enabled)
+					bookmark.load(index);
+			}
+		}
+	}
+
+	function onPopRecordAnchor()
+	{
+		var bookmark = container.get('ModBookmark');
+
+		if(bookmark !== void)
+		{
+			bookmark.popRecordAnchor();
+		}
+	}
+
+	function onSave(user, core)
+	{
+		updateSaveItems();
+	}
+
 	function onLoad(user, core)
 	{
+	}
+
+	function onEraseBookmark(number)
+	{
+		updateSaveItems();
 	}
 }
 
