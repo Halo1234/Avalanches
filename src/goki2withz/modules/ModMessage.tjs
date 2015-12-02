@@ -991,7 +991,10 @@ class ModMessage extends GModule
 		{
 			if(container.isLoaded('modSound'))
 			{
-				var src = @"modSoundPlaySound(&buffer;, '&storage.escape();');";
+				var src = '';
+
+				if(storage !== void)
+					src += @"modSoundPlaySound(&+buffer;, '&storage.escape();');";
 
 				if(exp !== void)
 					src += @", (&exp;);";
@@ -1580,7 +1583,7 @@ class ModMessage extends GModule
 		case skipKey:
 			if(container.isLoaded('modBookmark'))
 			{
-				if(container.isLoaded('modMessage') && container.modMessage.longSkipping && container.modBookmark.stoerSkipping)
+				if(container.isLoaded('modMessage') && container.modMessage.longSkipping && container.modBookmark.storeSkipping)
 					container.modBookmark.cancelSkipQuery = true;
 				else
 					cancelSkip();

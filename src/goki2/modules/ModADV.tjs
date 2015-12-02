@@ -196,7 +196,11 @@ class ModADV extends GModule
 			/* @character */
 			'character' => function (elm, c) {
 				if(setCharacterImageByElm(elm))
+				{
+					if(window.modules.isLoaded('modMessage') && window.modules.modMessage.longSkipping)
+						elm.time = 0;
 					reservedTransition(elm, c);
+				}
 			} incontextof this,
 
 			/* @activate_character */

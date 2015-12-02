@@ -229,6 +229,8 @@ class ModImage extends GModule
 
 			/* @transition */
 			'transition' => function (elm, c) {
+				if(window.modules.isLoaded('modMessage') && window.modules.modMessage.longSkipping)
+					elm.time = 0;
 				beginTransitionByElm(elm, c);
 			} incontextof this,
 
