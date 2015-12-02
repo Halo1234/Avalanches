@@ -73,7 +73,7 @@
 @redirect alias=nowait name=no_wait
 
 @redirect alias=position name=message_option
-@!position /no_visible=<NOVISIBLE>
+@!position /no_visible=<NOVISIBLE> /storage=<FRAME> /key=<FRAMEKEY> /margin_left=<MARGINL> /margin_top=<MARGINT> /margin_right=<MARGINR> /margin_bottom=<MARGINB>
 
 @redirect alias=resetfont name=reset_font
 
