@@ -71,7 +71,7 @@ class GOKI2VersionInfo
 	/**/
 	property pointMinorVersionNumber
 	{
-		getter		{ return 1; }
+		getter		{ return 2; }
 	}
 
 	/**/
