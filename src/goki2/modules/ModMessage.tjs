@@ -1594,7 +1594,7 @@ class ModMessage extends GModule
 	}
 
 	/**/
-	function onLabel(label, name, firstLabelProcessed)
+	function onConductorLabel(label, name, firstLabelProcessed)
 	{
 		var modBookmark = window.modules.get('modBookmark');
 
