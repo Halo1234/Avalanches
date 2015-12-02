@@ -400,8 +400,10 @@ class ModBookmark extends GModule
 
 		if(ext === void)
 		{
-			if(ctx.format == "bmp8" || ctx.format == "bmp24")
-				ext = ".bmp";
+			if(ctx.format == 'bmp8' || ctx.format == 'bmp24')
+				ext = '.bmp';
+			else
+				ext = '.kdt';
 		}
 
 		return @"&ctx.name;/&ctx.storagePrefix;&number;&ctx.storageSuffix;&ext;";
@@ -755,6 +757,8 @@ class ModBookmark extends GModule
 			.summary = srcInfo.summary;
 		}
 
+		container.callHandler("onSave", data.user, data.core);
+
 		saveLocation.save(fileName, data, mode);
 	}
 
@@ -770,6 +774,8 @@ class ModBookmark extends GModule
 			.summary = void;
 			.enabled = false;
 		}
+
+		container.callHandler("onEraseBookmark", number);
 	}
 
 	/**
