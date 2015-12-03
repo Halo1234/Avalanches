@@ -881,6 +881,7 @@ class GMessageLayer extends GHyperTextLayer
 
 		layer.loadImages(storage, key);
 		layer.setPos(left, top);
+		layer.caption = '';
 		layer.show();
 	}
 
