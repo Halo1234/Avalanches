@@ -62,7 +62,7 @@
 テストを続けます。[p][cm]
 
 *label|
-@clickskip !enabled
+;@clickskip !enabled
 
 @move layer=0 path="(10, 10, 255), (200, 200, 255)" time=5000
 @wm layer=0
@@ -89,6 +89,30 @@
 @wt
 
 背景がクリアされていれば成功です。[p][cm]
+
+*label|
+@freeimage layer=0 page=back
+@trans time=1000
+@wt
+
+子レイヤがクリアされていれば成功です。[p][cm]
+
+*label|
+[cancelskip]
+@image layer=0 center_x=400 center_y=300 page=back storage=ImageSample visible
+@trans time=1000
+@wt
+
+もう一度子レイヤを読み込みます。[p][cm]
+
+*label|
+@animstart layer=0
+
+@animstop layer=0 seg=0
+@wa layer=0 seg=0
+@backlay layer=0
+
+子レイヤのアニメーションテストに成功しました。[p][cm]
 
 *label|
 @freeimage layer=0 page=back

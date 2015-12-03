@@ -372,7 +372,16 @@ class GLayer extends Layer
 
 			fixPositionToCenter = .fixPositionToCenter;
 
-			conductor.assign(.conductor_) if .conductor_ !== void;
+			if(.conductor_ !== void)
+			{
+				conductor.assign(.conductor_);
+			}
+			else
+			{
+				conductor.clear();
+				invalidate conductor_;
+				conductor_ = void;
+			}
 			colorCorrection.assign(.colorCorrection_) if .colorCorrection_ !== void;
 		}
 
