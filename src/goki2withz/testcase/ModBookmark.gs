@@ -8,7 +8,6 @@
 
 *label|
 [record]
-[input name=f.test prompt=入力してください。 title=入力]
 
 [trace exp=f.test]
 

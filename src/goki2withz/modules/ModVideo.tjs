@@ -160,7 +160,15 @@ class ModVideo extends GModule
 			'open_video' => function (elm) {
 				with(videoBuffers_.at(+elm.slot))
 				{
-					.open(elm.storage);
+					if(window.modules.isLoaded('modMessage'))
+					{
+						if(!window.modules.modMessage.longSkipping)
+							.open(elm.storage);
+					}
+					else
+					{
+						.open(elm.storage);
+					}
 				}
 			} incontextof this,
 

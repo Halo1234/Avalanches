@@ -8,7 +8,6 @@
 
 *label|
 [record]
-[input name=f.test prompt=“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B title=“ü—Í]
 
 [trace exp=f.test]
 

@@ -92,6 +92,7 @@ class GVideoOverlay extends VideoOverlay
 	{
 		super.close();
 		videoStorage_ = '';
+		open = openTryMixerMode;
 	}
 
 	/**/

@@ -7,17 +7,15 @@
 @show_message layer=message0
 
 *label|
-[cancelskip]
+;[cancelskip]
 @video left=0 top=0 width=800 height=600 visible
 @openvideo storage=sample.wmv
-@preparevideo
-@wp for=prepare
 @playvideo
 @wv canskip
 @stopvideo
 @video visible=false
 
-ãƒ“ãƒ‡ã‚ªã‚’å†ç”Ÿã—ã¾ã—ãŸã€‚[p][cm]
+ƒrƒfƒI‚ðÄ¶‚µ‚Ü‚µ‚½B[p][cm]
 
 *label|
 @videolayer layer=0 page=fore channel=1
@@ -29,7 +27,7 @@
 
 @playvideo
 
-ãƒ¬ã‚¤ãƒ¤ã§ãƒ“ãƒ‡ã‚ªã‚’å†ç”Ÿã—ã¾ã—ãŸã€‚[p][cm]
+ƒŒƒCƒ„‚ÅƒrƒfƒI‚ðÄ¶‚µ‚Ü‚µ‚½B[p][cm]
 
 @wv canskip
 @stopvideo
