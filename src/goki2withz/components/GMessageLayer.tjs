@@ -5,7 +5,7 @@
 
 
 /**/
-class GCharacterLayer extends GWidgetLayer
+class GCharacterLayer extends GFormLayer
 {
 	function GCharacterLayer(window, parent, handler)
 	{
@@ -13,6 +13,8 @@ class GCharacterLayer extends GWidgetLayer
 		hitThreshold = 256;
 		captionAlign = 0;
 		bodyOpacity = 0;
+		focusable = false;
+		showHideType = 'fade';
 	}
 
 	function drawCaption(offx = 0, offy = 0, color = parent.captionColor, edge = parent.edgeColor, shadow = parent.shadowColor, shadowOffsetX = parent.shadowOffsetX, shadowOffsetY = parent.shadowOffsetY, shadowExtent = parent.shadowExtent)
