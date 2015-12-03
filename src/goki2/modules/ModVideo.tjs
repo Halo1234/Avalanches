@@ -427,6 +427,24 @@ class ModVideo extends GModule
 	}
 
 	/**/
+	function store(tick)
+	{
+		var dic = super.store(...);
+
+		dic.videoBuffers = videoBuffers_.store(...);
+
+		return dic;
+	}
+
+	/**/
+	function restore(dic, tick)
+	{
+		super.restore(...);
+
+		videoBuffers_.restore(dic.videoBuffers);
+	}
+
+	/**/
 	function onSoundMasterVolumeChanged(volume, oldVolume)
 	{
 		// NOTE:

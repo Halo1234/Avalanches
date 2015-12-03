@@ -235,6 +235,11 @@ class GVideoOverlay extends VideoOverlay
 					pause();
 			}
 		}
+		else
+		{
+			stop();
+			close();
+		}
 	}
 
 	/**/
