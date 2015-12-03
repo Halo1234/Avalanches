@@ -15,7 +15,7 @@
 @stopvideo
 @video visible=false
 
-ƒrƒfƒI‚ðÄ¶‚µ‚Ü‚µ‚½B[p][cm]
+ãƒ“ãƒ‡ã‚ªã‚’å†ç”Ÿã—ã¾ã—ãŸã€‚[p][cm]
 
 *label|
 @videolayer layer=0 page=fore channel=1
@@ -27,7 +27,7 @@
 
 @playvideo
 
-ƒŒƒCƒ„‚ÅƒrƒfƒI‚ðÄ¶‚µ‚Ü‚µ‚½B[p][cm]
+ãƒ¬ã‚¤ãƒ¤ã§ãƒ“ãƒ‡ã‚ªã‚’å†ç”Ÿã—ã¾ã—ãŸã€‚[p][cm]
 
 @wv canskip
 @stopvideo
