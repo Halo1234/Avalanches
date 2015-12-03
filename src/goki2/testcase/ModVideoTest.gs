@@ -7,7 +7,7 @@
 @show_message layer=message0
 
 *label|
-[cancelskip]
+;[cancelskip]
 @video left=0 top=0 width=800 height=600 visible
 @openvideo storage=sample.wmv
 @playvideo
