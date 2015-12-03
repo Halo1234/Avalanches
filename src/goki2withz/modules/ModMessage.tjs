@@ -209,7 +209,7 @@ class ModMessage extends GModule
 					.setFontSize(+elm.font_size) if elm.font_size !== void;
 					.setFontFace(elm.font_face) if elm.font_face !== void;
 					.showHideType = elm.show_hide_type if elm.show_hide_type !== void;
-					.showHideTime = +elm.time if elm.time;
+					.showHideTime = +elm.time if elm.time !== void;
 					historyEnabled = GObjectUtils.getBoolean(elm, 'enabled') if GObjectUtils.hasValue(elm, 'enabled');
 					outputHistory = GObjectUtils.getBoolean(elm, 'output') if GObjectUtils.hasValue(elm, 'output');
 				}
