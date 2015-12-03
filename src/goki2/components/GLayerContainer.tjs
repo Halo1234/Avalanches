@@ -144,8 +144,7 @@ class GLayerContainer extends GContainer
 				{
 					each(
 						function (obj) {
-							obj = obj.mirror if obj.offScreen;
-							obj.assignToMirror();
+							obj.mirror.assignToMirror();
 						} incontextof this
 					);
 				}

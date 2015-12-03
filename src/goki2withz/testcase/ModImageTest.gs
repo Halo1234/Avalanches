@@ -29,8 +29,6 @@
 揺れます。[p][cm]
 
 *label|
-@clickskip !enabled
-
 @image layer=0 center_x=400 center_y=300 page=back storage=ImageSample visible
 
 @trans time=1000
@@ -64,6 +62,8 @@
 テストを続けます。[p][cm]
 
 *label|
+@clickskip !enabled
+
 @move layer=0 path="(10, 10, 255), (200, 200, 255)" time=5000
 @wm layer=0
 
