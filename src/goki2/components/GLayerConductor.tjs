@@ -367,6 +367,12 @@ class GLayerConductor extends GCellLayerConductor
 				with(allocCellLayer_private_(i))
 					.assign(source[i]);
 			}
+			else
+			{
+				cellLayers[i].clearImages();
+				invalidate cellLayers[i];
+				cellLayers[i] = void;
+			}
 		}
 	}
 
@@ -409,8 +415,17 @@ class GLayerConductor extends GCellLayerConductor
 
 		for(var i = 0; i < c; i++)
 		{
-			with(allocCellLayer_private_(i))
-				.restore(cellLayers[i]);
+			if(cellLayers[i] !== void)
+			{
+				with(allocCellLayer_private_(i))
+					.restore(cellLayers[i]);
+			}
+			else
+			{
+				cellLayers_[i].clearImages();
+				invalidate cellLayers_[i];
+				cellLayers_[i] = void;
+			}
 		}
 	}
 }

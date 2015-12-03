@@ -383,6 +383,26 @@ class GLayer extends Layer
 				conductor_ = void;
 			}
 			colorCorrection.assign(.colorCorrection_) if .colorCorrection_ !== void;
+
+			partialImages_.clear();
+			for(var i = 0; i < .partialImages_.count; i++)
+			{
+				var pi = .partialImages_[i];
+				switch(pi.name)
+				{
+				case 'loadPartialImage':
+					loadPartialImage(pi.storage, pi.key, pi.destX, pi.destY, pi.srcX, pi.srcY, pi.srcW, pi.srcH, pi.mode, pi.opacity);
+					break;
+				case 'drawReconstructibleText':
+					drawReconstructibleText(
+						pi.x, pi.y, pi.text,
+						pi.vertical,
+						pi.face, pi.angle, pi.size, pi.color,
+						pi.italic, pi.bold, pi.shadow, pi.edge, pi.shadowColor, pi.edgeColor
+					);
+					break;
+				}
+			}
 		}
 
 		resetMouseState();
@@ -848,6 +868,10 @@ class GLayer extends Layer
 					setSize(.width, .height);
 					clearImages(dic.clearImagesColor);
 				}
+				else
+				{
+					setSize(.width, .height);
+				}
 				left = .left;
 				top = .top;
 				setOffset(.offsetX, .offsetY);
@@ -900,7 +924,19 @@ class GLayer extends Layer
 				}
 			}
 
-			conductor.restore(dic.conductor, tick) if dic.conductor !== void;
+			if(dic.conductor !== void)
+			{
+				conductor.restore(dic.conductor, tick);
+			}
+			else
+			{
+				if(conductor_ !== void)
+				{
+					conductor_.clear();
+					invalidate conductor_;
+					conductor_ = void;
+				}
+			}
 			colorCorrection.restore(dic.colorCorrection, tick) if dic.colorCorrection !== void;
 			shaker.restore(dic.shaker, tick) if dic.shaker !== void;
 
