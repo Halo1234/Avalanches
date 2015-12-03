@@ -103,6 +103,18 @@ class GConductor extends KAGParser
 				specialVersionString = elm.special if elm.special !== void;
 			} incontextof this,
 
+			/* @update_initializer */
+			'update_initializer' => function (elm) {
+				// NOTE: updateXXXInitializer åƒÇ—èoÇµÅB
+				var c = goki2UpdateInitializerFunctions.count;
+
+				with(window.conductor)
+				{
+					for(var i = 0; i < c; i++)
+						goki2UpdateInitializerFunctions[i](.majorVersionNumber, .minorVersionNumber, .specialVersionString);
+				}
+			} incontextof this,
+
 			/* @load_plugin */
 			'load_plugin' => function (elm) {
 				Plugins.link(elm.name);
