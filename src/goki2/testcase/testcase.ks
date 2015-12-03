@@ -4,6 +4,8 @@
 
 
 @load_module name=ModTypingProcessor
+@load_module name=ModSaveLoadMenuItems
+@load_module name=ModSystemMenuItems
 
 @que storage=ModRightClickTest
 @que storage=ModADVTest

@@ -1,0 +1,148 @@
+/*
+ $Author: halo $
+ $Revision: 5149 $
+*/
+
+
+/**/
+class ModSaveLoadMenuItems extends GMenuModule
+{
+	var save_;
+	var load_;
+
+	var popRecordAnchor_;
+
+	var saveItems_ = [];
+	var loadItems_ = [];
+
+	function ModSaveLoadMenuItems(container, name)
+	{
+		super.GMenuModule(...);
+
+		add(createMenuItem(window, window.menu, 'ブックマーク', ''));
+
+		add(save_ = createMenuItem(window, topItem, 'セーブ', ''));
+		add(load_ = createMenuItem(window, topItem, 'ロード', ''));
+
+		var bookmark = container.get('ModBookmark');
+
+		if(bookmark !== void)
+		{
+			for(var i = 0; i < 10; i++)
+			{
+				var info = bookmark.getSaveDataInfoByNumber(i);
+				var date = @"&i; : ----/--/-- --:--";
+
+				if(info !== void && info.enabled)
+				{
+					var obj = new Date();
+
+					obj.setTime(info.date);
+					date = '%04d/%02d/%02d %02d:%02d'.sprintf(
+						obj.getYear(), (obj.getMonth() + 1), obj.getDate(), obj.getHours(), obj.getMinutes()
+					);
+				}
+
+				add(saveItems_[i] = createMenuItem(window, save_, date, '', onSaveItem));
+				add(loadItems_[i] = createMenuItem(window, load_, date, '', onLoadItem));
+			}
+		}
+
+		add(createMenuItem(window, topItem, '-', ''));
+
+		add(popRecordAnchor_ = createMenuItem(window, topItem, '一つ前に戻る', '', onPopRecordAnchor));
+	}
+
+	function extensionTagHandlers()
+	{
+		return %[
+
+			/* @saveload_menu */
+			'saveload_menu' => function (elm) {
+				save_.enabled = GObjectUtils.getBoolean(elm, 'save') if GObjectUtils.hasValue(elm, 'save');
+				load_.enabled = GObjectUtils.getBoolean(elm, 'load') if GObjectUtils.hasValue(elm, 'load');
+				popRecordAnchor_.enabled = GObjectUtils.getBoolean(elm, 'record') if GObjectUtils.hasValue(elm, 'record');
+			} incontextof this,
+
+		];
+	}
+
+	function updateSaveItems()
+	{
+		var bookmark = container.get('ModBookmark');
+
+		if(bookmark === void)
+			return false;
+
+		for(var i = 0; i < 10; i++)
+		{
+			var info = bookmark.getSaveDataInfoByNumber(i);
+			var date = @"&i; : ----/--/-- --:--";
+
+			if(info !== void && info.date !== void)
+			{
+				var obj = new Date();
+
+				obj.setTime(info.date);
+				date = @"&i; : %04d/%02d/%02d %02d:%02d".sprintf(
+					obj.getYear(), (obj.getMonth() + 1), obj.getDate(), obj.getHours(), obj.getMinutes()
+				);
+			}
+
+			saveItems_[i].caption = date;
+			loadItems_[i].caption = date;
+		}
+	}
+
+	function onSaveItem(item)
+	{
+		var index = saveItems_.find(item);
+		var bookmark = container.get('ModBookmark');
+
+		if(bookmark !== void)
+		{
+			bookmark.save(index);
+		}
+	}
+
+	function onLoadItem(item)
+	{
+		var index = loadItems_.find(item);
+		var bookmark = container.get('ModBookmark');
+
+		if(bookmark !== void)
+		{
+			with(bookmark.getSaveDataInfoByNumber(index))
+			{
+				if(.enabled)
+					bookmark.load(index);
+			}
+		}
+	}
+
+	function onPopRecordAnchor()
+	{
+		var bookmark = container.get('ModBookmark');
+
+		if(bookmark !== void)
+		{
+			bookmark.popRecordAnchor();
+		}
+	}
+
+	function onSave(user, core)
+	{
+		updateSaveItems();
+	}
+
+	function onLoad(user, core)
+	{
+	}
+
+	function onEraseBookmark(number)
+	{
+		updateSaveItems();
+	}
+}
+
+
