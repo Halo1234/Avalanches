@@ -107,8 +107,6 @@ class GLayerIterator extends GIterator
 	/**/
 	function find(obj)
 	{
-		// TODO: 最適化対象です。
-
 		var index = super.find(obj);
 
 		if(index == -1)

@@ -325,8 +325,6 @@ class GLayerContainer extends GContainer
 	/**/
 	function find(obj)
 	{
-		// TODO: Å“K‰»‘ÎÛ‚Å‚·Bobjects_ ‚ğ’¼Ú‘€ì‚µ‚½•û‚ª‚¢‚¢B
-
 		var name = super.find(obj);
 
 		return name == '' ? super.find(obj.mirror) : name;
