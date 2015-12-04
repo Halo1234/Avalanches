@@ -28,7 +28,7 @@ target : $(TARGET)
 
 $(TARGET) : $(objs)
 	$(CXX) $(CXXFLAGS) -shared -o $(TARGET) $(EXPORTDEF) $(objs) -lpluginapi
-	cp $(TARGET) $(TOOLSDIR)/plugins/$(TARGET)
+#	cp $(TARGET) $(TOOLSDIR)/plugins/$(TARGET)
 #	$(TOOLSDIR)/plugins/update.sh
 
 ifneq ($(MAKECMDGOALS), clean)
