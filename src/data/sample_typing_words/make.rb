@@ -32,6 +32,13 @@ Options:
  -ignore-nil-row
   空のセルだけの行を無視します。
 
+ --output-encoding
+  出力されるテキストの文字エンコーディングを指定します。
+  指定できるエンコーディングの名前のリストは下記コマンドで得る事ができます。
+  デフォルトの文字エンコーディングは CP932 です。
+
+   #ruby -e "puts Encoding.name_list"
+
  --output-path
  --o
   出力先を指定します。
@@ -57,6 +64,8 @@ ignore_nil = false
 ignore_nil_row = false
 # 入力ファイル
 input_file = nil
+# 出力のエンコーディング方式
+output_file_encoding = __ENCODING__
 # 出力先
 output_dir = "#{pwd}"
 
@@ -99,6 +108,20 @@ end
 verbose = (cmdp['-verbose'] || cmdp['-v'])
 MakeUtils.verbose = verbose
 
+if(cmdp['--output-encoding'] != nil)
+
+	begin
+		output_file_encoding = Encoding.find(cmdp['--output-encoding'])
+	rescue ArgumentError
+		puts 'Error:'
+		puts " #{$!.message}"
+		puts " --output-encoding=#{cmdp['--output-encoding']}"
+		puts '--------------'
+		exit
+	end
+
+end
+
 if(cmdp['@'] == nil)
 	puts 'Error:'
 	puts ' 入力ファイルが指定されていません。'
@@ -124,6 +147,7 @@ while output_dir[-1].chr == '/' do output_dir.chop! end
 MakeUtils.mkdir_p(output_dir)
 
 puts ''
+puts "Output encoding name: '#{output_file_encoding.name}'"
 puts "Input file: '#{input_file}'"
 puts "Configuration file: '#{configuration_file}'"
 puts "Output directory: '#{output_dir}'"
@@ -137,7 +161,7 @@ if(config['SHEET_NAMES'] != nil)
 	config['SHEET_NAMES'].each { |key, value| filenames[":#{value}"] = key }
 end
 
-converter = XlsxConverter.new()
+converter = XlsxConverter.new(output_file_encoding)
 
 converter.ignore_nil = ignore_nil
 converter.ignore_nil_row = ignore_nil_row
