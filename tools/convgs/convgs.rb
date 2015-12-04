@@ -138,7 +138,7 @@ if(cmdp['--output-encoding'] != nil)
 	rescue ArgumentError
 		puts 'Error:'
 		puts " #{$!.message}"
-		puts " --output-encoding=#{cmdp['--input-encoding']}"
+		puts " --output-encoding=#{cmdp['--output-encoding']}"
 		puts '--------------'
 		exit
 	end
