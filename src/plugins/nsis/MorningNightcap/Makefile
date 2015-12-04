@@ -17,7 +17,8 @@ cpps =\
 	  ExportFunctions.cpp\
 	  Index.cpp\
 	  KrkrCF.cpp\
-	  TextBasedFile.cpp
+	  TextBasedFile.cpp\
+	  ExternalInstallerIndex.cpp
 objs = $(cpps:.cpp=.o)
 
 target : $(TARGET)
