@@ -80,7 +80,7 @@ output_file_encoding = __ENCODING__
 # 出力先
 output_dir = "#{pwd}"
 # 拡張子
-script_extension = '.ks'
+script_extension = '.gs'
 
 # ruby 用共有モジュールへのパス
 common_module_dir = "#{root_dir}/src/common/ruby"
@@ -166,7 +166,8 @@ configuration_file = cmdp['--cf'] if cmdp['--cf'] != nil
 configuration_file = cmdp['--configuration-file'] if cmdp['--configuration-file'] != nil
 configuration_file = configuration_file.gsub(/\\/, '/')
 
-script_extension = ".gs" if cmdp['-gs'] == true
+script_extension = '.gs' if cmdp['-gs'] == true
+script_extension = '.ks' if cmdp['-ks'] == true
 
 puts ''
 puts "Input encoding name: '#{input_file_encoding.name}'"
