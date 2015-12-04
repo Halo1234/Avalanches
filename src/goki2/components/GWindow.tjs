@@ -502,7 +502,6 @@ class GWindow extends Window
 	/**/
 	function onResize()
 	{
-		dm('on resize');
 		fixPrimaryLayerSizeToInnerSize();
 	}
 

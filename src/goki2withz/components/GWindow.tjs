@@ -77,8 +77,8 @@ class GWindow extends Window
 		fixPrimaryLayerSizeToInnerSize();
 
 		borderStyle = bsSingle;
-		//innerSunken = true;
-		//showScrollBars = false;
+		innerSunken = true;
+		showScrollBars = false;
 
 		thisTagHandlers_ = createTagHandlers();
 		unifyTagHandlers();
@@ -502,7 +502,6 @@ class GWindow extends Window
 	/**/
 	function onResize()
 	{
-		dm('on resize');
 		fixPrimaryLayerSizeToInnerSize();
 	}
 
