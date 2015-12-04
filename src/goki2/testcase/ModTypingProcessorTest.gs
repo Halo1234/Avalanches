@@ -30,6 +30,7 @@
 @dump_typing_word_list
 
 @load_typing_words storage=HAMON_Skills.dic
+@load_typing_words storage=Vampire_Skils.dic
 @log message="ワードリストを読み込みました。"
 
 @dump_typing_word_list
