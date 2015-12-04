@@ -918,7 +918,7 @@ class TypingWordProcessorForJapanese extends TypingWordProcessor
 			throw new GRuntimeError(@"「&key;」に対応するローマ字が見つかりませんでした。");
 
 		work = GObjectUtils.clone(record);
-		work.push(record*); // ????
+		//work.push(record*); // ????
 		result.push(%[target : key, romans: work]);
 
 		if(mora.length >= 2)
