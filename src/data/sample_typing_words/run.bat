@@ -2,7 +2,7 @@
 
 pushd %~dp0
 
-ruby make.rb words.ods --cf=config.ini --o=..\..\goki2\testcase
+ruby make.rb words.ods --cf=config.ini --o=.
 
 popd
 pause
