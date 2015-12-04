@@ -1,0 +1,35 @@
+
+--- 使い方
+ １．このフォルダに作業フォルダを作成します。
+ ２．シナリオテキストを作業フォルダにコピーします。
+ ３．conv_sample.bat をコピーします。
+ ４．コピーした .bat ファイルをエディタで開きます。
+ ５．.bat ファイルの内容で sample となっている個所を１．で作成したフォルダ名に変更します。
+ ６．吉里吉里２の場合は以下のように編集します。
+
+     @rem 吉里吉里Zの場合はこちらを利用してください。
+     @rem ruby convks.rb .\conv_sample.list --o=.\output_sample --input-encoding=cp932 --output-encoding=UTF-8 -v
+     @rem 吉里吉里２の場合はこちらを利用してください。
+     ruby convks.rb .\conv_sample.list --o=.\output_sample --input-encoding=cp932 -v
+
+ ７．コピーした .bat ファイルを実行します。
+
+
+--- 管理者向け情報
+ 出力先を直接開発環境にする事もできますが
+ 強制的に上書きする事になるので既に打ち込みが終わっているファイルなどが
+ あった場合は酷い事になると思います。
+ それでも SVN/GIT を利用していれば revert できますが…あまりお勧めはしません。
+
+ 詳しい使い方はヘルプを参照してください。
+
+ $ruby convks.rb -h
+
+
+--- 依存関係
+ RubyGem inifile >= 2.0.2
+
+ インストール方法：
+  $gem install inifile
+
+
