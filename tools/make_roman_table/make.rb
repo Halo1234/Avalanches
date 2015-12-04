@@ -31,7 +31,7 @@ Options:
   言語を指定します。
   ここに指定できる値は実質的に入力元に存在するファイル名です。
 
-  つまり INPUT-PATH\\LANGUAGE.FILT-TYPE を読み込みます。
+  つまり INPUT-PATH\\LANGUAGE.FILE-TYPE を読み込みます。
 
  --input-path
  --i
