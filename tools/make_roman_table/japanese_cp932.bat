@@ -4,7 +4,7 @@
 
 pushd %~dp0
 
-ruby make.rb --i=.\..\..\src\data\roman_alphabet --o=. --output-encoding=UTF-8 --lang=japanese
+ruby make.rb --i=.\..\..\src\data\roman_alphabet --o=. --lang=japanese
 
 popd
 pause

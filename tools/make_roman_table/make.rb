@@ -38,6 +38,13 @@ Options:
   入力元を指定します。
   デフォルトの入力元はカレントディレクトリです。
 
+ --output-encoding
+  出力されるテキストの文字エンコーディングを指定します。
+  指定できるエンコーディングの名前のリストは下記コマンドで得る事ができます。
+  デフォルトの文字エンコーディングは CP932 です。
+
+   #ruby -e "puts Encoding.name_list"
+
  --output-path
  --o
   出力先を指定します。
@@ -60,6 +67,8 @@ root_dir = "#{pwd}/../.."
 file_type = ".ods"
 # 言語
 language = nil
+# 出力のエンコーディング方式
+output_file_encoding = __ENCODING__
 # 入力元
 input_dir = "#{pwd}"
 # 出力先
@@ -100,6 +109,20 @@ end
 verbose = (cmdp['-verbose'] || cmdp['-v'])
 MakeUtils.verbose = verbose
 
+if(cmdp['--output-encoding'] != nil)
+
+	begin
+		output_file_encoding = Encoding.find(cmdp['--output-encoding'])
+	rescue ArgumentError
+		puts 'Error:'
+		puts " #{$!.message}"
+		puts " --output-encoding=#{cmdp['--output-encoding']}"
+		puts '--------------'
+		exit
+	end
+
+end
+
 file_type = cmdp['--file-type'] if cmdp['--file-type'] != nil
 file_type = ".#{file_type}" if file_type[0] != '.'
 
@@ -130,6 +153,7 @@ if(language == nil)
 end
 
 puts ''
+puts "Output encoding name: '#{output_file_encoding.name}'"
 puts "Input directory: #{input_dir}"
 puts "Output directory: #{output_dir}"
 puts "Language: #{language}"
@@ -207,7 +231,7 @@ sheets.each { |sheet|
 }
 
 # Symbol 以外を出力。
-File.open("#{output_dir}/#{language}.dic", 'w') { |file|
+File.open("#{output_dir}/#{language}.dic", "w+:#{output_file_encoding.name}") { |file|
 	file << dictionary_file_header
 	file << "%[\n"
 	file << "\t#{others.join(",\n\t")}\n"
@@ -215,7 +239,7 @@ File.open("#{output_dir}/#{language}.dic", 'w') { |file|
 }
 
 # Symbol を出力。
-File.open("#{output_dir}/#{language}_symbol.dic", 'w') { |file|
+File.open("#{output_dir}/#{language}_symbol.dic", "w+:#{output_file_encoding.name}") { |file|
 	file << dictionary_file_header
 	file << "%[\n"
 	file << "\t#{symbols.join(",\n\t")}\n"
