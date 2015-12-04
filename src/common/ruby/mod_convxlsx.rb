@@ -49,16 +49,17 @@ class XlsxConverter
 
 public
 	attr_accessor :ignore_nil, :ignore_nil_row, :first_row_is_header, :collect_in_file, :file_extension
-	attr_accessor :file_header
+	attr_accessor :file_header, :output_encoding
 	attr_reader :data_header
 
-	def initialize()
+	def initialize(output_encoding)
 		@ignore_nil = false
 		@ignore_nil_row = false
 		@first_row_is_header = false
 		@collect_in_file = false
 		@file_extension = ''
 		@file_header = nil
+		@output_encoding = output_encoding
 		@data_header = []
 	end
 
@@ -149,7 +150,7 @@ public
 				else
 					path = "#{output_dir}/#{filename_table[":#{key}"]}#{@file_extension}"
 				end
-				File.open(path, 'w+') { |file|
+				File.open(path, "w+:#{@output_encoding.name}") { |file|
 					file << @file_header if @file_header != nil
 					file << "[\n\t"
 					file << source.join(",\n\t")
