@@ -1,6 +1,3 @@
-;/*
-; * $Revision$
-;**/
 
 *label|
 

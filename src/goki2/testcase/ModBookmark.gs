@@ -1,6 +1,3 @@
-;/*
-; * $Revision$
-;**/
 
 @using_mod_message
 

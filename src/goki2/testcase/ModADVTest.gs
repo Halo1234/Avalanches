@@ -1,7 +1,3 @@
-;/*
-; * $Revision$
-;**/
-
 
 @using_mod_adv
 

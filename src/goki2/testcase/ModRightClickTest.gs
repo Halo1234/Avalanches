@@ -1,7 +1,3 @@
-;/*
-; * $Author$
-; * $Revision$
-;**/
 
 *label|
 

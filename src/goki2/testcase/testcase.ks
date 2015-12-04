@@ -1,7 +1,3 @@
-;/*
-; * $Revision: 342 $
-;**/
-
 
 @load_module name=ModTypingProcessor
 @load_module name=ModSaveLoadMenuItems

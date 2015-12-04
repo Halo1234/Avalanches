@@ -1,6 +1,4 @@
 /*
- * $Revision: 278 $
- *
  * 主に ADV での利用を想定したレイヤー管理モジュールです。
  *
  * CharacterVisualLayerIterator

@@ -1,7 +1,3 @@
-;/*
-; * $Author$
-; * $Revision$
-;**/
 
 @redirect alias=autowc name=auto_wait_ch
 @!autowc /ch=<CHARS>
