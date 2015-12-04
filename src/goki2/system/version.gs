@@ -6,7 +6,7 @@
 ; バージョンの付け方は個人の自由です。
 ; ただし、管理できなければ意味はありませんので計画的に利用してください。
 ;
-; GOKI2 のバージョン表記は 'TITLE X.Y [special string] {XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX}' という形式を採用しています。
+; GOKI2 のバージョン表記は 'TITLE X.Y [special string]' という形式を採用しています。
 ;
 ; 例：
 ;  @version title='GOKI2' major=1 minor=0 special='Sample application'
