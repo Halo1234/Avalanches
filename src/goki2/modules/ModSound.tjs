@@ -324,6 +324,9 @@ class ModSound extends GModule
 					if(!GObjectUtils.getBoolean(elm, 'skip', false) || !isClickSkipEnabled())
 						c.waitSignal(%[@"&.name;_fade" => null]);
 					else
+					if(isLongSkipping())
+						.stopFade();
+					else
 						c.waitSignal(%[left_click : .stopFade, @"&.name;_fade" => null]);
 				}
 			} incontextof this,
@@ -336,6 +339,9 @@ class ModSound extends GModule
 						return;
 					if(!GObjectUtils.getBoolean(elm, 'skip', false) || !isClickSkipEnabled())
 						c.waitSignal(%[@"&.name;_stop" => null]);
+					else
+					if(isLongSkipping())
+						.stop();
 					else
 						c.waitSignal(%[left_click : .stop, @"&.name;_stop" => null]);
 				}
