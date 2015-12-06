@@ -211,6 +211,8 @@ class GMessageLayer extends GHyperTextLayer
 	var enterLinkID_ = void;
 	var lockLink_ = false;
 
+	var characterShowHideType = 'fade';
+
 	/* const */ var ltNormal = 1;
 	/* const */ var ltButton = 2;
 	/* const */ var ltEdit = 3;
@@ -256,6 +258,21 @@ class GMessageLayer extends GHyperTextLayer
 	}
 
 	/**/
+	function cancelShowHideEffect()
+	{
+		var arr = usedCharacterLayers_;
+		var c = arr.count;
+
+		for(var i = 0; i < c; i++)
+			arr[i].mover.stop();
+
+		arr = usedRubyTextLayers_;
+		c = arr.count;
+		for(var i = 0; i < c; i++)
+			arr[i].mover.stop();
+	}
+
+	/**/
 	function allocCharacterLayer_private_()
 	{
 		var cache = notUsedCharacterLayers_;
@@ -266,6 +283,7 @@ class GMessageLayer extends GHyperTextLayer
 		else
 			obj = createCharacterLayer(window, this, onCharacterLayerEvent);
 		obj.assignFontToParent();
+		obj.showHideType = characterShowHideType;
 		usedCharacterLayers_.push(obj);
 
 		return obj;
@@ -282,6 +300,7 @@ class GMessageLayer extends GHyperTextLayer
 		else
 			obj = createRubyTextLayer(window, this, onRubyTextLayerEvent);
 		obj.assignFontToParent();
+		obj.showHideType = characterShowHideType;
 		usedRubyTextLayers_.push(obj);
 
 		return obj;

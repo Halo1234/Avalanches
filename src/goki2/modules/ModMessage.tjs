@@ -44,6 +44,8 @@ class ModMessage extends GModule
 	var outputHistory = true;
 	var historyEnabled = true;
 
+	var characterShowHideTypeCache_ = 'fade';
+
 	var hiddenMessageLayers = false;
 
 	var /* const */ smNotSkip = 0;		// スキップしない
@@ -179,6 +181,11 @@ class ModMessage extends GModule
 						.setMargin(+elm.margin_left, +elm.margin_top, +elm.margin_right, +elm.margin_bottom);
 					.visible = GObjectUtils.getBoolean(elm, 'visible') if GObjectUtils.hasValue(elm, 'visible');
 					.layoutMode = elm.layout_mode if elm.layout_mode !== void;
+					if(elm.effect_type !== void)
+					{
+						characterShowHideTypeCache_ = elm.effect_type;
+						setCharacterShowHideType(characterShowHideTypeCache_);
+					}
 					userOutputInterval_ = +elm.interval if elm.interval !== void;
 				}
 			} incontextof this,
@@ -1070,6 +1077,20 @@ class ModMessage extends GModule
 	}
 
 	/**/
+	function internalSetCharacterShowHideType_private_(obj, type)
+	{
+		if(type == '')
+			obj.cancelShowHideEffect();
+		obj.characterShowHideType = type;
+	}
+
+	/**/
+	function setCharacterShowHideType(type)
+	{
+		messageLayers_.each(internalSetCharacterShowHideType_private_, type);
+	}
+
+	/**/
 	function skipTo(mode, bb = 1)
 	{
 		if(mode > 0)
@@ -1089,6 +1110,7 @@ class ModMessage extends GModule
 			var from = skipMode_;
 			var to = smNotSkip;
 
+			setCharacterShowHideType(characterShowHideTypeCache_);
 			skipMode_ = to;
 			window.conductor.breathBound = 1;
 			window.modules.callHandler('onSkipModeChanged', from, to);
@@ -1115,7 +1137,7 @@ class ModMessage extends GModule
 					window.conductor.interruptTag('p');
 				}
 				else
-				if(window.conductor.lastActualProcessedTag == 'l')
+				if(window.conductor.lastProcessedTag == 'l')
 				{
 					window.conductor.interruptTag('l');
 				}
@@ -1150,6 +1172,7 @@ class ModMessage extends GModule
 					.leftClick();
 				.conductor.cancelWaitTimer();
 				skipTo(this.smNextWait, bb);
+				setCharacterShowHideType('');
 			}
 		}
 	}
@@ -1165,6 +1188,7 @@ class ModMessage extends GModule
 					.leftClick();
 				.conductor.cancelWaitTimer();
 				skipTo(this.smNextStop, bb);
+				setCharacterShowHideType('');
 			}
 		}
 	}
@@ -1180,6 +1204,7 @@ class ModMessage extends GModule
 					.leftClick();
 				.conductor.cancelWaitTimer();
 				skipTo(this.smPageEnd, bb);
+				setCharacterShowHideType('');
 			}
 		}
 	}
@@ -1196,6 +1221,7 @@ class ModMessage extends GModule
 					.leftClick();
 			}
 			skipTo(this.smNotRead, bb);
+			setCharacterShowHideType('');
 		}
 	}
 
@@ -1211,6 +1237,7 @@ class ModMessage extends GModule
 					.leftClick();
 			}
 			skipTo(this.smCancel, bb);
+			setCharacterShowHideType('');
 		}
 	}
 
