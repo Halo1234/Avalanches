@@ -847,6 +847,9 @@ class ModBookmark extends GModule
 	{
 		var dic = super.store(...);
 
+		dic.storeSkipping = storeSkipping;
+		dic.context = context_;
+
 		dic.currentLabelName = currentLabelName_;
 		dic.currentPageName = currentPageName_;
 		dic.currentReadingFlagName = currentReadingFlagName;
@@ -868,6 +871,9 @@ class ModBookmark extends GModule
 
 		// ‚±‚ÌŽž“_‚Å true ‚ªŠm’è‚·‚é
 		storeAndSave = true;
+
+		storeSkipping = dic.storeSkipping;
+		context_ = dic.context;
 
 		currentLabelName_ = dic.currentLabelName;
 		currentPageName_ = dic.currentPageName;
