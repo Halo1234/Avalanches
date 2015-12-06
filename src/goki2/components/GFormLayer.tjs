@@ -283,7 +283,7 @@ class GFormLayer extends GWidgetLayer
 		{
 			if(paused)
 			{
-				stopShowHideOperation(false);
+				cancelShowHide(false);
 				anotherCycle.add(focus);
 			}
 			else
