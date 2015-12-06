@@ -1372,6 +1372,11 @@ class ModMessage extends GModule
 		dic.autoWaitChChars = autoWaitChChars_;
 		dic.autoWaitChWaits = autoWaitChWaits_;
 
+		dic.outputHistory = outputHistory;
+		dic.historyEnabled = historyEnabled;
+
+		dic.characterShowHideTypeCache = characterShowHideTypeCache_;
+
 		dic.clickSkipEnabled = clickSkipEnabled;
 		dic.nextSkipEnabled = nextSkipEnabled;
 
