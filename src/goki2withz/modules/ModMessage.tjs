@@ -1339,6 +1339,7 @@ class ModMessage extends GModule
 		dic.messageLayers = messageLayers_.store(tick);
 
 		dic.outputInterval = outputInterval;
+		dic.userOutputInterval = userOutputInterval_;
 		dic.beforeNoWaitOutputInterval = beforeNoWaitOutputInterval;
 		dic.autoWaitChEnabled = autoWaitChEnabled_;
 		dic.autoWaitChChars = autoWaitChChars_;
@@ -1381,6 +1382,7 @@ class ModMessage extends GModule
 		messageLayers_.restore(dic.messageLayers);
 
 		outputInterval = dic.outputInterval;
+		userOutputInterval_ = dic.userOutputInterval;
 		beforeNoWaitOutputInterval = dic.beforeNoWaitOutputInterval;
 		autoWaitChEnabled_ = dic.autoWaitChEnabled;
 		autoWaitChChars_ = dic.autoWaitChChars;
