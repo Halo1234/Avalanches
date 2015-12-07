@@ -187,6 +187,18 @@ class ModRightClick extends GModule
 	}
 
 	/**/
+	function onConductorLabel(label, name, firstLabelProcessed)
+	{
+		if(window.conductor == conductor_)
+		{
+			if(name != void)
+			{
+				throw GRuntimeError("右クリックサブルーチン内では保存可能なラベルを記述できません。");
+			}
+		}
+	}
+
+	/**/
 	function onConductorReturn(elm)
 	{
 		if(window.conductor == conductor_)
