@@ -23,6 +23,9 @@ class GLayerColorCorrection
 	/**/
 	function apply(target = owner_)
 	{
+		if(!target.hasImage)
+			return;
+
 		var oldFace = target.face;
 		var oldHoldAlpha = target.holdAlpha;
 

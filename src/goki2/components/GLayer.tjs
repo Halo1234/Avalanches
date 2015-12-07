@@ -828,12 +828,19 @@ class GLayer extends Layer
 			type : type, hitType : hitType, hitThreshold : hitThreshold,
 			left : left, top : top, width : width, height : height, offsetX : offsetX_, offsetY : offsetY_,
 			flipLeftRight : flipLeftRight_, flipUpDown : flipUpDown_,
-			imageLeft : imageLeft, imageTop : imageTop, imageWidth : imageWidth, imageHeight : imageHeight,
 			prerenderedFontStorage : prerenderedFontStorage_,
 			fixPositionToCenter : fixPositionToCenter,
 			partialImages : partialImages_,
 			shaker : shaker.store()
 		];
+
+		if(hasImage)
+		{
+			dic.imageLeft = imageLeft;
+			dic.imageTop = imageTop;
+			dic.imageWidth = imageWidth;
+			dic.imageHeight = imageHeight;
+		}
 
 		dic.conductor = conductor_.store(tick) if conductor_ !== void;
 		dic.colorCorrection = colorCorrection_.store(tick) if colorCorrection_ !== void;
