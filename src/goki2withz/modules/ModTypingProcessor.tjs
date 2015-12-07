@@ -1590,9 +1590,6 @@ class TypingBaseLayer extends GLayer
 	/**/
 	function allocObjectLayer_private_(word)
 	{
-		if(word === void)
-			return void;
-
 		var cache = unUsedObjectLayers_;
 		var obj;
 
@@ -1610,10 +1607,12 @@ class TypingBaseLayer extends GLayer
 	/**/
 	function getUsedObjectLayer_private_(word)
 	{
+		if(word === void)
+			return void;
+
 		var obj = allocObjectLayer_private_(word);
 
-		if(obj !== void)
-			usedObjectLayers_.push(obj);
+		usedObjectLayers_.push(obj);
 
 		return obj;
 	}
@@ -1800,8 +1799,7 @@ class TypingBaseLayer extends GLayer
 				obj = arr2[i];
 			}
 
-			if(obj !== void)
-				obj.restore(arr1[i], tick);
+			obj.restore(arr1[i], tick);
 		}
 
 		var c = arr2.count;
@@ -1830,8 +1828,7 @@ class TypingBaseLayer extends GLayer
 				obj = arr2[i];
 			}
 
-			if(obj !== void)
-				obj.restore(arr1[i], tick);
+			obj.restore(arr1[i], tick);
 		}
 
 		var c = arr2.count;
