@@ -1603,7 +1603,17 @@ class TypingBaseLayer extends GLayer
 
 		obj.absolute = 1000;
 		obj.wordLayer.setWord(word);
-		usedObjectLayers_.push(obj);
+
+		return obj;
+	}
+
+	/**/
+	function getUsedObjectLayer_private_(word)
+	{
+		var obj = allocObjectLayer_private_(word);
+
+		if(obj !== void)
+			usedObjectLayers_.push(obj);
 
 		return obj;
 	}
@@ -1658,7 +1668,7 @@ class TypingBaseLayer extends GLayer
 	**/
 	function showNewWordAtRandom()
 	{
-		var obj = allocObjectLayer_private_(processor_.getNewWordAtRandom(getUsedInitials()));
+		var obj = getUsedObjectLayer_private_(processor_.getNewWordAtRandom(getUsedInitials()));
 
 		if(obj != void)
 		{
@@ -1672,7 +1682,7 @@ class TypingBaseLayer extends GLayer
 	/**/
 	function showNewWordByCaption(caption)
 	{
-		var obj = allocObjectLayer_private_(processor_.getNewWordByCaption(caption, getUsedInitials()));
+		var obj = getUsedObjectLayer_private_(processor_.getNewWordByCaption(caption, getUsedInitials()));
 
 		if(obj != void)
 		{
@@ -1686,7 +1696,7 @@ class TypingBaseLayer extends GLayer
 	/**/
 	function showNewWordByRuby(ruby)
 	{
-		var obj = allocObjectLayer_private_(processor_.getNewWordByRuby(ruby, getUsedInitials()));
+		var obj = getUsedObjectLayer_private_(processor_.getNewWordByRuby(ruby, getUsedInitials()));
 
 		if(obj != void)
 		{
@@ -1812,10 +1822,7 @@ class TypingBaseLayer extends GLayer
 
 			if(arr2[i] === void)
 			{
-				family.receive(obj = createTypingObjectLayer(window, this, onTypingObjectEvent));
-
-				obj.absolute = 1000;
-				obj.wordLayer.setWord(processor_.getNewWordAtRandom(getUsedInitials()));
+				obj = allocObjectLayer_private_(processor_.getNewWordAtRandom(getUsedInitials()));
 				arr2.push(obj);
 			}
 			else
