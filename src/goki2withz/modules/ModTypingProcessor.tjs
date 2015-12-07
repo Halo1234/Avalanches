@@ -367,6 +367,24 @@ class TypingWord
 	}
 
 	/**/
+	function store(tick)
+	{
+		var dic = %[
+			caption : caption_,
+			ruby : ruby_
+		];
+
+		return dic;
+	}
+
+	/**/
+	function restore(dic, tick)
+	{
+		caption_ = dic.caption;
+		ruby_ = dic.ruby;
+	}
+
+	/**/
 	property processor
 	{
 		getter		{ return processor_; }
@@ -802,6 +820,60 @@ class TypingWordProcessor
 		for(var i = 0; i < c; i++)
 			dm(@"&arr[i].caption;(&arr[i].ruby;)");
 		dm('---- End of word list.');
+	}
+
+	/**/
+	function store(tick)
+	{
+		var dic = %[
+			romanTable : romanTable_,
+			symbolTable : symbolTable_,
+			words : []
+		];
+		var arr = words_;
+		var c = arr.count;
+
+		for(var i = 0; i < c; i++)
+			dic.words[i] = arr[i].store(...);
+
+		return dic;
+	}
+
+	/**/
+	function restore(dic, tick)
+	{
+		romanTable_ = dic.romanTable;
+		symbolTable_ = dic.symbolTable;
+
+		var arr = words_;
+		var c = dic.words.count;
+		var i;
+
+		for(i = 0; i < c; i++)
+		{
+			var obj;
+
+			if(arr[i] === void)
+			{
+				obj = createTypingWord(this, '', '');
+				arr.push(obj);
+			}
+			else
+			{
+				obj = arr[i];
+			}
+			obj.restore(dic.words[i]);
+		}
+
+		c = arr.count;
+		for(i; i < c; i++)
+		{
+			invalidate arr[i];
+			arr[i] = void;
+		}
+		arr.remove(void);
+
+		dumpWordList();
 	}
 
 	/**/
@@ -1285,6 +1357,60 @@ class TypingWordLayer extends GWidgetLayer
 	}
 
 	/**/
+	function store(tick)
+	{
+		var dic = super.store(...);
+
+		dic.word = word.store(...) if word !== void;
+
+		dic.captionFontSize = captionFontSize_;
+		dic.rubyFontSize = rubyFontSize_;
+		dic.romanFontSize = romanFontSize_;
+
+		dic.acceptColor = acceptColor_;
+		dic.acceptEdgeColor = acceptEdgeColor_;
+		dic.currentColor = currentColor_;
+		dic.currentEdgeColor = currentEdgeColor_;
+		dic.unstableColor = unstableColor_;
+		dic.unstableEdgeColor = unstableEdgeColor_;
+
+		dic.widthMargin = widthMargin_;
+		dic.heightMargin = heightMargin_;
+
+		dic.invisibleRuby = invisibleRuby_;
+
+		dic.lineSpace = lineSpace_;
+
+		return dic;
+	}
+
+	/**/
+	function restore(dic, tick)
+	{
+		super.restore(...);
+
+		word.restore(dic.word, tick) if dic.word !== void;
+
+		captionFontSize_ = dic.captionFontSize;
+		rubyFontSize_ = dic.rubyFontSize;
+		romanFontSize_ = dic.romanFontSize;
+
+		acceptColor_ = dic.acceptColor;
+		acceptEdgeColor_ = dic.acceptEdgeColor;
+		currentColor_ = dic.currentColor;
+		currentEdgeColor_ = dic.currentEdgeColor;
+		unstableColor_ = dic.unstableColor;
+		unstableEdgeColor_ = dic.unstableEdgeColor;
+
+		widthMargin_ = dic.widthMargin;
+		heightMargin_ = dic.heightMargin;
+
+		invisibleRuby_ = dic.invisibleRuby;
+
+		lineSpace_ = dic.lineSpace;
+	}
+
+	/**/
 	property word
 	{
 		getter		{ return word_; }
@@ -1379,6 +1505,24 @@ class TypingObjectLayer extends GLayer
 		// 必要ならばレイヤ更新。
 
 		return ret;
+	}
+
+	/**/
+	function store(tick)
+	{
+		var dic = super.store(...);
+
+		dic.wordLayer = wordLayer_.store(...);
+
+		return dic;
+	}
+
+	/**/
+	function restore(dic, tick)
+	{
+		super.restore(...);
+
+		wordLayer_.restore(dic.wordLayer, tick);
 	}
 
 	/**/
@@ -1595,6 +1739,104 @@ class TypingBaseLayer extends GLayer
 		}
 
 		return obj;
+	}
+
+	/**/
+	function store(tick)
+	{
+		var dic = super.store(...);
+
+		dic.processor = processor_.store(...);
+
+		var arr = usedObjectLayers_;
+		var c = arr.count;
+
+		dic.usedObjectLayers = [];
+		for(var i = 0; i < c; i++)
+			dic.usedObjectLayers[i] = arr[i].store(...);
+
+		dic.unUsedObjectLayers = [];
+		arr = unUsedObjectLayers_;
+		c = arr.count;
+		for(var i = 0; i < c; i++)
+			dic.unUsedObjectLayers[i] = arr[i].store(...);
+
+		return dic;
+	}
+
+	/**/
+	function restore(dic, tick)
+	{
+		super.restore(...);
+
+		processor_.restore(dic.processor);
+
+		var arr1 = dic.usedObjectLayers;
+		var arr2 = usedObjectLayers_;
+		var c = arr1.count;
+		var i;
+
+		for(i = 0; i < c; i++)
+		{
+			var obj;
+
+			if(arr2[i] === void)
+			{
+				obj = allocObjectLayer_private_(processor_.getNewWordAtRandom(getUsedInitials()));
+				arr2.push(obj);
+			}
+			else
+			{
+				obj = arr2[i];
+			}
+
+			if(obj !== void)
+				obj.restore(arr1[i], tick);
+		}
+
+		var c = arr2.count;
+		for(i; i < c; i++)
+		{
+			family.away(arr2[i]);
+			invalidate arr2[i];
+			arr2[i] = void;
+		}
+		arr2.remove(void);
+
+		arr1 = dic.unUsedObjectLayers;
+		arr2 = unUsedObjectLayers_;
+		c = arr1.count;
+		for(i = 0; i < c; i++)
+		{
+			var obj;
+
+			if(arr2[i] === void)
+			{
+				family.receive(obj = createTypingObjectLayer(window, this, onTypingObjectEvent));
+
+				obj.absolute = 1000;
+				obj.wordLayer.setWord(processor_.getNewWordAtRandom(getUsedInitials()));
+				arr2.push(obj);
+			}
+			else
+			{
+				obj = arr2[i];
+			}
+
+			if(obj !== void)
+				obj.restore(arr1[i], tick);
+		}
+
+		var c = arr2.count;
+		for(i; i < c; i++)
+		{
+			family.away(arr2[i]);
+			invalidate arr2[i];
+			arr2[i] = void;
+		}
+		arr2.remove(void);
+
+		global.baseLayer = this;
 	}
 
 	/**/
@@ -1825,6 +2067,35 @@ class ModTypingProcessor extends GModule
 	function createDispatcher()
 	{
 		return new GDispatcher();
+	}
+
+	/**/
+	function store(tick)
+	{
+		var dic = super.store(...);
+
+		dic.baseLayer = baseLayer_.store(...);
+		dic.targetImageStorage = targetImageStorage;
+		dic.typingStarted = baseLayer_.enabled;
+
+		return dic;
+	}
+
+	/**/
+	function restore(dic, tick)
+	{
+		super.restore(...);
+
+		baseLayer_.restore(dic.baseLayer);
+		targetImageStorage = dic.targetImageStorage;
+		if(dic.typingStarted)
+		{
+			baseLayer_.enable();
+		}
+		else
+		{
+			baseLayer_.disable();
+		}
 	}
 
 	/**/

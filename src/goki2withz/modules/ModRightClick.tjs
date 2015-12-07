@@ -118,6 +118,32 @@ class ModRightClick extends GModule
 	}
 
 	/**/
+	function store(tick)
+	{
+		var dic = super.store(...);
+
+		dic.rightClickEnabled = rightClickEnabled;
+		dic.rightClickJump = rightClickJump;
+		dic.rightClickCall = rightClickCall;
+		dic.rightClickStorage = rightClickStorage;
+		dic.rightClickTarget = rightClickTarget;
+
+		return dic;
+	}
+
+	/**/
+	function restore(dic, tick)
+	{
+		super.restore(...);
+
+		rightClickEnabled = dic.rightClickEnabled;
+		rightClickJump = dic.rightClickJump;
+		rightClickCall = dic.rightClickCall;
+		rightClickStorage = dic.rightClickStorage;
+		rightClickTarget = dic.rightClickTarget;
+	}
+
+	/**/
 	function onWindowRightClick(x, y, shift)
 	{
 		if(!rightClickEnabled)

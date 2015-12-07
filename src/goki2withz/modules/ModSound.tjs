@@ -792,6 +792,9 @@ class ModSound extends GModule
 		dic.soundEffectBuffers = soundEffectBuffers_.store(tick);
 		dic.voiceBuffers = voiceBuffers_.store(tick);
 
+		dic.bgmStopInfos = bgmStopInfos_;
+		dic.bgmLabelInfos = bgmLabelInfos_;
+
 		return dic;
 	}
 
@@ -802,6 +805,9 @@ class ModSound extends GModule
 		systemSoundBuffers_.restore(dic.systemSoundBuffers);
 		soundEffectBuffers_.restore(dic.soundEffectBuffers);
 		voiceBuffers_.restore(dic.voiceBuffers);
+
+		bgmStopInfos_ = dic.bgmStopInfos;
+		bgmLabelInfos_ = dic.bgmLabelInfos;
 
 		super.restore(...);
 	}
