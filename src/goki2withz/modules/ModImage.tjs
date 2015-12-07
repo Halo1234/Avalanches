@@ -278,6 +278,28 @@ class ModImage extends GModule
 				}
 			} incontextof this,
 
+			/* @layer_move */
+			'layer_move' => function (elm) {
+				with(findByElm(elm).mover)
+				{
+					.clear() if GObjectUtils.getBoolean(elm, 'clear', false);
+					.useTransform = GObjectUtils.getBoolean(elm, 'transform') if GObjectUtils.hasValue(elm, 'transform');
+					.withChildrens = GObjectUtils.getBoolean(elm, 'childrens') if GObjectUtils.hasValue(elm, 'childrens');
+					.looping = GObjectUtils.getBoolean(elm, 'looping') if GObjectUtils.hasValue(elm, 'looping');
+					.delay = +elm.delay;
+					.accel = +elm.accel;
+					.time = (elm.time === void ? 1000 : +elm.time);
+					if(elm.position !== void)
+					{
+						if(GObjectUtils.getBoolean(elm, 'alone', false))
+							.addAloneFrame(+elm.position, elm);
+						else
+							.addFrame(+elm.position, elm);
+					}
+					.start() if GObjectUtills.getBoolean(elm, 'start', false);
+				}
+			} incontextof this,
+
 			/* @stop_move */
 			'stop_move' => function (elm) {
 				with(findByElm(elm).mover)
