@@ -1430,17 +1430,19 @@ class TypingWordLayer extends GWidgetLayer
  * ゲームらしさを追求するならばこのオブジェクトを派生させて
  * 演出を加えるべきです。
 **/
-class TypingObjectLayer extends GLayer
+class TypingObjectLayer extends GFormLayer
 {
 	var wordLayer_;
 
 	/**/
 	function TypingObjectLayer(window, parent, handler)
 	{
-		super.GLayer(...);
+		super.GFormLayer(...);
 		fixPositionToCenter = true;
 		hitThreshold = 256;
 		absolute = 1000;
+		focusable = false;
+		showHideType = '';
 
 		wordLayer_ = createWordLayer(window, parent, onWordLayerEvent);
 	}
@@ -1665,42 +1667,39 @@ class TypingBaseLayer extends GLayer
 
 	/*! \brief 新しいワードをランダムで表示する。
 	**/
-	function showNewWordAtRandom()
+	function getNewWordAtRandom()
 	{
 		var obj = getUsedObjectLayer_private_(processor_.getNewWordAtRandom(getUsedInitials()));
 
 		if(obj != void)
 		{
 			obj.setCenterPos(width >> 1, height >> 1);
-			obj.show();
 		}
 
 		return obj;
 	}
 
 	/**/
-	function showNewWordByCaption(caption)
+	function getNewWordByCaption(caption)
 	{
 		var obj = getUsedObjectLayer_private_(processor_.getNewWordByCaption(caption, getUsedInitials()));
 
 		if(obj != void)
 		{
 			obj.setCenterPos(width >> 1, height >> 1);
-			obj.show();
 		}
 
 		return obj;
 	}
 
 	/**/
-	function showNewWordByRuby(ruby)
+	function getNewWordByRuby(ruby)
 	{
 		var obj = getUsedObjectLayer_private_(processor_.getNewWordByRuby(ruby, getUsedInitials()));
 
 		if(obj != void)
 		{
 			obj.setCenterPos(width >> 1, height >> 1);
-			obj.show();
 		}
 
 		return obj;
@@ -1977,16 +1976,16 @@ class ModTypingProcessor extends GModule
 					if(elm.caption == 'random' || elm.ruby == 'random' || (elm.caption === void && elm.ruby === void))
 					{
 						// word をランダム抽選
-						obj = .showNewWordAtRandom();
+						obj = .getNewWordAtRandom();
 					}
 					else
 					{
 						// caption or ruby による指定
 						if(elm.caption !== void)
-							obj = .showNewWordByCaption(elm.caption);
+							obj = .getNewWordByCaption(elm.caption);
 						else
 						if(elm.ruby !== void)
-							obj = .showNewWordByRuby(elm.ruby);
+							obj = .getNewWordByRuby(elm.ruby);
 					}
 
 					if(obj !== void)
@@ -2036,6 +2035,8 @@ class ModTypingProcessor extends GModule
 						//dm(@"&left;(&elm.left;), &top;(&elm.top;)");
 						obj.setCenterPos(left, top);
 						// 指定時間が有る場合は指定時間経過後に自動的に消滅する設定を行う
+
+						obj.show();
 					}
 					else
 					{
