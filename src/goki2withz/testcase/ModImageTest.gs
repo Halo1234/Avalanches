@@ -67,15 +67,24 @@
 子レイヤの移動を行います。[p][cm]
 
 *label|
+[cancelskip]
+
+@layer_move layer=0 x=left y=top position=0.0 clear transform
+@layer_move layer=0 x=0 y=0 position=0.5
+@layer_move layer=0 x=200 y=200 position=1.0
+@layer_move layer=0 time=5000 start
+@wm layer=0
+
+子レイヤの移動を行います。[p][cm]
+
+*label|
 @clickskip enabled
 
 @animstart layer=0
-@log message="子レイヤでアニメーションを開始しました。"
 
 @animstop layer=0 seg=0
 @wa layer=0 seg=0
 @backlay layer=0
-@log message="子レイヤのアニメーションを停止しました。"
 
 子レイヤのアニメーションテストに成功しました。[p][cm]
 
@@ -95,7 +104,6 @@
 子レイヤがクリアされていれば成功です。[p][cm]
 
 *label|
-[cancelskip]
 @image layer=0 center_x=400 center_y=300 page=back storage=ImageSample visible
 @trans time=1000
 @wt
