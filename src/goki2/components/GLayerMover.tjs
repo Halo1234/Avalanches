@@ -198,7 +198,7 @@ class GLayerMover extends GTimeLine
 				frame.handler_ = .handler;
 			}
 
-			frame.accel_ = +.accel if .accel !== void;
+			frame.accel_ = +.frame_accel if .frame_accel !== void;
 
 			frame.x = target.stringTo(.x) if .x !== void;
 			frame.y = target.stringTo(.y) if .y !== void;
