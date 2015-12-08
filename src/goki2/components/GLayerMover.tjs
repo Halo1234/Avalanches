@@ -807,6 +807,12 @@ class GLayerMover extends GTimeLine
 				if(targetLayer_ !== void)
 					.releaseRenderingTarget(targetLayer_);
 				targetLayer_ = void;
+
+				if(cacheLayer_ !== void)
+				{
+					invalidate cacheLayer_;
+					cacheLayer_ = void;
+				}
 			}
 
 			.callHandler('onStopMover', %[paused : paused]);
