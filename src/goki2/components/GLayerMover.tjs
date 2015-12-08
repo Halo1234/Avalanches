@@ -9,8 +9,6 @@ class GLayerMover extends GTimeLine
 	var cacheLayer_ = void;
 
 	var originLayer_ = void;
-	var originX_;
-	var originY_;
 
 	var events_ = [];
 	var transformEventCount_ = 0;
@@ -452,7 +450,7 @@ class GLayerMover extends GTimeLine
 	{
 		var lines = [];
 
-		lines.push("function (step, layer, ox, oy) {");
+		lines.push("function (step, layer) {");
 
 		if(second === void)
 		{
@@ -482,21 +480,21 @@ class GLayerMover extends GTimeLine
 
 				if(typeof(first.x) !== 'undefined' && typeof(second.x) !== 'undefined')
 				{
-					lines.push(@"var x = ox + &first.x; + (&second.x; - &first.x;) * step" + ';');
+					lines.push(@"var x = &first.x; + (&second.x; - &first.x;) * step" + ';');
 					x = true;
 				}
 				else
 				{
-					lines.push('var x = ox;');
+					lines.push('var x = 0;');
 				}
 				if(typeof(first.y) !== 'undefined' && typeof(second.y) !== 'undefined')
 				{
-					lines.push(@"var y = oy + &first.y; + (&second.y; - &first.y;) * step" + ';');
+					lines.push(@"var y = &first.y; + (&second.y; - &first.y;) * step" + ';');
 					y = true;
 				}
 				else
 				{
-					lines.push('var y = oy;');
+					lines.push('var y = 0;');
 				}
 				if(typeof(first.width) !== 'undefined' && typeof(second.width) !== 'undefined')
 				{
@@ -604,11 +602,11 @@ class GLayerMover extends GTimeLine
 			{
 				if(typeof(first.x) !== 'undefined' && typeof(second.x) !== 'undefined')
 				{
-					lines.push(@"layer.fixedX = ox + &first.x; + (&second.x; - &first.x;) * step" + ';');
+					lines.push(@"layer.fixedX = &first.x; + (&second.x; - &first.x;) * step" + ';');
 				}
 				if(typeof(first.y) !== 'undefined' && typeof(second.y) !== 'undefined')
 				{
-					lines.push(@"layer.fixedY = oy + &first.y; + (&second.y; - &first.y;) * step" + ';');
+					lines.push(@"layer.fixedY = &first.y; + (&second.y; - &first.y;) * step" + ';');
 				}
 				if(typeof(first.width) !== 'undefined' && typeof(second.width) !== 'undefined')
 				{
@@ -699,9 +697,6 @@ class GLayerMover extends GTimeLine
 	{
 		var dic = super.store(...);
 
-		dic.originX = originX_;
-		dic.originY = originY_;
-
 		dic.events = events_;
 		dic.transformEventCount = transformEventCount_;
 		dic.pointer = pointer_;
@@ -716,9 +711,6 @@ class GLayerMover extends GTimeLine
 
 	function restore(dic, tick)
 	{
-		originX_ = dic.originX;
-		originY_ = dic.originY;
-
 		// NOTE:
 		var arr = copyArray([], dic.events);
 		var prev = void;
@@ -764,16 +756,10 @@ class GLayerMover extends GTimeLine
 				src = cacheLayer_;
 			}
 
-			originX_ = owner.left;
-			originY_ = owner.top;
-
 			this.onProcessTimeLine = onTransformProcess;
 		}
 		else
 		{
-			originX_ = 0;
-			originY_ = 0;
-
 			this.onProcessTimeLine = onNormalProcess;
 		}
 
@@ -828,8 +814,6 @@ class GLayerMover extends GTimeLine
 	{
 		var events = events_;
 		var layer = originLayer_;
-		var ox = originX_;
-		var oy = originY_;
 		var ptr = pointer_;
 		var aptr = alonePointer_;
 
@@ -841,7 +825,7 @@ class GLayerMover extends GTimeLine
 
 			if(step >= e.position_)
 			{
-				e.handler_(step, layer, ox, oy, e);
+				e.handler_(step, layer, e);
 				alonePointer_ = nextAlonePointer(aptr + 1);
 			}
 		}
@@ -875,7 +859,7 @@ class GLayerMover extends GTimeLine
 
 				localStep = applyAccelTo(localStep, src.accel_) if src.accel_ !== void;
 
-				src.handler_(localStep, layer, ox, oy, src, dst);
+				src.handler_(localStep, layer, src, dst);
 			}
 		}
 	}
@@ -884,8 +868,6 @@ class GLayerMover extends GTimeLine
 	{
 		var events = events_;
 		var layer = originLayer_;
-		var ox = originX_;
-		var oy = originY_;
 		var ptr = pointer_;
 		var aptr = alonePointer_;
 
@@ -895,7 +877,7 @@ class GLayerMover extends GTimeLine
 
 			if(step >= e.position_)
 			{
-				e.handler_(step, layer, ox, oy, e);
+				e.handler_(step, layer, e);
 				alonePointer_ = nextAlonePointer(aptr + 1);
 			}
 		}
@@ -909,7 +891,7 @@ class GLayerMover extends GTimeLine
 			// ’´‚¦‚Ä‚¢‚é‚È‚ç‚Î”O‚Ì‚½‚ßÅIó‘ÔXV
 			if(step >= dst.position_)
 			{
-				src.handler_(1.0, layer, ox, oy, src, dst);
+				src.handler_(1.0, layer, src, dst);
 
 				ptr = src.next_;
 				src = events[ptr];
@@ -929,7 +911,7 @@ class GLayerMover extends GTimeLine
 
 				localStep = applyAccelTo(localStep, src.accel_) if src.accel_ !== void;
 
-				src.handler_(localStep, layer, ox, oy, src, dst);
+				src.handler_(localStep, layer, src, dst);
 			}
 		}
 	}

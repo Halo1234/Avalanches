@@ -296,7 +296,7 @@ class ModImage extends GModule
 						else
 							.addFrame(+elm.position, elm);
 					}
-					.start() if GObjectUtills.getBoolean(elm, 'start', false);
+					.start() if GObjectUtils.getBoolean(elm, 'start', false);
 				}
 			} incontextof this,
 

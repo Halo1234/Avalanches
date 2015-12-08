@@ -3,12 +3,12 @@
 
 
 /**
- * ˆÙ‚È‚é GFormLayer “¯m‚Å softFocus ‚ÌƒtƒH[ƒJƒXˆÚ“®‚ğs‚¢‚½‚¢ê‡‚Í
- * GFormLayer#focusable ‚É false ‚ğİ’è‚µ‚Ä GWindow#softFocus ‚É’Ç‰Á‚·‚é•û–@‚ª‚ ‚è‚Ü‚·B
- * ‰º‹L‚Ì—á‚Å‚Í GWindow#focusedLayer ‚ª null ‚Ì‚É–îˆóƒL[‚ğ‰Ÿ‚·‚Æ
- * formA ‚Æ formB ‚Ì softFocus ‚ª‡”Ô‚ÉƒtƒH[ƒJƒX‚³‚ê‚Ü‚·B
+ * ç•°ãªã‚‹ GFormLayer åŒå£«ã§ softFocus ã®ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ç§»å‹•ã‚’è¡Œã„ãŸã„å ´åˆã¯
+ * GFormLayer#focusable ã« false ã‚’è¨­å®šã—ã¦ GWindow#softFocus ã«è¿½åŠ ã™ã‚‹æ–¹æ³•ãŒã‚ã‚Šã¾ã™ã€‚
+ * ä¸‹è¨˜ã®ä¾‹ã§ã¯ GWindow#focusedLayer ãŒ null ã®æ™‚ã«çŸ¢å°ã‚­ãƒ¼ã‚’æŠ¼ã™ã¨
+ * formA ã¨ formB ã® softFocus ãŒé †ç•ªã«ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã•ã‚Œã¾ã™ã€‚
  *
- * —áF
+ * ä¾‹ï¼š
  *  var formA = new GFormLayer(window, window.primaryLayer);
  *  var formB = new GFormLayer(window, window.primaryLayer);
  *
@@ -25,8 +25,8 @@ class GFormLayer extends GWidgetLayer
 	var showHideTime = 200;
 	var showHideMover_;
 
-	var clickCancel = false;				// click() ‚Å show()/hide() ‚ğƒLƒƒƒ“ƒZƒ‹‚·‚é‚©‚Ç‚¤‚©
-	var rclickHide = true;					// rclick() ‚Å hide() ‚ğŒÄ‚Ô‚©‚Ç‚¤‚©
+	var clickCancel = false;				// click() ã§ show()/hide() ã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã™ã‚‹ã‹ã©ã†ã‹
+	var rclickHide = true;					// rclick() ã§ hide() ã‚’å‘¼ã¶ã‹ã©ã†ã‹
 	var softFocusDisableInShowHideRunning = true;
 	var softFocusEnabledBackup_ = true;
 
@@ -42,8 +42,8 @@ class GFormLayer extends GWidgetLayer
 	function finalize()
 	{
 		// NOTE:
-		// softFocus_ ‚Í family ‚É“ü‚ê‚é‚Æ–³Œø‰»‚·‚éƒ^ƒCƒ~ƒ“ƒO‚ª•s’è‚É‚È‚é‚Ì‚Å
-		// ‚±‚±‚Å–¾¦“I‚É–³Œø‰»‚µ‚Ü‚·B
+		// softFocus_ ã¯ family ã«å…¥ã‚Œã‚‹ã¨ç„¡åŠ¹åŒ–ã™ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒä¸å®šã«ãªã‚‹ã®ã§
+		// ã“ã“ã§æ˜ç¤ºçš„ã«ç„¡åŠ¹åŒ–ã—ã¾ã™ã€‚
 		invalidate softFocus_ if softFocus_ !== void;
 
 		super.finalize(...);
@@ -60,15 +60,15 @@ class GFormLayer extends GWidgetLayer
 	}
 
 	/*
-	 * \brief show()/hide() ‚É‚æ‚é•\¦/”ñ•\¦Œø‰Ê‚Ìƒ^ƒCƒv‚ğw’è‚·‚é–‚ª‚Å‚«‚Ü‚·B
+	 * \brief show()/hide() ã«ã‚ˆã‚‹è¡¨ç¤º/éè¡¨ç¤ºåŠ¹æœã®ã‚¿ã‚¤ãƒ—ã‚’æŒ‡å®šã™ã‚‹äº‹ãŒã§ãã¾ã™ã€‚
 	 *
-	 * \remarks —˜—p‰Â”\‚ÈŒø‰Ê‚Í‰º‹L‚Ì‚Æ‚¨‚è‚Å‚·B
+	 * \remarks åˆ©ç”¨å¯èƒ½ãªåŠ¹æœã¯ä¸‹è¨˜ã®ã¨ãŠã‚Šã§ã™ã€‚
 	 * \remarks
-	 * \remarks      '': Œø‰Ê‚ğs‚¢‚Ü‚¹‚ñB
-	 * \remarks  'fade': ’Êí‚ÌƒtƒF[ƒhƒCƒ“/ƒtƒF[ƒhƒAƒEƒgŒø‰Ê‚Å‚·B
-	 * \remarks 'vista': Windows Vista/7 ‚Ì Aero ‚Ì‚æ‚¤‚ÈŒø‰Ê‚Å‚·B
+	 * \remarks      '': åŠ¹æœã‚’è¡Œã„ã¾ã›ã‚“ã€‚
+	 * \remarks  'fade': é€šå¸¸ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³/ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆåŠ¹æœã§ã™ã€‚
+	 * \remarks 'vista': Windows Vista/7 ã® Aero ã®ã‚ˆã†ãªåŠ¹æœã§ã™ã€‚
 	 *
-	 * ‚±‚ê‚ç‚Í•K—v‚É‰‚¶‚Ä”h¶æ‚ÅŠg’£‚·‚é‚Æ‚æ‚¢‚Å‚µ‚å‚¤B
+	 * ã“ã‚Œã‚‰ã¯å¿…è¦ã«å¿œã˜ã¦æ´¾ç”Ÿå…ˆã§æ‹¡å¼µã™ã‚‹ã¨ã‚ˆã„ã§ã—ã‚‡ã†ã€‚
 	**/
 	function setShowHideType(type)
 	{
@@ -130,8 +130,8 @@ class GFormLayer extends GWidgetLayer
 			with(showHideMover)
 			{
 				.clear();
-				.addFrame(0.0, %[opacity : 0]);
-				.addFrame(1.0, %[opacity : 255]);
+				.addFrame(0.0, %[x : 'left', y : 'top', opacity : 0]);
+				.addFrame(1.0, %[x : 'left', y : 'top', opacity : 255]);
 				.time = showHideTime;
 				.delay = 0;
 				.accel = 0;
@@ -143,8 +143,8 @@ class GFormLayer extends GWidgetLayer
 			with(showHideMover)
 			{
 				.clear();
-				.addFrame(0.0, %[scale : 0.95, opacity : 0]);
-				.addFrame(1.0, %[scale : 1.0, opacity : 255]);
+				.addFrame(0.0, %[x : 'left', y : 'top', scale : 0.95, opacity : 0]);
+				.addFrame(1.0, %[x : 'left', y : 'top', scale : 1.0, opacity : 255]);
 				.time = showHideTime;
 				.delay = 0;
 				.accel = 1.8;
@@ -170,8 +170,8 @@ class GFormLayer extends GWidgetLayer
 			with(showHideMover)
 			{
 				.clear();
-				.addFrame(0.0, %[opacity : 255]);
-				.addFrame(1.0, %[opacity : 0]);
+				.addFrame(0.0, %[x : 'left', y : 'top', opacity : 255]);
+				.addFrame(1.0, %[x : 'left', y : 'top', opacity : 0]);
 				.time = showHideTime;
 				.delay = 0;
 				.accel = 0;
@@ -183,8 +183,8 @@ class GFormLayer extends GWidgetLayer
 			with(showHideMover)
 			{
 				.clear();
-				.addFrame(0.0, %[scale : 1.0, opacity : 255]);
-				.addFrame(1.0, %[scale : 0.95, opacity : 0]);
+				.addFrame(0.0, %[x : 'left', y : 'top', scale : 1.0, opacity : 255]);
+				.addFrame(1.0, %[x : 'left', y : 'top', scale : 0.95, opacity : 0]);
 				.time = showHideTime;
 				.delay = 0;
 				.accel = -1.8;
@@ -200,23 +200,23 @@ class GFormLayer extends GWidgetLayer
 
 	function onUnknownShowHideMethodType(type, mover)
 	{
-		throw new GArgumentsError(@"'&type;' ‚Í–¢’è‹`‚Ì•\¦^”ñ•\¦ƒ^ƒCƒv‚Å‚·B");
+		throw new GArgumentsError(@"'&type;' ã¯æœªå®šç¾©ã®è¡¨ç¤ºï¼éè¡¨ç¤ºã‚¿ã‚¤ãƒ—ã§ã™ã€‚");
 	}
 
 	function onUnknownShowMethod(type, mover)
 	{
-		throw new GArgumentsError(@"ƒŒƒCƒ„[‚ğ•\¦‚µ‚æ‚¤‚Æ‚µ‚Ü‚µ‚½‚ª '&type;' ‚Í–¢’è‹`‚ÌŒø‰Êƒ^ƒCƒv‚Å‚·B");
+		throw new GArgumentsError(@"ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’è¡¨ç¤ºã—ã‚ˆã†ã¨ã—ã¾ã—ãŸãŒ '&type;' ã¯æœªå®šç¾©ã®åŠ¹æœã‚¿ã‚¤ãƒ—ã§ã™ã€‚");
 	}
 
 	function onUnknownHideMethod(type, mover)
 	{
-		throw new GArgumentsError(@"ƒŒƒCƒ„[‚ğ”ñ•\¦‚É‚µ‚æ‚¤‚Æ‚µ‚Ü‚µ‚½‚ª '&type;' ‚Í–¢’è‹`‚ÌŒø‰Êƒ^ƒCƒv‚Å‚·B");
+		throw new GArgumentsError(@"ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’éè¡¨ç¤ºã«ã—ã‚ˆã†ã¨ã—ã¾ã—ãŸãŒ '&type;' ã¯æœªå®šç¾©ã®åŠ¹æœã‚¿ã‚¤ãƒ—ã§ã™ã€‚");
 	}
 
 	/**
-	 * ƒtƒH[ƒJƒX‚ª•ÏX‚³‚ê‚½‚ÉŒÄ‚Î‚ê‚Ü‚·B
-	 * focused ‚ª false ‚È‚ç‰½‚àƒtƒH[ƒJƒX‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB
-	 * ‚»‚êˆÈŠO‚Í‰½‚©‚ªƒtƒH[ƒJƒX‚³‚ê‚Ä‚¢‚Ü‚·B
+	 * ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ãŒå¤‰æ›´ã•ã‚ŒãŸæ™‚ã«å‘¼ã°ã‚Œã¾ã™ã€‚
+	 * focused ãŒ false ãªã‚‰ä½•ã‚‚ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚
+	 * ãã‚Œä»¥å¤–ã¯ä½•ã‹ãŒãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã•ã‚Œã¦ã„ã¾ã™ã€‚
 	**/
 	function onFocusChanged(focused)
 	{

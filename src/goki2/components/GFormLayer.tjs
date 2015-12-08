@@ -130,8 +130,8 @@ class GFormLayer extends GWidgetLayer
 			with(showHideMover)
 			{
 				.clear();
-				.addFrame(0.0, %[opacity : 0]);
-				.addFrame(1.0, %[opacity : 255]);
+				.addFrame(0.0, %[x : 'left', y : 'top', opacity : 0]);
+				.addFrame(1.0, %[x : 'left', y : 'top', opacity : 255]);
 				.time = showHideTime;
 				.delay = 0;
 				.accel = 0;
@@ -143,8 +143,8 @@ class GFormLayer extends GWidgetLayer
 			with(showHideMover)
 			{
 				.clear();
-				.addFrame(0.0, %[scale : 0.95, opacity : 0]);
-				.addFrame(1.0, %[scale : 1.0, opacity : 255]);
+				.addFrame(0.0, %[x : 'left', y : 'top', scale : 0.95, opacity : 0]);
+				.addFrame(1.0, %[x : 'left', y : 'top', scale : 1.0, opacity : 255]);
 				.time = showHideTime;
 				.delay = 0;
 				.accel = 1.8;
@@ -170,8 +170,8 @@ class GFormLayer extends GWidgetLayer
 			with(showHideMover)
 			{
 				.clear();
-				.addFrame(0.0, %[opacity : 255]);
-				.addFrame(1.0, %[opacity : 0]);
+				.addFrame(0.0, %[x : 'left', y : 'top', opacity : 255]);
+				.addFrame(1.0, %[x : 'left', y : 'top', opacity : 0]);
 				.time = showHideTime;
 				.delay = 0;
 				.accel = 0;
@@ -183,8 +183,8 @@ class GFormLayer extends GWidgetLayer
 			with(showHideMover)
 			{
 				.clear();
-				.addFrame(0.0, %[scale : 1.0, opacity : 255]);
-				.addFrame(1.0, %[scale : 0.95, opacity : 0]);
+				.addFrame(0.0, %[x : 'left', y : 'top', scale : 1.0, opacity : 255]);
+				.addFrame(1.0, %[x : 'left', y : 'top', scale : 0.95, opacity : 0]);
 				.time = showHideTime;
 				.delay = 0;
 				.accel = -1.8;

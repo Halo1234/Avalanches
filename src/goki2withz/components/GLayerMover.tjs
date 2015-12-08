@@ -9,8 +9,6 @@ class GLayerMover extends GTimeLine
 	var cacheLayer_ = void;
 
 	var originLayer_ = void;
-	var originX_;
-	var originY_;
 
 	var events_ = [];
 	var transformEventCount_ = 0;
@@ -22,7 +20,7 @@ class GLayerMover extends GTimeLine
 	var eachUpdateCache = false;
 
 	/**
-	 * owner: GLayer ”h¶‚ÌƒŒƒCƒ„[ƒIƒuƒWƒFƒNƒg
+	 * owner: GLayer æ´¾ç”Ÿã®ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	**/
 	function GLayerMover(owner)
 	{
@@ -36,7 +34,7 @@ class GLayerMover extends GTimeLine
 	}
 
 	/**
-	 * ÄƒŠƒ“ƒN‚ª•K—v‚ÈƒvƒƒpƒeƒB‚ÌÀ‘•
+	 * å†ãƒªãƒ³ã‚¯ãŒå¿…è¦ãªãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®å®Ÿè£…
 	**/
 	function setRenderingOptions(useTransform, withChildren)
 	{
@@ -46,9 +44,9 @@ class GLayerMover extends GTimeLine
 	}
 
 	/**
-	 * ŠeƒCƒxƒ“ƒg‚ÌÄƒŠƒ“ƒN‚ğs‚¢‚Ü‚·B
-	 * ‰e‹¿‚ª‚ ‚é‚Ì‚Í•ÏŒ`ƒCƒxƒ“ƒg‚¾‚¯‚È‚Ì‚Å
-	 * •ÏŒ`ƒCƒxƒ“ƒg‚ª‘¶İ‚µ‚È‚¢ê‡‚Í‰½‚à‚µ‚Ü‚¹‚ñB
+	 * å„ã‚¤ãƒ™ãƒ³ãƒˆã®å†ãƒªãƒ³ã‚¯ã‚’è¡Œã„ã¾ã™ã€‚
+	 * å½±éŸ¿ãŒã‚ã‚‹ã®ã¯å¤‰å½¢ã‚¤ãƒ™ãƒ³ãƒˆã ã‘ãªã®ã§
+	 * å¤‰å½¢ã‚¤ãƒ™ãƒ³ãƒˆãŒå­˜åœ¨ã—ãªã„å ´åˆã¯ä½•ã‚‚ã—ã¾ã›ã‚“ã€‚
 	**/
 	function relinkAllOperations()
 	{
@@ -114,7 +112,7 @@ class GLayerMover extends GTimeLine
 	}
 
 	/**
-	 * Ä”z’u‚ª•K—v‚ÈƒvƒƒpƒeƒB‚ÌÀ‘•
+	 * å†é…ç½®ãŒå¿…è¦ãªãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®å®Ÿè£…
 	**/
 	function setTime(time)
 	{
@@ -136,9 +134,9 @@ class GLayerMover extends GTimeLine
 	}
 
 	/**
-	 * ŠÔ‚ª’¼Úw’è‚³‚ê‚Ä‚¢‚éƒCƒxƒ“ƒg‚ÌÄ”z’u‚ğs‚¢‚Ü‚·B
-	 * ƒ[ƒJƒ‹’PˆÊi0.0 ` 1.0j‚Åw’è‚³‚ê‚Ä‚¢‚éƒCƒxƒ“ƒg‚Í
-	 * Ä”z’u‚ğs‚¢‚Ü‚¹‚ñB
+	 * æ™‚é–“ãŒç›´æ¥æŒ‡å®šã•ã‚Œã¦ã„ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆã®å†é…ç½®ã‚’è¡Œã„ã¾ã™ã€‚
+	 * ãƒ­ãƒ¼ã‚«ãƒ«å˜ä½ï¼ˆ0.0 ï½ 1.0ï¼‰ã§æŒ‡å®šã•ã‚Œã¦ã„ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆã¯
+	 * å†é…ç½®ã‚’è¡Œã„ã¾ã›ã‚“ã€‚
 	**/
 	function relocationAllOperations()
 	{
@@ -159,11 +157,11 @@ class GLayerMover extends GTimeLine
 	}
 
 	/**
-	 * \brief w’èˆÊ’u‚ÉƒtƒŒ[ƒ€‚ğ’Ç‰Á‚µ‚Ü‚·B
-	 * \brief ‘OŒã‚ÉƒtƒŒ[ƒ€‚ª‘¶İ‚·‚ê‚ÎƒŠƒ“ƒN‚µ‚Ü‚·B
+	 * \brief æŒ‡å®šä½ç½®ã«ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’è¿½åŠ ã—ã¾ã™ã€‚
+	 * \brief å‰å¾Œã«ãƒ•ãƒ¬ãƒ¼ãƒ ãŒå­˜åœ¨ã™ã‚Œã°ãƒªãƒ³ã‚¯ã—ã¾ã™ã€‚
 	 *
-	 * \remarks ƒŠƒ“ƒN‚³‚ê‚½ƒtƒŒ[ƒ€‚ÌŠÔ‚Ìó‘Ô‚Í•âŠ®‚³‚ê‚Ü‚·‚ª
-	 * \remarks ’P“Æ‚ÌƒtƒŒ[ƒ€‚Ìê‡ƒŠƒ“ƒN‚µ‚È‚¢‚Ì‚Å•âŠ®‚³‚ê‚Ü‚¹‚ñB
+	 * \remarks ãƒªãƒ³ã‚¯ã•ã‚ŒãŸãƒ•ãƒ¬ãƒ¼ãƒ ã®é–“ã®çŠ¶æ…‹ã¯è£œå®Œã•ã‚Œã¾ã™ãŒ
+	 * \remarks å˜ç‹¬ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®å ´åˆãƒªãƒ³ã‚¯ã—ãªã„ã®ã§è£œå®Œã•ã‚Œã¾ã›ã‚“ã€‚
 	**/
 	function addFrame(timeOrPosition, parameters)
 	{
@@ -246,7 +244,7 @@ class GLayerMover extends GTimeLine
 
 		if(useTransform_)
 		{
-			// NOTE: •ÏŒ`‚ğˆ—‰Â”\B
+			// NOTE: å¤‰å½¢ã‚’å‡¦ç†å¯èƒ½ã€‚
 			for(var i = 0; i < c; i++)
 			{
 				if(arr[i].position_ <= frame.position_)
@@ -263,7 +261,7 @@ class GLayerMover extends GTimeLine
 
 			arr.insert(index, frame);
 
-			// next ‚ª‚Ü‚¾Œ©‚Â‚©‚Á‚Ä‚¢‚È‚¢ê‡‚Íˆê‰ÅŒã‚Ü‚Å’T‚µ‚Ä‚¨‚­
+			// next ãŒã¾ã è¦‹ã¤ã‹ã£ã¦ã„ãªã„å ´åˆã¯ä¸€å¿œæœ€å¾Œã¾ã§æ¢ã—ã¦ãŠã
 			if(next === void)
 			{
 				for(var i = index + 1; i < c; i++)
@@ -279,7 +277,7 @@ class GLayerMover extends GTimeLine
 		}
 		else
 		{
-			// NOTE: •ÏŒ`‚ğˆ—•s‰Â”\‚È‚Ì‚Å•ÏŒ`ƒCƒxƒ“ƒg‚Í–³‹‚µ‚ÄƒŠƒ“ƒN‚·‚éB
+			// NOTE: å¤‰å½¢ã‚’å‡¦ç†ä¸å¯èƒ½ãªã®ã§å¤‰å½¢ã‚¤ãƒ™ãƒ³ãƒˆã¯ç„¡è¦–ã—ã¦ãƒªãƒ³ã‚¯ã™ã‚‹ã€‚
 			for(var i = 0; i < c; i++)
 			{
 				if(arr[i].position_ <= frame.position_)
@@ -296,7 +294,7 @@ class GLayerMover extends GTimeLine
 
 			arr.insert(index, frame);
 
-			// next ‚ª‚Ü‚¾Œ©‚Â‚©‚Á‚Ä‚¢‚È‚¢ê‡‚Íˆê‰ÅŒã‚Ü‚Å’T‚µ‚Ä‚¨‚­
+			// next ãŒã¾ã è¦‹ã¤ã‹ã£ã¦ã„ãªã„å ´åˆã¯ä¸€å¿œæœ€å¾Œã¾ã§æ¢ã—ã¦ãŠã
 			if(next === void)
 			{
 				for(var i = index + 1; i < c; i++)
@@ -312,13 +310,13 @@ class GLayerMover extends GTimeLine
 		}
 
 		// NOTE:
-		// ‚f‚b‚É‰ñû‚³‚¹‚½‚¢‚Ì‚ÅQÆ‚Å‚ÌƒŠƒ“ƒN‚Í‚µ‚È‚¢B
+		// ï¼§ï¼£ã«å›åã•ã›ãŸã„ã®ã§å‚ç…§ã§ã®ãƒªãƒ³ã‚¯ã¯ã—ãªã„ã€‚
 		if(prev !== void)
 		{
 			frame.prev_ = prev;
 			arr[prev].next_ = index;
 
-			// ƒnƒ“ƒhƒ‰‚ğì‚é
+			// ãƒãƒ³ãƒ‰ãƒ©ã‚’ä½œã‚‹
 			if(!arr[prev].isUserHandler_)
 				arr[prev].handler_ = ((Scripts.eval(makeOperationHandlerScriptSource(arr[prev], frame))) incontextof this);
 		}
@@ -327,23 +325,23 @@ class GLayerMover extends GTimeLine
 			frame.next_ = next;
 			arr[next].prev_ = index;
 
-			// ƒnƒ“ƒhƒ‰‚ğì‚é
+			// ãƒãƒ³ãƒ‰ãƒ©ã‚’ä½œã‚‹
 			if(!frame.isUserHandler_)
 				frame.handler_ = ((Scripts.eval(makeOperationHandlerScriptSource(frame, arr[next]))) incontextof this);
 		}
 	}
 
 	/**
-	 * \brief w’èˆÊ’u‚É’P“ÆƒtƒŒ[ƒ€‚ğ’Ç‰Á‚µ‚Ü‚·B
-	 * \brief ‚±‚ÌƒtƒŒ[ƒ€‚Í‘OŒã‚Ì‚Ç‚ÌƒtƒŒ[ƒ€‚Æ‚àƒŠƒ“ƒN‚µ‚Ü‚¹‚ñB
+	 * \brief æŒ‡å®šä½ç½®ã«å˜ç‹¬ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’è¿½åŠ ã—ã¾ã™ã€‚
+	 * \brief ã“ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã¯å‰å¾Œã®ã©ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã¨ã‚‚ãƒªãƒ³ã‚¯ã—ã¾ã›ã‚“ã€‚
 	 *
-	 * FIXME: ğŒ‚É‚æ‚Á‚Ä‚ÍÅ‰‚Ì onProcessTimeLine() ŒÄ‚Ño‚µ‚Å—áŠO‚ª”­¶‚·‚éB
+	 * FIXME: æ¡ä»¶ã«ã‚ˆã£ã¦ã¯æœ€åˆã® onProcessTimeLine() å‘¼ã³å‡ºã—ã§ä¾‹å¤–ãŒç™ºç”Ÿã™ã‚‹ã€‚
 	 *
-	 * ‚±‚ñ‚ÈŠ´‚¶‚É‚·‚é‚Æ”­¶B
+	 * ã“ã‚“ãªæ„Ÿã˜ã«ã™ã‚‹ã¨ç™ºç”Ÿã€‚
 	 *
 	 * lam.addAloneFrame(0.0, %[handler : userFunction]);
-	 * lam.addFrame(0.0, %[``]);
-	 * lam.addFrame(1.0, %[``]);
+	 * lam.addFrame(0.0, %[ï½ï½]);
+	 * lam.addFrame(1.0, %[ï½ï½]);
 	**/
 	function addAloneFrame(timeOrPosition, parameters)
 	{
@@ -389,8 +387,8 @@ class GLayerMover extends GTimeLine
 
 			if(.angle !== void || .ax !== void || .ay !== void || .scale !== void || .sx !== void || .sy !== void)
 			{
-				// d—lã‹–‰Â‚µ‚È‚¢
-				throw new GRuntimeError("Šg‘å^k¬^‰ñ“]‚Í’P“ÆƒtƒŒ[ƒ€‚Å‚ÍƒTƒ|[ƒg‚³‚ê‚Ü‚¹‚ñB");
+				// ä»•æ§˜ä¸Šè¨±å¯ã—ãªã„
+				throw new GRuntimeError("æ‹¡å¤§ï¼ç¸®å°ï¼å›è»¢ã¯å˜ç‹¬ãƒ•ãƒ¬ãƒ¼ãƒ ã§ã¯ã‚µãƒãƒ¼ãƒˆã•ã‚Œã¾ã›ã‚“ã€‚");
 			}
 		}
 
@@ -414,7 +412,7 @@ class GLayerMover extends GTimeLine
 	function erase(index)
 	{
 		//events_.erase(index);
-		// ‚ß‚ñ‚Ç‚¢‚Ì‚ÅŒã‚Å–¢À‘•B
+		// ã‚ã‚“ã©ã„ã®ã§å¾Œã§æœªå®Ÿè£…ã€‚
 	}
 
 	function clear()
@@ -428,7 +426,7 @@ class GLayerMover extends GTimeLine
 	}
 
 	/**
-	 * ƒŒƒCƒ„[‚ªXV‚³‚ê‚ÄƒLƒƒƒbƒVƒ…‚Ì“à—e‚àXV‚·‚é•K—v‚ª‚ ‚éê‡‚ÉŒÄ‚Ño‚µ‚Ä‚­‚¾‚³‚¢B
+	 * ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒæ›´æ–°ã•ã‚Œã¦ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã®å†…å®¹ã‚‚æ›´æ–°ã™ã‚‹å¿…è¦ãŒã‚ã‚‹å ´åˆã«å‘¼ã³å‡ºã—ã¦ãã ã•ã„ã€‚
 	**/
 	function updateCacheImage()
 	{
@@ -452,11 +450,11 @@ class GLayerMover extends GTimeLine
 	{
 		var lines = [];
 
-		lines.push("function (step, layer, ox, oy) {");
+		lines.push("function (step, layer) {");
 
 		if(second === void)
 		{
-			// ’P“Æ
+			// å˜ç‹¬
 			lines.push(@"layer.left = &first.x;" + ';') if typeof(first.x) !== 'undefined';
 			lines.push(@"layer.top = &first.y;" + ';') if typeof(first.y) !== 'undefined';
 			lines.push(@"layer.width = &first.width;" + ';') if typeof(first.width) !== 'undefined';
@@ -470,7 +468,7 @@ class GLayerMover extends GTimeLine
 		}
 		else
 		{
-			// •Ï‰»
+			// å¤‰åŒ–
 			if(useTransform_)
 			{
 				var x = false, y = false;
@@ -482,21 +480,21 @@ class GLayerMover extends GTimeLine
 
 				if(typeof(first.x) !== 'undefined' && typeof(second.x) !== 'undefined')
 				{
-					lines.push(@"var x = ox + &first.x; + (&second.x; - &first.x;) * step" + ';');
+					lines.push(@"var x = &first.x; + (&second.x; - &first.x;) * step" + ';');
 					x = true;
 				}
 				else
 				{
-					lines.push('var x = ox;');
+					lines.push('var x = 0;');
 				}
 				if(typeof(first.y) !== 'undefined' && typeof(second.y) !== 'undefined')
 				{
-					lines.push(@"var y = oy + &first.y; + (&second.y; - &first.y;) * step" + ';');
+					lines.push(@"var y = &first.y; + (&second.y; - &first.y;) * step" + ';');
 					y = true;
 				}
 				else
 				{
-					lines.push('var y = oy;');
+					lines.push('var y = 0;');
 				}
 				if(typeof(first.width) !== 'undefined' && typeof(second.width) !== 'undefined')
 				{
@@ -564,7 +562,7 @@ class GLayerMover extends GTimeLine
 					sy = true;
 				}
 
-				// ‰ñ“]s—ñ m ‚Í•K‚¸•K—v‚É‚È‚é
+				// å›è»¢è¡Œåˆ— m ã¯å¿…ãšå¿…è¦ã«ãªã‚‹
 				if(ax && ay)
 					lines.push('var m = rotateM(ax, ay);');
 				else
@@ -581,7 +579,7 @@ class GLayerMover extends GTimeLine
 				lines.push('var ry = height >> 1;');
 
 				lines.push('m = mulM(transM(-rx, -ry), m);');
-				// ƒXƒP[ƒŠƒ“ƒOi•K—v‚È‚ç‚Îj
+				// ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ï¼ˆå¿…è¦ãªã‚‰ã°ï¼‰
 				if(sx && sy)
 					lines.push('m = mulM(m, scaleM(sx, sy));');
 				else
@@ -590,11 +588,11 @@ class GLayerMover extends GTimeLine
 				else
 				if(sy)
 					lines.push('m = mulM(m, scaleM(1.0, sy));');
-				// ˆÚ“®
+				// ç§»å‹•
 				lines.push('m = mulM(m, transM(x, y));');
 				lines.push('m = mulM(m, transM(rx, ry));');
 
-				// •`‰æ–{‘Ì
+				// æç”»æœ¬ä½“
 				lines.push('with(targetLayer_) {');
 				lines.push('.fillRect(0, 0, .width, .height, 0);');
 				lines.push('.operateAffine(layer, int(ix + 0.5), int(iy + 0.5), width, height, true, m*, omAlpha, opacity, stNearest);');
@@ -604,11 +602,11 @@ class GLayerMover extends GTimeLine
 			{
 				if(typeof(first.x) !== 'undefined' && typeof(second.x) !== 'undefined')
 				{
-					lines.push(@"layer.fixedX = ox + &first.x; + (&second.x; - &first.x;) * step" + ';');
+					lines.push(@"layer.fixedX = &first.x; + (&second.x; - &first.x;) * step" + ';');
 				}
 				if(typeof(first.y) !== 'undefined' && typeof(second.y) !== 'undefined')
 				{
-					lines.push(@"layer.fixedY = oy + &first.y; + (&second.y; - &first.y;) * step" + ';');
+					lines.push(@"layer.fixedY = &first.y; + (&second.y; - &first.y;) * step" + ';');
 				}
 				if(typeof(first.width) !== 'undefined' && typeof(second.width) !== 'undefined')
 				{
@@ -699,9 +697,6 @@ class GLayerMover extends GTimeLine
 	{
 		var dic = super.store(...);
 
-		dic.originX = originX_;
-		dic.originY = originY_;
-
 		dic.events = events_;
 		dic.transformEventCount = transformEventCount_;
 		dic.pointer = pointer_;
@@ -716,9 +711,6 @@ class GLayerMover extends GTimeLine
 
 	function restore(dic, tick)
 	{
-		originX_ = dic.originX;
-		originY_ = dic.originY;
-
 		// NOTE:
 		var arr = copyArray([], dic.events);
 		var prev = void;
@@ -764,16 +756,10 @@ class GLayerMover extends GTimeLine
 				src = cacheLayer_;
 			}
 
-			originX_ = owner.left;
-			originY_ = owner.top;
-
 			this.onProcessTimeLine = onTransformProcess;
 		}
 		else
 		{
-			originX_ = 0;
-			originY_ = 0;
-
 			this.onProcessTimeLine = onNormalProcess;
 		}
 
@@ -783,18 +769,18 @@ class GLayerMover extends GTimeLine
 	function onStartTimeLine()
 	{
 		if(events_.count <= 0)
-			throw new GRuntimeError("•ÏŠ·‚ª‰½‚àİ’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ‚ªƒAƒNƒVƒ‡ƒ“‚ğŠJn‚µ‚æ‚¤‚Æ‚µ‚Ü‚µ‚½B");
+			throw new GRuntimeError("å¤‰æ›ãŒä½•ã‚‚è¨­å®šã•ã‚Œã¦ã„ã¾ã›ã‚“ãŒã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚’é–‹å§‹ã—ã‚ˆã†ã¨ã—ã¾ã—ãŸã€‚");
 
 		resetPointer();
 
 		if(pointer_ == -1 && alonePointer_ == -1)
-			throw new GRuntimeError("ŠJn‰Â”\‚ÈƒCƒxƒ“ƒg‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½B");
+			throw new GRuntimeError("é–‹å§‹å¯èƒ½ãªã‚¤ãƒ™ãƒ³ãƒˆãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚");
 
 		onInitialize_private_();
 
 		// NOTE:
-		// ‰‰ñ•`‰æ‚ğè“®‚Ås‚¤B
-		// ‚±‚ê‚ğ‚µ‚È‚¢‚Æ delay ‚ªİ’è‚³‚ê‚Ä‚¢‚é‚É‚¨‚©‚µ‚­‚È‚éB
+		// åˆå›æç”»ã‚’æ‰‹å‹•ã§è¡Œã†ã€‚
+		// ã“ã‚Œã‚’ã—ãªã„ã¨ delay ãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹æ™‚ã«ãŠã‹ã—ããªã‚‹ã€‚
 		process(0);
 	}
 
@@ -828,8 +814,6 @@ class GLayerMover extends GTimeLine
 	{
 		var events = events_;
 		var layer = originLayer_;
-		var ox = originX_;
-		var oy = originY_;
 		var ptr = pointer_;
 		var aptr = alonePointer_;
 
@@ -841,7 +825,7 @@ class GLayerMover extends GTimeLine
 
 			if(step >= e.position_)
 			{
-				e.handler_(step, layer, ox, oy, e);
+				e.handler_(step, layer, e);
 				alonePointer_ = nextAlonePointer(aptr + 1);
 			}
 		}
@@ -852,13 +836,13 @@ class GLayerMover extends GTimeLine
 			var dst = events[src.next_];
 
 			// NOTE:
-			// ’´‚¦‚Ä‚¢‚é‚È‚ç‚ÎŸ‚Éi‚Ş
+			// è¶…ãˆã¦ã„ã‚‹ãªã‚‰ã°æ¬¡ã«é€²ã‚€
 			if(step >= dst.position_)
 			{
 				ptr = src.next_;
 				src = events[ptr];
 
-				// Ÿ‚ª‚È‚¯‚ê‚Î‰½‚à‚µ‚È‚¢
+				// æ¬¡ãŒãªã‘ã‚Œã°ä½•ã‚‚ã—ãªã„
 				if(src.next_ === void)
 				{
 					pointer_ = -1;
@@ -875,7 +859,7 @@ class GLayerMover extends GTimeLine
 
 				localStep = applyAccelTo(localStep, src.accel_) if src.accel_ !== void;
 
-				src.handler_(localStep, layer, ox, oy, src, dst);
+				src.handler_(localStep, layer, src, dst);
 			}
 		}
 	}
@@ -884,8 +868,6 @@ class GLayerMover extends GTimeLine
 	{
 		var events = events_;
 		var layer = originLayer_;
-		var ox = originX_;
-		var oy = originY_;
 		var ptr = pointer_;
 		var aptr = alonePointer_;
 
@@ -895,7 +877,7 @@ class GLayerMover extends GTimeLine
 
 			if(step >= e.position_)
 			{
-				e.handler_(step, layer, ox, oy, e);
+				e.handler_(step, layer, e);
 				alonePointer_ = nextAlonePointer(aptr + 1);
 			}
 		}
@@ -906,10 +888,10 @@ class GLayerMover extends GTimeLine
 			var dst = events[src.next_];
 
 			// NOTE:
-			// ’´‚¦‚Ä‚¢‚é‚È‚ç‚Î”O‚Ì‚½‚ßÅIó‘ÔXV
+			// è¶…ãˆã¦ã„ã‚‹ãªã‚‰ã°å¿µã®ãŸã‚æœ€çµ‚çŠ¶æ…‹æ›´æ–°
 			if(step >= dst.position_)
 			{
-				src.handler_(1.0, layer, ox, oy, src, dst);
+				src.handler_(1.0, layer, src, dst);
 
 				ptr = src.next_;
 				src = events[ptr];
@@ -929,7 +911,7 @@ class GLayerMover extends GTimeLine
 
 				localStep = applyAccelTo(localStep, src.accel_) if src.accel_ !== void;
 
-				src.handler_(localStep, layer, ox, oy, src, dst);
+				src.handler_(localStep, layer, src, dst);
 			}
 		}
 	}
