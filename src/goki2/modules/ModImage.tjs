@@ -284,7 +284,7 @@ class ModImage extends GModule
 				{
 					.clear() if GObjectUtils.getBoolean(elm, 'clear', false);
 					.useTransform = GObjectUtils.getBoolean(elm, 'transform') if GObjectUtils.hasValue(elm, 'transform');
-					.withChildrens = GObjectUtils.getBoolean(elm, 'childrens') if GObjectUtils.hasValue(elm, 'childrens');
+					.withChildren = GObjectUtils.getBoolean(elm, 'children') if GObjectUtils.hasValue(elm, 'children');
 					.looping = GObjectUtils.getBoolean(elm, 'looping') if GObjectUtils.hasValue(elm, 'looping');
 					.delay = +elm.delay;
 					.accel = +elm.accel;

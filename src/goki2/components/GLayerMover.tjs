@@ -18,7 +18,7 @@ class GLayerMover extends GTimeLine
 	var alonePointer_ = 0;
 
 	var useTransform_ = false;
-	var withChildrens_ = false;
+	var withChildren_ = false;
 	var eachUpdateCache = false;
 
 	/**
@@ -38,10 +38,10 @@ class GLayerMover extends GTimeLine
 	/**
 	 * 再リンクが必要なプロパティの実装
 	**/
-	function setRenderingOptions(useTransform, withChildrens)
+	function setRenderingOptions(useTransform, withChildren)
 	{
 		useTransform_ = useTransform;
-		withChildrens_ = withChildrens;
+		withChildren_ = withChildren;
 		relinkAllOperations();
 	}
 
@@ -708,7 +708,7 @@ class GLayerMover extends GTimeLine
 		dic.alonePointer = alonePointer_;
 
 		dic.useTransform = useTransform_;
-		dic.withChildrens = withChildrens_;
+		dic.withChildren = withChildren_;
 		dic.eachUpdateCache = eachUpdateCache;
 
 		return dic;
@@ -736,7 +736,7 @@ class GLayerMover extends GTimeLine
 		alonePointer_ = dic.alonePointer;
 
 		useTransform_ = dic.useTransform;
-		withChildrens_ = dic.withChildrens;
+		withChildren_ = dic.withChildren;
 		eachUpdateCache = dic.eachUpdateCache;
 
 		onInitialize_private_() if dic.running;
@@ -755,7 +755,7 @@ class GLayerMover extends GTimeLine
 
 			targetLayer_.setSize(src.parent.width, src.parent.height);
 
-			if(withChildrens_)
+			if(withChildren_)
 			{
 				cacheLayer_ = new GLayer(src.window, src) if cacheLayer_ === void;
 
@@ -946,14 +946,14 @@ class GLayerMover extends GTimeLine
 
 	property useTransform
 	{
-		setter(x)	{ setRenderingOptions(x, withChildrens_); }
+		setter(x)	{ setRenderingOptions(x, withChildren_); }
 		getter		{ return useTransform_; }
 	}
 
-	property withChildrens
+	property withChildren
 	{
 		setter(x)	{ setRenderingOptions(useTransform_, x); }
-		getter		{ return withChildrens_; }
+		getter		{ return withChildren_; }
 	}
 
 	property time

@@ -83,7 +83,7 @@ class GFormLayer extends GWidgetLayer
 			with(showHideMover)
 			{
 				.useTransform = false;
-				.withChildrens = false;
+				.withChildren = false;
 				.looping = false;
 			}
 			break;
@@ -92,7 +92,7 @@ class GFormLayer extends GWidgetLayer
 			with(showHideMover)
 			{
 				.useTransform = true;
-				.withChildrens = true;
+				.withChildren = true;
 				.looping = false;
 			}
 			break;

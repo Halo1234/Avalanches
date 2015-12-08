@@ -1,12 +1,12 @@
 /*
- * ä¸»ã« ADV ã§ã®åˆ©ç”¨ã‚’æƒ³å®šã—ãŸãƒ¬ã‚¤ãƒ¤ãƒ¼ç®¡ç†ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã§ã™ã€‚
+ * å‚É ADV ‚Å‚Ì—˜—p‚ğ‘z’è‚µ‚½ƒŒƒCƒ„[ŠÇ—ƒ‚ƒWƒ…[ƒ‹‚Å‚·B
  *
  * CharacterVisualLayerIterator
- *  ã„ã‚ã‚†ã‚‹ç«‹ã¡çµµç”¨ã®ãƒ¬ã‚¤ãƒ¤ãƒ¼ç¾¤ã‚’ç®¡ç†ã™ã‚‹ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿ã‚¯ãƒ©ã‚¹ã§ã™ã€‚
+ *  ‚¢‚í‚ä‚é—§‚¿ŠG—p‚ÌƒŒƒCƒ„[ŒQ‚ğŠÇ—‚·‚éƒCƒeƒŒ[ƒ^ƒNƒ‰ƒX‚Å‚·B
  *
  * CharacterGraphicsLayerIterator
- *  ä¸€æšçµµï¼ˆã„ã‚ã‚†ã‚‹ï¼£ï¼§ï¼‰ç”¨ã®ãƒ¬ã‚¤ãƒ¤ãƒ¼ç¾¤ã‚’ç®¡ç†ã™ã‚‹ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿ã‚¯ãƒ©ã‚¹ã§ã™ã€‚
- *  ã¡ãªã¿ã«åå‰ã¯é–“é•ãˆã¦ã„ã‚‹è¨³ã§ã¯ãªãé€ èªã§ã™ã€‚
+ *  ˆê–‡ŠGi‚¢‚í‚ä‚é‚b‚fj—p‚ÌƒŒƒCƒ„[ŒQ‚ğŠÇ—‚·‚éƒCƒeƒŒ[ƒ^ƒNƒ‰ƒX‚Å‚·B
+ *  ‚¿‚È‚İ‚É–¼‘O‚ÍŠÔˆá‚¦‚Ä‚¢‚é–ó‚Å‚Í‚È‚­‘¢Œê‚Å‚·B
 **/
 
 
@@ -284,7 +284,7 @@ class ModImage extends GModule
 				{
 					.clear() if GObjectUtils.getBoolean(elm, 'clear', false);
 					.useTransform = GObjectUtils.getBoolean(elm, 'transform') if GObjectUtils.hasValue(elm, 'transform');
-					.withChildrens = GObjectUtils.getBoolean(elm, 'childrens') if GObjectUtils.hasValue(elm, 'childrens');
+					.withChildren = GObjectUtils.getBoolean(elm, 'children') if GObjectUtils.hasValue(elm, 'children');
 					.looping = GObjectUtils.getBoolean(elm, 'looping') if GObjectUtils.hasValue(elm, 'looping');
 					.delay = +elm.delay;
 					.accel = +elm.accel;
@@ -406,13 +406,13 @@ class ModImage extends GModule
 				case void:		// Not break.
 				case 'fore':	layer = .get(layerName, true); break;
 				case 'back':	layer = .get(layerName, false); break;
-				default:		throw new GArgumentsError(@"page å±æ€§ã« '&page;' ãŒæŒ‡å®šã•ã‚Œã¾ã—ãŸãŒã€æœªå®šç¾©ã®ãƒšãƒ¼ã‚¸æŒ‡å®šã§ã™ã€‚");
+				default:		throw new GArgumentsError(@"page ‘®«‚É '&page;' ‚ªw’è‚³‚ê‚Ü‚µ‚½‚ªA–¢’è‹`‚Ìƒy[ƒWw’è‚Å‚·B");
 				}
 			}
 		}
 
 		if(layer === void)
-			throw new GRuntimeError(@"ãƒ¬ã‚¤ãƒ¤ãƒ¼ &layerName; ã¯å­˜åœ¨ã—ã¾ã›ã‚“ã€‚");
+			throw new GRuntimeError(@"ƒŒƒCƒ„[ &layerName; ‚Í‘¶İ‚µ‚Ü‚¹‚ñB");
 
 		return layer;
 	}
@@ -453,14 +453,14 @@ class ModImage extends GModule
 				break;
 
 			default:
-				throw new GRuntimeError(@"key å±æ€§ã« &key; ã‚’æŒ‡å®šã—ã¾ã—ãŸãŒå¯¾å¿œã§ããªã„å½¢å¼ã§ã™ã€‚");
+				throw new GRuntimeError(@"key ‘®«‚É &key; ‚ğw’è‚µ‚Ü‚µ‚½‚ª‘Î‰‚Å‚«‚È‚¢Œ`®‚Å‚·B");
 				break;
 			}
 
 			tag = layer.loadImages(elm.storage, key);
 			elm = GObjectUtils.unionDictionary(tag, elm) if tag !== null;
 
-			// asd_storage ãŒæŒ‡å®šã•ã‚Œã¦ã„ãªã‘ã‚Œã°æ¢ã—ã¦ã¿ã‚‹ã€‚
+			// asd_storage ‚ªw’è‚³‚ê‚Ä‚¢‚È‚¯‚ê‚Î’T‚µ‚Ä‚İ‚éB
 			if(elm['asd_storage'] == void)
 			{
 				var name = elm.storage;
@@ -483,9 +483,9 @@ class ModImage extends GModule
 		}
 		layer.face = dfAuto;
 
-		// TODO: offs_x offs_y offs_unit å¯¾å¿œã€‚
-		// TODO: vpag_w vpag_h vpag_unit å¯¾å¿œã€‚
-		// TODO: reso_x reso_y reso_unit å¯¾å¿œã€‚
+		// TODO: offs_x offs_y offs_unit ‘Î‰B
+		// TODO: vpag_w vpag_h vpag_unit ‘Î‰B
+		// TODO: reso_x reso_y reso_unit ‘Î‰B
 
 		layer.flipUD() if gbFunc(elm, 'flip_ud', false);
 		layer.flipLR() if gbFunc(elm, 'flip_lr', false);
@@ -510,7 +510,7 @@ class ModImage extends GModule
 			layer.setImagePos(l, t);
 		}
 
-		// è‰²è£œæ­£
+		// F•â³
 		with(layer.colorCorrection)
 		{
 			.grayScale = (elm.gray_scale === void ? false : +elm.gray_scale);
@@ -541,7 +541,7 @@ class ModImage extends GModule
 		layer.absolute = +elm.index if elm.index !== void;
 		layer.opacity = +elm.opacity if elm.opacity !== void;
 
-		// asd_storage èª­ã¿è¾¼ã¿
+		// asd_storage “Ç‚İ‚İ
 		if(elm.asd_storage !== void)
 		{
 			with(layer.conductor)
@@ -610,7 +610,7 @@ class ModImage extends GModule
 			if(elm.terminateFunction !== void)
 				dispatcher_.makeOneShot(@"&layerName;_end_of_transition", elm.terminateFunction);
 
-			// NOTE: ãƒ•ãƒªãƒƒãƒ—ã™ã‚‹ã ã‘ãªã®ã§ä»–ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¯å¿…è¦ãªã„ã€‚
+			// NOTE: ƒtƒŠƒbƒv‚·‚é‚¾‚¯‚È‚Ì‚Å‘¼‚Ìƒpƒ‰ƒ[ƒ^‚Í•K—v‚È‚¢B
 			if(time == 0)
 			{
 				conductor.setControlCode('break') if conductor !== void;
@@ -624,20 +624,20 @@ class ModImage extends GModule
 			var fore, back;
 
 			if((fore = .get(layerName)) === void)
-				throw new GArgumentsError(@"ãƒ¬ã‚¤ãƒ¤ãƒ¼ &layerName; ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚");
+				throw new GArgumentsError(@"ƒŒƒCƒ„[ &layerName; ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½B");
 
 			back = fore.mirror;
 
-			// method å±æ€§ãŒæœªæŒ‡å®šãªã‚‰ã°æ¨æ¸¬ã™ã‚‹ã€‚
+			// method ‘®«‚ª–¢w’è‚È‚ç‚Î„‘ª‚·‚éB
 			method = methodInferFromElm(elm) if method == void;
 
-			// rule å±æ€§ã‚’ãƒã‚§ãƒƒã‚¯
+			// rule ‘®«‚ğƒ`ƒFƒbƒN
 			if(method == 'universal' && elm.rule == void)
 			{
-				throw new GArgumentsError('ãƒ¦ãƒ‹ãƒãƒ¼ã‚µãƒ«ãƒˆãƒ©ãƒ³ã‚¸ã‚·ãƒ§ãƒ³ã‚’æŒ‡å®šã—ã¾ã—ãŸãŒãƒ«ãƒ¼ãƒ«ç”»åƒãŒæŒ‡å®šã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚');
+				throw new GArgumentsError('ƒ†ƒjƒo[ƒTƒ‹ƒgƒ‰ƒ“ƒWƒVƒ‡ƒ“‚ğw’è‚µ‚Ü‚µ‚½‚ªƒ‹[ƒ‹‰æ‘œ‚ªw’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB');
 			}
 			else
-			// method ãŒ scroll ã®å ´åˆã€from ã¨ stay ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å¤‰æ›ã™ã‚‹ã€‚
+			// method ‚ª scroll ‚Ìê‡Afrom ‚Æ stay ƒpƒ‰ƒ[ƒ^‚ğ•ÏŠ·‚·‚éB
 			if(method == 'scroll')
 			{
 				switch(elm.from)
@@ -670,7 +670,7 @@ class ModImage extends GModule
 	{
 		var layer = findByElm(elm, true);
 
-		// ãƒˆãƒ©ãƒ³ã‚¸ã‚·ãƒ§ãƒ³ä¸­ã˜ã‚ƒãªã„ã®ã§ã™ãã«æˆ»ã‚‹
+		// ƒgƒ‰ƒ“ƒWƒVƒ‡ƒ“’†‚¶‚á‚È‚¢‚Ì‚Å‚·‚®‚É–ß‚é
 		if(!layer.inTransition)
 			return;
 
@@ -682,7 +682,7 @@ class ModImage extends GModule
 	{
 		var layer = findByElm(elm, true);
 
-		// ãƒˆãƒ©ãƒ³ã‚¸ã‚·ãƒ§ãƒ³ä¸­ã˜ã‚ƒãªã„ã®ã§ã™ãã«æˆ»ã‚‹
+		// ƒgƒ‰ƒ“ƒWƒVƒ‡ƒ“’†‚¶‚á‚È‚¢‚Ì‚Å‚·‚®‚É–ß‚é
 		if(!layer.inTransition)
 			return;
 
@@ -705,7 +705,7 @@ class ModImage extends GModule
 		}
 		else
 		{
-			// å¤§äººã—ããƒˆãƒ©ãƒ³ã‚¸ã‚·ãƒ§ãƒ³çµ‚äº†ã‚¤ãƒ™ãƒ³ãƒˆã‚’å¾…ã¤
+			// ‘ål‚µ‚­ƒgƒ‰ƒ“ƒWƒVƒ‡ƒ“I—¹ƒCƒxƒ“ƒg‚ğ‘Ò‚Â
 			conductor.waitSignal(%[@"&event;" => null]);
 		}
 	}
@@ -795,15 +795,15 @@ class ModImage extends GModule
 	/**/
 	function methodInferFromElm(elm)
 	{
-		// NOTE: ãƒ«ãƒ¼ãƒ«æŒ‡å®šãŒã‚ã‚‹ãªã‚‰ universal ã¨ã¿ãªã™ã€‚
+		// NOTE: ƒ‹[ƒ‹w’è‚ª‚ ‚é‚È‚ç universal ‚Æ‚İ‚È‚·B
 		if(elm.rule !== void)
 			return 'universal';
 		else
-		// NOTE: from ã‹ stay ã®æŒ‡å®šãŒã‚ã‚‹ãªã‚‰ scroll ã¨ã¿ãªã™ã€‚
+		// NOTE: from ‚© stay ‚Ìw’è‚ª‚ ‚é‚È‚ç scroll ‚Æ‚İ‚È‚·B
 		if(elm.from !== void || elm.stay !== void)
 			return 'scroll';
 
-		// ãã‚Œä»¥å¤–ã¯ 'crossfade' ã¨ã¿ãªã™ã€‚
+		// ‚»‚êˆÈŠO‚Í 'crossfade' ‚Æ‚İ‚È‚·B
 		return 'crossfade';
 	}
 
@@ -890,8 +890,8 @@ class ModImage extends GModule
 	property transitionCount
 	{
 		// NOTE:
-		// ã‚‚ã—ã€è¤‡æ•°ã®ã‚³ãƒ³ãƒ†ãƒŠã‚’ä½¿ã„åˆ†ã‘ã‚‹ãªã‚‰ã°
-		// ã“ã®å€¤ã‚‚èª¿æ•´ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã®ã§æ³¨æ„ã™ã‚‹äº‹ã€‚
+		// ‚à‚µA•¡”‚ÌƒRƒ“ƒeƒi‚ğg‚¢•ª‚¯‚é‚È‚ç‚Î
+		// ‚±‚Ì’l‚à’²®‚·‚é•K—v‚ª‚ ‚é‚Ì‚Å’ˆÓ‚·‚é–B
 		getter		{ return layerContainer.transitionCount; }
 	}
 
