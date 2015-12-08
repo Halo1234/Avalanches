@@ -264,12 +264,12 @@ class GMessageLayer extends GHyperTextLayer
 		var c = arr.count;
 
 		for(var i = 0; i < c; i++)
-			arr[i].mover.stop();
+			arr[i].cancelShowHide();
 
 		arr = usedRubyTextLayers_;
 		c = arr.count;
 		for(var i = 0; i < c; i++)
-			arr[i].mover.stop();
+			arr[i].cancelShowHide();
 	}
 
 	/**/
@@ -313,7 +313,10 @@ class GMessageLayer extends GHyperTextLayer
 		var c = layers.count;
 
 		for(var i = 0; i < c; i++)
+		{
+			layers[i].cancelShowHide();
 			layers[i].visible = false;
+		}
 		notUsedCharacterLayers_.push(layers*);
 		layers.clear();
 	}
@@ -325,7 +328,10 @@ class GMessageLayer extends GHyperTextLayer
 		var c = layers.count;
 
 		for(var i = 0; i < c; i++)
+		{
+			layers[i].cancelShowHide();
 			layers[i].visible = false;
+		}
 		notUsedRubyTextLayers_.push(layers*);
 		layers.clear();
 	}
