@@ -264,6 +264,8 @@ class ModImage extends GModule
 						var step = 1.0 / (count - 1);
 						var pos = 0;
 
+						.clear();
+
 						for(var i = 0; i < count; i++)
 						{
 							.mover.addFrame(pos, %[x : arr[i * 3], y : arr[(i * 3) + 1], opacity : arr[(i * 3) + 2]]);
