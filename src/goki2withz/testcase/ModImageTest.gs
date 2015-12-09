@@ -73,6 +73,7 @@
 @layer_move layer=0 x=0 y=0 position=0.5
 @layer_move layer=0 x=200 y=200 position=1.0
 @layer_move layer=0 time=5000 start
+@layopt layer=0 left=200 top=200
 @wm layer=0
 
 子レイヤの移動を行います。[p][cm]

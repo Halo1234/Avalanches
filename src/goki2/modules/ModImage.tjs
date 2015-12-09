@@ -264,7 +264,7 @@ class ModImage extends GModule
 						var step = 1.0 / (count - 1);
 						var pos = 0;
 
-						.clear();
+						.mover.clear();
 
 						for(var i = 0; i < count; i++)
 						{
@@ -426,11 +426,7 @@ class ModImage extends GModule
 		var gbFunc = GObjectUtils.getBoolean;
 		var hvFunc = GObjectUtils.hasValue;
 
-		if(elm.storage == void)
-		{
-			layer.clearImages();
-		}
-		else
+		if(elm.storage != void)
 		{
 			var key = elm.key;
 			var tag = null;
