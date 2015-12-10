@@ -1174,7 +1174,7 @@ class TypingWordLayer extends GWidgetLayer
 	}
 
 	/**/
-	function clear()
+	function reset()
 	{
 		word_.reset() if word_ !== void;
 		word_ = void;
@@ -1494,8 +1494,14 @@ class TypingObjectLayer extends GFormLayer
 	/**/
 	function clear()
 	{
-		wordLayer_.clear();
+		wordLayer_.reset();
 		hide();
+	}
+
+	/**/
+	function reset()
+	{
+		wordLyaer_.reset();
 	}
 
 	/**/
@@ -1607,7 +1613,7 @@ class TypingBaseLayer extends GLayer
 	}
 
 	/**/
-	function getUsedObjectLayer_private_(word)
+	function getObjectLayer_private_(word)
 	{
 		if(word === void)
 			return void;
@@ -1620,7 +1626,7 @@ class TypingBaseLayer extends GLayer
 	}
 
 	/**/
-	function releaseObjectLayer_private_(obj)
+	function releaseObjectLayer(obj)
 	{
 		if(obj === activeObject_)
 			activeObject_ = void;
@@ -1629,6 +1635,16 @@ class TypingBaseLayer extends GLayer
 
 		usedObjectLayers_.remove(obj);
 		unUsedObjectLayers_.push(obj);
+	}
+
+	/**/
+	function releaseAllObjectLayers()
+	{
+		var arr = GObjectUtils.duplicate(usedObjectLayers_);
+		var c = arr.count;
+
+		for(var i = 0; i < c; i++)
+			releaseObjectLayer(arr[i]);
 	}
 
 	/**/
@@ -1668,7 +1684,7 @@ class TypingBaseLayer extends GLayer
 	**/
 	function getNewWordAtRandom()
 	{
-		var obj = getUsedObjectLayer_private_(processor_.getNewWordAtRandom(getUsedInitials()));
+		var obj = getObjectLayer_private_(processor_.getNewWordAtRandom(getUsedInitials()));
 
 		if(obj != void)
 		{
@@ -1681,7 +1697,7 @@ class TypingBaseLayer extends GLayer
 	/**/
 	function getNewWordByCaption(caption)
 	{
-		var obj = getUsedObjectLayer_private_(processor_.getNewWordByCaption(caption, getUsedInitials()));
+		var obj = getObjectLayer_private_(processor_.getNewWordByCaption(caption, getUsedInitials()));
 
 		if(obj != void)
 		{
@@ -1694,7 +1710,7 @@ class TypingBaseLayer extends GLayer
 	/**/
 	function getNewWordByRuby(ruby)
 	{
-		var obj = getUsedObjectLayer_private_(processor_.getNewWordByRuby(ruby, getUsedInitials()));
+		var obj = getObjectLayer_private_(processor_.getNewWordByRuby(ruby, getUsedInitials()));
 
 		if(obj != void)
 		{
@@ -1858,7 +1874,7 @@ class TypingBaseLayer extends GLayer
 			// 入力が完了したらアクティブオブジェクトの参照を外しておく。
 			if(obj.accepted)
 			{
-				releaseObjectLayer_private_(obj);
+				releaseObjectLayer(obj);
 				callHandler('onWordAccepted', %[obj : obj]);
 				activeObject_ = void;
 			}
@@ -2033,7 +2049,6 @@ class ModTypingProcessor extends GModule
 
 						//dm(@"&left;(&elm.left;), &top;(&elm.top;)");
 						obj.setCenterPos(left, top);
-						// 指定時間が有る場合は指定時間経過後に自動的に消滅する設定を行う
 
 						obj.show();
 					}
@@ -2045,6 +2060,11 @@ class ModTypingProcessor extends GModule
 							warn(@"&elm.ruby; は存在しません。");
 					}
 				}
+			} incontextof this,
+
+			/* @hide_typing_target */
+			'hide_typing_target' => function (elm) {
+				baseLayer_.releaseAllObjectLayers();
 			} incontextof this,
 
 			/* @wait_typing */
