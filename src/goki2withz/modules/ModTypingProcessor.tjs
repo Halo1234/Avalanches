@@ -2049,7 +2049,6 @@ class ModTypingProcessor extends GModule
 
 						//dm(@"&left;(&elm.left;), &top;(&elm.top;)");
 						obj.setCenterPos(left, top);
-						// 指定時間が有る場合は指定時間経過後に自動的に消滅する設定を行う
 
 						obj.show();
 					}
@@ -2148,6 +2147,11 @@ class ModTypingProcessor extends GModule
 	property baseLayer
 	{
 		getter		{ return baseLayer_; }
+	}
+
+	property dispatcher
+	{
+		getter		{ return dispatcher_; }
 	}
 }
 

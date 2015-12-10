@@ -2148,6 +2148,11 @@ class ModTypingProcessor extends GModule
 	{
 		getter		{ return baseLayer_; }
 	}
+
+	property dispatcher
+	{
+		getter		{ return dispatcher_; }
+	}
 }
 
 
