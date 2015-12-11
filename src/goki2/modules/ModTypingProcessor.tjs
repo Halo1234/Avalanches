@@ -2069,8 +2069,11 @@ class ModTypingProcessor extends GModule
 
 			/* @wait_typing */
 			'wait_typing' => function (elm, c) {
-				dispatcher_.make('onWordAccepted', onWordAccepted, elm.target_count);
-				c.waitSignal(%['word_accepted' => null]);
+				if(baseLayer_.targetCount > 0)
+				{
+					dispatcher_.make('onWordAccepted', onWordAccepted, elm.target_count);
+					c.waitSignal(%['word_accepted' => null]);
+				}
 			} incontextof this,
 
 			/* @dump_typing_word_list */
