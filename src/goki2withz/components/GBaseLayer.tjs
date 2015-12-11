@@ -41,6 +41,13 @@ class GBaseLayer extends GLayer
 		case mbMiddle:	window.middleClick(x, y, shift); break;
 		}
 	}
+
+	/**/
+	property visible
+	{
+		setter(x)	{ super.visible = x if !offScreen; }
+		getter		{ return super.visible; }
+	}
 }
 
 
