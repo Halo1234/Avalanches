@@ -1943,6 +1943,7 @@ class ModTypingProcessor extends GModule
 			/* @typing_config */
 			'typing_config' => function (elm) {
 				targetImageStorage = elm.target_image if elm.target_image !== void;
+				baseLayer_.absolute = +elm.index if elm.index !== void;
 			} incontextof this,
 
 			/* @typing_start */
@@ -2019,7 +2020,7 @@ class ModTypingProcessor extends GModule
 						}
 
 						// (left, top) で指定された位置に表示
-						// ただし、各値が 'random' ならば baseLayer の範囲に収まる範囲でランダム位置に表示
+						// ただし、各値が 'random' ならば baseLayer に収まる範囲でランダム位置に表示
 						var width = obj.parent.width;
 						var height = obj.parent.height;
 						var left = +elm.left;
