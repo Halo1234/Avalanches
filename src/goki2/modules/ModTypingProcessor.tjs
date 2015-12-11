@@ -2048,7 +2048,7 @@ class ModTypingProcessor extends GModule
 							top = height - (obj.wordLayer.height >> 1);
 
 						//dm(@"&left;(&elm.left;), &top;(&elm.top;)");
-						obj.setCenterPos(left, top);
+						obj.setPos(left, top);
 
 						obj.show();
 					}
