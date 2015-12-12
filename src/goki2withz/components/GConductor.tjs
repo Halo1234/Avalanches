@@ -164,7 +164,7 @@ class GConductor extends KAGParser
 						switch(name[0])
 						{
 						case '/':	.setPattern(name.substring(1, name.length - 1), arr[i + 1]); break;
-						case '&':	.setGroupFlag(name, arr[i + 1].split(', ', , true)*); break;
+						case '&':	.setGroup(name, arr[i + 1].split(', ', , true)*); break;
 						default:	.setElementConvert(name, arr[i + 1].split(', ', , true)*); break;
 						}
 					}
@@ -234,6 +234,17 @@ class GConductor extends KAGParser
 			/* @eval */
 			'eval' => function (elm) {
 				Scripts.eval(elm.exp);
+			} incontextof this,
+
+			/* @input */
+			'input' => function (elm) {
+				var name = elm.name;
+				var initial = Scripts.eval(name);
+				var result = System.inputString(elm.title, elm.prompt, initial);
+				if(result !== void)
+				{
+					Scripts.eval(@"&name; = '&result;';");
+				}
 			} incontextof this,
 
 			/* @trace */

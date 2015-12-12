@@ -162,7 +162,7 @@ class GConductor extends KAGParser
 						switch(name[0])
 						{
 						case '/':	.setPattern(name.substring(1, name.length - 1), arr[i + 1]); break;
-						case '&':	.setGroupFlag(name, arr[i + 1].split(', ', , true)*); break;
+						case '&':	.setGroup(name, arr[i + 1].split(', ', , true)*); break;
 						default:	.setElementConvert(name, arr[i + 1].split(', ', , true)*); break;
 						}
 					}
