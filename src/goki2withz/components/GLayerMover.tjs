@@ -589,8 +589,7 @@ class GLayerMover extends GTimeLine
 				if(sy)
 					lines.push('m = mulM(m, scaleM(1.0, sy));');
 				// 移動
-				lines.push('m = mulM(m, transM(x, y));');
-				lines.push('m = mulM(m, transM(rx, ry));');
+				lines.push('m = mulM(m, transM(x + rx, y + ry));');
 
 				// 描画本体
 				lines.push('with(targetLayer_) {');
@@ -635,7 +634,7 @@ class GLayerMover extends GTimeLine
 
 		var src = lines.join('\n');
 
-		//dm(src);
+		dm(src);
 
 		return src;
 	}
@@ -691,6 +690,18 @@ class GLayerMover extends GTimeLine
 	{
 		pointer_ = nextPointer(0);
 		alonePointer_ = nextAlonePointer(0);
+	}
+
+	/**/
+	function releaseRenderingTarget()
+	{
+		if(targetLayer_ !== void)
+			owner.releaseRenderingTarget(targetLayer_);
+		targetLayer_ = void;
+
+		if(cacheLayer_ !== void)
+			invalidate cacheLayer_;
+		cacheLayer_ = void;
 	}
 
 	function store(tick)
@@ -786,23 +797,10 @@ class GLayerMover extends GTimeLine
 
 	function onStopTimeLine(paused)
 	{
-		with(owner)
-		{
-			if(!paused)
-			{
-				if(targetLayer_ !== void)
-					.releaseRenderingTarget(targetLayer_);
-				targetLayer_ = void;
+		if(!paused)
+			releaseRenderingTarget();
 
-				if(cacheLayer_ !== void)
-				{
-					invalidate cacheLayer_;
-					cacheLayer_ = void;
-				}
-			}
-
-			.callHandler('onStopMover', %[paused : paused]);
-		}
+		owner.callHandler('onStopMover', %[paused : paused]);
 	}
 
 	function onRestartTimeLine()
