@@ -13,8 +13,8 @@ class GYesNoDialogWindow extends Window
 	var checkMessageText_ = "";
 
 	var result_ = '';		// 'yes' or 'no'
-	var checked_ = false;	// true Ç»ÇÁ on
-							// false Ç»ÇÁ off
+	var checked_ = false;	// true „Å™„Çâ on
+							// false „Å™„Çâ off
 
 	var softFocus_;
 
@@ -48,7 +48,7 @@ class GYesNoDialogWindow extends Window
 		var layer = primaryLayer;
 		var w = layer.width;
 		var th = layer.font.getTextHeight(messageText);
-		var captions = ["ÇÕÇ¢", "Ç¢Ç¢Ç¶"];
+		var captions = ["„ÅØ„ÅÑ", "„ÅÑ„ÅÑ„Åà"];
 		var ids = ['yes', 'no'];
 		var focus = softFocus;
 		var obj;
@@ -122,7 +122,7 @@ class GYesNoDialogWindow extends Window
 		var layer = primaryLayer;
 		var tw = layer.font.getTextWidth(messageText);
 		var th = layer.font.getTextHeight(messageText);
-		var w = tw + /* ó]îí */40;
+		var w = tw + /* ‰ΩôÁôΩ */40;
 		var h = (th << 1) + 60 + (checkMessageText != "" ? 10 : 0);
 
 		w = 200 if w < 200;

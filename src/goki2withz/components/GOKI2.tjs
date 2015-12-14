@@ -2,22 +2,22 @@
 **/
 
 
-// NOTE: GOKI2 —áŠOˆ—‹@\‚Ì“o˜^B
+// NOTE: GOKI2 ä¾‹å¤–å‡¦ç†æ©Ÿæ§‹ã®ç™»éŒ²ã€‚
 try {
 	Scripts.execStorage('GOKI2ExceptionControls.tjs');
 } catch(e) {
 	abort(
-		"GOKI2 —áŠOˆ—‹@\‚Ì“o˜^‚É¸”s‚µ‚Ü‚µ‚½B\n" +
-		"‹­§I—¹‚µ‚Ü‚·B\n" +
+		"GOKI2 ä¾‹å¤–å‡¦ç†æ©Ÿæ§‹ã®ç™»éŒ²ã«å¤±æ•—ã—ã¾ã—ãŸã€‚\n" +
+		"å¼·åˆ¶çµ‚äº†ã—ã¾ã™ã€‚\n" +
 		"\n" +
 		e.message
 	);
 }
 
-// NOTE: GOKI2 ƒ†[ƒeƒBƒŠƒeƒB‚Ì“Ç‚İ‚İB
+// NOTE: GOKI2 ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ã®èª­ã¿è¾¼ã¿ã€‚
 Scripts.execStorage('GOKI2Utils.tjs');
 
-// NOTE: •K—v‚Èƒtƒ@ƒCƒ‹‚ğ‘S‚Ä“Ç‚İ‚ŞB
+// NOTE: å¿…è¦ãªãƒ•ã‚¡ã‚¤ãƒ«ã‚’å…¨ã¦èª­ã¿è¾¼ã‚€ã€‚
 {
 	var src = [
 		'GContainer', 'GIterator',
@@ -36,7 +36,6 @@ Scripts.execStorage('GOKI2Utils.tjs');
 		'GVideoOverlay',
 		'GVideoContainer', 'GVideoIterator',
 		'GTimeLine', 'GLayerShaker', 'GLayerMover', 'GLayerSplineMover',
-		'GMenuItem', 'GMenuModule',
 		'GWindow',
 		'GYesNoDialogLayer', 'GYesNoDialogWindow'
 	];
@@ -54,23 +53,23 @@ Scripts.execStorage('GOKI2Utils.tjs');
 }
 
 /*! \var anotherCycle
- * \brief ƒOƒ[ƒoƒ‹ƒgƒŠƒK
+ * \brief ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒˆãƒªã‚¬
 **/
 global.anotherCycle = new GAnotherExclusiveCycle();
 
 /*! \var GMainWindow
- * \brief Å‰‚Éì¬‚³‚ê‚éƒƒCƒ“ƒEƒCƒ“ƒhƒEƒNƒ‰ƒX‚Å‚·B
+ * \brief æœ€åˆã«ä½œæˆã•ã‚Œã‚‹ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚¯ãƒ©ã‚¹ã§ã™ã€‚
  *
- * Å‰‚Éì¬‚³‚ê‚é Window ƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg‚Í GMainWindow ‚Å‚·B
- * ‚±‚ê‚Í‰Šúó‘Ô‚Å‚Í GWindow ‚Ö‚ÌQÆ‚ªƒZƒbƒg‚³‚ê‚Ä‚¢‚Ü‚·B
- * ‚±‚ê‚ğ•ÏX‚µ‚½‚¢ê‡‚ÍˆÈ‰º‚Ì‚æ‚¤‚É‚µ‚Ä‚­‚¾‚³‚¢B
+ * æœ€åˆã«ä½œæˆã•ã‚Œã‚‹ Window ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¯ GMainWindow ã§ã™ã€‚
+ * ã“ã‚Œã¯åˆæœŸçŠ¶æ…‹ã§ã¯ GWindow ã¸ã®å‚ç…§ãŒã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã¾ã™ã€‚
+ * ã“ã‚Œã‚’å¤‰æ›´ã—ãŸã„å ´åˆã¯ä»¥ä¸‹ã®ã‚ˆã†ã«ã—ã¦ãã ã•ã„ã€‚
  *
  * example:
  *  GMainWindow = UserWindowClass;
 **/
 var GMainWindow = GWindow;
 
-// NOTE: ‚±‚Ì’†‚Å‚Í GOKI2 ‚Ì’è‹`‚Ì•ÏX‚È‚Ç‚ª‚Å‚«‚Ü‚·B
+// NOTE: ã“ã®ä¸­ã§ã¯ GOKI2 ã®å®šç¾©ã®å¤‰æ›´ãªã©ãŒã§ãã¾ã™ã€‚
 if(Storages.isExistentStorage('Override.tjs'))
 	loadTJS('Override.tjs');
 

@@ -415,8 +415,8 @@ class ModADV extends GModule
 		var tz = getCurrentTimeZone();
 		var storage = stage.storage;
 
-		if(getExistentStorageNameAndExtension(@"&storage;&tz.prefix;", graphicFileExtensions*) !== void)
-			storage = @"&storage;&tz.prefix;";
+		if(getExistentStorageNameAndExtension(@"&storage;&tz.suffix;", graphicFileExtensions*) !== void)
+			storage = @"&storage;&tz.suffix;";
 
 		var layer = container.modImage.baseLayer.mirror;
 
@@ -451,7 +451,7 @@ class ModADV extends GModule
 				throw new GRuntimeError("「&name;」の時間帯情報を作成しようとしましたが、同じ名前の時間帯情報が既に存在しています。");
 		}
 
-		var tz = %[name : name, storagePrefix : elm.prefix];
+		var tz = %[name : name, storageSuffix : elm.suffix];
 
 		arr.push(tz);
 
@@ -515,7 +515,7 @@ class ModADV extends GModule
 
 				// 割り当てられなかった。
 				if(.cvLayerIndex === void)
-					throw new GRuntimeError(@"「&cvLayers.prefix;」レイヤーグループのレイヤーが不足しています。");
+					throw new GRuntimeError(@"「&cvLayers.suffix;」レイヤーグループのレイヤーが不足しています。");
 			}
 
 			// 競合してないかチェック
@@ -529,7 +529,7 @@ class ModADV extends GModule
 			}
 
 			if((layer = cvLayers.at(.cvLayerIndex, fore)) === void)
-				throw new Exception(@"レイヤー「&cvLayers.prefix;&.cvLayerIndex;」を取得できませんでした。");
+				throw new Exception(@"レイヤー「&cvLayers.suffix;&.cvLayerIndex;」を取得できませんでした。");
 		}
 
 		return layer;
@@ -582,9 +582,9 @@ class ModADV extends GModule
 
 			if(timeZone !== void)
 			{
-				storage = @"&storage;&timeZone.storagePrefix;&storageExt;";
+				storage = @"&storage;&timeZone.storageSuffix;&storageExt;";
 				if(elm.asd !== void)
-					asd = @"&asd;&timeZone.storagePrefix;&asdExt;";
+					asd = @"&asd;&timeZone.storageSuffix;&asdExt;";
 			}
 
 			if(getExistentStorageNameAndExtension(@"&storage;", graphicFileExtensions*) === void)

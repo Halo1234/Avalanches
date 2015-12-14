@@ -183,10 +183,10 @@
 ; 時間帯を定義します。
 ;
 ;   name: 時間帯名を指定します。ここで指定した名前がそのままタグになります。
-; prefix: 立ち絵のファイル名などの末尾につける文字列を指定します。
-@make_time_zone name=朝 prefix=''
-@make_time_zone name=夕 prefix=ev
-@make_time_zone name=夜 prefix=ng
+; suffix: 立ち絵のファイル名などの末尾につける文字列を指定します。
+@make_time_zone name=朝 suffix=''
+@make_time_zone name=夕 suffix=ev
+@make_time_zone name=夜 suffix=ng
 
 ; サンプル背景
 ;
