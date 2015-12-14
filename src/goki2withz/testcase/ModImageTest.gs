@@ -71,8 +71,9 @@
 [cancelskip]
 
 @layer_move layer=0 x=left y=top angle=0 position=0.0 clear children transform
-@layer_move layer=0 x=0 y=0 angle=360 scale=1.0 position=0.5
-@layer_move layer=0 x=200 y=200 scale=2.0 position=1.0
+@layer_move layer=0 x=0 y=0 angle=240 scale=1.0 position=0.5
+@layer_move layer=0 x=200 y=200 angle=240 scale=2.0 position=0.75
+@layer_move layer=0 x=200 y=200 angle=360 scale=1.0 position=1.0
 @layer_move layer=0 time=5000 start
 @layopt layer=0 left=200 top=200
 @wm layer=0
