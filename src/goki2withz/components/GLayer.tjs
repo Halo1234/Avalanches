@@ -1044,14 +1044,29 @@ class GLayer extends Layer
 		getter		{ return mover_ === void ? (mover_ = (splineUsed ? createSplineMover(this) : createMover(this))) : mover_; }
 	}
 
+	property hasMover
+	{
+		getter		{ return mover_ === void ? false : true; }
+	}
+
 	property conductor
 	{
 		getter		{ return conductor_ === void ? (conductor_ = createConductor(window, this)) : conductor_; }
 	}
 
+	property hasConductor
+	{
+		getter		{ return conducotr_ === void ? false : true; }
+	}
+
 	property colorCorrection
 	{
 		getter		{ return colorCorrection_ === void ? (colorCorrection_ = createColorCorrection(this)) : colorCorrection_; }
+	}
+
+	property hasColorColrrection
+	{
+		getter		{ return colorCorrection_ === void ? false : true; }
 	}
 
 	property mirror
