@@ -272,6 +272,8 @@ class ModImage extends GModule
 							pos += step;
 						}
 
+						.mover.useTransform = false;
+						.mover.withChildren = false;
 						.mover.time = +elm.time if elm.time !== void;
 						.mover.delay = +elm.delay if elm.delay !== void;
 						.mover.accel = +elm.accel if elm.accel !== void;
