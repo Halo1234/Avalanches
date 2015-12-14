@@ -38,7 +38,7 @@ Scripts.execStorage('GOKI2Utils.tjs');
 		'GTimeLine', 'GLayerShaker', 'GLayerMover', 'GLayerSplineMover',
 		'GMenuItem', 'GMenuModule',
 		'GWindow',
-		'GYesNoDialogLayer'
+		'GYesNoDialogLayer', 'GYesNoDialogWindow'
 	];
 
 	if(System.getArgument('-goki2-on-demand-loading') == 'yes')
