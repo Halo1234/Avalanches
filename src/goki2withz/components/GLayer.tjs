@@ -1107,7 +1107,13 @@ class GLayer extends Layer
 
 	property visible
 	{
-		setter(x)	{ (workLayer_ === void ? super.visible : internalVisible_) = x; }
+		setter(x)
+		{
+			if(workLayer_ === void)
+				super.visible = x;
+			else
+				internalVisible_ = workLayer_.visible = x;
+		}
 		getter		{ return (workLayer_ === void ? super.visible : internalVisible_); }
 	}
 
