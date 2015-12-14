@@ -70,6 +70,9 @@ class GCellLayerConductor extends GConductor
 					layer.visible = gbFunc(elm, 'visible') if hvFunc(elm, 'visible');
 					layer.absolute = +elm.index if elm.index !== void;
 					layer.opacity = +elm.opacity if elm.opacity !== void;
+
+					if(layer.hasMover && !layer.splineUsed)
+						layer.mover.updateCacheImage();
 				} incontextof this,
 
 				/* @fork */
