@@ -2169,6 +2169,12 @@ class ModTypingProcessor extends GModule
 
 		dic.baseLayer = baseLayer_.store(...);
 		dic.targetImageStorage = targetImageStorage;
+
+		dic.wordAcceptStorage = wordAcceptStorage;
+		dic.wordAcceptTarget = wordAcceptTarget;
+		dic.endStorage = endStorage;
+		dic.endTarget = endTarget;
+
 		dic.typingStarted = baseLayer_.enabled;
 
 		return dic;
@@ -2181,6 +2187,12 @@ class ModTypingProcessor extends GModule
 
 		baseLayer_.restore(dic.baseLayer);
 		targetImageStorage = dic.targetImageStorage;
+
+		wordAcceptStorage = dic.wordAcceptStorage;
+		wordAcceptTarget = dic.wordAcceptTarget;
+		endStorage = dic.endStorage;
+		endTarget = dic.endTarget;
+
 		if(dic.typingStarted)
 		{
 			baseLayer_.startGame();
