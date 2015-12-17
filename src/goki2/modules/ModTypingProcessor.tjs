@@ -1562,6 +1562,10 @@ class TypingBaseLayer extends GLayer
 {
 	var processor_;
 
+	var limitLayer_;
+	var limitTimer_;
+	var limitMax = 60;
+
 	var usedObjectLayers_ = [];
 	var unUsedObjectLayers_ = [];
 
@@ -1580,7 +1584,27 @@ class TypingBaseLayer extends GLayer
 
 		processor_ = createTypingWordProcessor();
 
-		disable();
+		limitLayer_ = createLimitLayer(window, this);
+
+		limitTimer_ = new Timer(onLimit, '');
+		limitTimer_.interval = 1000;
+		limitTimer_.capacity = 1;
+
+		endGame();
+	}
+
+	/**/
+	function createLimitLayer(window, parent, handler)
+	{
+		var obj = new GWidgetLayer(window, parent, handler);
+		var text = '99';
+
+		obj.font.height = 24;
+		obj.setSize(obj.font.getTextWidth(text), obj.font.getTextHeight(text));
+		obj.setPos((parent.width - obj.width) >> 1, 10);
+		obj.caption = string(limitMax);
+
+		return obj;
 	}
 
 	/**/
@@ -1721,16 +1745,26 @@ class TypingBaseLayer extends GLayer
 	}
 
 	/**/
-	function enable()
+	function startGame()
 	{
 		visible = enabled = true;
+
+		limitLayer_.caption = limitMax;
+		limitLayer_.visible = true;
+		limitTimer_.enabled = true;
+
 		focus();
 	}
 
 	/**/
-	function disable()
+	function endGame()
 	{
 		visible = enabled = false;
+
+		limitLayer_.visible = false;
+		limitTimer_.enabled = false;
+
+		callHandler('onEndGame', %[obj : obj]);
 	}
 
 	/*! \brief オブジェクトにキーを入力します。
@@ -1858,6 +1892,19 @@ class TypingBaseLayer extends GLayer
 	}
 
 	/**/
+	function onLimit()
+	{
+		var counter = +limitLayer_.caption;
+
+		limitLayer_.caption = counter - 1 if counter >= 1;
+
+		if(counter == 1)
+		{
+			endGame();
+		}
+	}
+
+	/**/
 	function onTypingObjectEvent(obj, message, elm)
 	{
 	}
@@ -1899,6 +1946,11 @@ class ModTypingProcessor extends GModule
 {
 	var baseLayer_ = void;
 	var dispatcher_ = void;
+
+	var wordAcceptStorage = '';
+	var wordAcceptTarget = '';
+	var endStorage = '';
+	var endTarget = '';
 
 	var targetImageStorage = '';
 
@@ -1942,18 +1994,23 @@ class ModTypingProcessor extends GModule
 
 			/* @typing_config */
 			'typing_config' => function (elm) {
+				wordAcceptStorage = elm.accept_storage if elm.accept_storage !== void;
+				wordAcceptTarget = elm.accept_target if elm.accept_target !== void;
+				endStorage = elm.end_storage if elm.end_storage !== void;
+				endTarget = elm.end_target if elm.end_target !== void;
 				targetImageStorage = elm.target_image if elm.target_image !== void;
 				baseLayer_.absolute = +elm.index if elm.index !== void;
+				baseLayer_.limitMax = +elm.limit if elm.limit !== void;
 			} incontextof this,
 
 			/* @typing_start */
 			'typing_start' => function (elm) {
-				baseLayer_.enable();
+				baseLayer_.startGame();
 			} incontextof this,
 
 			/* @typing_end */
 			'typing_end' => function (elm) {
-				baseLayer_.disable();
+				baseLayer_.endGame();
 			} incontextof this,
 
 			/* @load_typing_words */
@@ -2118,11 +2175,11 @@ class ModTypingProcessor extends GModule
 		targetImageStorage = dic.targetImageStorage;
 		if(dic.typingStarted)
 		{
-			baseLayer_.enable();
+			baseLayer_.startGame();
 		}
 		else
 		{
-			baseLayer_.disable();
+			baseLayer_.endGame();
 		}
 	}
 
@@ -2131,7 +2188,14 @@ class ModTypingProcessor extends GModule
 	{
 		switch(message)
 		{
-		case 'onWordAccepted': dispatcher_.signal(message); break;
+		case 'onWordAccepted':	dispatcher_.signal(message); break;
+		case 'onEndGame':
+			if(endStorage != '' || endTarget != '')
+			{
+				window.conductor.jumpScenario(endStorage, endTarget);
+				window.conductor.start();
+			}
+			break;
 		}
 	}
 
@@ -2140,6 +2204,11 @@ class ModTypingProcessor extends GModule
 	{
 		if(baseLayer_.targetCount <= count)
 			window.conductor.signal('word_accepted');
+		if(wordAcceptStorage != '' || wordAcceptTarget != '')
+		{
+			window.conductor.jumpScenario(wordAcceptStorage, wordAcceptTarget);
+			window.conductor.start();
+		}
 	}
 
 	/**/
