@@ -1749,9 +1749,17 @@ class TypingBaseLayer extends GLayer
 	{
 		visible = enabled = true;
 
-		limitLayer_.caption = limitMax;
-		limitLayer_.visible = true;
-		limitTimer_.enabled = true;
+		if(limitMax != Infinity)
+		{
+			limitLayer_.caption = limitMax;
+			limitLayer_.visible = true;
+			limitTimer_.enabled = true;
+		}
+		else
+		{
+			limitLayer_.visible = false;
+			limitTimer_.enabled = false;
+		}
 
 		focus();
 	}
@@ -1764,7 +1772,7 @@ class TypingBaseLayer extends GLayer
 		limitLayer_.visible = false;
 		limitTimer_.enabled = false;
 
-		callHandler('onEndGame', %[obj : obj]);
+		callHandler('onEndGame', %[]);
 	}
 
 	/*! \brief オブジェクトにキーを入力します。
