@@ -56,7 +56,7 @@ end
 # カレント
 pwd = '.'
 # 環境ルート
-root_dir = "#{pwd}/../../.."
+root_dir = "#{pwd}/../.."
 # 設定ファイル
 configuration_file = "#{pwd}/config.ini"
 # 空のセルと空の行の扱い
