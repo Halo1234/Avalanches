@@ -142,7 +142,7 @@ class GCheckBoxLayer extends GButtonLayer
 
 	function fixImageSize()
 	{
-		dm(@"&name; fixImageSize()");
+		//dm(@"&name; fixImageSize()");
 		if(!imageLoaded)
 		{
 			var layer = new global.Layer(window, this);
