@@ -33,6 +33,7 @@
 @dump_typing_word_list
 
 @typing_config target_image=TypingTarget000
+@typing_config accept_target=*accept end_target=*end
 
 *label|
 @typing_start
@@ -45,11 +46,14 @@
 
 
 *label|
-@show_typing_target left=100 top=random caption="波紋疾走"
-@log message="タイピングターゲットを caption 属性を指定して表示しました。"
-
-@show_typing_target left=random top=100 ruby="サンライトイエロー・オーバードライブ"
-@log message="タイピングターゲットを ruby 属性を指定して表示しました。"
+@show_typing_target left=100 top=100
+@show_typing_target left=200 top=100
+@show_typing_target left=300 top=100
+@show_typing_target left=400 top=100
+@show_typing_target left=100 top=200
+@show_typing_target left=200 top=200
+@show_typing_target left=300 top=200
+@show_typing_target left=400 top=200
 
 ; ターゲットが残り１つになるまで待つ。
 @wait_typing target_count=1
@@ -64,9 +68,24 @@
 
 
 @log message="全てのターゲットの入力を完了しました。"
+@s
 
-*label|
-@typing_end
+*accept|
+
+@wait_typing target_count=0
+
+@show_typing_target left=100 top=100
+@show_typing_target left=200 top=100
+@show_typing_target left=300 top=100
+@show_typing_target left=400 top=100
+@show_typing_target left=100 top=200
+@show_typing_target left=200 top=200
+@show_typing_target left=300 top=200
+@show_typing_target left=400 top=200
+@s
+
+
+*end|
 @log message="タイピングの受付を終了しました。"
 
 

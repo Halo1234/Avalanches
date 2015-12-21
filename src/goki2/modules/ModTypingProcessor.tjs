@@ -1154,6 +1154,8 @@ class TypingWordLayer extends GWidgetLayer
 
 	var invisibleRuby_ = false;
 
+	var backupAbsolute = void;
+
 	var lineSpace_ = 1;
 
 	function TypingWordLayer(window, parent, handler)
@@ -1161,8 +1163,8 @@ class TypingWordLayer extends GWidgetLayer
 		super.GLayer(...);
 		fixPositionToCenter = true;
 		hitThreshold = 256;
-		bodyOpacity = 128;
-		absolute = 1000000;
+		opacity = 128;
+		//absolute = 1000000;
 	}
 
 	/**/
@@ -1178,6 +1180,12 @@ class TypingWordLayer extends GWidgetLayer
 	{
 		word_.reset() if word_ !== void;
 		word_ = void;
+		opacity = 128;
+		if(backupAbsolute !== void)
+		{
+			absolute = backupAbsolute;
+			backupAbsolute = void;
+		}
 
 		rebirth();
 	}
@@ -1351,7 +1359,15 @@ class TypingWordLayer extends GWidgetLayer
 		var ret = word_.input(ch);
 
 		if(!isModTypingProcessorDeniedValue(ret))
+		{
 			rebirth();
+			if(backupAbsolute === void)
+			{
+				backupAbsolute = absolute;
+				absolute = 100000;
+			}
+			opacity = 255;
+		}
 
 		return ret;
 	}
