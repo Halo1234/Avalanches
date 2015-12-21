@@ -716,13 +716,19 @@ class TypingWordProcessor
 
 					for(var k = romans.count - 1; k >= 0; --k)
 					{
-						if((cancel |= (banInitials.find(romans[k][0]) == -1 ? false : true)) == true);
+						//dm(@"romans : &romans[k][0];");
+						if((cancel |= (banInitials.find(romans[k][0]) == -1 ? false : true)) == true)
 							break;
 					}
 
 					if(!cancel)
+					{
+						//dm(@"[&index;] &words[index].caption;");
 						return words[index];
+					}
 				}
+
+				index++;
 			}
 		}
 

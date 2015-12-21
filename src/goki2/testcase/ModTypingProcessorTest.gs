@@ -14,14 +14,14 @@
 
 @dump_typing_word_list
 
-@remove_typing_word caption="電光石火"
-@remove_typing_word ruby="イズツシ"
-@remove_typing_word caption="神速" ruby="カンムル"
+;@remove_typing_word caption="電光石火"
+;@remove_typing_word ruby="イズツシ"
+;@remove_typing_word caption="神速" ruby="カンムル"
 @log message="ワードを３つ削除しました。"
 
 @dump_typing_word_list
 
-@clear_typing_word_list
+;@clear_typing_word_list
 @log message="ワード全て削除しました。"
 
 @dump_typing_word_list
