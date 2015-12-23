@@ -207,7 +207,7 @@ class TypingWord
 		if(current === void || current.romans === void || current.romans.count <= 0)
 			return '';
 
-		var work = GObjectUtils.clone(current.romans[0]);
+		var work = GObjectUtils.duplicate(current.romans[0]);
 		work.remove('\\*');
 
 		return work.join('');
@@ -644,7 +644,7 @@ class TypingWordProcessor
 		if(record === void)
 			throw new GRuntimeError(@"「&key;」に対応するローマ字が見つかりませんでした。");
 
-		result.push(%[target : key, romans: GObjectUtils.clone(record)]);
+		result.push(%[target : key, romans: GObjectUtils.duplicate(record)]);
 
 		return result;
 	}
@@ -660,7 +660,7 @@ class TypingWordProcessor
 			{
 				var next = getRomanStringTable(text);
 				var work = next[0];
-				var tmp = GObjectUtils.clone(work.romans[0]);
+				var tmp = GObjectUtils.duplicate(work.romans[0]);
 
 				tmp.remove('\\*');
 				str += tmp.join('');
@@ -885,13 +885,13 @@ class TypingWordProcessor
 	/**/
 	property romanTable
 	{
-		getter		{ return GObjectUtils.clone(romanTable_); }
+		getter		{ return GObjectUtils.duplicate(romanTable_); }
 	}
 
 	/**/
 	property symbolTable
 	{
-		getter		{ return GObjectUtils.clone(symbolTable_); }
+		getter		{ return GObjectUtils.duplicate(symbolTable_); }
 	}
 }
 
@@ -995,7 +995,7 @@ class TypingWordProcessorForJapanese extends TypingWordProcessor
 		if(record === void)
 			throw new GRuntimeError(@"「&key;」に対応するローマ字が見つかりませんでした。");
 
-		work = GObjectUtils.clone(record);
+		work = GObjectUtils.duplicate(record);
 		//work.push(record*); // ????
 		result.push(%[target : key, romans: work]);
 
@@ -1209,26 +1209,28 @@ class TypingWordLayer extends GWidgetLayer
 		var mw = 0, mh = 0;
 		var ls = 0;
 		var work;
+		var gtw = font.getTextWidth;
+		var gth = font.getTextHeight;
 
 		work = word.caption;
 		font.height = captionFontSize_;
-		cw = font.getTextWidth(work);
-		ch = font.getTextHeight(work);
+		cw = gtw(work);
+		ch = gth(work);
 
 		if(!invisibleRuby_)
 		{
 			work = word.ruby;
 			ls += lineSpace_;
 			font.height = rubyFontSize_;
-			rw = font.getTextWidth(work);
-			rh = font.getTextHeight(work);
+			rw = gtw(work);
+			rh = gth(work);
 		}
 
 		work = word.romans;
 		ls += lineSpace_;
 		font.height = romanFontSize_;
-		mw = font.getTextWidth(work);
-		mh = font.getTextHeight(work);
+		mw = gtw(work);
+		mh = gth(work);
 
 		// サイズ計算
 		var h = ch + rh + mh + ls + (heightMargin_ << 1);
@@ -1591,6 +1593,8 @@ class TypingBaseLayer extends GLayer
 	var usedObjectLayers_ = [];
 	var unUsedObjectLayers_ = [];
 
+	var usedInitials = [];
+
 	var activeObject_ = void;
 
 	/**/
@@ -1648,7 +1652,7 @@ class TypingBaseLayer extends GLayer
 		var obj;
 
 		if(cache.count > 0)
-			obj = cache.pop();
+			obj = cache.pop(), dm("hoge");
 		else
 			family.receive(obj = createTypingObjectLayer(window, this, onTypingObjectEvent));
 
@@ -1668,6 +1672,8 @@ class TypingBaseLayer extends GLayer
 
 		usedObjectLayers_.push(obj);
 
+		usedInitials = getUsedInitials();
+
 		return obj;
 	}
 
@@ -1681,6 +1687,8 @@ class TypingBaseLayer extends GLayer
 
 		usedObjectLayers_.remove(obj);
 		unUsedObjectLayers_.push(obj);
+
+		usedInitials = getUsedInitials();
 	}
 
 	/**/
@@ -1730,12 +1738,14 @@ class TypingBaseLayer extends GLayer
 	**/
 	function getNewWordAtRandom()
 	{
-		var obj = getObjectLayer_private_(processor_.getNewWordAtRandom(getUsedInitials()));
+		var word = processor_.getNewWordAtRandom(usedInitials);
+		var obj = getObjectLayer_private_(word);
 
 		if(obj != void)
 		{
 			obj.setCenterPos(width >> 1, height >> 1);
 		}
+
 
 		return obj;
 	}
@@ -1743,7 +1753,7 @@ class TypingBaseLayer extends GLayer
 	/**/
 	function getNewWordByCaption(caption)
 	{
-		var obj = getObjectLayer_private_(processor_.getNewWordByCaption(caption, getUsedInitials()));
+		var obj = getObjectLayer_private_(processor_.getNewWordByCaption(caption, usedInitials));
 
 		if(obj != void)
 		{
@@ -1756,7 +1766,7 @@ class TypingBaseLayer extends GLayer
 	/**/
 	function getNewWordByRuby(ruby)
 	{
-		var obj = getObjectLayer_private_(processor_.getNewWordByRuby(ruby, getUsedInitials()));
+		var obj = getObjectLayer_private_(processor_.getNewWordByRuby(ruby, usedInitials));
 
 		if(obj != void)
 		{
@@ -2147,6 +2157,7 @@ class ModTypingProcessor extends GModule
 						if(elm.ruby !== void)
 							warn(@"&elm.ruby; は存在しません。");
 					}
+
 				}
 			} incontextof this,
 
