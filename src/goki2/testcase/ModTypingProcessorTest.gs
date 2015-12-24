@@ -4,6 +4,9 @@
 @load_roman_table language=japanese
 @log message="日本語ローマ字対応表読み込みに成功しました。"
 
+*game_start
+@hide_typing_target
+
 @add_typing_word caption="天上不知唯我独損" ruby="ハコワレ"
 @add_typing_word caption="暗い宿" ruby="ホテル・ラフレシア"
 @add_typing_word caption="電光石火" ruby="デンコウセッカ"
@@ -60,9 +63,9 @@
 
 
 *label|
-@show_typing_target position=random ruby="イズツシ"
-@show_typing_target position=random caption="神速"
-@log message="存在しないタイピングターゲットを指定しました。ワーニングが２つログに表示されていれば成功です。"
+;@show_typing_target position=random ruby="イズツシ"
+;@show_typing_target position=random caption="神速"
+;@log message="存在しないタイピングターゲットを指定しました。ワーニングが２つログに表示されていれば成功です。"
 
 @wait_typing target_count=0
 
@@ -87,5 +90,7 @@
 
 *end|
 @log message="タイピングの受付を終了しました。"
+
+@jump target=*game_start
 
 
