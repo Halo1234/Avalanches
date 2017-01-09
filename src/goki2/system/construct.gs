@@ -15,6 +15,8 @@
 ;
 ; ここでプロジェクトに必要なモジュールを読み込んでください。
 
+; スナップショット機能
+@load_module name=ModSnapshot
 ; ブックマーク機能
 @load_module name=ModBookmark
 ; ADV機能
