@@ -925,7 +925,7 @@ class ModBookmark extends GModule
 				pushRecordAnchorInNextLabel_ = false;
 			}
 
-			// farstLabelProcessed が false ならば強制的に store する
+			// firstLabelProcessed が false ならば強制的に store する
 			// または、ラベル名が *force_store ならば強制的に store する
 			// または、起動後まだ一度も store していないならば強制的に store する
 			// または、storeSkipping が false ならば store する
