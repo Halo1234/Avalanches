@@ -36,7 +36,7 @@ class MainWindow extends GWindow
 	/**/
 	function setCursor(elm)
 	{
-		setCursor_private_('cursorDefault', elm.default_cursor); 
+		setCursor_private_('cursorDefault', elm.default_cursor);
 		setCursor_private_('cursorPointed', elm.pointed_cursor);
 		setCursor_private_('cursorWaitingClick', elm.click_cursor);
 		setCursor_private_('cursorDraggable', elm.draggable_cursor);
