@@ -1,0 +1,68 @@
+!include "configure.nsh"
+
+; NOTE:
+; 外部作成インストーラ対応のための決め内用パラメータ
+!define NSIS_EXT_UTILS_REGKEY_ROOT	HKLM
+
+!define REG_EXT_ROOT		"Software\${VENDER_J}"
+!define REG_EXT_PRODUCT		"${REG_EXT_ROOT}\${PRODUCT_J}"
+
+!define EXT_INDEX_NAME		"Setup.log"
+
+
+;---
+; インストーラ
+;Var InstallDir_
+Var ProductDir
+Var IndexFile
+
+
+Section "UpdateFiles" SEC_UPDATE_FILES_ID
+
+	SetOutPath "$ProductDir"
+
+	; NOTE: ここで 'Setup.log' 読み込む
+	${OpenExternalInstallerIndex} $IndexFile "$ProductDir${EXT_INDEX_NAME}"
+
+	!include "install_components"
+
+	${CloseExternalInstallerIndex} $IndexFile
+
+SectionEnd
+
+!insertmacro MUI_PAGE_WELCOME
+!insertmacro MUI_PAGE_INSTFILES
+#!define MUI_FINISHPAGE_SHOWREADME	"$PRODUCT_DIR\readme.txt"
+!insertmacro MUI_PAGE_FINISH
+
+; インストーラーの初期化
+Function .onInit
+
+	; $0/$1 退避
+	Push $0
+	Push $1
+
+	ClearErrors
+
+	ReadRegStr $0 ${NSIS_EXT_UTILS_REGKEY_ROOT} "${REG_EXT_PRODUCT}" "Directory"
+	IfErrors 0 add_update_components
+	MessageBox MB_OK "${PRODUCT_J} がインストールされていません。"
+	Abort
+
+	add_update_components:
+		StrCpy $ProductDir "$0"
+
+		;MessageBox MB_OK "${PRODUCT_J} は $ProductDir にインストールされています。"
+
+	InitPluginsDir
+
+	; $0/$1 復帰
+	Pop $1
+	Pop $0
+
+FunctionEnd
+
+; 言語設定
+!insertmacro MUI_LANGUAGE	"Japanese"
+
+
