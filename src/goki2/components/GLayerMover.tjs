@@ -864,7 +864,7 @@ class GLayerMover extends GTimeLine
 			if(step >= e.position_)
 			{
 				e.handler_(step, layer, e);
-				alonepointer_ = nextalonepointer(aptr + 1);
+				alonepointer_ = nextAlonePointer(aptr + 1);
 			}
 		}
 
@@ -875,9 +875,8 @@ class GLayerMover extends GTimeLine
 
 			// note:
 			// ’´‚¦‚Ä‚¢‚é‚È‚ç‚ÎŽŸ‚Éi‚Þ
-			if(step >= dst.position_)
+			while(step >= dst.position_)
 			{
-
 				if(step >= src.position_)
 				{
 					var localstep = localizeTime(src.position_, step, dst.position_ - src.position_);
