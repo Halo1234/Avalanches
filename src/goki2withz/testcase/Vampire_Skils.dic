@@ -6,7 +6,7 @@
 **/
 
 [
-	%['caption'=>string('Ž€”¯•‘Œ•'), 'ruby'=>string('ƒ_ƒ“ƒXEƒ}ƒJƒuƒwƒA[')],
-	%['caption'=>string('‹C‰»—â“€–@'), 'ruby'=>string('ƒLƒJƒŒƒCƒgƒEƒzƒE')],
-	%['caption'=>string('‹ó—ôŠáŽh‹Á'), 'ruby'=>string('ƒXƒy[ƒXƒŠƒp[EƒXƒeƒBƒ“ƒM[ƒAƒCƒY')]
+	%['caption'=>string('æ­»é«ªèˆžå‰£'), 'ruby'=>string('ãƒ€ãƒ³ã‚¹ãƒ»ãƒžã‚«ãƒ–ãƒ˜ã‚¢ãƒ¼')],
+	%['caption'=>string('æ°—åŒ–å†·å‡æ³•'), 'ruby'=>string('ã‚­ã‚«ãƒ¬ã‚¤ãƒˆã‚¦ãƒ›ã‚¦')],
+	%['caption'=>string('ç©ºè£‚çœ¼åˆºé©š'), 'ruby'=>string('ã‚¹ãƒšãƒ¼ã‚¹ãƒªãƒ‘ãƒ¼ãƒ»ã‚¹ãƒ†ã‚£ãƒ³ã‚®ãƒ¼ã‚¢ã‚¤ã‚º')]
 ]

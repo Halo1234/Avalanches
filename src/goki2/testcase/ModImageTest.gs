@@ -83,7 +83,7 @@
 *label|
 @clickskip enabled
 
-@animstart layer=0
+;@animstart layer=0
 
 @animstop layer=0 seg=0
 @wa layer=0 seg=0
@@ -114,7 +114,7 @@
 もう一度子レイヤを読み込みます。[p][cm]
 
 *label|
-@animstart layer=0
+;@animstart layer=0
 
 @animstop layer=0 seg=0
 @wa layer=0 seg=0
