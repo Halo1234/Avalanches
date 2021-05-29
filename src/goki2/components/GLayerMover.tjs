@@ -670,7 +670,7 @@ class GLayerMover extends GTimeLine
 
 		var src = lines.join('\n');
 
-		dm(src);
+		//dm(src);
 
 		return src;
 	}
