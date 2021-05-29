@@ -430,6 +430,7 @@ class ModImage extends GModule
 				}
 			}
 		}
+		dm(@"layerName = &layer.acctualName; &elm.page;");
 
 		if(layer === void)
 			throw new GRuntimeError(@"レイヤー &layerName; は存在しません。");

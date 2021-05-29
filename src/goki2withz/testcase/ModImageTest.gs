@@ -9,22 +9,22 @@
 
 @trans time=2000
 @wt
-@log message="ƒgƒ‰ƒ“ƒWƒVƒ‡ƒ“‚ÌƒeƒXƒg‚É¬Œ÷‚µ‚Ü‚µ‚½B"
+@log message="ãƒˆãƒ©ãƒ³ã‚¸ã‚·ãƒ§ãƒ³ã®ãƒ†ã‚¹ãƒˆã«æˆåŠŸã—ã¾ã—ãŸã€‚"
 
-ƒgƒ‰ƒ“ƒWƒVƒ‡ƒ“‚ÌƒeƒXƒg‚É¬Œ÷‚µ‚Ü‚µ‚½B[p][cm]
+ãƒˆãƒ©ãƒ³ã‚¸ã‚·ãƒ§ãƒ³ã®ãƒ†ã‚¹ãƒˆã«æˆåŠŸã—ã¾ã—ãŸã€‚[p][cm]
 
 *label|
 @image storage=sampleA page=back
 @assign_to_mirror
-@log message="”wŒiƒRƒs[‚ÌƒeƒXƒg"
+@log message="èƒŒæ™¯ã‚³ãƒ”ãƒ¼ã®ãƒ†ã‚¹ãƒˆ"
 
-”wŒiƒRƒs[‚ÌƒeƒXƒg‚É¬Œ÷‚µ‚Ü‚µ‚½B[p][cm]
+èƒŒæ™¯ã‚³ãƒ”ãƒ¼ã®ãƒ†ã‚¹ãƒˆã«æˆåŠŸã—ã¾ã—ãŸã€‚[p][cm]
 
 *label|
 @quake hmax=10 vmax=10 time=1000
 @wq
 
-—h‚ê‚Ü‚·B[p][cm]
+æºã‚Œã¾ã™ã€‚[p][cm]
 
 *label|
 @image layer=0 center_x=400 center_y=300 page=back storage=ImageSample visible
@@ -32,7 +32,7 @@
 @trans time=1000
 @wt
 
-qƒŒƒCƒ„‚Ì“Ç‚İ‚İ‚É¬Œ÷‚µ‚Ü‚µ‚½B[p][cm]
+å­ãƒ¬ã‚¤ãƒ¤ã®èª­ã¿è¾¼ã¿ã«æˆåŠŸã—ã¾ã—ãŸã€‚[p][cm]
 
 *label|
 @image layer=0 center_x=400 center_y=300 grayscale rgamma=1.5 ggamma=1.3 page=back storage=ImageSample visible
@@ -40,7 +40,7 @@
 @trans time=1000
 @wt
 
-qƒŒƒCƒ„‚ÌF•â³‚ÌƒeƒXƒg‚Å‚·B[p][cm]
+å­ãƒ¬ã‚¤ãƒ¤ã®è‰²è£œæ­£ã®ãƒ†ã‚¹ãƒˆã§ã™ã€‚[p][cm]
 
 *label|
 @image layer=0 center_x=400 center_y=300 page=back storage=ImageSample visible
@@ -50,14 +50,14 @@
 
 @pimage layer=0 page=fore storage=CellImageSample dx=100 dy=100
 
-qƒŒƒCƒ„‚Ì•”•ª‰æ‘œ“Ç‚İ‚İ‚ÌƒeƒXƒg‚Å‚·B[p][cm]
+å­ãƒ¬ã‚¤ãƒ¤ã®éƒ¨åˆ†ç”»åƒèª­ã¿è¾¼ã¿ã®ãƒ†ã‚¹ãƒˆã§ã™ã€‚[p][cm]
 
 *label|
 @ptext layer=0 x=0 y=0 text=hogehoge color=0xFFFF00
-qƒŒƒCƒ„‚Ì•¶š•`‰æ‚ÌƒeƒXƒg‚Å‚·B[p][cm]
+å­ãƒ¬ã‚¤ãƒ¤ã®æ–‡å­—æç”»ã®ãƒ†ã‚¹ãƒˆã§ã™ã€‚[p][cm]
 
 *label|
-ƒeƒXƒg‚ğ‘±‚¯‚Ü‚·B[p][cm]
+ãƒ†ã‚¹ãƒˆã‚’ç¶šã‘ã¾ã™ã€‚[p][cm]
 
 *label|
 ;@clickskip !enabled
@@ -65,7 +65,7 @@
 @move layer=0 path="(10, 10, 255), (200, 200, 255)" time=5000
 @wm layer=0
 
-qƒŒƒCƒ„‚ÌˆÚ“®‚ğs‚¢‚Ü‚·B[p][cm]
+å­ãƒ¬ã‚¤ãƒ¤ã®ç§»å‹•ã‚’è¡Œã„ã¾ã™ã€‚[p][cm]
 
 *label|
 [cancelskip]
@@ -78,18 +78,18 @@
 @layopt layer=0 left=200 top=200
 @wm layer=0
 
-qƒŒƒCƒ„‚ÌˆÚ“®‚ğs‚¢‚Ü‚·B[p][cm]
+å­ãƒ¬ã‚¤ãƒ¤ã®ç§»å‹•ã‚’è¡Œã„ã¾ã™ã€‚[p][cm]
 
 *label|
 @clickskip enabled
 
-@animstart layer=0
+;@animstart layer=0
 
 @animstop layer=0 seg=0
 @wa layer=0 seg=0
 @backlay layer=0
 
-qƒŒƒCƒ„‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒeƒXƒg‚É¬Œ÷‚µ‚Ü‚µ‚½B[p][cm]
+å­ãƒ¬ã‚¤ãƒ¤ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ã‚¹ãƒˆã«æˆåŠŸã—ã¾ã—ãŸã€‚[p][cm]
 
 *label|
 @freeimage page=back
@@ -97,36 +97,36 @@
 @trans time=2000
 @wt
 
-”wŒi‚ªƒNƒŠƒA‚³‚ê‚Ä‚¢‚ê‚Î¬Œ÷‚Å‚·B[p][cm]
+èƒŒæ™¯ãŒã‚¯ãƒªã‚¢ã•ã‚Œã¦ã„ã‚Œã°æˆåŠŸã§ã™ã€‚[p][cm]
 
 *label|
 @freeimage layer=0 page=back
 @trans time=1000
 @wt
 
-qƒŒƒCƒ„‚ªƒNƒŠƒA‚³‚ê‚Ä‚¢‚ê‚Î¬Œ÷‚Å‚·B[p][cm]
+å­ãƒ¬ã‚¤ãƒ¤ãŒã‚¯ãƒªã‚¢ã•ã‚Œã¦ã„ã‚Œã°æˆåŠŸã§ã™ã€‚[p][cm]
 
 *label|
 @image layer=0 center_x=400 center_y=300 page=back storage=ImageSample visible
 @trans time=1000
 @wt
 
-‚à‚¤ˆê“xqƒŒƒCƒ„‚ğ“Ç‚İ‚İ‚Ü‚·B[p][cm]
+ã‚‚ã†ä¸€åº¦å­ãƒ¬ã‚¤ãƒ¤ã‚’èª­ã¿è¾¼ã¿ã¾ã™ã€‚[p][cm]
 
 *label|
-@animstart layer=0
+;@animstart layer=0
 
 @animstop layer=0 seg=0
 @wa layer=0 seg=0
 @backlay layer=0
 
-qƒŒƒCƒ„‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒeƒXƒg‚É¬Œ÷‚µ‚Ü‚µ‚½B[p][cm]
+å­ãƒ¬ã‚¤ãƒ¤ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ã‚¹ãƒˆã«æˆåŠŸã—ã¾ã—ãŸã€‚[p][cm]
 
 *label|
 @freeimage layer=0 page=back
 @trans time=1000
 @wt
 
-qƒŒƒCƒ„‚ªƒNƒŠƒA‚³‚ê‚Ä‚¢‚ê‚Î¬Œ÷‚Å‚·B[p][cm]
+å­ãƒ¬ã‚¤ãƒ¤ãŒã‚¯ãƒªã‚¢ã•ã‚Œã¦ã„ã‚Œã°æˆåŠŸã§ã™ã€‚[p][cm]
 
 

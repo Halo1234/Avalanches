@@ -23,6 +23,8 @@ GMainWindow = MainWindow;
 // NOTE: ‚±‚Ì’†‚Å‚Í GOKI2 ‚Ì’è‹`‚Ì•ÏX‚È‚Ç‚ª‚Å‚«‚Ü‚·B
 if(Storages.isExistentStorage('Override.tjs'))
 	loadTJS('Override.tjs');
+if(Storages.isExistentStorage('Debugger.tjs'))
+	loadTJS('Debugger.tjs');
 
 var window = new GMainWindow();
 
