@@ -50,7 +50,7 @@ class GADVConductor extends GConductor
 
 		window.modules.callHandler('onConductorReturn', obj);
 
-		dm(@"return : &obj.ignore;");
+		//dm(@"return : &obj.ignore;");
 
 		return !obj.ignore;
 	}

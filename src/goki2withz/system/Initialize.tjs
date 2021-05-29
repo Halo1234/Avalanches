@@ -25,9 +25,13 @@ if(Storages.isExistentStorage('Override.tjs'))
 	loadTJS('Override.tjs');
 
 var window = new GMainWindow();
+var storage = "";
 
-if(Storages.isExistentStorage('debug.gs'))
-	window.conductor.pushScript('debug');
+if(Storages.isExistentStorage('Debugger.tjs'))
+	loadTJS('Debugger.tjs');
+storage = getExistentStorageNameAndExtension('debug.gs', scriptFileExtensions*);
+if(storage !== void)
+	window.conductor.pushScript(storage);
 
 // NOTE: construct -> version -> config の順に実行。
 with(window.conductor)

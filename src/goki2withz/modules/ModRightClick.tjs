@@ -23,7 +23,7 @@ class ModRightClick extends GModule
 	/**/
 	function createConductor(window)
 	{
-		return new GConductor(window);
+		return new GADVConductor(window);
 	}
 
 	/**/
