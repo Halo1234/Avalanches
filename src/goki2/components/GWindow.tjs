@@ -77,8 +77,8 @@ class GWindow extends Window
 		fixPrimaryLayerSizeToInnerSize();
 
 		borderStyle = bsSingle;
-		innerSunken = true;
-		showScrollBars = false;
+		//innerSunken = true;
+		//showScrollBars = false;
 
 		thisTagHandlers_ = createTagHandlers();
 		unifyTagHandlers();
@@ -104,7 +104,7 @@ class GWindow extends Window
 	/**/
 	function createConductor(window)
 	{
-		return new GConductor(window);
+		return new GADVConductor(window);
 	}
 
 	/**/
@@ -262,7 +262,10 @@ class GWindow extends Window
 		}
 
 		obj.name = @"Working on '&owner.name;'";
+		obj.opacity = 255;
 		obj.visible = false;
+		obj.setPos(owner.left, owner.top);
+		obj.setSize(owner.width, owner.height);
 
 		return obj;
 	}
@@ -465,6 +468,8 @@ class GWindow extends Window
 			case VK_UP:		return softFocus.moveUp(true);
 			case VK_RIGHT:	return softFocus.moveRight(true);
 			case VK_DOWN:	return softFocus.moveDown(true);
+			case VK_Z:
+			case VK_SPACE:
 			case VK_RETURN:
 				var ret = softFocus.click();
 

@@ -213,7 +213,7 @@ class GTimeLine
 				return false;
 		}
 
-		if(typeof(this[message]) !== "undefined")
+		if(isvalid(this) && typeof(this[message]) !== "undefined")
 		{
 			this[message](arg*);
 

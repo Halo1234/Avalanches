@@ -226,15 +226,18 @@ class GMessageLayer extends GHyperTextLayer
 		super.GHyperTextLayer(...);
 
 		family.receive(linkLayer_ = new global.GLayer(window, this));
+		linkLayer_.name = 'link layer';
 		linkLayer_.visible = true;
 
 		family.receive(new GDestructor(GObjectUtils.dispose, usedCharacterLayers_));
 		family.receive(new GDestructor(GObjectUtils.dispose, notUsedCharacterLayers_));
 
 		family.receive(pageGlyphLayer_ = new global.GLayer(window, this));
+		pageGlyphLayer_.name = 'page glyph layer';
 		loadPageGlyph('PageGlyph');
 
 		family.receive(lineGlyphLayer_ = new global.GLayer(window, this));
+		lineGlyphLayer_.name = 'line glyph layer';
 		loadLineGlyph('LineGlyph');
 	}
 

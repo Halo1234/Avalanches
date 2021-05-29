@@ -18,7 +18,11 @@ class GLayerIterator extends GIterator
 	/**/
 	function create(window)
 	{
-		return new GLayer(window, container.get(container.parentLayerName), onLayerEvent);
+		var obj = new GLayer(window, container.get(container.parentLayerName), onLayerEvent);
+		
+		obj.name = 'layer';
+		
+		return obj;
 	}
 
 	/**/

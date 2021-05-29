@@ -409,7 +409,7 @@ class GConductor extends KAGParser
 			.enabled = true;
 		}
 
-		setControlCode();
+		setControlCode(wait);
 		status_ = this.stRun;
 		//status_ = stRun if status_ != stBreath && status_ != stWait;
 	}
@@ -813,8 +813,14 @@ class GConductor extends KAGParser
 		if(status_ != this.stBreath)
 		{
 			if((++breathCount_) >= breathBound)
+			{
 				status_ = this.stBreath;
+
+				return clearBreath();
+			}
 		}
+
+		return true;
 	}
 
 	/*! \brief ブレス状態をクリアします。
@@ -825,7 +831,11 @@ class GConductor extends KAGParser
 		{
 			breathCount_ = 0;
 			startToIdle();
+
+			return false;
 		}
+
+		return true;
 	}
 
 	/*! \brief コントロールコードを設定します。
@@ -899,9 +909,9 @@ class GConductor extends KAGParser
 			// 現在のタグを後回しにして、一旦コアに制御を返す。
 			case -5:	pendingTag(tag); startToIdle(); break;
 			// ブレス状態にして即座に次へ
-			case -6:	setBreath(); return true;
+			case -6:	return setBreath();
 			// ブレス状態をクリア
-			case -7:	return !clearBreath();
+			case -7:	return clearBreath();
 			// wait
 			default:
 				if(code <= 0)
@@ -967,6 +977,11 @@ class GConductor extends KAGParser
 			return pendingTags_.shift();
 
 		var obj = super.getNextTag();
+
+		/*if(obj !== void)
+		{
+			dm(@"&curStorage; = tagname : &obj.tagname;");
+		}*/
 
 		// getNextTag() 処理中に pendingTags_ に追加されたものがないかチェック
 		if(pendingTags_.count > 0)
@@ -1137,50 +1152,6 @@ class GConductor extends KAGParser
 	{
 	}
 
-	function onCall(elm)
-	{
-		var tagname = 'call';
-		var obj = elm;
-
-		obj.tagname = tagname;
-		obj.ignore = false;
-		executeTag(tagname, obj);
-
-		window.modules.callHandler('onConductorCall', obj);
-
-		return !obj.ignore;
-	}
-
-	function onJump(elm)
-	{
-		var tagname = 'jump';
-		var obj = elm;
-
-		obj.tagname = tagname;
-		obj.ignore = false;
-		executeTag(tagname, obj);
-
-		window.modules.callHandler('onConductorJump', obj);
-
-		return !obj.ignore;
-	}
-
-	function onReturn(elm)
-	{
-		var tagname = 'return';
-		var obj = elm;
-
-		obj.tagname = tagname;
-		obj.ignore = false;
-		executeTag(tagname, obj);
-
-		window.modules.callHandler('onConductorReturn', obj);
-
-		dm(@"return : &obj.ignore;");
-
-		return !obj.ignore;
-	}
-
 	function onScript(script, storageShortName, scriptStart)
 	{
 		var tagname = 'script';
@@ -1197,26 +1168,6 @@ class GConductor extends KAGParser
 				@"&e.message;"
 			);
 		}
-	}
-
-	/**/
-	function onScenarioLoad(storage)
-	{
-		window.modules.callHandler('onConductorScenarioLoad', storage);
-	}
-
-	/**/
-	function onScenarioLoaded(storage)
-	{
-		window.modules.callHandler('onConductorScenarioLoaded', storage);
-	}
-
-	/**/
-	function onLabel(label, pagename)
-	{
-		window.modules.callHandler('onConductorLabel', label, pagename, firstLabelProcessed_);
-
-		firstLabelProcessed_ = true if pagename !== void;
 	}
 
 	property window

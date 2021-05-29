@@ -124,7 +124,7 @@ class ModADV extends GModule
 						.historyLayer.output(elm) if .outputHistory;
 						if(.skipping)
 						{
-							return 0;
+							return 'breath';
 						}
 						else
 						{
@@ -154,6 +154,14 @@ class ModADV extends GModule
 				{
 					if(.current === null)
 						return;
+					if(c.lastActualProcessedTag == 'r_mod_adv' && +elm.eol)
+					{
+						if(isTransitionReserved())
+						{
+							c.pendingTag('run_reserved_transition', elm);
+							return 'break';
+						}
+					}
 					if(.current.outputting)
 					{
 						if(c.lastActualProcessedTag == 'r_mod_adv' && +elm.eol)
@@ -189,6 +197,11 @@ class ModADV extends GModule
 						c.waitSignal(%[left_click : .current.hidePageGlyph]);
 					}
 				}
+			} incontextof this,
+
+			/* @all_free_character */
+			'all_free_characters' => function (elm) {
+				allFreeCVLayers();
 			} incontextof this,
 
 			/* @character */
@@ -244,8 +257,15 @@ class ModADV extends GModule
 				with(container.modMessage)
 				{
 					var char = getCharacter(activeCharacterName_);
+
+					if(char !== void)
+					{
+						if(char.hasVoice)
+						{
+							c.interruptTag(%[tagname : 'stop_character_voice', name : activeCharacterName_]);
+						}
+					}
 					c.interruptTag(
-						%[tagname : 'stop_character_voice', name : activeCharacterName_],
 						%[tagname : 'stop_transition', layer : 'base'],
 						'er'
 					);
@@ -275,7 +295,7 @@ class ModADV extends GModule
 			'run_reserved_transition' => function (elm, c) {
 				if(container.modImage.transitionCount > 0)
 				{
-					c.pendingTag('wait-transition', elm);
+					c.pendingTag('wait_transition', elm);
 					return 'break';
 				}
 				runReservedTransition();
@@ -491,7 +511,7 @@ class ModADV extends GModule
 	}
 
 	/**/
-	function allocCVLayer_private_(name, fore = false)
+	function allocCVLayer(name, fore = false)
 	{
 		var cvLayers = container.modImage.cvLayers;
 		var users = cvLayerUsers_;
@@ -549,6 +569,33 @@ class ModADV extends GModule
 	}
 
 	/**/
+	function allFreeCVLayers()
+	{
+		var chars = [];
+		var char;
+
+		chars.assign(characterNames_);
+		chars.push(mobCharacterNames_*);
+
+		for(var i = 0; i < chars.count; i++)
+		{
+			with(char = getCharacter(chars[i]))
+			{
+				if(char !== void)
+				{
+					if(.cvLayerIndex !== void)
+					{
+						var layer = allocCVLayer(chars[i]);
+
+						freeCVLayer_private_(chars[i]);
+						layer.clearImages();
+					}
+				}
+			}
+		}
+	}
+
+	/**/
 	function setCharacterImageByElm(elm)
 	{
 		var name = (elm.name === void ? elm.tagname : elm.name);
@@ -569,9 +616,9 @@ class ModADV extends GModule
 			return false;
 
 		var imageLoaded = false;
-		var layer = allocCVLayer_private_(name);
+		var layer = allocCVLayer(name);
 		var timeZone = getCurrentTimeZone();
-		var visible = (elm.visible === void ? layer.visible : +elm.visible);
+		var visible = (elm.visible === void ? layer.visible : GObjectUtils.getBoolean(elm, 'visible'));
 
 		if(elm.storage != '')
 		{
@@ -582,12 +629,12 @@ class ModADV extends GModule
 
 			if(timeZone !== void)
 			{
-				storage = @"&storage;&timeZone.storageSuffix;&storageExt;";
+				storage = @"&storage;&timeZone.storageSuffix;";
 				if(elm.asd !== void)
-					asd = @"&asd;&timeZone.storageSuffix;&asdExt;";
+					asd = @"&asd;&timeZone.storageSuffix;";
 			}
 
-			if(getExistentStorageNameAndExtension(@"&storage;", graphicFileExtensions*) === void)
+			if(getExistentStorageNameAndExtension(storage, graphicFileExtensions*) === void)
 			{
 				log(@"画像 &storage; が見つかりませんでした。");
 				return false;
@@ -812,7 +859,7 @@ class ModADV extends GModule
 	function onConductorScenarioLoaded(storage)
 	{
 		var chars = characters_;
-		var arr = mobCharacterNames_;
+		var arr = GObjectUtils.duplicate(mobCharacterNames_);
 		var count = arr.count;
 		var ch, name;
 
@@ -821,7 +868,7 @@ class ModADV extends GModule
 			name = arr[i];
 			invalidate chars[name];
 			delete chars[name];
-			arr.remove(name);
+			mobCharacterNames_.remove(name);
 		}
 		// ボイス番号クリア
 		arr = characterNames_;
@@ -832,6 +879,11 @@ class ModADV extends GModule
 			ch = getCharacter(name);
 			ch.voice = 0;
 		}
+	}
+
+	property activeCharacterName
+	{
+		getter		{ return activeCharacterName_; }
 	}
 }
 

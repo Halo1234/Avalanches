@@ -740,6 +740,7 @@ class GHyperTextLayer extends GFormLayer
 	var edgeColorCache_ = clNone;
 
 	var lastCharacter_ = '';
+	var text_ = '';
 
 	var contents_ = [];
 	var currentLine = 0;
@@ -1029,6 +1030,7 @@ class GHyperTextLayer extends GFormLayer
 	{
 		outputting_ = false;
 		splitingPage_ = false;
+		text_ = '';
 		contents_.clear();
 		currentLine = 0;
 		layout.resetPosition();
@@ -1074,6 +1076,7 @@ class GHyperTextLayer extends GFormLayer
 		}
 
 		lastCharacter_ = text;
+		text_ += text;
 
 		return true;
 	}
@@ -1121,6 +1124,7 @@ class GHyperTextLayer extends GFormLayer
 		}
 
 		lastCharacter_ = text;
+		text_ += text;
 
 		return true;
 	}
@@ -1238,6 +1242,7 @@ class GHyperTextLayer extends GFormLayer
 		dic.edgeColorCache = edgeColorCache_;
 
 		dic.lastCharacter = lastCharacter_;
+		dic.text = text_;
 
 		dic.contents = [];
 		dic.contents.assignStruct(contents_);
@@ -1263,7 +1268,7 @@ class GHyperTextLayer extends GFormLayer
 		marginBottomCache_ = dic.marginBottomCache;
 		marginModified_ = dic.marginModified;
 		reservedLineSize = dic.reservedLineSize;
-		reservedLineSizeCache = dic.reservedLineSizeCache;
+		reservedLineSizeCache_ = dic.reservedLineSizeCache;
 		characterSpaceCache_ = dic.characterSpaceCache;
 		lineSpaceCache_ = dic.lineSpaceCache;
 		fontFaceCache_ = dic.fontFaceCache;
@@ -1284,53 +1289,13 @@ class GHyperTextLayer extends GFormLayer
 		shadowExtent_ = dic.shadowExtent;
 		edgeColorCache_ = dic.edgeColorCache;
 
-		dic.lastCharacter = lastCharacter_;
+		lastCharacter_ = dic.lastCharacter;
+		text_ = dic.text;
 
 		dic.contents = [];
 		dic.contents.assignStruct(contents_);
 
 		return dic;
-	}
-
-	/**/
-	function restore(dic, tick)
-	{
-		super.restore(...);
-
-		layoutModeCache_ = dic.layoutModeCache;
-		layoutMode_ = dic.layoutMode;
-		resetLayout();
-		layout.restore(dic.layout) if dic.layout !== void;
-
-		outputting_ = dic.outputting;
-
-		marginLeftCache_ = dic.marginLeftCache;
-		marginTopCache_ = dic.marginTopCache;
-		marginRightCache_ = dic.marginRightCache;
-		characterSpace = dic.characterSpace;
-		fontFaceCache_ = dic.fontFaceCache;
-		fontSizeCache_ = dic.fontSizeCache;
-		italicCache_ = dic.italicCache;
-		boldCache_ = dic.boldCache;
-		strikeoutCache_ = dic.strikeoutCache;
-		underlineCache_ = dic.underlineCache;
-		rubyFontFaceCache_ = dic.rubyFontFaceCache;
-		rubyFontSizeCache_ = dic.rubyFontSizeCache;
-		rubyItalicCache_ = dic.rubyItalicCache;
-		rubyBoldCache_ = dic.rubyBoldCache;
-		rubyStrikeoutCache_ = dic.rubyStrikeoutCache;
-		rubyUnderlineCache_ = dic.rubyUnderlineCache;
-		shadowColorCache_ = dic.shadowColorCache;
-		shadowOffsetX_ = dic.shadowOffsetX;
-		shadowOffsetY_ = dic.shadowOffsetY;
-		shadowExtent_ = dic.shadowExtent;
-		edgeColorCache_ = dic.edgeColorCache;
-
-		lastCharacter_ = dic.lasttCharacter;
-
-		contents_.assignStruct(dic.contents);
-
-		layout.resetFont();
 	}
 
 	/**/
@@ -1451,6 +1416,12 @@ class GHyperTextLayer extends GFormLayer
 	property shadowExtent
 	{
 		getter		{ return shadowExtent_; }
+	}
+
+	/**/
+	property text
+	{
+		getter		{ return text_; }
 	}
 
 	/**/

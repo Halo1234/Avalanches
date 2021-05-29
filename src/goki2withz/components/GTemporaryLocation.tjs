@@ -180,6 +180,18 @@ class GTemporaryLocation extends GLocation
 	}
 
 	/**/
+	function remove(name)
+	{
+		var t = temporaryLocation_;
+
+		if(t[name] !== void)
+		{
+			invalidate t[name];
+			delete t[name];
+		}
+	}
+
+	/**/
 	function typeCheck(name, type)
 	{
 		return temporaryLocation_[makeStoragePath(addIndex(name))] instanceof type;

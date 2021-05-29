@@ -130,7 +130,7 @@ class ModMessage extends GModule
 	{
 		var obj = new GHistoryLayer(window, parentLayer, onHistoryLayerEvent);
 
-		obj.absolute = 1000000;
+		obj.absolute = 10000000;
 
 		return obj;
 	}
@@ -177,7 +177,7 @@ class ModMessage extends GModule
 					.setShadowColor(+elm.shadow_color) if elm.shadow_color !== void;
 					.setEdgeColor(+elm.edge_color) if elm.edge_color !== void;
 					setCurrentLayer(.name) if GObjectUtils.getBoolean(elm, 'current');
-					if(elm.margin_left !== void && elm.margin_top !== void && elm.margin_top !== void && elm.margin_bottom !== void)
+					if(elm.margin_left !== void && elm.margin_top !== void && elm.margin_right !== void && elm.margin_bottom !== void)
 						.setMargin(+elm.margin_left, +elm.margin_top, +elm.margin_right, +elm.margin_bottom);
 					.visible = GObjectUtils.getBoolean(elm, 'visible') if GObjectUtils.hasValue(elm, 'visible');
 					.layoutMode = elm.layout_mode if elm.layout_mode !== void;
@@ -209,7 +209,7 @@ class ModMessage extends GModule
 					.bodyOpacity = +elm.opacity if elm.opacity !== void;
 					.setShadowColor(+elm.shadow_color) if elm.shadow_color !== void;
 					.setEdgeColor(+elm.edge_color) if elm.edge_color !== void;
-					if(elm.margin_left !== void && elm.margin_top !== void && elm.margin_top !== void && elm.margin_bottom !== void)
+					if(elm.margin_left !== void && elm.margin_top !== void && elm.margin_right !== void && elm.margin_bottom !== void)
 						.setMargin(+elm.margin_left, +elm.margin_top, +elm.margin_right, +elm.margin_bottom);
 					.layoutMode = elm.layout_mode if elm.layout_mode !== void;
 					.setFontSize(+elm.font_size) if elm.font_size !== void;
@@ -307,6 +307,8 @@ class ModMessage extends GModule
 						.showHideTime = +elm.time if elm.time !== void;
 						.show();
 					}
+
+					container.callHandler('onShowMessageLayer');
 				}
 			} incontextof this,
 
@@ -343,6 +345,8 @@ class ModMessage extends GModule
 						.showHideTime = +elm.time if elm.time !== void;
 						.hide();
 					}
+
+					container.callHandler('onHideMessageLayer');
 				}
 			} incontextof this,
 
@@ -739,11 +743,6 @@ class ModMessage extends GModule
 				}
 			} incontextof this,
 
-			/* @current */
-			'current' => function (elm) {
-				current_ = findByElm(elm);
-			} incontextof this,
-
 			/* @delay */
 			'delay' => function (elm) {
 				if(elm.speed == 'nowait')
@@ -817,13 +816,19 @@ class ModMessage extends GModule
 						Scripts.eval(elm.on_skip) if elm.on_skip !== void;
 						return 0;
 					}
-					waitSignal(%[
-						left_click_arg => elm.on_skip,
-						left_click => function (onSkip) {
-							Scripts.eval(onSkip) if onSkip !== void;
-						} incontextof this,
-						elm.name => null
-					]);
+					if(elm.name == 'left_click')
+					{
+						waitSignal(%[
+							left_click_arg => elm.on_skip,
+							left_click => function (onSkip) {
+								Scripts.eval(onSkip) if onSkip !== void;
+							} incontextof this
+						]);
+					}
+					else
+					{
+						waitSignal(%[elm.name => null]);
+					}
 				}
 			} incontextof this,
 
@@ -1048,6 +1053,7 @@ class ModMessage extends GModule
 		messageLayers.each(
 			function (obj) { obj.hideByUser(); } incontextof this
 		);
+		container.callHandler('onHideMessageLayerByUser');
 	}
 
 	/**/
@@ -1057,6 +1063,7 @@ class ModMessage extends GModule
 		messageLayers.each(
 			function (obj) { obj.showByUser(); } incontextof this
 		);
+		container.callHandler('onShowMessageLayerByUser');
 	}
 
 	/**/
@@ -1162,7 +1169,7 @@ class ModMessage extends GModule
 	}
 
 	/**/
-	function enterSkipToNextWait(bb = 1)
+	function enterSkipToNextWait(bb = 40)
 	{
 		if(clickSkipEnabled)
 		{
@@ -1178,7 +1185,7 @@ class ModMessage extends GModule
 	}
 
 	/**/
-	function enterSkipToNextStop(bb = 1)
+	function enterSkipToNextStop(bb = 40)
 	{
 		if(nextSkipEnabled && clickSkipEnabled)
 		{
@@ -1194,7 +1201,7 @@ class ModMessage extends GModule
 	}
 
 	/**/
-	function enterSkipToPageEnd(bb = 1)
+	function enterSkipToPageEnd(bb = 40)
 	{
 		if(clickSkipEnabled)
 		{
@@ -1210,7 +1217,7 @@ class ModMessage extends GModule
 	}
 
 	/**/
-	function enterSkipToNotRead(bb = 1)
+	function enterSkipToNotRead(bb = 40)
 	{
 		if(clickSkipEnabled)
 		{
@@ -1226,7 +1233,7 @@ class ModMessage extends GModule
 	}
 
 	/**/
-	function enterSkipToSkipCancel(bb = 1)
+	function enterSkipToSkipCancel(bb = 40)
 	{
 		if(clickSkipEnabled)
 		{
@@ -1490,8 +1497,8 @@ class ModMessage extends GModule
 			break;
 
 		case 'onShowCompleted':
-			dm("onShowCompleted");
-			dm(@"&obj.name;_show_completed");
+			//dm("onShowCompleted");
+			//dm(@"&obj.name;_show_completed");
 			window.conductor.signal(@"&obj.name;_show_completed");
 			break;
 

@@ -23,7 +23,11 @@ class CharacterVisualLayerIterator extends GLayerIterator
 
 	function create(window)
 	{
-		return new GLayer(window, container.get(container.parentLayerName), onLayerEvent);
+		var obj = new GLayer(window, container.get(container.parentLayerName), onLayerEvent);
+
+		obj.name = 'cv layer';
+
+		return obj;
 	}
 
 	property prefix
@@ -45,12 +49,16 @@ class CharacterGraphicsLayerIterator extends GLayerIterator
 
 	function create(window)
 	{
-		return new GLayer(window, container.get(container.parentLayerName), onLayerEvent);
+		var obj = new GLayer(window, container.get(container.parentLayerName), onLayerEvent);
+
+		obj.name = 'cg layer';
+
+		return obj;
 	}
 
 	property prefix
 	{
-		getter		{ return 'cg_layer'; }
+		getter		{ return 'cg_layer_'; }
 	}
 }
 
@@ -202,13 +210,13 @@ class ModImage extends GModule
 						{
 							var modMessage = container.get('modMessage');
 
-							if(modMessage !== void && elm.timemode == 'delay')
+							if(modMessage !== void && elm.time_mode == 'delay')
 							{
 								time = modMessage.outputInterval * time;
 							}
 						}
-						.horizontalMax = +elm['horizontal_max'];
-						.verticalMax = +elm['vertical_max'];
+						.horizontalMax = +elm.horizontal_max;
+						.verticalMax = +elm.vertical_max;
 						.time = time;
 						.looping = GObjectUtils.getBoolean(elm, 'looping');
 						.delay = delay;
@@ -309,6 +317,14 @@ class ModImage extends GModule
 				with(findByElm(elm).mover)
 				{
 					.stop();
+				}
+			} incontextof this,
+
+			/**/
+			'release_rendering_target' => function (elm) {
+				with(findByElm(elm).mover)
+				{
+					.releaseRenderingTarget();
 				}
 			} incontextof this,
 
@@ -424,7 +440,7 @@ class ModImage extends GModule
 	/**/
 	function loadImageByElm(elm, ignorePage = false)
 	{
-		var layer = findByElm(elm, ignorePage);
+		var layer = findByElm(elm, ignorePage, elm.prefix);
 		var gbFunc = GObjectUtils.getBoolean;
 		var hvFunc = GObjectUtils.hasValue;
 
@@ -513,7 +529,7 @@ class ModImage extends GModule
 		// 色補正
 		with(layer.colorCorrection)
 		{
-			.grayScale = (elm.gray_scale === void ? false : +elm.gray_scale);
+			.grayScale = gbFunc(elm, 'gray_scale', false);
 			.rGamma = (elm.r_gamma === void ? 1.0 : +elm.r_gamma);
 			.gGamma = (elm.g_gamma === void ? 1.0 : +elm.g_gamma);
 			.bGamma = (elm.b_gamma === void ? 1.0 : +elm.b_gamma);
@@ -545,7 +561,10 @@ class ModImage extends GModule
 		if(elm.asd_storage !== void)
 		{
 			with(layer.conductor)
+			{
 				.loadScenario(elm.asd_storage);
+				.start();
+			}
 		}
 
 		return layer;

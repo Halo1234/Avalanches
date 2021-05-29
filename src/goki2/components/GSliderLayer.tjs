@@ -152,6 +152,8 @@ class GSliderLayer extends GButtonLayer
 
 		fixSliderSize();
 
+		eraseBackGround();
+
 		// NOTE: レイアウトは作り直しが発生する可能性があるので代行オブジェクトを通して破棄する。
 		family.receive(new GDestructor(resetLayout));
 	}
@@ -204,6 +206,7 @@ class GSliderLayer extends GButtonLayer
 		else
 			w = width;
 		sliderLayer_.setSize(w, h);
+		sliderLayer_.eraseBackGround();
 	}
 
 	function assign(src)

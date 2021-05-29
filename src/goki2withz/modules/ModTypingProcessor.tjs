@@ -281,6 +281,21 @@ class TypingWord
 		return '';
 	}
 
+	/**/
+	function inputTest(ch)
+	{
+		if(accepted)
+			return modTypingProcessorDeniedValue;
+
+		var candidate = getCurrentRubyCandidate();
+		var pattern = checkCharacter_private_(candidate, ch);
+
+		if(pattern == '')
+			return modTypingProcessorDeniedValue;
+
+		return modTypingProcessorAcceptedValue;
+	}
+
 	/*! \brief 文字 ch を入力します。
 	**/
 	function input(ch)
@@ -483,7 +498,7 @@ class TypingWord
 	/**/
 	property lastResult
 	{
-		getter		{ return lastResult; }
+		getter		{ return lastResult_; }
 	}
 }
 
@@ -728,7 +743,7 @@ class TypingWordProcessor
 					}
 				}
 
-				index++;
+				index = intRandom(words.count - 1);
 			}
 		}
 
@@ -879,7 +894,7 @@ class TypingWordProcessor
 		}
 		arr.remove(void);
 
-		dumpWordList();
+		//dumpWordList();
 	}
 
 	/**/
@@ -1185,7 +1200,7 @@ class TypingWordLayer extends GWidgetLayer
 	function reset()
 	{
 		word_.reset() if word_ !== void;
-		word_ = void;
+		//word_ = void;
 		opacity = 128;
 		if(backupAbsolute !== void)
 		{
@@ -1359,6 +1374,15 @@ class TypingWordLayer extends GWidgetLayer
 	}
 
 	/**/
+	function inputTest(ch)
+	{
+		if(word_ === void)
+			throw new GRuntimeError('ワードが設定されていないオブジェクトに入力しました。');
+
+		return word_.inputTest(ch);
+	}
+
+	/**/
 	function input(ch)
 	{
 		if(word_ === void)
@@ -1413,7 +1437,7 @@ class TypingWordLayer extends GWidgetLayer
 	{
 		super.restore(...);
 
-		word.restore(dic.word, tick) if dic.word !== void;
+		word.restore(dic.word, tick) if dic.word !== void && word !== void;
 
 		captionFontSize_ = dic.captionFontSize;
 		rubyFontSize_ = dic.rubyFontSize;
@@ -1445,6 +1469,76 @@ class TypingWordLayer extends GWidgetLayer
 	{
 		getter		{ return (word_ === void ? false : word_.accepted); }
 	}
+
+	/**/
+	property captionFontSize
+	{
+		setter(x)	{ captionFontSize_ = x; }
+		getter		{ return captionFontSize_; }
+	}
+
+	/**/
+	property rubyFontSize
+	{
+		setter(x)	{ rubyFontSize_ = x; }
+		getter		{ return rubyFontSize_; }
+	}
+
+	/**/
+	property romanFontSize
+	{
+		setter(x)	{ romanFontSize_ = x; }
+		getter		{ return romanFontSize_; }
+	}
+
+	/**/
+	property acceptColor
+	{
+		setter(x)	{ acceptColor_ = x; }
+		getter		{ return acceptColor_; }
+	}
+
+	/**/
+	property acceptEdgeColor
+	{
+		setter(x)	{ acceptEdgeColor_ = x; }
+		getter		{ return acceptEdgeColor_; }
+	}
+
+	/**/
+	property currentColor
+	{
+		setter(x)	{ currentColor_ = x; }
+		getter		{ return currentColor_; }
+	}
+
+	/**/
+	property currentEdgeColor
+	{
+		setter(x)	{ currentEdgeColor_ = x; }
+		getter		{ return currentEdgeColor_; }
+	}
+
+	/**/
+	property unstableColor
+	{
+		setter(x)	{ unstableColor_ = x; }
+		getter		{ return unstableColor_; }
+	}
+
+	/**/
+	property unstableEdgeColor
+	{
+		setter(x)	{ unstableEdgeColor_ = x; }
+		getter		{ return unstableEdgeColor_; }
+	}
+
+	/**/
+	property invisibleRuby
+	{
+		setter(x)	{ invisibleRuby_ = x; }
+		getter		{ return invisibleRuby; }
+	}
 }
 
 
@@ -1457,6 +1551,8 @@ class TypingWordLayer extends GWidgetLayer
 class TypingObjectLayer extends GFormLayer
 {
 	var wordLayer_;
+
+	var missHit_ = 0;
 
 	/**/
 	function TypingObjectLayer(window, parent, handler)
@@ -1519,19 +1615,32 @@ class TypingObjectLayer extends GFormLayer
 	function clear()
 	{
 		wordLayer_.reset();
+		missHit_ = 0;
 		hide();
 	}
 
 	/**/
 	function reset()
 	{
-		wordLyaer_.reset();
+		wordLayer_.reset();
+		missHit_ = 0;
+	}
+
+	/**/
+	function inputTest(ch)
+	{
+		var ret = wordLayer_.inputTest(ch);
+
+		return ret;
 	}
 
 	/**/
 	function input(ch)
 	{
 		var ret = wordLayer_.input(ch);
+
+		if(isModTypingProcessorDeniedValue(ret))
+			missHit_++;
 
 		// NOTE:
 		// 必要ならばレイヤ更新。
@@ -1563,6 +1672,12 @@ class TypingObjectLayer extends GFormLayer
 	}
 
 	/**/
+	property missHit
+	{
+		getter()		{ return missHit_; }
+	}
+
+	/**/
 	property wordLayer
 	{
 		getter()		{ return wordLayer_; }
@@ -1582,7 +1697,7 @@ class TypingObjectLayer extends GFormLayer
  * ゲームらしさを追求するならばこのオブジェクトを派生させて
  * 演出を加えるべきです。
 **/
-class TypingBaseLayer extends GLayer
+class TypingBaseLayer extends GFormLayer
 {
 	var processor_;
 
@@ -1600,11 +1715,12 @@ class TypingBaseLayer extends GLayer
 	/**/
 	function TypingBaseLayer(window, parent, handler)
 	{
-		super.GLayer(...);
+		super.GFormLayer(...);
 		hitThreshold = 256;
 		focusable = true;
 		hasImage = false;
 		absolute = 10000;
+		rclickHide = false;
 
 		setSize(parent.width, parent.height);
 
@@ -1616,16 +1732,17 @@ class TypingBaseLayer extends GLayer
 		limitTimer_.interval = 1000;
 		limitTimer_.capacity = 1;
 
-		endGame();
+		//endGame();
 	}
 
 	/**/
 	function createLimitLayer(window, parent, handler)
 	{
-		var obj = new GWidgetLayer(window, parent, handler);
+		var obj = new global.GWidgetLayer(window, parent, handler);
 		var text = '99';
 
 		obj.font.height = 24;
+		obj.absolute = 100000;
 		obj.setSize(obj.font.getTextWidth(text), obj.font.getTextHeight(text));
 		obj.setPos((parent.width - obj.width) >> 1, 10);
 		obj.caption = string(limitMax);
@@ -1652,11 +1769,12 @@ class TypingBaseLayer extends GLayer
 		var obj;
 
 		if(cache.count > 0)
-			obj = cache.pop(), dm("hoge");
+			obj = cache.pop();
 		else
 			family.receive(obj = createTypingObjectLayer(window, this, onTypingObjectEvent));
 
 		obj.absolute = 1000;
+		obj.wordLayer.absolute = 2000;
 		obj.wordLayer.setWord(word);
 
 		return obj;
@@ -1822,10 +1940,11 @@ class TypingBaseLayer extends GLayer
 
 			for(var i = used.count - 1; i >= 0; --i)
 			{
-				if(!isModTypingProcessorDeniedValue(used[i].input(key)))
+				if(!isModTypingProcessorDeniedValue(used[i].inputTest(key)))
 				{
+					used[i].input(key);
 					//dm(used[i].wordLayer.word.caption);
-					activeObject_ = used[i];
+					activeObject_ = obj = used[i];
 					break;
 				}
 			}
@@ -1975,6 +2094,37 @@ class TypingBaseLayer extends GLayer
 	}
 
 	/**/
+	property usedObjectLayers
+	{
+		getter		{ return usedObjectLayers_; }
+	}
+
+	/**/
+	property unUsedObjectLayers
+	{
+		getter		{ return unUsedObjectLayers_; }
+	}
+
+	/**/
+	property limitLayer
+	{
+		getter		{ return limitLayer_; }
+	}
+
+	/**/
+	property limitTimer
+	{
+		getter		{ return limitTimer_; }
+	}
+
+	/**/
+	property activeObject
+	{
+		setter(x)	{ activeObject_ = x; }
+		getter		{ return activeObject_; }
+	}
+
+	/**/
 	property targetCount
 	{
 		getter		{ return usedObjectLayers_.count; }
@@ -2041,6 +2191,30 @@ class ModTypingProcessor extends GModule
 				targetImageStorage = elm.target_image if elm.target_image !== void;
 				baseLayer_.absolute = +elm.index if elm.index !== void;
 				baseLayer_.limitMax = +elm.limit if elm.limit !== void;
+			} incontextof this,
+
+			/* @show_typing_base_layer */
+			'show_typing_base_layer' => function (elm) {
+				baseLayer_.showHideTime = 200;
+				baseLayer_.show();
+			} incontextof this,
+
+			/* @wait_show_typing_base_layer */
+			'wait_show_typing_base_layer' => function (elm, c) {
+				if(baseLayer_.showRunning)
+					c.waitSignal(%['show_base_layer_completed' => null]);
+			} incontextof this,
+
+			/* @hide_typing_base_layer */
+			'hide_typing_base_layer' => function (elm) {
+				baseLayer_.showHideTime = 1000;
+				baseLayer_.hide();
+			} incontextof this,
+
+			/* @wait_hide_typing_base_layer */
+			'wait_hide_typing_base_layer' => function (elm, c) {
+				if(baseLayer_.hideRunning)
+					c.waitSignal(%['hide_base_layer_completed' => null]);
 			} incontextof this,
 
 			/* @typing_start */
@@ -2208,7 +2382,7 @@ class ModTypingProcessor extends GModule
 		dic.endStorage = endStorage;
 		dic.endTarget = endTarget;
 
-		dic.typingStarted = baseLayer_.enabled;
+		dic.typingStarted = baseLayer_.visible;
 
 		return dic;
 	}
@@ -2229,10 +2403,12 @@ class ModTypingProcessor extends GModule
 		if(dic.typingStarted)
 		{
 			baseLayer_.startGame();
+			dm('start');
 		}
 		else
 		{
 			baseLayer_.endGame();
+			dm('end');
 		}
 	}
 
@@ -2241,6 +2417,8 @@ class ModTypingProcessor extends GModule
 	{
 		switch(message)
 		{
+		case 'onShowCompleted':	window.conductor.signal('show_base_layer_completed'); break;
+		case 'onHideCompleted':	window.conductor.signal('hide_base_layer_completed'); break;
 		case 'onWordAccepted':	dispatcher_.signal(message); break;
 		case 'onEndGame':
 			if(endStorage != '' || endTarget != '')

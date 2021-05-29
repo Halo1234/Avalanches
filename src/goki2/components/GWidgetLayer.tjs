@@ -228,7 +228,7 @@ class GWidgetLayer extends GLayer
 		if(hasImage)
 		{
 			super.setImageSize(width, height);
-			clearImages();
+			//clearImages();
 			setSizeToImageSize();
 		}
 	}
@@ -279,13 +279,13 @@ class GWidgetLayer extends GLayer
 	{
 		super.restore(...);
 
-		bodyColor = dic.bodyColor;
-		bodyOpacity = dic.bodyOpacity;
-		caption = dic.caption;
-		captionAlign = dic.captionAlign;
-		captionColor = dic.captionColor;
-		shadowColor = dic.shadowColor;
-		edgeColor = dic.edgeColor;
+		bodyColor_ = dic.bodyColor;
+		bodyOpacity_ = dic.bodyOpacity;
+		caption_ = dic.caption;
+		captionAlign_ = dic.captionAlign;
+		captionColor_ = dic.captionColor;
+		shadowColor_ = dic.shadowColor;
+		edgeColor_ = dic.edgeColor;
 		mouseCentering = dic.mouseCentering;
 
 		eraseBackGround() if !imageLoaded;

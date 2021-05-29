@@ -7,3 +7,39 @@
 function dm(msg)	{ Debug.message(msg); }
 
 
+class GDebugWindow extends MainWindow
+{
+	function GDebugWindow()
+	{
+		super.MainWindow(...);
+	}
+
+	function onKeyDown(key, shift)
+	{
+		if(shift & ssShift && key == VK_F12)
+		{
+			primaryLayer.dump();
+		}
+		else
+		if(shift & ssShift && key == VK_L)
+		{
+			if(window.focusedLayer !== null)
+				dm(@"&window.focusedLayer.name;");
+			else
+				dm(@'null');
+		}
+		else
+		if(shift & ssShift && key == VK_C)
+		{
+			Clipboard.asText = window.modules.modMessage.current.text;
+		}
+		else
+		{
+			super.onKeyDown(...);
+		}
+	}
+}
+
+GMainWindow = GDebugWindow;
+
+

@@ -54,10 +54,10 @@ class ModBookmark extends GModule
 
 		with(window)
 		{
-			var path = @"&System.exePath;/savedata/";
+			var path = productInfo.outputLocation;
 
 			if(.getLocation(name) === void)
-				.makeLocation(name, path, '');
+				.makeLocation(name, path, 'index.ary');
 
 			Debug.logLocation = path;
 		}
@@ -89,7 +89,7 @@ class ModBookmark extends GModule
 						if(elm.height !== void)
 							.thumbnailHeight = (elm.height == "auto" ? elm.height : +elm.height);
 					}
-					.keepAspectRatio = +elm.keepAspectRatio if elm.keepAspectRatio !== void;
+					.keepAspectRatio = +elm.keep_aspect_ratio if elm.keep_aspect_ratio !== void;
 					.storagePrefix = elm.prefix if elm.prefix !== void;
 					.storageSuffix = elm.suffix if elm.suffix !== void;
 					.mode = elm.mode if elm.mode !== void;
@@ -537,8 +537,8 @@ class ModBookmark extends GModule
 			}
 		}
 
-		systemUserFlags_ = data.user;
-		systemCoreFlags_ = data.core;
+		GObjectUtils.assignDictionary(systemUserFlags_, data.user);
+		GObjectUtils.assignDictionary(systemCoreFlags_, data.core);
 
 		context_ = data.context;
 
@@ -734,6 +734,7 @@ class ModBookmark extends GModule
 
 			var layer = new GLayer(window, window.primaryLayer);
 
+			layer.name = 'format layer';
 			layer.loadImages(fileName);
 			layer.setSizeToImageSize();
 

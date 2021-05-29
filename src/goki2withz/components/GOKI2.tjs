@@ -29,7 +29,7 @@ Scripts.execStorage('GOKI2Utils.tjs');
 		'GLayerContainer', 'GLayerIterator',
 		'GWidgetLayer',
 		'GFormLayer', 'GButtonLayer', 'GCheckBoxLayer', 'GEditLayer', 'GSliderLayer',
-		'GSyntax', 'GConductor',
+		'GSyntax', 'GConductor', 'GADVConductor',
 		'GLocation', 'GTemporaryLocation',
 		'GWaveSoundBuffer', 'GWaveSoundBuffer2',
 		'GSoundBufferContainer', 'GSoundBufferIterator',
@@ -68,9 +68,5 @@ global.anotherCycle = new GAnotherExclusiveCycle();
  *  GMainWindow = UserWindowClass;
 **/
 var GMainWindow = GWindow;
-
-// NOTE: この中では GOKI2 の定義の変更などができます。
-if(Storages.isExistentStorage('Override.tjs'))
-	loadTJS('Override.tjs');
 
 

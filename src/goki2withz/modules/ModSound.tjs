@@ -7,6 +7,19 @@ function modSoundPlaySound(buffer, storage)
 {
 	var obj = window.modules.modSound.soundEffectBuffers.at(buffer);
 
+	obj.stop();
+	obj.looping = false;
+	obj.open(storage);
+	obj.play();
+}
+
+
+/**/
+function modSoundPlayVoice(buffer, storage)
+{
+	var obj = window.modules.modSound.voiceBuffers.at(buffer);
+
+	obj.stop();
 	obj.looping = false;
 	obj.open(storage);
 	obj.play();
@@ -128,6 +141,21 @@ class VoiceBufferIterator extends GSoundBufferIterator
 
 
 /**/
+class BGVBufferIterator extends GSoundBufferIterator
+{
+	function BGVBufferIterator(window, container)
+	{
+		super.GSoundBufferIterator(...);
+	}
+
+	property prefix
+	{
+		getter		{ return 'bgv'; }
+	}
+}
+
+
+/**/
 class ModSound extends GModule
 {
 	var soundBufferContainer_;
@@ -136,6 +164,7 @@ class ModSound extends GModule
 	var systemSoundBuffers_;
 	var soundEffectBuffers_;
 	var voiceBuffers_;
+	var bgvBuffers_;
 
 	var bgmStopInfos_ = %[];
 	var bgmLabelInfos_ = %[];
@@ -155,6 +184,9 @@ class ModSound extends GModule
 
 		soundEffectBuffers_ = new SoundEffectBufferIterator(window, soundBufferContainer_);
 		soundEffectBuffers_.onBufferEvent = onSoundEffectBufferEvent;
+
+		bgvBuffers_ = new BGVBufferIterator(window, soundBufferContainer_);
+		bgvBuffers_.onBufferEvent = onBGVBufferEvent;
 
 		voiceBuffers_ = new VoiceBufferIterator(window, soundBufferContainer_);
 		voiceBuffers_.onBufferEvent = onVoiceBufferEvent;
@@ -239,6 +271,21 @@ class ModSound extends GModule
 	}
 
 	/**/
+	function findBGVBufferByElm(elm)
+	{
+		var obj;
+
+		if(elm.buffer === void)
+			throw new GArgumentsError('buffer が指定されていません。');
+
+		obj = bgvBuffers_.at(+elm.buffer);
+		if(obj === void)
+			throw new GArgumentsError(@"インデックス &elm.buffer; 番のBGVバッファは存在しません。");
+
+		return obj;
+	}
+
+	/**/
 	function getDefaultBGMBuffer()
 	{
 		if(bgmBuffers_.count == 0)
@@ -265,6 +312,11 @@ class ModSound extends GModule
 			/* @voice_buffers */
 			'voice_buffers' => function  (elm) {
 				voiceBuffers_.count = +elm.count if elm.count !== void;
+			} incontextof this,
+
+			/* @bgv_buffers */
+			'bgv_buffers' => function  (elm) {
+				bgvBuffers_.count = +elm.count if elm.count !== void;
 			} incontextof this,
 
 			/* @fadein_system_sound */
@@ -522,6 +574,126 @@ class ModSound extends GModule
 				}
 			} incontextof this,
 
+			/* @fadein_bgv */
+			'fadein_bgv' => function (elm) {
+				with(findBGVBufferByElm(elm))
+				{
+					.looping = GObjectUtils.getBoolean(elm, 'loop', false);
+					.open(elm.storage);
+					.setLabel(elm.label) if elm.label !== void;
+					.fadein(+elm.time, +elm.delay);
+				}
+			} incontextof this,
+
+			/* @fadeout_bgv */
+			'fadeout_bgv' => function (elm) {
+				with(findBGVBufferByElm(elm))
+					.fadeout(+elm.time, +elm.delay);
+			} incontextof this,
+
+			/* @fade_pause_bgv */
+			'fade_pause_bgv' => function (elm) {
+				with(findBGVBufferByElm(elm))
+					.fadePause(+elm.time, +elm.delay);
+			} incontextof this,
+
+			/* @fade_bgv */
+			'fade_bgv' => function (elm) {
+				with(findBGVBufferByElm(elm))
+					.fade(+elm.volume, +elm.time, +elm.delay);
+			} incontextof this,
+
+			/* @play_bgv */
+			'play_bgv' => function (elm) {
+				with(findBGVBufferByElm(elm))
+				{
+					.looping = GObjectUtils.getBoolean(elm, 'loop', false);
+					.open(elm.storage);
+					.setLabel(elm.label) if elm.label !== void;
+					.play();
+				}
+			} incontextof this,
+
+			/* @stop_bgv */
+			'stop_bgv' => function (elm) {
+				with(findBGVBufferByElm(elm))
+					.stop();
+			} incontextof this,
+
+			/* @bgv_option */
+			'bgv_option' => function (elm) {
+				with(findBGVBufferByElm(elm))
+				{
+					.volume = (+elm.volume) * 1000 if elm.volume !== void;
+					.pan = (+elm.pan) * 1000 if elm.pan !== void;
+				}
+				window.sounds.masterVolume = (+elm['master-volume']) * 1000 if elm['master-volume'] !== void;
+			} incontextof this,
+
+			/* @wait_bgv_fade */
+			'wait_bgv_fade' => function (elm, c) {
+				with(findBGVBufferByElm(elm))
+				{
+					if(!.fadeStatus == 'stable')
+						return;
+					if(!GObjectUtils.getBoolean(elm, 'skip', false) || !isClickSkipEnabled())
+						c.waitSignal(%[@"&.name;_fade" => null]);
+					else
+					if(isLongSkipping())
+						.stopFade();
+					else
+						c.waitSignal(%[left_click : .stopFade, @"&.name;_fade" => null]);
+				}
+			} incontextof this,
+
+			/* @wait_bgv_stop */
+			'wait_bgv_stop' => function (elm, c) {
+				with(findBGVBufferByElm(elm))
+				{
+					if(!.playing || .looping)
+						return;
+					if(!GObjectUtils.getBoolean(elm, 'skip', false) || !isClickSkipEnabled())
+						c.waitSignal(%[@"&.name;_stop" => null]);
+					else
+					if(isLongSkipping())
+						.stop();
+					else
+						c.waitSignal(%[left_click : .stop, @"&.name;_stop" => null]);
+				}
+			} incontextof this,
+
+			/* @wait_bgv_fade */
+			'wait_bgv_fade' => function (elm, c) {
+				with(findBGVBufferByElm(elm))
+				{
+					if(!.fadeStatus == 'stable')
+						return;
+					if(!GObjectUtils.getBoolean(elm, 'skip', false) || !isClickSkipEnabled())
+						c.waitSignal(%[@"&.name;_fade" => null]);
+					else
+					if(isLongSkipping())
+						.stopFade();
+					else
+						c.waitSignal(%[left_click : .stopFade, @"&.name;_fade" => null]);
+				}
+			} incontextof this,
+
+			/* @wait_bgv_stop */
+			'wait_bgv_stop' => function (elm, c) {
+				with(findBGVBufferByElm(elm))
+				{
+					if(!.playing || .looping)
+						return;
+					if(!GObjectUtils.getBoolean(elm, 'skip', false) || !isClickSkipEnabled())
+						c.waitSignal(%[@"&.name;_stop" => null]);
+					else
+					if(isLongSkipping())
+						.stop();
+					else
+						c.waitSignal(%[left_click : .stop, @"&.name;_stop" => null]);
+				}
+			} incontextof this,
+
 			/* @add_bgm_buffer */
 			'add_bgm_buffer' => function (elm) {
 				if(elm.type === void)
@@ -744,12 +916,19 @@ class ModSound extends GModule
 	}
 
 	/**/
+	function stopBGVBuffers()
+	{
+		stopBuffers_private_(bgvBuffers);
+	}
+
+	/**/
 	function stopAllSoundBuffers()
 	{
 		stopBGMBuffers();
 		stopSystemSoundBuffers();
 		stopSoundEffectBuffers();
 		stopVoiceBuffers();
+		stopBGVBuffers();
 	}
 
 	/**/
@@ -791,6 +970,7 @@ class ModSound extends GModule
 		dic.systemSoundBuffers = systemSoundBuffers_.store(tick);
 		dic.soundEffectBuffers = soundEffectBuffers_.store(tick);
 		dic.voiceBuffers = voiceBuffers_.store(tick);
+		dic.bgvBuffers = bgvBuffers_.store(tick);
 
 		dic.bgmStopInfos = bgmStopInfos_;
 		dic.bgmLabelInfos = bgmLabelInfos_;
@@ -805,6 +985,7 @@ class ModSound extends GModule
 		systemSoundBuffers_.restore(dic.systemSoundBuffers);
 		soundEffectBuffers_.restore(dic.soundEffectBuffers);
 		voiceBuffers_.restore(dic.voiceBuffers);
+		bgvBuffers_.restore(dic.bgvBuffers);
 
 		bgmStopInfos_ = dic.bgmStopInfos;
 		bgmLabelInfos_ = dic.bgmLabelInfos;
@@ -890,6 +1071,22 @@ class ModSound extends GModule
 	}
 
 	/**/
+	function onBGVBufferEvent(obj, message, elm)
+	{
+		switch(message)
+		{
+		case 'onFadeCompleted':		window.conductor.signal(@"&obj.name;_fade"); break;
+		case 'onStatusChanged':		window.conductor.signal(@"&obj.name;_stop") if elm.prev == 'play' && elm.now == 'stop'; break;
+		}
+	}
+
+	/**/
+	property soundBufferContainer
+	{
+		getter		{ return soundBufferContainer_; }
+	}
+
+	/**/
 	property bgmBuffers
 	{
 		getter		{ return bgmBuffers_; }
@@ -911,6 +1108,12 @@ class ModSound extends GModule
 	property voiceBuffers
 	{
 		getter		{ return voiceBuffers_; }
+	}
+
+	/**/
+	property bgvBuffers
+	{
+		getter		{ return bgvBuffers_; }
 	}
 
 	/**/

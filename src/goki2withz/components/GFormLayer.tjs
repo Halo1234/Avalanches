@@ -30,6 +30,8 @@ class GFormLayer extends GWidgetLayer
 	var softFocusDisableInShowHideRunning = true;
 	var softFocusEnabledBackup_ = true;
 
+	var prevFocusedLayer_ = null;
+
 	function GFormLayer(window, parent, handler)
 	{
 		super.GWidgetLayer(...);
@@ -241,8 +243,10 @@ class GFormLayer extends GWidgetLayer
 		case VK_UP:		onFocusChanged(softFocus.moveUp(true)); break;
 		case VK_RIGHT:	onFocusChanged(softFocus.moveRight(true)); break;
 		case VK_DOWN:	onFocusChanged(softFocus.moveDown(true)); break;
+		case VK_Z:
+		case VK_SPACE:
 		case VK_RETURN:	softFocus.click() if !(shift & ssRepeat); break;
-		case VK_SPACE:	rclick() if !(shift & ssRepeat); break;
+		case VK_X:		rclick() if !(shift & ssRepeat); break;
 		default:		return false;
 		}
 
@@ -291,6 +295,8 @@ class GFormLayer extends GWidgetLayer
 			{
 				if(softFocusDisableInShowHideRunning && softFocus_ !== void)
 					softFocus.enabled = softFocusEnabledBackup_;
+				event.releaseRenderingTarget();
+				prevFocusedLayer_ = window.focusedLayer;
 				showComplete();
 				anotherCycle.add(focus);
 			}
@@ -299,7 +305,14 @@ class GFormLayer extends GWidgetLayer
 			{
 				if(softFocusDisableInShowHideRunning && softFocus_ !== void)
 					softFocus.enabled = softFocusEnabledBackup_;
+				event.releaseRenderingTarget();
 				hideComplete();
+
+				if(this isvalid && prevFocusedLayer_ !== null)
+				{
+					prevFocusedLayer_.focus();
+					prevFocusedLayer_ = null;
+				}
 			}
 		}
 	}

@@ -32,6 +32,8 @@ class GYesNoDialogLayer extends GFormLayer
 
 	var autoInvalidateAtHideCompleted = false;		// この値を true に設定すると非表示が完了した後で自身を invalidate します。
 
+	var oldFocusedLayer_ = null;
+
 	function GYesNoDialogLayer(window, parent, handler)
 	{
 		super.GFormLayer(...);
@@ -144,6 +146,12 @@ class GYesNoDialogLayer extends GFormLayer
 
 		if(autoInvalidateAtHideCompleted)
 			invalidate removeYesNoDialogLayerFromCache(id);
+
+		if(oldFocusedLayer_ !== null)
+		{
+			oldFocusedLayer_.focus();
+			oldFocusedLayer_ = null;
+		}
 	}
 
 	function beginShowEffect()
@@ -179,7 +187,10 @@ class GYesNoDialogLayer extends GFormLayer
 	/**/
 	function showComplete()
 	{
-		setMode();
+		oldFocusedLayer_ = window.focusedLayer;
+
+		//setMode();
+		focus();
 
 		super.showComplete();
 	}

@@ -9,6 +9,9 @@ class GLayerShaker extends GTimeLine
 	var horizontalMax = 0;
 	var _phase = false;
 
+	var offsetXBackup_ = 0;
+	var offsetYBackup_ = 0;
+
 	function GLayerShaker(owner)
 	{
 		super.GTimeLine(...);
@@ -30,6 +33,12 @@ class GLayerShaker extends GTimeLine
 		horizontalMax = dic.horizontalMax;
 
 		super.restore(...);
+	}
+
+	function onStartTimeLine()
+	{
+		offsetXBackup_ = owner.offsetX;
+		offsetYBackup_ = owner.offsetY;
 	}
 
 	function onProcessTimeLine(step)
@@ -59,7 +68,7 @@ class GLayerShaker extends GTimeLine
 			y = intRandom(vmax);
 		}
 
-		owner.setOffset(x, y);
+		owner.setOffset(offsetXBackup_ + x, offsetYBackup_ + y);
 
 		_phase = !_phase;
 	}
@@ -68,7 +77,7 @@ class GLayerShaker extends GTimeLine
 	{
 		with(owner)
 		{
-			.setOffset(0, 0);
+			.setOffset(offsetXBackup_, offsetYBackup_);
 			.callHandler('onStopShaker', %[paused : paused]);
 		}
 	}

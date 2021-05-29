@@ -803,6 +803,8 @@ class GLayer extends Layer
 		{
 		case 'left':		return left;
 		case 'top':			return top;
+		case 'centerX':		return centerX;
+		case 'centerY':		return centerY;
 		case 'width':		return width;
 		case 'height':		return height;
 		case 'imageLeft':	return imageLeft;
@@ -995,6 +997,7 @@ class GLayer extends Layer
 		super.onMouseDown(...);
 
 		mouseDownToUp_ = true;
+		//dm(@"&name; mouse down");
 	}
 
 	/**/

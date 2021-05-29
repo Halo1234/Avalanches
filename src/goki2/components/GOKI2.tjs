@@ -29,15 +29,14 @@ Scripts.execStorage('GOKI2Utils.tjs');
 		'GLayerContainer', 'GLayerIterator',
 		'GWidgetLayer',
 		'GFormLayer', 'GButtonLayer', 'GCheckBoxLayer', 'GEditLayer', 'GSliderLayer',
-		'GSyntax', 'GConductor',
+		'GSyntax', 'GConductor', 'GADVConductor',
 		'GLocation', 'GTemporaryLocation',
 		'GWaveSoundBuffer', 'GWaveSoundBuffer2',
 		'GSoundBufferContainer', 'GSoundBufferIterator',
 		'GVideoOverlay',
 		'GVideoContainer', 'GVideoIterator',
 		'GTimeLine', 'GLayerShaker', 'GLayerMover', 'GLayerSplineMover',
-		'GMenuItem', 'GMenuModule',
-		'GWindow',
+		'GWindow', 'GMenuItem', 'GMenuModule',
 		'GYesNoDialogLayer', 'GYesNoDialogWindow'
 	];
 
@@ -69,9 +68,5 @@ global.anotherCycle = new GAnotherExclusiveCycle();
  *  GMainWindow = UserWindowClass;
 **/
 var GMainWindow = GWindow;
-
-// NOTE: Ç±ÇÃíÜÇ≈ÇÕ GOKI2 ÇÃíËã`ÇÃïœçXÇ»Ç«Ç™Ç≈Ç´Ç‹Ç∑ÅB
-if(Storages.isExistentStorage('Override.tjs'))
-	loadTJS('Override.tjs');
 
 

@@ -1,0 +1,77 @@
+/*
+**/
+
+
+/*! \brief ADV用コンダクタ基本クラス。
+**/
+class GADVConductor extends GConductor
+{
+	function GADVConductor(window)
+	{
+		super.GConductor(...);
+	}
+
+	function onCall(elm)
+	{
+		var tagname = 'call';
+		var obj = elm;
+
+		obj.tagname = tagname;
+		obj.ignore = false;
+		executeTag(tagname, obj);
+
+		window.modules.callHandler('onConductorCall', obj);
+
+		return !obj.ignore;
+	}
+
+	function onJump(elm)
+	{
+		var tagname = 'jump';
+		var obj = elm;
+
+		obj.tagname = tagname;
+		obj.ignore = false;
+		executeTag(tagname, obj);
+
+		window.modules.callHandler('onConductorJump', obj);
+
+		return !obj.ignore;
+	}
+
+	function onReturn(elm)
+	{
+		var tagname = 'return';
+		var obj = elm;
+
+		obj.tagname = tagname;
+		obj.ignore = false;
+		executeTag(tagname, obj);
+
+		window.modules.callHandler('onConductorReturn', obj);
+
+		dm(@"return : &obj.ignore;");
+
+		return !obj.ignore;
+	}
+
+	/**/
+	function onScenarioLoad(storage)
+	{
+		window.modules.callHandler('onConductorScenarioLoad', storage);
+	}
+
+	/**/
+	function onScenarioLoaded(storage)
+	{
+		window.modules.callHandler('onConductorScenarioLoaded', storage);
+	}
+
+	/**/
+	function onLabel(label, pagename)
+	{
+		window.modules.callHandler('onConductorLabel', label, pagename, firstLabelProcessed_);
+
+		firstLabelProcessed_ = true if pagename !== void;
+	}
+}

@@ -104,7 +104,11 @@ class ModVideo extends GModule
 						}
 					}
 					.playRate = +elm.play_rate if elm.play_rate !== void;
-					.audioVolume = +elm.volume * 1000 if elm.volume !== void;
+					if(elm.volume !== void)
+					{
+						var s = +elm.volume / (window.modules.modSound.soundBufferContainer.masterVolume / 1000);
+						.audioVolume = ((+elm.volume) / s) * 1000;
+					}
 					.audioBalance = +elm.pan * 1000 if elm.pan !== void;
 					.selectAudioStream(+elm.audio_stream_number) if elm.audio_stream_number !== void;
 					.visible = GObjectUtils.getBoolean(elm, 'visible') if GObjectUtils.hasValue(elm, 'visible');
@@ -385,7 +389,9 @@ class ModVideo extends GModule
 	/**/
 	function setAudioVolume_private_(buffer, volume)
 	{
-		buffer.audioVolume = volume;
+		var s = volume / (window.modules.modSound.soundBufferContainer.masterVolume / 1000);
+
+		buffer.audioVolume = (volume / s) * 1000;
 	}
 
 	/**/
@@ -425,6 +431,14 @@ class ModVideo extends GModule
 	}
 
 	/**/
+	function setAudioVolume(volume)
+	{
+		videoBuffers_.each(
+			setAudioVolume_private_, volume
+		);
+	}
+
+	/**/
 	function store(tick)
 	{
 		var dic = super.store(...);
@@ -445,12 +459,14 @@ class ModVideo extends GModule
 	/**/
 	function onSoundMasterVolumeChanged(volume, oldVolume)
 	{
-		// NOTE:
-		// ビデオ音量の設定項目が存在しないので
-		// マスターボリュームにあわせる形で問題ない。
-		videoBuffers_.each(
-			setAudioVolume_private_, volume
-		);
+		var obj = videoBuffers.at(0);
+
+		if(obj !== void)
+		{
+			videoBuffers_.each(
+				setAudioVolume_private_, obj.audioVolume
+			);
+		}
 	}
 
 	/**/
@@ -513,6 +529,13 @@ class ModVideo extends GModule
 	property videoBuffers
 	{
 		getter		{ return videoBuffers_; }
+	}
+
+	/**/
+	property audioVolume
+	{
+		setter(x)	{ setAudioVolume(x); }
+		getter		{ return videoBuffers.at(0).audioVolume; }
 	}
 }
 

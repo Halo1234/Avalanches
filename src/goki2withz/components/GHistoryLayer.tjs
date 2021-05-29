@@ -202,6 +202,7 @@ class GHistoryLayer extends GHyperTextLayer
 		obj.hitThreshold = 256;
 		obj.absolute = 1000;
 		obj.visible = true;
+		obj.name = 'text layer';
 
 		return obj;
 	}
@@ -216,15 +217,9 @@ class GHistoryLayer extends GHyperTextLayer
 		obj.hitTreshold = 256;
 		obj.absolute = 2000;
 		obj.visible = true;
+		obj.name = 'high light layer';
 
 		return obj;
-	}
-
-	/**/
-	function eraseText()
-	{
-		super.eraseText();
-		pageAction_.clear();
 	}
 
 	/**/
@@ -849,6 +844,12 @@ class GHistoryLayer extends GHyperTextLayer
 		pageAction_ = dic.pageAction;
 		currentAction_ = dic.currentAction;
 		currentActionID_ = dic.currentActionID;
+	}
+
+	/**/
+	function onEraseText()
+	{
+		pageAction_.clear();
 	}
 
 	/**/
