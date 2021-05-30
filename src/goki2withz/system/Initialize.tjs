@@ -29,9 +29,7 @@ if(Storages.isExistentStorage('Debugger.tjs'))
 var window = new GMainWindow();
 var storage = "";
 
-if(Storages.isExistentStorage('Debugger.tjs'))
-	loadTJS('Debugger.tjs');
-storage = getExistentStorageNameAndExtension('debug.gs', scriptFileExtensions*);
+storage = getExistentStorageNameAndExtension('debug', scriptFileExtensions*);
 if(storage !== void)
 	window.conductor.pushScript(storage);
 
