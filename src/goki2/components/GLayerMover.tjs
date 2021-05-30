@@ -837,8 +837,8 @@ class GLayerMover extends GTimeLine
 
 	function onStopTimeLine(paused)
 	{
-		/*if(!paused)
-			releaseRenderingTarget();*/
+		if(!paused)
+			releaseRenderingTarget();
 
 		owner.callHandler('onStopMover', %[paused : paused]);
 	}

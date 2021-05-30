@@ -271,7 +271,7 @@ class GLayer extends Layer
 		flipLeftRight_ = false;
 		flipUpDown_ = false;
 		super.fillRect(0, 0, imageWidth, imageHeight, clearImagesColor_ = value) if hasImage;
-		visible = false;
+		//visible = false;
 
 		if(conductor_ !== void)
 		{
