@@ -5,12 +5,12 @@
 pushd %~dp0
 
 @echo List of files to convert is generate... 
-dir /s /b .\sample\ >.\conv_sample.list
+dir /s /b .\sample\ >.\sample.list
 
 @rem ‹g—¢‹g—¢Z‚Ìê‡‚Í‚±‚¿‚ç‚ğ—˜—p‚µ‚Ä‚­‚¾‚³‚¢B
-ruby convgs.rb .\conv_sample.list --o=.\output_sample --input-encoding=cp932 --output-encoding=UTF-8 -v
+ruby convgs.rb .\sample.list --o=.\output_sample --input-encoding=cp932 --output-encoding=UTF-8 -v
 @rem ‹g—¢‹g—¢‚Q‚Ìê‡‚Í‚±‚¿‚ç‚ğ—˜—p‚µ‚Ä‚­‚¾‚³‚¢B
-@rem ruby convks.rb .\conv_sample.list --o=.\output_main_part --input-encoding=cp932 -v
+@rem ruby convks.rb .\sample.list --o=.\output_main_part --input-encoding=cp932 -v
 
 popd
 pause

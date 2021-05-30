@@ -153,6 +153,11 @@ if(cmdp['@'] == nil)
 end
 input_file_list = cmdp['@'].gsub(/\\/, '/')
 
+# --configuration-file オプション名義の方を優先
+configuration_file = cmdp['--cf'] if cmdp['--cf'] != nil
+configuration_file = cmdp['--configuration-file'] if cmdp['--configuration-file'] != nil
+configuration_file = configuration_file.gsub(/\\/, '/')
+
 # --output-path オプション名義の方を優先
 output_dir = cmdp['--o'] if cmdp['--o'] != nil
 output_dir = cmdp['--output-path'] if cmdp['--output-path'] != nil

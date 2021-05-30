@@ -153,6 +153,7 @@ public
 		File.open(input, "r:#{input_encoding.name}") { |file|
 
 			lex.reset()
+            eof = false
 
 			ch = file.getc()
 			line_number = 0
@@ -224,6 +225,10 @@ public
 					end
 
 					ch = file.getc()
+                    if(!eof && ch == nil)
+                        eof = true
+                        ch = "\n"
+                    end
 
 				end
 
