@@ -113,12 +113,24 @@ private
 	def find_compiler_path
 		Win32::Registry::HKEY_LOCAL_MACHINE.open("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall") { |reg|
 			reg.each_key { |key, wtime|
+                #puts "debug = #{key}"
 				if key !~ /NSIS/ then next end
 				Win32::Registry::HKEY_LOCAL_MACHINE.open("#{reg.keyname}\\#{key}") { |nsis|
 					@compiler_path = "\"#{nsis['InstallLocation'].gsub!(/\\/, '/')}/makensisw.exe\""
 				}
 			}
 		}
+        if @compiler_path == ""
+            Win32::Registry::HKEY_LOCAL_MACHINE.open("SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall") { |reg|
+                reg.each_key { |key, wtime|
+                    #puts "debug = #{key}"
+                    if key !~ /NSIS/ then next end
+                    Win32::Registry::HKEY_LOCAL_MACHINE.open("#{reg.keyname}\\#{key}") { |nsis|
+                        @compiler_path = "\"#{nsis['InstallLocation'].gsub!(/\\/, '/')}/makensisw.exe\""
+                    }
+                }
+            }
+        end
 	end
 
 	#---

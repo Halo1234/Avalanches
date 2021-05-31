@@ -123,12 +123,13 @@ end
 target = cmdp['@'] if cmdp['@'] != nil
 
 # 基本設定読み込み
-config = IniFile.load(configuration_file)
+input_file_encoding = Encoding.find("cp932")
+config = IniFile.load(configuration_file, {:encoding=>input_file_encoding})
 section = config['SETTINGS']
 
 # override.ini マージ
 override_ini_file = "#{root_dir}/#{section['resource_dir']}/#{target}/override.ini"
-config = config.merge(IniFile.load(override_ini_file))
+config = config.merge(IniFile.load(override_ini_file, {:encoding=>input_file_encoding}))
 
 if(patch_number != nil)
 
