@@ -153,7 +153,8 @@ puts "Configuration file: '#{configuration_file}'"
 puts "Output directory: '#{output_dir}'"
 puts ''
 
-config = IniFile.load(configuration_file)
+input_file_encoding = Encoding.find("cp932")
+config = IniFile.load(configuration_file, {:encoding=>input_file_encoding})
 
 filenames = nil
 if(config['SHEET_NAMES'] != nil)

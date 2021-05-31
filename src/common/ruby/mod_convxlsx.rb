@@ -107,7 +107,7 @@ public
 				end
 
 				if(block_given?)
-					proc.call(row, is_header_line)
+					yield(row, is_header_line)
 				end
 
 				if(is_header_line)
