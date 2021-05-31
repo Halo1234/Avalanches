@@ -292,12 +292,14 @@
 
 	Exch $0 ; _KEY
 
-	DeleteRegKey /ifempty ${NSIS_UTILS_REGKEY_ROOT} $0
+	; –{—ˆ‚È‚ç /ifempty w’è‚Å‚¢‚«‚½‚¢‚ª–Ê“|‚È‚Ì‚Å‚Æ‚è‚ ‚¦‚¸“®‚­‚æ‚¤‚É‚·‚é
+	;DeleteRegKey /ifempty ${NSIS_UTILS_REGKEY_ROOT} $0
+	DeleteRegKey ${NSIS_UTILS_REGKEY_ROOT} $0
 
 	IfErrors SafeDeleteRegKey_error_break SafeDeleteRegKey_epilogue
 
 	SafeDeleteRegKey_error_break:
-		; Do nothing.
+		MessageBox MB_OK "$0 íœ‚É¸”s‚µ‚Ü‚µ‚½B"
 
 	SafeDeleteRegKey_epilogue:
 		Pop $0
