@@ -67,6 +67,8 @@ root_dir = "#{pwd}/../.."
 file_type = ".ods"
 # 言語
 language = nil
+# 入力のエンコーディング方式
+input_file_encoding = __ENCODING__
 # 出力のエンコーディング方式
 output_file_encoding = __ENCODING__
 # 入力元
@@ -162,7 +164,7 @@ puts ''
 
 input_path = "#{input_dir}/#{language}#{file_type}"
 
-converter = XlsxConverter.new()
+converter = XlsxConverter.new(output_file_encoding)
 
 puts "'#{input_path}' is loading."
 puts 'Please wait...'
@@ -170,6 +172,8 @@ sheets = converter.load(input_path)
 
 symbols = []
 others = []
+
+puts "start converte."
 
 sheets.each { |sheet|
 
@@ -183,6 +187,8 @@ sheets.each { |sheet|
 	else
 		table = others
 	end
+
+    puts "converte #{table}"
 
 	sheet.each { |row|
 

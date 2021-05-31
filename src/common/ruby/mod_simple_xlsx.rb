@@ -133,13 +133,16 @@ private
 
 			doc.worksheets.each { |sheet|
 
+                puts "converte #{sheet.name}"
+
 				table = ModSimpleXlsx::Sheet.new(sheet.name)
-				sheet.usedRange.rows.each { |row|
+				sheet.Range("A1").CurrentRegion.rows.each { |row|
 
 					record = []
 					row.columns.each { |cell|
 						if(cell.value == nil)
 							record << nil
+                            puts "null"
 						else
 							record << cell.value.to_s
 						end
