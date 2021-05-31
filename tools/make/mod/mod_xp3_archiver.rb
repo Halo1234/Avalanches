@@ -16,10 +16,10 @@ class XP3AUtils
 	# path から version 情報を抜き出す
 	# version 情報が見つからなかった場合は nil を返す
 	# それ以外は 'x.y' 形式でバージョン文字列を返す
-	def XP3AUtils.extract_version_string(path)
+	def XP3AUtils.extract_version_string(path, version_encoding)
 		major = nil
 		minor = nil
-		Encoding.default_external = 'utf-8'
+		Encoding.default_external = version_encoding
 		lines = File.readlines(path)
 
 		# version タグを探す
@@ -359,10 +359,10 @@ public
 		end
 	end
 
-	def archive
+	def archive(version_encoding)
 		MakeUtils.mkdir_p(bin_dir)
 
-		collect
+		collect(version_encoding)
 
 		options = " -nowriterpf"
 		options += " -go" if @archiver_options['auto'].to_i != 0
@@ -390,8 +390,8 @@ public
 		}
 	end
 
-	def archive_and_sign
-		archive
+	def archive_and_sign(version_encoding)
+		archive(version_encoding)
 		sign
 	end
 
@@ -417,6 +417,7 @@ public
 		reg = /#\{([^\}]*)\}/
 		File.open(path, 'w+') { |file|
 			lines.each { |line|
+                #puts "readline #{line}"
 				while line =~ reg
 					section, key = $1.split('.')
 					if @config[section] != nil && @config[section][key] != nil
@@ -474,8 +475,8 @@ private
 
 	#---
 	# path が指すファイルからバージョン情報を取り出して config を更新する
-	def update_version_number(path)
-		version_string = XP3AUtils.extract_version_string(path)
+	def update_version_number(path, version_encoding)
+		version_string = XP3AUtils.extract_version_string(path, version_encoding)
 		if version_string != nil
 			@major_version, @minor_version = version_string.split('.')
 			@config['PRODUCTINFO']['version'] = version_string
@@ -485,7 +486,7 @@ private
 	end
 
 	#---
-	def collect
+	def collect(version_encoding)
 		options = "-sign"
 
 		@components.each { |c|
@@ -507,7 +508,7 @@ private
 					make_readme_text(path)
 				# ファイル名が version.* の場合はバージョン情報を抜き出す
 				when 'version'
-					update_version_number(path)
+					update_version_number(path, version_encoding)
 				else
 					case File.extname(path).downcase
 					when ".exe", ".dll", ".tpm" then

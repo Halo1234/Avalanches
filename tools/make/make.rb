@@ -25,6 +25,11 @@ Options:
 
   設定ファイルの書き方については config.sample.ini を参照してください。
 
+ --version-encoding
+ --ve
+  version.* スクリプトのエンコーディングを指定します。
+  デフォルトは utf-8 です。
+
  -help
  -h
   使い方の詳細（このテキスト）を表示します。
@@ -65,6 +70,8 @@ pwd = '.'
 root_dir = "#{pwd}/../.."
 # 設定ファイル
 configuration_file = "#{pwd}/config.ini"
+# version.gs スクリプトのエンコーディング
+version_encoding = "utf-8"
 # アーカイブを行うかどうか
 do_archive = true
 # インストーラを作成するかどうか
@@ -104,6 +111,15 @@ end
 
 verbose = (cmdp['-verbose'] || cmdp['-v'])
 MakeUtils.verbose = verbose
+
+# --configuration-file オプション名義の方を優先
+configuration_file = cmdp['--cf'] if cmdp['--cf'] != nil
+configuration_file = cmdp['--configuration-file'] if cmdp['--configuration-file'] != nil
+configuration_file = configuration_file.gsub(/\\/, '/')
+
+# --version-encoding オプション名義の方を優先
+version_encoding = cmdp['--ve'] if cmdp['--ve'] != nil
+version_encoding = cmdp['--version-encoding'] if cmdp['--version-encoding'] != nil
 
 do_archive = false if cmdp['-no-archive'] || cmdp['-na']
 do_package = false if cmdp['-no-package'] || cmdp['-np']
@@ -230,7 +246,7 @@ when 'different'
 end
 
 # xp3 アーカイブ開始
-archiver.archive_and_sign() if do_archive
+archiver.archive_and_sign(version_encoding) if do_archive
 
 # パッケージング
 if do_package
