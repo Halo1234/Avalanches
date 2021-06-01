@@ -102,5 +102,26 @@ Avalanches（以下、本開発環境）は複数のソフトウェアによって構築されています。
 >>   http://www.ruby-lang.org/ja/
 >>
 >>   version 2.2.3 で開発されました。
+>>
+>>   version 3.0.1 で動作確認しました。
+
+
+>>--------------------------------------
+>> NSIS
+>>
+>> インストーラの作成に必要になります。
+>> インストーラを作成しないなら必要ありません。
+>>
+>> ・NSIS
+>>   https://nsis.sourceforge.io/Download
+>>
+>>   version 3.06.1 で動作確認しました。
+>>
+>> 現在、下記のようなワーニングがでますが無視してかまいません。
+>> そのうち対応するかもしれません。
+>>
+>> 2 warnings:
+>>  7998: ANSI targets are deprecated
+>>  9000: Insecure filename "setup.exe", Windows will unsafely load compatibility shims into the process.
 
 
