@@ -142,7 +142,6 @@ private
 					row.columns.each { |cell|
 						if(cell.value == nil)
 							record << nil
-                            puts "null"
 						else
 							record << cell.value.to_s
 						end
