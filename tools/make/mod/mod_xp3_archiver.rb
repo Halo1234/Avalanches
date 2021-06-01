@@ -19,8 +19,8 @@ class XP3AUtils
 	def XP3AUtils.extract_version_string(path, version_encoding)
 		major = nil
 		minor = nil
-		Encoding.default_external = version_encoding
-		lines = File.readlines(path)
+		#Encoding.default_external = version_encoding
+		lines = File.readlines(path, encoding: "#{version_encoding}")
 
 		# version タグを探す
 		reg = /(@version .*|\[version [^\[]*\])/
@@ -411,8 +411,8 @@ public
 	#---
 	# path が指すファイルの参照を解決する
 	def make_readme_text(path)
-		Encoding.default_external = 'CP932'
-		lines = File.readlines(path)
+		#Encoding.default_external = 'CP932'
+		lines = File.readlines(path, encoding:"cp932")
 		# #{xxx} 形式の参照を探す
 		reg = /#\{([^\}]*)\}/
 		File.open(path, 'w+') { |file|
