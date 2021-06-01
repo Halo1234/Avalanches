@@ -1,0 +1,17 @@
+/*
+	簡易ムービープレーヤ
+*/
+
+with(Plugins)
+{
+	.link("menu.dll");
+	.link("krdstheora.dll");
+}
+Scripts.execStorage("CommandMenuItem.tjs");
+Scripts.execStorage("SliderLayer.tjs");
+Scripts.execStorage("ButtonLayer.tjs");
+Scripts.execStorage("ControlLayer.tjs");
+Scripts.execStorage("MoviePlayerWindow.tjs");
+
+var window = new MoviePlayerWindow();
+
