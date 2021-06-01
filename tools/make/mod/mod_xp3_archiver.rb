@@ -173,6 +173,7 @@ public
 		cmd = "svn log -r #{@revs} -v --quiet #{full_url}/"
 		MakeUtils.puts(cmd)
 		svnlog = `#{cmd}`
+        svnlog.encode!("utf-8", "cp932")
 		#exit 1 if 0 != $?.exitstatus
 		svnlog = svnlog.split("\n")
 		puts source_dir
@@ -199,6 +200,7 @@ public
 		cmd = "svn list -r #{@high} -R #{full_url}/"
 		MakeUtils.puts(cmd)
 		svnlist = `#{cmd}`
+        svnlist.encode!("utf-8", "cp932")
 		#exit 1 if 0 != $?.exitstatus
 		svnlist = svnlist.split("\n")
 
