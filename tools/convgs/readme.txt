@@ -14,9 +14,9 @@
  ６．吉里吉里Z用または吉里吉里２用の変換実行コマンドを指定します。
 
      @rem 吉里吉里Zの場合はこちらを利用してください。
-     @rem ruby convks.rb .\conv_sample.list --o=.\output_sample --input-encoding=cp932 --output-encoding=UTF-8 -v
+     ruby convks.rb .\conv_sample.list --o=.\output_sample --input-encoding=cp932 --output-encoding=UTF-8 -v
      @rem 吉里吉里２の場合はこちらを利用してください。
-     ruby convks.rb .\conv_sample.list --o=.\output_sample --input-encoding=cp932 -v
+     @rem ruby convks.rb .\conv_sample.list --o=.\output_sample --input-encoding=cp932 -v
 
  ７．コピーした .bat ファイルを実行します。
 
