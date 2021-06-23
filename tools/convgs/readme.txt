@@ -19,7 +19,7 @@
      @rem 吉里吉里２の場合はこちらを利用してください。
      @rem ruby convks.rb .\conv_sample.list --o=.\output_sample --input-encoding=cp932 -v
 
- ７．コピーした .bat ファイルを実行します。
+ ８．コピーした .bat ファイルを実行します。
 
 
 --- その他
