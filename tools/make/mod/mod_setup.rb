@@ -227,7 +227,7 @@ private
 			file << "\n"
 			file << "!include \"${MODNSIS_DIR}\\mod_nsis.nsh\"\n"
 			file << "\n"
-			file << "OutFile \"${ROOT_DIR}\\dist\\${TARGET_NAME}\\\\#{File.basename(@archiver.work_dir)}\\setup.exe\"\n"
+			file << "OutFile \"${ROOT_DIR}\\dist\\${TARGET_NAME}\\\\#{File.basename(@archiver.work_dir)}\\GameInstaller.exe\"\n"
 			file << "\n"
 			file << "!endif\n"
 			file << ("\n" * 2)
