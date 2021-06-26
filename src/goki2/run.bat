@@ -5,7 +5,7 @@
 pushd %~dp0
 
 @echo ƒQ[ƒ€‹N“®’†B
-..\..\tools\krkr\kirikiri2\krkr.exe ..\..\..\src\goki2\
+..\..\tools\krkrz\tvpwin32.exe ..\..\src\goki2\
 
 popd
 
