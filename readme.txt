@@ -47,13 +47,9 @@ Avalanches（以下、本開発環境）は複数のソフトウェアによって構築されています。
  ソースが収録されています。
 
  /src/goki2/
- GOKI2の吉里吉里２用スクリプトがあります。
+ GOKI2のソースがあります。
  /src/goki2/run.bat を実行するとテストスクリプトが起動します。
- 自動検索パスを追加する場合は krkr_autopath.ary に行を追加してください。
-
- /src/goki2withz/
- GOKI2の吉里吉里Ｚ用スクリプトがあります。
- /src/goki2withz/run.bat を実行するとテストスクリプトが起動します。
+ /src/goki2/run_krkr2.bat を実行すると吉里吉里２が起動します。
  自動検索パスを追加する場合は krkr_autopath.ary に行を追加してください。
 
  /tools/
