@@ -156,8 +156,7 @@ Avalanches（以下、本開発環境）は複数のソフトウェアによって構築されています。
 >> 現在、下記のようなワーニングがでますが無視してかまいません。
 >> そのうち対応するかもしれません。
 >>
->> 2 warnings:
+>> 1 warnings:
 >>  7998: ANSI targets are deprecated
->>  9000: Insecure filename "setup.exe", Windows will unsafely load compatibility shims into the process.
 
 
