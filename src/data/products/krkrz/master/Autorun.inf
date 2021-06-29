@@ -1,5 +1,5 @@
 [Autorun]
-open=setup.exe
-icon=setup.exe
+open=GameInstaller.exe
+icon=GameInstaller.exe
 
 
