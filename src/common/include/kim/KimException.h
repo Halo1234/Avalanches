@@ -88,7 +88,7 @@ namespace kim {
 	namespace details {
 
 		/**/
-		template<class TChar, class TTraits = std::char_traits<tjs_char> >
+		template<class TChar, class TTraits = std::char_traits<TChar> >
 		class ExceptionBase
 		{
 		public:
@@ -108,7 +108,7 @@ namespace kim {
 			};
 
 			virtual
-			const tjs_char* what() const
+			const TChar* what() const
 			{
 				return message_.c_str();
 			};
