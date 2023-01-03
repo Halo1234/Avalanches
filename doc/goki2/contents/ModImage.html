@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+	<title>ModImageのタグ</title>
+	<meta name="author" content="Halo" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript" />
+	<link href="browser.css" type="text/css" rel="stylesheet" title="吉里吉里関連リファレンス用標準スタイル" />
+	<link href="mailto:halosuke@gmail.com" rev="Made" />
+	<link href="index.html" target="_top" rel="Start" title="トップページ" />
+</head>
+<body>
+
+<h1><a name="tags" id="tags">ModImageのタグ</a></h1>
+<div class="para"><div>　ModImage で使用可能なタグのリファレンスです。<br />
+
+<h1><a name="genre" id="genre" class="targanchor">ジャンル・タグ一覧</a></h1>
+
+
+<div class="para"><div><br />
+<table class="taglist"><tbody>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#cv_layers">cv_layers</a></span></td><td class="taglisteven">キャラクターレイヤーの数を指定する</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#cg_layers">cg_layers</a></span></td><td class="taglistodd">CGレイヤの数を指定する</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#load_image">load_image</a></span></td><td class="taglisteven">画像読み込み</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#load_partial_image">load_partial_image</a></span></td><td class="taglistodd">画像の部分読み込み</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#partial_text">partial_text</a></span></td><td class="taglisteven">テキストの描画</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#clear_image">clear_image</a></span></td><td class="taglistodd">画像のクリア</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#assign_image">assign_image</a></span></td><td class="taglisteven">ミラーレイヤへの画像のコピー</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#assign_to_mirror">assign_to_mirror</a></span></td><td class="taglistodd">ミラーレイヤからの画像コピー</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#copy_layer">copy_layer</a></span></td><td class="taglisteven">レイヤ画像のコピー</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#start_animation">start_animation</a></span></td><td class="taglistodd">アニメーションの開始</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#stop_animation">stop_animation</a></span></td><td class="taglisteven">アニメーションの停止</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#shake">shake</a></span></td><td class="taglistodd">画像を揺らす</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#stop_shake">stop_shake</a></span></td><td class="taglisteven">画像の揺れの停止</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#transition">transition</a></span></td><td class="taglistodd">トランジションの開始</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#stop_transition">stop_transition</a></span></td><td class="taglisteven">トランジションの停止</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#move">move</a></span></td><td class="taglistodd">画像の移動</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#layer_move">layer_move</a></span></td><td class="taglisteven">画像の移動</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#stop_move">stop_move</a></span></td><td class="taglistodd">画像の移動停止</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#wait_transition">wait_transition</a></span></td><td class="taglisteven">トランジションの停止待ち</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#wait_animation">wait_animation</a></span></td><td class="taglistodd">アニメーションの停止待ち</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#wait_shake">wait_shake</a></span></td><td class="taglisteven">揺れの停止待ち</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#wait_move">wait_move</a></span></td><td class="taglistodd">移動の停止待ち</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#base_layer_pos">base_layer_pos</a></span></td><td class="taglisteven">ベースレイヤの位置指定</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#base_layer_transparent">base_layer_transparent</a></span></td><td class="taglistodd">ベースレイヤの透明化</td></tr>
+</tbody></table><br /><br /></div></div>
+
+<h1><a name="cv_layers" id="cv_layers" class="targanchor"><span class="b">cv_layers</span>(laycount)</a></h1>
+<div class="taggenre">立ち絵レイヤの枚数を指定する</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ cv_layers の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">layers</td><td class="tagattribname"><a class="targanchor" name="cv_layers_count" id="cv_layers_count">count</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">立ち絵レイヤの枚数</td><td class="tagattribdesc">立ち絵レイヤの枚数を指定します。<br />
+<tr><td class="tagattribalias">laybase</td><td class="tagattribname"><a class="targanchor" name="cv_layers_base" id="cv_layers_base">base</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">立ち絵レイヤの absolute 値のベース</td><td class="tagattribdesc">立ち絵レイヤの absolute 値のベースを指定します。<br />
+<tr><td class="tagattribalias">laystep</td><td class="tagattribname"><a class="targanchor" name="cv_layers_step" id="cv_layers_step">step</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">立ち絵レイヤの absolute 値のステップ</td><td class="tagattribdesc">立ち絵レイヤの absolute 値のステップを指定します。<br />
+ここで指定された値がベース値にプラスされます。<br />
+</tbody></table><div class="tagremarks">立ち絵レイヤの枚数を指定します。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="cg_layers" id="cg_layers" class="targanchor"><span class="b">cg_layers</span>(cglayers)</a></h1>
+<div class="taggenre">CGレイヤの枚数を指定する</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ cg_layers の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cg_layers_count" id="cg_layers_count">count</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">CGレイヤの枚数</td><td class="tagattribdesc">CGレイヤの枚数を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cg_layers_base" id="cg_layers_base">base</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">CGレイヤの absolute 値のベース</td><td class="tagattribdesc">CGレイヤの absolute 値のベースを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cg_layers_step" id="cg_layers_step">step</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">CGレイヤの absolute 値のステップ</td><td class="tagattribdesc">CGレイヤの absolute 値のステップを指定します。<br />
+ここで指定された値がベース値にプラスされます。<br />
+</tbody></table><div class="tagremarks">CGレイヤの枚数を指定します。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="load_image" id="load_image" class="targanchor"><span class="b">load_image</span>(image/img/layopt)</a></h1>
+<div class="taggenre">立ち絵レイヤに画像を読み込む</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ load_image の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_image_layer" id="load_image_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">立ち絵レイヤの名前</td><td class="tagattribdesc">立ち絵レイヤの名前を指定します。<br />
+0 ～ N のいずれかになります。(N は cv_layers で指定した立ち絵レイヤの枚数 - 1)<br />
+省略するとbaseが指定されたものとみなします。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_image_page" id="load_image_page">page</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">対象レイヤのページ</td><td class="tagattribdesc">対象レイヤのページ名。<br />
+fore を指定すると表ページのレイヤが対象になります。<br />
+back を指定すると裏ページのレイヤが対象になります。<br />
+省略するとforeが指定されたものとみなします。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_image_storage" id="load_image_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">レイヤに読み込む画像ファイル名</td><td class="tagattribdesc">レイヤに読み込む画像ファイル名を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_image_key" id="load_image_key">key</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">画像ファイルのキー値</td><td class="tagattribdesc">画像ファイルのキー値を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_image_asd_storage" id="load_image_asd_storage">asd_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">asd ファイル名を指定</td><td class="tagattribdesc">asd ファイル名を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_image_mode" id="load_image_mode">mode</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">mode を指定</td><td class="tagattribdesc">mode を指定する。<br />
+<tr><td class="tagattribalias">flipud</td><td class="tagattribname"><a class="targanchor" name="load_image_flip_ud" id="load_image_flip_ud">flip_ud</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">上下反転</td><td class="tagattribdesc">画像の上下を反転するかどうかを指定する。<br />
+<tr><td class="tagattribalias">fliplr</td><td class="tagattribname"><a class="targanchor" name="load_image_flip_lr" id="load_image_flip_lr">flip_lr</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">左右反転</td><td class="tagattribdesc">画像の左右を反転するかどうかを指定する。<br />
+<tr><td class="tagattribalias">clipleft</td><td class="tagattribname"><a class="targanchor" name="load_image_clip_left" id="load_image_clip_left">clip_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">画像表示位置</td><td class="tagattribdesc">画像の左表示位置を指定する。<br />
+<tr><td class="tagattribalias">cliptop</td><td class="tagattribname"><a class="targanchor" name="load_image_clip_top" id="load_image_clip_top">clip_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">画像表示位置</td><td class="tagattribdesc">画像の上表示位置を指定する。<br />
+<tr><td class="tagattribalias">clipwidth</td><td class="tagattribname"><a class="targanchor" name="load_image_clip_width" id="load_image_clip_width">clip_width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">画像表示幅</td><td class="tagattribdesc">画像の表示幅を指定する。<br />
+<tr><td class="tagattribalias">clipheight</td><td class="tagattribname"><a class="targanchor" name="load_image_clip_height" id="load_image_clip_height">clip_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">画像表示高さ</td><td class="tagattribdesc">画像の表示高さを指定する。<br />
+<tr><td class="tagattribalias">grayscale</td><td class="tagattribname"><a class="targanchor" name="load_image_gray_scale" id="load_image_gray_scale">gray_scale</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">グレイスケール</td><td class="tagattribdesc">グレイスケール化するかどうかを指定する。<br />
+<tr><td class="tagattribalias">rgamma</td><td class="tagattribname"><a class="targanchor" name="load_image_r_gamma" id="load_image_r_gamma">r_gamma</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ガンマ補正値 (0.1 ～ 1.0(デフォルト) ～ 9.9)</td><td class="tagattribdesc">r (赤) 、g (緑) 、 b (青) の各成分のガンマ値を指定します。 <br />
+たとえば画像をセピア調にするには、 grayscale=true rgamma=1.3 ggamma=1.1 と指定します。<br />
+<tr><td class="tagattribalias">ggamma</td><td class="tagattribname"><a class="targanchor" name="load_image_g_gamma" id="load_image_g_gamma">g_gamma</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ガンマ補正値 (0.1 ～ 1.0(デフォルト) ～ 9.9)</td><td class="tagattribdesc">r (赤) 、g (緑) 、 b (青) の各成分のガンマ値を指定します。 <br />
+たとえば画像をセピア調にするには、 grayscale=true rgamma=1.3 ggamma=1.1 と指定します。<br />
+<tr><td class="tagattribalias">bgamma</td><td class="tagattribname"><a class="targanchor" name="load_image_b_gamma" id="load_image_b_gamma">b_gamma</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ガンマ補正値 (0.1 ～ 1.0(デフォルト) ～ 9.9)</td><td class="tagattribdesc">r (赤) 、g (緑) 、 b (青) の各成分のガンマ値を指定します。 <br />
+たとえば画像をセピア調にするには、 grayscale=true rgamma=1.3 ggamma=1.1 と指定します。<br />
+<tr><td class="tagattribalias">rfloor</td><td class="tagattribname"><a class="targanchor" name="load_image_r_floor" id="load_image_r_floor">r_floor</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">輝度最低値 ( 0(デフォルト) ～ 255 )</td><td class="tagattribdesc">各成分の輝度最低値を指定します。<br />
+<tr><td class="tagattribalias">gfloor</td><td class="tagattribname"><a class="targanchor" name="load_image_g_floor" id="load_image_g_floor">g_floor</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">輝度最低値 ( 0(デフォルト) ～ 255 )</td><td class="tagattribdesc">各成分の輝度最低値を指定します。<br />
+<tr><td class="tagattribalias">bfloor</td><td class="tagattribname"><a class="targanchor" name="load_image_b_floor" id="load_image_b_floor">b_floor</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">輝度最低値 ( 0(デフォルト) ～ 255 )</td><td class="tagattribdesc">各成分の輝度最低値を指定します。<br />
+<tr><td class="tagattribalias">rceil</td><td class="tagattribname"><a class="targanchor" name="load_image_r_ceil" id="load_image_r_ceil">r_ceil</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">輝度最高値 ( 0 ～ 255(デフォルト) )</td><td class="tagattribdesc">各成分の輝度最高値を指定します。 たとえば、 rfloor=255 gfloor=255 bfloor=255 rceil=0 gceil=0 bceil=0 と 指定すると、色が反転します。<br />
+<tr><td class="tagattribalias">gceil</td><td class="tagattribname"><a class="targanchor" name="load_image_g_ceil" id="load_image_g_ceil">g_ceil</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">輝度最高値 ( 0 ～ 255(デフォルト) )</td><td class="tagattribdesc">各成分の輝度最高値を指定します。 たとえば、 rfloor=255 gfloor=255 bfloor=255 rceil=0 gceil=0 bceil=0 と 指定すると、色が反転します。<br />
+<tr><td class="tagattribalias">bceil</td><td class="tagattribname"><a class="targanchor" name="load_image_b_ceil" id="load_image_b_ceil">b_ceil</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">輝度最高値 ( 0 ～ 255(デフォルト) )</td><td class="tagattribdesc">各成分の輝度最高値を指定します。 たとえば、 rfloor=255 gfloor=255 bfloor=255 rceil=0 gceil=0 bceil=0 と 指定すると、色が反転します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_image_mcolor" id="load_image_mcolor">mcolor</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB 形式</td><td class="tagattribdesc">色ブレンドによる色調効果において、ブレンドする色を 0xRRGGBB 形式で指定します。濃度は mopacity 属性で指定します。<br />
+省略すると色ブレンドによる色調効果は行われません。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_image_mopacity" id="load_image_mopacity">mopacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">不透明度(0 ～ 255)</td><td class="tagattribdesc">色ブレンドによる色調効果で、mcolor で指定した色をどれぐらいの不透 明度でブレンドするかを指定します。<br />
+<tr><td class="tagattribalias">cx</td><td class="tagattribname"><a class="targanchor" name="load_image_center_x" id="load_image_center_x">center_x</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">中心位置X</td><td class="tagattribdesc">画像中心位置を指定する。<br />
+<tr><td class="tagattribalias">cy</td><td class="tagattribname"><a class="targanchor" name="load_image_center_y" id="load_image_center_y">center_y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">中心位置Y</td><td class="tagattribdesc">画像中心位置を指定する。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_image_left" id="load_image_left">left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">画像左上位置</td><td class="tagattribdesc">画像の左上隅位置を指定する。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_image_top" id="load_image_top">top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">画像左上位置</td><td class="tagattribdesc">画像の左上隅位置を指定する。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_image_right" id="load_image_right">right</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">画像右下位置</td><td class="tagattribdesc">画像の右下隅位置を指定する。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_image_bottom" id="load_image_bottom">bottom</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">画像右下位置</td><td class="tagattribdesc">画像の右下隅位置を指定する。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_image_visible" id="load_image_visible">visible</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true または false</td><td class="tagattribdesc">layer 属性で指定したレイヤを表示するか、しないかを指定します。visible=true と指定すれば、レイヤは表示状態になります。visible=false と指定すれば、非表示状態になります。省略すると表示状態は変わりません。layer=base を指定した場合はこの属性は指定しないでください。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_image_index" id="load_image_index">index</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">正の整数</td><td class="tagattribdesc">背景レイヤには指定しないでください。<br />
+重ね合わせ順序を指定します。値が大きいほど手前に表示されます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_image_opacity" id="load_image_opacity">opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">不透明度 ( 0 (全くの透明) ～ 255 (全くの不透明 ) )</td><td class="tagattribdesc">layer 属性で指定したレイヤの不透明度を指定します。<br />
+デフォルトで 255 (全くの不透明) です。つまり、この属性を指定しないで 画像を読み込むと、そのレイヤの opacity が 255 以外でも、255 に設定し なおされます。<br />
+128 を指定すると半分程度の透明度になり、透けて表示されます。<br />
+opacity=0 としてもレイヤを見えなくすることが出来ますが、全くの透明に なっただけで非表示になるわけではありません。<br />
+この属性を設定してもレイヤの画像自体が変化するわけではありません。 変化するのは表示の状態です。<br />
+</tbody></table><div class="tagremarks">画像を読み込みます。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="load_partial_image" id="load_partial_image" class="targanchor"><span class="b">load_partial_image</span>(pimage)</a></h1>
+<div class="taggenre">画像読み込み</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ load_partial_image の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_partial_image_layer" id="load_partial_image_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">立ち絵レイヤの名前</td><td class="tagattribdesc">立ち絵レイヤの名前を指定します。<br />
+0 ～ N のいずれかになります。(N は cv_layers で指定した立ち絵レイヤの枚数 - 1)<br />
+省略するとbaseが指定されたものとみなします。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_partial_image_page" id="load_partial_image_page">page</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">対象レイヤのページ</td><td class="tagattribdesc">対象レイヤのページ名。<br />
+fore を指定すると表ページのレイヤが対象になります。<br />
+back を指定すると裏ページのレイヤが対象になります。<br />
+省略するとforeが指定されたものとみなします。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_partial_image_storage" id="load_partial_image_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">レイヤに読み込む画像ファイル名</td><td class="tagattribdesc">レイヤに読み込む画像ファイル名を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_partial_image_key" id="load_partial_image_key">key</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">画像ファイルのキー値</td><td class="tagattribdesc">画像ファイルのキー値を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_partial_image_mode" id="load_partial_image_mode">mode</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">mode を指定</td><td class="tagattribdesc">mode を指定する。<br />
+<tr><td class="tagattribalias">dx</td><td class="tagattribname"><a class="targanchor" name="load_partial_image_dest_x" id="load_partial_image_dest_x">dest_x</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">重ね合わせ、あるいはコピーする先の左端 x 座標を (対象のレイヤ内の座標で)指定します。<br />
+<tr><td class="tagattribalias">dy</td><td class="tagattribname"><a class="targanchor" name="load_partial_image_dest_y" id="load_partial_image_dest_y">dest_y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">重ね合わせ、あるいはコピーする先の上端 y 座標を (対象のレイヤ内の座標で)指定します。<br />
+<tr><td class="tagattribalias">sx</td><td class="tagattribname"><a class="targanchor" name="load_partial_image_src_x" id="load_partial_image_src_x">src_x</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">重ね合わせ、あるいはコピーする元の左端 x 座標を (追加して読み込む画像内の座標で)指定します。省略すると 0 であると見なされます。<br />
+<tr><td class="tagattribalias">sy</td><td class="tagattribname"><a class="targanchor" name="load_partial_image_src_y" id="load_partial_image_src_y">src_y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">重ね合わせ、あるいはコピーする元の上端 y 座標を (追加して読み込む画像内の座標で)指定します。省略すると 0 であると見なされます。<br />
+<tr><td class="tagattribalias">sw</td><td class="tagattribname"><a class="targanchor" name="load_partial_image_src_w" id="load_partial_image_src_w">src_w</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">重ね合わせ、あるいはコピーする幅を 指定します。省略すると、追加して読み込む画像の幅すべてであると見なされます。<br />
+<tr><td class="tagattribalias">sh</td><td class="tagattribname"><a class="targanchor" name="load_partial_image_src_h" id="load_partial_image_src_h">src_h</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">重ね合わせ、あるいはコピーする高さを 指定します。省略すると、追加して読み込む画像の高さすべてであると見なされます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_partial_image_mode" id="load_partial_image_mode">mode</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">モード</td><td class="tagattribdesc">モード値を指定します。<br />
+省略すると色ブレンドによる色調効果は行われません。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_partial_image_opacity" id="load_partial_image_opacity">opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">不透明度(0 ～ 255)</td><td class="tagattribdesc">mode 属性で "pile" を指定した場合の重ね合わせの不透明度、あるいは "add" "sub" "mul" "dodge" "darken" "lighten" "screen" の いずれかを指定した場合の演算の強度を指定します。省略すると 255 であると見なされます。<br />
+</tbody></table><div class="tagremarks">画像の部分読み込みをします。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="partial_text" id="partial_text" class="targanchor"><span class="b">partial_text</span>(ptext)</a></h1>
+<div class="taggenre">レイヤ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ partial_text の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="partial_text_layer" id="partial_text_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">立ち絵レイヤの名前</td><td class="tagattribdesc">立ち絵レイヤの名前を指定します。<br />
+0 ～ N のいずれかになります。(N は cv_layers で指定した立ち絵レイヤの枚数 - 1)<br />
+省略するとbaseが指定されたものとみなします。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="partial_text_page" id="partial_text_page">page</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">対象レイヤのページ</td><td class="tagattribdesc">対象レイヤのページ名。<br />
+fore を指定すると表ページのレイヤが対象になります。<br />
+back を指定すると裏ページのレイヤが対象になります。<br />
+省略するとforeが指定されたものとみなします。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="partial_text_vertical" id="partial_text_vertical">vertical</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">false(デフォルト) または true</td><td class="tagattribdesc">縦書きかどうかを指定します。true を指定すると縦書きになります。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="partial_text_angle" id="partial_text_angle">angle</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">角度の10倍</td><td class="tagattribdesc">文字描画の角度を指定します。角度の 10 倍の値 ( 0 ～ 3600 ) で指定します。<br />
+　省略すると、横書きの場合は 0、縦書きの場合は 2700 が指定されたと見なされます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="partial_text_size" id="partial_text_size">size</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">文字サイズ(pixel単位)</td><td class="tagattribdesc">文字サイズを pixel 単位で指定します。<br />
+この属性を省略すると 12 が選択されます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="partial_text_color" id="partial_text_color">color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB 形式</td><td class="tagattribdesc">文字色を 0xRRGGBB 形式で指定します。<br />
+省略すると 0x000000 であると見なされます<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="partial_text_italic" id="partial_text_italic">italic</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true または false(デフォルト)</td><td class="tagattribdesc">文字を斜体にするかどうかを指定します。true を指定すると斜体になります。<br />
+　この属性を省略すると false であると見なされます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="partial_text_bold" id="partial_text_bold">bold</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true または false(デフォルト)</td><td class="tagattribdesc">文字を太文字にするかを指定します。 true を指定すると太文字になります<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="partial_text_shadow" id="partial_text_shadow">shadow</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true(デフォルト) または false</td><td class="tagattribdesc">文字に影をつけるかを指定します。true を指定すると影がつきます。<br />
+edge と shadow 両方に true を指定することはできません。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="partial_text_edge" id="partial_text_edge">edge</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true または false(デフォルト)</td><td class="tagattribdesc">文字を袋文字 ( 縁取り文字 ) にするかを指定します。true を指定すると袋文字になります。<br />
+<tr><td class="tagattribalias">shadowcolor</td><td class="tagattribname"><a class="targanchor" name="partial_text_shadow_color" id="partial_text_shadow_color">shadow_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB 形式</td><td class="tagattribdesc">影の色を 0xRRGGBB 形式で指定します。<br />
+省略すると 0x000000 が指定されたと見なされます。<br />
+<tr><td class="tagattribalias">edgecolor</td><td class="tagattribname"><a class="targanchor" name="partial_text_edge_color" id="partial_text_edge_color">edge_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB 形式</td><td class="tagattribdesc">文字の袋の色を 0xRRGGBB 形式で指定します。<br />
+省略すると 0x000000 が指定されたと見なされます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="partial_text_x" id="partial_text_x">x</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel単位</td><td class="tagattribdesc">文字を描画する横位置を pixel 単位で指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="partial_text_y" id="partial_text_y">y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel単位</td><td class="tagattribdesc">文字を描画する縦位置を pixel 単位で指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="partial_text_text" id="partial_text_text">text</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">文字列</td><td class="tagattribdesc">描画する文字列を指定します。<br />
+</tbody></table><div class="tagremarks">レイヤに文字を描画します。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="clear_image" id="clear_image" class="targanchor"><span class="b">clear_image</span>画像のクリア</a></h1>
+<div class="taggenre">レイヤ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ clear_image の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="clear_image_layer" id="clear_image_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">立ち絵レイヤの名前</td><td class="tagattribdesc">立ち絵レイヤの名前を指定します。<br />
+0 ～ N のいずれかになります。(N は cv_layers で指定した立ち絵レイヤの枚数 - 1)<br />
+省略するとbaseが指定されたものとみなします。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="clear_image_page" id="clear_image_page">page</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">対象レイヤのページ</td><td class="tagattribdesc">対象レイヤのページ名。<br />
+fore を指定すると表ページのレイヤが対象になります。<br />
+back を指定すると裏ページのレイヤが対象になります。<br />
+省略するとforeが指定されたものとみなします。<br />
+</tbody></table><div class="tagremarks">画像のクリアをします。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="assign_image" id="assign_image" class="targanchor"><span class="b">assign_image</span>(backlay)</h1>
+<div class="taggenre">レイヤ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ assign_image の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="assign_image_layer" id="assign_image_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">立ち絵レイヤの名前</td><td class="tagattribdesc">立ち絵レイヤの名前を指定します。<br />
+0 ～ N のいずれかになります。(N は cv_layers で指定した立ち絵レイヤの枚数 - 1)<br />
+省略するとbaseが指定されたものとみなします。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="assign_image_page" id="assign_image_page">page</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">対象レイヤのページ</td><td class="tagattribdesc">対象レイヤのページ名。<br />
+fore を指定すると表ページのレイヤが対象になります。<br />
+back を指定すると裏ページのレイヤが対象になります。<br />
+省略するとforeが指定されたものとみなします。<br />
+</tbody></table><div class="tagremarks">表ページから裏ページへ画像をコピーします。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="assign_to_mirror" id="assign_to_mirror" class="targanchor"><span class="b">assign_to_mirror</span>(別名なし)</h1>
+<div class="taggenre">レイヤ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ assign_to_mirror の属性の一覧"><thead><tr><td>別名</td><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="assign_to_mirror_layer" id="assign_to_mirror_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">立ち絵レイヤの名前</td><td class="tagattribdesc">立ち絵レイヤの名前を指定します。<br />
+0 ～ N のいずれかになります。(N は cv_layers で指定した立ち絵レイヤの枚数 - 1)<br />
+省略するとbaseが指定されたものとみなします。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="assign_to_mirror_page" id="assign_to_mirror_page">page</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">対象レイヤのページ</td><td class="tagattribdesc">対象レイヤのページ名。<br />
+fore を指定すると表ページのレイヤが対象になります。<br />
+back を指定すると裏ページのレイヤが対象になります。<br />
+省略するとforeが指定されたものとみなします。<br />
+</tbody></table><div class="tagremarks">裏ページから表ページへ画像をコピーします。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="copy_layer" id="copy_layer" class="targanchor"><span class="b">copy_layer</span>(copylay)</h1>
+<div class="taggenre">レイヤ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ copy_layer の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">destlayer</td><td class="tagattribname"><a class="targanchor" name="partial_text_destination_layer" id="partial_text_destination_layer">destination_layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">立ち絵レイヤの名前</td><td class="tagattribdesc">立ち絵レイヤの名前を指定します。<br />
+0 ～ N のいずれかになります。(N は cv_layers で指定した立ち絵レイヤの枚数 - 1)<br />
+省略するとbaseが指定されたものとみなします。<br />
+<tr><td class="tagattribalias">srclayer</td><td class="tagattribname"><a class="targanchor" name="partial_text_source_layer" id="partial_text_source_layer">source_layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">立ち絵レイヤの名前</td><td class="tagattribdesc">立ち絵レイヤの名前を指定します。<br />
+0 ～ N のいずれかになります。(N は cv_layers で指定した立ち絵レイヤの枚数 - 1)<br />
+省略するとbaseが指定されたものとみなします。<br />
+<tr><td class="tagattribalias">destpage</td><td class="tagattribname"><a class="targanchor" name="partial_text_destination_page" id="partial_text_destination_page">destination_page</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">対象レイヤのページ</td><td class="tagattribdesc">対象レイヤのページ名。<br />
+fore を指定すると表ページのレイヤが対象になります。<br />
+back を指定すると裏ページのレイヤが対象になります。<br />
+<tr><td class="tagattribalias">srcpage</td><td class="tagattribname"><a class="targanchor" name="partial_text_source_page" id="partial_text_source_page">source_page</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">対象レイヤのページ</td><td class="tagattribdesc">対象レイヤのページ名。<br />
+fore を指定すると表ページのレイヤが対象になります。<br />
+back を指定すると裏ページのレイヤが対象になります。<br />
+</tbody></table><div class="tagremarks">任意のレイヤから任意のレイヤに画像をコピーします。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="start_animation" id="start_animation" class="targanchor"><span class="b">start_animation</span>(animstart)</a></h1>
+<div class="taggenre">レイヤ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ start_animation の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="start_animation_layer" id="start_animation_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">立ち絵レイヤの名前</td><td class="tagattribdesc">立ち絵レイヤの名前を指定します。<br />
+0 ～ N のいずれかになります。(N は cv_layers で指定した立ち絵レイヤの枚数 - 1)<br />
+省略するとbaseが指定されたものとみなします。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="start_animation_page" id="start_animation_page">page</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">対象レイヤのページ</td><td class="tagattribdesc">対象レイヤのページ名。<br />
+fore を指定すると表ページのレイヤが対象になります。<br />
+back を指定すると裏ページのレイヤが対象になります。<br />
+省略するとforeが指定されたものとみなします。<br />
+<tr><td class="tagattribalias">seg</td><td class="tagattribname"><a class="targanchor" name="start_animation_index" id="start_animation_index">index</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0 から始まる整数</td><td class="tagattribdesc">子レイヤのインデックスを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="start_animation_target" id="start_animation_target">target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ラベル名</td><td class="tagattribdesc">開始するアニメーションのラベル名を指定します。<br />
+</tbody></table><div class="tagremarks">アニメーションを開始します。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="stop_animation" id="stop_animation" class="targanchor"><span class="b">stop_animation</span>(animstop)</a></h1>
+<div class="taggenre">レイヤ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ stop_animation の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="stop_animation_layer" id="stop_animation_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">立ち絵レイヤの名前</td><td class="tagattribdesc">立ち絵レイヤの名前を指定します。<br />
+0 ～ N のいずれかになります。(N は cv_layers で指定した立ち絵レイヤの枚数 - 1)<br />
+省略するとbaseが指定されたものとみなします。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="stop_animation_page" id="stop_animation_page">page</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">対象レイヤのページ</td><td class="tagattribdesc">対象レイヤのページ名。<br />
+fore を指定すると表ページのレイヤが対象になります。<br />
+back を指定すると裏ページのレイヤが対象になります。<br />
+省略するとforeが指定されたものとみなします。<br />
+<tr><td class="tagattribalias">seg</td><td class="tagattribname"><a class="targanchor" name="stop_animation_index" id="stop_animation_index">index</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0 から始まる整数</td><td class="tagattribdesc">子レイヤのインデックスを指定します。<br />
+</tbody></table><div class="tagremarks">アニメーションを停止します。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="shake" id="shake" class="targanchor"><span class="b">shake</span>(quake)</a></h1>
+<div class="taggenre">レイヤ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ shake の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="shake_layer" id="shake_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">立ち絵レイヤの名前</td><td class="tagattribdesc">立ち絵レイヤの名前を指定します。<br />
+0 ～ N のいずれかになります。(N は cv_layers で指定した立ち絵レイヤの枚数 - 1)<br />
+省略するとbaseが指定されたものとみなします。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="shake_page" id="shake_page">page</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">対象レイヤのページ</td><td class="tagattribdesc">対象レイヤのページ名。<br />
+fore を指定すると表ページのレイヤが対象になります。<br />
+back を指定すると裏ページのレイヤが対象になります。<br />
+省略するとforeが指定されたものとみなします。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="shake_stop" id="shake_stop">stop</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">true を指定すると揺れを停止します。<br />
+デフォルトは false です。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="shake_start" id="shake_start">start</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">true を指定すると揺れを開始します。<br />
+デフォルトは true です。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="shake_time" id="shake_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">正の整数</td><td class="tagattribdesc">揺れている時間をミリ秒単位で指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="shake_delay" id="shake_delay">delay</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">正の整数</td><td class="tagattribdesc">揺れが開始されるまでの時間をミリ秒単位で指定します。<br />
+<tr><td class="tagattribalias">hmax</td><td class="tagattribname"><a class="targanchor" name="shake_horizontal_max" id="shake_horizontal_max">horizontal_max</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">横揺れの幅を指定します。<br />
+<tr><td class="tagattribalias">vmax</td><td class="tagattribname"><a class="targanchor" name="shake_vertical_max" id="shake_vertical_max">vertical_max</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">縦揺れの幅を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="shake_looping" id="shake_looping">looping</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">true を指定すると揺れがループします。<br />
+デフォルトは false です。<br />
+</tbody></table><div class="tagremarks">指定したレイヤを揺らします。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="stop_shake" id="stop_shake" class="targanchor"><span class="b">stop_shake</span>(stopquake)</a></h1>
+<div class="taggenre">レイヤ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ stop_shake の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="stop_shake_layer" id="stop_shake_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">立ち絵レイヤの名前</td><td class="tagattribdesc">立ち絵レイヤの名前を指定します。<br />
+0 ～ N のいずれかになります。(N は cv_layers で指定した立ち絵レイヤの枚数 - 1)<br />
+省略するとbaseが指定されたものとみなします。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="stop_shake_page" id="stop_shake_page">page</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">対象レイヤのページ</td><td class="tagattribdesc">対象レイヤのページ名。<br />
+fore を指定すると表ページのレイヤが対象になります。<br />
+back を指定すると裏ページのレイヤが対象になります。<br />
+省略するとforeが指定されたものとみなします。<br />
+</tbody></table><div class="tagremarks">指定したレイヤの揺れを停止します。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="transition" id="transition" class="targanchor"><span class="b">transition</span>(trans)</a></h1>
+<div class="taggenre">レイヤ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ transition の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="transition_layer" id="transition_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">立ち絵レイヤの名前</td><td class="tagattribdesc">立ち絵レイヤの名前を指定します。<br />
+0 ～ N のいずれかになります。(N は cv_layers で指定した立ち絵レイヤの枚数 - 1)<br />
+省略するとbaseが指定されたものとみなします。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="transition_page" id="transition_page">page</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">対象レイヤのページ</td><td class="tagattribdesc">対象レイヤのページ名。<br />
+fore を指定すると表ページのレイヤが対象になります。<br />
+back を指定すると裏ページのレイヤが対象になります。<br />
+省略するとforeが指定されたものとみなします。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="transition_children" id="transition_children">children</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">トランジションに子も巻き込むかどうかを指定する。<br />
+true を指定すると子も巻き込んでトランジションします。<br />
+false を指定すると単独でトランジションします。<br />
+デフォルトは true です。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="transition_time" id="transition_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">トランジションにかける時間をミリ秒単位で指定します。<br />
+省略すると 1000 ミリ秒とみなします。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="transition_method" id="transition_method">method</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">"universal" (デフォルト) または "scroll" またはその他</td><td class="tagattribdesc">トランジションのタイプを指定します。<br />
+"universal" を指定すると、 rule, vague, time 属 性に従ってユニバーサルトランジションが行われます。<br />
+"crossfade" を指定すると、time 属性に従って、単純な クロスフェードが行われます。<br />
+"scroll" を指定すると、from, stay を元にしてス クロールトランジションが行われます。<br />
+プラグインによって使用可能になるトランジションの タイプもあります。その場合は method 属性にはその トランジションの名前を指定し、また、トランジションによっては 別の属性を指定しなければならない場合があります。<br />
+省略すると他のパラメータから推測されます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="transition_rule" id="transition_rule">rule</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ルール画像名</td><td class="tagattribdesc">ユニバーサルトランジションに用いるルール画像を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="transition_vague" id="transition_vague">vague</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">あいまい領域値 (0～)</td><td class="tagattribdesc">ユニバーサルトランジションに適用する あいまい 領域値を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="transition_from" id="transition_from">from</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">"left" または "top" または "right" または "bottom"</td><td class="tagattribdesc">スクロールトランジションにおいて、裏ページの画像がどの 方向から現れてくるかを指定します。"left" = 左、"top"= 上、 "right" = 右、"bottom" = 下<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="transition_stay" id="transition_stay">stay</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">"stayfore" または "stayback" または "nostay"(デフォルト)</td><td class="tagattribdesc">スクロールトランシジョンにおいて、表ページの画像が その場にとどまったまま、裏ページの画像が外部から スクロールしてくるか ( "stayfore" )、<br />
+表ページの画像がスクロールして出ていく裏から、 裏ページの画像がその場にとどまったまま現れてくるか ( "stayback" )、<br />
+または表ページの画像と裏ページの画像が連結されて 一緒に移動しながら切り替わっていくか ( "nostay" )、を 指定します。<br />
+</tbody></table><div class="tagremarks">指定したレイヤのトランジションを開始します。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="stop_transition" id="stop_transition" class="targanchor"><span class="b">stop_transition</span>(stoptrans)</a></h1>
+<div class="taggenre">レイヤ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ stop_transition の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="stop_transition_layer" id="stop_transition_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">立ち絵レイヤの名前</td><td class="tagattribdesc">立ち絵レイヤの名前を指定します。<br />
+0 ～ N のいずれかになります。(N は cv_layers で指定した立ち絵レイヤの枚数 - 1)<br />
+省略するとbaseが指定されたものとみなします。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="stop_transition_page" id="stop_transition_page">page</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">対象レイヤのページ</td><td class="tagattribdesc">対象レイヤのページ名。<br />
+fore を指定すると表ページのレイヤが対象になります。<br />
+back を指定すると裏ページのレイヤが対象になります。<br />
+省略するとforeが指定されたものとみなします。<br />
+</tbody></table><div class="tagremarks">指定したレイヤのトランジションを停止します。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="move" id="move" class="targanchor"><span class="b">move</span>(別名なし)</a></h1>
+<div class="taggenre">レイヤ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ move の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="move_layer" id="move_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">立ち絵レイヤの名前</td><td class="tagattribdesc">立ち絵レイヤの名前を指定します。<br />
+0 ～ N のいずれかになります。(N は cv_layers で指定した立ち絵レイヤの枚数 - 1)<br />
+省略するとbaseが指定されたものとみなします。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="move_page" id="move_page">page</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">対象レイヤのページ</td><td class="tagattribdesc">対象レイヤのページ名。<br />
+fore を指定すると表ページのレイヤが対象になります。<br />
+back を指定すると裏ページのレイヤが対象になります。<br />
+省略するとforeが指定されたものとみなします。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="move_spline" id="move_spline">spline</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">true を指定すると、path 属性で指定した位置をＢスプラインで 曲線補間した線上をレイヤが移動するようになります。<br />
+false を指定すると、path 属性で指定した位置を直線補間した線上を レイヤが移動します。<br />
+true を指定した場合は path には最低 2 点を指定してください。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="move_time" id="move_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">レイヤが path を指定した点から点を移動するのに必要な時間を指定します。<br />
+そのため、移動には、通過する点間の区間の数×この属性の値の時間がかかります。<br />
+ただし、accel 属性に 0 以外を指定した場合は 一点を通過する時間は 変化します ( 移動全体に要する時間は 通過する区間の数×この属性の値です )。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="move_delay" id="move_delay">delay</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">レイヤの自動移動が開始されるまでの時間を ms で指定します。<br />
+省略すると 0 であるとみなされます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="move_path" id="move_path">path</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">"(x1,y1,opacity1) (x2,y2,opacity2) ..."</td><td class="tagattribdesc">移動位置を指定します。<br />
+移動位置は、x(レイヤ左端位置), y(レイヤ上端位置), opacity(レイヤ濃度) を３つ づつ、カンマや空白、( ) で区切って指定します。<br />
+これらの間を、スプライン補間または直線補間にてレイヤが移動します。<br />
+opacity にはレイヤの表示濃度を指定します。レイヤの濃度も点から点を移動する 間に連続的に変化します。
+レイヤを移動させずに表示濃度変化のみを 行う場合は、レイヤ位置にはすべて同じ位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="move_accel" id="move_accel">accel</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">-1 未満の数または 0(デフォルト) または 1 より大きい数</td><td class="tagattribdesc">加速度的な動きを行わせるかどうかを指定します。<br />
+0 を指定すると、最初から最後まで一定の割合で移動処理が進行し ます ( 各通過点を等間隔の時間で通過します )。省略すると 0 が指定され たと見なされます。<br />
+-1 未満の数を指定すると、最初は早く、徐々に遅くなります。<br />
+1 より大きい数を指定すると、最初は遅く、徐々に早くなります。<br />
+実数を指定することもできます。<br />
+</tbody></table><div class="tagremarks">レイヤを移動させます。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="layer_move" id="layer_move" class="targanchor"><span class="b">layer_move</span>(別名なし)</a></h1>
+<div class="taggenre">レイヤ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ layer_move の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_layer" id="layer_move_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">立ち絵レイヤの名前</td><td class="tagattribdesc">立ち絵レイヤの名前を指定します。<br />
+0 ～ N のいずれかになります。(N は cv_layers で指定した立ち絵レイヤの枚数 - 1)<br />
+省略するとbaseが指定されたものとみなします。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_page" id="layer_move_page">page</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">対象レイヤのページ</td><td class="tagattribdesc">対象レイヤのページ名。<br />
+fore を指定すると表ページのレイヤが対象になります。<br />
+back を指定すると裏ページのレイヤが対象になります。<br />
+省略するとforeが指定されたものとみなします。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_clear" id="layer_move_clear">clear</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">移動パスをクリアするかどうかを指定します。<br />
+true を指定すると移動パスをクリアします。<br />
+false を指定すると何もしません。<br />
+デフォルトはfalseです。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_transform" id="layer_move_transform">transform</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">変形（回転拡大縮小）を行うかどうかを指定します。<br />
+true を指定すると変形を行います。<br />
+false を何もしません。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_children" id="layer_move_children">children</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">変形に子レイヤも巻き込むかどうかを指定します。<br />
+true を指定すると子も巻き込みます。<br />
+false を指定すると何もしません。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_rendering_target_released" id="layer_move_rendering_target_released">rendering_target_released</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">変形を行う場合にアニメーション終了時、レンダリングターゲットを開放するかどうかを指定します。<br />
+true を指定すると開放します。<br />
+false を指定すると何もしません。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_looping" id="layer_move_looping">looping</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">ループするかどうかを指定します。<br />
+true を指定するとループします。<br />
+false を指定すると何もしません。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_time" id="layer_move_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">レイヤが path を指定した点から点を移動するのに必要な時間を指定します。<br />
+そのため、移動には、通過する点間の区間の数×この属性の値の時間がかかります。<br />
+ただし、accel 属性に 0 以外を指定した場合は 一点を通過する時間は 変化します ( 移動全体に要する時間は 通過する区間の数×この属性の値です )。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_delay" id="layer_move_delay">delay</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">レイヤの自動移動が開始されるまでの時間を ms で指定します。<br />
+省略すると 0 であるとみなされます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_accel" id="layer_move_accel">accel</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">-1 未満の数または 0(デフォルト) または 1 より大きい数</td><td class="tagattribdesc">加速度的な動きを行わせるかどうかを指定します。<br />
+0 を指定すると、最初から最後まで一定の割合で移動処理が進行し ます ( 各通過点を等間隔の時間で通過します )。省略すると 0 が指定され たと見なされます。<br />
+-1 未満の数を指定すると、最初は早く、徐々に遅くなります。<br />
+1 より大きい数を指定すると、最初は遅く、徐々に早くなります。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_position" id="layer_move_position">position</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位の整数またはポジション（0.0 ～ 1.0）</td><td class="tagattribdesc">時間によるポジション指定の場合 time 属性の範囲内で指定します。<br />
+ポジションを直接指定する場合は 0.0 ～ 1.0 の間で指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_x" id="layer_move_x">x</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">移動する位置を指定します。
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_y" id="layer_move_y">y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">移動する位置を指定します。
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_width" id="layer_move_width">width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">移動先の画像幅を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_height" id="layer_move_height">height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">移動先の画像高さを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_ix" id="layer_move_ix">ix</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">移動先の画像表示位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_iy" id="layer_move_iy">iy</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">移動先の画像表示位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_opacity" id="layer_move_opacity">opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0 ～ 255</td><td class="tagattribdesc">移動先の不透明度を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_angle" id="layer_move_angle">angle</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">角度</td><td class="tagattribdesc">移動先の角度を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_scale" id="layer_move_scale">scale</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">スケール</td><td class="tagattribdesc">移動先のスケールを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_start" id="layer_move_start">start</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">true を指定すると移動を開始します。<br />
+false を指定すると何もしません。<br />
+デフォルトはfalseです。<br />
+</tbody></table><div class="tagremarks">レイヤを移動させます。<br />
+</div>
+<div class="tagexample"><code class="bq"><span class="weak">例:</span><br />
+[layer_move layer=0 page=fore position=0.0 x=0 y=0]<br />
+[layer_move layer=0 page=fore position=0.5 x=100 y=100]<br />
+[layer_move layer=0 page=fore position=1.0 x=200 y=200 time=1000 start]<br />
+; レイヤ0を(100, 100)に移動して続けて(200, 200)に移動します。<br />
+</code></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="stop_move" id="stop_move" class="targanchor"><span class="b">stop_move</span>(stopmove)</a></h1>
+<div class="taggenre">レイヤ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ stop_move の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="stop_move_layer" id="stop_move_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">立ち絵レイヤの名前</td><td class="tagattribdesc">立ち絵レイヤの名前を指定します。<br />
+0 ～ N のいずれかになります。(N は cv_layers で指定した立ち絵レイヤの枚数 - 1)<br />
+省略するとbaseが指定されたものとみなします。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="stop_move_page" id="stop_move_page">page</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">対象レイヤのページ</td><td class="tagattribdesc">対象レイヤのページ名。<br />
+fore を指定すると表ページのレイヤが対象になります。<br />
+back を指定すると裏ページのレイヤが対象になります。<br />
+省略するとforeが指定されたものとみなします。<br />
+</tbody></table><div class="tagremarks">レイヤの移動を停止します。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="wait_transition" id="wait_transition" class="targanchor"><span class="b">wait_transition</span>(wt)</a></h1>
+<div class="taggenre">レイヤ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ wait_transition の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="wait_transition_layer" id="wait_transition_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">立ち絵レイヤの名前</td><td class="tagattribdesc">立ち絵レイヤの名前を指定します。<br />
+0 ～ N のいずれかになります。(N は cv_layers で指定した立ち絵レイヤの枚数 - 1)<br />
+省略するとbaseが指定されたものとみなします。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="wait_transition_page" id="wait_transition_page">page</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">対象レイヤのページ</td><td class="tagattribdesc">対象レイヤのページ名。<br />
+fore を指定すると表ページのレイヤが対象になります。<br />
+back を指定すると裏ページのレイヤが対象になります。<br />
+省略するとforeが指定されたものとみなします。<br />
+<tr><td class="tagattribalias">canskip</td><td class="tagattribname"><a class="targanchor" name="wait_transition_skip" id="wait_transition_skip">skip</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">スキップ時にスキップするかどうかを指定します。<br />
+true を指定するとスキップ可能です。<br />
+false を指定するとスキップ不可能です。<br />
+デフォルトは true です。<br />
+</tbody></table><div class="tagremarks">トランジションの停止を待ちます。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="wait_animation" id="wait_animation" class="targanchor"><span class="b">wait_animation</span>(wa)</a></h1>
+<div class="taggenre">レイヤ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ wait_animation の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="wait_animation_layer" id="wait_animation_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">立ち絵レイヤの名前</td><td class="tagattribdesc">立ち絵レイヤの名前を指定します。<br />
+0 ～ N のいずれかになります。(N は cv_layers で指定した立ち絵レイヤの枚数 - 1)<br />
+省略するとbaseが指定されたものとみなします。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="wait_animation_page" id="wait_animation_page">page</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">対象レイヤのページ</td><td class="tagattribdesc">対象レイヤのページ名。<br />
+fore を指定すると表ページのレイヤが対象になります。<br />
+back を指定すると裏ページのレイヤが対象になります。<br />
+省略するとforeが指定されたものとみなします。<br />
+
+</tbody></table><div class="tagremarks">アニメーションの停止を待ちます。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="wait_shake" id="wait_shake" class="targanchor"><span class="b">wait_shake</span>(wq)</a></h1>
+<div class="taggenre">レイヤ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ wait_shake の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="wait_animation_layer" id="wait_animation_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">立ち絵レイヤの名前</td><td class="tagattribdesc">立ち絵レイヤの名前を指定します。<br />
+0 ～ N のいずれかになります。(N は cv_layers で指定した立ち絵レイヤの枚数 - 1)<br />
+省略するとbaseが指定されたものとみなします。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="wait_animation_page" id="wait_animation_page">page</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">対象レイヤのページ</td><td class="tagattribdesc">対象レイヤのページ名。<br />
+fore を指定すると表ページのレイヤが対象になります。<br />
+back を指定すると裏ページのレイヤが対象になります。<br />
+省略するとforeが指定されたものとみなします。<br />
+
+</tbody></table><div class="tagremarks">揺れの終了を待ちます。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="wait_move" id="wait_move" class="targanchor"><span class="b">wait_move</span>(wm)</a></h1>
+<div class="taggenre">レイヤ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ wait_move の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="wait_move_layer" id="wait_move_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">立ち絵レイヤの名前</td><td class="tagattribdesc">立ち絵レイヤの名前を指定します。<br />
+0 ～ N のいずれかになります。(N は cv_layers で指定した立ち絵レイヤの枚数 - 1)<br />
+省略するとbaseが指定されたものとみなします。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="wait_move_page" id="wait_move_page">page</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">対象レイヤのページ</td><td class="tagattribdesc">対象レイヤのページ名。<br />
+fore を指定すると表ページのレイヤが対象になります。<br />
+back を指定すると裏ページのレイヤが対象になります。<br />
+省略するとforeが指定されたものとみなします。<br />
+</tbody></table><div class="tagremarks">移動の終了を待ちます。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="base_layer_pos" id="base_layer_pos" class="targanchor"><span class="b">base_layer_pos</span>(別名なし)</a></h1>
+<div class="taggenre">レイヤ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ base_layer_pos の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="base_layer_pos_topmost" id="base_layer_pos_topmost">topmost</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定するとベースレイヤが最前面に移動します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="base_layer_pos_bottom" id="base_layer_pos_bottom">bottom</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定するとベースレイヤが最後面に移動します。<br />
+</tbody></table><div class="tagremarks">ベースレイヤの位置を設定します。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="base_layer_transparent" id="base_layer_transparent" class="targanchor"><span class="b">base_layer_transparent</span>(別名なし)</a></h1>
+<div class="taggenre">レイヤ操作</div>
+</tbody></table><div class="tagremarks">ベースレイヤ透明にします。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+	<script type="text/javascript" charset="Shift_JIS" src="documentid.js" ></script>
+	<script type="text/javascript" charset="Shift_JIS" src="postcontent.js" ></script>
+</body></html>

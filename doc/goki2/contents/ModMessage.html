@@ -1,0 +1,750 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+	<title>ModMessageのタグ</title>
+	<meta name="author" content="Halo" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript" />
+	<link href="browser.css" type="text/css" rel="stylesheet" title="吉里吉里関連リファレンス用標準スタイル" />
+	<link href="mailto:halosuke@gmail.com" rev="Made" />
+	<link href="index.html" target="_top" rel="Start" title="トップページ" />
+</head>
+<body>
+
+<h1><a name="tags" id="tags">ModMessageのタグ</a></h1>
+<div class="para"><div>ModMessage で使用可能なタグのリファレンスです。<br />
+<br />
+chタグ等の実態であるch_mod_message/ruby_mod_message/p_mod_message/l_mod_message/r_mod_message/erase_message/clear_message_layers_with_history/reset_message_layerが実装されています。<br />
+using_mod_messageタグを使うとそれぞれch/ruby/p/l/r/er/cm/ctタグがこれらのタグにリダイレクトされます。<br />
+
+<h1><a name="genre" id="genre" class="targanchor">ジャンル・タグ一覧</a></h1>
+
+
+<div class="para"><div><br />
+<table class="taglist"><tbody>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#message_layers">message_layers</a></span></td><td class="taglisteven">メッセージレイヤの数を指定する</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#skip_key">skip_key</a></span></td><td class="taglistodd">読み進みキーを指定する</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#message_option">message_option</a></span></td><td class="taglisteven">メッセージレイヤの属性指定</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#current">current</a></span></td><td class="taglistodd">カレントレイヤの指定</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#history_option">history_option</a></span></td><td class="taglisteven">履歴レイヤの設定</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#default_font_parameters">default_font_parameters</a></span></td><td class="taglistodd">フォントの設定</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#default_line_parameters">default_line_parameters</a></span></td><td class="taglisteven">行パラメータの設定</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#line_parameters">line_parameters</a></span></td><td class="taglistodd">行パラメータの設定</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#font">font</a></span></td><td class="taglisteven">フォントの設定</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#reset_font">reset_font</a></span></td><td class="taglistodd">フォントのリセット</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#reset_line_parameters">reset_line_parameters</a></span></td><td class="taglisteven">行パラメータのリセット</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#using_mod_message">using_mod_message</a></span></td><td class="taglistodd">出力先を ModMessage にする</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#not_using_mod_message">not_using_mod_message</a></span></td><td class="taglisteven">出力先をもとに戻す</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#show_message">show_message</a></span></td><td class="taglistodd">メッセージレイヤの表示</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#wait_show_message">wait_show_message</a></span></td><td class="taglisteven">メッセージレイヤの表示待ち</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#hide_message">hide_message</a></span></td><td class="taglistodd">メッセージレイアyの非表示</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#wait_hide_message">wait_hide_message</a></span></td><td class="taglistodd">メッセージレイヤの非表示待ち</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#horizontal_ch">horizontal_ch</a></span></td><td class="taglistodd">縦中横の文字表示</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#history_reline">history_reline</a></span></td><td class="taglistodd">履歴レイヤの改行</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#clear_message_layers_with_history">clear_message_layers_with_history</a></span></td><td class="taglistodd">メッセージレイヤと履歴レイヤのクリア</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#reset_message_layer">reset_message_layer</a></span></td><td class="taglistodd">メッセージレイヤと履歴レイヤのクリア</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#clear_message_layers">clear_message_layers</a></span></td><td class="taglistodd">メッセージレイヤすべてのクリア</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#erase_message">erase_message</a></span></td><td class="taglistodd">カレントメッセージレイヤのクリア</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#indent">indent</a></span></td><td class="taglistodd">インデント設定</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#end_indent">end_indent</a></span></td><td class="taglistodd">インデント解除</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#link">link</a></span></td><td class="taglistodd">リンクの開始</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#end_link">end_link</a></span></td><td class="taglistodd">リンクの終了</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#button">button</a></span></td><td class="taglistodd">ボタンの作成</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#checkbox">checkbox</a></span></td><td class="taglistodd">チェックボックスの作成</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#edit">edit</a></span></td><td class="taglistodd">エディットボックスの作成</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#commit">commit</a></span></td><td class="taglistodd">入力の確定</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#lock_link">lock_link</a></span></td><td class="taglistodd">入力の受付終了</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#unlock_link">unlock_link</a></span></td><td class="taglistodd">入力のロック解除</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#store_history_data">store_history_data</a></span></td><td class="taglistodd">履歴データのストア</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#auto_wait_ch">auto_wait_ch</a></span></td><td class="taglistodd">自動ウェイトの設定</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#click_skip">click_skip</a></span></td><td class="taglistodd">クリックスキップの設定</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#hidden_message">hidden_message</a></span></td><td class="taglistodd">メッセージレイヤの一時消去</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#map_prerendered_font">map_prerendered_font</a></span></td><td class="taglistodd">プリレンダリングフォントの設定</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#next_skip">next_skip</a></span></td><td class="taglistodd">次の停止までスキップできるか指定</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#s">s</a></span></td><td class="taglistodd">停止</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#wait_ch">wait_ch</a></span></td><td class="taglistodd">文字数分のウェイトを入れる</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#cancel_auto_mode">cancel_auto_mode</a></span></td><td class="taglistodd">オートモードのキャンセル</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#cancel_skip">cancel_skip</a></span></td><td class="taglistodd">スキップのキャンセル</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#delay">delay</a></span></td><td class="taglistodd">文字表示待ち時間の指定</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#no_wait">no_wait</a></span></td><td class="taglistodd">文字表示時間をゼロにする</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#end_no_wait">end_no_wait</a></span></td><td class="taglistodd">文字表示時間をもとに戻す</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#glyph">glyph</a></span></td><td class="taglistodd">グリフ表示</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#locate">locate</a></span></td><td class="taglistodd">次の文字描画位置を指定する</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#wait_trigger">wait_trigger</a></span></td><td class="taglistodd">トリガ待ち</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#wheel">wheel</a></span></td><td class="taglistodd">ホイールイベント指定</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#clear_wheel">clear_wheel</a></span></td><td class="taglistodd">ホイールイベントクリア</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#timeout">timeout</a></span></td><td class="taglistodd">タイムアウトイベント指定</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#clear_timeout">clear_timeout</a></span></td><td class="taglistodd">タイムアウトイベントクリア</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#click">click</a></span></td><td class="taglistodd">クリックイベント指定</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#clear_click">clear_click</a></span></td><td class="taglistodd">クリックイベントクリア</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#show_history">show_history</a></span></td><td class="taglistodd">履歴レイヤ表示</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#history_action">history_action</a></span></td><td class="taglistodd">履歴レイヤアクション開始</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#end_history_action">end_history_action</a></span></td><td class="taglistodd">履歴レイヤアクション終了</td></tr>
+</tbody></table><br /><br /></div></div>
+
+<h1><a name="message_layers" id="message_layers" class="targanchor"><span class="b">message_layers</span>(別名なし)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ message_layers の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="message_layers_count" id="message_layers_count">count</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">メッセージレイヤの枚数</td><td class="tagattribdesc">メッセージレイヤの枚数を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="message_layers_base" id="message_layers_base">base</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">メッセージレイヤの absolute 値のベース</td><td class="tagattribdesc">メッセージレイヤの absolute 値のベースを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="message_layers_step" id="message_layers_step">step</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">メッセージレイヤの absolute 値のステップ</td><td class="tagattribdesc">メッセージレイヤの absolute 値のステップを指定します。<br />
+ここで指定された値がベース値にプラスされます。<br />
+</tbody></table><div class="tagremarks">メッセージレイヤの枚数を指定します。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="skip_key" id="skip_key" class="targanchor"><span class="b">skip_key</span>(別名なし)</a></h1>
+<div class="taggenre">キーコンフィグ</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ skip_key の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="skip_key_skip_key" id="skip_key_skip_key">skip_key</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">キー値</td><td class="tagattribdesc">読み進みキーを指定する。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="skip_key_not_read_skip_key" id="skip_key_not_read_skip_key">not_read_skip_key</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">キー値</td><td class="tagattribdesc">スキップキーを指定する。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="skip_key_auto_mode_key" id="skip_key_auto_mode_key">auto_mode_key</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">キー値</td><td class="tagattribdesc">オートモードキーを指定する。<br />
+ここで指定された値がベース値にプラスされます。<br />
+</tbody></table><div class="tagremarks">読み進みキー等を設定します。<br />
+</div>
+<div class="tagexample"><code class="bq"><span class="weak">例:</span><br />
+[skip_key skip_key=VK_RETURN]<br />
+; エンターキーで読み進む。<br />
+</code></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="message_option" id="message_option" class="targanchor"><span class="b">message_option</span>(position)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ message_option の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="message_option_layer" id="message_option_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">"message0" または "message1"</td><td class="tagattribdesc">操作対象とするメッセージレイヤを指定します。<br />
+message_0 ～ message_N のいずれかになります。(N は message_layers で指定したメッセージレイヤの枚数 - 1)<br />
+省略するとカレントメッセージレイヤが対象となります。<br />
+<tr><td class="tagattribalias">frame</td><td class="tagattribname"><a class="targanchor" name="message_option_storage" id="message_option_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">画像ファイル名</td><td class="tagattribdesc">画像ファイル名を指定します。<br />
+<tr><td class="tagattribalias">framekey</td><td class="tagattribname"><a class="targanchor" name="message_option_key" id="message_option_key">key</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB 形式 または パレットインデックス番号 または "adapt"</td><td class="tagattribdesc">frame 属性で指定したフレーム画像の、どの色を抜き色と するかを指定します。省略すると抜き色は無効になります。<br />
+key=0xRRGGBB という形式で 16 進数で抜き色を指定する と、RR(赤) GG(緑) BB(青)で塗られた部分を抜き色として透明にします。 たとえば、key=0xff00ff では (r,g,b)=(255,0,255) つまり真マゼンダの部 分を抜き色として透明にするという指定になります。<br />
+ただ単に数値を指定すれば、そのパレットインデックスの数値が抜き 色となります。16色/256色の画像に対して有効です。<br />
+key=adapt と指定すれば、自動的に抜き色が決定されます。 使用される抜き色は、画像の一番上のラインにて、一番多く使われている色です。 16色/256色の画像に対して有効です。<br />
+　マスク画像を使用する場合は、この属性を指定する必要はありません。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="message_option_left" id="message_option_left">left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">表示位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="message_option_top" id="message_option_top">top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">表示位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="message_option_width" id="message_option_width">width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">幅を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="message_option_height" id="message_option_height">height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">高さを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="message_option_color" id="message_option_color">color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB 形式</td><td class="tagattribdesc">メッセージレイヤの表示色を 0xRRGGBB 形式で指定 します。 frame に "" を指定したときに有効です。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="message_option_opacity" id="message_option_opacity">opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">不透明度 ( 0 ～ 255 )</td><td class="tagattribdesc">メッセージレイヤの不透明度を 0 ～ 255 の数値で指定しま す(文字の不透明度や、レイヤ自体の不透明度ではありません)。0 で完全 に透明です。frame に "" を指定したときに有効です。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="message_option_shadow_color" id="message_option_shadow_color">shadow_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB 形式</td><td class="tagattribdesc">影の色を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="message_option_edge_color" id="message_option_edge_color">edge_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB 形式</td><td class="tagattribdesc">袋の色を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="message_option_current" id="message_option_current">current</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true</td><td class="tagattribdesc">trueを指定すると操作対象のレイヤをカレントメッセージレイヤに設定します。<br />
+falseを指定した場合何もしません。<br />
+<tr><td class="tagattribalias">marginl</td><td class="tagattribname"><a class="targanchor" name="message_option_margin_left" id="message_option_margin_left">margin_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">文字表示位置マージンを指定します。<br />
+<tr><td class="tagattribalias">margint</td><td class="tagattribname"><a class="targanchor" name="message_option_margin_top" id="message_option_margin_top">margin_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">文字表示位置マージンを指定します。<br />
+<tr><td class="tagattribalias">marginr</td><td class="tagattribname"><a class="targanchor" name="message_option_margin_right" id="message_option_margin_right">margin_right</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">文字表示位置マージンを指定します。<br />
+<tr><td class="tagattribalias">marginb</td><td class="tagattribname"><a class="targanchor" name="message_option_margin_bottom" id="message_option_margin_bottom">margin_bottom</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">文字表示位置マージンを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="message_option_visible" id="message_option_visible">visible</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">メッセージレイヤを表示するかどうかを指定します。<br />
+true を指定すると表示します。<br />
+false を指定すると非表示にします。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="message_option_layout_mode" id="message_option_layout_mode">layout_mode</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">vertical 又は horizontal</td><td class="tagattribdesc">横書きか縦書きかを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="message_option_effect_type" id="message_option_effect_type">effect_type</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">fade 又は vista</td><td class="tagattribdesc">表示メソッドを指定します。 <br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="message_option_interval" id="message_option_interval">interval</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">文字表示間隔を指定する。<br />
+</tbody></table><div class="tagremarks">　メッセージレイヤの設定。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="current" id="current" class="targanchor"><span class="b">current</span>(別名なし)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ current の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="current_layer" id="current_layer">layer</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">"message0" または "message1"</td><td class="tagattribdesc">操作対象とするメッセージレイヤを指定します。<br />
+message0 ～ messageN のいずれかになります。(N は message_layers で指定したメッセージレイヤの枚数 - 1)<br />
+または数値0～Nを指定する事ができます。<br />
+</tbody></table><div class="tagremarks">カレントレイヤの設定をします。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="history_option" id="history_option" class="targanchor"><span class="b">history_option</span>(history)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ history_option の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="history_option_storage" id="history_option_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">画像ファイル名</td><td class="tagattribdesc">フレーム画像として利用する画像ファイル名を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="history_option_left" id="history_option_left">left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">履歴レイヤの表示位置を指定する。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="history_option_top" id="history_option_top">top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">履歴レイヤの表示位置を指定する。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="history_option_width" id="history_option_width">width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">履歴レイヤの幅を指定する。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="history_option_height" id="history_option_height">height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">履歴レイヤの高さを指定する。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="history_option_color" id="history_option_color">color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB 形式</td><td class="tagattribdesc">履歴レイヤの色を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="history_option_opacity" id="history_option_opacity">opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0 ～ 255</td><td class="tagattribdesc">履歴レイヤの不透明度を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="history_option_shadow_color" id="history_option_shadow_color">shadow_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB 形式</td><td class="tagattribdesc">文字の影色を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="history_option_edge_color" id="history_option_edge_color">edge_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB 形式</td><td class="tagattribdesc">袋文字の色を指定します。<br />
+<tr><td class="tagattribalias">marginl</td><td class="tagattribname"><a class="targanchor" name="history_option_margin_left" id="history_option_margin_left">margin_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">文字表示マージンを指定します。<br />
+<tr><td class="tagattribalias">margint</td><td class="tagattribname"><a class="targanchor" name="history_option_margin_top" id="history_option_margin_top">margin_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">文字表示マージンを指定します。<br />
+<tr><td class="tagattribalias">marginr</td><td class="tagattribname"><a class="targanchor" name="history_option_margin_right" id="history_option_margin_right">margin_right</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">文字表示マージンを指定します。<br />
+<tr><td class="tagattribalias">marginb</td><td class="tagattribname"><a class="targanchor" name="history_option_margin_bottom" id="history_option_margin_bottom">margin_bottom</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">文字表示マージンを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="history_option_layout_mode" id="history_option_layout_mode">layout_mode</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">vertical 又は horizontal</td><td class="tagattribdesc">縦書きか横書きかを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="history_option_font_size" id="history_option_font_size">font_size</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">文字のサイズを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="history_option_font_face" id="history_option_font_face">font_face</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">フォント名</td><td class="tagattribdesc">文字のフォントフェイス名を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="history_option_show_hide_type" id="history_option_show_hide_type">show_hide_type</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">fade 又は vista</td><td class="tagattribdesc">履歴レイヤの表示／非表示メソッドを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="history_option_time" id="history_option_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">履歴レイヤの表示／非表示にかける時間をミリ秒単位で指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="history_option_enabled" id="history_option_enabled">enabled</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">履歴レイヤの有効／無効を設定します。<br />
+true を指定すると履歴レイヤが有効化されます。<br />
+false を指定すると履歴レイヤが無効化されます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="history_option_output" id="history_option_output">output</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">履歴レイヤに文字を出力するかどうかを指定します。<br />
+true を指定すると文字が出力されます。<br />
+false を指定すると文字は出力されません。<br />
+</tbody></table><div class="tagremarks">履歴レイヤの設定を行います。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="default_font_parameters" id="default_font_parameters" class="targanchor"><span class="b">default_font_parameters</span>(deffont)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ default_font_parameters の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="default_font_parameters_face" id="default_font_parameters_face">face</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">フォント名</td><td class="tagattribdesc">デフォルトのフォント名を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="default_font_parameters_size" id="default_font_parameters_size">size</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">デフォルトの文字サイズを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="default_font_parameters_italic" id="default_font_parameters_italic">italic</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">デフォルトの文字をイタリックにするかどうか指定します。<br />
+<tr><td class="tagattribalias">rubysize</td><td class="tagattribname"><a class="targanchor" name="default_font_parameters_ruby_size" id="default_font_parameters_ruby_size">ruby_size</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">デフォルトのルビサイズを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="default_font_parameters_bold" id="default_font_parameters_bold">bold</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">デフォルトの文字をボールドにするかどうかを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="default_font_parameters_strikeout" id="default_font_parameters_strikeout">strikeout</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">デフォルトの文字を打消し線にするかどうかを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="default_font_parameters_underline" id="default_font_parameters_underline">underline</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">デフォルトの文字を下線付きにするかどうかを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="default_font_parameters_shadow" id="default_font_parameters_shadow">shadow</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">デフォルトの文字を影付きにするかどうかを指定します。<br />
+<tr><td class="tagattribalias">shadowcolor</td><td class="tagattribname"><a class="targanchor" name="default_font_parameters_shadow_color" id="default_font_parameters_shadow_color">shadow_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB 形式</td><td class="tagattribdesc">デフォルトの文字の影色を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="default_font_parameters_edge" id="default_font_parameters_edge">edge</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">デフォルトの文字を袋文字にするかどうかを指定します。<br />
+<tr><td class="tagattribalias">edgecolor</td><td class="tagattribname"><a class="targanchor" name="default_font_parameters_edge_color" id="default_font_parameters_edge_color">edge_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB 形式</td><td class="tagattribdesc">デフォルトの文字の袋文字の色を指定します。<br />
+</tbody></table><div class="tagremarks">現在操作対象のメッセージレイヤに対する、デフォルトの文字属性を指定します。<br />
+各属性の詳細については font タグを参照してください。ただし 属性の値として "default" を指定することはできません。<br />
+ここで指定した属性は、reset_font タグで実際に反映されます。<br />
+逆に言うと、このタグを実行しただけではすぐにはフォントの属性は反映されません。reset_font タグ を実行する必要があります。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="default_line_parameters" id="default_line_parameters" class="targanchor"><span class="b">default_line_parameters</span>(defstyle)</h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ default_line_parameters の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">linesize</td><td class="tagattribname"><a class="targanchor" name="default_line_parameters_line_size" id="default_line_parameters_line_size">line_size</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">行のサイズを指定します。<br />
+<tr><td class="tagattribalias">pitch</td><td class="tagattribname"><a class="targanchor" name="default_line_parameters_character_space" id="default_line_parameters_character_space">character_space</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">字間を指定します。<br />
+<tr><td class="tagattribalias">linespacing</td><td class="tagattribname"><a class="targanchor" name="default_line_parameters_line_space" id="default_line_parameters_line_space">line_space</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">行間を指定します。<br />
+</tbody></table><div class="tagremarks">デフォルトの行パラメータを設定します。<br />
+このタグを実行しただけではすぐには反映されません。reset_line_parameters で実際に反映されます。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="line_parameters" id="line_parameters" class="targanchor"><span class="b">line_parameters</span>(style)</h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ line_parameters の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">linesize</td><td class="tagattribname"><a class="targanchor" name="line_parameters_line_size" id="line_parameters_line_size">line_size</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">行のサイズを指定します。<br />
+<tr><td class="tagattribalias">pitch</td><td class="tagattribname"><a class="targanchor" name="line_parameters_character_space" id="line_parameters_character_space">character_space</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">字間を指定します。<br />
+<tr><td class="tagattribalias">linespacing</td><td class="tagattribname"><a class="targanchor" name="line_parameters_line_space" id="line_parameters_line_space">line_space</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">行間を指定します。<br />
+</tbody></table><div class="tagremarks">行パラメータを設定します。<br />
+reset_line_parameters で元の行パラメータに戻ります。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="font" id="font" class="targanchor"><span class="b">font</span>(別名なし)</h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ font の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="font_face" id="font_face">face</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">フォント名</td><td class="tagattribdesc">フォント名を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="font_size" id="font_size">size</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">文字サイズを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="font_italic" id="font_italic">italic</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">文字をイタリックにするかどうか指定します。<br />
+<tr><td class="tagattribalias">rubysize</td><td class="tagattribname"><a class="targanchor" name="font_ruby_size" id="font_ruby_size">ruby_size</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">ルビサイズを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="font_bold" id="font_bold">bold</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">文字をボールドにするかどうかを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="font_strikeout" id="font_strikeout">strikeout</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">文字を打消し線にするかどうかを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="font_underline" id="font_underline">underline</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">文字を下線付きにするかどうかを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="font_shadow" id="font_shadow">shadow</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">文字を影付きにするかどうかを指定します。<br />
+<tr><td class="tagattribalias">shadowcolor</td><td class="tagattribname"><a class="targanchor" name="font_shadow_color" id="font_shadow_color">shadow_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB 形式</td><td class="tagattribdesc">文字の影色を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="font_edge" id="font_edge">edge</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">文字を袋文字にするかどうかを指定します。<br />
+<tr><td class="tagattribalias">edgecolor</td><td class="tagattribname"><a class="targanchor" name="font_edge_color" id="font_edge_color">edge_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB 形式</td><td class="tagattribdesc">文字の袋文字の色を指定します。<br />
+</tbody></table><div class="tagremarks">フォントの設定を行います。<br />
+reset_font で元のフォント設定に戻ります。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="reset_font" id="reset_font" class="targanchor"><span class="b">reset_font</span>(resetfont)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="tagremarks">フォントのリセットを行います。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="reset_line_parameters" id="reset_line_parameters" class="targanchor"><span class="b">reset_line_parameters</span>(resetstyle)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="tagremarks">行パラメータのリセットを行います。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="using_mod_message" id="using_mod_message" class="targanchor"><span class="b">using_mod_message</span>(別名なし)</a></h1>
+<div class="taggenre">リダイレクト</div>
+<div class="tagremarks">出力先を ModMessage にします。<br />
+ch/ruby/p/l/r/er/cm/ctタグが。<br />
+ch_mod_message/ruby_mod_message/p_mod_message/l_mod_message/r_mod_message/erase_message/clear_message_layers_with_history/reset_message_layerにリダイレクトされます、<br />
+このタグを実行しない限りメッセージは処理されません。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="not_using_mod_message" id="not_using_mod_message" class="targanchor"><span class="b">not_using_mod_message</span>(別名なし)</a></h1>
+<div class="taggenre">リダイレクト</div>
+<div class="tagremarks">出力先をもとに戻します。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="show_message" id="show_message" class="targanchor"><span class="b">show_message</span>(別名なし)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ show_message の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="show_message_layer" id="show_message_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">message0 又は message1 ...</td><td class="tagattribdesc">操作対象とするメッセージレイヤを指定します。<br />
+message0 ～ messageN のいずれかになります。(N は message_layers で指定したメッセージレイヤの枚数 - 1)<br />
+省略するとカレントメッセージレイヤが対象となります。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="show_message_type" id="show_message_type">type</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">表示方法</td><td class="tagattribdesc">表示方法を指定します。<br />
+vista を指定すると縮小拡大エフェクトがかかります。<br />
+fade を指定するとフェードエフェクトがかかります。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="show_message_time" id="show_message_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">表示にかける時間をミリ秒単位で指定します。<br />
+</tbody></table><div class="tagremarks">メッセージレイヤを表示します。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="wait_show_message" id="wait_show_message" class="targanchor"><span class="b">wait_show_message</span>(別名なし)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ wait_show_message の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="wait_show_message_layer" id="wait_show_message_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">message0 又は message1 ...</td><td class="tagattribdesc">操作対象とするメッセージレイヤを指定します。<br />
+message0 ～ messageN のいずれかになります。(N は message_layers で指定したメッセージレイヤの枚数 - 1)<br />
+省略するとカレントメッセージレイヤが対象となります。<br />
+</tbody></table><div class="tagremarks">メッセージレイヤの表示待ちをします。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="hide_message" id="hide_message" class="targanchor"><span class="b">hide_message</span>(別名なし)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ hide_message の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="hide_message_layer" id="hide_message_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">message0 又は message1 ...</td><td class="tagattribdesc">操作対象とするメッセージレイヤを指定します。<br />
+message0 ～ messageN のいずれかになります。(N は message_layers で指定したメッセージレイヤの枚数 - 1)<br />
+省略するとカレントメッセージレイヤが対象となります。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="hide_message_type" id="hide_message_type">type</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">非表示方法</td><td class="tagattribdesc">非表示方法を指定します。<br />
+vista を指定すると縮小拡大エフェクトがかかります。<br />
+fade を指定するとフェードエフェクトがかかります。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="hide_message_time" id="hide_message_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">非表示にかける時間をミリ秒単位で指定します。<br />
+</tbody></table><div class="tagremarks">メッセージレイヤを非表示にします。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="wait_hide_message" id="wait_hide_message" class="targanchor"><span class="b">wait_hide_message</span>(別名なし)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ wait_hide_message の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="wait_hide_message_layer" id="wait_hide_message_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">message0 又は message1 ...</td><td class="tagattribdesc">操作対象とするメッセージレイヤを指定します。<br />
+message0 ～ messageN のいずれかになります。(N は message_layers で指定したメッセージレイヤの枚数 - 1)<br />
+省略するとカレントメッセージレイヤが対象となります。<br />
+</tbody></table><div class="tagremarks">メッセージレイヤの非表示待ちをします。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="horizontal_ch" id="horizontal_ch" class="targanchor"><span class="b">horizontal_ch</span>(hch)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ horizontal_ch の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="horizontal_ch_text" id="horizontal_ch_text">text</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">テキスト</td><td class="tagattribdesc">表示するテキストを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="horizontal_ch_expand" id="horizontal_ch_expand">expand</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定すると横幅が長い場合に行のサイズを調整します。<br />
+falseを指定すると調整を行いません。<br />
+</tbody></table><div class="tagremarks">縦中横表示します。<br />
+現在のモードが縦書きでなければ実行できません。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="history_reline" id="history_reline" class="targanchor"><span class="b">history_reline</span>(hr)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ history_reline の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="history_reline_repage" id="history_reline_repage">repage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">改ページするかどうかを指定します。<br />
+true を指定すると改ページします。<br />
+false を指定すると改行します。<br />
+デフォルトでは false です。<br />
+</tbody></table><div class="tagremarks">履歴レイヤの改行/改ページをします。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="clear_message_layers_with_history" id="clear_message_layers_with_history" class="targanchor"><span class="b">clear_message_layers_with_history</span>(別名なし)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="tagremarks">すべてのメッセージレイヤと履歴レイヤをクリアします。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="reset_message_layers_with_history" id="reset_message_layers_with_history" class="targanchor"><span class="b">reset_message_layers_with_history</span>(別名なし)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="tagremarks">すべてのメッセージレイヤと履歴レイヤをクリアします。<br />
+さらにカレントレイヤを messsage0 に戻します。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="clear_message_layers" id="clear_message_layers" class="targanchor"><span class="b">clear_message_layers</span>(別名なし)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="tagremarks">すべてのメッセージレイヤをクリアします。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="erase_message" id="erase_message" class="targanchor"><span class="b">erase_message</span>(別名なし)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="tagremarks">カレントのテキストをクリアします。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="indent" id="indent" class="targanchor"><span class="b">indent</span>(別名なし)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="tagremarks">現在出力中の位置をインデントとして設定する。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="end_indent" id="end_indent" class="targanchor"><span class="b">end_indent</span>(endindent)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="tagremarks">インデントの設定をクリアします。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="link" id="link" class="targanchor"><span class="b">link</span>(別名なし)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ link の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">exp</td><td class="tagattribname"><a class="targanchor" name="link_expression" id="link_expression">expression</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">TJS 式</td><td class="tagattribdesc">クリックされたときに実行される TJS 式を指定します。省略すれば 式は実行されません。storage や target が指定されていた場合、この式 が実行されてからジャンプ先に移動します。<br />
+<tr><td class="tagattribalias">clickse</td><td class="tagattribname"><a class="targanchor" name="link_click_sound_effect" id="link_click_sound_effect">click_sound_effect</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">効果音ファイル名</td><td class="tagattribdesc">クリックされたときに再生する効果音を指定します。指定しなければ 効果音は再生されません。<br />
+<tr><td class="tagattribalias">clicksebuf</td><td class="tagattribname"><a class="targanchor" name="link_click_sound_effect_buffer_number" id="link_click_sound_effect_buffer_number">click_sound_effect_buffer_number</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">効果音バッファ番号</td><td class="tagattribdesc">clickse で指定した効果音を鳴らす効果音バッファを指定します。 省略すると 0 であると見なされます。<br />
+<tr><td class="tagattribalias">onenter</td><td class="tagattribname"><a class="targanchor" name="link_on_enter_expression" id="link_on_enter_expression">on_enter_expression</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">TJS 式</td><td class="tagattribdesc">リンク内にマウスカーソルが入ってきたときに実行される TJS 式を 指定します。<br />
+<tr><td class="tagattribalias">enterse</td><td class="tagattribname"><a class="targanchor" name="link_enter_sound_effect" id="link_enter_sound_effect">enter_sound_effect</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">効果音ファイル名</td><td class="tagattribdesc">マウスが進入したときに再生する効果音を指定します。指定しなければ 効果音は再生されません。<br />
+<tr><td class="tagattribalias">entersebuf</td><td class="tagattribname"><a class="targanchor" name="link_enter_sound_effect_buffer_number" id="link_enter_sound_effect_buffer_number">enter_sound_effect_buffer_number</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">効果音バッファ番号</td><td class="tagattribdesc">enterse で指定した効果音を鳴らす効果音バッファを指定します。 省略すると 0 であると見なされます。<br />
+<tr><td class="tagattribalias">onleave</td><td class="tagattribname"><a class="targanchor" name="link_on_leave_expression" id="link_on_leave_expression">on_leave_expression</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">TJS 式</td><td class="tagattribdesc">リンク内からマウスカーソルが出ていった時に実行される TJS 式を 指定します。<br />
+<tr><td class="tagattribalias">leavese</td><td class="tagattribname"><a class="targanchor" name="link_leave_sound_effect" id="link_leave_sound_effect">leave_sound_effect</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">効果音ファイル名</td><td class="tagattribdesc">マウスが退出したときに再生する効果音を指定します。指定しなければ 効果音は再生されません。<br />
+<tr><td class="tagattribalias">leavesebuf</td><td class="tagattribname"><a class="targanchor" name="link_leave_sound_effect_buffer_number" id="link_leave_sound_effect_buffer_number">leave_sound_effect_buffer_number</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">効果音バッファ番号</td><td class="tagattribdesc">leavese で指定した効果音を鳴らす効果音バッファを指定します。 省略すると 0 であると見なされます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="link_storage" id="link_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">シナリオファイル名</td><td class="tagattribdesc">ジャンプ先のシナリオファイルを指定します。省略すると、現在 のシナリオファイル内であると見なされます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="link_target" id="link_target">target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ラベル名</td><td class="tagattribdesc">ジャンプ先のラベルを指定します。<br />
+省略すると、ファイルの先頭から実行されます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="link_color" id="link_color">color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB 形式</td><td class="tagattribdesc">リンクが選択されたときに出る半透明の矩形の色を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="link_hint" id="link_hint">hint</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ヒントとして表示させる文字列</td><td class="tagattribdesc">リンクを選択し、マウスカーソルを静止させたときに表示される ツールチップヒントを指定します。<br />
+省略すると表示は行われません。<br />
+リンクの説明の補足に使えますが、 hint 属性のみを指定し、 target, storage, exp 属性は指定しないで空のリンクを作成し、 小難しい単語の説明をすることなどもできます。<br />
+</tbody></table><div class="tagremarks">link タグと endlink タグで囲まれた部分の文章を、マウスやキーボードで選択可能にし、そこでクリックされたりキーを押されたときに、ジャンプする先を指定できます。<br />
+exp 属性を指定すれば、リンクをクリックされたときに変数に値を代入するというような動作も行わせることができます。<br />
+囲まれた文章は、ページをまたぐことは出来ません(行をまたぐことはできます)。<br />
+一画面中に最大で 255 個のリンクを作成することができます。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="end_link" id="end_link" class="targanchor"><span class="b">end_link</span>(endlink)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="tagremarks">リンクの終了。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="button" id="button" class="targanchor"><span class="b">button</span>(別名なし)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ button の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">exp</td><td class="tagattribname"><a class="targanchor" name="button_expression" id="button_expression">expression</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">TJS 式</td><td class="tagattribdesc">クリックされたときに実行される TJS 式を指定します。省略すれば 式は実行されません。storage や target が指定されていた場合、この式 が実行されてからジャンプ先に移動します。<br />
+<tr><td class="tagattribalias">clickse</td><td class="tagattribname"><a class="targanchor" name="button_click_sound_effect" id="button_click_sound_effect">click_sound_effect</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">効果音ファイル名</td><td class="tagattribdesc">クリックされたときに再生する効果音を指定します。指定しなければ 効果音は再生されません。<br />
+<tr><td class="tagattribalias">clicksebuf</td><td class="tagattribname"><a class="targanchor" name="button_click_sound_effect_buffer_number" id="button_click_sound_effect_buffer_number">click_sound_effect_buffer_number</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">効果音バッファ番号</td><td class="tagattribdesc">clickse で指定した効果音を鳴らす効果音バッファを指定します。 省略すると 0 であると見なされます。<br />
+<tr><td class="tagattribalias">onenter</td><td class="tagattribname"><a class="targanchor" name="button_on_enter_expression" id="button_on_enter_expression">on_enter_expression</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">TJS 式</td><td class="tagattribdesc">リンク内にマウスカーソルが入ってきたときに実行される TJS 式を 指定します。<br />
+<tr><td class="tagattribalias">enterse</td><td class="tagattribname"><a class="targanchor" name="button_enter_sound_effect" id="button_enter_sound_effect">enter_sound_effect</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">効果音ファイル名</td><td class="tagattribdesc">マウスが進入したときに再生する効果音を指定します。指定しなければ 効果音は再生されません。<br />
+<tr><td class="tagattribalias">entersebuf</td><td class="tagattribname"><a class="targanchor" name="button_enter_sound_effect_buffer_number" id="button_enter_sound_effect_buffer_number">enter_sound_effect_buffer_number</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">効果音バッファ番号</td><td class="tagattribdesc">enterse で指定した効果音を鳴らす効果音バッファを指定します。 省略すると 0 であると見なされます。<br />
+<tr><td class="tagattribalias">onleave</td><td class="tagattribname"><a class="targanchor" name="button_on_leave_expression" id="button_on_leave_expression">on_leave_expression</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">TJS 式</td><td class="tagattribdesc">リンク内からマウスカーソルが出ていった時に実行される TJS 式を 指定します。<br />
+<tr><td class="tagattribalias">leavese</td><td class="tagattribname"><a class="targanchor" name="button_leave_sound_effect" id="button_leave_sound_effect">leave_sound_effect</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">効果音ファイル名</td><td class="tagattribdesc">マウスが退出したときに再生する効果音を指定します。指定しなければ 効果音は再生されません。<br />
+<tr><td class="tagattribalias">leasesebuf</td><td class="tagattribname"><a class="targanchor" name="button_leave_sound_effect_buffer_number" id="button_leave_sound_effect_buffer_number">leave_sound_effect_buffer_number</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">効果音バッファ番号</td><td class="tagattribdesc">leavese で指定した効果音を鳴らす効果音バッファを指定します。 省略すると 0 であると見なされます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="button_storage" id="button_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">シナリオファイル名</td><td class="tagattribdesc">ジャンプ先のシナリオファイルを指定します。省略すると、現在 のシナリオファイル内であると見なされます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="button_target" id="button_target">target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ラベル名</td><td class="tagattribdesc">ジャンプ先のラベルを指定します。<br />
+省略すると、ファイルの先頭から実行されます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="button_color" id="button_color">color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB 形式</td><td class="tagattribdesc">リンクが選択されたときに出る半透明の矩形の色を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="button_hint" id="button_hint">hint</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ヒントとして表示させる文字列</td><td class="tagattribdesc">リンクを選択し、マウスカーソルを静止させたときに表示される ツールチップヒントを指定します。<br />
+省略すると表示は行われません。<br />
+リンクの説明の補足に使えますが、 hint 属性のみを指定し、 target, storage, exp 属性は指定しないで空のリンクを作成し、 小難しい単語の説明をすることなどもできます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="button_graphic" id="button_graphic">graphic</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">画像ファイル名</td><td class="tagattribdesc">ボタンにする画像を指定します。<br />
+image タグの storage 属性を参照してください。<br />
+<tr><td class="tagattribalias">graphickey</td><td class="tagattribname"><a class="targanchor" name="button_graphic_key" id="button_graphic_key">graphic_key</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB 形式 または パレットインデックス番号 または "adapt"</td><td class="tagattribdesc">ボタンにする画像のカラーキーを指定します。<br />
+image タグの key 属性を参照してください。<br />
+</tbody></table><div class="tagremarks">現在操作対象になっているメッセージレイヤの、現在の位置に、ボタンを作成します。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="checkbox" id="checkbox" class="targanchor"><span class="b">checkbox</span>(別名なし)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ checkbox の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="checkbox_graphic" id="checkbox_graphic">graphic</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">画像ファイル名</td><td class="tagattribdesc">チェックボックスにする画像を指定します。<br />
+image タグの storage 属性を参照してください。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="checkbox_graphic_key" id="checkbox_graphic_key">graphic_key</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB 形式 または パレットインデックス番号 または "adapt"</td><td class="tagattribdesc">チェックボックスにする画像のカラーキーを指定します。<br />
+image タグの key 属性を参照してください。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="checkbox_name" id="checkbox_name">name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">変数名</td><td class="tagattribdesc">チェックボックスの状態を格納する変数を指定します。<br />
+変数が 0 (または未定義)ならばチェックされていない、0 でなければ チェックされているとみなされます。<br />
+もし変数がすでに 0 以外であれば、チェックボックスはチェックされた 状態で作成されます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="checkbox_caption" id="checkbox_caption">caption</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">キャプション文字列</td><td class="tagattribdesc">キャプションとして表示する文字列を指定します。<br />
+<tr><td class="tagattribalias">bgcolor</td><td class="tagattribname"><a class="targanchor" name="checkbox_background_color" id="checkbox_background_color">background_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB 形式</td><td class="tagattribdesc">背景色を 0xRRGGBB 形式で指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="checkbox_color" id="checkbox_color">color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB 形式</td><td class="tagattribdesc">チェックマークの色を 0xRRGGBB 形式で指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="checkbox_opacity" id="checkbox_opacity">opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0(完全透明) ～ 255(完全不透明)</td><td class="tagattribdesc">background_color 属性で指定した背景色の不透明度を 0 ～ 255 で指定します。<br />
+</tbody></table><div class="tagremarks">現在操作対象になっているメッセージレイヤの、現在の位置に、チェックボックスを作成します。<br />
+チェックボックスの状態は、commit タグが 実行されるまで、指定した変数に代入されることはありません。<br />
+commit タグが実行されると、チェックボックスがチェックされていれば 1 が、 チェックされていなければ 0 が変数に入ります。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="edit" id="edit" class="targanchor"><span class="b">edit</span>(別名なし)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ edit の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="edit_name" id="edit_name">name</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">変数名</td><td class="tagattribdesc">入力した文字列を格納する変数を指定します。<br />
+もし変数にすでに文字列が入っていた場合は、単一行 エディットの初期文字列として表示されます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="edit_length" id="edit_length">length</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">単一行エディットの幅 ( 縦書きの場合は高さ ) をピクセル単位で指定します。<br />
+<tr><td class="tagattribalias">bgcolor</td><td class="tagattribname"><a class="targanchor" name="edit_background_color" id="edit_background_color">background_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB 形式</td><td class="tagattribdesc">背景色を 0xRRGGBB 形式で指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="edit_color" id="edit_color">color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB 形式</td><td class="tagattribdesc">文字色を 0xRRGGBB 形式で指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="edit_opacity" id="edit_opacity">opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0(完全透明) ～ 255(完全不透明)</td><td class="tagattribdesc">bgcolor 属性で指定した背景色の不透明度を 0 ～ 255 で指定します。<br />
+<tr><td class="tagattribalias">maxchars</td><td class="tagattribname"><a class="targanchor" name="edit_max_character" id="edit_max_character">max_character</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">最大文字数</td><td class="tagattribdesc">入力できる最大文字数を指定します。0 を指定すると無制限になります。<br />
+デフォルトでは無制限です。<br />
+</tbody></table><div class="tagremarks">単一行エディットボックスを作成します。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="commit" id="commit" class="targanchor"><span class="b">commit</span>(別名なし)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="tagremarks">入力の確定をします。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="lock_link" id="lock_link" class="targanchor"><span class="b">lock_link</span>(locklink)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="tagremarks">リンクの入力をロックします。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="unlock_link" id="unlock_link" class="targanchor"><span class="b">unlock_link</span>(unlocklink)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="tagremarks">リンクのロックを解除します。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="store_history_data" id="store_history_data" class="targanchor"><span class="b">store_history_data</span>(別名なし)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="tagremarks">履歴データをストアします。<br />
+通常このタグを利用する事はないでしょう。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="auto_wait_ch" id="auto_wait_ch" class="targanchor"><span class="b">auto_wait_ch</span>(autowc)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ auto_wait_ch の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="auto_wait_ch_enabled" id="auto_wait_ch_enabled">enabled</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">自動ウェイトを有効にする場合は true を、無効にするには false を指定します。<br />
+省略すれば設定は変更されません。<br />
+<tr><td class="tagattribalias">chars</td><td class="tagattribname"><a class="targanchor" name="auto_wait_ch_chars" id="auto_wait_ch_chars">ch</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">対象の文字</td><td class="tagattribdesc">自動ウェイトを入れる文字を指定します。指定された文字のあとに、time 属性で 指定した文字数分のウェイトが入ります。<br />
+省略すれば設定は変更されません。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="auto_wait_ch_time" id="auto_wait_ch_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ウェイト(文字数単位)</td><td class="tagattribdesc">自動ウェイトを入れる時間を文字数単位で指定します。<br />
+ch 属性で指定した文字それぞれに対して、カンマで区切って時間を指定できます。<br />
+一つしか時間を指定しなかった場合は ch タグで指定したすべての文字にその時間が 設定されます。<br />
+この属性を省略した場合は 4 を指定したと見なされます。<br />
+</tbody></table><div class="tagremarks">特定の文字の後に指定文字数分のウェイトを入れることができます。<br />
+ch 属性で指定した文字が表示された後、time 属性で指定した時間がウェイトとして入ります。<br />
+文字は ch タグで複数指定できて、それに対応してそれぞれの文字に time 属性でタイミングを指定できます。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="click_skip" id="click_skip" class="targanchor"><span class="b">click_skip</span>(clickskip)</a></h1>
+<div class="taggenre">イベント</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ click_skip の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="click_skip_enabled" id="click_skip_enabled">enabled</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">クリックスキップを有効にする場合は true を、無効にするには false を指定します。<br />
+省略すれば設定は変更されません。<br />
+</tbody></table><div class="tagremarks">クリックスキップを有効化/無効化します。<br />
+trueを設定すると全てのタグでクリックスキップが有効になります。<br />
+falseを設定すると全てのタグでクリックスキップが無効になります。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="hidden_message" id="hidden_message" class="targanchor"><span class="b">hidden_message</span>(hidemessage)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+</tbody></table><div class="tagremarks">メッセージレイヤを一時消去します。<br />
+クリックすると一時消去解除されます。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="map_prerendered_font" id="map_prerendered_font" class="targanchor"><span class="b">map_prerendered_font</span>(mapfont)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ map_prerendered_font の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="map_prerendered_font_storage" id="map_prerendered_font_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">現在のフォントに割り当てたいレンダリング済みフォントファイル を指定します。<br />
+</tbody></table><div class="tagremarks">現在操作対象になっているメッセージレイヤの現在のフォントに、指定した レンダリング済みフォントを割り当てます。このタグ以降、吉里吉里でそのフォントを 描画するときは常に指定したレンダリング済みフォントが使用されます。<br />
+割り当てるフォントは実際に存在していなくてもかまいません。たとえば、 "ほげほげフォント" というフォントが選択されている状態で map_prerendered_font を使えば、 その "ほげほげフォント" に任意のレンダリング済みフォントを割り当てることができます。一つのフォント名には一つのレンダリング済みフォントしか割り当てることしかできません ( たとえば、一つのフォント名に対して複数のサイズの違う レンダリング済みフォントを割り当てるようなことはできません )。<br />
+また、複数のレンダリング済みフォントをそれぞれ別のフォントに割り当てることができます。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="next_skip" id="next_skip" class="targanchor"><span class="b">next_skip</span>(nextskip)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ next_skip の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="next_skip_enabled" id="next_skip_enabled">enabled</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">「次の選択肢まで進む」の機能を有効にする場合は true、無効にする場合は false を指定します<br />
+</tbody></table><div class="tagremarks">ユーザーが「次の選択肢まで進む」の機能を使用できるようにするか否かを指定できます。<br />
+デモシーンなどでは無効にしていたほうがいい場合があります。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="s" id="s" class="targanchor"><span class="b">s</span>(別名なし)</a></h1>
+<div class="taggenre">シナリオ進行</div>
+<div class="tagremarks">シナリオの進行を一時停止します。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="wait_ch" id="wait_ch" class="targanchor"><span class="b">wait_ch</span>(wc)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ wait_ch の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="wait_ch_time" id="wait_ch_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">文字数</td><td class="tagattribdesc">ここで指定した文字数を表示するのと同じだけの時間を待ちます。 一文字に必要な時間は delay タグで指定します。<br />
+</tbody></table><div class="tagremarks">文字数分のウェイトを入れます。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="cancel_auto_mode" id="cancel_auto_mode" class="targanchor"><span class="b">cancel_auto_mode</span>(cancelautomode)</a></h1>
+<div class="taggenre">シナリオ進行</div>
+<div class="tagremarks">オートモードをキャンセルします。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="cancel_skip" id="cancel_skip" class="targanchor"><span class="b">cancel_skip</span>(cancelskip)</a></h1>
+<div class="taggenre">シナリオ進行</div>
+<div class="tagremarks">スキップモードをキャンセルします。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="delay" id="delay" class="targanchor"><span class="b">delay</span>(別名なし)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ delay の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="delay_speed" id="delay_speed">speed</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">"nowait" または "user" またはウェイトの値(ms単位)</td><td class="tagattribdesc">"nowait" を指定すると、文字の表示にウェイトをかけずに、 一気に文字が表示されます。"user" を指定すると、 message_option で指定した速度になります(デフォルト)。ウェイトの値を指定すると、値で示した 時間につき 1 文字の速度で文字を表示します。<br />
+文字表示速度は、すべてのメッセージレイヤで同じになります。<br />
+</tbody></table><div class="tagremarks">文字の表示速度を指定します。<br />
+文字表示をノーウェイトにするには no_wait タグを使うこともできます。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="no_wait" id="no_wait" class="targanchor"><span class="b">no_wait</span>(nowait)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="tagremarks">文字の表示速度をノーウェイトに設定します。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="end_no_wait" id="end_no_wait" class="targanchor"><span class="b">end_no_wait</span>(endnowait)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="tagremarks">文字の表示速度を、nowait タグでノーウェイト にする直前の文字表示速度に戻します。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="glyph" id="glyph" class="targanchor"><span class="b">glyph</span>(別名なし)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ glyph の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="glyph_page" id="glyph_page">page</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">改ページクリック待ち記号ファイル名</td><td class="tagattribdesc">改ページ待ち記号画像のファイル名を指定します。<br />
+<tr><td class="tagattribalias">pagekey</td><td class="tagattribname"><a class="targanchor" name="glyph_page_key" id="glyph_page_key">page_key</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB 形式 または パレットインデックス番号 または "adapt"</td><td class="tagattribdesc">カラーキーを指定します。<br />
+image タグの key 属性を参照してください。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="glyph_line" id="glyph_line">line</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">行末クリック待ち記号ファイル名</td><td class="tagattribdesc">行末クリック待ち記号画像のファイル名を指定します。<br />
+<tr><td class="tagattribalias">linekey</td><td class="tagattribname"><a class="targanchor" name="glyph_line_key" id="glyph_line_key">line_key</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB 形式 または パレットインデックス番号 または "adapt"</td><td class="tagattribdesc">カラーキーを指定します。<br />
+image タグの key 属性を参照してください。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="glyph_fix" id="glyph_fix">fix</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">記号表示位置を指定位置に固定するかどうかを指定します。true を指定すると 記号は left および top を指定した位置に表示されます。<br />
+false を指定すると left および top 属性は無視され、記号は現在の文字表示 位置に表示されるようになります。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="glyph_left" id="glyph_left">left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">fix 属性を true にしたときに記号を表示する位置のうち、左端位置を 指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="glyph_top" id="glyph_top">top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">fix 属性を true にしたときに記号を表示する位置のうち、上端位置を 指定します。<br />
+</tbody></table><div class="tagremarks">カレントレイヤのクリック待ちに用いる画像を指定します。<br />
+line や page 属性で指定されたファイル名の画像が記号として、そのファイル名に .asd を つけたファイル名が アニメーションレイヤのスクリプトとして読み込まれます。<br />
+これらの設定は、メッセージレイヤごとに個別に設定できます。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="graph" id="graph" class="targanchor"><span class="b">graph</span>(別名なし)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ graph の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+				<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="graph_storage" id="graph_storage">storage</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">画像ファイル名</td><td class="tagattribdesc">表示させたい画像ファイル名を指定します。 読み込める形式は imageタグで読み込める 形式と同じです。<br />
+ここで指定したファイル名 (拡張子を除く) 部分に _m を追加 したファイルが、もしあれば、マスク画像として読み込まれます。 マスク画像は必ず 256 色グレースケールで保存してください。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="graph_key" id="graph_key">key</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB 形式 または パレットインデックス番号 または "adapt"</td><td class="tagattribdesc">どの色を抜き色とするかを指定します。省略すると抜き色は無効になります。<br />
+key=0xRRGGBB という形式で 16 進数で抜き色を指定する と、RR(赤) GG(緑) BB(青)で塗られた部分を抜き色として透明にします。 たとえば、key=0xff00ff では (r,g,b)=(255,0,255) つまり真マゼンダの部 分を抜き色として透明にするという指定になります。<br />
+ただ単に数値を指定すれば、そのパレットインデックスの数値が抜き 色となります。16色/256色の画像に対して有効です。<br />
+key=adapt と指定すれば、自動的に抜き色が決定されます。 使用される抜き色は、画像の一番上のラインにて、一番多く使われている色です。 16色/256色の画像に対して有効です。<br />
+マスク画像を使用する場合は、このタグを指定する必要はありません。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="graph_alt" id="graph_alt">alt</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">代替文字</td><td class="tagattribdesc">メッセージ履歴に表示する、この画像の代替文字を指定します。 メッセージ履歴は文字情報しか表示できませんので、alt 属性に指定された文字が代わりに表示されます。<br />
+</tbody></table><div class="tagremarks">任意の画像をメッセージレイヤの文字位置に表示します。<br />
+通常は、フォントには含まれていないような特殊な記号を画像として用意し、それを表示させる用途に使用します。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="locate" id="locate" class="targanchor"><span class="b">locate</span>(別名なし)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ locate の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="locate_x" id="locate_x">x</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">文字を表示する x 座標位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="locate_y" id="locate_y">y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">文字を表示する y 座標位置を指定します。<br />
+</tbody></table><div class="tagremarks">文字表示位置を指定します。<br />
+message_option タグで指定した margin_left と margin_top の属性の値が実際には加算されます。<br />
+横書きの場合は y を、縦書きの場合は x を省略することにより同じ行内での文字表示位置の変更が可能となります。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="wait_trigger" id="wait_trigger" class="targanchor"><span class="b">wait_trigger</span>(別名なし)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ wait_trigger の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="wait_trigger_name" id="wait_trigger_name">name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">トリガ名</td><td class="tagattribdesc">待つトリガ名を指定します。<br />
+GOKI2が実装しているトリガの一部を以下に示します。<br />
+left_click<br />
+right_click<br />
+middle_click<br />
+<tr><td class="tagattribalias">canskip</td><td class="tagattribname"><a class="targanchor" name="wait_trigger_skip" id="wait_trigger_skip">skip</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">true を指定すると、クリックにより、待つ動作をスキップすることができます。<br />
+<tr><td class="tagattribalias">onskip</td><td class="tagattribname"><a class="targanchor" name="wait_trigger_on_skip" id="wait_trigger_on_skip">on_skip</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">TJS式</td><td class="tagattribdesc">クリックによりスキップされたときに実行する TJS式 を指定します。<br />
+</tbody></table><div class="tagremarks">
+TJS2 スクリプトが GConductor#signal メソッドを呼ぶのを待ちます。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="wheel" id="wheel" class="targanchor"><span class="b">wheel</span>(別名なし)</a></h1>
+<div class="taggenre">イベント</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ wheel の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="wheel_storage" id="wheel_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">シナリオファイル名</td><td class="tagattribdesc">ジャンプ先のシナリオファイルを指定します。省略すると、現在 のシナリオファイル内であると見なされます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="wheel_target" id="wheel_target">target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ラベル名</td><td class="tagattribdesc">ジャンプ先のラベルを指定します。<br />
+省略すると、ファイルの先頭から実行されます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="wheel_function" id="wheel_function">function</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">TJS 式</td><td class="tagattribdesc">ホイール時に実行されるメソッド名を指定します。function(shift, delta, x, y) の形で呼び出されます。省略すれば呼び出しは実行されません。storage や target が指定されていた場合、このメソッド呼び出しがが実行されてからジャンプ先に移動します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="wheel_exp" id="wheel_exp">exp</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">TJS 式</td><td class="tagattribdesc">ホイール時に実行される TJS 式を指定します。省略すれば 式は実行されません。storage や target が指定されていた場合、この式 が実行されてからジャンプ先に移動します。<br />
+<tr><td class="tagattribalias">se</td><td class="tagattribname"><a class="targanchor" name="wheel_sound_effect" id="wheel_sound_effect">sound_effect</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">効果音ファイル名</td><td class="tagattribdesc">ホイール時に再生する効果音を指定します。指定しなければ 効果音は再生されません。<br />
+<tr><td class="tagattribalias">sebuf</td><td class="tagattribname"><a class="targanchor" name="wheel_sound_effect_buffer_number" id="wheel_sound_effect_buffer_number">sound_effect_buffer_number</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">効果音バッファ番号</td><td class="tagattribdesc">sound_effect で指定した効果音を鳴らす効果音バッファを指定します。 省略すると 0 であると見なされます。
+</tbody></table><div class="tagremarks">
+ホイールイベント時に実行するスクリプトやTJS式を設定します。
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="clear_wheel" id="clear_wheel" class="targanchor"><span class="b">clear_wheel</span>(cwheel)</a></h1>
+<div class="taggenre">イベント</div>
+<div class="tagremarks">ホイールイベントをクリアします。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="timeout" id="timeout" class="targanchor"><span class="b">timeout</span>(別名なし)</a></h1>
+<div class="taggenre">イベント</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ timeout の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="timeout_storage" id="timeout_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">シナリオファイル名</td><td class="tagattribdesc">ジャンプ先のシナリオファイルを指定します。省略すると、現在 のシナリオファイル内であると見なされます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="timeout_target" id="timeout_target">target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ラベル名</td><td class="tagattribdesc">ジャンプ先のラベルを指定します。<br />
+省略すると、ファイルの先頭から実行されます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="timeout_exp" id="timeout_exp">exp</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">TJS 式</td><td class="tagattribdesc">タイムアウト時に実行される TJS 式を指定します。省略すれば 式は実行されません。storage や target が指定されていた場合、この式 が実行されてからジャンプ先に移動します。<br />
+<tr><td class="tagattribalias">se</td><td class="tagattribname"><a class="targanchor" name="timeout_sound_effect" id="timeout_sound_effect">sound_effect</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">効果音ファイル名</td><td class="tagattribdesc">タイムアウト時に再生する効果音を指定します。指定しなければ 効果音は再生されません。<br />
+<tr><td class="tagattribalias">sebuf</td><td class="tagattribname"><a class="targanchor" name="timeout_sound_effect_buffer_number" id="timeout_sound_effect_buffer_number">sound_effect_buffer_number</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">効果音バッファ番号</td><td class="tagattribdesc">sound_effect で指定した効果音を鳴らす効果音バッファを指定します。 省略すると 0 であると見なされます。
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="timeout_time" id="timeout_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">タイムアウト時間</td><td class="tagattribdesc">タイムアウトまでの時間を ms で指定します。<br />
+省略すると0が指定されたとみなされます。
+</tbody></table><div class="tagremarks">タイムアウトを登録します。 タイムアウト待ちは s タグが実行された時点からになります。<br />
+このタグを使う場合は、なるべく s タグですぐに選択肢待ちにしてください。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="clear_timeout" id="clear_timeout" class="targanchor"><span class="b">clear_timeout</span>(ctimeout)</a></h1>
+<div class="taggenre">イベント</div>
+<div class="tagremarks">タイムアウトイベントをクリアします。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="click" id="click" class="targanchor"><span class="b">click</span>(別名なし)</a></h1>
+<div class="taggenre">イベント</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ click の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="click_storage" id="click_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">シナリオファイル名</td><td class="tagattribdesc">ジャンプ先のシナリオファイルを指定します。省略すると、現在 のシナリオファイル内であると見なされます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="click_target" id="click_target">target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ラベル名</td><td class="tagattribdesc">ジャンプ先のラベルを指定します。<br />
+省略すると、ファイルの先頭から実行されます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="click_exp" id="click_exp">exp</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">TJS 式</td><td class="tagattribdesc">クリック時に実行される TJS 式を指定します。省略すれば 式は実行されません。storage や target が指定されていた場合、この式 が実行されてからジャンプ先に移動します。<br />
+<tr><td class="tagattribalias">se</td><td class="tagattribname"><a class="targanchor" name="click_sound_effect" id="click_sound_effect">sound_effect</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">効果音ファイル名</td><td class="tagattribdesc">クリック時に再生する効果音を指定します。指定しなければ 効果音は再生されません。<br />
+<tr><td class="tagattribalias">sebuf</td><td class="tagattribname"><a class="targanchor" name="click_sound_effect_buffer_number" id="click_sound_effect_buffer_number">sound_effect_buffer_number</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">効果音バッファ番号</td><td class="tagattribdesc">sound_effect で指定した効果音を鳴らす効果音バッファを指定します。 省略すると 0 であると見なされます。
+</tbody></table><div class="tagremarks">ウインドウに対してクリック待ちを登録します。リンクやボタンが無い場所をクリックした場合に反応します。
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="clear_click" id="clear_click" class="targanchor"><span class="b">clear_click</span>(cclick)</a></h1>
+<div class="taggenre">イベント</div>
+<div class="tagremarks">クリックイベントをクリアします。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="show_history" id="show_history" class="targanchor"><span class="b">show_history</span>(showhistory)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="tagremarks">履歴レイヤを表示します。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="history_action" id="history_action" class="targanchor"><span class="b">history_action</span>(hact)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ history_action の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="history_action_exp" id="history_action_exp">exp</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">TJS式</td><td class="tagattribdesc">メッセージをクリックしたときに実行する TJS 式を指定します。<br />
+</tbody></table><div class="tagremarks">メッセージ履歴に対するアクションを指定します。このタグと end_history_action タグ で囲まれた部分は、メッセージ履歴上でクリックできるようになり、クリックされた時に実行する TJS 式 を指定することができます。過去にメッセージと共に再生した声を、メッセージ履歴のクリックで 再生できるようにするなどに応用できます。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="end_history_action" id="end_history_action" class="targanchor"><span class="b">end_history_action</span>(endhact)</a></h1>
+<div class="taggenre">メッセージ操作</div>
+<div class="tagremarks">history_action タグで設定したメッセージ履歴アクションを 終了(設定をクリア)します。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+	<script type="text/javascript" charset="Shift_JIS" src="documentid.js" ></script>
+	<script type="text/javascript" charset="Shift_JIS" src="postcontent.js" ></script>
+</body></html>

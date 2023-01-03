@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+	<title>ModADVのタグ</title>
+	<meta name="author" content="Halo" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript" />
+	<link href="browser.css" type="text/css" rel="stylesheet" title="吉里吉里関連リファレンス用標準スタイル" />
+	<link href="mailto:halosuke@gmail.com" rev="Made" />
+	<link href="index.html" target="_top" rel="Start" title="トップページ" />
+</head>
+<body>
+
+<h1><a name="tags" id="tags">ModADVのタグ</a></h1>
+<div class="para"><div>　ModADV で使用可能なタグのリファレンスです。<br />
+このモジュールはModMessage/ModImage/ModSoundを必要とします。<br />
+<br />
+ModADVにテキストを処理させる場合は[using_mod_adv]を呼び出します。<br />
+[using_mod_adv]を呼び出すとテキスト処理がch/ruby/r/p/er/cmタグが<br />
+ch_mod_adv/ruby_mod_adv/r_mod_adv/p_mod_adv/erase_message/clear_message_layerにリダイレクトされます。<br />
+テキストの処理をデフォルトに戻したい場合は[not_using_mod_adv]を呼び出します。<br />
+<br />
+ModADVは特殊なテキスト解釈を行います。<br />
+メッセージを表示して改行が２個連続で現れると[p]を実行します。<br />
+キャラクタタグで立ち絵を表示させようとした場合、次のメッセージ表示直前にトランジションを自動で行います。<br />
+ModADVのテキスト処理は複雑なため詳細はソースを追ってください。<br />
+基本的には以下のような形式のシナリオにするとよいでしょう。<br />
+<br />
+-----<br />
+[ハロ 通常 笑顔]シナリオテキストです。<br />
+<br />
+[ハロ 通常 怒り]立ち絵が切り替わります。<br />
+<br />
+[ハロ]ボイスがある場合は自動で再生されます。<br />
+-----<br />
+</div></div>
+
+<h1><a name="genre" id="genre" class="targanchor">ジャンル・タグ一覧</a></h1>
+
+
+<div class="para"><div><br />
+<table class="taglist"><tbody>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#using_mod_adv">using_mod_adv</a></span></td><td class="taglisteven">文字出力先をModADVにする</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#not_using_mod_adv">not_using_mod_adv</a></span></td><td class="taglistodd">文字出力先をデフォルトに戻す</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#make_character">make_character</a></span></td><td class="taglisteven">キャラクターを作成する</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#make_time_zone">make_time_zone</a></span></td><td class="taglistodd">時間帯を作成する</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#make_stage">make_stage</a></span></td><td class="taglisteven">背景を作成する</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#set_timezone">set_timezone</a></span></td><td class="taglistodd">時間帯を設定する</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#ch_mod_adv">ch_mod_adv</a></span></td><td class="taglisteven">文字出力</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#r_mod_adv">r_mod_adv</a></span></td><td class="taglistodd">改行出力</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#p_mod_adv">p_mod_adv</a></span></td><td class="taglisteven">改ページ出力</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#all_free_characters">all_free_characters</a></span></td><td class="taglisteven">全キャラクタレイヤ開放</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#character">character</a></span></td><td class="taglistodd">キャラクター操作</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#activate_character">activate_character</a></span></td><td class="taglisteven">キャラクターアクティブ化</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#stage">stage</a></span></td><td class="taglistodd">背景設定</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#show_current_message_layer">show_current_message_layer</a></span></td><td class="taglisteven">カレントメッセージレイヤ表示</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#wait_show_current_message">wait_show_current_message</a></span></td><td class="taglisteven">カレントメッセージレイヤ表示待ち</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#hide_current_message_layer">hide_current_message_layer</a></span></td><td class="taglisteven">カレントメッセージレイヤ消去</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#wait_hide_current_message">wait_hide_current_message</a></span></td><td class="taglisteven">カレントメッセージレイヤ消去待ち</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#play_character_voice">play_character_voice</a></span></td><td class="taglistodd">キャラクターボイス再生</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#stop_character_voice">stop_character_voice</a></span></td><td class="taglisteven">キャラクターボイス停止</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#wait_character_voice">wait_character_voice</a></span></td><td class="taglisteven">キャラクターボイス再生待ち</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#end_of_sentence">end_of_sentence</a></span></td><td class="taglistodd">センテンスの終了</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#reserved_transition">reserved_transition</a></span></td><td class="taglisteven">トランジションの予約</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#run_reserved_transition">run_reserved_transition</a></span></td><td class="taglistodd">予約したトランジションの開始</td></tr>
+</tbody></table><br /><br /></div></div>
+
+<h1><a name="using_mod_adv" id="using_mod_adv" class="targanchor"><span class="b">using_mod_adv</span>文字出力先をModADVにする</a></h1>
+<div class="taggenre">文字出力先の変更</div>
+<div class="tagremarks">文字出力先をModADVに変更します。<br />
+テキスト処理ch/ruby/r/p/er/cmタグが<br />
+ch_mod_adv/ruby_mod_adv/r_mod_adv/p_mod_adv/erase_message/clear_message_layerにリダイレクトされます。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="not_using_mod_adv" id="not_using_mod_adv" class="targanchor"><span class="b">not_using_mod_adv</span>文字出力先をデフォルトに戻す</a></h1>
+<div class="taggenre">文字出力先の変更</div>
+<div class="tagremarks">　文字出力先をデフォルトに戻します。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="make_character" id="make_character" class="targanchor"><span class="b">make_character</span>(別名なし)</a></h1>
+<div class="taggenre">キャラクター操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ make_character の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="make_character_name" id="make_character_name">name</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">キャラクター名</td><td class="tagattribdesc">作成するまたは設定を変更するキャラクター名を指定します。<br />
+ここで指定したキャラクター名がそのままタグ名になります。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="make_character_mob" id="make_character_mob">mob</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">モブかどうか</td><td class="tagattribdesc">キャラクターがモブかどうかを指定します。<br />
+true を指定するとモブキャラクターとなります。<br />
+モブキャラクターは定義されたシナリオファイル中でのみ有効なキャラクターとなります。<br />
+false を指定すると通常キャラクターとなり全シナリオファイル中で有効なキャラクターとなります。<br />
+デフォルトは false です。<br /></td></tr>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="make_character_auto_voice" id="make_character_auto_voice">auto_voice</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">自動ボイス再生を行うかどうか</td><td class="tagattribdesc">キャラクターボイスを自動で再生するかどうかを指定します。<br />
+true を指定すると自動でボイス再生が行われます。<br />
+再生するボイスファイル名は voice_storage_format で指定したフォーマットが利用されます。<br />
+false を指定すると自動でボイス再生は行われません。<br /></td></tr>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="make_character_voice_storage_format" id="make_character_voice_storage_format">voice_storage_format</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">自動ボイス再生で再生するファイルフォーマット</td><td class="tagattribdesc">自動で再生するボイスファイル名のフォーマットを指定します。<br />
+このフォーマットには String#sprintf のフォーマットが利用できます。<br />
+ボイスのゼロから始まる通し番号が一つ引数として与えられます。<br />
+デフォルトは [キャラクター名]%03d です。<br /></td></tr>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="make_character_image" id="make_character_image">image</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">立ち絵画像を持つかどうか</td><td class="tagattribdesc">立ち絵画像を持つかどうかを指定します。<br />
+立ち絵画像を持つ場合に true を指定します。<br />
+デフォルトは true です。</td></tr>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="make_character_voice" id="make_character_voice">voice</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ボイスを持つかどうか</td><td class="tagattribdesc">ボイスを持つかどうかを指定します。<br />
+ボイスを持つ場合に true を指定します。<br />
+デフォルトは true です。</td></tr>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="make_character_message" id="make_character_message">message</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">メッセージレイヤ番号</td><td class="tagattribdesc">キャラクタが使用するメッセージレイヤ番号を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="make_character_voice_buffer" id="make_character_voice_buffer">voice_buffer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ボイスバッファ番号</td><td class="tagattribdesc">キャラクタが使用するボイスバッファ番号を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="make_character_sub_directory_name" id="make_character_sub_directory_name">sub_directory_name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">サブディレクトリ名</td><td class="tagattribdesc">画像のサブディレクトリ名を指定します。<br />
+画像が/sub_directory/A/image001.pngにある場合sub_directoryを指定します。<br />
+この属性はpart_of_directory_pathと合わせて指定します。</td></tr>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="make_character_part_of_direcotry_path" id="make_character_part_of_direcotry_path">part_of_directory_path</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">部分パス名</td><td class="tagattribdesc">画像の部分パス名を指定します。<br />
+画像が/sub_directory/A/image001.pngにある場合Aを指定します。<br />
+この属性はsub_directory_nameと合わせて指定します。</td></tr>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="make_character_voice_sub_directory_path" id="make_character_voice_sub_directory_path">voice_sub_directory_name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">サブディレクトリ名</td><td class="tagattribdesc">ボイスのサブディレクトリ名を指定します。<br />
+ボイスが/sub_directory/Scene001/ボイス001.oggにある場合sub_directoryを指定します。<br />
+Scene001の部分には実行中のシナリオファイル名（拡張子無し）が指定されます。</td></tr>
+</tbody></table><div class="tagremarks">キャラクターの作成及び設定変更を行うことができます。<br />
+</div>
+<div class="tagexample"><code class="bq"><span class="weak">例:</span><br />
+[make_character name=ハロ voice_storage_format=ハロ_%03d]<br />
+; キャラクター「ハロ」のボイスファイル名を ハロ_連番 にする。
+</code></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="make_time_zone" id="make_time_zone" class="targanchor"><span class="b">make_time_zone</span>(別名なし)</a></h1>
+<div class="taggenre">時間帯作成</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ make_time_zone の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="make_time_zone_name" id="make_time_zone_name">name</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">時間帯名</td><td class="tagattribdesc">作成する時間帯名を指定します。<br />
+ここで指定した時間帯名がそのままタグ名になります。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="make_time_zone_suffix" id="make_time_zone_suffix">suffix</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">時間帯差分のサフィックス</td><td class="tagattribdesc">時間帯差分として使うファイル名のサフィックスを指定します。<br /></td></tr>
+
+</tbody></table><div class="tagremarks">時間帯を作成します。<br />
+時間帯タグを使うとその時間帯差分が適用されます。<br />
+</div>
+<div class="tagexample"><code class="bq"><span class="weak">例:</span><br />
+[make_stage name=玄関 sotrage=entrance]<br />
+[make_time_zone name=夜 suffix=_night]<br />
+[夜]<br />
+[玄関]<br />
+; ファイル名"entrance_night"が読み込まれる。<br />
+</code></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="make_stage" id="make_stage" class="targanchor"><span class="b">make_stage</span>(別名なし)</a></h1>
+<div class="taggenre">背景作成</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ make_stage の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="make_stage_name" id="make_stage_name">name</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">背景名</td><td class="tagattribdesc">作成する背景名を指定します。<br />
+ここで指定した背景名がそのままタグ名になります。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="make_stage_storage" id="make_stage_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">背景ファイル名を指定</td><td class="tagattribdesc">背景として利用する画像のファイル名を指定します。<br /></td></tr>
+
+</tbody></table><div class="tagremarks">背景を作成します。<br />
+このタグで指定されたファイル名が背景名として指定されたタグで表示されます。<br />
+時間帯差分がある場合は make_time_zone で指定したサフィックスも適用されます。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="set_timezone" id="set_timezone" class="targanchor"><span class="b">set_timezone</span>(make_time_zoneで指定した名前)</a></h1>
+<div class="taggenre">時間帯指定</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ set_timezone の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="set_timezone_name" id="set_timezone_name">name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">時間帯名</td><td class="tagattribdesc">設定する時間帯名を指定します。<br />
+ここで指定できる時間帯名はmake_time_zoneタグで指定した名前です。<br />
+</tbody></table><div class="tagremarks">時間帯を指定します。<br />
+このタグを直接利用する事はあまりないでしょう。<br />
+</div>
+<div class="tagexample"><code class="bq"><span class="weak">例:</span><br />
+[make_time_zone name=夕方 suffix=_sunset]<br />
+[make_stage name=背景１ storage=background01]<br />
+<br />
+[set_timezone name=夕方]<br />
+[背景１]<br />
+; background01_sunsetを表示する。<br />
+</code></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="ch_mod_adv" id="ch_mod_adv" class="targanchor"><span class="b">ch_mod_adv</span>(ch)</a></h1>
+<div class="taggenre">文字出力</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ ch_mod_adv の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ch_mod_adv_text" id="ch_mod_adv_text">text</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">テキスト</td><td class="tagattribdesc">表示する文字列を指定します。<br />
+
+</tbody></table><div class="tagremarks">文字出力します。<br />
+このタグは通常、using_mod_advタグを使用してchタグへのリダイレクト先として利用します。<br />
+このタグを直接利用する事はないでしょう。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="r_mod_adv" id="r_mod_adv" class="targanchor"><span class="b">r_mod_adv</span>(r)</a></h1>
+<div class="taggenre">改行出力</div>
+<tbody>
+
+</tbody></table><div class="tagremarks">改行を出力します。<br />
+このタグを直接利用する事はないでしょう。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="p_mod_adv" id="p_mod_adv" class="targanchor"><span class="b">p_mod_adv</span>(p)</a></h1>
+<div class="taggenre">改ページ出力</div>
+<tbody>
+
+</tbody></table><div class="tagremarks">改ページを出力します。<br />
+このタグを直接利用する事はないでしょう。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="all_free_characters" id="all_free_characters" class="targanchor"><span class="b">all_free_characters</span>(別名なし)</a></h1>
+<div class="taggenre">全キャラクタレイヤ開放</div>
+<tbody>
+
+</tbody></table><div class="tagremarks">全キャラクタレイヤを開放します。<br />
+このタグを直接利用する事はないでしょう。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="character" id="character" class="targanchor"><span class="b">character</span>(make_characterで指定した名前)</a></h1>
+<div class="taggenre">キャラクター操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ character の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="character_name" id="character_name">name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">キャラクター名</td><td class="tagattribdesc">操作するキャラクター名を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="character_voice" id="character_voice">voice</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ボイス再生するかどうか</td><td class="tagattribdesc">true を指定するとボイスを再生します。<br />
+false を指定するとボイスを再生しません。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="character_voice_number" id="character_voice_number">voice_number</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ボイス番号</td><td class="tagattribdesc">ボイス番号を指定します。<br />
+通常は自動的にカウントされる連番が使用されますがここで番号を指定すると番号をオーバーライドできます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="character_visible" id="character_visible">visible</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">表示状態</td><td class="tagattribdesc">trueなら立ち絵表示します。<br />
+falseならば立ち絵消去します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="character_storage" id="character_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">表示する立ち絵のファイル名</td><td class="tagattribdesc">表示したい立ち絵のファイル名を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="character_asd" id="character_asd">asd</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">適用したい asd ファイル名</td><td class="tagattribdesc">適用したい asd ファイル名を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="character_target" id="character_target">target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">実行するasdファイルのラベル名</td><td class="tagattribdesc">実行したい asd ファイル内のラベル名を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="character_time" id="character_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">トランジションの効果時間</td><td class="tagattribdesc">トランジションにかける時間をミリ秒単位で指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="character_vague" id="character_vague">vague</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">トランジションの曖昧値</td><td class="tagattribdesc">トランジションの曖昧値を指定します。<br />
+
+</tbody></table><div class="tagremarks">キャラクターを操作します。<br />
+このタグを直接利用する事はないでしょう。<br />
+通常はキャラクター名のタグを利用してください。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="activate_character" id="activate_character" class="targanchor"><span class="b">activate_character</span>(別名なし)</a></h1>
+<div class="taggenre">キャラクターアクティブ化</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ activate_character の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="active_character_name" id="active_character_name">name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">キャラクター名</td><td class="tagattribdesc">アクティブ化するキャラクター名を指定します。<br />
+
+</tbody></table><div class="tagremarks">キャラクターをアクティブ化します。<br />
+このタグを直接利用する事はないでしょう。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="stage" id="stage" class="targanchor"><span class="b">stage</span>(make_stageで指定した名前)</a></h1>
+<div class="taggenre">背景表示</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ stage の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="stage_name" id="stage_name">name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">背景名</td><td class="tagattribdesc">表示する背景名を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="character_page" id="character_page">page</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">対象レイヤのページ</td><td class="tagattribdesc">対象レイヤのページ名。<br />
+fore を指定すると表ページのレイヤが対象になります。<br />
+back を指定すると裏ページのレイヤが対象になります。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="character_children" id="character_children">children</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">トランジションに子も巻き込むかどうかを指定する。<br />
+true を指定すると子も巻き込んでトランジションします。<br />
+false を指定すると単独でトランジションします。<br />
+デフォルトは true です。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="character_time" id="character_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">トランジションにかける時間をミリ秒単位で指定します。<br />
+省略すると 1000 ミリ秒とみなします。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="character_method" id="character_method">method</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">"universal" (デフォルト) または "scroll" またはその他</td><td class="tagattribdesc">トランジションのタイプを指定します。<br />
+"universal" を指定すると、 rule, vague, time 属 性に従ってユニバーサルトランジションが行われます。<br />
+"crossfade" を指定すると、time 属性に従って、単純な クロスフェードが行われます。<br />
+"scroll" を指定すると、from, stay を元にしてス クロールトランジションが行われます。<br />
+プラグインによって使用可能になるトランジションの タイプもあります。その場合は method 属性にはその トランジションの名前を指定し、また、トランジションによっては 別の属性を指定しなければならない場合があります。<br />
+省略すると他のパラメータから推測されます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="character_rule" id="character_rule">rule</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ルール画像名</td><td class="tagattribdesc">ユニバーサルトランジションに用いるルール画像を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="character_vague" id="character_vague">vague</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">あいまい領域値 (0～)</td><td class="tagattribdesc">ユニバーサルトランジションに適用する あいまい 領域値を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="character_from" id="character_from">from</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">"left" または "top" または "right" または "bottom"</td><td class="tagattribdesc">スクロールトランジションにおいて、裏ページの画像がどの 方向から現れてくるかを指定します。"left" = 左、"top"= 上、 "right" = 右、"bottom" = 下<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="character_stay" id="character_stay">stay</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">"stayfore" または "stayback" または "nostay"(デフォルト)</td><td class="tagattribdesc">スクロールトランシジョンにおいて、表ページの画像が その場にとどまったまま、裏ページの画像が外部から スクロールしてくるか ( "stayfore" )、<br />
+表ページの画像がスクロールして出ていく裏から、 裏ページの画像がその場にとどまったまま現れてくるか ( "stayback" )、<br />
+または表ページの画像と裏ページの画像が連結されて 一緒に移動しながら切り替わっていくか ( "nostay" )、を 指定します。<br />
+</tbody></table><div class="tagremarks">背景を表示します。<br />
+このタグを直接利用する事はないでしょう。<br />
+通常は背景名のタグを利用してください。
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="show_current_message_layer" id="show_current_message_layer" class="targanchor"><span class="b">show_current_message_layer</span>(別名なし)</a></h1>
+<div class="taggenre">カレントメッセージレイヤ表示</div>
+
+</tbody></table><div class="tagremarks">カレントメッセージレイヤを表示します。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="wait_show_current_message" id="wait_show_current_message" class="targanchor"><span class="b">wait_show_current_message</span>(別名なし)</a></h1>
+<div class="taggenre">カレントメッセージレイヤ表示待ち</div>
+
+</tbody></table><div class="tagremarks">カレントメッセージレイヤの表示を待ちます。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="hide_current_message_layer" id="hide_current_message_layer" class="targanchor"><span class="b">hide_current_message_layer</span>(別名なし)</a></h1>
+<div class="taggenre">カレントメッセージレイヤ消去</div>
+
+</tbody></table><div class="tagremarks">カレントメッセージレイヤを非表示にします。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="wait_hide_current_message" id="wait_hide_current_message" class="targanchor"><span class="b">wait_hide_current_message</span>(別名なし)</a></h1>
+<div class="taggenre">カレントメッセージレイヤ書居待ち</div>
+
+</tbody></table><div class="tagremarks">カレントメッセージレイヤの消去を待ちます。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="play_character_voice" id="play_character_voice" class="targanchor"><span class="b">play_character_voice</span>(別名なし)</a></h1>
+<div class="taggenre">キャラクターボイス再生</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ play_character_voice の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="play_character_voide_name" id="play_character_voide_name">name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">キャラクター名</td><td class="tagattribdesc">ボイスを再生するキャラクター名を指定します。<br />
+
+</tbody></table><div class="tagremarks">ボイスを再生します。<br />
+このタグを直接利用する事はないでしょう。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="stop_character_voice" id="stop_character_voice" class="targanchor"><span class="b">stop_character_voice</span>(別名なし)</a></h1>
+<div class="taggenre">キャラクターボイス停止</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ stop_character_voice の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="stop_character_voide_name" id="stop_character_voide_name">name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">キャラクター名</td><td class="tagattribdesc">ボイスを停止するキャラクター名を指定します。<br />
+
+</tbody></table><div class="tagremarks">ボイスを停止します。<br />
+このタグを直接利用する事はないでしょう。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="wait_character_voice" id="wait_character_voice" class="targanchor"><span class="b">wait_character_voice</span>(別名なし)</a></h1>
+<div class="taggenre">キャラクターボイス再生待ち</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ wait_character_voice の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="wait_character_voide_name" id="wait_character_voide_name">name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">キャラクター名</td><td class="tagattribdesc">ボイスの再生待ちをするキャラクター名を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="wait_character_skip" id="wait_character_skip">skip</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true/false</td><td class="tagattribdesc">trueを指定するとスキップ可となります。<br />
+falseを指定するとスキップ不可となります。<br />
+デフォルトはfalseです。<br />
+
+</tbody></table><div class="tagremarks">ボイスの再生待ちをします。<br />
+このタグを直接利用する事はないでしょう。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="end_of_sentence" id="end_of_sentence" class="targanchor"><span class="b">end_of_sentence</span>(別名なし)</a></h1>
+<div class="taggenre">センテンスの終了</div>
+
+</tbody></table><div class="tagremarks">センテンスの終了です。<br />
+このタグを直接利用する事はないでしょう。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="reserved_transition" id="reserved_transition" class="targanchor"><span class="b">reserved_transition</span>(別名なし)</a></h1>
+<div class="taggenre">トランジションの予約</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ transition の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="transition_layer" id="transition_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">立ち絵レイヤの名前</td><td class="tagattribdesc">立ち絵レイヤの名前を指定します。<br />
+0 ～ N のいずれかになります。(N は cv_layers で指定した立ち絵レイヤの枚数 - 1)<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="transition_page" id="transition_page">page</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">対象レイヤのページ</td><td class="tagattribdesc">対象レイヤのページ名。<br />
+fore を指定すると表ページのレイヤが対象になります。<br />
+back を指定すると裏ページのレイヤが対象になります。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="transition_children" id="transition_children">children</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">トランジションに子も巻き込むかどうかを指定する。<br />
+true を指定すると子も巻き込んでトランジションします。<br />
+false を指定すると単独でトランジションします。<br />
+デフォルトは true です。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="transition_time" id="transition_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">トランジションにかける時間をミリ秒単位で指定します。<br />
+省略すると 1000 ミリ秒とみなします。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="transition_method" id="transition_method">method</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">"universal" (デフォルト) または "scroll" またはその他</td><td class="tagattribdesc">トランジションのタイプを指定します。<br />
+"universal" を指定すると、 rule, vague, time 属 性に従ってユニバーサルトランジションが行われます。<br />
+"crossfade" を指定すると、time 属性に従って、単純な クロスフェードが行われます。<br />
+"scroll" を指定すると、from, stay を元にしてス クロールトランジションが行われます。<br />
+プラグインによって使用可能になるトランジションの タイプもあります。その場合は method 属性にはその トランジションの名前を指定し、また、トランジションによっては 別の属性を指定しなければならない場合があります。<br />
+省略すると他のパラメータから推測されます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="transition_rule" id="transition_rule">rule</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ルール画像名</td><td class="tagattribdesc">ユニバーサルトランジションに用いるルール画像を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="transition_vague" id="transition_vague">vague</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">あいまい領域値 (0～)</td><td class="tagattribdesc">ユニバーサルトランジションに適用する あいまい 領域値を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="transition_from" id="transition_from">from</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">"left" または "top" または "right" または "bottom"</td><td class="tagattribdesc">スクロールトランジションにおいて、裏ページの画像がどの 方向から現れてくるかを指定します。"left" = 左、"top"= 上、 "right" = 右、"bottom" = 下<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="transition_stay" id="transition_stay">stay</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">"stayfore" または "stayback" または "nostay"(デフォルト)</td><td class="tagattribdesc">スクロールトランシジョンにおいて、表ページの画像が その場にとどまったまま、裏ページの画像が外部から スクロールしてくるか ( "stayfore" )、<br />
+表ページの画像がスクロールして出ていく裏から、 裏ページの画像がその場にとどまったまま現れてくるか ( "stayback" )、<br />
+または表ページの画像と裏ページの画像が連結されて 一緒に移動しながら切り替わっていくか ( "nostay" )、を 指定します。<br />
+</tbody></table><div class="tagremarks">トランジションを予約します。<br />
+このタグを直接利用する事はないでしょう。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="run_reserved_transition" id="run_reserved_transition" class="targanchor"><span class="b">run_reserved_transition</span>(別名なし)</a></h1>
+<div class="taggenre">予約したトランジションの実行</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ wait_transition の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="wait_transition_layer" id="wait_transition_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">立ち絵レイヤの名前</td><td class="tagattribdesc">立ち絵レイヤの名前を指定します。<br />
+0 ～ N のいずれかになります。(N は cv_layers で指定した立ち絵レイヤの枚数 - 1)<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="wait_transition_page" id="wait_transition_page">page</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">対象レイヤのページ</td><td class="tagattribdesc">対象レイヤのページ名。<br />
+fore を指定すると表ページのレイヤが対象になります。<br />
+back を指定すると裏ページのレイヤが対象になります。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="wait_transition_skip" id="wait_transition_skip">skip</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">スキップ時にスキップするかどうかを指定します。<br />
+true を指定するとスキップします。<br />
+false を指定するとスキップしません。<br />
+デフォルトは true です。<br />
+
+</tbody></table><div class="tagremarks">予約したトランジションを実行します。<br />
+このタグを直接利用する事はないでしょう。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+	<script type="text/javascript" charset="Shift_JIS" src="documentid.js" ></script>
+	<script type="text/javascript" charset="Shift_JIS" src="postcontent.js" ></script>
+</body></html>
