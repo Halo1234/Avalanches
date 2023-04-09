@@ -20,7 +20,7 @@
 ダメージ計算などは/src/goki2/system/ModSLGCalc.tjsで行っています。<br />
 基本的にはファイル先頭にある定義をgame_editorで定義した名前に変えるだけで動きますが<br />
 計算式などを変更したい場合はTJS2で記述する必要がありますので吉里吉里２のマニュアルなどを参照してください。<br />
-
+<br />
 例えばHPパラメータ名を変更したい場合はvar pHPName = "HP"をvar pHPName = "体力"などとします。<br />
 /*----------パラメータ名定義 ココから*/<br />
 // HPパラメータ名<br />
@@ -38,6 +38,10 @@ var pDexName = "dex";<br />
 // lukパラメータ名<br />
 var pLukName = "luk";<br />
 /*----------ココまで*/<br />
+<br />
+キャラクタの*.asdファイルには攻撃の瞬間を以下のタグで指定してください。<br />
+<br />
+[call_handler message=onAttack]<br />
 <div /><div />
 
 <h1><a name="genre" id="genre" class="targanchor">ジャンル・タグ一覧</a></h1>
