@@ -70,7 +70,7 @@ var pLukName = "luk";<br />
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#slgmap">slgmap</a></span></td><td class="taglisteven">マップイベントの設定を行います</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#slgmapchip">slgmapchip</a></span></td><td class="taglistodd">マップチップの読み込みを行います</td></tr>
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#slgloadmap">slgloadmap</a></span></td><td class="taglisteven">マップデータを読み込みます</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#replacemapcell">replacemapcell</a></span></td><td class="taglistodd">マップデータの書き換えを行います</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#slgreplacemapcell">slgreplacemapcell</a></span></td><td class="taglistodd">マップデータの書き換えを行います</td></tr>
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#slglookupmap">slglookupmap</a></span></td><td class="taglisteven">マップ表示位置の設定を行います</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#slgmapstatus">slgmapstatus</a></span></td><td class="taglistodd">マップステータスレイヤの設定を行います</td></tr>
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#slgloadcursor">slgloadcursor</a></span></td><td class="taglisteven">各種カーソルの設定を行います</td></tr>
@@ -90,6 +90,7 @@ var pLukName = "luk";<br />
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#slgcharacterstatus">slgcharacterstatus</a></span></td><td class="taglisteven">キャラクタステータスレイヤの設定を行います</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#slgcharacterstatusskill">slgcharacterstatusskill</a></span></td><td class="taglistodd">キャラクタステータスレイヤのスキルリストの設定を行います</td></tr>
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#slgcharacterstatusitem">slgcharacterstatusitem</a></span></td><td class="taglisteven">キャラクターステータスレイヤのアイテムリストの設定を行います</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#slgcharacterstatusabnormal">slgcharacterstatusabnormal</a></span></td><td class="taglisteven">キャラクターステータスレイヤの状態異常の設定を行います</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#slgskillsearch">slgskillsearch</a></span></td><td class="taglistodd">スキル探索レイヤの設定を行います</td></tr>
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#slgtroops">slgtroops</a></span></td><td class="taglisteven">部隊表レイヤの設定を行います</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#slgstrategy">slgstrategy</a></span></td><td class="taglistodd">作戦目的レイヤの設定を行います</td></tr>
@@ -1112,12 +1113,12 @@ falseを指定するとイベントを追加します。<br />
 </div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
 
-<h1><a name="replacemapcell" id="replacemapcell" class="targanchor"><span class="b">replacemapcell</span>(別名なし)</h1>
+<h1><a name="slgreplacemapcell" id="slgreplacemapcell" class="targanchor"><span class="b">slgreplacemapcell</span>(別名なし)</h1>
 <div class="taggenre">SLG操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ replacemapcell の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="replacemapcell_x" id="replacemapcell_x">x</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">グリッド単位</td><td class="tagattribdesc">置き換えるマップチップ位置を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="replacemapcell_y" id="replacemapcell_y">y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">グリッド単位</td><td class="tagattribdesc">置き換えるマップチップ位置を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="replacemapcell_cell" id="replacemapcell_cell">cell</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">マップチップ名</td><td class="tagattribdesc">置き換えるマップチップ名を指定します。<br />
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ slgreplacemapcell の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgreplacemapcell_x" id="slgreplacemapcell_x">x</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">グリッド単位</td><td class="tagattribdesc">置き換えるマップチップ位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgreplacemapcell_y" id="slgreplacemapcell_y">y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">グリッド単位</td><td class="tagattribdesc">置き換えるマップチップ位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgreplacemapcell_cell" id="slgreplacemapcell_cell">cell</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">マップチップ名</td><td class="tagattribdesc">置き換えるマップチップ名を指定します。<br />
 これは通常ファイル名です。<br />
 </tbody></table><div class="tagremarks">マップチップを置き換えます。<br />
 </div>
@@ -1735,6 +1736,38 @@ falseならば無効画像を使いません。<br />
 [slgcharacterstatusitem left=400 top=310 width=400 height=280 equip_icon_storage=equip_icon font_height=20]<br />
 ; アイテムリストの項目のサイズ<br />
 [slgcharacterstatusitem item_width=400 item_height=20]<br />
+</code></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="slgcharacterstatusabnormal" id="slgcharacterstatusabnormal" class="targanchor"><span class="b">slgcharacterstatusabnormal</span>(別名なし)</h1>
+<div class="taggenre">SLG操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ slgcharacterstatusabnormal の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusabnormal_storage" id="slgcharacterstatusabnormal_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">ステータスレイヤのアイテムリストの背景画像を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusabnormal_left" id="slgcharacterstatusabnormal_left">left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">ステータスレイヤのアイテムリストレイヤの位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusabnormal_top" id="slgcharacterstatusabnormal_top">top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">ステータスレイヤのアイテムリストレイヤの位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusabnormal_width" id="slgcharacterstatusabnormal_width">width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">ステータスレイヤのアイテムリストレイヤの幅を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusabnormal_height" id="slgcharacterstatusabnormal_height">height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">ステータスレイヤのアイテムリストレイヤの高さを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusabnormal_font" id="slgcharacterstatusabnormal_font">font</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">フォント名</td><td class="tagattribdesc">ステータスレイヤのアイテムリストレイヤのフォント名を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusabnormal_font_height" id="slgcharacterstatusabnormal_font_height">font_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">ステータスレイヤのアイテムリストレイヤのフォントの高さを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusabnormal_no_action_storage" id="slgcharacterstatusabnormal_no_action_storage">no_action_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">行動不可時に表示するアイコンを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusabnormal_seal_magic_storage" id="slgcharacterstatusabnormal_seal_magic_storage">seal_magic_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">魔法封じ時に表示するアイコンを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusabnormal_panic_storage" id="slgcharacterstatusabnormal_panic_storage">panic_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">混乱時に表示するアイコンを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusabnormal_abnormal_storage" id="slgcharacterstatusabnormal_abnormal_storage">abnormal_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">ステータスレイヤのアイテムリストレイヤのアイテムの背景画像を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusabnormal_abnormal_width" id="slgcharacterstatusabnormal_abnormal_width">abnormal_width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">ステータスレイヤのアイテムリストレイヤのアイテムの幅を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusabnormal_abnormal_height" id="slgcharacterstatusabnormal_abnormal_height">abnormal_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">ステータスレイヤのアイテムリストレイヤのアイテムの高さを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusabnormal_abnormal_color" id="slgcharacterstatusabnormal_abnormal_color">abnormal_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">ステータスレイヤのアイテムリストレイヤのアイテムの背景色を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusabnormal_abnormal_opacity" id="slgcharacterstatusabnormal_abnormal_opacity">abnormal_opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0～255</td><td class="tagattribdesc">ステータスレイヤのアイテムリストレイヤのアイテムの不透明度を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusabnormal_abnormal_edge_color" id="slgcharacterstatusabnormal_abnormal_edge_color">abnormal_edge_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">ステータスレイヤのアイテムリストレイヤのアイテムのエッジカラーを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusabnormal_abnormal_shadow_color" id="slgcharacterstatusabnormal_abnormal_shadow_color">abnormal_shadow_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">ステータスレイヤのアイテムリストレイヤのアイテムの影色を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusabnormal_equip_icon_storage" id="slgcharacterstatusabnormal_equip_icon_storage">equip_icon_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">ステータスレイヤのアイテムリストレイヤの装備アイコンを指定します。<br />
+</tbody></table><div class="tagremarks">ステータスレイヤのアイテムリストレイヤの設定を行います。<br />
+</div>
+<div class="tagexample"><code class="bq"><span class="weak">例:</span><br />
+; 状態異常レイヤの位置とサイズ<br />
+@slgcharacterstatusabnormal left=10 top=450 width=380 height=40<br />
+@slgcharacterstatusabnormal abnormal_width=380 abnormal_height=30<br />
+; 状態異常アイコンの設定<br />
+@slgcharacterstatusabnormal no_action_storage=noActionIcon seal_magic_storage=sealMagicIcon panic_storage=panicIcon<br />
 </code></div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
 
