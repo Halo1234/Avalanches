@@ -4,7 +4,7 @@
 
 --- 使い方
 
- １．/src/data/sample_typing_words/word.xls をコピーしてファイル名を変更します。
+ １．/src/data/sample_typing_words/words.xls をコピーしてファイル名を変更します。
  ２．１で作成したファイルを開いてワードデータを入力します。
  ３．run.bat/run_cp932.batを開いて..\..\src\data\sample_typing_words\words.odsを１で作成したファイル名に変更します。
  ４．run.bat/run_cp932.batを実行します。
