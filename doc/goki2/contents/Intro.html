@@ -26,6 +26,11 @@
 　@!ハロ /storage=A_&lt;POSE&gt;_&lt;FACE&gt; と指定すると face 属性と pose 属性に指定した値で置き換えられます。<br />
 　つまり @ハロ pose=ポーズ１ face=顔１ と指定すると @ハロ storage=A_ポーズ１_顔１ と指定したのと同じ意味です。<br />
 　これらは組み合わせて利用する事も可能です。<br />
+<br />
+　また、タグの拡張はタグ名ごとに指定可能です。<br />
+　例えば、@redirect alias=ハロ name=characterとしてcharacterタグにエイリアス（別名）を指定した場合<br />
+　@!character left=中-&gt;400と指定すると「@character 中」も「@ハロ 中」もどちらもleft=400と変換されます。<br />
+　@!ハロ storage=立ち絵-&gt;bup_haloとすると「@character 立ち絵」は変換されませんが、「@ハロ 立ち絵」はstorage=bup_haloに変換されます。<br />
 <br /><br />
 　論理値（Boolean）の指定には特殊な構文が使えます。<br />
 　例えば ask という論理値を指定する属性がある場合 @go_to_start ask と指定すれば ask=true を指定したのと同じ意味になります。<br />
