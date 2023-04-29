@@ -32,7 +32,8 @@ class Sample extends GModule<br />
 　{<br />
 　　return %[<br />
 　　　/* @sample */<br />
-　　　'sample' =&gt; function (elm) {<br />
+　　　'sample' =&gt; function (elm, c) {<br />
+　　　　// cは実行元のコンダクタが渡されます。<br />
 　　　　System.inform("sampleタグを実行しました。");<br />
 　　　} incontextof this,<br />
 　　];<br />
