@@ -39,6 +39,14 @@ var pDexName = "dex";<br />
 var pLukName = "luk";<br />
 /*----------ココまで*/<br />
 <br />
+slgprepareタグは使用後必ずsタグで停止してください。<br />
+またセーブ/ロードを有効化する場合セーブ可能なラベルをsタグの前に記述してください。<br />
+例：<br />
+@slgprepare start<br />
+<br />
+*force_store|<br />
+@s<br />
+<br />
 キャラクタの*.asdファイルには攻撃の瞬間を以下のタグで指定してください。<br />
 <br />
 [call_handler message=onAttack]<br />
