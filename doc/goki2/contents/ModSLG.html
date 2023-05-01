@@ -50,7 +50,77 @@ slgprepareタグは使用後必ずsタグで停止してください。<br />
 キャラクタの*.asdファイルには攻撃の瞬間を以下のタグで指定してください。<br />
 <br />
 [call_handler message=onAttack]<br />
-<div /><div />
+<br />
+同じく回復の瞬間を以下のタグで指定してください。<br />
+<br />
+[call_handler message=onRest]<br />
+<br />
+キャラクタの*.asdファイルの仕様は以下の通りです。<br />
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="ラベル仕様"><thead><tr><td>ラベル</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">*waiting</td><td class="tagattribdesc">待機中のアニメを実装します。</td></tr>
+<tr><td class="tagattribalias">*rest</td><td class="tagattribdesc">回復のアニメを実装します。</td></tr>
+<tr><td class="tagattribalias">*avoid</td><td class="tagattribdesc">攻撃回避のアニメを実装します。</td></tr>
+<tr><td class="tagattribalias">*damage_zero</td><td class="tagattribdesc">攻撃を受けてダメージ０の時のアニメを実装します。</td></tr>
+<tr><td class="tagattribalias">*attack1</td><td class="tagattribdesc">１回目の攻撃時のアニメを実装します。</td></tr>
+<tr><td class="tagattribalias">*attack2</td><td class="tagattribdesc">２回目の攻撃時のアニメを実装します。</td></tr>
+<tr><td class="tagattribalias">*long_attack1</td><td class="tagattribdesc">１回目の遠距離攻撃時のアニメを実装します。</td></tr>
+<tr><td class="tagattribalias">*long_attack2</td><td class="tagattribdesc">２回目の遠距離攻撃時のアニメを実装します。</td></tr>
+<tr><td class="tagattribalias">*critical_attack1</td><td class="tagattribdesc">１回目のクリティカル攻撃時のアニメを実装します。</td></tr>
+<tr><td class="tagattribalias">*critical_attack2</td><td class="tagattribdesc">２回目のクリティカル攻撃時のアニメを実装します。</td></tr>
+</tbody></table>
+</div></div>
+<br />
+キャラクタアイコンの*.asdファイルの仕様は以下の通りです。<br />
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="ラベル仕様"><thead><tr><td>ラベル</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">*waiting</td><td class="tagattribdesc">待機中のアニメを実装します。</td></tr>
+<tr><td class="tagattribalias">
+*moving_left<br />
+*moving_right<br />
+*moving_up<br />
+*moving_down</td><td class="tagattribdesc">各方向への移動アニメを実装します。</td></tr>
+<tr><td class="tagattribalias">*standby</td><td class="tagattribdesc">行動終了時のアニメを実装します。</td></tr>
+<tr><td class="tagattribalias">
+*wait_attack_left<br />
+*wait_attack_left_up<br />
+*wait_attack_left_down<br />
+*wait_attack_right<br />
+*wait_attack_right_up<br />
+*wait_attack_right_down<br />
+*wait_attack_up<br />
+*wait_attack_down
+</td><td class="tagattribdesc">各方向への攻撃前の待機アニメを実装します。</td></tr>
+<tr><td class="tagattribalias">
+*attack_left<br />
+*attack_left_up<br />
+*attack_left_down<br />
+*attack_right<br />
+*attack_right_up<br />
+*attack_right_down<br />
+*attack_up<br />
+*attack_down
+</td><td class="tagattribdesc">各方向への攻撃時のアニメを実装します。</td></tr>
+<tr><td class="tagattribalias">
+*avoid_left<br />
+*avoid_left_up<br />
+*avoid_left_down<br />
+*avoid_right<br />
+*avoid_right_up<br />
+*avoid_right_down<br />
+*avoid_up<br />
+*avoid_down
+</td><td class="tagattribdesc">各方向への回避アニメを実装します。</td></tr>
+<tr><td class="tagattribalias">
+*rest_left<br />
+*rest_left_up<br />
+*rest_left_down<br />
+*rest_right<br />
+*rest_right_up<br />
+*rest_right_down<br />
+*rest_up<br />
+*rest_down
+</td><td class="tagattribdesc">各方向への回復アニメを実装します。</td></tr>
+</tbody></table>
+</div></div>
 
 <h1><a name="genre" id="genre" class="targanchor">ジャンル・タグ一覧</a></h1>
 
