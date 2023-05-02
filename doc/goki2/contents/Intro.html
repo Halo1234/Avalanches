@@ -20,6 +20,16 @@
 　GOKI2 は吉里吉里でさまざまなゲームを作るために作成されたフレームワークです。<br />
 　また付属の KAGCompatible.ks を使えば KAG3 と互換（一部非対応）のスクリプトが書けます。<br />
 <br /><br />
+　GOKI2でゲームを作成する前に/src/goki2/system/congif.gsを編集します。<br />
+　まずは初期化後に実行するスクリプトを指定します。<br />
+　config.gsの先頭にある以下行を編集します。<br />
+　@que storage=KAGCompatible,testcase<br />
+　storage=の右側に実行したいスクリプトを順番にカンマで区切って指定します。<br />
+　上記の場合、初期化後にKAGCompatibleを実行してからtestcaseを実行します。<br />
+　testcaseではなく、startというスクリプトを実行したい場合は以下のように編集します。<br />
+　@que storage=KAGCompatible,start<br />
+　拡張子は指定してもしなくてもよいです。<br />
+<br /><br />
 　さらに、普通のタグに ! マークを付けて指定するとタグの拡張が可能です。<br />
 　@!make_character image=立ち絵有り-&gt;true,立ち絵無し-&gt;false と指定すると @make_charcter 立ち絵有り と指定すると @make_character image=true と指定されたものとみなされます。<br />
 　そして属性に / 記号を付けるとパターンを指定する事ができます。<br />
