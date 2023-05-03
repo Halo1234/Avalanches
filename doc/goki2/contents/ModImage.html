@@ -46,6 +46,7 @@
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#wait_move">wait_move</a></span></td><td class="taglistodd">移動の停止待ち</td></tr>
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#base_layer_pos">base_layer_pos</a></span></td><td class="taglisteven">ベースレイヤの位置指定</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#base_layer_transparent">base_layer_transparent</a></span></td><td class="taglistodd">ベースレイヤの透明化</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#release_rendering_target">release_rendering_target</a></span></td><td class="taglisteven">layer_moveタグの結果を破棄する</td></tr>
 </tbody></table><br /><br /></div></div>
 
 <h1><a name="cv_layers" id="cv_layers" class="targanchor"><span class="b">cv_layers</span>(laycount)</a></h1>
@@ -535,6 +536,20 @@ back を指定すると裏ページのレイヤが対象になります。<br />
 <h1><a name="base_layer_transparent" id="base_layer_transparent" class="targanchor"><span class="b">base_layer_transparent</span>(別名なし)</a></h1>
 <div class="taggenre">レイヤ操作</div>
 </tbody></table><div class="tagremarks">ベースレイヤ透明にします。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="release_rendering_target" id="release_rendering_target" class="targanchor"><span class="b">release_rendering_target</span>(別名なし)</a></h1>
+<div class="taggenre">レイヤ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ release_rendering_target の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="release_rendering_target_layer" id="release_rendering_target_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">立ち絵レイヤの名前</td><td class="tagattribdesc">立ち絵レイヤの名前を指定します。<br />
+0 ～ N のいずれかになります。(N は cv_layers で指定した立ち絵レイヤの枚数 - 1)<br />
+省略するとbaseが指定されたものとみなします。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="release_rendering_target_page" id="release_rendering_target_page">page</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">対象レイヤのページ</td><td class="tagattribdesc">対象レイヤのページ名。<br />
+fore を指定すると表ページのレイヤが対象になります。<br />
+back を指定すると裏ページのレイヤが対象になります。<br />
+省略するとforeが指定されたものとみなします。<br />
+</tbody></table><div class="tagremarks">layer_moveタグにrendering_target_released=trueを指定した場合の描画結果を破棄します。<br />
 </div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
 
