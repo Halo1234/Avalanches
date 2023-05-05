@@ -76,6 +76,24 @@ class Sample extends GModule<br />
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#onWindowKeyDown">onWindowKeyDown</a></span></td><td class="taglisteven">キーダウンイベント</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#onWindowKeyUp">onWindowKeyUp</a></span></td><td class="taglistodd">キーアップイベント</td></tr>
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#onWindowClose">onWindowClose</a></span></td><td class="taglisteven">ウインドウクローズイベント</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#onSaveStartAnchor">onSaveStartAnchor</a></span></td><td class="taglistodd">スタート位置の記録イベント</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#onLoadStartAnchor">onLoadStartAnchor</a></span></td><td class="taglisteven">スタート位置へのロードイベント</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#onRemoveStartAnchor">onRemoveStartAnchor</a></span></td><td class="taglistodd">スタート位置の削除イベント</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#onSaveSystemVariables">onSaveSystemVariables</a></span></td><td class="taglisteven">システム変数のセーブ時のイベント</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#onLoadSystemVariables">onLoadSystemVariables</a></span></td><td class="taglistodd">システム変数のロード時のイベント</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#onSave">onSave</a></span></td><td class="taglisteven">セーブ時のイベント</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#onLoad">onLoad</a></span></td><td class="taglistodd">ロード時のイベント</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#onCopyBookmark">onCopyBookmark</a></span></td><td class="taglisteven">セーブデータのコピー時のイベント</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#onEraseBookmark">onEraseBookmark</a></span></td><td class="taglistodd">セーブデータの削除時のイベント</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#onShowMessageLayer">onShowMessageLayer</a></span></td><td class="taglisteven">メッセージレイヤが表示された時のイベント</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#onHideMessageLayer">onHideMessageLayer</a></span></td><td class="taglistodd">メッセージレイヤが消去された時のイベント</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#onHideMessageLayerByUser">onHideMessageLayerByUser</a></span></td><td class="taglisteven">メッセージレイヤが一時消去された時のイベント</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#onShowMessageLayerByUser">onShowMessageLayerByUser</a></span></td><td class="taglistodd">メッセージレイヤが一時消去から復帰した時のイベント</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#onSkipModeChanged">onSkipModeChanged</a></span></td><td class="taglisteven">スキップモードが変更された時のイベント</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#onCancelAutoMode">onCancelAutoMode</a></span></td><td class="taglistodd">オートモードが解除された時のイベント</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#onEnterAutoMode">onEnterAutoMode</a></span></td><td class="taglisteven">オートモードになった時のイベント</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#onShowHistoryLayer">onShowHistoryLayer</a></span></td><td class="taglistodd">履歴レイヤが表示された時のイベント</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#onHideHistoryLayer">onHideHistoryLayer</a></span></td><td class="taglisteven">履歴レイヤが消去された時のイベント</td></tr>
 </tbody></table>
 </div></div>
 
@@ -84,7 +102,8 @@ class Sample extends GModule<br />
 <tr><td class="tagattribalias">elm</td><td class="tagattribname">タグに渡された引数が辞書配列形式で渡されます。<br />
 tagname : 'call'<br />
 ignore : trueまたはfalseを指定します。trueを指定するとタグは無視されます。</td></tr>
-</table>
+</tbody></table>
+<div class="tagremarks">callタグが実行された時に呼び出されます。<br /></div>
 </div></div>
 
 <h1><a name="onConductorJump" id="onConductorJump" class="targanchor"><span class="b">onConductorJump(elm)</span></h1>
@@ -92,7 +111,8 @@ ignore : trueまたはfalseを指定します。trueを指定するとタグは無視されます。</td><
 <tr><td class="tagattribalias">elm</td><td class="tagattribname">タグに渡された引数が辞書配列形式で渡されます。<br />
 tagname : 'jump'<br />
 ignore : trueまたはfalseを指定します。trueを指定するとタグは無視されます。</td></tr>
-</table>
+</tbody></table>
+<div class="tagremarks">jumpタグが実行された時に呼び出されます。<br /></div>
 </div></div>
 
 <h1><a name="onConductorReturn" id="onConductorReturn" class="targanchor"><span class="b">onConductorReturn(elm)</span></h1>
@@ -100,19 +120,22 @@ ignore : trueまたはfalseを指定します。trueを指定するとタグは無視されます。</td><
 <tr><td class="tagattribalias">elm</td><td class="tagattribname">タグに渡された引数が辞書配列形式で渡されます。<br />
 tagname : 'return'<br />
 ignore : trueまたはfalseを指定します。trueを指定するとタグは無視されます。</td></tr>
-</table>
+</tbody></table>
+<div class="tagremarks">returnタグが実行された時に呼び出されます。<br /></div>
 </div></div>
 
 <h1><a name="onConductorScenarioLoad" id="onConductorScenarioLoad" class="targanchor"><span class="b">onConductorScenarioLoad(storage)</span></h1>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="onConductorScenarioLoad"><thead><tr><td>引数</td><td>説明</td></tr></thead><tbody>
 <tr><td class="tagattribalias">storage</td><td class="tagattribname">読み込まれるシナリオストレージ名。</td></tr>
-</table>
+</tbody></table>
+<div class="tagremarks">シナリオが読み込まれる前に呼び出されます。<br /></div>
 </div></div>
 
 <h1><a name="onConductorScenarioLoaded" id="onConductorScenarioLoaded" class="targanchor"><span class="b">onConductorScenarioLoaded(storage)</span></h1>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="onConductorScenarioLoaded"><thead><tr><td>引数</td><td>説明</td></tr></thead><tbody>
 <tr><td class="tagattribalias">storage</td><td class="tagattribname">読み込まれたシナリオストレージ名。</td></tr>
-</table>
+</tbody></table>
+<div class="tagremarks">シナリオが読み込まれた後に呼び出されます。<br /></div>
 </div></div>
 
 <h1><a name="onConductorLabel" id="onConductorLabel" class="targanchor"><span class="b">onConductorLabel(label, pagename, firstLabelProcessed)</span></h1>
@@ -120,14 +143,16 @@ ignore : trueまたはfalseを指定します。trueを指定するとタグは無視されます。</td><
 <tr><td class="tagattribalias">label</td><td class="tagattribname">通過したラベル名。<td /></tr>
 <tr><td class="tagattribalias">pagename</td><td class="tagattribname">通過したラベルのページ名。</td></tr>
 <tr><td class="tagattribalias">firstLabelProcessed</td><td class="tagattribname">最初のセーブ可能ラベルを通過している場合はtrueが渡される。<td /></tr>
-</table>
+</tbody></table>
+<div class="tagremarks">ラベル通過時に呼び出されます。<br /></div>
 </div></div>
 
 <h1><a name="onSoundMasterVolumeChanged" id="onSoundMasterVolumeChanged" class="targanchor"><span class="b">onSoundMasterVolumeChanged(newVol, oldVol)</span></h1>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="onSoundMasterVolumeChanged"><thead><tr><td>引数</td><td>説明</td></tr></thead><tbody>
 <tr><td class="tagattribalias">newVol</td><td class="tagattribname">新しく設定されたマスターボリューム値<td /></tr>
 <tr><td class="tagattribalias">oldVol</td><td class="tagattribname">元のマスターボリューム値。</td></tr>
-</table>
+</tbody></table>
+<div class="tagremarks">サウンドのマスターボリュームが変更された時に呼び出されます。<br /></div>
 </div></div>
 
 <h1><a name="onWindowLeftClick" id="onWindowLeftClick" class="targanchor"><span class="b">onWindowLeftClick(x, y, shift)</span></h1>
@@ -135,7 +160,8 @@ ignore : trueまたはfalseを指定します。trueを指定するとタグは無視されます。</td><
 <tr><td class="tagattribalias">x</td><td class="tagattribname">マウスカーソル位置<td /></tr>
 <tr><td class="tagattribalias">y</td><td class="tagattribname">マウスカーソル位置</td></tr>
 <tr><td class="tagattribalias">shift</td><td class="tagattribname">同時に押されていたキー。</td></tr>
-</table>
+</tbody></table>
+<div class="tagremarks">ウインドウが左クリックされた時に呼び出されます。<br /></div>
 </div></div>
 
 <h1><a name="onWindowRightClick" id="onWindowRightClick" class="targanchor"><span class="b">onWindowRightClick(x, y, shift)</span></h1>
@@ -143,7 +169,8 @@ ignore : trueまたはfalseを指定します。trueを指定するとタグは無視されます。</td><
 <tr><td class="tagattribalias">x</td><td class="tagattribname">マウスカーソル位置<td /></tr>
 <tr><td class="tagattribalias">y</td><td class="tagattribname">マウスカーソル位置</td></tr>
 <tr><td class="tagattribalias">shift</td><td class="tagattribname">同時に押されていたキー。</td></tr>
-</table>
+</tbody></table>
+<div class="tagremarks">ウインドウが右クリックされた時に呼び出されます。<br /></div>
 </div></div>
 
 <h1><a name="onWindowMiddleClick" id="onWindowMiddleClick" class="targanchor"><span class="b">onWindowMiddleClick(x, y, shift)</span></h1>
@@ -151,7 +178,8 @@ ignore : trueまたはfalseを指定します。trueを指定するとタグは無視されます。</td><
 <tr><td class="tagattribalias">x</td><td class="tagattribname">マウスカーソル位置<td /></tr>
 <tr><td class="tagattribalias">y</td><td class="tagattribname">マウスカーソル位置</td></tr>
 <tr><td class="tagattribalias">shift</td><td class="tagattribname">同時に押されていたキー。</td></tr>
-</table>
+</tbody></table>
+<div class="tagremarks">ウインドウが中クリックされた時に呼び出されます。<br /></div>
 </div></div>
 
 <h1><a name="onWindowMouseWheel" id="onWindowMouseWheel" class="targanchor"><span class="b">onWindowMouseWheel(shift, delta, x, y)</span></h1>
@@ -160,27 +188,145 @@ ignore : trueまたはfalseを指定します。trueを指定するとタグは無視されます。</td><
 <tr><td class="tagattribalias">delta</td><td class="tagattribname">上方向に回された場合は正、下方向に回された場合は負の値になります。</td></tr>
 <tr><td class="tagattribalias">x</td><td class="tagattribname">マウスカーソル位置<td /></tr>
 <tr><td class="tagattribalias">y</td><td class="tagattribname">マウスカーソル位置</td></tr>
-</table>
+</tbody></table>
+<div class="tagremarks">ホイールが回転された時に呼び出されます。<br /></div>
 </div></div>
 
 <h1><a name="onWindowKeyDown" id="onWindowKeyDown" class="targanchor"><span class="b">onWindowKeyDown(key, shift)</span></h1>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="onWindowKeyDown"><thead><tr><td>引数</td><td>説明</td></tr></thead><tbody>
 <tr><td class="tagattribalias">key</td><td class="tagattribname">キーダウンした仮想キーコード。</td></tr>
 <tr><td class="tagattribalias">shift</td><td class="tagattribname">同時に押されていたキー。</td></tr>
-</table>
+</tbody></table>
+<div class="tagremarks">キーボードのキーが押された時に呼び出されます。<br /></div>
 </div></div>
 
 <h1><a name="onWindowKeyUp" id="onWindowKeyUp" class="targanchor"><span class="b">onWindowKeyUp(key, shift)</span></h1>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="onWindowKeyUp"><thead><tr><td>引数</td><td>説明</td></tr></thead><tbody>
 <tr><td class="tagattribalias">key</td><td class="tagattribname">キーアップした仮想キーコード。</td></tr>
 <tr><td class="tagattribalias">shift</td><td class="tagattribname">同時に押されていたキー。</td></tr>
-</table>
+</tbody></table>
+<div class="tagremarks">キーボードのキーが離された時に呼び出されます。<br /></div>
 </div></div>
 
 <h1><a name="onWindowClose" id="onWindowClose" class="targanchor"><span class="b">onWindowClose(window)</span></h1>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="onWindowClose"><thead><tr><td>引数</td><td>説明</td></tr></thead><tbody>
 <tr><td class="tagattribalias">window</td><td class="tagattribname">ウインドウオブジェクト。</td></tr>
-</table>
+</tbody></table>
+<div class="tagremarks">ウインドウが閉じる前に呼び出されます。<br /></div>
+</div></div>
+
+<h1><a name="onSaveStartAnchor" id="onSaveStartAnchor" class="targanchor"><span class="b">onSaveStartAnchor(userFlags)</span></h1>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="onSaveStartAnchor"><thead><tr><td>引数</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">userFlags</td><td class="tagattribname">セーブ時のユーザーフラグが渡されます。</td></tr>
+</tbody></table>
+<div class="tagremarks">スタート位置の記録時に呼び出されます。<br /></div>
+</div></div>
+
+<h1><a name="onLoadStartAnchor" id="onLoadStartAnchor" class="targanchor"><span class="b">onLoadStartAnchor(userFlags)</span></h1>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="onLoadStartAnchor"><thead><tr><td>引数</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">userFlags</td><td class="tagattribname">ロード時のユーザーフラグが渡されます。</td></tr>
+</tbody></table>
+<div class="tagremarks">スタート位置のロード時に呼び出されます。<br /></div>
+</div></div>
+
+<h1><a name="onRemoveStartAnchor" id="onRemoveStartAnchor" class="targanchor"><span class="b">onRemoveStartAnchor()</span></h1>
+<div class="para"><div>
+<div class="tagremarks">記録されたスタート位置を削除した時に呼び出されます。<br /></div>
+</div></div>
+
+<h1><a name="onSaveSystemVariables" id="onSaveSystemVariables" class="targanchor"><span class="b">onSaveSystemVariables(userFlags)</span></h1>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="onSaveSystemVariables"><thead><tr><td>引数</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">userFlags</td><td class="tagattribname">セーブ時のユーザーフラグが渡されます。</td></tr>
+</tbody></table>
+<div class="tagremarks">システム変数がセーブされた時に呼び出されます。<br /></div>
+</div></div>
+
+<h1><a name="onLoadSystemVariables" id="onLoadSystemVariables" class="targanchor"><span class="b">onLoadSystemVariables(userFlags)</span></h1>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="onLoadSystemVariables"><thead><tr><td>引数</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">userFlags</td><td class="tagattribname">ロード時のユーザーフラグが渡されます。</td></tr>
+</tbody></table>
+<div class="tagremarks">システム変数がロードされた時に呼び出されます。<br /></div>
+</div></div>
+
+<h1><a name="onSave" id="onSave" class="targanchor"><span class="b">onSave(userFlags, coreFlags)</span></h1>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="onSave"><thead><tr><td>引数</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">userFlags</td><td class="tagattribname">セーブ時のユーザーフラグが渡されます。</td></tr>
+<tr><td class="tagattribalias">coreFlags</td><td class="tagattribname">セーブ時のコアフラグが渡されます。</td></tr>
+</tbody></table>
+<div class="tagremarks">セーブされた時に呼び出されます。<br /></div>
+</div></div>
+
+<h1><a name="onLoad" id="onLoad" class="targanchor"><span class="b">onLoad(userFlags, coreFlags)</span></h1>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="onLoad"><thead><tr><td>引数</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">userFlags</td><td class="tagattribname">ロード時のユーザーフラグが渡されます。</td></tr>
+<tr><td class="tagattribalias">coreFlags</td><td class="tagattribname">ロード時のコアフラグが渡されます。</td></tr>
+</tbody></table>
+<div class="tagremarks">ロードされた時に呼び出されます。<br /></div>
+</div></div>
+
+<h1><a name="onCopyBookmark" id="onCopyBookmark" class="targanchor"><span class="b">onCopyBookmark(userFlags, coreFlags, src, dest)</span></h1>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="onCopyBookmark"><thead><tr><td>引数</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">userFlags</td><td class="tagattribname">セーブ時のユーザーフラグが渡されます。</td></tr>
+<tr><td class="tagattribalias">coreFlags</td><td class="tagattribname">セーブ時のコアフラグが渡されます。</td></tr>
+<tr><td class="tagattribalias">src</td><td class="tagattribname">コピー元のセーブデータ番号が渡されます。</td></tr>
+<tr><td class="tagattribalias">dest</td><td class="tagattribname">コピー先のセーブデータ番号が渡されます。</td></tr>
+</tbody></table>
+<div class="tagremarks">セーブデータがコピーされた時に呼び出されます。<br /></div>
+</div></div>
+
+<h1><a name="onEraseBookmark" id="onEraseBookmark" class="targanchor"><span class="b">onEraseBookmark(number)</span></h1>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="onEraseBookmark"><thead><tr><td>引数</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">number</td><td class="tagattribname">削除されたセーブデータ番号が渡されます。</td></tr>
+</tbody></table>
+<div class="tagremarks">セーブデータが削除された時に呼び出されます。<br /></div>
+</div></div>
+
+<h1><a name="onShowMessageLayer" id="onShowMessageLayer" class="targanchor"><span class="b">onShowMessageLayer()</span></h1>
+<div class="tagremarks">メッセージレイヤが表示された時に呼び出されます。<br /></div>
+</div></div>
+
+<h1><a name="onHideMessageLayer" id="onHideMessageLayer" class="targanchor"><span class="b">onHideMessageLayer()</span></h1>
+<div class="tagremarks">メッセージレイヤが消去された時に呼び出されます。<br /></div>
+</div></div>
+
+<h1><a name="onHideMessageLayerByUser" id="onHideMessageLayerByUser" class="targanchor"><span class="b">onHideMessageLayerByUser()</span></h1>
+<div class="tagremarks">メッセージレイヤが一時消去された時に呼び出されます。<br /></div>
+</div></div>
+
+<h1><a name="onShowMessageLayerByUser" id="onShowMessageLayerByUser" class="targanchor"><span class="b">onShowMessageLayerByUser()</span></h1>
+<div class="tagremarks">メッセージレイヤが一時消去から元にもどされた時に呼び出されます。<br /></div>
+</div></div>
+
+<h1><a name="onSkipModeChanged" id="onSkipModeChanged" class="targanchor"><span class="b">onSkipModeChanged(from, to)</span></h1>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="onSkipModeChanged"><thead><tr><td>引数</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">from</td><td class="tagattribname">遷移元のスキップモードが渡されます。</td></tr>
+<tr><td class="tagattribalias">to</td><td class="tagattribname">遷移先のスキップモードが渡されます。</td></tr>
+</tbody></table>
+<div class="tagremarks">スキップモードが変更された時に呼び出されます。<br />
+スキップモードの値は以下の通りです。<br />
+modMessage.smNotSkip(スキップしない)<br />
+modMessage.smNextWait(次のクリック待ちまでスキップ)<br />
+modMessage.smPageEnd(ページ待ちまでスキップ)<br />
+modMessage.smNextStop(次の停止までスキップ)<br />
+modMessage.smNotRead(次の未読部分までスキップ)<br />
+modMessage.smCancel(キャンセルされるまでスキップ)<br />
+</div>
+</div></div>
+
+<h1><a name="onCancelAutoMode" id="onCancelAutoMode" class="targanchor"><span class="b">onCancelAutoMode()</span></h1>
+<div class="tagremarks">オートモードがキャンセルされた時に呼び出されます。<br /></div>
+</div></div>
+
+<h1><a name="onEnterAutoMode" id="onEnterAutoMode" class="targanchor"><span class="b">onEnterAutoMode()</span></h1>
+<div class="tagremarks">オートモードになった時に呼び出されます。<br /></div>
+</div></div>
+
+<h1><a name="onShowHistoryLayer" id="onShowHistoryLayer" class="targanchor"><span class="b">onShowHistoryLayer()</span></h1>
+<div class="tagremarks">履歴レイヤが表示された時に呼び出されます。<br /></div>
+</div></div>
+
+<h1><a name="onHideHistoryLayer" id="onHideHistoryLayer" class="targanchor"><span class="b">onHideHistoryLayer()</span></h1>
+<div class="tagremarks">履歴レイヤが非表示にされた時に呼び出されます。<br /></div>
 </div></div>
 
 	<script type="text/javascript" charset="Shift_JIS" src="documentid.js" ></script>
