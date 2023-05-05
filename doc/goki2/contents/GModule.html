@@ -48,6 +48,8 @@ class Sample extends GModule<br />
 <br />
 　これでsampleタグを書く事ができるようになります。<br />
 <br />
+　TJSからモジュールにアクセスするにはwindow.modules.Sampleとします。<br />
+<br />
 <h1><a id="id84" name="id84">イベント</a>
 </h1><div class="para"><div>
 GOKI2のモジュールは様々なイベントを受け取る事ができます。<br />
@@ -61,6 +63,9 @@ class Sample extends GModule<br />
 　}<br />
 }<br />
 </code></div>
+　イベントを追加するにはイベントを発生させたいタイミングで以下のようにします。<br />
+　container.callHandler("onEvent", param1, param2, ...);<br />
+<br />
 <table class="taglist"><tbody>
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#onConductorCall">onConductorCall</a></span></td><td class="taglisteven">callタグ実行イベント</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#onConductorJump">onConductorJump</a></span></td><td class="taglistodd">jumpタグ実行イベント</td></tr>
