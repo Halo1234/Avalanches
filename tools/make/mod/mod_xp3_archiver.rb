@@ -20,11 +20,12 @@ class XP3AUtils
 		major = nil
 		minor = nil
 		#Encoding.default_external = version_encoding
-		lines = File.readlines(path, encoding: "#{version_encoding}")
+		lines = File.readlines(path, encoding: "#{version_encoding}", binmode: true)
 
 		# version ƒ^ƒO‚ð’T‚·
 		reg = /(@version .*|\[version [^\[]*\])/
 		lines.each { |line|
+            line = line.encode("utf-8", "#{version_encoding}")
 			if(line =~ reg)
 				tag = $1
 				tag =~ /major=(\d*).*minor=(\d*)/

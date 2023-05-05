@@ -28,7 +28,7 @@ Options:
  --version-encoding
  --ve
   version.* スクリプトのエンコーディングを指定します。
-  デフォルトは utf-8 です。
+  デフォルトは utf-16le です。
 
  -help
  -h
@@ -71,7 +71,7 @@ root_dir = "#{pwd}/../.."
 # 設定ファイル
 configuration_file = "#{pwd}/config.ini"
 # version.gs スクリプトのエンコーディング
-version_encoding = "utf-8"
+version_encoding = "UTF-16LE"
 # アーカイブを行うかどうか
 do_archive = true
 # インストーラを作成するかどうか
