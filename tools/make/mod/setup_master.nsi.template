@@ -1,7 +1,9 @@
 !include "configure.nsh"
 
+Unicode true
+
 ;---
-; �C���X�g�[��
+; インストーラ
 Var ProductDir
 Var IndexFile
 
@@ -15,19 +17,19 @@ Section "-GameData" SECID_GAMEDATA
 
 	ClearErrors
 
-	; �Z�[�u��t�H���_�����
+	; セーブ先フォルダを作る
 	${If} ${MUIEX_SaveLocationPath} != ""
 		CreateDirectory "${MUIEX_SaveLocationPath}"
 
 		IfFileExists "${MUIEX_SaveLocationPath}\${INDEX_NAME}" already_exists_index
 
-		; �C���f�b�N�X�t�@�C���쐬
+		; インデックスファイル作成
 		${SafeFileOpenWrite} $IndexFile "${MUIEX_SaveLocationPath}\${INDEX_NAME}"
 		FileClose $IndexFile
 		;SetFileAttributes "${MUIEX_SaveLocationPath}\${INDEX_NAME}" READONLY
 
 		already_exists_index:
-			; �������Ȃ�
+			; 何もしない
 	${EndIf}
 
 	ClearErrors
@@ -49,7 +51,7 @@ Section "-GameData" SECID_GAMEDATA
 		GoTo GameDataSection_epilogue
 
 	GameDataSection_error_break:
-		StrCpy $0 "!!!>�d�v�ȏ��̏������݂Ɏ��s���܂����B"
+		StrCpy $0 "!!!>重要な情報の書き込みに失敗しました。"
 		MessageBox MB_RETRYCANCEL|MB_ICONSTOP $0 IDRETRY GameDataSection_retry
 		Abort $0
 
@@ -63,15 +65,15 @@ Section /o "RelocationSaveData" MUIEX_SECID_RELOCATIONSAVEDATA
 
 	;---
 	; MEMO:
-	; �����ŃZ�[�u�f�[�^���Ĕz�u����
-	; �C�����鎖�́A�Z�[�u�f�[�^�����݂��邩�ǂ����͏�ɕs�����Ƃ������B
-	; �Ⴆ�΁A�Z�[�u�f�[�^���c���ăA���C���X�g�[����A
-	; �蓮�ŃZ�[�u�f�[�^���o�b�N�A�b�v���č폜����B�Ƃ����P�[�X�͉��X�ɂ��čl������B
-	; ���̏ꍇ�A�A���C���X�g�[���Ɠo�^���͎c���Ă��邪�Z�[�u�f�[�^�͑��݂��Ȃ��B
+	; ここでセーブデータを再配置する
+	; 気をつける事は、セーブデータが存在するかどうかは常に不明だという事。
+	; 例えば、セーブデータを残してアンインストール後、
+	; 手動でセーブデータをバックアップして削除する。というケースは往々にして考えられる。
+	; その場合、アンインストーラと登録情報は残っているがセーブデータは存在しない。
 	;---
 
 	IfFileExists "${MUIEX_CurrentSaveLocationPath}\*.*" found_savedata
-	MessageBox MB_OK "�Â��Z�[�u�f�[�^��������܂���ł����B$\r�Z�[�u�f�[�^�̈ړ��̓X�L�b�v����܂��B" IDOK done
+	MessageBox MB_OK "古いセーブデータが見つかりませんでした。$\rセーブデータの移動はスキップされます。" IDOK done
 
 	found_savedata:
 
@@ -81,7 +83,7 @@ Section /o "RelocationSaveData" MUIEX_SECID_RELOCATIONSAVEDATA
 		Push $R1
 		Push $R2
 
-		; �C���f�b�N�X���J��
+		; インデックスを開く
 		StrCpy $1 "${MUIEX_CurrentSaveLocationPath}"
 		${OpenCopyIndex} $IndexFile "$1\${INDEX_NAME}"
 
@@ -103,10 +105,10 @@ Section /o "RelocationSaveData" MUIEX_SECID_RELOCATIONSAVEDATA
 			${CloseIndex} $IndexFile
 			${SafeFileCopy} "${MUIEX_CurrentSaveLocationPath}\${INDEX_NAME}" "${MUIEX_SaveLocationPath}\${INDEX_NAME}"
 
-		; �Â��Ǘ��t�@�C���͍폜����
+		; 古い管理ファイルは削除する
 		${DeleteIndexFile} "${MUIEX_CurrentSaveLocationPath}" ${INDEX_NAME}
 
-		; �Â��f�[�^�t�H���_�͂����K�v�Ȃ��̂ō폜����
+		; 古いデータフォルダはもう必要ないので削除する
 		ClearErrors
 		RMDir "${MUIEX_CurrentSaveLocationPath}"
 
@@ -122,7 +124,7 @@ Section /o "RelocationSaveData" MUIEX_SECID_RELOCATIONSAVEDATA
 		GoTo done
 
 	delete_topdirectory_failed:
-		MessageBox MB_OK "�Z�[�u��ɊǗ��O�̃f�[�^�����݂��Ă��܂��B$\n�Â��Z�[�u����m�F��A�蓮�ō폜���Ă��������B" IDOK epilogue
+		MessageBox MB_OK "セーブ先に管理外のデータが存在しています。$\n古いセーブ先を確認後、手動で削除してください。" IDOK epilogue
 
 	done:
 
@@ -145,7 +147,7 @@ Section "MakeUninstallShortcutInStartMenu" MUIEX_SECID_CREATEUNINSTALLSHORTCUTIN
 
 	Push $0
 
-	; �A���C���X�g�[���̃p�X�����肷��
+	; アンインストーラのパスを決定する
 	ReadRegStr $0 ${NSIS_UTILS_REGKEY_ROOT} "${REG_PRODUCT}" "FirstLocation"
 	${If} $0 == ""
 		ClearErrors
@@ -168,13 +170,13 @@ SectionEnd
 
 Section "-Regist" SECID_REGIST
 
-	; ���i�T�v
+	; 製品概要
 	${SafeWriteRegStr} "${REG_PRODUCT}" "" "${PRODUCT_J}"
 	${SafeWriteRegStr} "${REG_PRODUCT}" "ProductID" "${PRODUCT_ID}"
 	${SafeWriteRegStr} "${REG_PRODUCT}" "SaveLocation" "${MUIEX_SaveLocation}"
 	${SafeWriteRegStr} "${REG_PRODUCT}" "Type" "Full"
 
-	; �A���C���X�g�[���o�^
+	; アンインストーラ登録
 	${SafeWriteRegStr} "${REG_MS_WINDOWS_PRODUCT}" "Comments" "${VENDER_J} ${PRODUCT_J}"
 	${SafeWriteRegStr} "${REG_MS_WINDOWS_PRODUCT}" "Contact" "${VENDER_URL}"
 	${SafeWriteRegStr} "${REG_MS_WINDOWS_PRODUCT}" "DisplayIcon" "$ProductDir\krkr.eXe"
@@ -206,11 +208,11 @@ Section "WriteUninstaller" MUIEX_SECID_WRITEUNINSTALLER
 SectionEnd
 
 ;---
-; ���������W���[���W�J
+; 初期化モジュール展開
 !insertmacro NSIS_Initialize
 
 ;---
-; �y�[�W��`
+; ページ定義
 !insertmacro MUI_PAGE_WELCOME
 
 !insertmacro MUIEX_PAGE_SETUPMENU
@@ -228,18 +230,18 @@ SectionEnd
 !define MUI_FINISHPAGE_SHOWREADME	"$EXEDIR\readme.txt"
 !insertmacro MUI_PAGE_FINISH
 
-; �C���X�g�[���[�̏�����
+; インストーラーの初期化
 Function .onInit
 	${NSIS_Initialize}
 FunctionEnd
 
 
 ;---
-; �A���C���X�g�[��
+; アンインストーラ
 Var FirstLocation
 Var FirstProduct
 
-; �Q�[���f�[�^�̃A���C���X�g�[��
+; ゲームデータのアンインストール
 Section "-Un.GameData" UN_SECID_REMOVEGAMEDATA
 
 	ReadRegStr $INSTDIR ${NSIS_UTILS_REGKEY_ROOT} "${REG_MS_WINDOWS_PRODUCT}" "InstallLocation"
@@ -247,23 +249,23 @@ Section "-Un.GameData" UN_SECID_REMOVEGAMEDATA
 	ReadRegStr $FirstLocation ${NSIS_UTILS_REGKEY_ROOT} "${REG_PRODUCT}" "FirstLocation"
 	StrCpy $FirstProduct "$FirstLocation\${PRODUCT}"
 
-	; �V���[�g�J�b�g�ނ̍폜
+	; ショートカット類の削除
 	Delete "${SM_PRODUCT}\${MAINAPPLICATION_ALIAS}.lnk"
 	Delete "${SM_PRODUCT}\${UNINSTALLER_ALIAS}.lnk"
 	Delete "$DESKTOP\${MAINAPPLICATION_ALIAS}.lnk"
 
 	!include "uninstall_shortcutitems"
 
-	; �A�v���P�[�V�����ƃf�[�^�̍폜
+	; アプリケーションとデータの削除
 	!include "uninstall_components"
 
-	; �Ǘ��t�@�C�����폜����
+	; 管理ファイルを削除する
 	${un.DeleteIndexFile} "$ProductDir" ${INDEX_NAME}
 
 	Delete "$ProductDir\pinfo"
 	Delete "$ProductDir\${MAINAPPLICATION_NAME}.cf"
 
-	; �t�H���_�폜
+	; フォルダ削除
 	RMDir "${SM_PRODUCT}"
 	RMDir "${SM_ROOT}"
 
@@ -272,37 +274,37 @@ Section "-Un.GameData" UN_SECID_REMOVEGAMEDATA
 
 	ClearErrors
 
-	; ���W�X�g���̓��e��ύX����
+	; レジストリの内容を変更する
 	${SafeWriteRegStr} "${REG_PRODUCT}" "Type" "SaveOnly"
-	${SafeWriteRegStr} "${REG_MS_WINDOWS_PRODUCT}" "DisplayName" "${PRODUCT_J} �̃Z�[�u�f�[�^�폜"
+	${SafeWriteRegStr} "${REG_MS_WINDOWS_PRODUCT}" "DisplayName" "${PRODUCT_J} のセーブデータ削除"
 
 SectionEnd
 
-; �Z�[�u�f�[�^�̃A���C���X�g�[��
+; セーブデータのアンインストール
 Section /o "Un.Savedata" MUIEX_UN_SECID_REMOVESAVEDATA
 
-	; �Ǘ��t�@�C�����폜����
+	; 管理ファイルを削除する
 	${un.DeleteIndexFile} "${un.MUIEX_CurrentSaveLocationPath}" ${INDEX_NAME}
 
-	; �Â��f�[�^�t�H���_�͂����K�v�Ȃ��̂ō폜����
+	; 古いデータフォルダはもう必要ないので削除する
 	ClearErrors
 	RMDir "${un.MUIEX_CurrentSaveLocationPath}"
 
 	IfErrors 0 unregist
-	MessageBox MB_OK "�Z�[�u��ɊǗ��O�̃f�[�^�����݂��Ă��܂��B$\n�Z�[�u����m�F��A�蓮�ō폜���Ă��������B"
+	MessageBox MB_OK "セーブ先に管理外のデータが存在しています。$\nセーブ先を確認後、手動で削除してください。"
 
 	unregist:
-		; ���W�X�g���̓��e��S�č폜
+		; レジストリの内容を全て削除
 		${un.SafeDeleteRegKey} "${REG_PRODUCT}"
 		${un.SafeDeleteRegKey} "${REG_ROOT}"
 
 		${un.SafeDeleteRegKey} "${REG_MS_WINDOWS_PRODUCT}"
 		${un.SafeDeleteRegKey} "${REG_MS_WINDOWS_UNINSTALL}"
 
-	; �A���C���X�g�[���̍폜
+	; アンインストーラの削除
 	Delete "$ProductDir\${UNINSTALLER_NAME}"
 
-	; �t�H���_����������Ȃ��̂ō폜
+	; フォルダももういらないので削除
 	RMDir "$FirstProduct"
 	RMDir "$FirstLocation"
 
@@ -311,11 +313,11 @@ Section /o "Un.Savedata" MUIEX_UN_SECID_REMOVESAVEDATA
 SectionEnd
 
 ;---
-; ���������W���[���W�J
+; 初期化モジュール展開
 !insertmacro un.NSIS_Initialize
 
 ;---
-; �y�[�W��`
+; ページ定義
 !insertmacro MUI_UNPAGE_WELCOME
 
 !insertmacro MUIEX_UNPAGE_SAVEDATA
@@ -326,12 +328,12 @@ SectionEnd
 
 !insertmacro MUI_UNPAGE_FINISH
 
-; �A���C���X�g�[���[�̏�����
+; アンインストーラーの初期化
 Function un.onInit
 	${un.NSIS_Initialize}
 FunctionEnd
 
-; ����ݒ�
+; 言語設定
 !insertmacro MUI_LANGUAGE	"Japanese"
 
 

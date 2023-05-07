@@ -2,42 +2,42 @@
 ; * $Revision: 148 $
 ; *
 ; * HOWTO:
-; * �y�[�W��}���������ꏊ�� !insertmacro MUIEX_PAGE_SHORTCUTLOCATION ��}�����Ă��������B
+; * ページを挿入したい場所に !insertmacro MUIEX_PAGE_SHORTCUTLOCATION を挿入してください。
 ; * 
-; * ���̃y�[�W�őI���ł���I�v�V�����͈ȉ��̒ʂ�ł��B
+; * このページで選択できるオプションは以下の通りです。
 ; *
-; * �E�X�^�[�g���j���[
-; *   MUIEX_SECID_CREATESTARTMENU ����`����Ă���Ε\������܂��B
-; *   �X�^�[�g���j���[���쐬����Z�N�V������ ID ���w�肵�Ă��������B
-; *   ���[�U�[���쐬���Ȃ���I�������ꍇ�w�肳�ꂽ�Z�N�V�����͌Ăяo����܂���B
+; * ・スタートメニュー
+; *   MUIEX_SECID_CREATESTARTMENU が定義されていれば表示されます。
+; *   スタートメニューを作成するセクションの ID を指定してください。
+; *   ユーザーが作成しないを選択した場合指定されたセクションは呼び出されません。
 ; *
-; * �E�A���C���X�g�[���V���[�g�J�b�g
-; *   MUIEX_SECID_CREATEUNINSTALLSHORTCUTINSTARTMENU ����`����Ă���Ε\������܂��B
-; *   ��MUIEX_SECID_CREATESTARTMENU ����`����Ă��Ȃ���΂Ȃ�܂���B
-; *   �A���C���X�g�[���V���[�g�J�b�g���쐬����Z�N�V������ ID ���w�肵�Ă��������B
-; *   ���[�U�[���쐬���Ȃ���I�������ꍇ�w�肳�ꂽ�Z�N�V�����͌Ăяo����܂���B
+; * ・アンインストールショートカット
+; *   MUIEX_SECID_CREATEUNINSTALLSHORTCUTINSTARTMENU が定義されていれば表示されます。
+; *   ※MUIEX_SECID_CREATESTARTMENU が定義されていなければなりません。
+; *   アンインストールショートカットを作成するセクションの ID を指定してください。
+; *   ユーザーが作成しないを選択した場合指定されたセクションは呼び出されません。
 ; *
-; * �E�f�X�N�g�b�v�V���[�g�J�b�g
-; *   MUIEX_SECID_CREATEDESKTOPSHORTCUT ����`����Ă���Ε\������܂��B
-; *   �f�X�N�g�b�v�ɃV���[�g�J�b�g���쐬����Z�N�V������ ID ���w�肵�Ă��������B
-; *   ���[�U�[���쐬���Ȃ���I�������ꍇ�w�肳�ꂽ�Z�N�V�����͌Ăяo����܂���B
+; * ・デスクトップショートカット
+; *   MUIEX_SECID_CREATEDESKTOPSHORTCUT が定義されていれば表示されます。
+; *   デスクトップにショートカットを作成するセクションの ID を指定してください。
+; *   ユーザーが作成しないを選択した場合指定されたセクションは呼び出されません。
 ; *
 ; * FIXME:
-; * ���݂̂Ƃ���I�v�V�����������`����Ȃ������ꍇ
-; * �I���ł�����̂��������݂��Ȃ��y�[�W���\������Ă��܂��܂��B
+; * 現在のところオプションが何一つ定義されなかった場合
+; * 選択できるものが何も存在しないページが表示されてしまいます。
 ; *
 ; * NOTE:
-; * ${MUIEX_SHORTCUTLOCATION_GetReport} �ł��̃y�[�W�őI�����ꂽ���e�ɂ���
-; * �l�Ԃ��ǂ߂�`�Ń��|�[�g���擾���鎖���ł��܂��B
-; * ���̊֐��}�N�����g���ɂ͎��O�� !insertmacro ${MUIEX_SHORTCUTLOCATION_GetReport} ��}������K�v������܂��B
-; * �������AMUIEX_PAGE_CONFIRM ���g���ꍇ�͂������g���K�v�͂Ȃ��ł��傤�B
+; * ${MUIEX_SHORTCUTLOCATION_GetReport} でこのページで選択された内容について
+; * 人間が読める形でレポートを取得する事ができます。
+; * この関数マクロを使うには事前に !insertmacro ${MUIEX_SHORTCUTLOCATION_GetReport} を挿入する必要があります。
+; * ただし、MUIEX_PAGE_CONFIRM を使う場合はこれらを使う必要はないでしょう。
 ; *
 ; * NOTE:
-; * MUIEX_PAGE_SHORTCUTLOCATION �� !insertmacro ����O�ɒ�`��ǉ����鎖��
-; * �e�R���g���[���� enable ��Ԃ�ύX���鎖���ł��܂��B
-; * ������`���Ȃ���΃f�t�H���g�l���g���܂��B
+; * MUIEX_PAGE_SHORTCUTLOCATION を !insertmacro する前に定義を追加する事で
+; * 各コントロールの enable 状態を変更する事ができます。
+; * 何も定義しなければデフォルト値が使われます。
 ; *
-; * �e��`�̖��O�ƃf�t�H���g�l�ł��B
+; * 各定義の名前とデフォルト値です。
 ; * +---------+-------+
 ; * | status  | value |
 ; * +---------+-------+
@@ -68,7 +68,7 @@
 !macroend
 
 ;---
-; �C���^�[�t�F�[�X
+; インターフェース
 !macro MUIEX_SHORTCUTLOCATION_INTERFACE
 	!ifndef MUIEX_SHORTCUTLOCATION_INTERFACE
 		!define MUIEX_SHORTCUTLOCATION_INTERFACE
@@ -81,14 +81,14 @@
 
 	!endif
 
-	!insertmacro MUI_DEFAULT MUIEX_SHORTCUTLOCATION_HEADER_TEXT		"�V���[�g�J�b�g�쐬"
-	!insertmacro MUI_DEFAULT MUIEX_SHORTCUTLOCATION_HEADER_SUB_TEXT	"�K�v�ȃV���[�g�J�b�g��I�����鎖���ł��܂��B"
+	!insertmacro MUI_DEFAULT MUIEX_SHORTCUTLOCATION_HEADER_TEXT		"ショートカット作成"
+	!insertmacro MUI_DEFAULT MUIEX_SHORTCUTLOCATION_HEADER_SUB_TEXT	"必要なショートカットを選択する事ができます。"
 	!insertmacro MUI_DEFAULT MUIEX_SHORTCUTLOCATION_INFO				\
-		"�X�^�[�g���j���[��o�^����ƃT�|�[�g�c�[���ւ̃V���[�g�J�b�g�������I�ɓo�^����܂��B$\n�ʏ�͂����o�^���鎖�������߂��܂��B$\n�A���C���X�g�[���ւ̃V���[�g�J�b�g���쐬���Ȃ��ꍇ�u�R���g���[���p�l���v�́u�A�v���P�[�V�����̒ǉ��ƍ폜�v�c�[������A���C���X�g�[�����鎖���ł��܂��B"
+		"スタートメニューを登録するとサポートツールへのショートカットも自動的に登録されます。$\n通常はこれを登録する事をお奨めします。$\nアンインストーラへのショートカットを作成しない場合「コントロールパネル」の「アプリケーションの追加と削除」ツールからアンインストールする事ができます。"
 
-	!insertmacro MUI_DEFAULT MUIEX_SHORTCUTLOCATION_CREATESTARTMENU			"�X�^�[�g���j���[�ɓo�^����B�i�����j"
-	!insertmacro MUI_DEFAULT MUIEX_SHORTCUTLOCATION_CREATEUNINSTALLSHORTCUT	"�X�^�[�g���j���[�ɃA���C���X�g�[���ւ̃V���[�g�J�b�g���쐬����B"
-	!insertmacro MUI_DEFAULT MUIEX_SHORTCUTLOCATION_CREATEDESKTOPSHORTCUT	"�f�X�N�g�b�v�ɃV���[�g�J�b�g���쐬����B"
+	!insertmacro MUI_DEFAULT MUIEX_SHORTCUTLOCATION_CREATESTARTMENU			"スタートメニューに登録する。（推奨）"
+	!insertmacro MUI_DEFAULT MUIEX_SHORTCUTLOCATION_CREATEUNINSTALLSHORTCUT	"スタートメニューにアンインストーラへのショートカットを作成する。"
+	!insertmacro MUI_DEFAULT MUIEX_SHORTCUTLOCATION_CREATEDESKTOPSHORTCUT	"デスクトップにショートカットを作成する。"
 
 	!insertmacro MUI_DEFAULT MUIEX_SHORTCUTLOCATION_CREATESTARTMENU_ENABLED			1
 	!insertmacro MUI_DEFAULT MUIEX_SHORTCUTLOCATION_CREATEUNINSTALLSHORTCUT_ENABLED	1
@@ -99,7 +99,7 @@
 !macroend
 
 ;---
-; �錾
+; 宣言
 !macro MUIEX_PAGEDECLARATION_SHORTCUTLOCATION
 	!insertmacro MUIEX_SHORTCUTLOCATION_INTERFACE
 
@@ -111,17 +111,17 @@
 !macroend
 
 ;---
-; �R�[���o�b�N�֐�
+; コールバック関数
 !macro MUIEX_FUNCTION_SHORTCUTLOCATION ENTER LEAVE
 
 	Function "${ENTER}"
 
-		; ���[�j���O�΍�
+		; ワーニング対策
 		StrCpy $muiex.sh.CreateStartMenuCheckBox 0
 		StrCpy $muiex.sh.CreateUninstallShortcutCheckBox 0
 		StrCpy $muiex.sh.CreateDesktopShortcutCheckBox 0
 
-		; �V���[�g�J�b�g�ۑ���̕ύX���v������Ă��Ȃ���΂����߂�
+		; ショートカット保存先の変更が要求されていなければすぐ戻る
 		${If} ${MUIEX_IsConfigureShortcutItems} == 0
 			Return
 		${EndIf}
@@ -132,15 +132,15 @@
 
 		!insertmacro MUI_HEADER_TEXT_PAGE ${MUIEX_SHORTCUTLOCATION_HEADER_TEXT} ${MUIEX_SHORTCUTLOCATION_HEADER_SUB_TEXT}
 
-		; �_�C�A���O�쐬
+		; ダイアログ作成
 		nsDialogs::Create /NOUNLOAD 1018
 		Pop $muiex.sh.ShortcutLocationPage
 
-		; ���x���e�L�X�g
+		; ラベルテキスト
 		${NSD_CreateLabel} 0 0 100% 35u ${MUIEX_SHORTCUTLOCATION_INFO}
 		Pop $muiex.sh.InfoText
 
-		; �X�^�[�g���j���[�̓o�^
+		; スタートメニューの登録
 		!ifdef MUIEX_SECID_CREATESTARTMENU
 
 			${NSD_CreateCheckBox} 10u 65u 100% 12u ${MUIEX_SHORTCUTLOCATION_CREATESTARTMENU}
@@ -151,7 +151,7 @@
 			nsDialogs::OnClick /NOUNLOAD $muiex.sh.CreateStartMenuCheckBox $0
 			${MUIEX_SHORTCUTLOCATION_SyncRadioButton} ${MUIEX_SECID_CREATESTARTMENU} $muiex.sh.CreateStartMenuCheckBox
 
-			; �A���C���X�g�[���ւ̃V���[�g�J�b�g���X�^�[�g���j���[�ɍ쐬����
+			; アンインストーラへのショートカットをスタートメニューに作成する
 			!ifdef MUIEX_SECID_CREATEUNINSTALLSHORTCUTINSTARTMENU
 
 				${NSD_CreateCheckBox} 20u 80u 100% 12u ${MUIEX_SHORTCUTLOCATION_CREATEUNINSTALLSHORTCUT}
@@ -180,7 +180,7 @@
 
 		!endif
 
-		; �f�X�N�g�b�v�ɃV���[�g�J�b�g���쐬
+		; デスクトップにショートカットを作成
 		!ifdef MUIEX_SECID_CREATEDESKTOPSHORTCUT
 
 			${NSD_CreateCheckBox} 10u 95u 100% 12u ${MUIEX_SHORTCUTLOCATION_CREATEDESKTOPSHORTCUT}
@@ -206,7 +206,7 @@
 	FunctionEnd
 
 	;---
-	; �C�x���g�n���h���[
+	; イベントハンドラー
 	!ifdef MUIEX_SECID_CREATESTARTMENU
 
 		Function OnCreateStartMenuClick
@@ -281,7 +281,7 @@
 
 ;---
 ; ${MUIEX_SHORTCUTLOCATION_GetReport} VAR
-; ���|�[�g�� VAR �ɕԂ��B
+; レポートを VAR に返す。
 !macro MUIEX_SHORTCUTLOCATION_GetReportCaller _VAR
 	Call MUIEX_SHORTCUTLOCATION_GetReport
 	Pop `${_VAR}`
@@ -302,11 +302,11 @@
 				!insertmacro SectionFlagIsSet ${MUIEX_SECID_CREATESTARTMENU} ${SF_SELECTED} startmenu_selected startmenu_notselected
 
 				startmenu_selected:
-					StrCpy $0 "$0�X�^�[�g���j���[�F$\r$\n    �쐬����B$\r$\n$\r$\n"
+					StrCpy $0 "$0スタートメニュー：$\r$\n    作成する。$\r$\n$\r$\n"
 					Goto startmenu_done
 
 				startmenu_notselected:
-					StrCpy $0 "$0�X�^�[�g���j���[�F$\r$\n    �쐬���Ȃ��B$\r$\n$\r$\n"
+					StrCpy $0 "$0スタートメニュー：$\r$\n    作成しない。$\r$\n$\r$\n"
 					Goto startmenu_done
 
 				startmenu_done:
@@ -317,11 +317,11 @@
 						uninstall_selected uninstall_notselected
 
 					uninstall_selected:
-						StrCpy $0 "$0�A���C���X�g�[���ւ̃V���[�g�J�b�g�F$\r$\n    �쐬����B$\r$\n$\r$\n"
+						StrCpy $0 "$0アンインストーラへのショートカット：$\r$\n    作成する。$\r$\n$\r$\n"
 						Goto uninstall_done
 
 					uninstall_notselected:
-						StrCpy $0 "$0�A���C���X�g�[���ւ̃V���[�g�J�b�g�F$\r$\n    �쐬���Ȃ��B$\r$\n$\r$\n"
+						StrCpy $0 "$0アンインストーラへのショートカット：$\r$\n    作成しない。$\r$\n$\r$\n"
 						Goto uninstall_done
 
 					uninstall_done:
@@ -335,11 +335,11 @@
 				!insertmacro SectionFlagIsSet ${MUIEX_SECID_CREATEDESKTOPSHORTCUT} ${SF_SELECTED} desktop_selected desktop_notselected
 
 				desktop_selected:
-					StrCpy $0 "$0�f�X�N�g�b�v�V���[�g�J�b�g�F$\r$\n    �쐬����B$\r$\n$\r$\n"
+					StrCpy $0 "$0デスクトップショートカット：$\r$\n    作成する。$\r$\n$\r$\n"
 					Goto desktop_done
 
 				desktop_notselected:
-					StrCpy $0 "$0�f�X�N�g�b�v�V���[�g�J�b�g�F$\r$\n    �쐬���Ȃ��B$\r$\n$\r$\n"
+					StrCpy $0 "$0デスクトップショートカット：$\r$\n    作成しない。$\r$\n$\r$\n"
 					Goto desktop_done
 
 				desktop_done:
@@ -354,7 +354,7 @@
 
 
 ;---
-; �����p���[�e�B���e�B
+; 内部用ユーティリティ
 
 ;---
 ; ${MUIEX_SHORTCUTLOCATION_SyncRadioButton} SECID CTRLID

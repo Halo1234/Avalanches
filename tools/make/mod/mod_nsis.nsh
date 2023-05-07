@@ -19,62 +19,62 @@
 !addplugindir "${MODNSIS_DIR}"
 
 ;---
-; ƒŒƒWƒXƒgƒŠƒL[ƒ‹[ƒg
+; ãƒ¬ã‚¸ã‚¹ãƒˆãƒªã‚­ãƒ¼ãƒ«ãƒ¼ãƒˆ
 !define NSIS_UTILS_REGKEY_ROOT	SHCTX
 
 ;---
-; ƒCƒ“ƒNƒ‹[ƒh
+; ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 
-; MUIEX “ÆŽ©‚ÌŠg’£ƒy[ƒW
+; MUIEX ç‹¬è‡ªã®æ‹¡å¼µãƒšãƒ¼ã‚¸
 !include "mod_muiex.nsh"
-; ƒ†[ƒeƒBƒŠƒeƒBŠÖ”ƒ}ƒNƒ
+; ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£é–¢æ•°ãƒžã‚¯ãƒ­
 !include "mod_utils.nsh"
 
 ;---
-; ƒ\[ƒXŠÖ˜A‚ÌƒpƒX’è‹`
+; ã‚½ãƒ¼ã‚¹é–¢é€£ã®ãƒ‘ã‚¹å®šç¾©
 !define PACKAGE_DIR		"${ROOT_DIR}\src\data\products\${TARGET_NAME}"
 !define IMAGE_DIR		"${PACKAGE_DIR}\header-images"
 !define ICON_DIR		"${PACKAGE_DIR}\icons"
 
 ;---
-; Ž©ŽÐ—pƒŒƒWƒXƒgƒŠƒL[‚ÌƒpƒX’è‹`
+; è‡ªç¤¾ç”¨ãƒ¬ã‚¸ã‚¹ãƒˆãƒªã‚­ãƒ¼ã®ãƒ‘ã‚¹å®šç¾©
 !define REG_ROOT		"Software\${VENDER}"
 !define REG_PRODUCT		"${REG_ROOT}\${PRODUCT}"
 !define REG_ADDFILES	"${REG_PRODUCT}\AddFiles"
 
 ;---
-; Windows ‚ÌuƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Ì’Ç‰Á‚Æíœvƒc[ƒ‹—pƒŒƒWƒXƒgƒŠƒL[‚ÌƒpƒX’è‹`
+; Windows ã®ã€Œã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®è¿½åŠ ã¨å‰Šé™¤ã€ãƒ„ãƒ¼ãƒ«ç”¨ãƒ¬ã‚¸ã‚¹ãƒˆãƒªã‚­ãƒ¼ã®ãƒ‘ã‚¹å®šç¾©
 !define REG_MS_WINDOWS_UNINSTALL	"Software\Microsoft\Windows\CurrentVersion\Uninstall"
 !define REG_MS_WINDOWS_PRODUCT		"${REG_MS_WINDOWS_UNINSTALL}\${PRODUCT_ID}"
 
 ;---
-; Windows ‚ÌƒXƒ^[ƒgƒƒjƒ…[—pƒpƒX’è‹`
+; Windows ã®ã‚¹ã‚¿ãƒ¼ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”¨ãƒ‘ã‚¹å®šç¾©
 !define SM_ROOT			"$SMPROGRAMS\${VENDER_J}"
 !define SM_PRODUCT		"${SM_ROOT}\${PRODUCT_J}"
 
 ;---
-; ƒtƒ@ƒCƒ‹–¼‚ÉŠÖ‚·‚é’è‹`
+; ãƒ•ã‚¡ã‚¤ãƒ«åã«é–¢ã™ã‚‹å®šç¾©
 !define MAINAPPLICATION_NAME		"${PRODUCT_J}"
 !define MAINAPPLICATION_ALIAS		"${PRODUCT_J}"
 !define MAINAPPLICATION_FILENAME	"${PRODUCT_J}.exe"
 !define UNINSTALLER_NAME			"Uninstall.exe"
-!define UNINSTALLER_ALIAS			"ƒAƒ“ƒCƒ“ƒXƒg[ƒ‹"
+!define UNINSTALLER_ALIAS			"ã‚¢ãƒ³ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«"
 !define INDEX_NAME					"Index.ary"
-!define README_NAME					"‚¨“Ç‚Ý‰º‚³‚¢.txt"
+!define README_NAME					"ãŠèª­ã¿ä¸‹ã•ã„.txt"
 
 ;---
-; MUI Ý’è
+; MUI è¨­å®š
 !define MUI_ABORTWARNING
-!define MUI_ABORTWARNING_TEXT			"${SETUP_TITLE} ‚ÌƒZƒbƒgƒAƒbƒv‚ÍŠ®—¹‚µ‚Ä‚¢‚Ü‚¹‚ñB$\n’†’f‚µ‚Ü‚·‚©H"
+!define MUI_ABORTWARNING_TEXT			"${SETUP_TITLE} ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã¯å®Œäº†ã—ã¦ã„ã¾ã›ã‚“ã€‚$\nä¸­æ–­ã—ã¾ã™ã‹ï¼Ÿ"
 !define MUI_UNABORTWARNING
-!define MUI_UNABORTWARNING_TEXT			"${SETUP_TITLE} ‚ÌƒAƒ“ƒCƒ“ƒXƒg[ƒ‹‚ÍŠ®—¹‚µ‚Ä‚¢‚Ü‚¹‚ñB$\n’†’f‚µ‚Ü‚·‚©H"
+!define MUI_UNABORTWARNING_TEXT			"${SETUP_TITLE} ã®ã‚¢ãƒ³ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã¯å®Œäº†ã—ã¦ã„ã¾ã›ã‚“ã€‚$\nä¸­æ–­ã—ã¾ã™ã‹ï¼Ÿ"
 
 !define MUI_ICON						"${ICON_DIR}\installer.ico"
 !define MUI_UNICON						"${ICON_DIR}\uninstaller.ico"
 
 !define MUI_WELCOMEFINISHPAGE_BITMAP	"${IMAGE_DIR}\side_banner.bmp"
-!define MUI_WELCOMEPAGE_TITLE 			"${SETUP_TITLE} ƒZƒbƒgƒAƒbƒvƒvƒƒOƒ‰ƒ€"
-!define MUI_WELCOMEPAGE_TEXT 			"${SETUP_TITLE} ‚ÌƒZƒbƒgƒAƒbƒv‚ðŠJŽn‚µ‚Ü‚·B$\n$\nƒZƒbƒgƒAƒbƒv‚ðŠJŽn‚·‚é‘O‚É‘¼‚Ì‘S‚Ä‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ðI—¹‚³‚¹‚é‚±‚Æ‚ð„§‚µ‚Ü‚·B$\n$\n‘±‚¯‚é‚É‚ÍuŽŸ‚Öv‚ðƒNƒŠƒbƒN‚µ‚Ä‚­‚¾‚³‚¢B"
+!define MUI_WELCOMEPAGE_TITLE 			"${SETUP_TITLE} ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãƒ—ãƒ­ã‚°ãƒ©ãƒ "
+!define MUI_WELCOMEPAGE_TEXT 			"${SETUP_TITLE} ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’é–‹å§‹ã—ã¾ã™ã€‚$\n$\nã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’é–‹å§‹ã™ã‚‹å‰ã«ä»–ã®å…¨ã¦ã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚’çµ‚äº†ã•ã›ã‚‹ã“ã¨ã‚’æŽ¨å¥¨ã—ã¾ã™ã€‚$\n$\nç¶šã‘ã‚‹ã«ã¯ã€Œæ¬¡ã¸ã€ã‚’ã‚¯ãƒªãƒƒã‚¯ã—ã¦ãã ã•ã„ã€‚"
 
 !define MUI_UNWELCOMEFINISHPAGE_BITMAP	"${IMAGE_DIR}\unside_banner.bmp"
 
@@ -84,7 +84,7 @@
 !define MUI_HEADERIMAGE_UNBITMAP		"${IMAGE_DIR}\unpage_header_r.bmp"
 
 ;---
-; MUIEX Ý’è
+; MUIEX è¨­å®š
 !define MUIEX_SAVELOCATION_PATH_SUFFIX			"\${VENDER}\${PRODUCT}"
 !define MUIEX_SAVELOCATION_INSTALLFOLDER_SUFFIX	"\save"
 
@@ -93,9 +93,9 @@
 
 
 ;---
-; ’è‹`‚Ì’²®
+; å®šç¾©ã®èª¿æ•´
 
-; Œ»Ýu‚·‚×‚Ä‚Ìƒ†[ƒU[v‚Í–¢ŽÀ‘•‚Å‚·B
+; ç¾åœ¨ã€Œã™ã¹ã¦ã®ãƒ¦ãƒ¼ã‚¶ãƒ¼ã€ã¯æœªå®Ÿè£…ã§ã™ã€‚
 !ifdef USE_ALLUSERS
 	!undef USE_ALLUSERS
 !endif
@@ -103,43 +103,43 @@
 
 
 ;---
-; d—v‚È“®ìÝ’è
+; é‡è¦ãªå‹•ä½œè¨­å®š
 
-; »•i–¼
+; è£½å“å
 Name "${PRODUCT_J}"
-; ‰ŠúƒCƒ“ƒXƒg[ƒ‹æƒpƒX
+; åˆæœŸã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«å…ˆãƒ‘ã‚¹
 InstallDir "$PROGRAMFILES\${VENDER}"
-; ƒCƒ“ƒXƒg[ƒ‹æƒpƒX‚Ì•Û‘¶æ
+; ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«å…ˆãƒ‘ã‚¹ã®ä¿å­˜å…ˆ
 !if ${USE_ALLUSERS} == 0
 	InstallDirRegKey HKCU "${REG_MS_WINDOWS_PRODUCT}" "InstallLocation"
 !else
 	InstallDirRegKey HKLM "${REG_MS_WINDOWS_PRODUCT}" "InstallLocation"
 !endif
-; ƒ}ƒjƒtƒFƒXƒg‚ð’Ç‰Á‚·‚é
+; ãƒžãƒ‹ãƒ•ã‚§ã‚¹ãƒˆã‚’è¿½åŠ ã™ã‚‹
 XPStyle on
-; ƒCƒ“ƒXƒg[ƒ‰[‚ÌŽÀs‚ÉŠÇ—ŽÒŒ ŒÀ‚ð—v‹‚·‚é
+; ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ©ãƒ¼ã®å®Ÿè¡Œã«ç®¡ç†è€…æ¨©é™ã‚’è¦æ±‚ã™ã‚‹
 RequestExecutionLevel admin
-; ƒCƒ“ƒXƒg[ƒ‹^ƒAƒ“ƒCƒ“ƒXƒg[ƒ‹‚ÌÚ×‚ð•\Ž¦‚·‚é
+; ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ï¼ã‚¢ãƒ³ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã®è©³ç´°ã‚’è¡¨ç¤ºã™ã‚‹
 ShowInstDetails show
 ShowUninstDetails show
 
 
 ;---
-; ƒ‚ƒWƒ…[ƒ‹’è‹`
+; ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«å®šç¾©
 
 ;---
 ; ${NSIS_Initialize}
-; .onInit “à•”‚Å‚±‚ê‚ð•K‚¸ŒÄ‚Ño‚µ‚Ä‚­‚¾‚³‚¢B
+; .onInit å†…éƒ¨ã§ã“ã‚Œã‚’å¿…ãšå‘¼ã³å‡ºã—ã¦ãã ã•ã„ã€‚
 ;
 ; ${un.NSIS_Initialize}
-; un.onInit “à•”‚Å‚±‚ê‚ð•K‚¸ŒÄ‚Ño‚µ‚Ä‚­‚¾‚³‚¢B
+; un.onInit å†…éƒ¨ã§ã“ã‚Œã‚’å¿…ãšå‘¼ã³å‡ºã—ã¦ãã ã•ã„ã€‚
 !macro NSIS_InitializeCaller
 	Call NSIS_Initialize
 !macroend
 
 !macro NSIS_Initialize
 
-	; ƒ‚ƒWƒ…[ƒ‹“WŠJ
+	; ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«å±•é–‹
 	!insertmacro MUIEX_Initialize
 
 	!ifndef NSIS_Initialize
@@ -150,14 +150,14 @@ ShowUninstDetails show
 			Push $0
 			Push $1
 
-			; Œ»Ý‚Ìƒ†[ƒU[^‚·‚×‚Ä‚Ìƒ†[ƒU[
+			; ç¾åœ¨ã®ãƒ¦ãƒ¼ã‚¶ãƒ¼ï¼ã™ã¹ã¦ã®ãƒ¦ãƒ¼ã‚¶ãƒ¼
 			!if ${USE_ALLUSERS} == 0
 				SetShellVarContext current
 			!else
 				SetShellVarContext all
 			!endif
 
-			; ƒCƒ“ƒXƒg[ƒ‹ƒ^ƒCƒv
+			; ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã‚¿ã‚¤ãƒ—
 			ReadRegStr $0 ${NSIS_UTILS_REGKEY_ROOT} "${REG_PRODUCT}" "Type"
 			IfErrors NSIS_Initialize_unknowntype
 			GoTo NSIS_Initialize_knowntype
@@ -168,7 +168,7 @@ ShowUninstDetails show
 
 			NSIS_Initialize_knowntype:
 
-			; ƒZ[ƒuƒf[ƒ^•Û‘¶æ
+			; ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ä¿å­˜å…ˆ
 			ReadRegStr $1 ${NSIS_UTILS_REGKEY_ROOT} "${REG_PRODUCT}" "SaveLocation"
 			IfErrors NSIS_Initialize_nothavesavedata
 			GoTo NSIS_Initialize_existsavedata
@@ -179,7 +179,7 @@ ShowUninstDetails show
 
 			NSIS_Initialize_existsavedata:
 
-			; MUIEX ‰Šú‰»
+			; MUIEX åˆæœŸåŒ–
 			${MUIEX_Initialize} $0 $1
 
 			InitPluginsDir
@@ -198,7 +198,7 @@ ShowUninstDetails show
 
 !macro un.NSIS_Initialize
 
-	; ƒ‚ƒWƒ…[ƒ‹“WŠJ
+	; ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«å±•é–‹
 	!insertmacro un.MUIEX_Initialize
 
 	!ifndef un.NSIS_Initialize
@@ -208,14 +208,14 @@ ShowUninstDetails show
 
 			Push $0
 
-			; Œ»Ý‚Ìƒ†[ƒU[^‚·‚×‚Ä‚Ìƒ†[ƒU[
+			; ç¾åœ¨ã®ãƒ¦ãƒ¼ã‚¶ãƒ¼ï¼ã™ã¹ã¦ã®ãƒ¦ãƒ¼ã‚¶ãƒ¼
 			!if ${USE_ALLUSERS} == 0
 				SetShellVarContext current
 			!else
 				SetShellVarContext all
 			!endif
 
-			; ƒZ[ƒuƒf[ƒ^•Û‘¶æ
+			; ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ä¿å­˜å…ˆ
 			ReadRegStr $0 ${NSIS_UTILS_REGKEY_ROOT} "${REG_PRODUCT}" "SaveLocation"
 			IfErrors NSIS_Initialize_nothavesavedata
 			GoTo NSIS_Initialize_existsavedata
@@ -226,7 +226,7 @@ ShowUninstDetails show
 
 			NSIS_Initialize_existsavedata:
 
-			; UN_MUIEX ‰Šú‰»
+			; UN_MUIEX åˆæœŸåŒ–
 			${un.MUIEX_Initialize} $0
 
 			Pop $0

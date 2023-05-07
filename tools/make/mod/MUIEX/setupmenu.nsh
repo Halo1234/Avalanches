@@ -2,14 +2,14 @@
 ; * $Revision: 148 $
 ; *
 ; * HOWTO:
-; * �y�[�W��}���������ꏊ�� !insertmacro MUIEX_PAGE_SETUPMENU ��}�����Ă��������B
+; * ページを挿入したい場所に !insertmacro MUIEX_PAGE_SETUPMENU を挿入してください。
 ; *
 ; * NOTE:
-; * MUIEX_PAGE_SETUPMENU �� !insertmacro ����O�ɒ�`��ǉ����鎖��
-; * �e�R���g���[���� enable ��Ԃ�ύX���鎖���ł��܂��B
-; * ������`���Ȃ���΃f�t�H���g�l���g���܂��B
+; * MUIEX_PAGE_SETUPMENU を !insertmacro する前に定義を追加する事で
+; * 各コントロールの enable 状態を変更する事ができます。
+; * 何も定義しなければデフォルト値が使われます。
 ; *
-; * �e��`�̖��O�ƃf�t�H���g�l�ł��B
+; * 各定義の名前とデフォルト値です。
 ; * +---------+-------+
 ; * | status  | value |
 ; * +---------+-------+
@@ -35,7 +35,7 @@
 !macroend
 
 ;---
-; �C���^�[�t�F�[�X
+; インターフェース
 !macro MUIEX_SETUPMENU_INTERFACE
 	!ifndef MUIEX_SETUPMENU_INTERFACE
 		!define MUIEX_SETUPMENU_INTERFACE
@@ -48,16 +48,16 @@
 		Var muiex.sm.ShortcutLocationCheckBox
 	!endif
 
-	!insertmacro MUI_DEFAULT MUIEX_SETUPMENU_HEADER_TEXT		"�Z�b�g�A�b�v���j���["
-	!insertmacro MUI_DEFAULT MUIEX_SETUPMENU_HEADER_SUB_TEXT	"�Z�b�g�A�b�v���ɂ������ύX�ł���ݒ肪����܂��B"
+	!insertmacro MUI_DEFAULT MUIEX_SETUPMENU_HEADER_TEXT		"セットアップメニュー"
+	!insertmacro MUI_DEFAULT MUIEX_SETUPMENU_HEADER_SUB_TEXT	"セットアップ中にいくつか変更できる設定があります。"
 	!insertmacro MUI_DEFAULT MUIEX_SETUPMENU_INFO				\
-		"�ύX���������ڂ�I��Ń`�F�b�N������Ă��������B$\n�`�F�b�N����ꂽ���ڂ͎��̃y�[�W�ȍ~�Őݒ��ύX���鎖���ł��܂��B"
+		"変更したい項目を選んでチェックをいれてください。$\nチェックを入れた項目は次のページ以降で設定を変更する事ができます。"
 
-	!insertmacro MUI_DEFAULT MUIEX_SETUPMENU_INSTALLLOCATION	"�C���X�g�[�����ύX����B"
-	!insertmacro MUI_DEFAULT MUIEX_SETUPMENU_SAVEDATALOCATION	"�Z�[�u�f�[�^�̕ۑ��ꏊ��ύX����B"
-	!insertmacro MUI_DEFAULT MUIEX_SETUPMENU_SHORTCUTLOCATION	"�V���[�g�J�b�g�̍쐬�ꏊ��ύX����B"
+	!insertmacro MUI_DEFAULT MUIEX_SETUPMENU_INSTALLLOCATION	"インストール先を変更する。"
+	!insertmacro MUI_DEFAULT MUIEX_SETUPMENU_SAVEDATALOCATION	"セーブデータの保存場所を変更する。"
+	!insertmacro MUI_DEFAULT MUIEX_SETUPMENU_SHORTCUTLOCATION	"ショートカットの作成場所を変更する。"
 
-	; �e�R���g���[���� enable ���
+	; 各コントロールの enable 状態
 	!insertmacro MUI_DEFAULT MUIEX_SETUPMENU_INSTALLLOCATION_ENABLED	1
 	!insertmacro MUI_DEFAULT MUIEX_SETUPMENU_SAVEDATALOCATION_ENABLED	1
 	!insertmacro MUI_DEFAULT MUIEX_SETUPMENU_SHORTCUTLOCATION_ENABLED	1
@@ -72,7 +72,7 @@
 	!insertmacro MUI_DEFAULT MUIEX_SAVELOCATION_APPLICATIONDATAFOLDER_VALUE	"${MUIEX_LOCATION_APPDATAFOLDER}${MUIEX_SAVELOCATION_APPLICATIONDATAFOLDER_SUFFIX}"
 	!insertmacro MUI_DEFAULT MUIEX_SAVELOCATION_INSTALLFOLDER_VALUE			"${MUIEX_LOCATION_INSTALLFOLDER}${MUIEX_SAVELOCATION_INSTALLFOLDER_SUFFIX}"
 
-	; �e�y�[�W�Ɉˑ�����
+	; 各ページに依存する
 	!ifmacrodef MUIEX_SAVELOCATION_InitializeVariables
 		!insertmacro MUIEX_SAVELOCATION_InitializeVariables
 	!endif
@@ -87,7 +87,7 @@
 !macroend
 
 ;---
-; �錾
+; 宣言
 !macro MUIEX_PAGEDECLARATION_SETUPMENU
 	!insertmacro MUIEX_SETUPMENU_INTERFACE
 
@@ -99,7 +99,7 @@
 !macroend
 
 ;---
-; �R�[���o�b�N�֐�
+; コールバック関数
 !macro MUIEX_FUNCTION_SETUPMENU ENTER LEAVE
 
 	Function "${ENTER}"
@@ -108,47 +108,47 @@
 
 		!insertmacro MUI_HEADER_TEXT_PAGE ${MUIEX_SETUPMENU_HEADER_TEXT} ${MUIEX_SETUPMENU_HEADER_SUB_TEXT}
 
-		; �_�C�A���O�쐬
+		; ダイアログ作成
 		nsDialogs::Create /NOUNLOAD 1018
 		Pop $muiex.sm.SetupMenuPage
 
-		; ���x���e�L�X�g
+		; ラベルテキスト
 		${NSD_CreateLabel} 0 0 100% 30u ${MUIEX_SETUPMENU_INFO}
 		Pop $muiex.sm.InfoText
 
-		; $0 �ޔ�
+		; $0 退避
 		Push $0
 
-		; ���s���e�e�L�X�g�̍쐬
+		; 実行内容テキストの作成
 		StrCpy $0 ""
 
-		; �C���X�g�[����p�X
-		StrCpy $0 "$0�C���X�g�[����F$\r$\n    $INSTDIR$\r$\n$\r$\n"
+		; インストール先パス
+		StrCpy $0 "$0インストール先：$\r$\n    $INSTDIR$\r$\n$\r$\n"
 
-		; �Z�[�u�f�[�^�ۑ���̃��|�[�g
+		; セーブデータ保存先のレポート
 		!ifdef MUIEX_SAVELOCATION_GetReport
 			${MUIEX_SAVELOCATION_InitializeVariables}
 			${MUIEX_SAVELOCATION_GetReport} $1
 			StrCpy $0 "$0$1"
 		!endif
 
-		; �V���[�g�J�b�g�֘A�̃��|�[�g
+		; ショートカット関連のレポート
 		!ifdef MUIEX_SHORTCUTLOCATION_GetReport
 			${MUIEX_SHORTCUTLOCATION_GetReport} $1
 			StrCpy $0 "$0$1"
 		!endif
 
-		; ���݂̓��e�\��
+		; 現在の内容表示
 		nsDialogs::CreateControl /NOUNLOAD "EDIT" \
 			${ES_MULTILINE}|${ES_READONLY}|${WS_VISIBLE}|${WS_CHILD}|${WS_VSCROLL} \
 			${WS_EX_CLIENTEDGE} 0 30u 100% 55u $0
 		Pop $muiex.sm.DetailsText
 
-		; �C���X�g�[�����ύX���邩�ǂ���
+		; インストール先を変更するかどうか
 		${NSD_CreateCheckBox} 20u 95u 100% 12u ${MUIEX_SETUPMENU_INSTALLLOCATION}
 		Pop $muiex.sm.InstallLocationCheckBox
 
-		; ���ɃC���X�g�[������Ă���ꍇ�̓C���X�g�[����̕ύX�͂ł��Ȃ�
+		; 既にインストールされている場合はインストール先の変更はできない
 		${If} ${MUIEX_Installtype} == ${MUIEX_INSTALLTYPE_FULL}
 			EnableWindow $muiex.sm.InstallLocationCheckBox 0
 		${Else}
@@ -160,11 +160,11 @@
 		GetFunctionAddress $0 OnInstallLocationClick
 		nsDialogs::OnClick /NOUNLOAD $muiex.sm.InstallLocationCheckBox $0
 
-		; �Z�[�u�ꏊ��ύX���邩�ǂ���
+		; セーブ場所を変更するかどうか
 		${NSD_CreateCheckBox} 20u 110u 100% 12u ${MUIEX_SETUPMENU_SAVEDATALOCATION}
 		Pop $muiex.sm.SaveDataLocationCheckBox
 
-		; ���ɃC���X�g�[������Ă���A���Z�[�u�f�[�^�̍Ĕz�u�Z�N�V���������݂��Ȃ��Ȃ�ΕύX�͂ł��Ȃ�
+		; 既にインストールされている、かつセーブデータの再配置セクションが存在しないならば変更はできない
 		${If} ${MUIEX_CurrentSaveLocation} != ""
 
 			!ifndef MUIEX_SECID_RELOCATIONSAVEDATA
@@ -184,7 +184,7 @@
 		GetFunctionAddress $0 OnSaveDataLocationClick
 		nsDialogs::OnClick /NOUNLOAD $muiex.sm.SaveDataLocationCheckBox $0
 
-		; �V���[�g�J�b�g�̏ꏊ��ύX���邩�ǂ���
+		; ショートカットの場所を変更するかどうか
 		${NSD_CreateCheckBox} 20u 125u 100% 12u ${MUIEX_SETUPMENU_SHORTCUTLOCATION}
 		Pop $muiex.sm.ShortcutLocationCheckBox
 
@@ -208,7 +208,7 @@
 	FunctionEnd
 
 	;---
-	; �C�x���g�n���h���[
+	; イベントハンドラー
 	Function OnInstallLocationClick
 
 		# $0 == Control handle

@@ -8,7 +8,7 @@
 !include "MUI2.nsh"
 
 ;---
-; UN_MUIEX �S�̂ŗ��p����ϐ�
+; UN_MUIEX 全体で利用する変数
 Var muiex.un.CurrentSaveLocation
 Var muiex.un.CurrentSaveLocationPath
 
@@ -17,10 +17,10 @@ Var muiex.un.CurrentSaveLocationPath
 
 ;---
 ; ${un.MUIEX_Initialize} SAVELOCATION
-; UN_MUIEX ���g���ꍇ�͕K�� un.onInit �ł�����Ăяo���Ă��������B
+; UN_MUIEX を使う場合は必ず un.onInit でこれを呼び出してください。
 ;
-; SAVELOCATION �ɂ͌��݂̃Z�[�u�ꏊ���w�肵�Ă��������B
-; �Z�[�u�f�[�^�������ꍇ�͋󕶎�����w�肵�܂��B
+; SAVELOCATION には現在のセーブ場所を指定してください。
+; セーブデータが無い場合は空文字列を指定します。
 !macro un.MUIEX_InitializeCaller _SAVELOCATION
 	Push `${_SAVELOCATION}`
 	Call un.MUIEX_Initialize
@@ -56,18 +56,18 @@ Var muiex.un.CurrentSaveLocationPath
 
 
 ;---
-; �ǎ��p�C���^�[�t�F�[�X
-; ������A�������݂��ł��܂��� UN_MUIEX �̎d�l��ł͓ǎ��p�ł��B
-; �����ɂ킽���ď������݂��\���ǂ����͕ۏ؂���܂���B
+; 読取専用インターフェース
+; 実装上、書き込みもできますが UN_MUIEX の仕様上では読取専用です。
+; 将来にわたって書き込みが可能かどうかは保証されません。
 !define un.MUIEX_CurrentSaveLocation		`$muiex.un.CurrentSaveLocation`
 !define un.MUIEX_CurrentSaveLocationPath	`$muiex.un.CurrentSaveLocationPath`
 
 ;---
-; �e��l�ύX�p�C���^�[�t�F�[�X
+; 各種値変更用インターフェース
 
 ;---
 ; ${un.MUIEX_SetCurrentSaveLocationPath} PATH
-; MUIEX_UNPAGE_SAVEDATA �ɂ���Đ����ȃp�X���Z�b�g���邽�߂Ɏg����B
+; MUIEX_UNPAGE_SAVEDATA によって正式なパスをセットするために使われる。
 !macro un.MUIEX_SetCurrentSaveLocationPathCaller _PATH
 	Push `${_PATH}`
 	Call un.MUIEX_SetCurrentSaveLocationPath

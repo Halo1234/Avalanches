@@ -13,7 +13,7 @@
 !include Util.nsh
 
 ;---
-; ƒGƒ‰[ˆ——pƒ}ƒNƒ
+; ã‚¨ãƒ©ãƒ¼å‡¦ç†ç”¨ãƒã‚¯ãƒ­
 !macro NSIS_UTILS_ErrorBreakNoAbort _MSG _RETRY_LABEL
 	MessageBox MB_RETRYCANCEL|MB_ICONSTOP "!!!>${_MSG}" IDRETRY ${_RETRY_LABEL}
 !macroend
@@ -26,11 +26,11 @@
 
 ;---
 ; ${OpenExternalInstallerIndex} VAR PATH
-; PATH ‚ªw‚·ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚ğŠJ‚¢‚Ä VAR ‚É•Ô‚·B
-; ‚±‚ÌƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚ÍŠO•”ì¬‚ÌƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚Å‚·B
+; PATH ãŒæŒ‡ã™ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã„ã¦ VAR ã«è¿”ã™ã€‚
+; ã“ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã¯å¤–éƒ¨ä½œæˆã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã§ã™ã€‚
 ;
 ; ${CloseExternalInstallerIndex} VAR
-; “¯ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚é
+; åŒã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹
 !define OpenExternalInstallerIndex		`!insertmacro OpenExternalInstallerIndexCaller`
 !define un.OpenExternalInstallerIndex	`!insertmacro OpenExternalInstallerIndexCaller`
 
@@ -62,7 +62,7 @@
 
 ;---
 ; ${AddExternalInstallerIndex} ID TYPE INDEX
-; (TYPE)INDEX ‚ğ’Ç‰Á‚·‚éB
+; (TYPE)INDEX ã‚’è¿½åŠ ã™ã‚‹ã€‚
 !define AddExternalInstallerIndex		`!insertmacro AddExternalInstallerIndexCaller`
 !define un.AddExternalInstallerIndex	`!insertmacro AddExternalInstallerIndexCaller`
 
@@ -87,9 +87,9 @@
 
 ;---
 ; ${OpenCopyIndex} VAR PATH
-; PATH ‚ªw‚·ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚ğƒRƒs[—p‚ÉŠJ‚¢‚Ä VAR ‚É•Ô‚·B
+; PATH ãŒæŒ‡ã™ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚³ãƒ”ãƒ¼ç”¨ã«é–‹ã„ã¦ VAR ã«è¿”ã™ã€‚
 ; ${OpenDeleteIndex} VAR PATH
-; PATH ‚ªw‚·ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚ğíœ‚ÉŠJ‚¢‚Ä VAR ‚É•Ô‚·B
+; PATH ãŒæŒ‡ã™ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‰Šé™¤ã«é–‹ã„ã¦ VAR ã«è¿”ã™ã€‚
 !define OpenCopyIndex		`!insertmacro OpenCopyIndexCaller`
 !define un.OpenCopyIndex	`!insertmacro OpenCopyIndexCaller`
 
@@ -127,8 +127,8 @@
 
 ;---
 ; ${GetNextIndex} INDEX VAR
-; INDEX ‚ªw‚·ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚©‚çŸ‚Éˆ—‚·‚×‚«s‚ğ VAR ‚É•Ô‚·B
-; INDEX ‚ğŠJ‚­‚É‚Í ${OpenCopyIndex} ‚Ü‚½‚Í ${OpenDeleteIndex} ‚ğg‚Á‚Ä‚­‚¾‚³‚¢B
+; INDEX ãŒæŒ‡ã™ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰æ¬¡ã«å‡¦ç†ã™ã¹ãè¡Œã‚’ VAR ã«è¿”ã™ã€‚
+; INDEX ã‚’é–‹ãã«ã¯ ${OpenCopyIndex} ã¾ãŸã¯ ${OpenDeleteIndex} ã‚’ä½¿ã£ã¦ãã ã•ã„ã€‚
 !define GetNextIndex	`!insertmacro GetNextIndexCaller`
 !define un.GetNextIndex	`!insertmacro GetNextIndexCaller`
 
@@ -151,7 +151,7 @@
 
 ;---
 ; ${CloseIndex} INDEX
-; INDEX ‚ªw‚·ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚éB
+; INDEX ãŒæŒ‡ã™ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹ã€‚
 !define CloseIndex		`!insertmacro CloseIndexCaller`
 !define un.CloseIndex	`!insertmacro CloseIndexCaller`
 
@@ -173,7 +173,7 @@
 
 ;---
 ; ${SafeWriteRegDWORD} KEY NAME VALUE
-; ‰½‚ç‚©‚ÌŒ´ˆö‚É‚æ‚Á‚Ä‘‚«‚İ‚É¸”s‚µ‚½ê‡‚Í Abort ‚µ‚Ü‚·B
+; ä½•ã‚‰ã‹ã®åŸå› ã«ã‚ˆã£ã¦æ›¸ãè¾¼ã¿ã«å¤±æ•—ã—ãŸå ´åˆã¯ Abort ã—ã¾ã™ã€‚
 !define SafeWriteRegDWORD		`!insertmacro SafeWriteRegDWORDCaller`
 !define un.SafeWriteRegDWORD	`!insertmacro SafeWriteRegDWORDCaller`
 
@@ -198,7 +198,7 @@
 		IfErrors SafeWriteRegDWORD_error_break SafeWriteRegDWORD_epilogue
 
 	SafeWriteRegDWORD_error_break:
-		!insertmacro NSIS_UTILS_ErrorBreak "$0\$1$\nƒŒƒWƒXƒgƒŠ‘‚«‚İ‚É¸”s‚µ‚Ü‚µ‚½B" SafeWriteRegDWORD_retry
+		!insertmacro NSIS_UTILS_ErrorBreak "$0\$1$\nãƒ¬ã‚¸ã‚¹ãƒˆãƒªæ›¸ãè¾¼ã¿ã«å¤±æ•—ã—ã¾ã—ãŸã€‚" SafeWriteRegDWORD_retry
 
 	SafeWriteRegDWORD_epilogue:
 		Pop $1
@@ -208,7 +208,7 @@
 
 ;---
 ; ${SafeWriteRegStr} KEY NAME VALUE
-; ‰½‚ç‚©‚ÌŒ´ˆö‚É‚æ‚Á‚Ä‘‚«‚İ‚É¸”s‚µ‚½ê‡‚Í Abort ‚µ‚Ü‚·B
+; ä½•ã‚‰ã‹ã®åŸå› ã«ã‚ˆã£ã¦æ›¸ãè¾¼ã¿ã«å¤±æ•—ã—ãŸå ´åˆã¯ Abort ã—ã¾ã™ã€‚
 !define SafeWriteRegStr		`!insertmacro SafeWriteRegStrCaller`
 !define un.SafeWriteRegStr	`!insertmacro SafeWriteRegStrCaller`
 
@@ -233,7 +233,7 @@
 		IfErrors SafeWriteRegStr_error_break SafeWriteRegStr_epilogue
 
 	SafeWriteRegStr_error_break:
-		!insertmacro NSIS_UTILS_ErrorBreak "$0\$1$\nƒŒƒWƒXƒgƒŠ‘‚«‚İ‚É¸”s‚µ‚Ü‚µ‚½B" SafeWriteRegStr_retry
+		!insertmacro NSIS_UTILS_ErrorBreak "$0\$1$\nãƒ¬ã‚¸ã‚¹ãƒˆãƒªæ›¸ãè¾¼ã¿ã«å¤±æ•—ã—ã¾ã—ãŸã€‚" SafeWriteRegStr_retry
 
 	SafeWriteRegStr_epilogue:
 		Pop $1
@@ -245,11 +245,11 @@
 
 ;---
 ; ${SafeDeleteRegValue} KEY NAME
-; ƒŒƒWƒXƒgƒŠ‚©‚ç’l‚ğíœ‚µ‚Ü‚·B
+; ãƒ¬ã‚¸ã‚¹ãƒˆãƒªã‹ã‚‰å€¤ã‚’å‰Šé™¤ã—ã¾ã™ã€‚
 ;
 ; ${SafeDeleteRegKey} KEY
-; ƒŒƒWƒXƒgƒŠ‚©‚çƒL[‚ğíœ‚µ‚Ü‚·B
-; ’l‚ª‘¶İ‚µ‚È‚¢‚©Aíœ‚Å‚«‚È‚©‚Á‚½ê‡‚ÍƒGƒ‰[ƒtƒ‰ƒO‚ªƒZƒbƒg‚³‚ê‚Ü‚·B
+; ãƒ¬ã‚¸ã‚¹ãƒˆãƒªã‹ã‚‰ã‚­ãƒ¼ã‚’å‰Šé™¤ã—ã¾ã™ã€‚
+; å€¤ãŒå­˜åœ¨ã—ãªã„ã‹ã€å‰Šé™¤ã§ããªã‹ã£ãŸå ´åˆã¯ã‚¨ãƒ©ãƒ¼ãƒ•ãƒ©ã‚°ãŒã‚»ãƒƒãƒˆã•ã‚Œã¾ã™ã€‚
 !define SafeDeleteRegValue		`!insertmacro SafeDeleteRegValueCaller`
 !define un.SafeDeleteRegValue	`!insertmacro SafeDeleteRegValueCaller`
 
@@ -271,7 +271,7 @@
 		IfErrors SafeDeleteRegValue_error_break SafeDeleteRegValue_epilogue
 
 	SafeDeleteRegValue_error_break:
-		!insertmacro NSIS_UTILS_ErrorBreak "$0$1$\nƒŒƒWƒXƒgƒŠ’l‚ğíœ‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B" SafeDeleteRegValue_retry
+		!insertmacro NSIS_UTILS_ErrorBreak "$0$1$\nãƒ¬ã‚¸ã‚¹ãƒˆãƒªå€¤ã‚’å‰Šé™¤ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚" SafeDeleteRegValue_retry
 
 	SafeDeleteRegValue_epilogue:
 		Pop $1
@@ -292,14 +292,14 @@
 
 	Exch $0 ; _KEY
 
-	; –{—ˆ‚È‚ç /ifempty w’è‚Å‚¢‚«‚½‚¢‚ª–Ê“|‚È‚Ì‚Å‚Æ‚è‚ ‚¦‚¸“®‚­‚æ‚¤‚É‚·‚é
+	; æœ¬æ¥ãªã‚‰ /ifempty æŒ‡å®šã§ã„ããŸã„ãŒé¢å€’ãªã®ã§ã¨ã‚Šã‚ãˆãšå‹•ãã‚ˆã†ã«ã™ã‚‹
 	;DeleteRegKey /ifempty ${NSIS_UTILS_REGKEY_ROOT} $0
 	DeleteRegKey ${NSIS_UTILS_REGKEY_ROOT} $0
 
 	IfErrors SafeDeleteRegKey_error_break SafeDeleteRegKey_epilogue
 
 	SafeDeleteRegKey_error_break:
-		MessageBox MB_OK "$0 íœ‚É¸”s‚µ‚Ü‚µ‚½B"
+		MessageBox MB_OK "$0 å‰Šé™¤ã«å¤±æ•—ã—ã¾ã—ãŸã€‚"
 
 	SafeDeleteRegKey_epilogue:
 		Pop $0
@@ -309,8 +309,8 @@
 
 ;---
 ; ${SafeFileCopy} SRC DEST
-; SRC ‚Ìƒtƒ@ƒCƒ‹‚ğ DEST ‚ÉƒRƒs[‚·‚éB
-; ‰½‚ç‚©‚ÌŒ´ˆö‚É‚æ‚Á‚Äƒtƒ@ƒCƒ‹ƒRƒs[‚ª¸”s‚µ‚½ê‡‚Í Abort ‚µ‚Ü‚·B
+; SRC ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ DEST ã«ã‚³ãƒ”ãƒ¼ã™ã‚‹ã€‚
+; ä½•ã‚‰ã‹ã®åŸå› ã«ã‚ˆã£ã¦ãƒ•ã‚¡ã‚¤ãƒ«ã‚³ãƒ”ãƒ¼ãŒå¤±æ•—ã—ãŸå ´åˆã¯ Abort ã—ã¾ã™ã€‚
 !define SafeFileCopy	`!insertmacro SafeFileCopyCaller`
 !define un.SafeFileCopy	`!insertmacro SafeFileCopyCaller`
 
@@ -337,7 +337,7 @@
 		IfErrors SafeFileCopy_error_break SafeFileCopy_epilogue
 
 	SafeFileCopy_error_break:
-		!insertmacro NSIS_UTILS_ErrorBreak "$0$\nƒtƒ@ƒCƒ‹‚ÌƒRƒs[‚É¸”s‚µ‚Ü‚µ‚½B" SafeFileCopy_retry
+		!insertmacro NSIS_UTILS_ErrorBreak "$0$\nãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚³ãƒ”ãƒ¼ã«å¤±æ•—ã—ã¾ã—ãŸã€‚" SafeFileCopy_retry
 
 	SafeFileCopy_epilogue:
 		Pop $1
@@ -350,7 +350,7 @@
 ; ${SafeFileOpenReadOnly} VAR PATH
 ; ${SafeFileOpenWrite} VAR PATH
 ; ${SafeFileOpenAppend} VAR PATH
-; PATH ƒtƒ@ƒCƒ‹‚ğŠJ‚¢‚Ä VAR ‚Éƒnƒ“ƒhƒ‹‚ğ•Ô‚·B
+; PATH ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã„ã¦ VAR ã«ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™ã€‚
 !define SafeFileOpenReadOnly		`!insertmacro SafeFileOpenReadOnlyCaller`
 !define un.SafeFileOpenReadOnly		`!insertmacro SafeFileOpenReadOnlyCaller`
 
@@ -375,7 +375,7 @@
 	SafeFileOpenReadOnly_notfound:
 	SafeFileOpenReadOnly_error_break:
 		ClearErrors
-		!insertmacro NSIS_UTILS_ErrorBreakNoAbort "$0$\nƒtƒ@ƒCƒ‹‚ªŒ©‚Â‚©‚ç‚È‚¢‚©AŠJ‚­‚±‚Æ‚ª‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B" SafeFileOpenReadOnly_retry
+		!insertmacro NSIS_UTILS_ErrorBreakNoAbort "$0$\nãƒ•ã‚¡ã‚¤ãƒ«ãŒè¦‹ã¤ã‹ã‚‰ãªã„ã‹ã€é–‹ãã“ã¨ãŒã§ãã¾ã›ã‚“ã§ã—ãŸã€‚" SafeFileOpenReadOnly_retry
 
 	SafeFileOpenReadOnly_epilogue:
 		Exch
@@ -405,7 +405,7 @@
 
 	SafeFileOpenWrite_error_break:
 		ClearErrors
-		!insertmacro NSIS_UTILS_ErrorBreakNoAbort "$0$\nƒtƒ@ƒCƒ‹‚ğŠJ‚­‚±‚Æ‚ª‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B" SafeFileOpenWrite_retry
+		!insertmacro NSIS_UTILS_ErrorBreakNoAbort "$0$\nãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ãã“ã¨ãŒã§ãã¾ã›ã‚“ã§ã—ãŸã€‚" SafeFileOpenWrite_retry
 
 	SafeFileOpenWrite_epilogue:
 		Exch
@@ -435,7 +435,7 @@
 
 	SafeFileOpenAppend_error_break:
 		ClearErrors
-		!insertmacro NSIS_UTILS_ErrorBreakNoAbort "$0$\nƒtƒ@ƒCƒ‹‚ğŠJ‚­‚±‚Æ‚ª‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B" SafeFileOpenAppend_retry
+		!insertmacro NSIS_UTILS_ErrorBreakNoAbort "$0$\nãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ãã“ã¨ãŒã§ãã¾ã›ã‚“ã§ã—ãŸã€‚" SafeFileOpenAppend_retry
 
 	SafeFileOpenAppend_epilogue:
 		Exch
@@ -447,7 +447,7 @@
 
 ;---
 ; ${SafeDelete} PATH
-; PATH ‚ğíœ‚·‚éB
+; PATH ã‚’å‰Šé™¤ã™ã‚‹ã€‚
 !define SafeDelete		`!insertmacro SafeDeleteCaller`
 !define un.SafeDelete	`!insertmacro SafeDeleteCaller`
 
@@ -478,9 +478,9 @@
 
 ;---
 ; ${DeleteIndexFile} INDEX_DIR INDEX_NAME
-; $INDEX_DIR\$INDEX_NAME ‚Åw’è‚µ‚½ $INDEX_DIR\$INDEX_NAME ƒtƒ@ƒCƒ‹‚ªŠÇ—‚·‚éƒtƒ@ƒCƒ‹‚âƒtƒHƒ‹ƒ_‚ğ‚·‚×‚Äíœ‚µ‚Ü‚·B
-; ÅŒã‚É $INDEX_DIR\$INDEX_NAME ƒtƒ@ƒCƒ‹‚àíœ‚µ‚Ü‚·B
-; ‚±‚Ìƒ}ƒNƒ‚ÍŠÇ—ŠO‚Ìƒtƒ@ƒCƒ‹‚âƒtƒHƒ‹ƒ_‚ÍŒˆ‚µ‚Äíœ‚µ‚Ü‚¹‚ñB
+; $INDEX_DIR\$INDEX_NAME ã§æŒ‡å®šã—ãŸ $INDEX_DIR\$INDEX_NAME ãƒ•ã‚¡ã‚¤ãƒ«ãŒç®¡ç†ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã‚„ãƒ•ã‚©ãƒ«ãƒ€ã‚’ã™ã¹ã¦å‰Šé™¤ã—ã¾ã™ã€‚
+; æœ€å¾Œã« $INDEX_DIR\$INDEX_NAME ãƒ•ã‚¡ã‚¤ãƒ«ã‚‚å‰Šé™¤ã—ã¾ã™ã€‚
+; ã“ã®ãƒã‚¯ãƒ­ã¯ç®¡ç†å¤–ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚„ãƒ•ã‚©ãƒ«ãƒ€ã¯æ±ºã—ã¦å‰Šé™¤ã—ã¾ã›ã‚“ã€‚
 !define DeleteIndexFile		`!insertmacro DeleteIndexFileCaller`
 !define un.DeleteIndexFile	`!insertmacro DeleteIndexFileCaller`
 
@@ -500,7 +500,7 @@
 	Push $R1 ; File handle.
 	Push $R2 ; works
 
-	; INDEX ‚ª‘¶İ‚µ‚È‚¢‚È‚ç‚Î‰½‚à‚µ‚È‚¢
+	; INDEX ãŒå­˜åœ¨ã—ãªã„ãªã‚‰ã°ä½•ã‚‚ã—ãªã„
 	IfFileExists "$0\$1" 0 DeleteIndexFile_epilogue
 
 	${OpenDeleteIndex} $R1 "$0\$1"

@@ -2,7 +2,7 @@
 ; * $Revision: 148 $
 ; *
 ; * HOWTO:
-; * ƒy[ƒW‚ð‘}“ü‚µ‚½‚¢êŠ‚É !insertmacro MUIEX_PAGE_DIRECTORYEX ‚ð‘}“ü‚µ‚Ä‚­‚¾‚³‚¢B
+; * ãƒšãƒ¼ã‚¸ã‚’æŒ¿å…¥ã—ãŸã„å ´æ‰€ã« !insertmacro MUIEX_PAGE_DIRECTORYEX ã‚’æŒ¿å…¥ã—ã¦ãã ã•ã„ã€‚
 ;**/
 
 !ifndef GUARD_DIRECTORYEX_NSH
@@ -29,7 +29,7 @@
 			Abort
 		${EndIf}
 
-		; C•œƒCƒ“ƒXƒg[ƒ‹‚Ìê‡‚Í‚±‚±‚ð abort ‚·‚é
+		; ä¿®å¾©ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã®å ´åˆã¯ã“ã“ã‚’ abort ã™ã‚‹
 		${If} ${MUIEX_Installtype} == ${MUIEX_INSTALLTYPE_FULL}
 			Abort
 		${EndIf}

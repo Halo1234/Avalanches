@@ -2,7 +2,7 @@
 ; * $Revision: 148 $
 ; *
 ; * HOWTO:
-; * ƒy[ƒW‚ð‘}“ü‚µ‚½‚¢êŠ‚É !insertmacro MUIEX_UNPAGE_CONFIRM ‚ð‘}“ü‚µ‚Ä‚­‚¾‚³‚¢B
+; * ãƒšãƒ¼ã‚¸ã‚’æŒ¿å…¥ã—ãŸã„å ´æ‰€ã« !insertmacro MUIEX_UNPAGE_CONFIRM ã‚’æŒ¿å…¥ã—ã¦ãã ã•ã„ã€‚
 ;**/
 
 ;---
@@ -12,7 +12,7 @@
 !macroend
 
 ;---
-; ƒCƒ“ƒ^[ƒtƒF[ƒX
+; ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
 !macro MUIEX_UN_CONFIRM_INTERFACE
 	!ifndef MUIEX_UN_CONFIRM_INTERFACE
 		!define MUIEX_UN_CONFIRM_INTERFACE
@@ -22,11 +22,11 @@
 		Var muiex.un.sc.DetailsText
 	!endif
 
-	!insertmacro MUI_DEFAULT MUIEX_UN_CONFIRM_HEADER_TEXT		"ƒZƒbƒgƒAƒbƒv“à—e‚ÌŠm”F"
-	!insertmacro MUI_DEFAULT MUIEX_UN_CONFIRM_HEADER_SUB_TEXT	"ƒZƒbƒgƒAƒbƒv“à—e‚ÌŠm”F‚ð‚µ‚Ä‰º‚³‚¢B"
-	!insertmacro MUI_DEFAULT MUIEX_UN_CONFIRM_INFO				"ƒZƒbƒgƒAƒbƒv‚ÍˆÈ‰º‚Ì“à—e‚ðŽÀs‚µ‚Ü‚·B"
+	!insertmacro MUI_DEFAULT MUIEX_UN_CONFIRM_HEADER_TEXT		"ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—å†…å®¹ã®ç¢ºèª"
+	!insertmacro MUI_DEFAULT MUIEX_UN_CONFIRM_HEADER_SUB_TEXT	"ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—å†…å®¹ã®ç¢ºèªã‚’ã—ã¦ä¸‹ã•ã„ã€‚"
+	!insertmacro MUI_DEFAULT MUIEX_UN_CONFIRM_INFO				"ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã¯ä»¥ä¸‹ã®å†…å®¹ã‚’å®Ÿè¡Œã—ã¾ã™ã€‚"
 
-	!insertmacro MUI_DEFAULT MUIEX_UN_CONFIRM_INSTALLLOCATION		"ƒCƒ“ƒXƒg[ƒ‹æF"
+	!insertmacro MUI_DEFAULT MUIEX_UN_CONFIRM_INSTALLLOCATION		"ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«å…ˆï¼š"
 
 	!ifdef MUIEX_UNPAGE_SAVEDATA_USED
 		!insertmacro un.MUIEX_SAVEDATA_GetReport
@@ -35,7 +35,7 @@
 !macroend
 
 ;---
-; éŒ¾
+; å®£è¨€
 !macro MUIEX_UN_PAGEDECLARATION_CONFIRM
 	!insertmacro MUIEX_UN_CONFIRM_INTERFACE
 
@@ -47,7 +47,7 @@
 !macroend
 
 ;---
-; ƒR[ƒ‹ƒoƒbƒNŠÖ”
+; ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 !macro MUIEX_UN_FUNCTION_CONFIRM ENTER LEAVE
 
 	Function "${ENTER}"
@@ -59,27 +59,27 @@
 
 		!insertmacro MUI_HEADER_TEXT_PAGE ${MUIEX_UN_CONFIRM_HEADER_TEXT} ${MUIEX_UN_CONFIRM_HEADER_SUB_TEXT}
 
-		; ƒ_ƒCƒAƒƒOì¬
+		; ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ä½œæˆ
 		nsDialogs::Create /NOUNLOAD 1018
 		Pop $muiex.un.sc.ConfirmPage
 
-		; ƒ‰ƒxƒ‹ƒeƒLƒXƒg
+		; ãƒ©ãƒ™ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ
 		${NSD_CreateLabel} 0 0 100% 15u ${MUIEX_UN_CONFIRM_INFO}
 		Pop $muiex.un.sc.InfoText
 
-		; ŽÀs“à—eƒeƒLƒXƒg‚Ìì¬
+		; å®Ÿè¡Œå†…å®¹ãƒ†ã‚­ã‚¹ãƒˆã®ä½œæˆ
 		StrCpy $0 ""
 
-		; ƒCƒ“ƒXƒg[ƒ‹æƒpƒX
+		; ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«å…ˆãƒ‘ã‚¹
 		StrCpy $0 "$0${MUIEX_UN_CONFIRM_INSTALLLOCATION}$\r$\n    $INSTDIR$\r$\n$\r$\n"
 
-		; ƒZ[ƒuƒf[ƒ^•Û‘¶æ‚ÌƒŒƒ|[ƒg
+		; ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ä¿å­˜å…ˆã®ãƒ¬ãƒãƒ¼ãƒˆ
 		!ifdef un.MUIEX_SAVEDATA_GetReport
 			${un.MUIEX_SAVEDATA_GetReport} $1
 			StrCpy $0 "$0$1"
 		!endif
 
-		; “à—e•\Ž¦
+		; å†…å®¹è¡¨ç¤º
 		nsDialogs::CreateControl /NOUNLOAD "EDIT" \
 			${ES_MULTILINE}|${ES_READONLY}|${WS_VISIBLE}|${WS_CHILD}|${WS_VSCROLL} \
 			${WS_EX_CLIENTEDGE} 0 20u 100% 120u $0

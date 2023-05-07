@@ -1,7 +1,7 @@
 !include "configure.nsh"
 
 ; NOTE:
-; ŠO•”ì¬ƒCƒ“ƒXƒg[ƒ‰‘Î‰‚Ì‚½‚ß‚ÌŒˆ‚ß“à—pƒpƒ‰ƒ[ƒ^
+; å¤–éƒ¨ä½œæˆã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ©å¯¾å¿œã®ãŸã‚ã®æ±ºã‚å†…ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 !define NSIS_EXT_UTILS_REGKEY_ROOT	HKLM
 
 !define REG_EXT_ROOT		"Software\${VENDER_J}"
@@ -11,7 +11,7 @@
 
 
 ;---
-; ƒCƒ“ƒXƒg[ƒ‰
+; ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ©
 ;Var InstallDir_
 Var ProductDir
 Var IndexFile
@@ -21,7 +21,7 @@ Section "UpdateFiles" SEC_UPDATE_FILES_ID
 
 	SetOutPath "$ProductDir"
 
-	; NOTE: ‚±‚±‚Å 'Setup.log' “Ç‚İ‚Ş
+	; NOTE: ã“ã“ã§ 'Setup.log' èª­ã¿è¾¼ã‚€
 	${OpenExternalInstallerIndex} $IndexFile "$ProductDir${EXT_INDEX_NAME}"
 
 	!include "install_components"
@@ -35,10 +35,10 @@ SectionEnd
 #!define MUI_FINISHPAGE_SHOWREADME	"$PRODUCT_DIR\readme.txt"
 !insertmacro MUI_PAGE_FINISH
 
-; ƒCƒ“ƒXƒg[ƒ‰[‚Ì‰Šú‰»
+; ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ©ãƒ¼ã®åˆæœŸåŒ–
 Function .onInit
 
-	; $0/$1 ‘Ş”ğ
+	; $0/$1 é€€é¿
 	Push $0
 	Push $1
 
@@ -46,23 +46,23 @@ Function .onInit
 
 	ReadRegStr $0 ${NSIS_EXT_UTILS_REGKEY_ROOT} "${REG_EXT_PRODUCT}" "Directory"
 	IfErrors 0 add_update_components
-	MessageBox MB_OK "${PRODUCT_J} ‚ªƒCƒ“ƒXƒg[ƒ‹‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB"
+	MessageBox MB_OK "${PRODUCT_J} ãŒã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚"
 	Abort
 
 	add_update_components:
 		StrCpy $ProductDir "$0"
 
-		;MessageBox MB_OK "${PRODUCT_J} ‚Í $ProductDir ‚ÉƒCƒ“ƒXƒg[ƒ‹‚³‚ê‚Ä‚¢‚Ü‚·B"
+		;MessageBox MB_OK "${PRODUCT_J} ã¯ $ProductDir ã«ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã•ã‚Œã¦ã„ã¾ã™ã€‚"
 
 	InitPluginsDir
 
-	; $0/$1 •œ‹A
+	; $0/$1 å¾©å¸°
 	Pop $1
 	Pop $0
 
 FunctionEnd
 
-; Œ¾Œêİ’è
+; è¨€èªè¨­å®š
 !insertmacro MUI_LANGUAGE	"Japanese"
 
 

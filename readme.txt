@@ -160,12 +160,6 @@ Avalanches（以下、本開発環境）は複数のソフトウェアによって構築されています。
 >>   https://nsis.sourceforge.io/Download
 >>
 >>   version 3.06.1 で動作確認しました。
->>
->> 現在、下記のようなワーニングがでますが無視してかまいません。
->> そのうち対応するかもしれません。
->>
->> 1 warnings:
->>  7998: ANSI targets are deprecated
 
 
 

@@ -5,7 +5,7 @@
 !ifndef GUARD_MODMUIEX_NSH
 !define GUARD_MODMUIEX_NSH
 
-; MUI2 �Ɉˑ�
+; MUI2 に依存
 !include "MUI2.nsh"
 
 !insertmacro MUI_DEFAULT MUIEX_LOCATION_DOCUMENTSFOLDER	"$$(personalpath)"

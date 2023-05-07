@@ -2,24 +2,24 @@
 ; * $Revision: 148 $
 ; *
 ; * HOWTO:
-; * �y�[�W��}���������ꏊ�� !insertmacro MUIEX_UNPAGE_SAVEDATA ��}�����Ă��������B
+; * ページを挿入したい場所に !insertmacro MUIEX_UNPAGE_SAVEDATA を挿入してください。
 ; *
-; * ���̃y�[�W���g���ꍇ�̓Z�[�u�f�[�^�폜�p�̃Z�N�V�������`����K�v������܂��B
-; * �Z�N�V������ ID �� MUIEX_UN_SECID_REMOVESAVEDATA �ƒ�`���Ă��������B
-; * �Z�N�V������ ID ����`����Ȃ������ꍇ���̃y�[�W�͕\������܂���B
-; *
-; * NOTE:
-; * ${un.MUIEX_SAVEDATA_GetReport} �ł��̃y�[�W�őI�����ꂽ���e�ɂ���
-; * �l�Ԃ��ǂ߂�`�Ń��|�[�g���擾���鎖���ł��܂��B
-; * ���̊֐��}�N�����g���ɂ͎��O�� !insertmacro ${un.MUIEX_SAVEDATA_GetReport} ��}������K�v������܂��B
-; * �������AMUIEX_UNPAGE_CONFIRM ���g���ꍇ�͂������g���K�v�͂Ȃ��ł��傤�B
+; * このページを使う場合はセーブデータ削除用のセクションを定義する必要があります。
+; * セクションの ID を MUIEX_UN_SECID_REMOVESAVEDATA と定義してください。
+; * セクションの ID が定義されなかった場合このページは表示されません。
 ; *
 ; * NOTE:
-; * MUIEX_UNPAGE_SAVEDATA �� !insertmacro ����O�ɒ�`��ǉ����鎖��
-; * �e�R���g���[���� enable ��Ԃ�ύX���鎖���ł��܂��B
-; * ������`���Ȃ���΃f�t�H���g�l���g���܂��B
+; * ${un.MUIEX_SAVEDATA_GetReport} でこのページで選択された内容について
+; * 人間が読める形でレポートを取得する事ができます。
+; * この関数マクロを使うには事前に !insertmacro ${un.MUIEX_SAVEDATA_GetReport} を挿入する必要があります。
+; * ただし、MUIEX_UNPAGE_CONFIRM を使う場合はこれらを使う必要はないでしょう。
 ; *
-; * �e��`�̖��O�ƃf�t�H���g�l�ł��B
+; * NOTE:
+; * MUIEX_UNPAGE_SAVEDATA を !insertmacro する前に定義を追加する事で
+; * 各コントロールの enable 状態を変更する事ができます。
+; * 何も定義しなければデフォルト値が使われます。
+; *
+; * 各定義の名前とデフォルト値です。
 ; * +---------+-------+
 ; * | status  | value |
 ; * +---------+-------+
@@ -48,7 +48,7 @@
 !macroend
 
 ;---
-; �C���^�[�t�F�[�X
+; インターフェース
 !macro MUIEX_UN_SAVEDATA_INTERFACE
 	!ifndef MUIEX_UN_SAVEDATA_INTERFACE
 		!define MUIEX_UN_SAVEDATA_INTERFACE
@@ -61,14 +61,14 @@
 		Var muiex.un.sd.KeepRadioButton
 	!endif
 
-	!insertmacro MUI_DEFAULT MUIEX_UN_SAVEDATA_HEADER_TEXT		"�Z�[�u�f�[�^"
-	!insertmacro MUI_DEFAULT MUIEX_UN_SAVEDATA_HEADER_SUB_TEXT	"�Z�[�u�f�[�^���폜���邩�A�c���Ă������I���ł��܂��B"
+	!insertmacro MUI_DEFAULT MUIEX_UN_SAVEDATA_HEADER_TEXT		"セーブデータ"
+	!insertmacro MUI_DEFAULT MUIEX_UN_SAVEDATA_HEADER_SUB_TEXT	"セーブデータを削除するか、残しておくか選択できます。"
 	!insertmacro MUI_DEFAULT MUIEX_UN_SAVEDATA_INFO				\
-		"�Z�[�u�f�[�^�͌�Łu�A�v���P�[�V�����̒ǉ��ƍ폜�v����폜���鎖���\�ł��B$\n��x�폜�����Z�[�u�f�[�^�͌��ɂ͖߂�܂���B"
+		"セーブデータは後で「アプリケーションの追加と削除」から削除する事も可能です。$\n一度削除したセーブデータは元には戻りません。"
 
-	!insertmacro MUI_DEFAULT MUIEX_UN_SAVEDATA_OPEN		"�Z�[�u�f�[�^�ۑ�����J��"
-	!insertmacro MUI_DEFAULT MUIEX_UN_SAVEDATA_REMOVE	"�Z�[�u�f�[�^���폜����B"
-	!insertmacro MUI_DEFAULT MUIEX_UN_SAVEDATA_KEEP		"�Z�[�u�f�[�^���c���B"
+	!insertmacro MUI_DEFAULT MUIEX_UN_SAVEDATA_OPEN		"セーブデータ保存先を開く"
+	!insertmacro MUI_DEFAULT MUIEX_UN_SAVEDATA_REMOVE	"セーブデータを削除する。"
+	!insertmacro MUI_DEFAULT MUIEX_UN_SAVEDATA_KEEP		"セーブデータを残す。"
 
 	!insertmacro MUI_DEFAULT MUIEX_UN_SAVEDATA_PATH_SUFFIX					""
 	!insertmacro MUI_DEFAULT MUIEX_UN_SAVEDATA_DOCUMENTSFOLDER_SUFFIX		`${MUIEX_UN_SAVEDATA_PATH_SUFFIX}`
@@ -91,10 +91,10 @@
 !macroend
 
 ;---
-; �錾
+; 宣言
 !macro MUIEX_UN_PAGEDECLARATION_SAVEDATA
 
-	; �Z�[�u�f�[�^�폜�p�̃Z�N�V��������`����Ă��Ȃ���΃y�[�W��\�����Ȃ�
+	; セーブデータ削除用のセクションが定義されていなければページを表示しない
 	!ifdef MUIEX_UN_SECID_REMOVESAVEDATA
 
 		!insertmacro MUIEX_UN_SAVEDATA_INTERFACE
@@ -109,7 +109,7 @@
 !macroend
 
 ;---
-; �R�[���o�b�N�֐�
+; コールバック関数
 !macro MUIEX_UN_FUNCTION_SAVEDATA ENTER LEAVE
 
 	Function "${ENTER}"
@@ -120,29 +120,29 @@
 
 		!insertmacro MUI_HEADER_TEXT_PAGE ${MUIEX_UN_SAVEDATA_HEADER_TEXT} ${MUIEX_UN_SAVEDATA_HEADER_SUB_TEXT}
 
-		; �_�C�A���O�쐬
+		; ダイアログ作成
 		nsDialogs::Create /NOUNLOAD 1018
 		Pop $muiex.un.sd.SaveDataPage
 
-		; ���x���e�L�X�g
+		; ラベルテキスト
 		${NSD_CreateLabel} 0 0 100% 30u ${MUIEX_UN_SAVEDATA_INFO}
 		Pop $muiex.un.sd.InfoText
 
-		; �����ȃZ�[�u�f�[�^�ۑ��ꏊ�̃p�X���Z�b�g����
+		; 正式なセーブデータ保存場所のパスをセットする
 		${un.MUIEX_SAVEDATA_GetSaveLocationPath} $0
 		${un.MUIEX_SetCurrentSaveLocationPath} $0
 
-		; �p�X�\���p�G�f�B�b�g
+		; パス表示用エディット
 		nsDialogs::CreateControl /NOUNLOAD "EDIT" ${ES_READONLY}|${WS_VISIBLE}|${WS_CHILD} ${WS_EX_CLIENTEDGE} 0 55 100% 12u $0
 		Pop $muiex.un.sd.SaveDataPathEditBox
 
-		; �Z�[�u�f�[�^�ۑ�����J�������N
+		; セーブデータ保存先を開くリンク
 		${NSD_CreateLink} 0 55u 100% 12u ${MUIEX_UN_SAVEDATA_OPEN}
 		Pop $muiex.un.sd.OpenLink
 		GetFunctionAddress $0 un.onOpenClick
 		nsDialogs::OnClick /NOUNLOAD $muiex.un.sd.OpenLink $0
 
-		; �Z�[�u�f�[�^���폜����B
+		; セーブデータを削除する。
 		${NSD_CreateRadioButton} 10u 80u 100% 12u ${MUIEX_UN_SAVEDATA_REMOVE}
 		Pop $muiex.un.sd.RemoveRadioButton
 
@@ -150,7 +150,7 @@
 		GetFunctionAddress $0 un.onRemoveClick
 		nsDialogs::OnClick /NOUNLOAD $muiex.un.sd.RemoveRadioButton $0
 
-		; �Z�[�u�f�[�^���c���B�i�f�t�H���g�`�F�b�N�j
+		; セーブデータを残す。（デフォルトチェック）
 		${NSD_CreateRadioButton} 10u 95u 100% 12u ${MUIEX_UN_SAVEDATA_KEEP}
 		Pop $muiex.un.sd.KeepRadioButton
 
@@ -158,7 +158,7 @@
 		GetFunctionAddress $0 un.onKeepClick
 		nsDialogs::OnClick /NOUNLOAD $muiex.un.sd.KeepRadioButton $0
 
-		; �`�F�b�N��Ԑݒ�
+		; チェック状態設定
 		${un.MUIEX_SAVEDATA_SyncRadioButton} $muiex.un.sd.RemoveRadioButton $muiex.un.sd.KeepRadioButton
 
 		Pop $0
@@ -174,7 +174,7 @@
 	FunctionEnd
 
 	;---
-	; �C�x���g�n���h���[
+	; イベントハンドラー
 
 	Function un.onOpenClick
 
@@ -215,7 +215,7 @@
 
 ;---
 ; ${MUIEX_SAVEDATA_GetReport} VAR
-; ���|�[�g�� VAR �ɕԂ��B
+; レポートを VAR に返す。
 !macro un.MUIEX_SAVEDATA_GetReportCaller _VAR
 	Call un.MUIEX_SAVEDATA_GetReport
 	Pop `${_VAR}`
@@ -230,17 +230,17 @@
 			Push $0
 
 			${un.MUIEX_SAVEDATA_GetSaveLocationPath} $0
-			StrCpy $0 "�Z�[�u�f�[�^�ۑ���F$\r$\n    $0$\r$\n"
+			StrCpy $0 "セーブデータ保存先：$\r$\n    $0$\r$\n"
 
 			!insertmacro SectionFlagIsSet ${MUIEX_UN_SECID_REMOVESAVEDATA} ${SF_SELECTED} SyncRadioButton_selected SyncRadioButton_notselected
 
 			SyncRadioButton_selected:
-				StrCpy $0 "$0    �Z�[�u�f�[�^���폜���܂��B$\r$\n"
+				StrCpy $0 "$0    セーブデータを削除します。$\r$\n"
 				GoTo GetReport_done
 
 			SyncRadioButton_notselected:
-				StrCpy $0 "$0    �Z�[�u�f�[�^���c���܂��B$\r$\n"
-				StrCpy $0 "$0    ��ō폜�������ꍇ�́u�A�v���P�[�V�����̒ǉ��ƍ폜�v����폜���鎖���ł��܂��B$\r$\n"
+				StrCpy $0 "$0    セーブデータを残します。$\r$\n"
+				StrCpy $0 "$0    後で削除したい場合は「アプリケーションの追加と削除」から削除する事ができます。$\r$\n"
 				GoTo GetReport_done
 
 			GetReport_done:
@@ -255,7 +255,7 @@
 
 
 ;---
-; �����p���[�e�B���e�B
+; 内部用ユーティリティ
 
 ;---
 ; ${un.MUIEX_SAVEDATA_SyncRadioButton} SECID RMID KPID

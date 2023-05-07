@@ -9,7 +9,7 @@
 !include "WinVer.nsh"
 
 ;---
-; MUIEX �S�̂ŗ��p����ϐ�
+; MUIEX 全体で利用する変数
 Var muiex.IsChangeInstallLocation
 Var muiex.IsChangeSaveLocation
 Var muiex.IsConfigureShortcutItems
@@ -32,18 +32,18 @@ Var muiex.CurrentSaveLocationPath
 
 ;---
 ; ${MUIEX_Initialize} TYPE
-; MUIEX ���g���ꍇ�͕K�� .onInit �ł�����Ăяo���Ă��������B
+; MUIEX を使う場合は必ず .onInit でこれを呼び出してください。
 ;
-; TYPE �ɂ͈ȉ��̒l�̂����ꂩ��n���Ă��������B
+; TYPE には以下の値のいずれかを渡してください。
 ; +------------+-------------------------------------------------------------+
 ; |    TYPE    |                         DESCRIPTION                         |
-; | "Full"     | ���ɃC���X�g�[������Ă���̂ŏC���C���X�g�[����v������B  |
-; | "SaveOnly" | �Z�[�u�f�[�^�݂̂��C���X�g�[������Ă���B                  |
-; | ""         | �V�K�C���X�g�[����v������B                                |
+; | "Full"     | 既にインストールされているので修復インストールを要求する。  |
+; | "SaveOnly" | セーブデータのみがインストールされている。                  |
+; | ""         | 新規インストールを要求する。                                |
 ; +------------+-------------------------------------------------------------+
 ;
-; SAVELOCATION �ɂ͌��݂̃Z�[�u�ꏊ���w�肵�Ă��������B
-; �Z�[�u�f�[�^�������ꍇ�͋󕶎�����w�肵�܂��B
+; SAVELOCATION には現在のセーブ場所を指定してください。
+; セーブデータが無い場合は空文字列を指定します。
 !macro MUIEX_InitializeCaller _TYPE _SAVELOCATION
 	Push `${_SAVELOCATION}`
 	Push `${_TYPE}`
@@ -79,40 +79,40 @@ Var muiex.CurrentSaveLocationPath
 			Exch
 			Exch $1 ; _SAVELOCATION
 
-			; �C���C���X�g�[�����ăC���X�g�[�����V�K�C���X�g�[��������
+			; 修復インストールか再インストールか新規インストールか判定
 			${If} $0 == `${MUIEX_INSTALLTYPE_FULL}`
 				${OrIf} $0 == `${MUIEX_INSTALLTYPE_SAVEONLY}`
 				StrCpy $muiex.InstallType $0
-				; �Z�[�u�f�[�^�̈ړ����K�v��������Ȃ��̂Ō��݂̃Z�[�u�ꏊ���L�^���Ă���
+				; セーブデータの移動が必要かもしれないので現在のセーブ場所を記録しておく
 				StrCpy $muiex.CurrentSaveLocation $1
-				; �A���C���X�g�[���������݂͕K�v�Ȃ�
+				; アンインストーラ書き込みは必要ない
 				!ifdef MUIEX_SECID_WRITEUNINSTALLER
 					!insertmacro UnselectSection ${MUIEX_SECID_WRITEUNINSTALLER}
 				!endif
 			${ElseIf} $0 == `${MUIEX_INSTALLTYPE_NORMAL}`
 				StrCpy $muiex.InstallType $0
-				; �A���C���X�g�[���������݂��K�v
+				; アンインストーラ書き込みが必要
 				!ifdef MUIEX_SECID_WRITEUNINSTALLER
 					!insertmacro SelectSection ${MUIEX_SECID_WRITEUNINSTALLER}
 				!endif
 			${Else}
-				MessageBox MB_OK|MB_ICONSTOP "���݂̃C���X�g�[���^�C�v�����m�̏�Ԃł��B"
-				Abort "���݂̃C���X�g�[���^�C�v�����m�̏�Ԃł��B"
+				MessageBox MB_OK|MB_ICONSTOP "現在のインストールタイプが未知の状態です。"
+				Abort "現在のインストールタイプが未知の状態です。"
 			${EndIf}
 
 			${MUIEX_ChangeInstallLocation}
 			${MUIEX_FixSaveLocation}
 			${MUIEX_DefaultShortcutItems}
 
-			; AppData �t�H���_�����p�\���ǂ������ׂ�B
+			; AppData フォルダが利用可能かどうか調べる。
 			${If} $APPDATA != ""
 				${MUIEX_AvailableAppDataFolderForSave}
 			${Else}
 				${MUIEX_NotAvailableAppDataFolderForSave}
 			${EndIf}
 
-			; InstallFolder �����p�\���ǂ������ׂ�B
-			; ����͒P���� Vista �ȏ�ł���Η��p�s�Ƃ���B
+			; InstallFolder が利用可能かどうか調べる。
+			; 現状は単純に Vista 以上であれば利用不可とする。
 			${If} ${AtMostWinXP}
 				${MUIEX_AvailableInstallFolderForSave}
 			${Else}
@@ -142,9 +142,9 @@ Var muiex.CurrentSaveLocationPath
 
 
 ;---
-; �ǎ��p�C���^�[�t�F�[�X
-; ������A�������݂��ł��܂��� MUIEX �̎d�l��ł͓ǎ��p�ł��B
-; �����ɂ킽���ď������݂��\���ǂ����͕ۏ؂���܂���B
+; 読取専用インターフェース
+; 実装上、書き込みもできますが MUIEX の仕様上では読取専用です。
+; 将来にわたって書き込みが可能かどうかは保証されません。
 !define MUIEX_IsChangeInstallLocation			`$muiex.IsChangeInstallLocation`
 !define MUIEX_IsChangeSaveLocation				`$muiex.IsChangeSaveLocation`
 !define MUIEX_IsConfigureShortcutItems			`$muiex.IsConfigureShortcutItems`
@@ -157,14 +157,14 @@ Var muiex.CurrentSaveLocationPath
 !define MUIEX_CurrentSaveLocationPath			`$muiex.CurrentSaveLocationPath`
 
 ;---
-; �e��l�ύX�p�C���^�[�t�F�[�X
+; 各種値変更用インターフェース
 
 ;---
 ; ${MUIEX_ChangeInstallLocation}
-; �C���X�g�[�����ύX����B
+; インストール先を変更する。
 ;
 ; ${MUIEX_FixInstallLocation}
-; �C���X�g�[�����ύX���Ȃ��B
+; インストール先を変更しない。
 !macro MUIEX_ChangeInstallLocationCaller
 	Call MUIEX_ChangeInstallLocation
 !macroend
@@ -197,10 +197,10 @@ Var muiex.CurrentSaveLocationPath
 
 ;---
 ; ${MUIEX_ChangeSaveLocation}
-; �Z�[�u�f�[�^�ۑ����ύX����B
+; セーブデータ保存先を変更する。
 ;
 ; ${MUIEX_FixSaveLocation}
-; �Z�[�u�f�[�^�ۑ����ύX���Ȃ��B
+; セーブデータ保存先を変更しない。
 !macro MUIEX_ChangeSaveLocationCaller
 	Call MUIEX_ChangeSaveLocation
 !macroend
@@ -233,10 +233,10 @@ Var muiex.CurrentSaveLocationPath
 
 ;---
 ; ${MUIEX_ConfigureShortcutItems}
-; �V���[�g�J�b�g�֘A�̃R���t�B�O���s���B
+; ショートカット関連のコンフィグを行う。
 ;
 ; ${MUIEX_DefaultShortcutItems}
-; �V���[�g�J�b�g�֘A�̃R���t�B�O���s��Ȃ��B
+; ショートカット関連のコンフィグを行わない。
 !macro MUIEX_ConfigureShortcutItemsCaller
 	Call MUIEX_ConfigureShortcutItems
 !macroend
@@ -269,9 +269,9 @@ Var muiex.CurrentSaveLocationPath
 
 ;---
 ; ${MUIEX_AvailableAppDataFolderForSave}
-; APPDATA �t�H���_�����p�ł�����B
+; APPDATA フォルダが利用できる環境。
 ; ${MUIEX_NotAvailableAppDataFolderForSave}
-; APPDATA �t�H���_�����p�ł��Ȃ����B
+; APPDATA フォルダが利用できない環境。
 !macro MUIEX_AvailableAppDataFolderForSaveCaller
 	Call MUIEX_AvailableAppDataFolderForSave
 !macroend
@@ -304,9 +304,9 @@ Var muiex.CurrentSaveLocationPath
 
 ;---
 ; ${MUIEX_AvailableInstallFolderForSave}
-; �C���X�g�[���悪���p�ł�����B
+; インストール先が利用できる環境。
 ; ${MUIEX_NotAvailableInstallFolderForSave}
-; �C���X�g�[���悪���p�ł��Ȃ����B
+; インストール先が利用できない環境。
 !macro MUIEX_AvailableInstallFolderForSaveCaller
 	Call MUIEX_AvailableInstallFolderForSave
 !macroend
@@ -339,7 +339,7 @@ Var muiex.CurrentSaveLocationPath
 
 ;---
 ; ${MUIEX_SetSaveLocation} _LOCATION
-; �Z�[�u�f�[�^�ۑ��ꏊ��ύX����B
+; セーブデータ保存場所を変更する。
 !macro MUIEX_SetSaveLocationCaller _LOCATION
 	Push `${_LOCATION}`
 	Call MUIEX_SetSaveLocation
@@ -357,7 +357,7 @@ Var muiex.CurrentSaveLocationPath
 
 ;---
 ; ${MUIEX_SetSaveLocationPath} PATH
-; MUIEX_PAGE_SAVELOCATION �ɂ���Đ����ȃp�X���Z�b�g���邽�߂Ɏg����B
+; MUIEX_PAGE_SAVELOCATION によって正式なパスをセットするために使われる。
 !macro MUIEX_SetSaveLocationPathCaller _PATH
 	Push `${_PATH}`
 	Call MUIEX_SetSaveLocationPath
@@ -375,7 +375,7 @@ Var muiex.CurrentSaveLocationPath
 
 ;---
 ; ${MUIEX_SetCurrentSaveLocationPath} PATH
-; MUIEX_PAGE_SAVELOCATION �ɂ���Đ����ȃp�X���Z�b�g���邽�߂Ɏg����B
+; MUIEX_PAGE_SAVELOCATION によって正式なパスをセットするために使われる。
 !macro MUIEX_SetCurrentSaveLocationPathCaller _PATH
 	Push `${_PATH}`
 	Call MUIEX_SetCurrentSaveLocationPath

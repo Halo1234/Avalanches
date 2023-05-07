@@ -2,20 +2,20 @@
 ; * $Revision: 148 $
 ; *
 ; * HOWTO:
-; * �y�[�W��}���������ꏊ�� !insertmacro MUIEX_PAGE_SAVELOCATION ��}�����Ă��������B
+; * ページを挿入したい場所に !insertmacro MUIEX_PAGE_SAVELOCATION を挿入してください。
 ; *
 ; * NOTE:
-; * ${MUIEX_SAVELOCATION_GetReport} �ł��̃y�[�W�őI�����ꂽ���e�ɂ���
-; * �l�Ԃ��ǂ߂�`�Ń��|�[�g���擾���鎖���ł��܂��B
-; * ���̊֐��}�N�����g���ɂ͎��O�� !insertmacro ${MUIEX_SAVELOCATION_GetReport} ��}������K�v������܂��B
-; * �������AMUIEX_PAGE_CONFIRM �� MUIEX_PAGE_SETUPMENU ���g���ꍇ�͎����I�� !insertmacro ����܂��B
+; * ${MUIEX_SAVELOCATION_GetReport} でこのページで選択された内容について
+; * 人間が読める形でレポートを取得する事ができます。
+; * この関数マクロを使うには事前に !insertmacro ${MUIEX_SAVELOCATION_GetReport} を挿入する必要があります。
+; * ただし、MUIEX_PAGE_CONFIRM か MUIEX_PAGE_SETUPMENU を使う場合は自動的に !insertmacro されます。
 ; *
 ; * NOTE:
-; * MUIEX_PAGE_SAVELOCATION �� !insertmacro ����O�ɒ�`��ǉ����鎖��
-; * �e���ڂ̕\����ԂƑI�����ꂽ�p�X�̃T�t�B�b�N�X��ύX���鎖���ł��܂��B
-; * ������`���Ȃ���΃f�t�H���g�l���g���܂��B
+; * MUIEX_PAGE_SAVELOCATION を !insertmacro する前に定義を追加する事で
+; * 各項目の表示状態と選択されたパスのサフィックスを変更する事ができます。
+; * 何も定義しなければデフォルト値が使われます。
 ; *
-; * �\����Ԃ��`�����`���ƃf�t�H���g�l�ł��B
+; * 表示状態を定義する定義名とデフォルト値です。
 ; * +--------+-------+
 ; * | status | value |
 ; * +--------+-------+
@@ -28,25 +28,25 @@
 ; * | MUIEX_SAVELOCATION_INSTALLFOLDER_SHOW         | 1 |
 ; * | MUIEX_SAVELOCATION_OPTIONALFOLDER_SHOW        | 1 |
 ; * +-----------------------------------------------+---+
-; * ���P�D���� MUIEX_SAVELOCATION_DOCUMENTSFOLDER_SHOW ���ǂ̂悤�ɒ�`���Ă���ɕ\������܂��B
-; * ���Q�D���� MUIEX_SAVELOCATION_OPTIONALFOLDER_SHOW ���ǂ̂悤�ɒ�`���Ă���ɔ�\���ɂȂ�܂��B
-; * ���@�@���̃I�v�V�����͖������ł��B
+; * ※１．現在 MUIEX_SAVELOCATION_DOCUMENTSFOLDER_SHOW をどのように定義しても常に表示されます。
+; * ※２．現在 MUIEX_SAVELOCATION_OPTIONALFOLDER_SHOW をどのように定義しても常に非表示になります。
+; * ※　　このオプションは未実装です。
 ; *
-; * �T�t�B�b�N�X�̒�`���ƃf�t�H���g�l�ł��B
+; * サフィックスの定義名とデフォルト値です。
 ; * +--------------------------------+----+
 ; * | MUIEX_SAVELOCATION_PATH_SUFFIX | "" |
 ; * +--------------------------------+----+
 ; *
-; * ����ɌʂɃT�t�B�b�N�X���㏑�����鎖���ł��܂��B
-; * �Ⴆ�΁A�C���X�g�[����̂݃T�t�B�b�N�X��ύX����ɂ͈ȉ��̂悤�ɂ��܂��B
+; * さらに個別にサフィックスを上書きする事ができます。
+; * 例えば、インストール先のみサフィックスを変更するには以下のようにします。
 ; *
 ; * EXAMPLE:
 ; * !define MUIEX_SAVELOCATION_PATH_SUFFIX          "vender\product"
 ; * !define MUIEX_SAVELOCATION_INSTALLFOLDER_SUFFIX "product\save"
 ; * !insertmacro MUIEX_PAGE_SAVELOCATION
 ; *
-; * �e���ڕʂ̒�`���ł��B
-; * ��`����Ă��Ȃ���� MUIEX_SAVELOCATION_PATH_SUFFIX �����p����܂��B
+; * 各項目別の定義名です。
+; * 定義されていなければ MUIEX_SAVELOCATION_PATH_SUFFIX が利用されます。
 ; * +-------------------------------------------------+
 ; * | MUIEX_SAVELOCATION_DOCUMENTSFOLDER_SUFFIX       |
 ; * | MUIEX_SAVELOCATION_APPLICATIONDATAFOLDER_SUFFIX |
@@ -71,7 +71,7 @@
 !macroend
 
 ;---
-; �C���^�[�t�F�[�X
+; インターフェース
 !macro MUIEX_SAVELOCATION_INTERFACE
 	!ifndef MUIEX_SAVELOCATION_INTERFACE
 		!define MUIEX_SAVELOCATION_INTERFACE
@@ -90,15 +90,15 @@
 		Var muiex.sl.OptionalFolderEnabled
 	!endif
 
-	!insertmacro MUI_DEFAULT MUIEX_SAVELOCATION_HEADER_TEXT		"�Z�[�u�f�[�^�ۑ���̑I��"
-	!insertmacro MUI_DEFAULT MUIEX_SAVELOCATION_HEADER_SUB_TEXT	"�������̌�₩��Z�[�u�f�[�^�ۑ����I���ł��܂��B"
+	!insertmacro MUI_DEFAULT MUIEX_SAVELOCATION_HEADER_TEXT		"セーブデータ保存先の選択"
+	!insertmacro MUI_DEFAULT MUIEX_SAVELOCATION_HEADER_SUB_TEXT	"いくつかの候補からセーブデータ保存先を選択できます。"
 	!insertmacro MUI_DEFAULT MUIEX_SAVELOCATION_INFO			\
-		"�Z�[�u�f�[�^�̕ۑ����I��ł��������B$\r$\n���ɃZ�[�u�f�[�^�����݂���ꍇ�A�Z�[�u�f�[�^�͐V�����ۑ���Ɉړ�����܂��B"
+		"セーブデータの保存先を選んでください。$\r$\n既にセーブデータが存在する場合、セーブデータは新しい保存先に移動されます。"
 
-	!insertmacro MUI_DEFAULT MUIEX_SAVELOCATION_DOCUMENTSFOLDER			"�}�C�h�L�������g�ɕۑ�����B�i�����j"
-	!insertmacro MUI_DEFAULT MUIEX_SAVELOCATION_APPLICATIONDATAFOLDER	"AppData�t�H���_�ɕۑ�����B"
-	!insertmacro MUI_DEFAULT MUIEX_SAVELOCATION_INSTALLFOLDER			"�C���X�g�[����ɕۑ�����B"
-	!insertmacro MUI_DEFAULT MUIEX_SAVELOCATION_OPTIONALFOLDER			"�C�ӂ̃t�H���_�ɕۑ�����B"
+	!insertmacro MUI_DEFAULT MUIEX_SAVELOCATION_DOCUMENTSFOLDER			"マイドキュメントに保存する。（推奨）"
+	!insertmacro MUI_DEFAULT MUIEX_SAVELOCATION_APPLICATIONDATAFOLDER	"AppDataフォルダに保存する。"
+	!insertmacro MUI_DEFAULT MUIEX_SAVELOCATION_INSTALLFOLDER			"インストール先に保存する。"
+	!insertmacro MUI_DEFAULT MUIEX_SAVELOCATION_OPTIONALFOLDER			"任意のフォルダに保存する。"
 
 	!insertmacro MUI_DEFAULT MUIEX_SAVELOCATION_PATH_SUFFIX						""
 	!insertmacro MUI_DEFAULT MUIEX_SAVELOCATION_DOCUMENTSFOLDER_SUFFIX			`${MUIEX_SAVELOCATION_PATH_SUFFIX}`
@@ -115,13 +115,13 @@
 	!insertmacro MUI_DEFAULT MUIEX_SAVELOCATION_APPLICATIONDATAFOLDER_VALUE	"${MUIEX_LOCATION_APPDATAFOLDER}${MUIEX_SAVELOCATION_APPLICATIONDATAFOLDER_SUFFIX}"
 	!insertmacro MUI_DEFAULT MUIEX_SAVELOCATION_INSTALLFOLDER_VALUE			"${MUIEX_LOCATION_INSTALLFOLDER}${MUIEX_SAVELOCATION_INSTALLFOLDER_SUFFIX}"
 
-	; ��ɕ\��
+	; 常に表示
 	!ifdef MUIEX_SAVELOCATION_DOCUMENTSFOLDER_SHOW
 		!undef MUIEX_SAVELOCATION_DOCUMENTSFOLDER_SHOW
 	!endif
 	!define MUIEX_SAVELOCATION_DOCUMENTSFOLDER_SHOW 1
 
-	; ���p�ł��Ȃ��I�v�V����
+	; 利用できないオプション
 	!ifdef MUIEX_SAVELOCATION_OPTIONALFOLDER_SHOW
 		!undef MUIEX_SAVELOCATION_OPTIONALFOLDER_SHOW
 	!endif
@@ -134,7 +134,7 @@
 !macroend
 
 ;---
-; �錾
+; 宣言
 !macro MUIEX_PAGEDECLARATION_SAVELOCATION
 	!insertmacro MUIEX_SAVELOCATION_INTERFACE
 
@@ -146,10 +146,10 @@
 !macroend
 
 ;---
-; �R�[���o�b�N�֐�
+; コールバック関数
 !macro MUIEX_FUNCTION_SAVELOCATION ENTER LEAVE
 
-	; �`�F�b�N���
+	; チェック状態
 	; 1 : DocumentsFolder
 	; 2 : ApplicationDataFolder
 	; 3 : InstallFolder
@@ -158,7 +158,7 @@
 
 	Function "${ENTER}"
 
-		; ���[�j���O�΍�
+		; ワーニング対策
 		StrCpy $muiex.sl.DocumentsFolderRadioButton 0
 		StrCpy $muiex.sl.ApplicationDataFolderRadioButton 0
 		StrCpy $muiex.sl.InstallFolderRadioButton 0
@@ -166,7 +166,7 @@
 
 		Push $0
 
-		; enable ���
+		; enable 状態
 		StrCpy $muiex.sl.DocumentsFolderEnabled 1
 		${If} ${MUIEX_IsAvailableAppDataFolderForSave} != 0
 			StrCpy $muiex.sl.ApplicationDataFolderEnabled 1
@@ -187,11 +187,11 @@
 		${ElseIf} ${MUIEX_SaveLocation} == `${MUIEX_SAVELOCATION_INSTALLFOLDER_VALUE}`
 			StrCpy $muiex.sl.SaveLocationNumber 3
 		${ElseIf} ${MUIEX_SaveLocation} == ""
-			; �Z�[�u�ꏊ�����܂��Ă��Ȃ��̂Ńf�t�H���g�Ƃ���
+			; セーブ場所が決まっていないのでデフォルトとする
 			StrCpy $muiex.sl.SaveLocationNumber 1
 			${MUIEX_SetSaveLocation} "${MUIEX_SAVELOCATION_DOCUMENTSFOLDER_VALUE}"
 		${Else}
-			; �C�Ӄt�H���_
+			; 任意フォルダ
 			StrCpy $muiex.sl.SaveLocationNumber 4
 		${EndIf}
 
@@ -199,16 +199,16 @@
 		${MUIEX_SetSaveLocationPath} $0
 
 		; NOTE:
-		; ���̏ꍇ�A�O�̃y�[�W�ɖ߂��ăC���X�g�[�����ύX���Ă���\��������̂ōX�V����B
+		; この場合、前のページに戻ってインストール先を変更している可能性があるので更新する。
 		${If} $muiex.sl.SaveLocationNumber == 3
 			${MUIEX_SetSaveLocation} "${MUIEX_SAVELOCATION_INSTALLFOLDER_VALUE}"
 		${EndIf}
 
-		; �Z�[�u�f�[�^�ۑ���̕ύX���v������Ă��Ȃ���΂����߂�
+		; セーブデータ保存先の変更が要求されていなければすぐ戻る
 		${If} ${MUIEX_IsChangeSaveLocation} == 0
 			Return
 		${EndIf}
-		; �Z�[�u�f�[�^�����ɂ��邪�Ĕz�u�Z�N�V��������`����Ă��Ȃ��ꍇ�͂����߂�
+		; セーブデータが既にあるが再配置セクションが定義されていない場合はすぐ戻る
 		!ifndef MUIEX_SECID_RELOCATIONSAVEDATA
 
 			${If} ${MUIEX_CurrentSaveLocation} != ""
@@ -217,7 +217,7 @@
 
 		!endif
 
-		; ���݂̃Z�[�u�ꏊ�p�X�̏�����
+		; 現在のセーブ場所パスの初期化
 		${MUIEX_SAVELOCATION_GetCurrentSaveLocationPath} $0
 		${MUIEX_SetCurrentSaveLocationPath} $0
 
@@ -225,20 +225,20 @@
 
 		!insertmacro MUI_HEADER_TEXT_PAGE ${MUIEX_SAVELOCATION_HEADER_TEXT} ${MUIEX_SAVELOCATION_HEADER_SUB_TEXT}
 
-		; �_�C�A���O�쐬
+		; ダイアログ作成
 		nsDialogs::Create /NOUNLOAD 1018
 		Pop $muiex.sl.SaveLocationPage
 
-		; ���x���e�L�X�g
+		; ラベルテキスト
 		${NSD_CreateLabel} 0 0 100% 30u ${MUIEX_SAVELOCATION_INFO}
 		Pop $muiex.sl.InfoText
 
-		; �p�X�\���p�G�f�B�b�g
+		; パス表示用エディット
 		${MUIEX_SAVELOCATION_GetSaveLocationPath} $0
 		nsDialogs::CreateControl /NOUNLOAD "EDIT" ${ES_READONLY}|${WS_VISIBLE}|${WS_CHILD} ${WS_EX_CLIENTEDGE} 0 55 100% 12u $0
 		Pop $muiex.sl.SaveLocationPathEditBox
 
-		; �}�C�h�L�������g�ɕۑ��i�f�t�H���g�`�F�b�N�j
+		; マイドキュメントに保存（デフォルトチェック）
 		!if ${MUIEX_SAVELOCATION_DOCUMENTSFOLDER_SHOW} == 1
 
 			${NSD_CreateRadioButton} 10 65u 100% 12u ${MUIEX_SAVELOCATION_DOCUMENTSFOLDER}
@@ -253,7 +253,7 @@
 
 		!endif
 
-		; AppData �t�H���_�ɕۑ�
+		; AppData フォルダに保存
 		!if ${MUIEX_SAVELOCATION_APPLICATIONDATAFOLDER_SHOW} == 1
 
 			${NSD_CreateRadioButton} 10 80u 100% 12u ${MUIEX_SAVELOCATION_APPLICATIONDATAFOLDER}
@@ -268,7 +268,7 @@
 
 		!endif
 
-		; �C���X�g�[����ɕۑ�
+		; インストール先に保存
 		!if ${MUIEX_SAVELOCATION_INSTALLFOLDER_SHOW} == 1
 
 			${NSD_CreateRadioButton} 10 95u 100% 12u ${MUIEX_SAVELOCATION_INSTALLFOLDER}
@@ -283,7 +283,7 @@
 
 		!endif
 
-		; �C�ӂ̃t�H���_�ɕۑ�
+		; 任意のフォルダに保存
 		!if ${MUIEX_SAVELOCATION_OPTIONALFOLDER_SHOW} == 1
 
 			${NSD_CreateRadioButton} 10 110u 100% 12u ${MUIEX_SAVELOCATION_OPTIONALFOLDER}
@@ -308,7 +308,7 @@
 
 		!insertmacro MUIEX_PAGE_FUNCTION_CUSTOM LEAVE
 
-		; �Z�[�u�f�[�^�̍Ĕz�u�Z�N�V����������Ύ��s���邩�ǂ������肷��B
+		; セーブデータの再配置セクションがあれば実行するかどうか判定する。
 		!ifdef MUIEX_SECID_RELOCATIONSAVEDATA
 
 			${If} ${MUIEX_CurrentSaveLocation} != ""
@@ -322,7 +322,7 @@
 
 		Push $0
 
-		; �����ȃp�X�����肷��
+		; 正式なパスを決定する
 		${MUIEX_SAVELOCATION_GetSaveLocationPath} $0
 		${MUIEX_SetSaveLocationPath} $0
 
@@ -331,7 +331,7 @@
 	FunctionEnd
 
 	;---
-	; �C�x���g�n���h���[
+	; イベントハンドラー
 	!if ${MUIEX_SAVELOCATION_DOCUMENTSFOLDER_SHOW} == 1
 
 		Function onDocumentsFolderClick
@@ -393,11 +393,11 @@
 
 			StrCpy $muiex.sl.SaveLocationNumber 4
 
-			; �Ƃ肠�����A�ȑO�̃t�H���_���g��
+			; とりあえず、以前のフォルダを使う
 			${MUIEX_SAVELOCATION_GetSaveLocationPath} $0
 			${MUIEX_SetSaveLocation} "$0"
 
-			; �u�Q�Ɓv�{�^���L����
+			; 「参照」ボタン有効化
 
 		FunctionEnd
 
@@ -408,7 +408,7 @@
 
 ;---
 ; ${MUIEX_SAVELOCATION_GetReport} VAR
-; ���|�[�g�� VAR �ɕԂ��B
+; レポートを VAR に返す。
 !macro MUIEX_SAVELOCATION_GetReportCaller _VAR
 	Call MUIEX_SAVELOCATION_GetReport
 	Pop `${_VAR}`
@@ -427,14 +427,14 @@
 			Push $1
 
 			${MUIEX_SAVELOCATION_GetSaveLocationPath} $1
-			StrCpy $0 "�Z�[�u�f�[�^�ۑ���F$\r$\n    $1$\r$\n"
+			StrCpy $0 "セーブデータ保存先：$\r$\n    $1$\r$\n"
 
 			${If} ${MUIEX_CurrentSaveLocation} != ""
 				${AndIf} ${MUIEX_CurrentSaveLocation} != ${MUIEX_SaveLocation}
 
 				${MUIEX_SAVELOCATION_GetCurrentSaveLocationPath} $1
-				StrCpy $0 "$0    �Z�[�u�f�[�^���ړ����܂��B$\r$\n"
-				StrCpy $0 "$0���Z�[�u�f�[�^�ۑ���F$\r$\n    $1$\r$\n"
+				StrCpy $0 "$0    セーブデータを移動します。$\r$\n"
+				StrCpy $0 "$0旧セーブデータ保存先：$\r$\n    $1$\r$\n"
 
 			${EndIf}
 
@@ -449,7 +449,7 @@
 
 
 ;---
-; �����p���[�e�B���e�B
+; 内部用ユーティリティ
 
 ;---
 ; ${MUIEX_SAVELOCATION_InitializeVariables
@@ -463,7 +463,7 @@
 
 		Function MUIEX_SAVELOCATION_InitializeVariables
 
-			; �������̕K�v���Ȃ���΂����ɖ߂�
+			; 初期化の必要がなければすぐに戻る
 			${If} ${MUIEX_SaveLocation} != ""
 				Return
 			${EndIf}
@@ -475,10 +475,10 @@
 			${ElseIf} ${MUIEX_CurrentSaveLocation} == `${MUIEX_SAVELOCATION_INSTALLFOLDER_VALUE}`
 				${MUIEX_SetSaveLocation} "${MUIEX_SAVELOCATION_INSTALLFOLDER_VALUE}"
 			${ElseIf} ${MUIEX_CurrentSaveLocation} == ""
-				; �Z�[�u�ꏊ�����܂��Ă��Ȃ��̂Ńf�t�H���g�Ƃ���
+				; セーブ場所が決まっていないのでデフォルトとする
 				${MUIEX_SetSaveLocation} "${MUIEX_SAVELOCATION_DOCUMENTSFOLDER_VALUE}"
 			${Else}
-				; �C�Ӄt�H���_
+				; 任意フォルダ
 				${MUIEX_SetSaveLocation} "${MUIEX_CurrentSaveLocation}"
 			${EndIf}
 

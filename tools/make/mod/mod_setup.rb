@@ -178,8 +178,11 @@ private
 	def make_main_file(template)
 		puts "make #{source_file_path} from #{template}"
 		File.open("#{source_file_path}", "w") { |file|
-			file << @header_comment
-			file << "!verbose 3\n\n"
+			bom = %w(EF BB BF).map { |e| e.hex.chr }.join
+			file.write(bom)
+			file << "Unicode true\n"
+			file << @header_comment.encode("UTF-8")
+			file << "!verbose 3\n\n".encode("UTF-8")
 
 			tmp = File.readlines(template)
 			tmp.each { |line|
@@ -193,43 +196,43 @@ private
 		config = @archiver.config
 		version_dword = (((@archiver.major_version.to_i & 0xFF) << 24) | ((@archiver.minor_version.to_i & 0xFF) << 16))
 		File.open("#{work_dir_path}/configure.nsh", "w") { |file|
-			file << @header_comment
-			file << "!ifndef GUARD_CONFIGURE_NSH\n"
-			file << "!define GUARD_CONFIGURE_NSH\n"
+			file << @header_comment.encode("UTF-8")
+			file << "!ifndef GUARD_CONFIGURE_NSH\n".encode("UTF-8")
+			file << "!define GUARD_CONFIGURE_NSH\n".encode("UTF-8")
 			file << "\n"
-			file << "!verbose 3\n"
+			file << "!verbose 3\n".encode("UTF-8")
 			file << "\n"
-			file << "!define UPDATE_NUMBER\t#{config['UPDATEINFO']['high'].to_i}\n"
+			file << "!define UPDATE_NUMBER\t#{config['UPDATEINFO']['high'].to_i}\n".encode("UTF-8")
 			file << "\n"
-			file << "!define MAJOR_VERSION\t#{@archiver.major_version}\n"
-			file << "!define MINOR_VERSION\t#{@archiver.minor_version}\n"
-			file << "!define VERSION_DWORD\t#{sprintf("%#010x", version_dword)}\n"
+			file << "!define MAJOR_VERSION\t#{@archiver.major_version}\n".encode("UTF-8")
+			file << "!define MINOR_VERSION\t#{@archiver.minor_version}\n".encode("UTF-8")
+			file << "!define VERSION_DWORD\t#{sprintf("%#010x", version_dword)}\n".encode("UTF-8")
 			file << "\n"
-			file << "!define TOP_DIR\t\t\"#{get_work_dir_path_base_relative_path('.')}\"\n"
-			file << "!define ROOT_DIR\t\"#{get_work_dir_path_base_relative_path(@archiver.root_dir)}\"\n"
-			file << "!define MODNSIS_DIR\t\"${TOP_DIR}\\mod\"\n"
+			file << "!define TOP_DIR\t\t\"#{get_work_dir_path_base_relative_path('.')}\"\n".encode("UTF-8")
+			file << "!define ROOT_DIR\t\"#{get_work_dir_path_base_relative_path(@archiver.root_dir)}\"\n".encode("UTF-8")
+			file << "!define MODNSIS_DIR\t\"${TOP_DIR}\\mod\"\n".encode("UTF-8")
 			file << "\n"
-			file << "!define PUBLISHER\t\"#{config['VENDERINFO']['publisher']}\"\n"
-			file << "!define VENDER\t\t\"#{config['VENDERINFO']['name']}\"\n"
-			file << "!define VENDER_J\t\"#{config['VENDERINFO']['name_j']}\"\n"
-			file << "!define VENDER_URL\t\"#{config['VENDERINFO']['url']}\"\n"
-			file << "!define PRODUCT\t\t\"#{@archiver.name}\"\n"
-			file << "!define PRODUCT_J\t\"#{config['PRODUCTINFO']['name']}\"\n"
-			file << "!define PRODUCT_ID\t\"#{config['PRODUCTINFO']['id']}\"\n"
-			file << "!define PRODUCT_URL\t\"#{config['PRODUCTINFO']['url']}\"\n"
-			file << "!define SUPPORT_URL\t\"#{config['VENDERINFO']['support_url']}\"\n"
+			file << "!define PUBLISHER\t\"#{config['VENDERINFO']['publisher']}\"\n".encode("UTF-8")
+			file << "!define VENDER\t\t\"#{config['VENDERINFO']['name']}\"\n".encode("UTF-8")
+			file << "!define VENDER_J\t\"#{config['VENDERINFO']['name_j']}\"\n".encode("UTF-8")
+			file << "!define VENDER_URL\t\"#{config['VENDERINFO']['url']}\"\n".encode("UTF-8")
+			file << "!define PRODUCT\t\t\"#{@archiver.name}\"\n".encode("UTF-8")
+			file << "!define PRODUCT_J\t\"#{config['PRODUCTINFO']['name']}\"\n".encode("UTF-8")
+			file << "!define PRODUCT_ID\t\"#{config['PRODUCTINFO']['id']}\"\n".encode("UTF-8")
+			file << "!define PRODUCT_URL\t\"#{config['PRODUCTINFO']['url']}\"\n".encode("UTF-8")
+			file << "!define SUPPORT_URL\t\"#{config['VENDERINFO']['support_url']}\"\n".encode("UTF-8")
 			file << "\n"
-			file << "!define TARGET_NAME\t\t\"#{@archiver.target_name}\"\n"
+			file << "!define TARGET_NAME\t\t\"#{@archiver.target_name}\"\n".encode("UTF-8")
 			file << "\n"
-			file << "!define USE_ALLUSERS\t0\n"
+			file << "!define USE_ALLUSERS\t0\n".encode("UTF-8")
 			file << "\n"
-			file << "!define SETUP_TITLE\t\"#{setup_title(type)}\"\n"
+			file << "!define SETUP_TITLE\t\"#{setup_title(type)}\"\n".encode("UTF-8")
 			file << "\n"
-			file << "!include \"${MODNSIS_DIR}\\mod_nsis.nsh\"\n"
+			file << "!include \"${MODNSIS_DIR}\\mod_nsis.nsh\"\n".encode("UTF-8")
 			file << "\n"
-			file << "OutFile \"${ROOT_DIR}\\dist\\${TARGET_NAME}\\\\#{File.basename(@archiver.work_dir)}\\GameInstaller.exe\"\n"
+			file << "OutFile \"${ROOT_DIR}\\dist\\${TARGET_NAME}\\\\#{File.basename(@archiver.work_dir)}\\GameInstaller.exe\"\n".encode("UTF-8")
 			file << "\n"
-			file << "!endif\n"
+			file << "!endif\n".encode("UTF-8")
 			file << ("\n" * 2)
 		}
 	end
@@ -286,22 +289,22 @@ private
 				# アーカイブバージョン
 				list.each { |fn|
 					fn.gsub!('/', '\\')
-					file << "File \"#{get_work_dir_path_base_relative_path(@archiver.bin_dir)}\\#{fn}\"\n"
+					file << "File \"#{get_work_dir_path_base_relative_path(@archiver.bin_dir)}\\#{fn}\"\n".encode("UTF-8")
 					if type != 'master'
-						file << "MorningNightcap::AddExternalIndex $IndexFile \"F\" \"$ProductDir#{fn}\"\n"
+						file << "MorningNightcap::AddExternalIndex $IndexFile \"F\" \"$ProductDir#{fn}\"\n".encode("UTF-8")
 					end
 				}
 			else
 				# ROM バージョン
-				file << "AddSize #{total_size >> 10}\n"
+				file << "AddSize #{total_size >> 10}\n".encode("UTF-8")
 				list.each { |fn|
 					fn.gsub!('/', '\\')
-					file << "${SafeFileCopy} \"$EXEDIR\\bin\\#{fn}\" \"$ProductDir\\#{fn}\"\n"
+					file << "${SafeFileCopy} \"$EXEDIR\\bin\\#{fn}\" \"$ProductDir\\#{fn}\"\n".encode("UTF-8")
 					if File.extname(fn).downcase == ".sig"
-						file << "SetFileAttributes \"$ProductDir\\#{fn}\" HIDDEN\n"
+						file << "SetFileAttributes \"$ProductDir\\#{fn}\" HIDDEN\n".encode("UTF-8")
 					end
 					if type != 'master'
-						file << "MorningNightcap::AddExternalIndex $IndexFile \"F\" \"$ProductDir#{fn}\"\n"
+						file << "MorningNightcap::AddExternalIndex $IndexFile \"F\" \"$ProductDir#{fn}\"\n".encode("UTF-8")
 					end
 				}
 			end
@@ -314,7 +317,7 @@ private
 					if File.basename(fn, ".*") != "krkr"
 						fn.gsub!('/', '\\')
 						lnk = "#{File.basename(fn, ".*")}.lnk"
-						file << "CreateShortCut \"${SM_PRODUCT}\\#{lnk}\" \"$ProductDir\\#{fn}\"\n"
+						file << "CreateShortCut \"${SM_PRODUCT}\\#{lnk}\" \"$ProductDir\\#{fn}\"\n".encode("UTF-8")
 						shortcuts << lnk
 					end
 				end
@@ -327,17 +330,17 @@ private
 	#---
 	def make_uninstall_components(components, shortcuts)
 		File.open("#{work_dir_path}/uninstall_components", "w") { |file|
-			file << "${SafeDelete} \"$ProductDir\\krenvprf.kep\"\n"
+			file << "${SafeDelete} \"$ProductDir\\krenvprf.kep\"\n".encode("UTF-8")
 			components.reverse_each { |fn|
 				fn.gsub!('/', '\\')
-				file << "${SafeDelete} \"$ProductDir\\#{fn}\"\n"
+				file << "${SafeDelete} \"$ProductDir\\#{fn}\"\n".encode("UTF-8")
 			}
 		}
 
 		File.open("#{work_dir_path}/uninstall_shortcutitems", "w") { |file|
 			shortcuts.reverse_each { |fn|
 				fn.gsub!('/', '\\')
-				file << "${SafeDelete} \"${SM_PRODUCT}\\#{fn}\"\n"
+				file << "${SafeDelete} \"${SM_PRODUCT}\\#{fn}\"\n".encode("UTF-8")
 			}
 		}
 	end
