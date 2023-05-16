@@ -6,8 +6,8 @@
 
  １．/src/data/sample_typing_words/words.xls をコピーしてファイル名を変更します。
  ２．１で作成したファイルを開いてワードデータを入力します。
- ３．run.bat/run_cp932.batを開いて..\..\src\data\sample_typing_words\words.odsを１で作成したファイル名に変更します。
- ４．run.bat/run_cp932.batを実行します。
+ ３．run.batまたはrun_cp932.batを開いて..\..\src\data\sample_typing_words\words.xlsを１で作成したファイル名に変更します。
+ ４．run.batまたはrun_cp932.batを実行します。
 
  吉里吉里２用ならば--output-encodingにはcp932を指定してください。
  吉里吉里Z用ならば--output-encodingにはutf-8を指定してください。
