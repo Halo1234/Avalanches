@@ -63,7 +63,7 @@
 
 @!glyph /page_key=<PAGEKEY> /line_key=<LINEKEY>
 
-@!graph /character=<CHAR>
+@!graph /character=<CHAR> /no_character=<NO_CHAR> /!character=<!CHAR>
 
 @redirect alias=waittrig name=wait_trigger
 @!wait_trigger /on_skip=<ONSKIP> /skip=<CANSKIP> /no_skip=<NO_CANSKIP> /!skip=<!CANSKIP>
