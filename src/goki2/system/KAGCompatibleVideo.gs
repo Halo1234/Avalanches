@@ -22,7 +22,7 @@
 @redirect alias=videosegloop name=set_video_segment_loop
 
 @redirect alias=wv name=wait_video
-@!wait_video /skip=<CANSKIP> /no_skip=<NO_CANSKIP> !skip=<!CANSKIP>
+@!wait_video /skip=<CANSKIP> /no_skip=<NO_CANSKIP> /!skip=<!CANSKIP>
 
 @redirect alias=stopvideo name=stop_video
 

@@ -116,8 +116,8 @@
 @redirect alias=clearbgmstop name=clear_bgm_stop
 
 @redirect alias=wb name=wait_bgm_fade
-@!wait_bgm_fade /skip=<CANSKIP> /no_skip=<NO_CANSKIP> !skip=<!CANSKIP>
+@!wait_bgm_fade /skip=<CANSKIP> /no_skip=<NO_CANSKIP> /!skip=<!CANSKIP>
 
 @redirect alias=wl name=wait_bgm_stop
-@!wait_bgm_stop /skip=<CANSKIP> /no_skip=<NO_CANSKIP> !skip=<!CANSKIP>
+@!wait_bgm_stop /skip=<CANSKIP> /no_skip=<NO_CANSKIP> /!skip=<!CANSKIP>
 

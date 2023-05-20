@@ -52,9 +52,9 @@
 @!wa /index=<SEG>
 
 @redirect alias=wq name=wait_shake
-@!wq /skip=<CANSKIP> /no_skip=<NOSKIP> /!skip=<!CANSKIP>
+@!wq /skip=<CANSKIP> /no_skip=<NO_SKIP> /!skip=<!CANSKIP>
 
 @redirect alias=wm name=wait_move
-@!wm /skip=<CANSKIP> /no_skip=<NOCANSKIP> !skip=<!CANSKIP>
+@!wm /skip=<CANSKIP> /no_skip=<NO_CANSKIP> /!skip=<!CANSKIP>
 
 
