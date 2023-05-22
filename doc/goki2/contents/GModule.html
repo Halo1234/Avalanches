@@ -99,6 +99,8 @@ class Sample extends GModule<br />
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#onEnterAutoMode">onEnterAutoMode</a></span></td><td class="taglisteven">オートモードになった時のイベント</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#onShowHistoryLayer">onShowHistoryLayer</a></span></td><td class="taglistodd">履歴レイヤが表示された時のイベント</td></tr>
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#onHideHistoryLayer">onHideHistoryLayer</a></span></td><td class="taglisteven">履歴レイヤが消去された時のイベント</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#onPrimaryLayerResize">onPrimaryLayerResize</a></span></td><td class="taglistodd">プライマリレイヤのサイズが変更された時のイベント</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#onScreenModeChanged">onScreenModeChanged</a></span></td><td class="taglisteven">スクリーンモードが変更された時のイベント</td></tr>
 </tbody></table>
 </div></div>
 
@@ -332,6 +334,25 @@ modMessage.smCancel(キャンセルされるまでスキップ)<br />
 
 <h1><a name="onHideHistoryLayer" id="onHideHistoryLayer" class="targanchor"><span class="b">onHideHistoryLayer()</span></h1>
 <div class="tagremarks">履歴レイヤが非表示にされた時に呼び出されます。<br /></div>
+</div></div>
+
+<h1><a name="onPrimaryLayerResize" id="onPrimaryLayerResize" class="targanchor"><span class="b">onPrimaryLayerResize(left, top, width, height)</span></h1>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="onPrimaryLayerResize"><thead><tr><td>引数</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">left</td><td class="tagattribname">プライマリレイヤの位置が渡されます。</td></tr>
+<tr><td class="tagattribalias">top</td><td class="tagattribname">プライマリレイヤの位置が渡されます。</td></tr>
+<tr><td class="tagattribalias">width</td><td class="tagattribname">プライマリレイヤのサイズが渡されます。</td></tr>
+<tr><td class="tagattribalias">height</td><td class="tagattribname">プライマリレイヤのサイズが渡されます。</td></tr>
+</tbody></table>
+<div class="tagremarks">プライマリレイヤのサイズが変更された時に呼び出されます。<br />
+</div>
+</div></div>
+
+<h1><a name="onScreenModeChanged" id="onScreenModeChanged" class="targanchor"><span class="b">onScreenModeChanged(fullScreened)</span></h1>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="onScreenModeChanged"><thead><tr><td>引数</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">fullScreened</td><td class="tagattribname">trueならフルスクリーン化されます。</td></tr>
+</tbody></table>
+<div class="tagremarks">スクリーンモードが変更された時に呼び出されます。<br />
+</div>
 </div></div>
 
 	<script type="text/javascript" charset="Shift_JIS" src="documentid.js" ></script>
