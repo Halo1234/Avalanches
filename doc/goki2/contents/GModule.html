@@ -101,6 +101,8 @@ class Sample extends GModule<br />
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#onHideHistoryLayer">onHideHistoryLayer</a></span></td><td class="taglisteven">履歴レイヤが消去された時のイベント</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#onPrimaryLayerResize">onPrimaryLayerResize</a></span></td><td class="taglistodd">プライマリレイヤのサイズが変更された時のイベント</td></tr>
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#onScreenModeChanged">onScreenModeChanged</a></span></td><td class="taglisteven">スクリーンモードが変更された時のイベント</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#onMessageSpeedConfigChanged">onMessageSpeedConfigChanged</a></span></td><td class="taglistodd">メッセージ速度が変更された時のイベント</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#onReadingMessageSpeedConfigChanged">onReadingMessageSpeedConfigChanged</a></span></td><td class="taglisteven">既読メッセージ速度が変更された時のイベント</td></tr>
 </tbody></table>
 </div></div>
 
@@ -352,6 +354,30 @@ modMessage.smCancel(キャンセルされるまでスキップ)<br />
 <tr><td class="tagattribalias">fullScreened</td><td class="tagattribname">trueならフルスクリーン化されます。</td></tr>
 </tbody></table>
 <div class="tagremarks">スクリーンモードが変更された時に呼び出されます。<br />
+</div>
+</div></div>
+
+<h1><a name="onMessageSpeedConfigChanged" id="onMessageSpeedConfigChanged" class="targanchor"><span class="b">onMessageSpeedConfigChanged(left, top, width, height)</span></h1>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="onMessageSpeedConfigChanged"><thead><tr><td>引数</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">config</td><td class="tagattribname">メッセージ速度設定が渡されます。</td></tr>
+config.noWait : ノーウェイト時の文字表示速度。<br />
+config.high : 早い時の文字表示速度。<br />
+config.normal : 通常時の文字表示速度。<br />
+config.low : 遅い時の文字表示速度。<br />
+</tbody></table>
+<div class="tagremarks">メッセージ速度設定が変更された時に呼び出されます。<br />
+</div>
+</div></div>
+
+<h1><a name="onReadingMessageSpeedConfigChanged" id="onReadingMessageSpeedConfigChanged" class="targanchor"><span class="b">onReadingMessageSpeedConfigChanged(left, top, width, height)</span></h1>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="onReadingMessageSpeedConfigChanged"><thead><tr><td>引数</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">config</td><td class="tagattribname">既読メッセージ速度設定が渡されます。</td></tr>
+config.noWait : ノーウェイト時の文字表示速度。<br />
+config.high : 早い時の文字表示速度。<br />
+config.normal : 通常時の文字表示速度。<br />
+config.low : 遅い時の文字表示速度。<br />
+</tbody></table>
+<div class="tagremarks">既読メッセージ速度設定が変更された時に呼び出されます。<br />
 </div>
 </div></div>
 
