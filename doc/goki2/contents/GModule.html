@@ -50,6 +50,82 @@ class Sample extends GModule<br />
 <br />
 　TJSからモジュールにアクセスするにはwindow.modules.Sampleとします。<br />
 <br />
+<h1><a id="id84" name="id84">既存モジュールの継承</a>
+</h1><div class="para"><div>
+　既存モジュールは派生させて機能を追加する事ができます。<br />
+　ここではModImageに自由に使えるレイヤ群を追加してみます。<br />
+<div class="example2"><code class="bq"><span class="weak">ModImageEx.tjs</span><br />
+/* 自前のイテレータクラスを作成します。 */<br />
+class FreeLayerIterator extends GLayerIterator<br />
+{<br />
+　function FreeLayerIterator(window, container)<br />
+　{<br />
+　　super.GLayerIterator(...);<br />
+<br />
+　　// レイヤの基本のabsolute値を設定します。<br />
+　　setAbsoluteBase(10000);<br />
+　　// setAbsoluteBaseで設定した値+ここで設定した値*レイヤインデックスが最終的なレイヤのabsolute値になります。<br />
+　　setAbsoluteStep(1000);<br />
+　}<br />
+<br />
+　function create(window)<br />
+　{<br />
+　　// 自作のレイヤがあればそれを作成して返してもよいです。<br />
+　　var obj = new GLayer(window, container.get(container.parentLayerName), onLayerEvent);<br />
+<br />
+　　return obj;<br />
+　}<br />
+<br />
+　// ここで指定した文字列+レイヤインデックスがレイヤの名前になります。<br />
+　// containerからレイヤを取り出す時はこの名前を利用します。<br />
+　property prefix<br />
+　{<br />
+　　getter　　　{ return 'free_'; }<br />
+　}<br />
+}<br />
+<br />
+class ModImageEx extends ModImage<br />
+{<br />
+　var freeLayers;<br />
+<br />
+　function ModImageEx(container, name)<br />
+　{<br />
+　　super.ModImage(container, name);<br />
+<br />
+　　freeLayers = new FreeLayerIterator(window, layerContainer);<br />
+　}<br />
+<br />
+　function createExtensionTagHandlers()<br />
+　{<br />
+　　return %[<br />
+　　　/* @freelayeropt */<br />
+　　　'freelayeropt' =&gt; function (elm, c) {<br />
+　　　　// レイヤの数を変更します。<br />
+　　　　freeLayers.count = +elm.count if elm.count !== void;<br />
+　　　} incontextof this,<br />
+<br />
+　　　/* @freelayer */<br />
+　　　'freelayer' =&gt; function (elm, c) {<br />
+　　　　// レイヤに画像を読み込んで表示します。<br />
+　　　　var layer = freeLayers.at(+elm.no);<br />
+　　　　layer.loadImages(elm.storage, elm.key);<br/>
+　　　　layer.visible = true;<br />
+　　　} incontextof this,<br />
+　　];<br />
+　}<br />
+<br />
+　　function onAttach(name)<br />
+　　{<br />
+　　　// ここで派生元(ModImage)モジュールの別名を登録する事で<br />
+　　　// ModImageを使っている他のモジュールに派生先(ModImageEx)モジュールを利用させる事ができます。<br />
+　　　addAlias("ModImageEx", "ModImage");<br />
+　　　addAlias("ModImageEx", "modImage");<br />
+　　}<br />
+}<br />
+</code></div>
+　既存のモジュールを継承せずに自由なモジュールを作成する事も可能です。<br />
+　例えばオリジナルのセーブロード画面なども簡単に作る事ができます。<br />
+</div></div>
 <h1><a id="id84" name="id84">イベント</a>
 </h1><div class="para"><div>
 GOKI2のモジュールは様々なイベントを受け取る事ができます。<br />
