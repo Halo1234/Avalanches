@@ -145,7 +145,10 @@ section = config['SETTINGS']
 
 # override.ini ƒ}[ƒW
 override_ini_file = "#{root_dir}/#{section['resource_dir']}/#{target}/override.ini"
-config = config.merge(IniFile.load(override_ini_file, {:encoding=>input_file_encoding}))
+override_ini = IniFile.load(override_ini_file, {:encoding=>input_file_encoding})
+override_ini.each { |section, parameter, value|
+    config[section][parameter] = value
+}
 
 if(patch_number != nil)
 
