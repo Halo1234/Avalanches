@@ -169,6 +169,7 @@ Avalanches（以下、本開発環境）は複数のソフトウェアによって構築されています。
 >>   https://nsis.sourceforge.io/Download
 >>
 >>   version 3.06.1 で動作確認しました。
+>>   version 3.08 で動作確認しました。
 
 
 
