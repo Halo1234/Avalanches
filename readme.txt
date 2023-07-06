@@ -29,7 +29,7 @@ Avalanches（以下、本開発環境）は複数のソフトウェアによって構築されています。
 本開発環境は以下の環境での動作を確認しています。
 
 32bit Windows XP(SP3)/Vista/7/10
-64bit Windows 7/10
+64bit Windows 7/10/11
 
 
 
