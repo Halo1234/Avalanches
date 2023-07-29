@@ -1,0 +1,397 @@
+/*
+**/
+
+
+/**/
+class ModSystemButtons extends GModule
+{
+	var baseLayer_;
+
+	var buttons_ = %[];
+
+	var targetSoundBuffer = 0;
+	var clickSoundStorage = '';
+	var enterSoundStorage = '';
+	var leaveSoundStorage = '';
+
+	/**/
+	function ModSystemButtons(container, name)
+	{
+		super.GModule(...);
+
+		with(baseLayer_ = new GFormLayer(window, window.primaryLayer, onBaseLayerEvent))
+		{
+			.setPos(0, 0);
+			.setSize(window.scWidth, window.scHeight);
+			.hitThreshold = 256;
+			.rclickHide = false;
+			.focusable = false;
+			.bodyColor = clNone;
+			.absolute = 1001000;
+
+			window.softFocus.add(.softFocus);
+		}
+	}
+
+	/**/
+	function finalize()
+	{
+		invalidate baseLayer_;
+
+		super.finalize(...);
+	}
+
+	/**/
+	function createExtensionTagHandlers()
+	{
+		return %[
+
+			/* @system_button_option */
+			'system_button_option' => function (elm) {
+				baseLayer.visible = GObjectUtils.getBoolean(elm, 'visible') if GObjectUtils.hasValue(elm, 'visible');
+				targetSoundBuffer = +elm.buffer if elm.buffer !== void;
+				clickSoundStorage = elm.click_sound if elm.click_sound !== void;
+				enterSoundStorage = elm.enter_sound if elm.enter_sound !== void;
+				leaveSoundStorage = elm.leave_sound if elm.leave_sound !== void;
+			} incontextof this,
+
+			/* @system_button */
+			'system_button' => function (elm) {
+				makeSystemButton(elm);
+			} incontextof this,
+
+		];
+	}
+
+	/**/
+	function createSystemButton(id)
+	{
+		var obj = new GButtonLayer(window, baseLayer, onSystemButton);
+
+		obj.autoFixSize = false;
+		obj.id = id;
+		obj.visible = true;
+		baseLayer.softFocus.add(obj);
+
+		return obj;
+	}
+
+	/**/
+	function getSystemButton(id)
+	{
+		if(buttons_[id] === void)
+		{
+			buttons_[id] = createSystemButton(id);
+		}
+
+		return buttons_[id];
+	}
+
+	/**/
+	function getSystemLayer()
+	{
+		var layer = void;
+
+		if(container.isLoaded('modSLG'))
+		{
+			layer = container.modSLG.baseLayer.getSystemLayer();
+		}
+		else
+		if(container.isLoaded('modSystem'))
+		{
+			layer = container.modSystem.getSystemLayer();
+		}
+
+		return layer;
+	}
+
+	/**/
+	function getSaveLoadLayer()
+	{
+		var layer = void;
+
+		if(container.isLoaded('modSLG'))
+		{
+			layer = container.modSLG.baseLayer.getSaveLoadLayer();
+		}
+		else
+		if(container.isLoaded('modSaveLoad'))
+		{
+			layer = container.modSaveLoad.getSaveLoadLayer();
+		}
+
+		return layer;
+	}
+
+	/**/
+	function getSnapshotModule()
+	{
+		var module = void;
+
+		if(container.isLoaded('modSLG'))
+		{
+			module = container.modSLG.getSnapshotModule();
+		}
+		else
+		if(container.isLoaded('modSnapshot'))
+		{
+			module = container.modSnapshot;
+		}
+
+		return module;
+	}
+
+	/**/
+	function lockSnapshot()
+	{
+		var mod = getSnapshotModule();
+
+		if(mod !== void)
+		{
+			mod.lock();
+		}
+	}
+
+	/**/
+	function unlockSnapshot()
+	{
+		var mod = getSnapshotModule();
+
+		if(mod !== void)
+		{
+			mod.unlock();
+		}
+	}
+
+	/**/
+	function makeSystemButton(elm)
+	{
+		var ids = [
+			'log', 'system', 'save', 'load', 'skip', 'auto', 'hidden'
+		];
+
+		for(var i = 0; i < ids.count; i++)
+		{
+			var id = ids[i];
+
+			if(elm[@"&id;_storage"] !== void || elm[@"&id;_left"] !== void || elm[@"&id;_top"] !== void || elm[@"&id;_width"] !== void || elm[@"&id;_height"] !== void ||
+				elm[@"&id;_font"] !== void || elm[@"&id;_font_height"] !== void || elm[@"&id;_caption"] !== void || elm[@"&id;_caption_color"] !== void ||
+				elm[@"&id;_color"] !== void || elm[@"&id;_opacity"] !== void)
+			{
+				var obj = getSystemButton(id);
+
+				if(elm[@"&id;_storage"] !== void)
+				{
+					obj.loadImages(elm[@"&id;_storage"]);
+				}
+				if(elm[@"&id;_left"] !== void || elm[@"&id;_top"] !== void)
+				{
+					obj.setPos(+elm[@"&id;_left"], +elm[@"&id;_top"]);
+				}
+				if(elm[@"&id;_width"] !== void || elm[@"&id;_height"] !== void)
+				{
+					obj.setSize(+elm[@"&id;_width"], +elm[@"&id;_height"]);
+				}
+				if(elm[@"&id;_font"] !== void)
+				{
+					obj.font.face = elm[@"&id;_font"];
+				}
+				if(elm[@"&id;_font_height"] !== void)
+				{
+					obj.font.height = elm[@"&id;_font_height"];
+				}
+				if(elm[@"&id;_caption"] !== void)
+				{
+					obj.caption = elm[@"&id;_caption"];
+				}
+				if(elm[@"&id;_caption_color"] !== void)
+				{
+					obj.captionColor = elm[@"&id;_caption_color"];
+				}
+				if(elm[@"&id;_color"] !== void)
+				{
+					obj.bodyColor = elm[@"&id;_color"];
+				}
+				if(elm[@"&id;_opacity"] !== void)
+				{
+					obj.bodyOpacity = elm[@"&id;_opacity"];
+				}
+			}
+		}
+	}
+
+	/**/
+	function disableButtons()
+	{
+		var ids = [
+			'log', 'system', 'save', 'load', 'skip', 'auto', 'hidden'
+		];
+
+		for(var i = 0; i < ids.count; i++)
+		{
+			if(buttons_[ids[i]] !== void)
+			{
+				buttons_[ids[i]].enabled = false;
+			}
+		}
+	}
+
+	/**/
+	function enableButtons()
+	{
+		var ids = [
+			'log', 'system', 'save', 'load', 'skip', 'auto', 'hidden'
+		];
+
+		for(var i = 0; i < ids.count; i++)
+		{
+			if(buttons_[ids[i]] !== void)
+			{
+				buttons_[ids[i]].enabled = true;
+			}
+		}
+	}
+
+	/**/
+	function invisibleButtons()
+	{
+		var ids = [
+			'log', 'system', 'save', 'load', 'skip', 'auto', 'hidden'
+		];
+
+		for(var i = 0; i < ids.count; i++)
+		{
+			if(buttons_[ids[i]] !== void)
+			{
+				buttons_[ids[i]].visible = false;
+			}
+		}
+	}
+
+	/**/
+	function visibleButtons()
+	{
+		var ids = [
+			'log', 'system', 'save', 'load', 'skip', 'auto', 'hidden'
+		];
+
+		for(var i = 0; i < ids.count; i++)
+		{
+			if(buttons_[ids[i]] !== void)
+			{
+				buttons_[ids[i]].visible = true;
+			}
+		}
+	}
+
+	/**/
+	function execSystemButton(id)
+	{
+		switch(id)
+		{
+		case 'log':
+			container.modMessage.showHistoryLayer();
+			break;
+		case 'system':
+			var layer = getSystemLayer();
+			layer.show();
+			break;
+		case 'save':
+			var layer = getSaveLoadLayer();
+			lockSnapshot();
+			layer.showSave();
+			break;
+		case 'load':
+			var layer = getSaveLoadLayer();
+			layer.showLoad();
+			break;
+		case 'skip':
+			container.modMessage.enterSkipToNotRead();
+			break;
+		case 'auto':
+			container.modMessage.enterAutoMode();
+			break;
+		case 'hidden':
+			container.modMessage.hideMessageLayerByUser();
+			break;
+		}
+	}
+
+	/**/
+	function onPrimaryLayerResize(left, top, width, height)
+	{
+		baseLayer.setSize(width, height);
+	}
+
+	/**/
+	function onSkipModeChanged(form, to)
+	{
+		if(window.modules.isLoaded('modMessage'))
+		{
+			if(to == window.modules.modMessage.smNotSkip)
+			{
+				enableButtons();
+			}
+			else
+			{
+				disableButtons();
+			}
+		}
+	}
+
+	/**/
+	function onEnterAutoMode()
+	{
+		disableButtons();
+	}
+
+	/**/
+	function onCancelAutoMode()
+	{
+		enableButtons();
+	}
+
+	/**/
+	function onShowMessageLayerByUser()
+	{
+		visibleButtons();
+	}
+
+	/**/
+	function onHideMessageLayerByUser()
+	{
+		invisibleButtons();
+	}
+
+	/**/
+	function onBaseLayerEvent(obj, message, elm)
+	{
+	}
+
+	/**/
+	function onSystemButton(obj, message, elm)
+	{
+		switch(message)
+		{
+		case 'onMouseEnter':
+			modSystemSoundPlaySound(targetSoundBuffer, enterSoundStorage, false);
+			break;
+		case 'onMouseLeave':
+			modSystemSoundPlaySound(targetSoundBuffer, leaveSoundStorage, false);
+			break;
+		case 'onButton':
+			modSystemSoundPlaySound(targetSoundBuffer, clickSoundStorage, false);
+			execSystemButton(obj.id);
+			break;
+		}
+	}
+
+	/**/
+	property baseLayer
+	{
+		getter		{ return baseLayer_; }
+	}
+}
+
+
+
