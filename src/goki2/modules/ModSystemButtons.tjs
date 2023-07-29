@@ -102,6 +102,11 @@ class ModSystemButtons extends GModule
 			layer = container.modSystem.getSystemLayer();
 		}
 
+		if(layer === void)
+		{
+			throw new GRuntimeError("システムレイヤがありません。ModSystemをロードして下さい。");
+		}
+
 		return layer;
 	}
 
@@ -118,6 +123,11 @@ class ModSystemButtons extends GModule
 		if(container.isLoaded('modSaveLoad'))
 		{
 			layer = container.modSaveLoad.getSaveLoadLayer();
+		}
+
+		if(layer === void)
+		{
+			throw new GRuntimeError("セーブロードレイヤがありません。ModSaveLoadをロードして下さい。");
 		}
 
 		return layer;
@@ -374,13 +384,22 @@ class ModSystemButtons extends GModule
 		switch(message)
 		{
 		case 'onMouseEnter':
-			modSystemSoundPlaySound(targetSoundBuffer, enterSoundStorage, false);
+			if(enterSoundStorage != '')
+			{
+				modSystemSoundPlaySound(targetSoundBuffer, enterSoundStorage, false);
+			}
 			break;
 		case 'onMouseLeave':
-			modSystemSoundPlaySound(targetSoundBuffer, leaveSoundStorage, false);
+			if(leaveSoundStorage != '')
+			{
+				modSystemSoundPlaySound(targetSoundBuffer, leaveSoundStorage, false);
+			}
 			break;
 		case 'onButton':
-			modSystemSoundPlaySound(targetSoundBuffer, clickSoundStorage, false);
+			if(clickSoundStorage != '')
+			{
+				modSystemSoundPlaySound(targetSoundBuffer, clickSoundStorage, false);
+			}
 			execSystemButton(obj.id);
 			break;
 		}
