@@ -99,7 +99,7 @@ auto_speed : オート速度<br />
 &lt;N&gt;にはmake_characterタグで作成したキャラクタの(0から始まる)インデックスが使用できます。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="system_voiceN_left" id="system_voiceN_left">voice&lt;N&gt;_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">位置</td><td class="tagattribdesc">チェックボックスの位置を指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="system_voiceN_top" id="system_voiceN_top">voice&lt;N&gt;_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">位置</td><td class="tagattribdesc">チェックボックスの位置を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="system_voiceN_width" id="system_voiceN_width">voice&lt;N&gt;_width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">サイズ</td><td class="tagattribdesc">チェックボックスのサイズを指定します。<br />
+&<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="system_voiceN_width" id="system_voiceN_width">voice&lt;N&gt;_width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">サイズ</td><td class="tagattribdesc">チェックボックスのサイズを指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="system_voiceN_height" id="system_voiceN_height">voice&lt;N&gt;_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">サイズ</td><td class="tagattribdesc">チェックボックスのサイズを指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="system_voiceN_font" id="system_voiceN_font">voice&lt;N&gt;_font</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">フォント名</td><td class="tagattribdesc">チェックボックスのフォント名を指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="system_voiceN_font_height" id="system_voiceN_font_height">voice&lt;N&gt;_font_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">フォント名</td><td class="tagattribdesc">チェックボックスのフォントサイズを指定します。<br />
@@ -107,6 +107,24 @@ auto_speed : オート速度<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="system_voiceN_caption_color" id="system_voiceN_caption_color">voice&lt;N&gt;_caption_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">チェックボックスのキャプションカラーを指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="system_voiceN_color" id="system_voiceN_color">voice&lt;N&gt;_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">チェックボックスの背景色を指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="system_voiceN_opacity" id="system_voiceN_opacity">voice&lt;N&gt;_opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0～255</td><td class="tagattribdesc">チェックボックスの不透明度を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="system_id_storage" id="system_id_storage">&lt;id&gt;_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">チェックボックスの画像を指定します。<br />
+&lt;id&gt;には以下の文字列が指定できます。<br />
+not_read : チェックするとスキップするときに既読スキップします。<br />
+skip : チェックすると全てのシナリオをスキップします。<br />
+stop_skip : チェックすると次の選択肢でスキップを停止します。<br />
+not_stop_skip : チェックすると次の選択肢でスキップを停止しません。<br />
+fullscreen : フルスクリーンモード。<br />
+window : ウインドウモード。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="system_id_left" id="system_id_left">&lt;id&gt;_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">位置</td><td class="tagattribdesc">チェックボックスの位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="system_id_top" id="system_id_top">&lt;id&gt;_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">位置</td><td class="tagattribdesc">チェックボックスの位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="system_id_width" id="system_id_width">&lt;id&gt;_width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">サイズ</td><td class="tagattribdesc">チェックボックスのサイズを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="system_id_height" id="system_id_height">&lt;id&gt;_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">サイズ</td><td class="tagattribdesc">チェックボックスのサイズを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="system_id_font" id="system_id_font">&lt;id&gt;_font</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">フォント名</td><td class="tagattribdesc">チェックボックスのフォント名を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="system_id_font_height" id="system_id_font_height">&lt;id&gt;_font_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">フォント名</td><td class="tagattribdesc">チェックボックスのフォントサイズを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="system_id_caption" id="system_id_caption">&lt;id&gt;_caption</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">文字列</td><td class="tagattribdesc">チェックボックスのキャプションを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="system_id_caption_color" id="system_id_caption_color">&lt;id&gt;_caption_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">チェックボックスのキャプションカラーを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="system_id_color" id="system_id_color">&lt;id&gt;_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">チェックボックスの背景色を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="system_id_opacity" id="system_id_opacity">&lt;id&gt;_opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0～255</td><td class="tagattribdesc">チェックボックスの不透明度を指定します。<br />
 </tbody></table><div class="tagremarks">システム画面の項目を設定します。<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
 
