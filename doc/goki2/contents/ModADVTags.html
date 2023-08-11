@@ -69,6 +69,7 @@ ModADVのテキスト処理は複雑なため詳細はソースを追ってください。<br />
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#end_of_sentence">end_of_sentence</a></span></td><td class="taglistodd">センテンスの終了</td></tr>
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#reserved_transition">reserved_transition</a></span></td><td class="taglisteven">トランジションの予約</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#run_reserved_transition">run_reserved_transition</a></span></td><td class="taglistodd">予約したトランジションの開始</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#auto_play_voice">auto_play_voice</a></span></td><td class="taglisteven">予約したトランジションの開始</td></tr>
 </tbody></table><br /><br /></div></div>
 
 <h1><a name="using_mod_adv" id="using_mod_adv" class="targanchor"><span class="b">using_mod_adv</span>文字出力先をModADVにする</a></h1>
@@ -392,6 +393,17 @@ true を指定するとスキップします。<br />
 false を指定するとスキップしません。<br />
 デフォルトは true です。<br />
 
+</tbody></table><div class="tagremarks">予約したトランジションを実行します。<br />
+このタグを直接利用する事はないでしょう。<br />
+</div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="auto_play_voice" id="auto_play_voice" class="targanchor"><span class="b">auto_play_voice</span>(別名なし)</a></h1>
+<div class="taggenre">予約したトランジションの実行</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ wait_transition の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="enabled" id="enabled">enabled</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定するとオート時にボイスを再生します。<br />
+falseを指定するとオート時にボイスを再生しません。<br />
+デフォルトはtrueです。<br />
 </tbody></table><div class="tagremarks">予約したトランジションを実行します。<br />
 このタグを直接利用する事はないでしょう。<br />
 </div>
