@@ -122,9 +122,9 @@ public
 					end
 
 					if(data_header[i].element_name == nil)
-						elements << "'#{data_header[i].header_name}'=>string('#{row[i]}')"
+						elements << "'#{data_header[i].header_name}'=>#{row[i]}"
 					else
-						elements << "'#{data_header[i].element_name}'=>string('#{row[i]}')"
+						elements << "'#{data_header[i].element_name}'=>#{row[i]}"
 					end
 
 				}
