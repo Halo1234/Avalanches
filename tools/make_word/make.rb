@@ -153,7 +153,7 @@ puts "Configuration file: '#{configuration_file}'"
 puts "Output directory: '#{output_dir}'"
 puts ''
 
-input_file_encoding = Encoding.find("cp932")
+input_file_encoding = Encoding.find("utf-8")
 config = IniFile.load(configuration_file, {:encoding=>input_file_encoding})
 
 filenames = nil
