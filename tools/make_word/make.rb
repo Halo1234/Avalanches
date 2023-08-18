@@ -178,6 +178,13 @@ converter.convert_to(input_file, output_dir, filenames) { |row, is_header|
 		config['HEADER_ITEMS'].each { |key, value|
 			converter.data_header.each { |item| item.element_name = key if item.header_name == value }
 		}
+    else
+        row.each_index { |index|
+            if(converter.ignore_nil && row[index] == nil)
+                next
+            end
+            row[index] = "string('#{row[index]}')"
+        }
 	end
 }
 
