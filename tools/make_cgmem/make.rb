@@ -183,7 +183,6 @@ converter.convert_to(input_file, output_dir, filenames) { |row, is_header|
             if(converter.ignore_nil && row[index] == nil)
                 next
             end
-            puts "header : #{converter.data_header[index].element_name}"
             if(converter.data_header[index].element_name == "thumbnail")
                 row[index] = "(string)\"#{row[index]}\""
             else
