@@ -6,6 +6,14 @@
 **/
 
 [
-	%['thumbnail'=>[(string)"thum_CG_A"], 'cg'=>[(string)"CG_A000", (string)"CG_A001"], 'memory'=>[(string)"ModImageTest"]],
-	%['thumbnail'=>[(string)"thum_CG_B"], 'cg'=>[(string)"CG_B000"], 'memory'=>[(string)"ModMessageTest"]]
+	%['thumbnail'=>(string)"thum_CG_A", 'cg'=>[(string)"CG_A000", (string)"CG_A001"], 'memory'=>[(string)"ModImageTest"]],
+	%['thumbnail'=>(string)"thum_CG_B", 'cg'=>[(string)"CG_B000"], 'memory'=>[(string)"ModMessageTest"]],
+	%['thumbnail'=>(string)"thum_CG_A", 'cg'=>[(string)"CG_A000", (string)"CG_A001"], 'memory'=>[(string)"ModImageTest"]],
+	%['thumbnail'=>(string)"thum_CG_B", 'cg'=>[(string)"CG_B000"], 'memory'=>[(string)"ModMessageTest"]],
+	%['thumbnail'=>(string)"thum_CG_A", 'cg'=>[(string)"CG_A000", (string)"CG_A001"], 'memory'=>[(string)"ModImageTest"]],
+	%['thumbnail'=>(string)"thum_CG_B", 'cg'=>[(string)"CG_B000"], 'memory'=>[(string)"ModMessageTest"]],
+	%['thumbnail'=>(string)"thum_CG_A", 'cg'=>[(string)"CG_A000", (string)"CG_A001"], 'memory'=>[(string)"ModImageTest"]],
+	%['thumbnail'=>(string)"thum_CG_B", 'cg'=>[(string)"CG_B000"], 'memory'=>[(string)"ModMessageTest"]],
+	%['thumbnail'=>(string)"thum_CG_A", 'cg'=>[(string)"CG_A000", (string)"CG_A001"], 'memory'=>[(string)"ModImageTest"]],
+	%['thumbnail'=>(string)"thum_CG_B", 'cg'=>[(string)"CG_B000"], 'memory'=>[(string)"ModMessageTest"]]
 ]
