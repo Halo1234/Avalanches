@@ -5,13 +5,13 @@
 @load_module name=ModMessage
 
 ; ウインドウ設定
-@window width=200 height=200 fix_position_to_center visible
+@window width=300 height=200 fix_position_to_center visible
 
 ; メッセージレイヤの数
 @message_layers count=1
 
 ; メッセージレイヤ設定
-@message_option layer=message0 left=0 top=0 width=200 height=200 opacity=0 color=0 caption_color=0xFFFFFF current
+@message_option layer=message0 left=0 top=0 width=300 height=200 opacity=0 color=0 caption_color=0xFFFFFF current
 
 @using_mod_message
 
@@ -25,8 +25,8 @@
 @wait_show_message
 
 タイトル：[emb exp=System.title][r]
-バージョン：[emb exp=window.conductor.majorVersionNumber].[emb exp=window.conductor.minorVersionNumber]
-[emb exp=window.conductor.specialVersionString]
+バージョン：[emb exp=global.window.conductor.majorVersionNumber].[emb exp=global.window.conductor.minorVersionNumber][r]
+[emb exp=global.window.conductor.specialVersionString]
 
 @s
 
