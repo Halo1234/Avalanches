@@ -47,6 +47,7 @@
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#base_layer_pos">base_layer_pos</a></span></td><td class="taglisteven">ベースレイヤの位置指定</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#base_layer_transparent">base_layer_transparent</a></span></td><td class="taglistodd">ベースレイヤの透明化</td></tr>
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#release_rendering_target">release_rendering_target</a></span></td><td class="taglisteven">layer_moveタグの結果を破棄する</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#load_cg">load_cg</a></span></td><td class="taglistodd">CGの読み込み</td></tr>
 </tbody></table><br /><br /></div></div>
 
 <h1><a name="cv_layers" id="cv_layers" class="targanchor"><span class="b">cv_layers</span>(laycount)</a></h1>
@@ -551,6 +552,59 @@ back を指定すると裏ページのレイヤが対象になります。<br />
 省略するとforeが指定されたものとみなします。<br />
 </tbody></table><div class="tagremarks">layer_moveタグにrendering_target_released=trueを指定した場合の描画結果を破棄します。<br />
 </div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="load_cg" id="load_cg" class="targanchor"><span class="b">load_cg</span>(別名なし)</a></h1>
+<div class="taggenre">CGレイヤに画像を読み込む</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ load_cg の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_cg_layer" id="load_cg_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">CGレイヤの名前</td><td class="tagattribdesc">CGレイヤの名前を指定します。<br />
+cg_layer_0 ～ cg_layer_N のいずれかになります。(N は cg_layers で指定したCGレイヤの枚数 - 1)<br />
+省略するとbaseが指定されたものとみなします。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_cg_page" id="load_cg_page">page</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">対象レイヤのページ</td><td class="tagattribdesc">対象レイヤのページ名。<br />
+fore を指定すると表ページのレイヤが対象になります。<br />
+back を指定すると裏ページのレイヤが対象になります。<br />
+省略するとforeが指定されたものとみなします。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_cg_storage" id="load_cg_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">レイヤに読み込む画像ファイル名</td><td class="tagattribdesc">レイヤに読み込む画像ファイル名を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_cg_key" id="load_cg_key">key</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">画像ファイルのキー値</td><td class="tagattribdesc">画像ファイルのキー値を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_cg_asd_storage" id="load_cg_asd_storage">asd_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">asd ファイル名を指定</td><td class="tagattribdesc">asd ファイル名を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_cg_mode" id="load_cg_mode">mode</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">mode を指定</td><td class="tagattribdesc">mode を指定する。<br />
+<tr><td class="tagattribalias">flipud</td><td class="tagattribname"><a class="targanchor" name="load_cg_flip_ud" id="load_cg_flip_ud">flip_ud</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">上下反転</td><td class="tagattribdesc">画像の上下を反転するかどうかを指定する。<br />
+<tr><td class="tagattribalias">fliplr</td><td class="tagattribname"><a class="targanchor" name="load_cg_flip_lr" id="load_cg_flip_lr">flip_lr</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">左右反転</td><td class="tagattribdesc">画像の左右を反転するかどうかを指定する。<br />
+<tr><td class="tagattribalias">clipleft</td><td class="tagattribname"><a class="targanchor" name="load_cg_clip_left" id="load_cg_clip_left">clip_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">画像表示位置</td><td class="tagattribdesc">画像の左表示位置を指定する。<br />
+<tr><td class="tagattribalias">cliptop</td><td class="tagattribname"><a class="targanchor" name="load_cg_clip_top" id="load_cg_clip_top">clip_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">画像表示位置</td><td class="tagattribdesc">画像の上表示位置を指定する。<br />
+<tr><td class="tagattribalias">clipwidth</td><td class="tagattribname"><a class="targanchor" name="load_cg_clip_width" id="load_cg_clip_width">clip_width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">画像表示幅</td><td class="tagattribdesc">画像の表示幅を指定する。<br />
+<tr><td class="tagattribalias">clipheight</td><td class="tagattribname"><a class="targanchor" name="load_cg_clip_height" id="load_cg_clip_height">clip_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">画像表示高さ</td><td class="tagattribdesc">画像の表示高さを指定する。<br />
+<tr><td class="tagattribalias">grayscale</td><td class="tagattribname"><a class="targanchor" name="load_cg_gray_scale" id="load_cg_gray_scale">gray_scale</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">グレイスケール</td><td class="tagattribdesc">グレイスケール化するかどうかを指定する。<br />
+<tr><td class="tagattribalias">rgamma</td><td class="tagattribname"><a class="targanchor" name="load_cg_r_gamma" id="load_cg_r_gamma">r_gamma</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ガンマ補正値 (0.1 ～ 1.0(デフォルト) ～ 9.9)</td><td class="tagattribdesc">r (赤) 、g (緑) 、 b (青) の各成分のガンマ値を指定します。 <br />
+たとえば画像をセピア調にするには、 grayscale=true rgamma=1.3 ggamma=1.1 と指定します。<br />
+<tr><td class="tagattribalias">ggamma</td><td class="tagattribname"><a class="targanchor" name="load_cg_g_gamma" id="load_cg_g_gamma">g_gamma</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ガンマ補正値 (0.1 ～ 1.0(デフォルト) ～ 9.9)</td><td class="tagattribdesc">r (赤) 、g (緑) 、 b (青) の各成分のガンマ値を指定します。 <br />
+たとえば画像をセピア調にするには、 grayscale=true rgamma=1.3 ggamma=1.1 と指定します。<br />
+<tr><td class="tagattribalias">bgamma</td><td class="tagattribname"><a class="targanchor" name="load_cg_b_gamma" id="load_cg_b_gamma">b_gamma</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ガンマ補正値 (0.1 ～ 1.0(デフォルト) ～ 9.9)</td><td class="tagattribdesc">r (赤) 、g (緑) 、 b (青) の各成分のガンマ値を指定します。 <br />
+たとえば画像をセピア調にするには、 grayscale=true rgamma=1.3 ggamma=1.1 と指定します。<br />
+<tr><td class="tagattribalias">rfloor</td><td class="tagattribname"><a class="targanchor" name="load_cg_r_floor" id="load_cg_r_floor">r_floor</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">輝度最低値 ( 0(デフォルト) ～ 255 )</td><td class="tagattribdesc">各成分の輝度最低値を指定します。<br />
+<tr><td class="tagattribalias">gfloor</td><td class="tagattribname"><a class="targanchor" name="load_cg_g_floor" id="load_cg_g_floor">g_floor</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">輝度最低値 ( 0(デフォルト) ～ 255 )</td><td class="tagattribdesc">各成分の輝度最低値を指定します。<br />
+<tr><td class="tagattribalias">bfloor</td><td class="tagattribname"><a class="targanchor" name="load_cg_b_floor" id="load_cg_b_floor">b_floor</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">輝度最低値 ( 0(デフォルト) ～ 255 )</td><td class="tagattribdesc">各成分の輝度最低値を指定します。<br />
+<tr><td class="tagattribalias">rceil</td><td class="tagattribname"><a class="targanchor" name="load_cg_r_ceil" id="load_cg_r_ceil">r_ceil</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">輝度最高値 ( 0 ～ 255(デフォルト) )</td><td class="tagattribdesc">各成分の輝度最高値を指定します。 たとえば、 rfloor=255 gfloor=255 bfloor=255 rceil=0 gceil=0 bceil=0 と 指定すると、色が反転します。<br />
+<tr><td class="tagattribalias">gceil</td><td class="tagattribname"><a class="targanchor" name="load_cg_g_ceil" id="load_cg_g_ceil">g_ceil</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">輝度最高値 ( 0 ～ 255(デフォルト) )</td><td class="tagattribdesc">各成分の輝度最高値を指定します。 たとえば、 rfloor=255 gfloor=255 bfloor=255 rceil=0 gceil=0 bceil=0 と 指定すると、色が反転します。<br />
+<tr><td class="tagattribalias">bceil</td><td class="tagattribname"><a class="targanchor" name="load_cg_b_ceil" id="load_cg_b_ceil">b_ceil</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">輝度最高値 ( 0 ～ 255(デフォルト) )</td><td class="tagattribdesc">各成分の輝度最高値を指定します。 たとえば、 rfloor=255 gfloor=255 bfloor=255 rceil=0 gceil=0 bceil=0 と 指定すると、色が反転します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_cg_mcolor" id="load_cg_mcolor">mcolor</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB 形式</td><td class="tagattribdesc">色ブレンドによる色調効果において、ブレンドする色を 0xRRGGBB 形式で指定します。濃度は mopacity 属性で指定します。<br />
+省略すると色ブレンドによる色調効果は行われません。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_cg_mopacity" id="load_cg_mopacity">mopacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">不透明度(0 ～ 255)</td><td class="tagattribdesc">色ブレンドによる色調効果で、mcolor で指定した色をどれぐらいの不透 明度でブレンドするかを指定します。<br />
+<tr><td class="tagattribalias">cx</td><td class="tagattribname"><a class="targanchor" name="load_cg_center_x" id="load_cg_center_x">center_x</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">中心位置X</td><td class="tagattribdesc">画像中心位置を指定する。<br />
+<tr><td class="tagattribalias">cy</td><td class="tagattribname"><a class="targanchor" name="load_cg_center_y" id="load_cg_center_y">center_y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">中心位置Y</td><td class="tagattribdesc">画像中心位置を指定する。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_cg_left" id="load_cg_left">left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">画像左上位置</td><td class="tagattribdesc">画像の左上隅位置を指定する。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_cg_top" id="load_cg_top">top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">画像左上位置</td><td class="tagattribdesc">画像の左上隅位置を指定する。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_cg_right" id="load_cg_right">right</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">画像右下位置</td><td class="tagattribdesc">画像の右下隅位置を指定する。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_cg_bottom" id="load_cg_bottom">bottom</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">画像右下位置</td><td class="tagattribdesc">画像の右下隅位置を指定する。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_cg_visible" id="load_cg_visible">visible</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true または false</td><td class="tagattribdesc">layer 属性で指定したレイヤを表示するか、しないかを指定します。visible=true と指定すれば、レイヤは表示状態になります。visible=false と指定すれば、非表示状態になります。省略すると表示状態は変わりません。layer=base を指定した場合はこの属性は指定しないでください。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_cg_index" id="load_cg_index">index</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">正の整数</td><td class="tagattribdesc">背景レイヤには指定しないでください。<br />
+重ね合わせ順序を指定します。値が大きいほど手前に表示されます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_cg_opacity" id="load_cg_opacity">opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">不透明度 ( 0 (全くの透明) ～ 255 (全くの不透明 ) )</td><td class="tagattribdesc">layer 属性で指定したレイヤの不透明度を指定します。<br />
+デフォルトで 255 (全くの不透明) です。つまり、この属性を指定しないで 画像を読み込むと、そのレイヤの opacity が 255 以外でも、255 に設定し なおされます。<br />
+128 を指定すると半分程度の透明度になり、透けて表示されます。<br />
+opacity=0 としてもレイヤを見えなくすることが出来ますが、全くの透明に なっただけで非表示になるわけではありません。<br />
+この属性を設定してもレイヤの画像自体が変化するわけではありません。 変化するのは表示の状態です。<br />
+</tbody></table><div class="tagremarks">画像を読み込みます。<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
 
 	<script type="text/javascript" charset="Shift_JIS" src="documentid.js" ></script>
