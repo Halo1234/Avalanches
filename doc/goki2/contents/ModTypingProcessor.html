@@ -16,6 +16,13 @@
 
 <h1><a name="tags" id="tags">ModTypingProcessorのタグ</a></h1>
 <div class="para"><div>　ModTypingProcessor で使用可能なタグのリファレンスです。<br />
+<br />
+タイピングゲームのワードデータはエクセルで入力する事ができます。<br />
+/src/data/typing_words/words.xlsを編集してください。<br />
+キャプション列にはキャプションとして表示する文字列を指定します。<br />
+ルビ列には入力すべき文字列をカタカナで指定します。<br />
+データを作成するには/tools/make_word/run.batを実行します。<br />
+同じ場所にワードデータが生成されるのでプロジェクトフォルダにコピーして[load_typing_words]タグで読み込んでください。<br />
 
 <h1><a name="genre" id="genre" class="targanchor">ジャンル・タグ一覧</a></h1>
 
@@ -130,7 +137,7 @@
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ load_typing_words の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
 <tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="load_typing_words_storage" id="load_typing_words_storage">storage</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">タイピングワードのストレージ名を指定します。<br />
 </tbody></table><div class="tagremarks">タイピングワードを読み込みます。<br />
-タイピングワードの作り方は/stc/data/sample_typing_words/words.xlsを参考にワードデータを編集します。<br />
+タイピングワードの作り方は/stc/data/typing_words/words.xlsを参考にワードデータを編集します。<br />
 編集後、/tools/make_word/readme.txtを参照して*.batファイルを作成します。<br />
 あとは、*.batファイルを実行して生成された*.dicファイルを開発環境にコピーして、このタグを利用してタイピングワードを読み込みます。<br />
 </div>
