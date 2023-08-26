@@ -57,4 +57,8 @@
 @redirect alias=wm name=wait_move
 @!wm /skip=<CANSKIP> /no_skip=<NO_CANSKIP> /!skip=<!CANSKIP>
 
+@redirect alias=loadcg name=load_cg
+
+@!load_cg /gray_scale=<GRAYSCALE> /no_gray_scale=<NO_GRAYSCALE> /!gray_scale=<!GRAYSCALE> /r_gamma=<RGAMMA> /g_gamma=<GGAMMA> /b_gamma=<BGAMMA> /r_floor=<RFLOOR> /g_floor=<GFLOOR> /b_floor=<BFLOOR> /r_ceil=<RCEIL> /g_ceil=<GCEIL> /b_ceil=<BCEIL> /clip_left=<CLIPLEFT> /clip_top=<CLIPTOP> /clip_width=<CLIPWIDTH> /clip_height=<CLIPHEIGHT> /flip_ud=<FLIPUD> /no_flip_ud=<NO_FLIPUD> /!flip_ud=<!FLIPUD> /flip_lr=<FLIPLR> /no_flip_lr=<NO_FLIPLR> /!flip_lr=<!FLIPLR> /center_x=<CX> /center_y=<CY>
+
 
