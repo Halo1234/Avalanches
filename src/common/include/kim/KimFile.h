@@ -89,6 +89,14 @@
 #  define S_IRWXU	((S_IRUSR) | (S_IWRITE) | (S_IEXEC))
 #endif
 
+#if defined(KIM_UNICODE)
+#  define _tsopen_s	_wsopen_s
+#  define _tstat64	_wstat64
+#else
+#  define _tsopen_s	_sopen_s
+#  define _tstat64	_stat64
+#endif
+
 namespace kim {
 	namespace details {
 
@@ -106,10 +114,10 @@ namespace kim {
 
 		/**/
 		inline
-		bool kim_stat(const char *pathname, stat_type &buffer)
+		bool kim_stat(const kim::kim_tchar *pathname, stat_type &buffer)
 		{
 #if defined(KIM_MSVC_COMPILER)
-			if(::_stat64(pathname, &buffer) != 0)
+			if(::_tstat64(pathname, &buffer) != 0)
 #elif defined(KIM_GNUC_COMPILER)
 			if(::stat(pathname, &buffer) != 0)
 #endif
@@ -132,7 +140,7 @@ namespace kim {
 			kim::kim_int32 fd;
 
 #if defined(KIM_HAS_SECURE_CRT)
-			if(::_wsopen_s(&fd, pathname, flags, _SH_DENYRW, mode) != 0)
+			if(::_tsopen_s(&fd, pathname, flags, _SH_DENYRW, mode) != 0)
 #else
 			fd = ::open(pathname, (int)flags, (int)mode);
 			if(fd == -1)
