@@ -158,7 +158,7 @@ namespace details {
 
 			switch(type)
 			{
-			case KrkrCF::KRKRCF_DATAPATH:
+			case KRKRCF_DATAPATH:
 				work = KIM_WT("datapath=");
 				work += GetKrkrCFString(rec[i]);
 				break;
@@ -183,11 +183,11 @@ namespace details {
 
 			switch(type)
 			{
-			case KrkrCF::KRKRCF_LOGERROR:
+			case KRKRCF_LOGERROR:
 				work = KIM_WT("logerror=");
 				work += GetKrkrCFString(rec[i]);
 				break;
-			case KrkrCF::KRKRCF_DEBUGWIN:
+			case KRKRCF_DEBUGWIN:
 				work = KIM_WT("debugwin=");
 				work += GetKrkrCFString(rec[i]);
 				break;
@@ -212,27 +212,27 @@ namespace details {
 
 			switch(type)
 			{
-			case KrkrCF::KRKRCF_HKCONTROLLER:
+			case KRKRCF_HKCONTROLLER:
 				work = KIM_WT("hkcontroller=");
 				work += GetKrkrCFString(rec[i]);
 				break;
-			case KrkrCF::KRKRCF_HKEDITOR:
+			case KRKRCF_HKEDITOR:
 				work = KIM_WT("hkeditor=");
 				work += GetKrkrCFString(rec[i]);
 				break;
-			case KrkrCF::KRKRCF_HKWATCH:
+			case KRKRCF_HKWATCH:
 				work = KIM_WT("hkwatch=");
 				work += GetKrkrCFString(rec[i]);
 				break;
-			case KrkrCF::KRKRCF_HKCONSOLE:
+			case KRKRCF_HKCONSOLE:
 				work = KIM_WT("hkconsole=");
 				work += GetKrkrCFString(rec[i]);
 				break;
-			case KrkrCF::KRKRCF_HKUPDATERECT:
+			case KRKRCF_HKUPDATERECT:
 				work = KIM_WT("hkupdaterect=");
 				work += GetKrkrCFString(rec[i]);
 				break;
-			case KrkrCF::KRKRCF_HKDUMPLAYER:
+			case KRKRCF_HKDUMPLAYER:
 				work = KIM_WT("hkdumplayer=");
 				work += GetKrkrCFString(rec[i]);
 				break;

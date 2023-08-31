@@ -16,7 +16,7 @@ static KrkrCF	krkrcf;
  * OpenExternalIndex "external_index_file_pathname"
 **/
 NSISPLUGINFUNCTION OpenExternalIndex(
-	HWND ParentWindow, int StringSize, char *Variables, stack_t **StackTop, extra_parameters *Extra
+	HWND ParentWindow, int StringSize, LPTSTR Variables, stack_t **StackTop, extra_parameters *Extra
 	)
 {
 	kim::kim_int32 id = -1;
@@ -41,7 +41,7 @@ NSISPLUGINFUNCTION OpenExternalIndex(
  * AddExternalIndex external_index_file_id "type" "index"
 **/
 NSISPLUGINFUNCTION AddExternalIndex(
-	HWND ParentWindow, int StringSize, char *Variables, stack_t **StackTop, extra_parameters *Extra
+	HWND ParentWindow, int StringSize, LPTSTR Variables, stack_t **StackTop, extra_parameters *Extra
 	)
 {
 	NSISPluginManager::int_type id;
@@ -68,7 +68,7 @@ NSISPLUGINFUNCTION AddExternalIndex(
  * CloseExternalIndex external_index_file_id
 **/
 NSISPLUGINFUNCTION CloseExternalIndex(
-	HWND ParentWindow, int StringSize, char *Variables, stack_t **StackTop, extra_parameters *Extra
+	HWND ParentWindow, int StringSize, LPTSTR Variables, stack_t **StackTop, extra_parameters *Extra
 	)
 {
 	NSISPluginManager::int_type id;
@@ -89,7 +89,7 @@ NSISPLUGINFUNCTION CloseExternalIndex(
  OpenIndex "index_file_pathname" "mode"
 */
 NSISPLUGINFUNCTION OpenIndex(
-	HWND ParentWindow, int StringSize, char *Variables, stack_t **StackTop, extra_parameters *Extra
+	HWND ParentWindow, int StringSize, LPTSTR Variables, stack_t **StackTop, extra_parameters *Extra
 	)
 {
 	kim::kim_int32 id = -1;
@@ -117,7 +117,7 @@ NSISPLUGINFUNCTION OpenIndex(
  GetNextIndex index_file_id
 */
 NSISPLUGINFUNCTION GetNextIndex(
-	HWND ParentWindow, int StringSize, char *Variables, stack_t **StackTop, extra_parameters *Extra
+	HWND ParentWindow, int StringSize, LPTSTR Variables, stack_t **StackTop, extra_parameters *Extra
 	)
 {
 	NSISPluginManager::int_type id;
@@ -143,7 +143,7 @@ NSISPLUGINFUNCTION GetNextIndex(
  AddIndex index_file_id "index"
 */
 NSISPLUGINFUNCTION AddIndex(
-	HWND ParentWindow, int StringSize, char *Variables, stack_t **StackTop, extra_parameters *Extra
+	HWND ParentWindow, int StringSize, LPTSTR Variables, stack_t **StackTop, extra_parameters *Extra
 	)
 {
 	NSISPluginManager::int_type id;
@@ -168,7 +168,7 @@ NSISPLUGINFUNCTION AddIndex(
  InsertIndex index_file_id index_number "index"
 */
 NSISPLUGINFUNCTION InsertIndex(
-	HWND ParentWindow, int StringSize, char *Variables, stack_t **StackTop, extra_parameters *Extra
+	HWND ParentWindow, int StringSize, LPTSTR Variables, stack_t **StackTop, extra_parameters *Extra
 	)
 {
 	NSISPluginManager::int_type id;
@@ -195,7 +195,7 @@ NSISPLUGINFUNCTION InsertIndex(
  CloseIndex index_file_id
 */
 NSISPLUGINFUNCTION CloseIndex(
-	HWND ParentWindow, int StringSize, char *Variables, stack_t **StackTop, extra_parameters *Extra
+	HWND ParentWindow, int StringSize, LPTSTR Variables, stack_t **StackTop, extra_parameters *Extra
 	)
 {
 	NSISPluginManager::int_type id;
@@ -216,7 +216,7 @@ NSISPLUGINFUNCTION CloseIndex(
  InitializeKrkrCF
 */
 NSISPLUGINFUNCTION InitializeKrkrCF(
-	HWND ParentWindow, int StringSize, char *Variables, stack_t **StackTop, extra_parameters *Extra
+	HWND ParentWindow, int StringSize, LPTSTR Variables, stack_t **StackTop, extra_parameters *Extra
 	)
 {
 	try {
@@ -224,16 +224,16 @@ NSISPLUGINFUNCTION InitializeKrkrCF(
 		CNSISPluginManager.InitializeStackParameters(StringSize, Variables, StackTop, Extra);
 
 		// デバッグ機能潰し
-		krkrcf.SetValue(KrkrCF::KRKRCF_LOGERROR, KIM_WT("no"));
-		krkrcf.SetValue(KrkrCF::KRKRCF_DEBUGWIN, KIM_WT("no"));
+		krkrcf.SetValue(KRKRCF_LOGERROR, KIM_WT("no"));
+		krkrcf.SetValue(KRKRCF_DEBUGWIN, KIM_WT("no"));
 
 		// ホットキー潰し
-		krkrcf.SetValue(KrkrCF::KRKRCF_HKCONTROLLER, KIM_WT(""));
-		krkrcf.SetValue(KrkrCF::KRKRCF_HKEDITOR, KIM_WT(""));
-		krkrcf.SetValue(KrkrCF::KRKRCF_HKWATCH, KIM_WT(""));
-		krkrcf.SetValue(KrkrCF::KRKRCF_HKCONSOLE, KIM_WT(""));
-		krkrcf.SetValue(KrkrCF::KRKRCF_HKUPDATERECT, KIM_WT(""));
-		krkrcf.SetValue(KrkrCF::KRKRCF_HKDUMPLAYER, KIM_WT(""));
+		krkrcf.SetValue(KRKRCF_HKCONTROLLER, KIM_WT(""));
+		krkrcf.SetValue(KRKRCF_HKEDITOR, KIM_WT(""));
+		krkrcf.SetValue(KRKRCF_HKWATCH, KIM_WT(""));
+		krkrcf.SetValue(KRKRCF_HKCONSOLE, KIM_WT(""));
+		krkrcf.SetValue(KRKRCF_HKUPDATERECT, KIM_WT(""));
+		krkrcf.SetValue(KRKRCF_HKDUMPLAYER, KIM_WT(""));
 
 	} catch(KIM_E_TYPE(e_kim) e) {
 		MessageBox(ParentWindow, e.what(), KIM_E("Harry KIM"), MB_ICONERROR | MB_OK);
@@ -244,7 +244,7 @@ NSISPLUGINFUNCTION InitializeKrkrCF(
  SetDataPath "pathname"
 */
 NSISPLUGINFUNCTION SetDataPath(
-	HWND ParentWindow, int StringSize, char *Variables, stack_t **StackTop, extra_parameters *Extra
+	HWND ParentWindow, int StringSize, LPTSTR Variables, stack_t **StackTop, extra_parameters *Extra
 	)
 {
 	NSISPluginManager::string_type pathname;
@@ -254,7 +254,7 @@ NSISPLUGINFUNCTION SetDataPath(
 		CNSISPluginManager.InitializeStackParameters(StringSize, Variables, StackTop, Extra);
 		CNSISPluginManager.PopString(pathname);
 
-		krkrcf.SetValue(KrkrCF::KRKRCF_DATAPATH, pathname.c_str());
+		krkrcf.SetValue(KRKRCF_DATAPATH, pathname.c_str());
 
 	} catch(KIM_E_TYPE(e_kim) e) {
 		MessageBox(ParentWindow, e.what(), KIM_E("Harry KIM"), MB_ICONERROR | MB_OK);
@@ -265,7 +265,7 @@ NSISPLUGINFUNCTION SetDataPath(
  SaveKrkrCFFile "pathname"
 */
 NSISPLUGINFUNCTION SaveKrkrCFFile(
-	HWND ParentWindow, int StringSize, char *Variables, stack_t **StackTop, extra_parameters *Extra
+	HWND ParentWindow, int StringSize, LPTSTR Variables, stack_t **StackTop, extra_parameters *Extra
 	)
 {
 	NSISPluginManager::string_type pathname;

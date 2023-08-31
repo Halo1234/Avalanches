@@ -25,7 +25,7 @@ namespace impl {
 		typedef impl::fname_type				fname_type;
 		typedef impl::file_type					file_type;
 
-		typedef kim::kim_achar					char_type;
+		typedef kim::kim_tchar					char_type;
 		typedef std::vector<char_type>			buffer_type;
 
 		typedef struct KIM_TAG(record_type)
@@ -33,9 +33,13 @@ namespace impl {
 			char_type		type;
 			buffer_type		data;
 
+			KIM_TAG(record_type)() : type(0), data(0)
+			{
+			};
+
 			bool operator==(const KIM_TAG(record_type)& rhs) const
 			{
-				return type == rhs.type && (strncmp(&data[0], &rhs.data[0], data.size()) == 0);
+				return type == rhs.type && (_tcsncmp(&data[0], &rhs.data[0], data.size()) == 0);
 			};
 		} record_type;
 		typedef std::vector<record_type>		table_type;
@@ -130,7 +134,7 @@ private:
 };
 
 
-kim::kim_int32 OpenExternalInstallerIndexFile(const char *pathname, ExternalInstallerIndex **p);
+kim::kim_int32 OpenExternalInstallerIndexFile(LPCTSTR pathname, ExternalInstallerIndex **p);
 bool GetExternalInstallerIndexFile(kim::kim_int32 id, ExternalInstallerIndex **p);
 void CloseExternalInstallerIndexFile(kim::kim_int32 id);
 

@@ -237,7 +237,7 @@ namespace details {
 
 }
 
-kim::kim_int32 CreateIndexFile(const char *pathname, char mode, Index **p)
+kim::kim_int32 CreateIndexFile(LPCTSTR pathname, TCHAR mode, Index **p)
 {
 	const kim::kim_int32 id = details::GetBlankIndex();
 

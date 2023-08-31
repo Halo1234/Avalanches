@@ -14,7 +14,7 @@
 #include<vector>
 #include<string>
 
-#pragma comment(lib, "pluginapi.lib")
+#pragma comment(lib, "pluginapi-x86-unicode.lib")
 
 #define CLINKAGE	extern "C"
 #define EXPORT		__declspec(dllexport)
@@ -29,7 +29,7 @@ class NSISPluginManager
 
 public:
 	typedef kim::kim_int32						int_type;
-	typedef char								char_type;
+	typedef TCHAR								char_type;
 	typedef std::basic_string<char_type>		string_type;
 
 private:
@@ -45,7 +45,7 @@ public:
 		module_ = reinterpret_cast<HMODULE>(module);
 	};
 
-	void InitializeStackParameters(int string_size, char *variables, stack_t **stacktop, extra_parameters *extra)
+	void InitializeStackParameters(int string_size, LPTSTR variables, stack_t **stacktop, extra_parameters *extra)
 	{
 		if(!callback_registered_)
 			RegistCallbackFunction(extra);
@@ -55,7 +55,7 @@ public:
 
 	void PopString(string_type &str)
 	{
-		std::vector<char> buf(g_stringsize);
+		std::vector<TCHAR> buf(g_stringsize);
 
 		if(buf.empty())
 			kim::e_internal(KIM_E("内部バッファの確保に失敗しました。"));
@@ -73,7 +73,7 @@ public:
 	void PushString(string_type &str)
 	{
 		if(str.empty())
-			pushstring("");
+			pushstring(KIM_TC(""));
 		else
 			pushstring(str.c_str());
 	};
@@ -89,6 +89,9 @@ private:
 			callback_registered_ = true;
 	};
 
+#pragma warning(push)
+#pragma warning(disable: 26812 )
+
 	static
 	UINT_PTR NSISCallback(enum NSPIM im)
 	{
@@ -103,6 +106,8 @@ private:
 
 		return 0L;
 	};
+
+#pragma warning(pop)
 
 private:
 	HMODULE	module_;

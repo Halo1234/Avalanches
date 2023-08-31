@@ -127,12 +127,12 @@ namespace kim {
 
 		/**/
 		inline
-		kim::kim_int32 kim_open(const char *pathname, kim::kim_native flags, kim::kim_native mode)
+		kim::kim_int32 kim_open(const kim::kim_tchar *pathname, kim::kim_native flags, kim::kim_native mode)
 		{
 			kim::kim_int32 fd;
 
 #if defined(KIM_HAS_SECURE_CRT)
-			if(::_sopen_s(&fd, pathname, flags, _SH_DENYRW, mode) != 0)
+			if(::_wsopen_s(&fd, pathname, flags, _SH_DENYRW, mode) != 0)
 #else
 			fd = ::open(pathname, (int)flags, (int)mode);
 			if(fd == -1)

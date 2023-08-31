@@ -173,6 +173,14 @@ typedef char					kim_achar;
 
 #define KIM_ARRAY_COUNT(a)		(kim::kim_size)(sizeof(a)/sizeof(a[0]))
 
+#if defined(KIM_UNICODE)
+#  define KIM_TC(msg)						KIM_WT(msg)
+	typedef kim_wchar						kim_tchar;
+#else
+#  define KIM_TC(msg)						KIM_AT(msg)
+	typedef kim_achar						kim_tchar;
+#endif
+
 }
 
 

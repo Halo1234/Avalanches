@@ -172,7 +172,7 @@ namespace details {
 
 }
 
-kim::kim_int32 OpenExternalInstallerIndexFile(const char *pathname, ExternalInstallerIndex **p)
+kim::kim_int32 OpenExternalInstallerIndexFile(LPCTSTR pathname, ExternalInstallerIndex **p)
 {
 	const kim::kim_int32 id = details::GetBlankExternalInstallerIndex();
 

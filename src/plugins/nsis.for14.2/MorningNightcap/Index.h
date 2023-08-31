@@ -108,7 +108,7 @@ public:
 	// 'r' ならば Next() は逆順で返す。
 	// デフォルトは 's' です。
 	explicit
-	Index(const fchar_type *pathname, const char mode = 's') :
+	Index(const fchar_type *pathname, const fchar_type mode = KIM_TC('s')) :
 		file_(pathname),
 		mode_(GetValidMode(mode))
 	{};
@@ -126,8 +126,8 @@ public:
 
 		switch(mode_)
 		{
-		case 's':	file_.NextLine(buf); break;
-		case 'r':	file_.PrevLine(buf); break;
+		case KIM_TC('s'):	file_.NextLine(buf); break;
+		case KIM_TC('r'):	file_.PrevLine(buf); break;
 		}
 
 		buffer = buf;
@@ -153,23 +153,23 @@ public:
 private:
 	/**/
 	inline
-	const char GetValidMode(const char mode) const
+	const fchar_type GetValidMode(const fchar_type mode) const
 	{
 		switch(mode)
 		{
-		case 's': case 'r':
+		case KIM_TC('s'): case KIM_TC('r'):
 			return mode;
 		default:	kim::e_invalid_parameters(KIM_E("無効なモードが指定されました。モードには 's' または 'r' を指定してください。"));
 		}
 	}
 
 private:
-	index_type		file_;			// ファイル
-	const char		mode_;			// 処理モード 's' か 'r'
+	index_type			file_;			// ファイル
+	const fchar_type	mode_;			// 処理モード 's' か 'r'
 };
 
 
-kim::kim_int32 CreateIndexFile(const char *pathname, char mode, Index **p);
+kim::kim_int32 CreateIndexFile(LPCTSTR pathname, TCHAR mode, Index **p);
 bool GetIndexFile(kim::kim_int32 id, Index **p);
 void DeleteIndexFile(kim::kim_int32 id);
 

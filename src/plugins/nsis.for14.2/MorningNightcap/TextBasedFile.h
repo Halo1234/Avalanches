@@ -13,7 +13,7 @@
 
 namespace impl {
 
-	typedef kim::kim_achar							fchar_type;
+	typedef kim::kim_tchar							fchar_type;
 	typedef std::basic_string<fchar_type>			fname_type;
 	typedef kim::details::file_methods<fchar_type>	fmethods;
 	typedef kim::file<fmethods>						file_type;
