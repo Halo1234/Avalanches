@@ -27,6 +27,12 @@
     <ClCompile Include="TextBasedFile.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\common\include\kim\KimAssert.h" />
+    <ClInclude Include="..\..\..\common\include\kim\KimConfig.h" />
+    <ClInclude Include="..\..\..\common\include\kim\KimException.h" />
+    <ClInclude Include="..\..\..\common\include\kim\KimFile.h" />
+    <ClInclude Include="..\..\..\common\include\kim\KimSingleton.h" />
+    <ClInclude Include="..\..\..\common\include\kim\KimText.h" />
     <ClInclude Include="..\api\api.h" />
     <ClInclude Include="..\api\nsis_tchar.h" />
     <ClInclude Include="..\api\pluginapi.h" />

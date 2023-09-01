@@ -87,14 +87,14 @@
 #  define S_IWUSR	S_IWRITE
 #  define S_IXUSR	S_IEXEC
 #  define S_IRWXU	((S_IRUSR) | (S_IWRITE) | (S_IEXEC))
-#endif
 
-#if defined(KIM_UNICODE)
-#  define _tsopen_s	_wsopen_s
-#  define _tstat64	_wstat64
-#else
-#  define _tsopen_s	_sopen_s
-#  define _tstat64	_stat64
+#  if defined(KIM_UNICODE)
+#    define _tsopen_s	_wsopen_s
+#    define _tstat64	_wstat64
+#  else
+#    define _tsopen_s	_sopen_s
+#    define _tstat64	_stat64
+#  endif
 #endif
 
 namespace kim {
