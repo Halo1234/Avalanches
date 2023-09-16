@@ -181,6 +181,10 @@ class Sample extends GModule<br />
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#onReadingMessageSpeedConfigChanged">onReadingMessageSpeedConfigChanged</a></span></td><td class="taglisteven">既読メッセージ速度が変更された時のイベント</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#onPlayMemory">onPlayMemory</a></span></td><td class="taglistodd">回想が再生された時のイベント</td></tr>
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#onEndMemory">onEndMemory</a></span></td><td class="taglisteven">回想の再生が終了した時のイベント</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#onAskStartConfirm">onAskStartConfirm</a></span></td><td class="taglistodd">最初に戻る確認する設定が変更された時のイベント</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#onAskRecordConfirm">onAskRecordConfirm</a></span></td><td class="taglisteven">一つ前に戻る確認する設定が変更された時のイベント</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#onAskCloseConfirm">onAskCloseConfirm</a></span></td><td class="taglistodd">終了確認する設定が変更された時のイベント</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#onAskSaveConfirm">onAskSaveConfirm</a></span></td><td class="taglisteven">セーブデータ上書き確認する設定が変更された時のイベント</td></tr>
 </tbody></table>
 </div></div>
 
@@ -470,6 +474,38 @@ config.low : 遅い時の文字表示速度。<br /></td></tr>
 
 <h1><a name="onEndMemory" id="onEndMemory" class="targanchor"><span class="b">onEndMemory()</span></h1>
 <div class="tagremarks">回想の再生が終了した時に呼び出されます。<br />
+</div>
+</div></div>
+
+<h1><a name="onAskStartConfirm" id="onAskStartConfirm" class="targanchor"><span class="b">onAskStartConfirm(confirm)</span></h1>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="onAskStartConfirm"><thead><tr><td>引数</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">confirm</td><td class="tagattribname">trueならば確認ダイアログを表示します。<br />
+</tbody></table>
+<div class="tagremarks">確認するしないの設定が変更された時に呼び出されます。<br />
+</div>
+</div></div>
+
+<h1><a name="onAskRecordConfirm" id="onAskRecordConfirm" class="targanchor"><span class="b">onAskRecordConfirm(confirm)</span></h1>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="onAskRecordConfirm"><thead><tr><td>引数</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">confirm</td><td class="tagattribname">trueならば確認ダイアログを表示します。<br />
+</tbody></table>
+<div class="tagremarks">確認するしないの設定が変更された時に呼び出されます。<br />
+</div>
+</div></div>
+
+<h1><a name="onAskCloseConfirm" id="onAskCloseConfirm" class="targanchor"><span class="b">onAskCloseConfirm(confirm)</span></h1>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="onAskCloseConfirm"><thead><tr><td>引数</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">confirm</td><td class="tagattribname">trueならば確認ダイアログを表示します。<br />
+</tbody></table>
+<div class="tagremarks">確認するしないの設定が変更された時に呼び出されます。<br />
+</div>
+</div></div>
+
+<h1><a name="onAskSaveConfirm" id="onAskSaveConfirm" class="targanchor"><span class="b">onAskSaveConfirm(confirm)</span></h1>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="onAskSaveConfirm"><thead><tr><td>引数</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">confirm</td><td class="tagattribname">trueならば確認ダイアログを表示します。<br />
+</tbody></table>
+<div class="tagremarks">確認するしないの設定が変更された時に呼び出されます。<br />
 </div>
 </div></div>
 
