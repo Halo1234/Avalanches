@@ -23,7 +23,7 @@ Options:
   設定ファイルは Windows INI file フォーマットです。
   デフォルトの設定ファイルは config.ini です。
 
-  設定ファイルの書き方については config.sample.ini を参照してください。
+  設定ファイルの書き方については config.ini を参照してください。
 
  --version-encoding
  --ve
