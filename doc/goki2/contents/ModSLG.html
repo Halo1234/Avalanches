@@ -210,6 +210,7 @@ slgprepareタグは使用後必ずsタグで停止してください。<br />
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#slgwaithidemap">slgwaithidemap</a></span></td><td class="taglistodd">マップ非表示待ち</td></tr>
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#slgprepare">slgprepare</a></span></td><td class="taglisteven">ゲーム開始準備の設定</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#slgrevival">slgrevival</a></span></td><td class="taglistodd">復活メニューの設定を行います</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#slgcharacterstatusinfo">slgcharacterstatusinfo</a></span></td><td class="taglisteven">ステータス画面の情報表示の設定を行います</td></tr>
 </tbody></table><br /><br /></div></div>
 
 <h1><a name="slgdebug" id="slgdebug" class="targanchor"><span class="b">slgdebug</span>(別名なし)</a></h1>
@@ -3622,6 +3623,81 @@ falseならば無効画像を使いません。<br />
 [slgrevival exp_left=120 exp_top=0]<br />
 [slgrevival id=HP hp_left=160 hp_top=0]<br />
 [slgrevival id=SP sp_left=200 sp_top=0]<br />
+</code></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="slgcharacterstatusinfo" id="slgcharacterstatusinfo" class="targanchor"><span class="b">slgcharacterstatusinfo</span>(別名なし)</h1>
+<div class="taggenre">SLG操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ slgcharacterstatusinfo の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusinfo_storage" id="slgcharacterstatusinfo_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">ステータスレイヤのアイテムリストの背景画像を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusinfo_left" id="slgcharacterstatusinfo_left">left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">ステータスレイヤの情報レイヤの位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusinfo_top" id="slgcharacterstatusinfo_top">top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">ステータスレイヤの情報レイヤの位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusinfo_width" id="slgcharacterstatusinfo_width">width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">ステータスレイヤの情報レイヤの幅を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusinfo_height" id="slgcharacterstatusinfo_height">height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">ステータスレイヤの情報レイヤの高さを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusinfo_font" id="slgcharacterstatusinfo_font">font</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">フォント名</td><td class="tagattribdesc">ステータスレイヤの情報レイヤのフォント名を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusinfo_font_height" id="slgcharacterstatusinfo_font_height">font_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">ステータスレイヤの情報レイヤのフォントの高さを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusinfo_id_font" id="slgcharacterstatusinfo_id_font">&lt;id&gt;_font</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">フォント名</td><td class="tagattribdesc">フォントを指定します。<br />
+&lt;id&gt;には以下が指定できます。<br />
+「name」アイテムやスキルの名前<br />
+「power」移動力<br />
+「range」有効範囲<br />
+「info」説明テキスト<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusinfo_id_font_height" id="slgcharacterstatusinfo_id_font_height">&lt;id&gt;_font_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">フォントの高さを指定します。<br />
+&lt;id&gt;には&lt;id&gt;_fontと同じものが指定できます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusinfo_id_storage" id="slgcharacterstatusinfo_id_storage">&lt;id&gt;_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">背景画像を指定します。<br />
+&lt;id&gt;には&lt;id&gt;_fontと同じものが指定できます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusinfo_id_caption" id="slgcharacterstatusinfo_id_caption">&lt;id&gt;_caption</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">文字列</td><td class="tagattribdesc">キャプションを指定します。<br />
+&lt;id&gt;には&lt;id&gt;_fontと同じものが指定できます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusinfo_remove_id" id="slgcharacterstatusinfo_remove_id">remove_&lt;id&gt;</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">削除するパラメータを指定します。<br />
+&lt;id&gt;には&lt;id&gt;_fontと同じものが指定できます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusinfo_id_left" id="slgcharacterstatusinfo_id_left">&lt;id&gt;_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">パラメータの左隅位置を指定します。<br />
+&lt;id&gt;には&lt;id&gt;_fontと同じものが指定できます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusinfo_id_top" id="slgcharacterstatusinfo_id_top">&lt;id&gt;_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">パラメータの上隅位置を指定します。<br />
+&lt;id&gt;には&lt;id&gt;_fontと同じものが指定できます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusinfo_id_body_color" id="slgcharacterstatusinfo_id_body_color">&lt;id&gt;_body_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">パラメータの背景色を指定します。<br />
+&lt;id&gt;には&lt;id&gt;_fontと同じものが指定できます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusinfo_id_body_opacity" id="slgcharacterstatusinfo_id_body_opacity">&lt;id&gt;_body_opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0～255</td><td class="tagattribdesc">パラメータの不透明度を指定します。<br />
+&lt;id&gt;には&lt;id&gt;_fontと同じものが指定できます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusinfo_id_caption_color" id="slgcharacterstatusinfo_id_caption_color">&lt;id&gt;_caption_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">パラメータのキャプションカラーを指定します。<br />
+&lt;id&gt;には&lt;id&gt;_fontと同じものが指定できます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusinfo_id_edge_color" id="slgcharacterstatusinfo_id_edge_color">&lt;id&gt;_edge_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">パラメータのエッジカラーを指定します。<br />
+&lt;id&gt;には&lt;id&gt;_fontと同じものが指定できます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusinfo_id_shadow_color" id="slgcharacterstatusinfo_id_shadow_color">&lt;id&gt;_shadow_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">パラメータの影カラーを指定します。<br />
+&lt;id&gt;には&lt;id&gt;_fontと同じものが指定できます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusinfo_remove_value_id" id="slgcharacterstatusinfo_remove_value_id">remove_value_&lt;id&gt;</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">パラメータ値を削除します。<br />
+&lt;id&gt;には&lt;id&gt;_fontと同じものが指定できます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusinfo_id_value_left" id="slgcharacterstatusinfo_id_value_left">&lt;id&gt;_value_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">パラメータ値の左隅座標を指定します。<br />
+&lt;id&gt;には&lt;id&gt;_fontと同じものが指定できます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusinfo_id_value_top" id="slgcharacterstatusinfo_id_value_top">&lt;id&gt;_value_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">パラメータ値の上隅座標を指定します。<br />
+&lt;id&gt;には&lt;id&gt;_fontと同じものが指定できます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusinfo_id_value_width" id="slgcharacterstatusinfo_id_value_width">&lt;id&gt;_value_width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">パラメータ値の幅を指定します。<br />
+&lt;id&gt;には&lt;id&gt;_fontと同じものが指定できます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusinfo_id_value_height" id="slgcharacterstatusinfo_id_value_height">&lt;id&gt;_value_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">パラメータ値の高さを指定します。<br />
+&lt;id&gt;には&lt;id&gt;_fontと同じものが指定できます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusinfo_id_value_font" id="slgcharacterstatusinfo_id_value_font">&lt;id&gt;_value_font</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">フォント名</td><td class="tagattribdesc">パラメータ値のフォント名を指定します。<br />
+&lt;id&gt;には&lt;id&gt;_fontと同じものが指定できます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusinfo_id_value_font_height" id="slgcharacterstatusinfo_id_value_font_height">&lt;id&gt;_value_font_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">パラメータ値のフォントの高さを指定します。<br />
+&lt;id&gt;には&lt;id&gt;_fontと同じものが指定できます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusinfo_id_value_body_color" id="slgcharacterstatusinfo_id_value_body_color">&lt;id&gt;_value_body_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">パラメータ値の背景色を指定します。<br />
+&lt;id&gt;には&lt;id&gt;_fontと同じものが指定できます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusinfo_id_value_body_opacity" id="slgcharacterstatusinfo_id_value_body_opacity">&lt;id&gt;_value_body_opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0～255</td><td class="tagattribdesc">パラメータ値の不透明度を指定します。<br />
+&lt;id&gt;には&lt;id&gt;_fontと同じものが指定できます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusinfo_id_value_caption_color" id="slgcharacterstatusinfo_id_value_caption_color">&lt;id&gt;_value_caption_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">パラメータ値のキャプションカラーを指定します。<br />
+&lt;id&gt;には&lt;id&gt;_fontと同じものが指定できます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusinfo_id_value_edge_color" id="slgcharacterstatusinfo_id_value_edge_color">&lt;id&gt;_value_edge_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">パラメータ値のエッジカラーを指定します。<br />
+&lt;id&gt;には&lt;id&gt;_fontと同じものが指定できます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgcharacterstatusinfo_id_value_shadow_color" id="slgcharacterstatusinfo_id_value_shadow_color">&lt;id&gt;_value_shadow_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">パラメータ値の影カラーを指定します。<br />
+</tbody></table><div class="tagremarks">ステータスレイヤの情報レイヤの設定を行います。<br />
+</div>
+<div class="tagexample"><code class="bq"><span class="weak">例:</span><br />
+; 情報レイヤの位置とサイズ<br />
+[slgcharacterstatusinfo left=10 top=290 width=380 height=180]<br />
+; 情報レイヤの構成<br />
+@slgcharacterstatusinfo left=10 top=290 width=380 height=180<br />
+@slgcharacterstatusinfo name_value_left=10 name_value_top=0 count_value_left=50 count_value_top=0<br />
+@slgcharacterstatusinfo power_left=10 power_top=20 power_caption=攻撃力 power_value_left=70 power_value_top=20<br />
+@slgcharacterstatusinfo range_left=10 range_top=40 range_caption=攻撃範囲 range_value_left=70 range_value_top=40<br />
+@slgcharacterstatusinfo info_value_left=10 info_value_top=60<br />
 </code></div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
 
