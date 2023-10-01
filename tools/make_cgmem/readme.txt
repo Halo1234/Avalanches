@@ -6,6 +6,7 @@
 
  １．/src/data/cgmemory/list.xlsx をコピーしてファイル名を変更します。
  ２．１で作成したファイルを開いてCG/回想のデータを入力します。（シート名が出力ファイル名になります）
+     入力データは拡張子を含めないでください。
  ３．run.batまたはrun_cp932.batを開いて..\..\src\data\cgmemory\list.xlsxを１で作成したファイル名に変更します。
  ４．run.batまたはrun_cp932.batを実行します。
 
