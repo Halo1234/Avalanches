@@ -159,6 +159,8 @@ class Sample extends GModule<br />
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#onWindowClose">onWindowClose</a></span></td><td class="taglisteven">ウインドウクローズイベント</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#onSaveStartAnchor">onSaveStartAnchor</a></span></td><td class="taglistodd">スタート位置の記録イベント</td></tr>
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#onLoadStartAnchor">onLoadStartAnchor</a></span></td><td class="taglisteven">スタート位置へのロードイベント</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#onPushRecordAnchor">onPushRecordAnchor</a></span></td><td class="taglistodd">レコード位置の記録イベント</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#onPopRecordAnchor">onPopRecordAnchor</a></span></td><td class="taglisteven">レコード位置の復帰イベント</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#onRemoveStartAnchor">onRemoveStartAnchor</a></span></td><td class="taglistodd">スタート位置の削除イベント</td></tr>
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#onSaveSystemVariables">onSaveSystemVariables</a></span></td><td class="taglisteven">システム変数のセーブ時のイベント</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#onLoadSystemVariables">onLoadSystemVariables</a></span></td><td class="taglistodd">システム変数のロード時のイベント</td></tr>
@@ -306,18 +308,36 @@ ignore : trueまたはfalseを指定します。trueを指定するとタグは無視されます。</td><
 <div class="tagremarks">ウインドウが閉じる前に呼び出されます。<br /></div>
 </div></div>
 
-<h1><a name="onSaveStartAnchor" id="onSaveStartAnchor" class="targanchor"><span class="b">onSaveStartAnchor(userFlags)</span></h1>
+<h1><a name="onSaveStartAnchor" id="onSaveStartAnchor" class="targanchor"><span class="b">onSaveStartAnchor(userFlags, core)</span></h1>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="onSaveStartAnchor"><thead><tr><td>引数</td><td>説明</td></tr></thead><tbody>
 <tr><td class="tagattribalias">userFlags</td><td class="tagattribname">セーブ時のユーザーフラグが渡されます。</td></tr>
+<tr><td class="tagattribalias">core</td><td class="tagattribname">セーブ時のコアフラグが渡されます。</td></tr>
 </tbody></table>
 <div class="tagremarks">スタート位置の記録時に呼び出されます。<br /></div>
 </div></div>
 
-<h1><a name="onLoadStartAnchor" id="onLoadStartAnchor" class="targanchor"><span class="b">onLoadStartAnchor(userFlags)</span></h1>
+<h1><a name="onLoadStartAnchor" id="onLoadStartAnchor" class="targanchor"><span class="b">onLoadStartAnchor(userFlags, core)</span></h1>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="onLoadStartAnchor"><thead><tr><td>引数</td><td>説明</td></tr></thead><tbody>
 <tr><td class="tagattribalias">userFlags</td><td class="tagattribname">ロード時のユーザーフラグが渡されます。</td></tr>
+<tr><td class="tagattribalias">core</td><td class="tagattribname">ロード時のコアフラグが渡されます。</td></tr>
 </tbody></table>
 <div class="tagremarks">スタート位置のロード時に呼び出されます。<br /></div>
+</div></div>
+
+<h1><a name="onPushRecordAnchor" id="onPushRecordAnchor" class="targanchor"><span class="b">onPushRecordAnchor(userFlags, core)</span></h1>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="onPushRecordAnchor"><thead><tr><td>引数</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">userFlags</td><td class="tagattribname">レコード保存時のユーザーフラグが渡されます。</td></tr>
+<tr><td class="tagattribalias">core</td><td class="tagattribname">レコード保存時のコアフラグが渡されます。</td></tr>
+</tbody></table>
+<div class="tagremarks">レコード位置の保存時に呼び出されます。<br /></div>
+</div></div>
+
+<h1><a name="onPopRecordAnchor" id="onPopRecordAnchor" class="targanchor"><span class="b">onPopRecordAnchor(userFlags, core)</span></h1>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="onPopRecordAnchor"><thead><tr><td>引数</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">userFlags</td><td class="tagattribname">レコード復帰時のユーザーフラグが渡されます。</td></tr>
+<tr><td class="tagattribalias">core</td><td class="tagattribname">レコード復帰時のコアフラグが渡されます。</td></tr>
+</tbody></table>
+<div class="tagremarks">レコード位置の復帰時に呼び出されます。<br /></div>
 </div></div>
 
 <h1><a name="onRemoveStartAnchor" id="onRemoveStartAnchor" class="targanchor"><span class="b">onRemoveStartAnchor()</span></h1>
