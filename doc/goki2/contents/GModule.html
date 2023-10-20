@@ -187,6 +187,10 @@ class Sample extends GModule<br />
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#onAskRecordConfirm">onAskRecordConfirm</a></span></td><td class="taglisteven">一つ前に戻る確認する設定が変更された時のイベント</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#onAskCloseConfirm">onAskCloseConfirm</a></span></td><td class="taglistodd">終了確認する設定が変更された時のイベント</td></tr>
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#onAskSaveConfirm">onAskSaveConfirm</a></span></td><td class="taglisteven">セーブデータ上書き確認する設定が変更された時のイベント</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#onSaveEnabled">onSaveEnabled</a></span></td><td class="taglistodd">セーブ可能になった時のイベント</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#onSaveDisabled">onSaveDisabled</a></span></td><td class="taglisteven">セーブ不可能になった時のイベント</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#onShowTitle">onShowTitle</a></span></td><td class="taglistodd">タイトル画面が表示された時のイベント</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#onHideTitle">onHideTitle</a></span></td><td class="taglisteven">タイトル画面が非表示された時のイベント</td></tr>
 </tbody></table>
 </div></div>
 
@@ -526,6 +530,26 @@ config.low : 遅い時の文字表示速度。<br /></td></tr>
 <tr><td class="tagattribalias">confirm</td><td class="tagattribname">trueならば確認ダイアログを表示します。<br />
 </tbody></table>
 <div class="tagremarks">確認するしないの設定が変更された時に呼び出されます。<br />
+</div>
+</div></div>
+
+<h1><a name="onSaveEnabled" id="onSaveEnabled" class="targanchor"><span class="b">onSaveEnabled()</span></h1>
+<div class="tagremarks">セーブ可能になった時に呼び出されます。<br />
+</div>
+</div></div>
+
+<h1><a name="onSaveDisabled" id="onSaveDisabled" class="targanchor"><span class="b">onSaveDisabled()</span></h1>
+<div class="tagremarks">セーブ不可能になった時に呼び出されます。<br />
+</div>
+</div></div>
+
+<h1><a name="onShowTitle" id="onShowTitle" class="targanchor"><span class="b">onShowTitle()</span></h1>
+<div class="tagremarks">タイトル画面が表示された時に呼び出されます。<br />
+</div>
+</div></div>
+
+<h1><a name="onHideTitle" id="onHideTitle" class="targanchor"><span class="b">onHideTitle()</span></h1>
+<div class="tagremarks">タイトル画面が非表示にされた時に呼び出されます。<br />
 </div>
 </div></div>
 
