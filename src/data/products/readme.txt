@@ -85,12 +85,12 @@ override.ini は /tools/make/config.ini の各項目をオーバーライドします。
   また、以下の値は config.ini または override.ini で定義されない組み込みの値で置換されます。
 
    #{UPDATEINFO.log}
-    config.ini または override.ini で定義されている UPDATE1 ～ UPDATAn までの log 値の内
+    config.ini または override.ini で定義されている UPDATE1 ～ UPDATEn までの log 値の内
     パッケージ化時に指定された範囲の log 値の集合です。
 
-    例えば、override.ini で UPDATA1 ～ UPDATA5 までが定義されていて、
-    かつ UPDATA1 ～ UPDATA3 までをパッケージ化した場合。
-    #{UPDATAINFO.log} は UPDATA1 ～ UPDATA3 までの log 値を結合したテキストで置換されます。
+    例えば、override.ini で UPDATE1 ～ UPDATE5 までが定義されていて、
+    かつ UPDATE1 ～ UPDATE3 までをパッケージ化した場合。
+    #{UPDATEINFO.log} は UPDATE1 ～ UPDATE3 までの log 値を結合したテキストで置換されます。
 
  [krkr.*]
   ファイル名の krkr の部分がターゲット名で置き換えられます。
