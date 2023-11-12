@@ -36,14 +36,14 @@ If you want to run a script called start instead of testcase, edit it as follows
 You may or may not specify the extension.<br />
 For other settings, please check the contents of /src/goki2/system/config.gs.<br />
 <br /><br />
-Furthermore, tags can be expanded by adding a ! mark to a normal tag.<br />
-If you specify @!make_character image=WithStand-&gt;true,NoStand-&gt;false, @make_charcter WithStand If you specify @make_character image=true, it will be considered as specified.<br />
-And you can specify a pattern by adding a / symbol to the attribute.<br />
-If you specify @!halo /storage=A_&lt;POSE&gt;_&lt;FACE&gt;, it will be replaced with the values specified in the face and pose attributes.<br />
-In other words, specifying @halo pose=1 face=1 has the same meaning as specifying @halo storage=A_1_1.<br />
+Additionally, it is possible to extend tags by adding an exclamation mark (!) to ordinary tags.<br />
+When specifying with @!make_character image=standing_character-&gt;true, no_character-&gt;false, it will be interpreted as @make_character standing_character,<br />
+and if specified as @make_character image=true, it will be considered the same.<br />
+Furthermore, by adding a slash (/) to attributes, you can specify patterns.<br />
+For example, specifying @!halo /storage=A_&lt;POSE&gt;_&lt;FACE&gt; will replace the values with those specified in the pose and face attributes.<br />
+In other words, if you specify @hello pose=pose1 face=face1, it is equivalent to specifying @hello storage=A_pose1_face1.<br />
 These can also be used in combination.<br />
-For @!halo /storage=A_&lt;POSE&gt;_&lt;FACE&gt; pose=pose1 face=face1<br />
-@halo pose1 face1 will be converted to @halo storage=A_pose1_face1<br />
+For instance, by using @!Hello /storage=A_&lt;POSE&gt;_&lt;FACE&gt; pose=pose1 face=face1, @hello pose1 face1 will be converted to @hello storage=A_pose1_face1.<br />
 <br />
 Additionally, tag extensions can be specified for each tag name.<br />
 For example, if you specify an alias (another name) to the character tag as @redirect alias=halo<br />
