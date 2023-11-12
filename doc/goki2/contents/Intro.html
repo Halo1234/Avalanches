@@ -41,9 +41,9 @@ When specifying with @!make_character image=standing_character-&gt;true, no_char
 and if specified as @make_character image=true, it will be considered the same.<br />
 Furthermore, by adding a slash (/) to attributes, you can specify patterns.<br />
 For example, specifying @!halo /storage=A_&lt;POSE&gt;_&lt;FACE&gt; will replace the values with those specified in the pose and face attributes.<br />
-In other words, if you specify @hello pose=pose1 face=face1, it is equivalent to specifying @hello storage=A_pose1_face1.<br />
+In other words, if you specify @halo pose=pose1 face=face1, it is equivalent to specifying @halo storage=A_pose1_face1.<br />
 These can also be used in combination.<br />
-For instance, by using @!Hello /storage=A_&lt;POSE&gt;_&lt;FACE&gt; pose=pose1 face=face1, @hello pose1 face1 will be converted to @hello storage=A_pose1_face1.<br />
+For instance, by using @!halo /storage=A_&lt;POSE&gt;_&lt;FACE&gt; pose=pose1 face=face1, @halo pose1 face1 will be converted to @halo storage=A_pose1_face1.<br />
 <br />
 Additionally, tag extensions can be specified for each tag name.<br />
 For example, if you specify an alias (another name) to the character tag as @redirect alias=halo<br />
