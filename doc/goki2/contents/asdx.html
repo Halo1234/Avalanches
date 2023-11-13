@@ -3,179 +3,179 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
-	<title>asd/asdxのタグ</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>asd/asdx tags</title>
 	<meta name="author" content="Halo" />
 	<meta http-equiv="Content-Style-Type" content="text/css" />
 	<meta http-equiv="Content-Script-Type" content="text/javascript" />
-	<link href="browser.css" type="text/css" rel="stylesheet" title="吉里吉里関連リファレンス用標準スタイル" />
+	<link href="browser.css" type="text/css" rel="stylesheet" title="Standard style for Kirikiri-related reference" />
 	<link href="mailto:halosuke@gmail.com" rev="Made" />
-	<link href="index.html" target="_top" rel="Start" title="トップページ" />
+	<link href="index.html" target="_top" rel="Start" title="Top page" />
 </head>
 <body>
 
-<h1><a name="tags" id="tags">asd/asdxのタグ</a></h1>
-<div class="para"><div>asd/asdxで使用可能なタグのリファレンスです。<br />
-ここで説明するタグ以外にもデフォルトのタグで説明するタグも利用可能です。<br />
+<h1><a name="tags" id="tags">asd/asdx tags</a></h1>
+<div class="para"><div>Reference for tags available in asd/asdx.<br />
+In addition to the tags described here, you can also use the tags described in Default tags.<br />
 
-<h1><a name="genre" id="genre" class="targanchor">ジャンル・タグ一覧</a></h1>
+<h1><a name="genre" id="genre" class="targanchor">Genre/tag list</a></h1>
 
 
 <div class="para"><div><br />
 <table class="taglist"><tbody>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#load_cell">load_cell</a></span></td><td class="taglisteven">画像読み込み</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#option">option</a></span></td><td class="taglistodd">レイヤ操作</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#fork">fork</a></span></td><td class="taglisteven">セルフォーク</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#looping">looping</a></span></td><td class="taglistodd">ループ開始</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#end_looping">end_looping</a></span></td><td class="taglisteven">ループ終了</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#home">home</a></span></td><td class="taglistodd">ループの始点</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#move">move</a></span></td><td class="taglisteven">レイヤの移動</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#layer_move">layer_move</a></span></td><td class="taglistodd">レイヤの移動</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#stop_move">stop_move</a></span></td><td class="taglisteven">レイヤの移動停止</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#wait_move">wait_move</a></span></td><td class="taglistodd">レイヤの移動停止待ち</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#call_handler">call_handler</a></span></td><td class="taglisteven">イベント発行</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#load_cell">load_cell</a></span></td><td class="taglisteven">Image loading</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#option">option</a></span></td><td class="taglistodd">Layer operations</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#fork">fork</a></span></td><td class="taglisteven">fork cell</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#looping">looping</a></span></td><td class="taglistodd">start loop</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#end_looping">end_looping</a></span></td><td class="taglisteven">end of loop</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#home">home</a></span></td><td class="taglistodd">start of loop</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#move">move</a></span></td><td class="taglisteven">Move layer</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#layer_move">layer_move</a></span></td><td class="taglistodd">Move layer</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#stop_move">stop_move</a></span></td><td class="taglisteven">Stop moving layers</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#wait_move">wait_move</a></span></td><td class="taglistodd">Waiting for layer movement to stop</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#call_handler">call_handler</a></span></td><td class="taglisteven">Event publication</td></tr>
 </tbody></table><br /><br /></div></div>
 
-<h1><a name="load_cell" id="load_cell" class="targanchor"><span class="b">load_cell</span>(別名なし)</a></h1>
-<div class="taggenre">セル操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ load_cell の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_cell_storage" id="load_cell_storage">storage</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">読み込む画像のファイル名を指定します。<br />
-</tbody></table><div class="tagremarks">セル画像を読み込みます。<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<h1><a name="load_cell" id="load_cell" class="targanchor"><span class="b">load_cell</span>(No alias)</a></h1>
+<div class="taggenre">Cell operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of load_cell attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="load_cell_storage" id="load_cell_storage">storage</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the file name of the image to load.<br />
+</tbody></table><div class="tagremarks">Load the cell image.<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
-<h1><a name="option" id="option" class="targanchor"><span class="b">option</span>(別名なし)</a></h1>
-<div class="taggenre">セル操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ option の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="option_flip_ud" id="option_flip_ud">flip_ud</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定すると上下反転します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="option_flip_lr" id="option_flip_lr">flip_lr</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定すると左右反転します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="option_clip_width" id="option_clip_width">clip_width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">画像の幅を指定します。<br />
-省略すると元の画像幅が利用されます。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="option_clip_height" id="option_clip_height">clip_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">画像の高さを指定します。<br />
-省略すると元の画像高さが利用されます。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="option_clip_left" id="option_clip_left">clip_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">表示する画像のクリップ位置を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="option_clip_top" id="option_clip_top">clip_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">表示する画像のクリップ位置を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="option_center_x" id="option_center_x">center_x</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">画像の中央位置を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="option_center_y" id="option_center_y">center_y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">画像の中央位置を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="option_left" id="option_left">left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">画像の左位置を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="option_top" id="option_top">top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">画像の上位置を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="option_right" id="option_right">right</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">画像の右位置を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="option_bottom" id="option_bottom">bottom</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">画像の下位置を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="option_visible" id="option_visible">visible</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定するとレイヤが表示されます。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="option_index" id="option_index">index</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">レイヤのabsolute値を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="option_opacity" id="option_opacity">opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0～255</td><td class="tagattribdesc">レイヤの不透明度を指定します。<br />
-</tbody></table><div class="tagremarks">セル画像を操作します。<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<h1><a name="option" id="option" class="targanchor"><span class="b">option</span>(No alias)</a></h1>
+<div class="taggenre">Cell operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of option attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_flip_ud" id="option_flip_ud">flip_ud</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If you specify true, it will be flipped vertically.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_flip_lr" id="option_flip_lr">flip_lr</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If you specify true, the image will be flipped horizontally.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_clip_width" id="option_clip_width">clip_width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the width of the image.<br />
+If omitted, the original image width will be used.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_clip_height" id="option_clip_height">clip_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the height of the image.<br />
+If omitted, the original image height will be used.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_clip_left" id="option_clip_left">clip_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the clip position of the image to be displayed.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_clip_top" id="option_clip_top">clip_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the clip position of the image to be displayed.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_center_x" id="option_center_x">center_x</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the center position of the image.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_center_y" id="option_center_y">center_y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the center position of the image.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_left" id="option_left">left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the image position.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_top" id="option_top">top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the image position.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_right" id="option_right">right</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the image position.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_bottom" id="option_bottom">bottom</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the image position.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_visible" id="option_visible">visible</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If true is specified, the layer will be displayed.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_index" id="option_index">index</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">integer value</td><td class="tagattribdesc">Specifies the absolute value of the layer.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_opacity" id="option_opacity">opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0�ｽ�255</td><td class="tagattribdesc">Specifies the layer's opacity.<br />
+</tbody></table><div class="tagremarks">Manipulate cell images.<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
-<h1><a name="fork" id="fork" class="targanchor"><span class="b">fork</span>(別名なし)</a></h1>
-<div class="taggenre">セル操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ fork の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fork_index" id="fork_index">index</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">開始するセルレイヤのインデックスを指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fork_target" id="fork_target">target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">開始するアニメーションのラベルを指定します。<br />
-</tbody></table><div class="tagremarks">新たにセルアニメーションを開始します。<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<h1><a name="fork" id="fork" class="targanchor"><span class="b">fork</span>(No alias)</a></h1>
+<div class="taggenre">Cell operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of fork attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fork_index" id="fork_index">index</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">integer value</td><td class="tagattribdesc">Specifies the index of the cell layer to start from.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fork_target" id="fork_target">target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">integer value</td><td class="tagattribdesc">Specifies the label of the animation to start.<br />
+</tbody></table><div class="tagremarks">Starts a new cel animation.<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
-<h1><a name="looping" id="looping" class="targanchor"><span class="b">looping</span>(別名なし)</a></h1>
-<div class="taggenre">セル操作</div>
-</tbody></table><div class="tagremarks">セルアニメーションのループを開始します。<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<h1><a name="looping" id="looping" class="targanchor"><span class="b">looping</span>(No alias)</a></h1>
+<div class="taggenre">Cell operations</div>
+</tbody></table><div class="tagremarks">Starts a loop of cel animation.<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
-<h1><a name="end_looping" id="end_looping" class="targanchor"><span class="b">end_looping</span>(別名なし)</a></h1>
-<div class="taggenre">セル操作</div>
-</tbody></table><div class="tagremarks">セルアニメーションのループの終端とします。<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<h1><a name="end_looping" id="end_looping" class="targanchor"><span class="b">end_looping</span>(No alias)</a></h1>
+<div class="taggenre">Cell operations</div>
+</tbody></table><div class="tagremarks">This is the end of the cell animation loop.<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
-<h1><a name="home" id="home" class="targanchor"><span class="b">home</span>(別名なし)</a></h1>
-<div class="taggenre">セル操作</div>
-</tbody></table><div class="tagremarks">セルアニメーションのループの始点とします。<br />
-アニメーションを停止すると、このタグが置かれた位置で停止します。<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<h1><a name="home" id="home" class="targanchor"><span class="b">home</span>(No alias)</a></h1>
+<div class="taggenre">Cell operations</div>
+</tbody></table><div class="tagremarks">Use this as the starting point of the cell animation loop.<br />
+When you stop the animation, it will stop at the position where this tag is placed.<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
-<h1><a name="move" id="move" class="targanchor"><span class="b">move</span>(別名なし)</a></h1>
-<div class="taggenre">レイヤ操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ move の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="move_time" id="move_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">レイヤが path を指定した点から点を移動するのに必要な時間を指定します。<br />
-そのため、移動には、通過する点間の区間の数×この属性の値の時間がかかります。<br />
-ただし、accel 属性に 0 以外を指定した場合は 一点を通過する時間は 変化します ( 移動全体に要する時間は 通過する区間の数×この属性の値です )。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="move_delay" id="move_delay">delay</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">レイヤの自動移動が開始されるまでの時間を ms で指定します。<br />
-省略すると 0 であるとみなされます。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="move_path" id="move_path">path</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">"(x1,y1,opacity1) (x2,y2,opacity2) ..."</td><td class="tagattribdesc">移動位置を指定します。<br />
-移動位置は、x(レイヤ左端位置), y(レイヤ上端位置), opacity(レイヤ不透明度) を３つ づつ、カンマや空白、( ) で区切って指定します。<br />
-opacity にはレイヤの表示濃度を指定します。レイヤの濃度も点から点を移動する 間に連続的に変化します。
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="move_accel" id="move_accel">accel</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">-1 未満の数または 0(デフォルト) または 1 より大きい数</td><td class="tagattribdesc">加速度的な動きを行わせるかどうかを指定します。<br />
-0 を指定すると、最初から最後まで一定の割合で移動処理が進行し ます ( 各通過点を等間隔の時間で通過します )。省略すると 0 が指定され たと見なされます。<br />
--1 未満の数を指定すると、最初は早く、徐々に遅くなります。<br />
-1 より大きい数を指定すると、最初は遅く、徐々に早くなります。<br />
-実数を指定することもできます。<br />
-</tbody></table><div class="tagremarks">レイヤを移動させます。<br />
+<h1><a name="move" id="move" class="targanchor"><span class="b">move</span>(No alias)</a></h1>
+<div class="taggenre">Layer operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of move attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="move_time" id="move_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">milliseconds</td><td class="tagattribdesc">Specifies the time required for the layer to move a point from the point specified by path.<br />
+Therefore, the movement takes time equal to the number of intervals between points traversed times the value of this attribute.<br />
+However, if you specify a value other than 0 for the accel attribute, the time it takes to pass one point will change (the time required for the entire movement is the number of sections passed * the value of this attribute).<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="move_delay" id="move_delay">delay</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">milliseconds</td><td class="tagattribdesc">Specifies the time in ms before automatic layer movement begins.<br />
+If omitted, it is assumed to be 0.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="move_path" id="move_path">path</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">"(x1,y1,opacity1) (x2,y2,opacity2) ..."</td><td class="tagattribdesc">Specify the movement position.<br />
+Specify the movement position by separating x (left edge position of layer), y (top edge position of layer), and opacity (layer opacity) with commas, spaces, or parentheses ( ).<br />
+opacity specifies the layer's display density. The density of the layer also changes continuously as you move from point to point.
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="move_accel" id="move_accel">accel</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">A number less than -1 or 0 (default) or greater than 1</td><td class="tagattribdesc">Specify whether to perform accelerated movement.<br />
+If you specify 0, the movement process will proceed at a constant rate from beginning to end (each passing point will be passed at equal intervals of time). If omitted, 0 is assumed.<br />
+A number less than -1 will start faster and gradually become slower.<br />
+A number greater than 1 will start slower and gradually speed up.<br />
+You can also specify a real number.<br />
+</tbody></table><div class="tagremarks">Move the layer.<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
-<h1><a name="layer_move" id="layer_move" class="targanchor"><span class="b">layer_move</span>(別名なし)</a></h1>
-<div class="taggenre">レイヤ操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ layer_move の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_clear" id="layer_move_clear">clear</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">移動パスをクリアするかどうかを指定します。<br />
-true を指定すると移動パスをクリアします。<br />
-false を指定すると何もしません。<br />
-デフォルトはfalseです。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_transform" id="layer_move_transform">transform</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">変形（回転拡大縮小）を行うかどうかを指定します。<br />
-true を指定すると変形を行います。<br />
-false を何もしません。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_children" id="layer_move_children">children</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">変形に子レイヤも巻き込むかどうかを指定します。<br />
-true を指定すると子も巻き込みます。<br />
-false を指定すると何もしません。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_looping" id="layer_move_looping">looping</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">ループするかどうかを指定します。<br />
-true を指定するとループします。<br />
-false を指定すると何もしません。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_time" id="layer_move_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">レイヤが path を指定した点から点を移動するのに必要な時間を指定します。<br />
-そのため、移動には、通過する点間の区間の数×この属性の値の時間がかかります。<br />
-ただし、accel 属性に 0 以外を指定した場合は 一点を通過する時間は 変化します ( 移動全体に要する時間は 通過する区間の数×この属性の値です )。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_delay" id="layer_move_delay">delay</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">レイヤの自動移動が開始されるまでの時間を ms で指定します。<br />
-省略すると 0 であるとみなされます。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_accel" id="layer_move_accel">accel</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">-1 未満の数または 0(デフォルト) または 1 より大きい数</td><td class="tagattribdesc">加速度的な動きを行わせるかどうかを指定します。<br />
-0 を指定すると、最初から最後まで一定の割合で移動処理が進行し ます ( 各通過点を等間隔の時間で通過します )。省略すると 0 が指定され たと見なされます。<br />
--1 未満の数を指定すると、最初は早く、徐々に遅くなります。<br />
-1 より大きい数を指定すると、最初は遅く、徐々に早くなります。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_position" id="layer_move_position">position</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位の整数またはポジション（0.0 ～ 1.0）</td><td class="tagattribdesc">時間によるポジション指定の場合 time 属性の範囲内で指定します。<br />
-ポジションを直接指定する場合は 0.0 ～ 1.0 の間で指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_x" id="layer_move_x">x</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">移動する位置を指定します。
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_y" id="layer_move_y">y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">移動する位置を指定します。
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_width" id="layer_move_width">width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">移動先の画像幅を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_height" id="layer_move_height">height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">移動先の画像高さを指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_ix" id="layer_move_ix">ix</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">移動先の画像表示位置を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_iy" id="layer_move_iy">iy</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">移動先の画像表示位置を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_opacity" id="layer_move_opacity">opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0 ～ 255</td><td class="tagattribdesc">移動先の不透明度を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_angle" id="layer_move_angle">angle</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">角度</td><td class="tagattribdesc">移動先の角度を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_scale" id="layer_move_scale">scale</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">スケール</td><td class="tagattribdesc">移動先のスケールを指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_start" id="layer_move_start">start</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">true を指定すると移動を開始します。<br />
-false を指定すると何もしません。<br />
-デフォルトはfalseです。<br />
-</tbody></table><div class="tagremarks">レイヤを移動させます。<br />
+<h1><a name="layer_move" id="layer_move" class="targanchor"><span class="b">layer_move</span>(No alias)</a></h1>
+<div class="taggenre">Layer operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of layer_move attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_clear" id="layer_move_clear">clear</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies whether to clear the travel path.<br />
+If you specify true, the movement path will be cleared.<br />
+If false is specified, nothing will be done.<br />
+Default is false.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_transform" id="layer_move_transform">transform</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specify whether to perform transformation (rotation scaling).<br />
+Specifying true will perform transformation.<br />
+false does nothing.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_children" id="layer_move_children">children</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies whether to include child layers in the transformation.<br />
+If you specify true, children will also be included.<br />
+If false is specified, nothing will be done.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_looping" id="layer_move_looping">looping</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specify whether to loop.<br />
+Specifying true will loop.<br />
+If false is specified, nothing will be done.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_time" id="layer_move_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">milliseconds</td><td class="tagattribdesc">Specifies the time required for the layer to move a point from the point specified by path.<br />
+Therefore, the movement takes time equal to the number of intervals between points traversed * the value of this attribute.<br />
+However, if you specify a value other than 0 for the accel attribute, the time it takes to pass one point will change (the time required for the entire movement is the number of sections passed * the value of this attribute).<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_delay" id="layer_move_delay">delay</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">milliseconds</td><td class="tagattribdesc">Specifies the time in ms before automatic layer movement begins.<br />
+If omitted, it is assumed to be 0.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_accel" id="layer_move_accel">accel</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">A number less than -1 or 0 (default) or greater than 1</td><td class="tagattribdesc">Specify whether to perform accelerated movement.<br />
+If you specify 0, the movement process will proceed at a constant rate from beginning to end (each passing point will be passed at equal intervals of time). If omitted, 0 is assumed.<br />
+A number less than -1 will start faster and gradually become slower.<br />
+A number greater than 1 will start slower and gradually speed up.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_position" id="layer_move_position">position</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">nteger or position in milliseconds (0.0 to 1.0)</td><td class="tagattribdesc">When specifying a position by time, specify within the range of the time attribute.<br />
+When specifying the position directly, specify between 0.0 and 1.0.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_x" id="layer_move_x">x</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the position to move.
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_y" id="layer_move_y">y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the position to move.
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_width" id="layer_move_width">width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the image width to move to.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_height" id="layer_move_height">height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the image height to move to.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_ix" id="layer_move_ix">ix</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the destination image display position.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_iy" id="layer_move_iy">iy</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the destination image display position.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_opacity" id="layer_move_opacity">opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0 �ｽ� 255</td><td class="tagattribdesc">Specify the opacity of the destination.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_angle" id="layer_move_angle">angle</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Angle</td><td class="tagattribdesc">Specify the angle to move to.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_scale" id="layer_move_scale">scale</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Scale</td><td class="tagattribdesc">Specify the scale to move to.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_start" id="layer_move_start">start</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If you specify true, the movement will start.<br />
+If false is specified, nothing will be done.<br />
+Default is false.<br />
+</tbody></table><div class="tagremarks">Move the layer.<br />
 </div>
-<div class="tagexample"><code class="bq"><span class="weak">例:</span><br />
+<div class="tagexample"><code class="bq"><span class="weak">Example:</span><br />
 [layer_move position=0.0 x=0 y=0]<br />
 [layer_move position=0.5 x=100 y=100]<br />
 [layer_move position=1.0 x=200 y=200 time=1000 start]<br />
-; レイヤ0を(100, 100)に移動して続けて(200, 200)に移動します。<br />
+; Move layer 0 to (100, 100) and then to (200, 200).<br />
 </code></div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
-<h1><a name="stop_move" id="stop_move" class="targanchor"><span class="b">stop_move</span>(別名なし)</a></h1>
-<div class="taggenre">セル操作</div>
-</tbody></table><div class="tagremarks">レイヤの自動移動を停止します。<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<h1><a name="stop_move" id="stop_move" class="targanchor"><span class="b">stop_move</span>(No alias)</a></h1>
+<div class="taggenre">Cell operations</div>
+</tbody></table><div class="tagremarks">Stop automatic layer movement.<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
-<h1><a name="wait_move" id="wait_move" class="targanchor"><span class="b">wait_move</span>(別名なし)</a></h1>
-<div class="taggenre">セル操作</div>
-</tbody></table><div class="tagremarks">レイヤの自動移動の停止を待ちます。<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<h1><a name="wait_move" id="wait_move" class="targanchor"><span class="b">wait_move</span>(No alias)</a></h1>
+<div class="taggenre">Cell operations</div>
+</tbody></table><div class="tagremarks">Wait for the layer to stop moving automatically.<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
-<h1><a name="call_handler" id="call_handler" class="targanchor"><span class="b">call_handler</span>(別名なし)</a></h1>
-<div class="taggenre">レイヤ操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ call_handler の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="call_handler_message" id="call_handler_message">message</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">イベント名</td><td class="tagattribdesc">レイヤに発行するイベント名を指定します。<br />
-</tbody></table><div class="tagremarks">イベントを発行します。<br />
+<h1><a name="call_handler" id="call_handler" class="targanchor"><span class="b">call_handler</span>(No alias)</a></h1>
+<div class="taggenre">Layer operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of call_handler attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="call_handler_message" id="call_handler_message">message</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Event name</td><td class="tagattribdesc">Specify the event name to be issued to the layer.<br />
+</tbody></table><div class="tagremarks">Publish an event.<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 	<script type="text/javascript" charset="Shift_JIS" src="documentid.js" ></script>
 	<script type="text/javascript" charset="Shift_JIS" src="postcontent.js" ></script>
