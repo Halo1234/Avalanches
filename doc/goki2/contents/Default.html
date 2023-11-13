@@ -186,13 +186,13 @@ Default is false.<br />
 <h1><a name="syntax" id="syntax" class="targanchor"><span class="b">syntax</span>(No alias)</a></h1>
 <div class="taggenre">script operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of syntax attributes"><thead><tr><td>Alias</td><td>Attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="syntax_target_tag_name" id="syntax_target_tag_name">target_tag_name</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Tag List of名</td><td class="tagattribdesc">Specify a tag name that uses extended syntax.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="syntax_target_tag_name" id="syntax_target_tag_name">target_tag_name</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">String</td><td class="tagattribdesc">Specify a tag name that uses extended syntax.<br />
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="syntax_target_tag_/" id="syntax_target_tag_/">/</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pattern</td><td class="tagattribdesc">Specifies an extended syntax pattern.<br />
 If /test=&lt;PATTERN&gt; is specified, if pattern=value is specified, it will be replaced with test=value.<br />
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="syntax_target_tag_&" id="syntax_target_tag_&">&amp;</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Group</td><td class="tagattribdesc">Specifies a group of extended syntax.<br />
 If &amp;test=groupis specified, test=1 is set when group is specified.<br />
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="syntax_target_tag" id="syntax_target_tag">-&gt;</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Conversion specification</td><td class="tagattribdesc">Set conversion specifications.<br />
-If you specify pose=ポーズ１-&gt;pose1, pose1 will be converted to pose1.<br />
+If you specify pose=p1-&gt;pose1, p1 will be converted to pose1.<br />
 </tbody></table><div class="tagremarks">Sets the script's extended syntax.<br />
 If you specify @syntax target_tag_name=tag name=name-&gt;halo &amp;group=g /storage=&lt;NAME&gt;_stand<br />
 When you execute @tag halo g<br />
@@ -213,7 +213,7 @@ Default is false.<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="notice" id="notice" class="targanchor"><span class="b">notice</span>(No alias)</a></h1>
-<div class="taggenre">ログ操作</div>
+<div class="taggenre">Log operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of notice attributes"><thead><tr><td>Alias</td><td>Attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="notice_message" id="notice_message">message</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Text</td><td class="tagattribdesc">Specify the notice message.<br />
 The message specified here will be output as a notice.<br />
@@ -221,7 +221,7 @@ The message specified here will be output as a notice.<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="log" id="log" class="targanchor"><span class="b">log</span>(No alias)</a></h1>
-<div class="taggenre">ログ操作</div>
+<div class="taggenre">Log operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of log attributes"><thead><tr><td>Alias</td><td>Attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="log_message" id="log_message">message</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Text</td><td class="tagattribdesc">Specify the log message.<br />
 The message specified here will be output as log.<br />
@@ -256,7 +256,7 @@ This attribute is automatically set by KAGParser, so you will not need to specif
 <h1><a name="wait" id="wait" class="targanchor"><span class="b">wait</span>(No alias)</a></h1>
 <div class="taggenre">script operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of wait attributes"><thead><tr><td>Alias</td><td>Attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="wait_time" id="wait_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">Specify the time to wait in milliseconds.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="wait_time" id="wait_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">milliseconds</td><td class="tagattribdesc">Specify the time to wait in milliseconds.<br />
 Default is 0.<br />
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="wait_mode" id="wait_mode">mode</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">until</td><td class="tagattribdesc">If you specify until, it will wait for the elapsed time from the time when the [reset_wait] tag was executed.<br />
 <tr><td class="tagattribalias">canskip</td><td class="tagattribname"><a class="targanchor" name="wait_skip" id="wait_skip">skip</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifying true allows skipping.<br />
@@ -285,10 +285,10 @@ Default is true.<br />
 <h1><a name="input" id="input" class="targanchor"><span class="b">input</span>(No alias)</a></h1>
 <div class="taggenre">script operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of input attributes"><thead><tr><td>Alias</td><td>Attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="input_name" id="input_name">name</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">変数名</td><td class="tagattribdesc">Specify the variable name that stores the string you want to input.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="input_name" id="input_name">name</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Variable name</td><td class="tagattribdesc">Specify the variable name that stores the string you want to input.<br />
 If a value has already been set for this variable, it will be displayed as the initial value.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="input_prompt" id="input_prompt">prompt</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">文字列</td><td class="tagattribdesc">Specifies the string to be displayed immediately above the input field as a prompt.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="input_title" id="input_title">title</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">文字列</td><td class="tagattribdesc">Specifies the title of the input dialog.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="input_prompt" id="input_prompt">prompt</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">String</td><td class="tagattribdesc">Specifies the string to be displayed immediately above the input field as a prompt.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="input_title" id="input_title">title</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">String</td><td class="tagattribdesc">Specifies the title of the input dialog.<br />
 </tbody></table><div class="tagremarks">Displays a string input dialog.<br />
 <div class="tagexample"><code class="bq"><span class="weak">例:</span><br />
 ; Prepare variable f.name<br />
@@ -301,7 +301,7 @@ If a value has already been set for this variable, it will be displayed as the i
 <h1><a name="trace" id="trace" class="targanchor"><span class="b">trace</span>(No alias)</a></h1>
 <div class="taggenre">script operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of trace attributes"><thead><tr><td>Alias</td><td>Attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="trace_exp" id="trace_exp">exp</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">TJS式</td><td class="tagattribdesc">Specifies the TJS expression to evaluate.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="trace_exp" id="trace_exp">exp</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">TJS expr</td><td class="tagattribdesc">Specifies the TJS expression to evaluate.<br />
 The result type and value of the TJS expression specified here will be output to the log.<br />
 </tbody></table><div class="tagremarks">TJS style evaluation.<br />
 This is a tag for debugging.<br />
@@ -310,7 +310,7 @@ This is a tag for debugging.<br />
 <h1><a name="breath_bound" id="breath_bound" class="targanchor"><span class="b">breath_bound</span>(No alias)</a></h1>
 <div class="taggenre">script operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of breath_bound attributes"><thead><tr><td>Alias</td><td>Attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="breath_bound_bound" id="breath_bound_bound">bound</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数value</td><td class="tagattribdesc">Specify the number of breath tags before entering the breath state.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="breath_bound_bound" id="breath_bound_bound">bound</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specify the number of breath tags before entering the breath state.<br />
 Default is 0.<br />
 </tbody></table><div class="tagremarks">Specify the number of breath tags before GConductor enters the breath state.<br />
 The number of breath tags specified here will be processed at once.<br />
