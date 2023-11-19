@@ -61,13 +61,13 @@ Unlike KAG3, the message layer can save the contents, so there is no need to ins
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#lock_link">lock_link</a></span></td><td class="taglistodd">Lock input</td></tr>
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#unlock_link">unlock_link</a></span></td><td class="taglisteven">Unlock input</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#store_history_data">store_history_data</a></span></td><td class="taglistodd">Historical data store</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#auto_wait_ch">auto_wait_ch</a></span></td><td class="taglisteven">Setting automatic weights</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#auto_wait_ch">auto_wait_ch</a></span></td><td class="taglisteven">Setting automatic waits</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#click_skip">click_skip</a></span></td><td class="taglistodd">Click skip settings</td></tr>
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#hidden_message">hidden_message</a></span></td><td class="taglisteven">Temporarily hiding message layer</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#map_prerendered_font">map_prerendered_font</a></span></td><td class="taglistodd">Prerender font settings</td></tr>
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#next_skip">next_skip</a></span></td><td class="taglisteven">Specify whether to skip to the next stop</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#s">s</a></span></td><td class="taglistodd">Stop</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#wait_ch">wait_ch</a></span></td><td class="taglisteven">Insert weight for number of characters</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#wait_ch">wait_ch</a></span></td><td class="taglisteven">Insert wait for number of characters</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#cancel_auto_mode">cancel_auto_mode</a></span></td><td class="taglistodd">Canceling auto mode</td></tr>
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#cancel_skip">cancel_skip</a></span></td><td class="taglisteven">Cancel Skip</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#delay">delay</a></span></td><td class="taglistodd">Specifying character display wait time</td></tr>
@@ -554,16 +554,16 @@ Normally you would not use this tag.<br />
 <h1><a name="auto_wait_ch" id="auto_wait_ch" class="targanchor"><span class="b">auto_wait_ch</span>(autowc)</a></h1>
 <div class="taggenre">Message operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of auto_wait_ch attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="auto_wait_ch_enabled" id="auto_wait_ch_enabled">enabled</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specify true to enable automatic weighting or false to disable it.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="auto_wait_ch_enabled" id="auto_wait_ch_enabled">enabled</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specify true to enable automatic waiting or false to disable it.<br />
 If omitted, the settings will not be changed.<br />
-<tr><td class="tagattribalias">chars</td><td class="tagattribname"><a class="targanchor" name="auto_wait_ch_chars" id="auto_wait_ch_chars">ch</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Character</td><td class="tagattribdesc">Specify the characters to be automatically weighted. After the specified character, a weight equal to the number of characters specified in the time attribute is inserted.<br />
+<tr><td class="tagattribalias">chars</td><td class="tagattribname"><a class="targanchor" name="auto_wait_ch_chars" id="auto_wait_ch_chars">ch</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Character</td><td class="tagattribdesc">Specify the characters to be automatically waited. After the specified character, a wait equal to the number of characters specified in the time attribute is inserted.<br />
 If omitted, the settings will not be changed.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="auto_wait_ch_time" id="auto_wait_ch_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Wait (in characters)</td><td class="tagattribdesc">Specify the time to insert automatic weight in units of characters.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="auto_wait_ch_time" id="auto_wait_ch_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Wait (in characters)</td><td class="tagattribdesc">Specify the time to insert automatic wait in units of characters.<br />
 You can specify times for each character specified in the ch attribute, separated by commas.<br />
 If only one time is specified, that time will be set for all characters specified in the ch tag.<br />
 If this attribute is omitted, 4 is assumed.<br />
-</tbody></table><div class="tagremarks">You can insert weights for the specified number of characters after a specific character.<br />
-After the characters specified in the ch attribute are displayed, the time specified in the time attribute is entered as a weight.<br />
+</tbody></table><div class="tagremarks">You can insert waits for the specified number of characters after a specific character.<br />
+After the characters specified in the ch attribute are displayed, the time specified in the time attribute is entered as a wait.<br />
 Multiple characters can be specified using the ch tag, and correspondingly, the timing can be specified for each character using the time attribute.<br />
 </div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
@@ -615,7 +615,7 @@ It may be better to disable it in demo scenes etc.<br />
 <div class="taggenre">Message operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of wait_ch attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="wait_ch_time" id="wait_ch_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Waits the same amount of time as it takes to display the number of characters specified here. The time required for one character is specified using the delay tag.<br />
-</tbody></table><div class="tagremarks">Insert the weight for the number of characters.<br />
+</tbody></table><div class="tagremarks">Insert the wait for the number of characters.<br />
 </div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
@@ -634,7 +634,7 @@ It may be better to disable it in demo scenes etc.<br />
 <h1><a name="delay" id="delay" class="targanchor"><span class="b">delay</span>(No alias)</a></h1>
 <div class="taggenre">Message operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of delay attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="delay_speed" id="delay_speed">speed</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">"nowait" or "user" or Wait value (in ms)</td><td class="tagattribdesc">If you specify "nowait", the characters will be displayed all at once without any wait time. If "user" is specified, the speed specified by message_option will be used (default). If you specify a weight value, characters will be displayed at a rate of one character per time indicated by the value.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="delay_speed" id="delay_speed">speed</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">"nowait" or "user" or Wait value (in ms)</td><td class="tagattribdesc">If you specify "nowait", the characters will be displayed all at once without any wait time. If "user" is specified, the speed specified by message_option will be used (default). If you specify a wait value, characters will be displayed at a rate of one character per time indicated by the value.<br />
 Text display speed is the same for all message layers.<br />
 </tbody></table><div class="tagremarks">Specify the display speed of characters.<br />
 You can also use the no_wait tag to display characters without waiting.<br />
