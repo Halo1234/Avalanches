@@ -3,242 +3,242 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>ModBookmark tags</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+	<title>ModBookmarkのタグ</title>
 	<meta name="author" content="Halo" />
 	<meta http-equiv="Content-Style-Type" content="text/css" />
 	<meta http-equiv="Content-Script-Type" content="text/javascript" />
-	<link href="browser.css" type="text/css" rel="stylesheet" title="Standard style for Kirikiri-related reference" />
+	<link href="browser.css" type="text/css" rel="stylesheet" title="吉里吉里関連リファレンス用標準スタイル" />
 	<link href="mailto:halosuke@gmail.com" rev="Made" />
-	<link href="index.html" target="_top" rel="Start" title="Top page" />
+	<link href="index.html" target="_top" rel="Start" title="トップページ" />
 </head>
 <body>
 
-<h1><a name="tags" id="tags">ModBookmarkのTag List of</a></h1>
-<div class="para"><div>Reference of tags available in ModBookmark.<br />
-This module requires ModSnapshot, but will work without it.<br />
+<h1><a name="tags" id="tags">ModBookmarkのタグ</a></h1>
+<div class="para"><div>　ModBookmark で使用可能なタグのリファレンスです。<br />
+このモジュールはModSnapshotを必要としますが、無くても動作はします。<br />
 <br />
-When [bookmark store_skipping=true] is executed, storage will not be performed while skipping.<br />
-To save, use the force_store label to force store before stopping with the [s] tag etc.<br />
-When the label name includes force_store, if the label can be saved, it will be forcibly stored.<br />
+[bookmark store_skipping=true]を指定した時、スキップ中はストアを行いません。<br />
+セーブするためには[s]タグなどで停止する前にforce_storeラベルを使用して強制的にストアしてください。<br />
+ラベル名にforce_storeが含まれる時、そのラベルがセーブ可能な場合、強制的にストアされます。<br />
 </div></div>
 
-<h1><a name="genre" id="genre" class="targanchor">Genre/tag list</a></h1>
+<h1><a name="genre" id="genre" class="targanchor">ジャンル・タグ一覧</a></h1>
 
 
 <div class="para"><div><br />
 <table class="taglist"><tbody>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#bookmark">bookmark</a></span></td><td class="taglisteven">Specify the save data format</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#clear_system_variables">clear_system_variables</a></span></td><td class="taglistodd">Clear system variables</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#clear_variables">clear_variables</a></span></td><td class="taglisteven">clear user flags</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#copy_bookmark">copy_bookmark</a></span></td><td class="taglistodd">Copy save data</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#erase_bookmark">erase_bookmark</a></span></td><td class="taglisteven">Delete save data</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#record">record</a></span></td><td class="taglistodd">Record</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#go_back">go_back</a></span></td><td class="taglisteven">Load record</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#start_anchor">start_anchor</a></span></td><td class="taglistodd">Record to return to first</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#go_to_start">go_to_start</a></span></td><td class="taglisteven">Return to first</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#save">save</a></span></td><td class="taglistodd">Save</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#load">load</a></span></td><td class="taglisteven">Load</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#save_temporary">save_temporary</a></span></td><td class="taglistodd">Record state in temporary variable</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#load_temporary">load_temporary</a></span></td><td class="taglisteven">read from temporary variable</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#load_system_variables">load_system_variables</a></span></td><td class="taglistodd">Read system variables</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#ask_start">ask_start</a></span></td><td class="taglisteven">Specifying the image for the dialog that returns to the beginning</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#ask_record">ask_record</a></span></td><td class="taglistodd">Image specification for the previous dialog</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#ask_save">ask_save</a></span></td><td class="taglisteven">Image specification for save data overwrite confirmation dialog</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#bookmark">bookmark</a></span></td><td class="taglisteven">セーブデータのフォーマットを指定する</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#clear_system_variables">clear_system_variables</a></span></td><td class="taglistodd">システム変数をクリアする</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#clear_variables">clear_variables</a></span></td><td class="taglisteven">ユーザーフラグをクリアする</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#copy_bookmark">copy_bookmark</a></span></td><td class="taglistodd">セーブデータをコピーする</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#erase_bookmark">erase_bookmark</a></span></td><td class="taglisteven">セーブデータの削除</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#record">record</a></span></td><td class="taglistodd">レコード記録</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#go_back">go_back</a></span></td><td class="taglisteven">レコード読み込み</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#start_anchor">start_anchor</a></span></td><td class="taglistodd">最初に戻る記録</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#go_to_start">go_to_start</a></span></td><td class="taglisteven">最初に戻る</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#save">save</a></span></td><td class="taglistodd">セーブ</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#load">load</a></span></td><td class="taglisteven">ロード</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#save_temporary">save_temporary</a></span></td><td class="taglistodd">一時変数に状態記録</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#load_temporary">load_temporary</a></span></td><td class="taglisteven">一時変数から読み込み</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#load_system_variables">load_system_variables</a></span></td><td class="taglistodd">システム変数読み込み</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#ask_start">ask_start</a></span></td><td class="taglisteven">最初に戻るダイアログの画像指定</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#ask_record">ask_record</a></span></td><td class="taglistodd">ひとつ前に戻るダイアログの画像指定</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#ask_save">ask_save</a></span></td><td class="taglisteven">セーブデータの上書き確認ダイアログの画像指定</td></tr>
 </tbody></table><br /><br /></div></div>
 
-<h1><a name="bookmark" id="bookmark" class="targanchor"><span class="b">bookmark</span>(No alias)</a></h1>
-<div class="taggenre">Save data settings</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of bookmark attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="bookmark_format" id="bookmark_format">format</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">String</td><td class="tagattribdesc">Specify the save data format.<br />
-If it is bmp8, it will be 8bit BMP.<br />
-If it is bmp24, it will be 24bit BMP.<br />
-Otherwise, it will be kdt.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="bookmark_width" id="bookmark_width">width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Width</td><td class="tagattribdesc">Specify the width of the thumbnail.<br />
-If it is auto, it will be calculated automatically.<br />
-Both height and height cannot be set to auto.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="bookmark_height" id="bookmark_height">height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Height</td><td class="tagattribdesc">Specify the height of the thumbnail.<br />
-If it is auto, it will be calculated automatically.<br />
-Both height and width cannot be set to auto.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="bookmark_keep_aspect_ratio" id="bookmark_keep_aspect_ratio">keep_aspect_ratio</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies whether to fix the aspect ratio of thumbnails.<br />
-If true, the aspect ratio will be fixed.<br />
-If false, the aspect ratio will not be fixed.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="bookmark_prefix" id="bookmark_prefix">prefix</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">String</td><td class="tagattribdesc">Specify the prefix name of the save data file.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="bookmark_suffix" id="bookmark_suffix">suffix</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">String</td><td class="tagattribdesc">Specify the suffix name of the save data file.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="bookmark_mode" id="bookmark_mode">mode</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Mode</td><td class="tagattribdesc">You can specify the save data mode.<br />
-Specifying c performs simple encryption.<br />
-If you specify z, compression will be applied.<br />
-Both z and c cannot be specified.<br />
-Specifying an offset after o will write from that point in the file.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="bookmark_store_skipping" id="bookmark_store_skipping">store_skipping</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specify whether to store when skipping.<br />
-If true is specified, the store will not be executed when skipping.<br />
-If you specify false, the store will be executed when skipping.<br />
-Default is false.<br />
-If force_store is included in the label name, it will be forced to store even if this attribute is true.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="bookmark_store_and_save" id="bookmark_store_and_save">store_and_save</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specify whether to store or save.<br />
-If you specify true, store and save will be performed.<br />
-If you specify false, neither store nor save will be performed.<br />
-Default is true.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="bookmark_quick" id="bookmark_quick">quick</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">String</td><td class="tagattribdesc">Specify the quick save data file name.<br />
-</tbody></table><div class="tagremarks">Configure settings related to save data.<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<h1><a name="bookmark" id="bookmark" class="targanchor"><span class="b">bookmark</span>(別名なし)</a></h1>
+<div class="taggenre">セーブデータの設定</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ bookmark の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="bookmark_format" id="bookmark_format">format</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">フォーマット</td><td class="tagattribdesc">セーブデータのフォーマットを指定します。<br />
+bmp8 なら 8bit BMP になります。<br />
+bmp24 なら 24bit BMP になります。<br />
+それ以外ならば kdt になります。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="bookmark_width" id="bookmark_width">width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">サムネイル幅</td><td class="tagattribdesc">サムネイルの幅を指定します。<br />
+auto ならば自動で計算されます。<br />
+height と両方 auto にはできません。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="bookmark_height" id="bookmark_height">height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">サムネイル高さ</td><td class="tagattribdesc">サムネイルの高さを指定します。<br />
+auto ならば自動で計算されます。<br />
+width と両方 auto にはできません。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="bookmark_keep_aspect_ratio" id="bookmark_keep_aspect_ratio">keep_aspect_ratio</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">サムネイルのアスペクト比を固定するかどうか</td><td class="tagattribdesc">サムネイルのアスペクト比を固定するかどうかを指定します。<br />
+true ならばアスペクト比は固定されます。<br />
+false ならばアスペクト比は固定されません。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="bookmark_prefix" id="bookmark_prefix">prefix</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">セーブデータファイルのプレフィックス</td><td class="tagattribdesc">セーブデータファイルのプレフィックス名を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="bookmark_suffix" id="bookmark_suffix">suffix</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">セーブデータファイルのサフィックス</td><td class="tagattribdesc">セーブデータファイルのサフィックス名を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="bookmark_mode" id="bookmark_mode">mode</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">セーブデータのモード</td><td class="tagattribdesc">セーブデータのモードを指定できます。<br />
+c を指定すると簡単な暗号化が施されます。<br />
+z を指定すると圧縮がかかります。<br />
+z と c を両方指定する事はできません。<br />
+o の後にオフセットを指定するとファイルのその位置からの書き込みになります。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="bookmark_store_skipping" id="bookmark_store_skipping">store_skipping</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">スキップ時にストアするかどうか</td><td class="tagattribdesc">スキップ時にストアするかどうかを指定します。<br />
+true を指定するとスキップ時にストアを実行しません。<br />
+false を指定するとスキップ時にストアを実行します。<br />
+デフォルトは false です。<br />
+ラベル名にforce_storeを含めるとこの属性がtrueでも強制的にストアします。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="bookmark_store_and_save" id="bookmark_store_and_save">store_and_save</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">セーブもストアも行わない</td><td class="tagattribdesc">ストアもセーブも行わないかどうかを指定します。<br />
+true を指定するとストアとセーブを行います。<br />
+false を指定するとストアもセーブも行いません。<br />
+デフォルトは true です。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="bookmark_quick" id="bookmark_quick">quick</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">文字列</td><td class="tagattribdesc">クイックセーブデータのファイル名を指定します。<br />
+</tbody></table><div class="tagremarks">セーブデータに関する設定を行います。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
 
 <h1><a name="clear_system_variables" id="clear_system_variables" class="targanchor"><span class="b">clear_system_variables</span>(clearsysvar)</a></h1>
-<div class="taggenre">Clear system variables</div>
-<div class="tagremarks">Clear system variables<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="taggenre">システム変数をクリアする</div>
+<div class="tagremarks">　システム変数をクリアします。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
 
 <h1><a name="clear_variables" id="clear_variables" class="targanchor"><span class="b">clear_variables</span>(clearvar)</a></h1>
-<div class="taggenre">Clear user variables</div>
-<div class="tagremarks">Clear user variables<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="taggenre">ユーザー変数をクリアする</div>
+<div class="tagremarks">ユーザー変数をクリアします。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
 
 <h1><a name="copy_bookmark" id="copy_bookmark" class="targanchor"><span class="b">copy_bookmark</span>(cpbm)</a></h1>
-<div class="taggenre">Copy save data</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of copy_bookmark attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">src</td><td class="tagattribname"><a class="targanchor" name="copy_bookmark_source" id="copy_bookmark_source">source</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Save data number</td><td class="tagattribdesc">Specify the copy source save data number.<br />
-<tr><td class="tagattribalias">dst</td><td class="tagattribname"><a class="targanchor" name="copy_bookmark_destination" id="copy_bookmark_destination">destination</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Save data number</td><td class="tagattribdesc">Specify the copy destination save data number.<br />
-</tbody></table><div class="tagremarks">You can copy save data.<br />
+<div class="taggenre">セーブデータのコピー</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ copy_bookmark の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">src</td><td class="tagattribname"><a class="targanchor" name="copy_bookmark_source" id="copy_bookmark_source">source</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">コピー元セーブデータ番号</td><td class="tagattribdesc">コピー元セーブデータ番号を指定します。<br />
+<tr><td class="tagattribalias">dst</td><td class="tagattribname"><a class="targanchor" name="copy_bookmark_destination" id="copy_bookmark_destination">destination</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">コピー先セーブデータ番号</td><td class="tagattribdesc">コピー先セーブデータ番号を指定します。<br />
+</tbody></table><div class="tagremarks">セーブデータのコピーを行うことができます。<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
 
 <h1><a name="erase_bookmark" id="erase_bookmark" class="targanchor"><span class="b">erase_bookmark</span>(erbm)</a></h1>
-<div class="taggenre">Delete save data</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of erase_bookmark attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="erase_bookmark_number" id="erase_bookmark_number">number</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Save data number</td><td class="tagattribdesc">Specify the save data number to delete.<br />
-</tbody></table><div class="tagremarks">Delete the specified save data.<br />
+<div class="taggenre">セーブデータの削除</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ erase_bookmark の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="erase_bookmark_number" id="erase_bookmark_number">number</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">削除するセーブデータ番号</td><td class="tagattribdesc">削除するセーブデータ番号を指定します。<br />
+</tbody></table><div class="tagremarks">指定したセーブデータを削除します。<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
 
-<h1><a name="record" id="record" class="targanchor"><span class="b">record</span>(No alias)</a></h1>
-<div class="taggenre">Record</div>
-<div class="tagremarks">Save a record of the current position.<br />
+<h1><a name="record" id="record" class="targanchor"><span class="b">record</span>(別名なし)</a></h1>
+<div class="taggenre">レコード保存</div>
+<div class="tagremarks">現在位置のレコードを保存します。<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
 
 <h1><a name="go_back" id="go_back" class="targanchor"><span class="b">go_back</span>(goback)</a></h1>
-<div class="taggenre">Return to previous record</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of go_back attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="go_back_ask" id="go_back_ask">ask</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specify whether to confirm going back one step.<br />
-If you specify true, you will be asked to go back one step.<br />
-If you specify false, you will not be asked to go back one step.<br />
-</tbody></table><div class="tagremarks">Returns to the previous record.<br />
+<div class="taggenre">一つ前のレコードに戻る</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ go_back の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="go_back_ask" id="go_back_ask">ask</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ひとつ前に戻る確認をするかどうか</td><td class="tagattribdesc">ひとつ前に戻る確認をするかどうかを指定します。<br />
+true を指定するとひとつ前に戻る確認をします。<br />
+false を指定するとひとつ前に戻る確認をしません。<br />
+</tbody></table><div class="tagremarks">ひとつ前のレコードに戻ります。<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
 
 <h1><a name="start_anchor" id="start_anchor" class="targanchor"><span class="b">start_anchor</span>(stanc)</a></h1>
-<div class="taggenre">Return to first</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of start_anchor attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="start_anchor_enabled" id="start_anchor_enabled">enabled</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies whether the return to start feature is enabled.<br />
-Specifying true enables the function to return to the beginning.<br />
-Specifying false disables the ability to return to the beginning.<br />
-</tbody></table><div class="tagremarks">Records the state of the function back to the beginning.<br />
-If you use the return to start function, you will return to the location where this tag was written.<br />
+<div class="taggenre">最初に戻る</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ start_anchor の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="start_anchor_enabled" id="start_anchor_enabled">enabled</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">最初に戻る機能が有効かどうか</td><td class="tagattribdesc">最初に戻る機能が有効かどうかを指定します。<br />
+true を指定すると最初に戻る機能が有効になります。<br />
+false を指定すると最初に戻る機能が無効になります。<br />
+</tbody></table><div class="tagremarks">最初に戻る機能のレコードを記録します。<br />
+最初に戻る機能を利用するとこのタグが書かれた場所に戻ってきます。<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
 
 <h1><a name="go_to_start" id="go_to_start" class="targanchor"><span class="b">go_to_start</span>(gotostart)</a></h1>
-<div class="taggenre">Return to first</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of go_to_start attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="go_to_start_ask" id="go_to_start_ask">ask</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specify whether to check back to the beginning.<br />
-If you specify true, the confirmation returns to the beginning.<br />
-If you specify false, the confirmation to return to the beginning will not be performed.<br />
-</tbody></table><div class="tagremarks">Returns to the position recorded with the [start_anchor] tag.<br />
+<div class="taggenre">最初に戻る</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ go_to_start の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="go_to_start_ask" id="go_to_start_ask">ask</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">最初に戻る確認をするかどうか</td><td class="tagattribdesc">最初に戻る確認をするかどうかを指定します。<br />
+true を指定すると最初に戻る確認をします。<br />
+false を指定すると最初に戻る確認をしません。<br />
+</tbody></table><div class="tagremarks">start_anchor タグで記録した位置に戻ります。<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
 
-<h1><a name="save" id="save" class="targanchor"><span class="b">save</span>(No alias)</a></h1>
-<div class="taggenre">Save</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of save attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="save_place" id="save_place">place</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Save number</td><td class="tagattribdesc">Specify a valid save data number starting from 0.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="save_summary" id="save_summary">summary</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">String</td><td class="tagattribdesc">Specify the save data summary.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="save_ask" id="save_ask">ask</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If true is specified and the settings screen is set to confirm overwriting of saved data, the overwriting confirmation will be performed.<br />
-If you specify false, overwriting will not be confirmed.<br />
-</tbody></table><div class="tagremarks">Save at current location.<br />
+<h1><a name="save" id="save" class="targanchor"><span class="b">save</span>(別名なし)</a></h1>
+<div class="taggenre">セーブする</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ save の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="save_place" id="save_place">place</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">セーブ番号</td><td class="tagattribdesc">0 から始まる有効なセーブデータ番号を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="save_summary" id="save_summary">summary</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">文字列</td><td class="tagattribdesc">セーブデータ概要を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="save_ask" id="save_ask">ask</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定して設定画面でセーブデータの上書き確認を行う設定ならば上書き確認を行う。<br />
+falseを指定すると上書き確認しません。<br />
+</tbody></table><div class="tagremarks">現在位置でセーブします。<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
 
-<h1><a name="load" id="load" class="targanchor"><span class="b">load</span>(No alias)</a></h1>
-<div class="taggenre">Load</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of load attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="load_place" id="load_place">place</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Save number</td><td class="tagattribdesc">Specify a valid save data number starting from 0.<br />
-</tbody></table><div class="tagremarks">Load<br />
+<h1><a name="load" id="load" class="targanchor"><span class="b">load</span>(別名なし)</a></h1>
+<div class="taggenre">ロードする</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ load の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_place" id="load_place">place</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">ロード番号</td><td class="tagattribdesc">0 から始まる有効なロードデータ番号を指定します。<br />
+</tbody></table><div class="tagremarks">ロードします。<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
 
 <h1><a name="save_temporary" id="save_temporary" class="targanchor"><span class="b">save_temporary</span>(tempsave)</a></h1>
-<div class="taggenre">Save current position to temporary variable</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of save_temporary attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="save_temporary_place" id="save_temporary_place">place</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Save number</td><td class="tagattribdesc">Specify a valid save data number starting from 0.<br />
-</tbody></table><div class="tagremarks">Save state in temporary variable.<br />
+<div class="taggenre">一時変数に現在位置をセーブ</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ save_temporary の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="save_temporary_place" id="save_temporary_place">place</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">ロード番号</td><td class="tagattribdesc">0 から始まる有効なセーブデータ番号を指定します。<br />
+</tbody></table><div class="tagremarks">一時変数に状態を保存。<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
 
 <h1><a name="load_temporary" id="load_temporary" class="targanchor"><span class="b">load_temporary</span>(tempload)</a></h1>
-<div class="taggenre">Load data from temporary variable</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of load_temporary attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="load_temporary_place" id="load_temporary_place">place</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Save number</td><td class="tagattribdesc">Specify a valid save data number starting from 0.<br />
+<div class="taggenre">一時変数からデータをロード</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ load_temporary の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_temporary_place" id="load_temporary_place">place</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">ロード番号</td><td class="tagattribdesc">0 から始まる有効なロードデータ番号を指定します。<br />
 
-</tbody></table><div class="tagremarks">Load state from temporary variable.<br />
+</tbody></table><div class="tagremarks">一時変数から状態をロード。<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
 
-<h1><a name="load_system_variables" id="load_system_variables" class="targanchor"><span class="b">load_system_variables</span>(No alias)</a></h1>
-<div class="taggenre">Loading system variables</div>
-<div class="tagremarks">Loading system variables<br />
+<h1><a name="load_system_variables" id="load_system_variables" class="targanchor"><span class="b">load_system_variables</span>システム変数の読み込み</a></h1>
+<div class="taggenre">システム変数の読み込み</div>
+<div class="tagremarks">システム変数を読み込みます。<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
 
-<h1><a name="ask_start" id="ask_start" class="targanchor"><span class="b">ask_start</span>(No alias)</a></h1>
-<div class="taggenre">Controls</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of ask_start attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_start_base_storage" id="ask_start_base_storage">base_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the background image for the first dialog to return to.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_start_yes" id="ask_start_yes">yes</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the Yes button image for the initial return dialog.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_start_no" id="ask_start_no">no</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the No button image for the initial return dialog.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_start_confirm" id="ask_start_confirm">confirm</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the image for the confirmation checkbox in the initial return dialog.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_start_yes_left" id="ask_start_yes_left">yes_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X Axis</td><td class="tagattribdesc">Specify the position of the Yes button.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_start_yes_top" id="ask_start_yes_top">yes_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y Axis</td><td class="tagattribdesc">Specify the position of the Yes button.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_start_no_left" id="ask_start_no_left">no_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X Axis</td><td class="tagattribdesc">Specify the position of the No button.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_start_no_top" id="ask_start_no_top">no_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y Axis</td><td class="tagattribdesc">Specify the position of the No button.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_start_confirm_left" id="ask_start_confirm_left">confirm_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X Axis</td><td class="tagattribdesc">Specify the position of the confirmation checkbox.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_start_confirm_top" id="ask_start_confirm_top">confirm_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y Axis</td><td class="tagattribdesc">Specify the position of the confirmation checkbox.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_start_confirm_caption" id="ask_start_confirm_caption">confirm_caption</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Caption</td><td class="tagattribdesc">Specify the caption for the checkbox that sets whether to confirm back to the beginning.<br />
-</tbody></table><div class="tagremarks">Specify the image for the first dialog to return to.<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<h1><a name="ask_start" id="ask_start" class="targanchor"><span class="b">ask_start</span>(別名なし)</a></h1>
+<div class="taggenre">制御</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ ask_start の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_start_base_storage" id="ask_start_base_storage">base_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">最初に戻るダイアログの背景画像を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_start_yes" id="ask_start_yes">yes</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">最初に戻るダイアログのはいボタン画像を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_start_no" id="ask_start_no">no</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">最初に戻るダイアログのいいえボタン画像を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_start_confirm" id="ask_start_confirm">confirm</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">最初に戻るダイアログの確認チェックボックスの画像を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_start_yes_left" id="ask_start_yes_left">yes_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X座標</td><td class="tagattribdesc">はいボタンの位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_start_yes_top" id="ask_start_yes_top">yes_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y座標</td><td class="tagattribdesc">はいボタンの位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_start_no_left" id="ask_start_no_left">no_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X座標</td><td class="tagattribdesc">いいえボタンの位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_start_no_top" id="ask_start_no_top">no_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y座標</td><td class="tagattribdesc">いいえボタンの位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_start_confirm_left" id="ask_start_confirm_left">confirm_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X座標</td><td class="tagattribdesc">確認チェックボックスの位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_start_confirm_top" id="ask_start_confirm_top">confirm_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y座標</td><td class="tagattribdesc">確認チェックボックスの位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_start_confirm_caption" id="ask_start_confirm_caption">confirm_caption</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">キャプション</td><td class="tagattribdesc">最初に戻る確認を行うかどうかを設定するチェックボックスのキャプションを指定します。<br />
+</tbody></table><div class="tagremarks">最初に戻るダイアログの画像を指定します。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
 
-<h1><a name="ask_record" id="ask_record" class="targanchor"><span class="b">ask_record</span>(No alias)</a></h1>
-<div class="taggenre">Controls</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of ask_record attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_record_base_storage" id="ask_record_base_storage">base_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the background image for the previous dialog.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_record_yes" id="ask_record_yes">yes</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the yes button image for the previous dialog.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_record_no" id="ask_record_no">no</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the No button image for the previous dialog.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_record_confirm" id="ask_record_confirm">confirm</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the image of the confirmation checkbox in the previous dialog.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_record_yes_left" id="ask_record_yes_left">yes_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X Axis</td><td class="tagattribdesc">Specify the position of the Yes button.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_record_yes_top" id="ask_record_yes_top">yes_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y Axis</td><td class="tagattribdesc">Specify the position of the Yes button.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_record_no_left" id="ask_record_no_left">no_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X Axis</td><td class="tagattribdesc">Specify the position of the No button.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_record_no_top" id="ask_record_no_top">no_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y Axis</td><td class="tagattribdesc">Specify the position of the No button.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_record_confirm_left" id="ask_record_confirm_left">confirm_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X Axis</td><td class="tagattribdesc">Specify the position of the confirmation checkbox.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_record_confirm_top" id="ask_record_confirm_top">confirm_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y Axis</td><td class="tagattribdesc">Specify the position of the confirmation checkbox.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_record_confirm_caption" id="ask_record_confirm_caption">confirm_caption</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Caption</td><td class="tagattribdesc">Specify the caption of the checkbox that sets whether to confirm going back one step.<br />
-</tbody></table><div class="tagremarks">Specifies the image of the dialog to go back one step.<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<h1><a name="ask_record" id="ask_record" class="targanchor"><span class="b">ask_record</span>(別名なし)</a></h1>
+<div class="taggenre">制御</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ ask_record の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_record_base_storage" id="ask_record_base_storage">base_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">一つ前に戻るダイアログの背景画像を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_record_yes" id="ask_record_yes">yes</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">一つ前に戻るダイアログのはいボタン画像を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_record_no" id="ask_record_no">no</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">一つ前に戻るダイアログのいいえボタン画像を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_record_confirm" id="ask_record_confirm">confirm</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">一つ前に戻るダイアログの確認チェックボックスの画像を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_record_yes_left" id="ask_record_yes_left">yes_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X座標</td><td class="tagattribdesc">はいボタンの位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_record_yes_top" id="ask_record_yes_top">yes_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y座標</td><td class="tagattribdesc">はいボタンの位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_record_no_left" id="ask_record_no_left">no_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X座標</td><td class="tagattribdesc">いいえボタンの位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_record_no_top" id="ask_record_no_top">no_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y座標</td><td class="tagattribdesc">いいえボタンの位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_record_confirm_left" id="ask_record_confirm_left">confirm_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X座標</td><td class="tagattribdesc">確認チェックボックスの位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_record_confirm_top" id="ask_record_confirm_top">confirm_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y座標</td><td class="tagattribdesc">確認チェックボックスの位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_record_confirm_caption" id="ask_record_confirm_caption">confirm_caption</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">キャプション</td><td class="tagattribdesc">一つ前に戻る確認を行うかどうかを設定するチェックボックスのキャプションを指定します。<br />
+</tbody></table><div class="tagremarks">ひとつ前に戻るダイアログの画像を指定します。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
 
-<h1><a name="ask_save" id="ask_save" class="targanchor"><span class="b">ask_save</span>(No alias)</a></h1>
-<div class="taggenre">Controls</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of ask_save attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_save_base_storage" id="ask_save_base_storage">base_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the background image for the first dialog to return to.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_save_yes" id="ask_save_yes">yes</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the Yes button image for the initial return dialog.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_save_no" id="ask_save_no">no</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the No button image for the initial return dialog.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_save_confirm" id="ask_save_confirm">confirm</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the image for the confirmation checkbox in the save data overwrite confirmation dialog.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_save_yes_left" id="ask_save_yes_left">yes_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X Axis</td><td class="tagattribdesc">Specify the position of the Yes button.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_save_yes_top" id="ask_save_yes_top">yes_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y Axis</td><td class="tagattribdesc">Specify the position of the Yes button.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_save_no_left" id="ask_save_no_left">no_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X Axis</td><td class="tagattribdesc">Specify the position of the No button.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_save_no_top" id="ask_save_no_top">no_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y Axis</td><td class="tagattribdesc">Specify the position of the No button.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_save_confirm_left" id="ask_save_confirm_left">confirm_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X Axis</td><td class="tagattribdesc">Specify the position of the confirmation checkbox.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_save_confirm_top" id="ask_save_confirm_top">confirm_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y Axis</td><td class="tagattribdesc">Specify the position of the confirmation checkbox.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_save_confirm_caption" id="ask_save_confirm_caption">confirm_caption</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Caption</td><td class="tagattribdesc">Specify the caption for the checkbox that sets whether to confirm overwriting saved data.<br />
-</tbody></table><div class="tagremarks">Specify the image for the save data overwrite confirmation dialog.<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<h1><a name="ask_save" id="ask_save" class="targanchor"><span class="b">ask_save</span>(別名なし)</a></h1>
+<div class="taggenre">制御</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ ask_save の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_save_base_storage" id="ask_save_base_storage">base_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">最初に戻るダイアログの背景画像を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_save_yes" id="ask_save_yes">yes</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">最初に戻るダイアログのはいボタン画像を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_save_no" id="ask_save_no">no</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">最初に戻るダイアログのいいえボタン画像を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_save_confirm" id="ask_save_confirm">confirm</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">セーブデータ上書き確認ダイアログの確認チェックボックスの画像を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_save_yes_left" id="ask_save_yes_left">yes_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X座標</td><td class="tagattribdesc">はいボタンの位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_save_yes_top" id="ask_save_yes_top">yes_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y座標</td><td class="tagattribdesc">はいボタンの位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_save_no_left" id="ask_save_no_left">no_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X座標</td><td class="tagattribdesc">いいえボタンの位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_save_no_top" id="ask_save_no_top">no_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y座標</td><td class="tagattribdesc">いいえボタンの位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_save_confirm_left" id="ask_save_confirm_left">confirm_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X座標</td><td class="tagattribdesc">確認チェックボックスの位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_save_confirm_top" id="ask_save_confirm_top">confirm_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y座標</td><td class="tagattribdesc">確認チェックボックスの位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_save_confirm_caption" id="ask_save_confirm_caption">confirm_caption</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">キャプション</td><td class="tagattribdesc">セーブデータの上書き確認を行うかどうかを設定するチェックボックスのキャプションを指定します。<br />
+</tbody></table><div class="tagremarks">セーブデータの上書き確認ダイアログの画像を指定します。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
 
 	<script type="text/javascript" charset="Shift_JIS" src="documentid.js" ></script>
 	<script type="text/javascript" charset="Shift_JIS" src="postcontent.js" ></script>

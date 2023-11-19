@@ -1,86 +1,89 @@
 
 
---- Table of contents
+--- 目次
 
-・Table of contents
-・Introduction
-・Supported Opperating Systems
-・Explanations of main folders
-・Softwares recommended to install
-・License
-・Contact
-
-
---- Introduction
-
-This file provides a minimum explanation about the contents included in the folder where this file is located, 
-as well as external dependency programs necessary for executing/editing/managing the contents.
-
-Avalanches (hereinafter referred to as the development environment) is constructed by multiple softwares.
-
-It is not necessary to install recommended softwares, 
-but it is advisable to install it unless there is a specific reason not to.
+・目次
+・はじめに
+・動作環境
+・主要なフォルダの説明
+・インストールを推奨するソフトウェア
+・ライセンス
+・連絡先
 
 
 
---- Supported Operating Systems
+--- はじめに
 
-This development environment has been confirmed to operate in the following environments:
+このファイルは、このファイルが置かれているフォルダに含まれるコンテンツ、
+及びコンテンツの実行／編集／管理に必要な外部依存プログラムについて最低限度の説明を行います。
+
+Avalanches（以下、本開発環境）は複数のソフトウェアによって構築されています。
+
+「インストールを推奨するソフトウェア」は必ずしもインストールする必要はありませんが
+特に理由がなければインストールする事をお勧めします。
+
+
+
+--- 動作環境
+
+本開発環境は以下の環境での動作を確認しています。
 
 32bit Windows XP(SP3)/Vista/7/10
 64bit Windows 7/10/11
 
 
 
---- Explanations of main folders
+--- 主要なフォルダの説明
 
-For convenience, we will denote the folder where this file is located as '/'. 
-For example, if there is a notation like '/foo,' it refers to a file named 'foo' within the folder where this file is placed. 
-Similarly, the notation '/foo/bar' refers to a file named 'bar' inside the 'foo' folder.
+便宜上このファイルが置かれているフォルダを / と表記します。
+例えば '/foo' という表記があった場合、このファイルの置かれているフォルダ内の
+'foo' という名前のファイルを指します。
+同様に '/foo/bar' という表記であれば 'foo' フォルダの中の
+'bar' という名前のファイルを指します。
 
  /doc/
- Manuals and related documents are located here.
+ ここにマニュアル類があります。
 
  /dist/
- Master data is generated here.
+ ここにマスターデータが生成されます。
 
  /src/
- Source code is located here.
+ ソースが収録されています。
 
  /src/goki2/
- Source code for GOKI2.
- Running /src/goki2/run.bat launches the test script. 
- Executing /src/goki2/run_krkr2.bat launches Kirikiri 2 instead of KirikiriZ.
- If you want to add an automatic search path, please add a line denoting the path to krkr_autopath.ary.
+ GOKI2のソースがあります。
+ /src/goki2/run.bat を実行するとテストスクリプトが起動します。
+ /src/goki2/run_krkr2.bat を実行すると吉里吉里２が起動します。
+ 自動検索パスを追加する場合は krkr_autopath.ary に行を追加してください。
 
  /tools/
- All tools are included here.
+ ツール類はすべてここに収録されています。
 
  /tools/game_editor/
- SLG Editor.
- Items and characters can be edited here.
+ SLG用のエディタです。
+ アイテムやキャラクタの編集ができます。
 
  /tools/convgs/
- Converts scenario text into script.
+ シナリオテキストをスクリプトに変換するコンバータです。
 
  /tools/make/
- Master data creation tool.
+ マスターデータ作成ツールです。
 
  /tools/make_roman_table/
- Tool for creating a Romanization table for a typing game.
+ タイピングゲーム用のローマ字対応表作成ツールです。
 
  /tools/make_word/
- Tool for creating word data for a typing game.
+ タイピングゲーム用のワードデータ作成ツールです。
 
 
 
---- Softwares recommended to install
+--- インストールを推奨するソフトウェア
 
 
 >>--------------------------------------
 >> TortoiseGit
 >>
->> Used to acquire this development environment.
+>> 本開発環境を取得するために使います。
 >>
 >> https://tortoisegit.org/
 
@@ -88,23 +91,23 @@ Similarly, the notation '/foo/bar' refers to a file named 'bar' inside the 'foo'
 >>--------------------------------------
 >> TortoiseSVN
 >>
->> Convenient to have.
->> Since it reads Subversion logs for patch creation, 
->> it is recommended to install it if you want to create patches.
+>> あると便利です。
+>> パッチ作成にSubversionのログを読み込むので
+>> パッチを作成したいならインストールをおすすめします。
 >>
 >>
->> ・TortoiseSVN（English）
+>> ・TortoiseSVN（英語）
 >>   https://tortoisesvn.net/
 >>
->> ・TortoiseSVN（Japanese）
+>> ・TortoiseSVN（日本語）
 >>   https://ja.osdn.net/projects/tortoisesvn/
 
 
 >>--------------------------------------
 >> Subversion client
 >>
->> Required for creating patches.
->> Not required if you are not planning to create patches.
+>> パッチを作成するときに必要になります。
+>> パッチを作成しないならば必要ありません。
 >>
 >> ・SLIKSVN
 >>   https://sliksvn.com/download/
@@ -113,69 +116,69 @@ Similarly, the notation '/foo/bar' refers to a file named 'bar' inside the 'foo'
 >>--------------------------------------
 >> Office application
 >>
->> Required for data input and data generation.
->> Not necessary to install if it is not required for you.
+>> 一部のデータ入力、データ生成に必要になります。
+>> 必要がなければインストールする必要はありません。
 >>
->> ・[Paid] Microsoft Office Suite
->>   Fee required to use MSOffice.
->>   Excel is required specifically because some data input relies on .xls/.xlsx files.
+>> ・【有料】Microsoft Office Suite
+>>   有料です。
+>>   特に、一部のデータ入力に *.xls/*.xlsx を利用しているため Excel が必要になります。
 >>
 >>
 >> ・Apache OpenOffice
 >>   http://www.openoffice.org/ja/
 >>
->>   Similarly, Calc is required for input/output with .xls/.xlsx files.
->>   However, as of October 28, 2012, it seems that output in *.xlsx format is not possible.
->>   If your purpose is limited to data generation and reading, this alone should be sufficient.
+>>   同じく *.xls/*.xlsx の入出力に利用するため Calc が必要になります。
+>>   ただし、2012/10/28 現在 *.xlsx の出力ができないようです。
+>>   読み込みはできるのでデータ生成のみの用途であればこれだけで十分です。
 >>
->>   I have confirmed that it operates with version 4.1.2.
+>>   version 4.1.2 で動作を確認しました。
 >>
 >>
 >> ・LibreOffice
->>   http://libreoffice.org/
+>>   http://ja.libreoffice.org/
 >>
->>   Similarly, Calc is required for input/output with .xls/.xlsx files.
+>>   同じく *.xls/*.xlsx の入出力に利用するため Calc が必要になります。
 >>
->>   This should work, but it has not been tested yet.
->>   Therefore, it is not recommended.
+>>   動作するとは思いますが、動作確認はされていません。
+>>   そのため、非推奨とします。
 
 
 >>--------------------------------------
 >> Ruby
 >>
->> Required for executing .rb files.
->> It is required for running tools,
->> however if you do not use them, then installing is not required.
+>> .rb ファイルの実行に必要になります。
+>> ツール類を実行するために必要になりますが、
+>> ツール類を使わないなら必要ありません。
 >>
 >> ・Ruby
->>   http://www.ruby-lang.org/
+>>   http://www.ruby-lang.org/ja/
 >>
->>   Developed with version 2.2.3.
+>>   version 2.2.3 で開発されました。
 >>
->>   Confirmed working on version 3.0.1.
->>   Confirmed working on version 3.2.2.
+>>   version 3.0.1 で動作確認しました。
+>>   version 3.2.2 で動作確認しました。
 
 
 >>--------------------------------------
 >> NSIS
 >>
->> Required for creating an installer.
->> Not necessary to install if not required for you.
+>> インストーラの作成に必要になります。
+>> インストーラを作成しないなら必要ありません。
 >>
 >> ・NSIS
 >>   https://nsis.sourceforge.io/Download
 >>
->>   Confirmed working on version 3.06.1.
->>   Confirmed working on version 3.08.
+>>   version 3.06.1 で動作確認しました。
+>>   version 3.08 で動作確認しました。
 
 
 
---- License
-License same as in Kirikiri2.
+--- ライセンス
+ライセンスは吉里吉里２と同じです。
 
 
 
---- Contact
+--- 連絡先
 mailto:halosuke@gmail.com
 
 http://halo.doorblog.jp/
