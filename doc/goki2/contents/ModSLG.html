@@ -41,7 +41,7 @@ var pLukName = "luk";<br />
 <br />
 Be sure to stop the slgprepare tag with the s tag after using it.<br />
 Also, if you want to enable save/load, please write a saveable label before the s tag.<br />
-例：<br />
+Example：<br />
 @slgprepare start<br />
 <br />
 *force_store|<br />
@@ -493,7 +493,7 @@ Either nameattribute or idattribute must be specified. <br />
 &lt;id&gt; specifies the parameter name (lowercase) specified by id. <br />
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="slgusedskill_id_max_storage" id="slgusedskill_id_max_storage">&lt;id&gt;_max_storage</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Maximum parameters to display as defined in game_editor tool Specifies the background image for the value. <br />
 &lt;id&gt; specifies the parameter name (lowercase) specified by id. <br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="slgusedskill_id_max_caption" id="slgusedskill_id_max_caption">&lt;id&gt;_max_caption</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">文字列</td><td class="tagattribdesc">game_editorツールで定義した表示するパラメータの最大値のキャプションを指定します。<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="slgusedskill_id_max_caption" id="slgusedskill_id_max_caption">&lt;id&gt;_max_caption</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">String</td><td class="tagattribdesc">Maximum parameters to display as defined in game_editor tool Specify a caption for the value. <br />
 &lt;id&gt; specifies the parameter name (lowercase) specified by id. <br />
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="slgusedskill_remove_id_max" id="slgusedskill_remove_id_max">remove_&lt;id&gt;_max</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">for the parameters to be removed defined in the game_editor tool. Specify the maximum value. <br />
 &lt;id&gt; specifies the parameter name (lowercase) specified by id. <br />
@@ -1083,7 +1083,7 @@ If false, invalid images will not be used. <br />
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="slgattackstatus_id_font" id="slgattackstatus_id_font">&lt;id&gt;_font</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">Font name</td><td class="tagattribdesc">Specify the font. <br />
 The following can be specified for &lt;id&gt;. <br />
 "name_left" Enemy name<br />
-“hp_left” Enemy HP<br />
+"hp_left" Enemy HP<br />
 "power_left" Enemy attack power<br />
 "defense_left" Enemy's physical defense power<br />
 "magic_defense_left" Enemy's magic defense power<br />
@@ -1418,7 +1418,7 @@ Please specify either the item_name attribute or the item_id attribute. <br />
 <h1><a name="slgcreatecharacter" id="slgcreatecharacter" class="targanchor"><span class="b">slgcreatecharacter</span>(No alias)</h1>
 <div class="taggenre">SLG operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of slgcreatecharacter attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-これはプレイヤーキャラクタのアイコンの中心に表示されます。<br />
+This will be displayed in the center of the player character's icon. <br />
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="slgcreatecharacter_id" id="slgcreatecharacter_id">id</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Character ID</td><td class="tagattribdesc">Specify the ID of the character to be created. <br />
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="slgcreatecharacter_name" id="slgcreatecharacter_name">name</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Character name</td><td class="tagattribdesc">Specify the character name to be created. <br />
 This is the name of the character loaded with the [slgloadcharacter] tag. <br />
@@ -2136,7 +2136,7 @@ The following can be specified for &lt;id&gt;. <br />
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="slgshop_money_value_shadow_color" id="slgshop_money_value_shadow_color">money_value_shadow_color</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">Specify the shadow color of the money you have. <br />
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="slgshop_id_storage" id="slgshop_id_storage">&lt;id&gt;_storage</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the button background image. <br />
 The following can be specified for &lt;id&gt;. <br />
-“buy” button<br />
+"buy" button<br />
 "sell" button<br />
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="slgshop_id_caption" id="slgshop_id_caption">&lt;id&gt;_caption</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">String</td><td class="tagattribdesc">Specifies the button caption. <br />
 &lt;id&gt; can be the same as &lt;id&gt;_storage. <br />
@@ -2548,11 +2548,11 @@ The following can be specified for &lt;id&gt;. <br />
 "rest" recovery button<br />
 "move" movement button<br />
 "weapon_shop" Weapon shop button<br />
-“armor_shop” Armor shop button<br />
+"armor_shop" Armor shop button<br />
 "item_shop" tool shop button<br />
 "arena" arena button<br />
 "door" door button<br />
-“talk” button<br />
+"talk" button<br />
 "visit" visit button<br />
 "control" suppression button<br />
 "treasure" treasure chest button<br />
@@ -3485,7 +3485,7 @@ The following can be specified for &lt;id&gt;. <br />
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="slgprepare_id_storage" id="slgprepare_id_storage">&lt;id&gt;_storage</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the background image for the record label. <br />
 The following can be specified for &lt;id&gt;. <br />
 "name" index<br />
-“level” date<br />
+"level" date<br />
 "exp" summary<br />
 "index" summary<br />
 "Parameter name" Parameter name defined in game_editor (lower case)<br />
