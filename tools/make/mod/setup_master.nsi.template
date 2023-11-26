@@ -44,7 +44,7 @@ Section "-GameData" SECID_GAMEDATA
 
 	GameDataSection_retry:
 		FileOpen $0 "$ProductDir\pinfo" w
-		FileWrite $0 "%[ Vender : '${VENDER}', Product : '${PRODUCT}', IndexName : '${INDEX_NAME}']"
+		FileWrite $0 "%[ Vender : '${VENDER}', Product : '${PRODUCT}', IndexName : '${INDEX_NAME}', Language : '${LANGUAGE}']"
 		FileClose $0
 
 		IfErrors GameDataSection_error_break
