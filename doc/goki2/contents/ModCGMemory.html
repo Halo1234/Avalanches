@@ -3,127 +3,127 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
-	<title>ModCGMemoryのタグ</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>ModCGMemory tags</title>
 	<meta name="author" content="Halo" />
 	<meta http-equiv="Content-Style-Type" content="text/css" />
 	<meta http-equiv="Content-Script-Type" content="text/javascript" />
-	<link href="browser.css" type="text/css" rel="stylesheet" title="吉里吉里関連リファレンス用標準スタイル" />
+	<link href="browser.css" type="text/css" rel="stylesheet" title="Standard style for Kirikiri-related reference" />
 	<link href="mailto:halosuke@gmail.com" rev="Made" />
-	<link href="index.html" target="_top" rel="Start" title="トップページ" />
+	<link href="index.html" target="_top" rel="Start" title="Top page" />
 </head>
 <body>
 
-<h1><a name="tags" id="tags">ModCGMemoryのタグ</a></h1>
-<div class="para"><div>　ModCGMemory で使用可能なタグのリファレンスです。<br >
+<h1><a name="tags" id="tags">ModCGMemory tags</a></h1>
+<div class="para"><div>Reference of tags available in ModCGMemory. <br >
 <br />
-CG/回想のデータはエクセルで入力します。<br />
-/src/data/cgmemory/list.xlsxを編集してください。<br />
-サムネイル列にはサムネイルとして表示するボタン画像を指定します。<br />
-CG列には表示すべきCG（拡張子無しで記載します）を改行で区切っていくつでも指定できます。<br />
-回想列には回想として実行すべきストレージファイル名（拡張子無しで記載します）を指定します。<br />
-データを作成するには/tools/make_cgmem/run.batを実行します。<br />
-同じ場所にデータが生成されるのでプロジェクトフォルダにコピーして[load_cgmemory]タグで読み込んでください。<br />
+CG/reminiscence data will be entered in Excel. <br />
+Edit /src/data/cgmemory/list.xlsx. <br />
+Specify the button image to be displayed as a thumbnail in the thumbnail column. <br />
+In the CG column, you can specify any number of CGs to be displayed (listed without extensions) by separating them with line breaks. <br />
+In the recall column, specify the storage file name (written without extension) to be executed as a recall. <br />
+Run /tools/make_cgmem/run.bat to create data. <br />
+The data will be generated in the same location, so copy it to the project folder and load it with the [load_cgmemory] tag. <br />
 <br />
-CGはload_cgタグで読み込んだ画像がオープン対象になります。<br />
-<h1><a name="genre" id="genre" class="targanchor">ジャンル・タグ一覧</a></h1>
+For CG, the image loaded with the load_cg tag will be opened. <br />
+<h1><a name="genre" id="genre" class="targanchor">Genre/tag list</a></h1>
 
 
 <div class="para"><div><br />
 <table class="taglist"><tbody>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#cgmemory_option">cgmemory_option</a></span></td><td class="taglisteven">CG回想画面のオプション</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#cgmemory">cgmemory</a></span></td><td class="taglistodd">CG回想画面項目の設定</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#load_cgmemory">load_cgmemory</a></span></td><td class="taglisteven">CG回想画面のデータを読み込む</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#open_memory">open_memory</a></span></td><td class="taglistodd">回想のオープン</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#end_memory">end_memory</a></span></td><td class="taglisteven">回想の停止</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#cgmemory_option">cgmemory_option</a></span></td><td class= "taglisteven">CG flashback screen options</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#cgmemory">cgmemory</a></span></td><td class= "taglistodd">CG flashback screen item settings</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#load_cgmemory">load_cgmemory</a></span></td><td class= "taglisteven">Load CG flashback screen data</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#open_memory">open_memory</a></span></td><td class= "taglistodd">Open reminiscence</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#end_memory">end_memory</a></span></td><td class= "taglisteven">Stop recollection</td></tr>
 </tbody></table><br /><br /></div></div>
 
-<h1><a name="cgmemory_option" id="cgmemory_option" class="targanchor"><span class="b">cgmemory_option</span>(別名なし)</a></h1>
-<div class="taggenre">CG回想</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ cgmemory_option の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_option_storage" id="cgmemory_option_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">CG回想画面の背景に使用する画像を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_option_table_select_storage" id="cgmemory_option_table_select_storage">table_select_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">CG回想選択画面の背景に使用する画像を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_option_page_storage" id="cgmemory_option_page_storage">page_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">CG回想ページ画面の背景に使用する画像を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_option_blank_thumbnail" id="cgmemory_option_blank_thumbnail">blank_thumbnail</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">CGサムネイルの未オープン時に使用する画像を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_option_memory_button" id="cgmemory_option_memory_button">memory_button</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">回想ボタンに使用する画像を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_option_item_count" id="cgmemory_option_item_count">item_count</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">１ページ内に表示するCG項目の数を指定します。<br />
-この属性の設定はcgmemoryタグより前に行ってください。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_option_memory_count" id="cgmemory_option_memory_count">memory_count</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">１アイテム内に表示する回想項目の数を指定します。<br />
-この属性の設定はcgmemoryタグより前に行ってください。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_option_item_width" id="cgmemory_option_item_width">item_width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">１アイテムの幅を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_option_item_height" id="cgmemory_option_item_height">item_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">１アイテムの高さを指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_option_slider_storage" id="cgmemory_option_slider_storage">slider_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">CG回想ページ画面のスライダーの画像を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_option_buffer" id="cgmemory_option_buffer">buffer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">効果音バッファ番号</td><td class="tagattribdesc">効果音を再生するバッファ番号を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_option_click_sound" id="cgmemory_option_click_sound">click_sound</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">クリック時に再生する音声ファイル名を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_option_enter_sound" id="cgmemory_option_enter_sound">enter_sound</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">マウス侵入時に再生する音声ファイル名を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_option_leave_sound" id="cgmemory_option_leave_sound">leave_sound</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">マウスが出て行った時に再生する音声ファイル名を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_option_show_hide_type" id="cgmemory_option_show_hide_type">show_hide_type</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">vista or fade</td><td class="tagattribdesc">表示タイプを指定します。<br />
-</tbody></table><div class="tagremarks">CG回想画面の設定を変更します。<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<h1><a name="cgmemory_option" id="cgmemory_option" class="targanchor"><span class="b">cgmemory_option</span>(No alias)</a></h1>
+<div class="taggenre">CG and memory.</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of cgmemory_option attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_option_storage" id="cgmemory_option_storage">storage</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the image to be used as the background of the CG flashback screen. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_option_table_select_storage" id="cgmemory_option_table_select_storage">table_select_storage</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the image to be used as the background of the CG recollection selection screen . <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_option_page_storage" id="cgmemory_option_page_storage">page_storage</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the image to be used for the background of the CG recollection page screen . <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_option_blank_thumbnail" id="cgmemory_option_blank_thumbnail">blank_thumbnail</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the image to be used when the CG thumbnail is not opened. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_option_memory_button" id="cgmemory_option_memory_button">memory_button</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the image to be used for the recollection button. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_option_item_count" id="cgmemory_option_item_count">item_count</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the number of CG items to display in one page . <br />
+Set this attribute before the cgmemory tag. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_option_memory_count" id="cgmemory_option_memory_count">memory_count</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the number of recollection items to be displayed in one item . <br />
+Set this attribute before the cgmemory tag. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_option_item_width" id="cgmemory_option_item_width">item_width</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the width of one item. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_option_item_height" id="cgmemory_option_item_height">item_height</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the height of one item. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_option_slider_storage" id="cgmemory_option_slider_storage">slider_storage</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the image of the slider on the CG recollection page screen. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_option_buffer" id="cgmemory_option_buffer">buffer</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Sound effect buffer number</td><td class="tagattribdesc">Specify the buffer number to play the sound effect. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_option_click_sound" id="cgmemory_option_click_sound">click_sound</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the name of the audio file to play when clicked. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_option_enter_sound" id="cgmemory_option_enter_sound">enter_sound</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the name of the audio file to play when the mouse enters. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_option_leave_sound" id="cgmemory_option_leave_sound">leave_sound</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the name of the audio file to play when the mouse leaves To do. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_option_show_hide_type" id="cgmemory_option_show_hide_type">show_hide_type</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">vista or fade</td><td class="tagattribdesc">Specifies the display type. <br />
+</tbody></table><div class="tagremarks">Change the settings of the CG flashback screen. <br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
-<h1><a name="cgmemory" id="cgmemory" class="targanchor"><span class="b">cgmemory</span>(別名なし)</a></h1>
-<div class="taggenre">CG回想</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ cgmemory の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_key_storage" id="cgmemory_key_storage">&lt;key&gt;_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">選択画面のボタンの画像を指定します。<br />
-&lt;key&gt;にはload_cgmemoryで指定したkey値を指定できます。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_key_left" id="cgmemory_key_left">&lt;key&gt;_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">位置</td><td class="tagattribdesc">選択画面のボタンの位置を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_key_top" id="cgmemory_key_top">&lt;key&gt;_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">位置</td><td class="tagattribdesc">選択画面のボタンの位置を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_key_wid_checkth" id="cgmemory_key_wid_checkth">&lt;key&gt;_wid_checkth</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">サイズ</td><td class="tagattribdesc">選択画面のボタンのサイズを指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_key_height" id="cgmemory_key_height">&lt;key&gt;_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">サイズ</td><td class="tagattribdesc">選択画面のボタンのサイズを指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_key_font" id="cgmemory_key_font">&lt;key&gt;_font</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">フォント名</td><td class="tagattribdesc">選択画面のボタンのフォント名を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_key_font_height" id="cgmemory_key_font_height">&lt;key&gt;_font_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">フォント名</td><td class="tagattribdesc">選択画面のボタンのフォントサイズを指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_key_caption" id="cgmemory_key_caption">&lt;key&gt;_caption</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">文字列</td><td class="tagattribdesc">選択画面のボタンのキャプションを指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_key_caption_color" id="cgmemory_key_caption_color">&lt;key&gt;_caption_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">選択画面のボタンのキャプションカラーを指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_key_color" id="cgmemory_key_color">&lt;key&gt;_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">選択画面のボタンの背景色を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_key_opacity" id="cgmemory_key_opacity">&lt;key&gt;_opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0～255</td><td class="tagattribdesc">選択画面のボタンの不透明度を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_item_left" id="cgmemory_item_left">item&lt;N&gt;_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">位置</td><td class="tagattribdesc">CG項目のボタンの位置を指定します。<br />
-&lt;N&gt;には0～cgmemory_optionのitem_countで指定した値 - 1を指定できます。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_item_top" id="cgmemory_item_top">item&lt;N&gt;_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">位置</td><td class="tagattribdesc">CG項目のボタンの位置を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_item_wid_checkth" id="cgmemory_item_wid_checkth">item&lt;N&gt;_wid_checkth</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">サイズ</td><td class="tagattribdesc">CG項目のボタンのサイズを指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_item_height" id="cgmemory_item_height">item&lt;N&gt;_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">サイズ</td><td class="tagattribdesc">CG項目のボタンのサイズを指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_item_font" id="cgmemory_item_font">item&lt;N&gt;_font</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">フォント名</td><td class="tagattribdesc">CG項目のボタンのフォント名を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_item_font_height" id="cgmemory_item_font_height">item&lt;N&gt;_font_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">フォント名</td><td class="tagattribdesc">CG項目のボタンのフォントサイズを指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_item_caption" id="cgmemory_item_caption">item&lt;N&gt;_caption</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">文字列</td><td class="tagattribdesc">CG項目のボタンのキャプションを指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_item_caption_color" id="cgmemory_item_caption_color">item&lt;N&gt;_caption_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">CG項目のボタンのキャプションカラーを指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_item_color" id="cgmemory_item_color">item&lt;N&gt;_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">CG項目のボタンの背景色を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_item_opacity" id="cgmemory_item_opacity">item&lt;N&gt;_opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0～255</td><td class="tagattribdesc">CG項目のボタンの不透明度を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_mem_left" id="cgmemory_mem_left">mem&lt;I&gt;_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">位置</td><td class="tagattribdesc">回想項目のボタンの位置を指定します。<br />
-&lt;I&gt;には0～cgmemory_optionのmem_countで指定した値 - 1を指定できます。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_mem_top" id="cgmemory_mem_top">mem&lt;I&gt;_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">位置</td><td class="tagattribdesc">回想項目のボタンの位置を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_mem_wid_checkth" id="cgmemory_mem_wid_checkth">mem&lt;I&gt;_wid_checkth</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">サイズ</td><td class="tagattribdesc">回想項目のボタンのサイズを指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_mem_height" id="cgmemory_mem_height">mem&lt;I&gt;_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">サイズ</td><td class="tagattribdesc">回想項目のボタンのサイズを指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_mem_font" id="cgmemory_mem_font">mem&lt;I&gt;_font</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">フォント名</td><td class="tagattribdesc">回想項目のボタンのフォント名を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_mem_font_height" id="cgmemory_mem_font_height">mem&lt;I&gt;_font_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">フォント名</td><td class="tagattribdesc">回想項目のボタンのフォントサイズを指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_mem_caption" id="cgmemory_mem_caption">mem&lt;I&gt;_caption</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">文字列</td><td class="tagattribdesc">回想項目のボタンのキャプションを指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_mem_caption_color" id="cgmemory_mem_caption_color">mem&lt;I&gt;_caption_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">回想項目のボタンのキャプションカラーを指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_mem_color" id="cgmemory_mem_color">mem&lt;I&gt;_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">回想項目のボタンの背景色を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_mem_opacity" id="cgmemory_mem_opacity">mem&lt;I&gt;_opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0～255</td><td class="tagattribdesc">回想項目のボタンの不透明度を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cgmemory_show" id="cgmemory_show">show</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0～255</td><td class="tagattribdesc">trueを指定するとCG回想画面を表示します。<br />
-</tbody></table><div class="tagremarks">CG回想画面の項目を設定します。<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<h1><a name="cgmemory" id="cgmemory" class="targanchor"><span class="b">cgmemory</span>(No alias)</a></h1>
+<div class="taggenre">CG and memory.</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of cgmemory attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_key_storage" id="cgmemory_key_storage">&lt;key&gt;_storage</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the image of the button on the selection screen . <br />
+The key value specified in load_cgmemory can be specified for &lt;key&gt;. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_key_left" id="cgmemory_key_left">&lt;key&gt;_left</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">Position</td><td class="tagattribdesc">Specifies the position of the button on the selection screen. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_key_top" id="cgmemory_key_top">&lt;key&gt;_top</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">Position</td><td class="tagattribdesc">Specifies the position of the button on the selection screen. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_key_wid_checkth" id="cgmemory_key_wid_checkth">&lt;key&gt;_wid_checkth</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">Size</td><td class="tagattribdesc">Specifies the size of the buttons on the selection screen. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_key_height" id="cgmemory_key_height">&lt;key&gt;_height</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">Size</td><td class="tagattribdesc">Specifies the size of the buttons on the selection screen. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_key_font" id="cgmemory_key_font">&lt;key&gt;_font</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">Font name</td><td class="tagattribdesc">Specifies the font name of the button on the selection screen. Masu. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_key_font_height" id="cgmemory_key_font_height">&lt;key&gt;_font_height</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">Font name</td><td class="tagattribdesc">Specifies the font size of the buttons on the selection screen. Masu. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_key_caption" id="cgmemory_key_caption">&lt;key&gt;_caption</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">String</td><td class="tagattribdesc">Specifies the caption of the button on the selection screen . <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_key_caption_color" id="cgmemory_key_caption_color">&lt;key&gt;_caption_color</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">Specifies the caption color of the button on the selection screen . <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_key_color" id="cgmemory_key_color">&lt;key&gt;_color</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">Specifies the background color of the button on the selection screen . <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_key_opacity" id="cgmemory_key_opacity">&lt;key&gt;_opacity</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">0~255</td><td class="tagattribdesc">Specifies the opacity of the button on the selection screen To do. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_item_left" id="cgmemory_item_left">item&lt;N&gt;_left</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">Position</td><td class="tagattribdesc">Specify the button position of the CG item. <br />
+&lt;N&gt; can be specified from 0 to the value specified by item_count of cgmemory_option - 1. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_item_top" id="cgmemory_item_top">item&lt;N&gt;_top</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">Position</td><td class="tagattribdesc">Specify the button position of the CG item. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_item_wid_checkth" id="cgmemory_item_wid_checkth">item&lt;N&gt;_wid_checkth</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">Size</td><td class="tagattribdesc">Specify the size of the CG item button. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_item_height" id="cgmemory_item_height">item&lt;N&gt;_height</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">Size</td><td class="tagattribdesc">Specify the size of the CG item button. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_item_font" id="cgmemory_item_font">item&lt;N&gt;_font</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">Font name</td><td class="tagattribdesc">Specify the font name of the CG item button. Masu. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_item_font_height" id="cgmemory_item_font_height">item&lt;N&gt;_font_height</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">Font name</td><td class="tagattribdesc">Specifies the font size of the CG item button. Masu. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_item_caption" id="cgmemory_item_caption">item&lt;N&gt;_caption</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">String</td><td class="tagattribdesc">Specifies the button caption of the CG item . <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_item_caption_color" id="cgmemory_item_caption_color">item&lt;N&gt;_caption_color</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">Specifies the caption color of the button of the CG item . <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_item_color" id="cgmemory_item_color">item&lt;N&gt;_color</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">Specifies the background color of the button of the CG item . <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_item_opacity" id="cgmemory_item_opacity">item&lt;N&gt;_opacity</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">0 to 255</td><td class="tagattribdesc">Specify the opacity of the button of the CG item To do. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_mem_left" id="cgmemory_mem_left">mem&lt;I&gt;_left</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">Position</td><td class="tagattribdesc">Specify the position of the button for the recall item. <br />
+&lt;I&gt; can be specified from 0 to the value specified by mem_count of cgmemory_option - 1. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_mem_top" id="cgmemory_mem_top">mem&lt;I&gt;_top</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">Position</td><td class="tagattribdesc">Specify the position of the button for the recall item. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_mem_wid_checkth" id="cgmemory_mem_wid_checkth">mem&lt;I&gt;_wid_checkth</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">Size</td><td class="tagattribdesc">Specifies the size of the recall item button. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_mem_height" id="cgmemory_mem_height">mem&lt;I&gt;_height</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">Size</td><td class="tagattribdesc">Specifies the size of the recall item button. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_mem_font" id="cgmemory_mem_font">mem&lt;I&gt;_font</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">Font name</td><td class="tagattribdesc">Specify the font name of the button for recollection items. Masu. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_mem_font_height" id="cgmemory_mem_font_height">mem&lt;I&gt;_font_height</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">Font name</td><td class="tagattribdesc">Specifies the font size of the recall item button. Masu. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_mem_caption" id="cgmemory_mem_caption">mem&lt;I&gt;_caption</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">String</td><td class="tagattribdesc">Specifies the caption of the button for the recollection item . <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_mem_caption_color" id="cgmemory_mem_caption_color">mem&lt;I&gt;_caption_color</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">Specifies the caption color of the button of the recollection item . <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_mem_color" id="cgmemory_mem_color">mem&lt;I&gt;_color</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">Specifies the background color of the recall item button . <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_mem_opacity" id="cgmemory_mem_opacity">mem&lt;I&gt;_opacity</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">0 to 255</td><td class="tagattribdesc">Specify the opacity of the button of the recall item To do. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="cgmemory_show" id="cgmemory_show">show</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">0 to 255</td><td class="tagattribdesc">If true is specified, the CG recollection screen will be displayed. <br />
+</tbody></table><div class="tagremarks">Set the CG flashback screen items. <br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
-<h1><a name="load_cgmemory" id="load_cgmemory" class="targanchor"><span class="b">load_cgmemory</span>(別名なし)</a></h1>
-<div class="taggenre">CG回想</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ load_cgmemory の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_cgmemory_key" id="load_cgmemory_key">key</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">キー名</td><td class="tagattribdesc">CG回想画面のデータのキーを指定します。<br />
-ここで指定したキーがcgmemoryタグで利用されます。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_cgmemory_storage" id="load_cgmemory_storage">storage</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">CG回想選択画面のデータを指定します。<br />
-</tbody></table><div class="tagremarks">CG回想画面のデータを読み込みます。<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<h1><a name="load_cgmemory" id="load_cgmemory" class="targanchor"><span class="b">load_cgmemory</span>(No alias)</a></h1>
+<div class="taggenre">CG and memory.</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of load_cgmemory attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="load_cgmemory_key" id="load_cgmemory_key">key</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Key name</td><td class="tagattribdesc">Specify the key for the data on the CG recollection screen. <br />
+The key specified here will be used in the cgmemory tag. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="load_cgmemory_storage" id="load_cgmemory_storage">storage</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the data for the CG recollection selection screen. <br />
+</tbody></table><div class="tagremarks">Reads the data of the CG flashback screen. <br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
-<h1><a name="open_memory" id="open_memory" class="targanchor"><span class="b">open_memory</span>(別名なし)</a></h1>
-<div class="taggenre">CG回想</div>
-</tbody></table><div class="tagremarks">回想をオープンします。<br />
-オープン後end_memoryタグを実行するとそこが回想の終端となります。<br />
-このタグを実行する直前のラベル位置から回想が再生されます。<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<h1><a name="open_memory" id="open_memory" class="targanchor"><span class="b">open_memory</span>(No alias)</a></h1>
+<div class="taggenre">CG and memory.</div>
+</tbody></table><div class="tagremarks">Open reminiscence. <br />
+After opening, execute the end_memory tag and that will be the end of the recollection. <br />
+The recollection will be played from the label position immediately before this tag is executed. <br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
-<h1><a name="end_memory" id="end_memory" class="targanchor"><span class="b">end_memory</span>(別名なし)</a></h1>
-<div class="taggenre">CG回想</div>
-</tbody></table><div class="tagremarks">回想をクローズします。<br />
-このタグを通過後、回想がオープンされます。<br />
-また回想再生中の場合、このタグが実行された後、回想画面に戻ります。<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<h1><a name="end_memory" id="end_memory" class="targanchor"><span class="b">end_memory</span>(No alias)</a></h1>
+<div class="taggenre">CG and memory.</div>
+</tbody></table><div class="tagremarks">Close reminiscence. <br />
+After passing this tag, the recollection will be opened. <br />
+Also, if reminiscence is being played, after this tag is executed, the screen will return to the reminiscence screen. <br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 	<script type="text/javascript" charset="Shift_JIS" src="documentid.js" ></script>
 	<script type="text/javascript" charset="Shift_JIS" src="postcontent.js" ></script>
