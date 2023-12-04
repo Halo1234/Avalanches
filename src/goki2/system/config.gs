@@ -213,15 +213,16 @@
 ;         rule: ルール画像を指定します。
 ;     children: トランジションの対象に子レイヤも含めるかどうかを指定します。何も指定しなければ true になります。
 ;       target: セルアニメーションを行うためのasdファイルのラベル名を指定します。
-@!character center_x=左->200,中->400,右->600,中左->300,中右->500,左端->100,右端->700
-@!character gray_scale=セピア->true r_gamma=セピア->1.5 g_gamma=セピア->1.3
-@!character visible=表示->true,消去->false
-@!character no_voice=nv->true
 
 ; サンプルキャラクター設定
 ;
 ; タグの仕様は character タグと同じです。
 [if exp="global.productInfo.language == 'jp'"]
+@!character center_x=左->200,中->400,右->600,中左->300,中右->500,左端->100,右端->700
+@!character gray_scale=セピア->true r_gamma=セピア->1.5 g_gamma=セピア->1.3
+@!character visible=表示->true,消去->false
+@!character no_voice=nv->true
+
 @!ハロ /storage=A_<POSE>_<FACE>
 @!ハロ face=表情１->face1
 @!ハロ target=ポーズ１->*target
@@ -232,6 +233,11 @@
 @!ハロ助 target=ポーズ１->*target
 @!ハロ助 pose=ポーズ１->pose1,ポーズ２->pose2
 [elsif exp="global.productInfo.language == 'en'"]
+@!character center_x=l->200,c->400,r->600,cl->300,cr->500,le->100,re->700
+@!character gray_scale=sepia->true r_gamma=sepia->1.5 g_gamma=sepia->1.3
+@!character visible=v->true,inv->false
+@!character no_voice=nv->true
+
 @!halo /storage=A_<POSE>_<FACE>
 @!halo face=face1
 @!halo target=*target
