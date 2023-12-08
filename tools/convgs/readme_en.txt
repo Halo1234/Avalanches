@@ -8,7 +8,7 @@ You can then convert it into a script file using this tool.
 --- How to use
   1. Create a working folder in this folder.
   2. Copy the scenario text to your working folder.
-  3. Edit config.ini. The explanation is written in config.ini.
+  3. Edit config_en.ini. The explanation is written in config_en.ini.
   4. Copy sample.bat.
   5. Open the copied .bat file in an editor.
   6. 1. Where sample is written in the contents of the .bat file. Change the folder name to the one you created.

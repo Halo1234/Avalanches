@@ -11,7 +11,7 @@
   If you are using Kirikiri 2, please specify cp932 for --output-encoding.
   For Kirikiri Z, please specify UTF-8 for --output-encoding.
 
-  --cf=config.ini usually does not need to be changed.
+  --cf=config_en.ini usually does not need to be changed.
 
   Copy the output file to the development environment and run it from the script.
   @load_typing_words storage=filename.dic

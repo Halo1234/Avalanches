@@ -9,7 +9,7 @@
 
 --- How to use
 
-  1. Edit the config.ini file.
+  1. Edit the config_en.ini file.
   2. Copy test.bat and change the file name to something meaningful.
   3. Change goki2 in the bat contents copied in 2 to your project name.
   4. Run the bat you copied in 2.
@@ -24,7 +24,7 @@
 
   You can also create an update program for the final binary.
   The contents of this update program are managed by sequential numbers starting from 1.
-  See the description of the UPDATEINFO section in config.ini for details.
+  See the description of the UPDATEINFO section in config_en.ini for details.
   By the way, Subversion logs are used to collect the difference files.
   Therefore, Subversion is required to create patches.
   See /readme.txt for more information.
