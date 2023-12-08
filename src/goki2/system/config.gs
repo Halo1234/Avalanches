@@ -97,8 +97,13 @@
 ;  ; これは storage=A_pose1_face1 に置換されます。
 ;  @ハロ ポーズ１ 表情１
 ;
+[if exp="global.productInfo.language == 'jp'"]
 @!make_character image=立ち絵有り->true,立ち絵無し->false
 @!make_character voice=ボイス有り->true,ボイス無し->false
+[elsif exp="global.productInfo.language == 'en'"]
+@!make_character image=bup->true,nobup->false
+@!make_character voice=voice->true,novoice->false
+[endif]
 
 @redirect alias=mob name=make_character
 @!mob /mob=true
@@ -143,14 +148,14 @@
 @make_character name=ハロ助 history_icon=history_icon_ハロ助 history_icon_left=18
 [elsif exp="global.productInfo.language == 'en'"]
 @make_character name=text
-@make_character name=halo 立ち絵有り ボイス有り
+@make_character name=halo bup voice
 @make_character name=halo sub_directory_name=images part_of_directory_path=A
 @make_character name=halo voice_sub_directory_name=testcase
 @make_character name=halo shadow_color=0x808080 edge_color=0xFF0000
 @make_character name=halo history_shadow_color=0x808080 history_edge_color=0xFF0000
 @make_character name=halo history_icon=history_icon_ハロ history_icon_left=18
 
-@make_character name=halosuke 立ち絵有り ボイス有り
+@make_character name=halosuke bup voice
 @make_character name=halosuke sub_directory_name=images part_of_directory_path=B
 @make_character name=halosuke voice_sub_directory_name=testcase
 @make_character name=halosuke shadow_color=0x808080 edge_color=0x0000FF
