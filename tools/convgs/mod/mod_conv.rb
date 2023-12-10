@@ -296,7 +296,10 @@ public
 		}
 
 		# èoóÕ
-		File.open(output, "w+:#{output_encoding.name}") { |file|
+		File.open(output, "w+:#{output_encoding.name}", binmode: true) { |file|
+            if(output_encoding.name == "UTF-16LE")
+                file.write "\uFEFF"
+            end
 
 			save_label = "*|\n"
 
