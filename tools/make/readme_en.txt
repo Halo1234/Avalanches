@@ -31,7 +31,7 @@
 
   For other detailed usage information, please refer to the help.
 
-  $ruby make.rb -h
+  $ruby make.rb -h -english
 
 
 --- Dependencies

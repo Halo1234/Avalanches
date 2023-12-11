@@ -20,6 +20,6 @@
 
 --- information
 
-  $ruby make.rb -h
+  $ruby make.rb -h -english
 
 

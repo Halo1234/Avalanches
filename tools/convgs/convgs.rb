@@ -62,6 +62,57 @@ Options:
 EOS
 end
 
+def show_usage_english
+	puts <<EOS
+Description:
+  Convert all files written to INPUT_FILE_LIST to *.ks/*.gs files.
+  One file can be specified per line in INPUT_FILE_LIST.
+
+Options:
+  --configuration-file
+  --cf
+   Specify the configuration file.
+   The configuration file is in Windows INI file format.
+   The default configuration file is config.ini.
+
+   Please refer to config.ini.sample for information on how to write the configuration file.
+
+  --input-encoding
+   Specifies the character encoding of the input text.
+   A list of possible encoding names can be obtained with the following command.
+   The default character encoding is CP932.
+
+    #ruby -e "puts Encoding.name_list"
+
+   This option is useful for non-command line
+   Please note that this will affect all inputs.
+   In other words, it also affects the loading of *.ini files, which are configuration files.
+
+   Also, because there is a U+301C conversion problem
+   Currently (Ruby version 1.9.3) Shift_JIS is almost unusable.
+
+  --output-encoding
+   Specifies the character encoding of the output text.
+   Please refer to the explanation of --input-encoding for the encodings that can be specified.
+
+  -gs
+   Change the extension of the output script file to *.gs.
+
+  -help
+  -h
+   Display usage details (this text).
+
+  --output-path
+  --o
+   Specify the output destination.
+   The default output destination is the current directory.
+
+  -verbose
+  -v
+   Print conversion details.
+EOS
+end
+
 # *
 # * Global settings
 
@@ -103,7 +154,11 @@ require 'mod_conv.rb'
 cmdp = CmdParam.new(ARGV)
 
 if(cmdp['-h'])
-	show_usage()
+    if(cmdp['-english'])
+        show_usage_english()
+    else
+        show_usage()
+    end
 	exit
 end
 

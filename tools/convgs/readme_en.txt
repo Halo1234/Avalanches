@@ -30,7 +30,7 @@ You can then convert it into a script file using this tool.
 
   Please refer to the help for detailed usage information.
 
-  $ruby convks.rb -h
+  $ruby convks.rb -h -english
 
 
 --- Dependencies

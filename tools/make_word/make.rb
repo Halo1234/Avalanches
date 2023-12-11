@@ -50,6 +50,52 @@ Options:
 EOS
 end
 
+def show_usage_english
+	puts <<EOS
+Synopsis:
+ ruby #{File.basename(__FILE__)} INPUT_FILE [Options]
+
+Example:
+ ruby #{File.basename(__FILE__)} .\words.ods
+
+Description:
+  Reads INPUT_FILE and outputs a file in Kirikiri's Kanojo Dictionary format.
+
+Options:
+  --configuration-file
+  --cf
+   Specify the configuration file.
+   The configuration file is in Windows INI file format.
+   The default configuration file is config.ini.
+
+  -help
+  -h
+   Display usage details (this text).
+
+  -ignore-nil
+   Ignore empty cells.
+
+  -ignore-nil-row
+   Ignore rows with only empty cells.
+
+  --output-encoding
+   Specifies the character encoding of the output text.
+   A list of possible encoding names can be obtained with the following command.
+   The default character encoding is CP932.
+
+    #ruby -e "puts Encoding.name_list"
+
+  --output-path
+  --o
+   Specify the output destination.
+   The default output destination is the current directory.
+
+  -verbose
+  -v
+   Print conversion details.
+EOS
+end
+
 # *
 # * Global settings
 
@@ -101,7 +147,11 @@ require 'mod_convxlsx.rb'
 cmdp = CmdParam.new(ARGV)
 
 if(cmdp['-help'] || cmdp['-h'])
-	show_usage()
+    if(cmdp['-english'])
+        show_usage_english()
+    else
+        show_usage()
+    end
 	exit
 end
 

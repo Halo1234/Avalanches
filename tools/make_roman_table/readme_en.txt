@@ -6,6 +6,6 @@
 
 --- Information for administrators
 
-  $ruby make.rb -h
+  $ruby make.rb -h -english
 
 
