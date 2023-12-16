@@ -1,10 +1,10 @@
 @ECHO OFF
 
-@REM テストラン用のバッチプログラム
+@REM Batch program for test run
 
 pushd %~dp0
 
-@echo エディタ起動中。
+@echo Editor starting.
 ..\tvpwin32.exe -lang=en
 
 popd
