@@ -203,7 +203,7 @@ private
 			file << "\n"
 			file << "!verbose 3\n".encode("UTF-8")
 			file << "\n"
-            file << "!define LANGUAGE\t\t\"#{config['SETTINGS']['language']}\"\n".encode("UTF-8")
+			file << "!define LANGUAGE\t\t\"#{config['SETTINGS']['language']}\"\n".encode("UTF-8")
 			file << "\n"
 			file << "!define UPDATE_NUMBER\t#{config['UPDATEINFO']['high'].to_i}\n".encode("UTF-8")
 			file << "\n"
