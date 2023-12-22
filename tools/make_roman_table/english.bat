@@ -1,6 +1,6 @@
 @echo off
 
-@REM 英語用ローマ字対応表から .dic ファイルへの変換。
+@REM Conversion from English Romanization table to .dic file.
 
 pushd %~dp0
 

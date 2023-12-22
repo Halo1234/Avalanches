@@ -24,7 +24,7 @@ Options:
   設定ファイルは Windows INI file フォーマットです。
   デフォルトの設定ファイルは config.ini です。
 
-  設定ファイルの書き方については config.ini.sample を参照してください。
+  設定ファイルの書き方については config.ini を参照してください。
 
  --input-encoding
   入力されるテキストの文字エンコーディングを指定します。
@@ -75,7 +75,7 @@ Options:
    The configuration file is in Windows INI file format.
    The default configuration file is config.ini.
 
-   Please refer to config.ini.sample for information on how to write the configuration file.
+   Please refer to config.ini for information on how to write the configuration file.
 
   --input-encoding
    Specifies the character encoding of the input text.

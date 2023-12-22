@@ -1,16 +1,16 @@
 @echo off
 
-@REM 簡易スクリプト変換用バッチプログラム
+@REM Batch program for simple script conversion
 
 pushd %~dp0
 
 @echo List of files to convert is generate... 
 dir /s /b .\sample\ >.\sample.list
 
-@rem 吉里吉里Zの場合はこちらを利用してください。
+@rem For Kirikiri Z, please use this.
 ruby convgs.rb --cf=./config_en.ini .\sample.list --o=.\output_sample --input-encoding=cp932 --output-encoding=UTF-8 -v
-@rem 吉里吉里２の場合はこちらを利用してください。
-@rem ruby convks.rb .\sample.list --o=.\output_main_part --input-encoding=cp932 -v
+@rem For Kirikiri 2, please use this.
+@rem ruby convks.rb --cf=./config_en.ini .\sample.list --o=.\output_main_part --input-encoding=cp932 -v
 
 popd
 pause
