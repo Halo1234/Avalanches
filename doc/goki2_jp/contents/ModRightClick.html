@@ -3,44 +3,44 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
-	<title>ModMessageのタグ</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>ModRightClick tags</title>
 	<meta name="author" content="Halo" />
 	<meta http-equiv="Content-Style-Type" content="text/css" />
 	<meta http-equiv="Content-Script-Type" content="text/javascript" />
-	<link href="browser.css" type="text/css" rel="stylesheet" title="吉里吉里関連リファレンス用標準スタイル" />
+	<link href="browser.css" type="text/css" rel="stylesheet" title="Standard style for Kirikiri-related reference" />
 	<link href="mailto:halosuke@gmail.com" rev="Made" />
-	<link href="index.html" target="_top" rel="Start" title="トップページ" />
+	<link href="index.html" target="_top" rel="Start" title="Top page" />
 </head>
 <body>
 
-<h1><a name="tags" id="tags">ModMessageのタグ</a></h1>
-<div class="para"><div>　ModRightClick で使用可能なタグのリファレンスです。<br />
+<h1><a name="tags" id="tags">ModRightClick tags</a></h1>
+<div class="para"><div>A reference of tags available in ModRightClick.<br />
 
-<h1><a name="genre" id="genre" class="targanchor">ジャンル・タグ一覧</a></h1>
+<h1><a name="genre" id="genre" class="targanchor">Genre/tag list</a></h1>
 
 
 <div class="para"><div><br />
 <table class="taglist"><tbody>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#right_click">right_click</a></span></td><td class="taglisteven">右クリック設定</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#right_click">right_click</a></span></td><td class="taglisteven">Right click settings</td></tr>
 </tbody></table><br /><br /></div></div>
 
 <h1><a name="right_click" id="right_click" class="targanchor"><span class="b">right_click</span>(rclick)</a></h1>
-<div class="taggenre">右クリック設定</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ right_click の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="right_click_enabled" id="right_click_enabled">enabled</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">true を設定すると、右クリックによりメッセージレイヤが隠されたり、 指定のルーチンが呼び出されたり、指定場所にジャンプしたりします。<br />
-false を指定すると、これらの動作は行われません。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="right_click_jump" id="right_click_jump">jump</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">true を設定すると、右クリックで storage と target 属性で指定した 場所にジャンプするようになります。call 属性とこの属性の両方に false を 指定すると、通常の「メッセージを消す」の動作になります。<br />
-この属性と call 属性を同時に true にする事はできません。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="right_click_call" id="right_click_call">call</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">true を設定すると、右クリックで storage と target 属性で指定した サブルーチンを呼び出すようになります。jump 属性とこの属性の両方に false を 指定すると、通常の 「メッセージを消す」の動作になります。<br />
-この属性と jump 属性を同時に true にする事はできません。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="right_click_storage" id="right_click_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">call 属性か jump 属性に true を設定した場合、その呼び出し先/ジャンプ先のファイルを指定します。<br />
-この属性を storage="" とした場合、右クリックがされた時点でのファイル内の ラベルが検索されます。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="right_click_target" id="right_click_target">target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ラベル名</td><td class="tagattribdesc">call 属性か jump 属性に true を設定した場合、その呼び出し先/ジャンプ先のラベルを指定します。<br />
-この属性を target="" とした場合、storage 属性で指定したファイルの先頭から 実行が始まります。<br />
-</tbody></table><div class="tagremarks">右クリックを押した時の動作を設定します。<br />
-いずれの属性も、省略すれば設定は変更されません。<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="taggenre">Right click settings</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of right_click attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="right_click_enabled" id="right_click_enabled">enabled</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If set to true, right-clicking will hide the message layer, call the specified routine, or jump to the specified location.<br />
+Specifying false prevents these actions.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="right_click_jump" id="right_click_jump">jump</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If set to true, right-clicking will jump to the location specified by the storage and target attributes. Specifying false for both the call attribute and this attribute results in normal ``disappear message'' behavior.<br />
+This attribute and the call attribute cannot be true at the same time.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="right_click_call" id="right_click_call">call</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If set to true, right-clicking will call the subroutine specified by the storage and target attributes. If you specify false for both the jump attribute and this attribute, the normal "delete message" behavior will occur.<br />
+This attribute and jump attribute cannot be set to true at the same time.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="right_click_storage" id="right_click_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">If the call or jump attribute is set to true, specify the file to call/jump to.<br />
+If this attribute is set to storage="", the label in the file at the time of right-clicking will be searched.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="right_click_target" id="right_click_target">target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Label name</td><td class="tagattribdesc">If the call or jump attribute is set to true, specify the label of the call destination/jump destination.<br />
+If this attribute is set to target="", execution will start from the beginning of the file specified by the storage attribute.<br />
+</tbody></table><div class="tagremarks">Set the behavior when right-clicking.<br />
+If any attribute is omitted, the settings will not be changed.<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 	<script type="text/javascript" charset="Shift_JIS" src="documentid.js" ></script>
 	<script type="text/javascript" charset="Shift_JIS" src="postcontent.js" ></script>

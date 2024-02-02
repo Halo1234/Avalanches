@@ -3,551 +3,551 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
-	<title>ModSoundのタグ</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>ModSound tags</title>
 	<meta name="author" content="Halo" />
 	<meta http-equiv="Content-Style-Type" content="text/css" />
 	<meta http-equiv="Content-Script-Type" content="text/javascript" />
-	<link href="browser.css" type="text/css" rel="stylesheet" title="吉里吉里関連リファレンス用標準スタイル" />
+	<link href="browser.css" type="text/css" rel="stylesheet" title="Standard style for Kirikiri-related reference" />
 	<link href="mailto:halosuke@gmail.com" rev="Made" />
-	<link href="index.html" target="_top" rel="Start" title="トップページ" />
+	<link href="index.html" target="_top" rel="Start" title="Top page" />
 </head>
 <body>
 
-<h1><a name="tags" id="tags">ModSoundのタグ</a></h1>
-<div class="para"><div>　ModSound で使用可能なタグのリファレンスです。<br />
+<h1><a name="tags" id="tags">ModSound tags</a></h1>
+<div class="para"><div>A reference of tags available in ModSound.<br />
 
-<h1><a name="genre" id="genre" class="targanchor">ジャンル・タグ一覧</a></h1>
+<h1><a name="genre" id="genre" class="targanchor">Genre/tag list</a></h1>
 
 
 <div class="para"><div><br />
 <table class="taglist"><tbody>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#system_sound_buffers">system_sound_buffers</a></span></td><td class="taglisteven">システム用サウンドバッファの数を指定する</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#se_buffers">se_buffers</a></span></td><td class="taglistodd">SE用サウンドバッファの数を指定する</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#voice_buffers">voice_buffers</a></span></td><td class="taglisteven">ボイス用サウンドバッファの数を指定する</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#fadein_system_sound">fadein_system_sound</a></span></td><td class="taglistodd">システム用サウンドのフェードイン</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#fadeout_system_sound">fadeout_system_sound</a></span></td><td class="taglisteven">システムサウンド用のフェードアウト</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#fade_system_sound">fade_system_sound</a></span></td><td class="taglistodd">システムサウンド用のフェード</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#play_system_sound">play_system_sound</a></span></td><td class="taglisteven">システムサウンド用のサウンド再生</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#stop_system_sound">stop_system_sound</a></span></td><td class="taglistodd">システムサウンド用のサウンド停止</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#system_sound_option">system_sound_option</a></span></td><td class="taglisteven">システムサウンド用のオプション設定</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#wait_system_sound_fade">wait_system_sound_fade</a></span></td><td class="taglistodd">システムサウンド用のフェード終了待ち</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#wait_system_sound_stop">wait_system_sound_stop</a></span></td><td class="taglisteven">システムサウンド用のサウンド停止待ち</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#fadein_se">fadein_se</a></span></td><td class="taglistodd">SE用のフェードイン</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#fadeout_se">fadeout_se</a></span></td><td class="taglisteven">SE用のフェードアウト</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#fade_pause_se">fade_pause_se</a></span></td><td class="taglistodd">SE用のポーズ</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#fade_se">fade_se</a></span></td><td class="taglisteven">SE用のフェード</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#play_se">play_se</a></span></td><td class="taglistodd">SE用のサウンド再生</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#stop_se">stop_se</a></span></td><td class="taglisteven">SE用のサウンド停止</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#se_option">se_option</a></span></td><td class="taglistodd">SE用のオプション設定</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#wait_se_fade">wait_se_fade</a></span></td><td class="taglisteven">SE用のフェード終了待ち</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#wait_se_stop">wait_se_stop</a></span></td><td class="taglistodd">SE用のサウンド停止待ち</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#fadein_voice">fadein_voice</a></span></td><td class="taglisteven">ボイス用のフェードイン</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#fadeout_voice">fadeout_voice</a></span></td><td class="taglistodd">ボイス用のフェードアウト</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#fade_pause_voice">fade_pause_voice</a></span></td><td class="taglisteven">ボイス用のポーズ</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#fade_voice">fade_voice</a></span></td><td class="taglistodd">ボイス用のフェード</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#play_voice">play_voice</a></span></td><td class="taglisteven">ボイス用のサウンド再生</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#stop_voice">stop_voice</a></span></td><td class="taglistodd">ボイス用のサウンド停止</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#voice_option">voice_option</a></span></td><td class="taglisteven">ボイス用のオプション設定</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#wait_voice_fade">wait_voice_fade</a></span></td><td class="taglistodd">ボイス用のフェード終了待ち</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#wait_voice_stop">wait_voice_stop</a></span></td><td class="taglisteven">ボイス用のサウンド停止待ち</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#add_bgm_buffer">add_bgm_buffer</a></span></td><td class="taglistodd">BGMバッファ追加</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#free_bgm_buffers">free_bgm_buffers</a></span></td><td class="taglisteven">BGMバッファの開放</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#bgm_option">bgm_option</a></span></td><td class="taglistodd">BGM用のオプション設定</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#set_bgm_label">set_bgm_label</a></span></td><td class="taglisteven">BGMバッファのイベント設定</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#set_bgm_stop">set_bgm_stop</a></span></td><td class="taglistodd">BGMバッファの停止イベント設定</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#fadein_bgm">fadein_bgm</a></span></td><td class="taglisteven">BGM用のフェードイン</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#fadeout_bgm">fadeout_bgm</a></span></td><td class="taglistodd">BGM用のフェードアウト</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#fade_pause_bgm">fade_pause_bgm</a></span></td><td class="taglisteven">BGM用のポーズ</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#fade_bgm">fade_bgm</a></span></td><td class="taglistodd">BGM用のフェード</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#pause_bgm">pause_bgm</a></span></td><td class="taglisteven">BGM用のポーズ</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#resume_bgm">resume_bgm</a></span></td><td class="taglistodd">BGMのレジューム</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#play_bgm">play_bgm</a></span></td><td class="taglisteven">BGM用のサウンド再生</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#stop_bgm">stop_bgm</a></span></td><td class="taglistodd">BGM用の停止</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#exchange_bgm">exchange_bgm</a></span></td><td class="taglisteven">BGM用のサウンド入れ替え</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#clear_bgm_label">clear_bgm_label</a></span></td><td class="taglistodd">BGMイベントのクリア</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#clear_bgm_stop">clear_bgm_stop</a></span></td><td class="taglisteven">BGM用の停止イベントクリア</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#wait_bgm_fade">wait_bgm_fade</a></span></td><td class="taglistodd">BGM用のフェード終了待ち</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#wait_bgm_stop">wait_bgm_stop</a></span></td><td class="taglisteven">BGM用のサウンド停止待ち</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#system_sound_buffers">system_sound_buffers</a></span></td><td class= "taglisteven">Specify the number of sound buffers for the system</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#se_buffers">se_buffers</a></span></td><td class= "taglistodd">Specify the number of sound buffers for SE</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#voice_buffers">voice_buffers</a></span></td><td class= "taglisteven">Specify the number of sound buffers for voices</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#fadein_system_sound">fadein_system_sound</a></span></td><td class= "taglistodd">Fade in system sound</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#fadeout_system_sound">fadeout_system_sound</a></span></td><td class= "taglisteven">Fade out for system sound</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#fade_system_sound">fade_system_sound</a></span></td><td class= "taglistodd">Fade for system sound</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#play_system_sound">play_system_sound</a></span></td><td class= "taglisteven">Play sound for system sound</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#stop_system_sound">stop_system_sound</a></span></td><td class= "taglistodd">Sound stop for system sound</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#system_sound_option">system_sound_option</a></span></td><td class= "taglisteven">Optional settings for system sound</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#wait_system_sound_fade">wait_system_sound_fade</a></span></td><td class= "taglistodd">Wait for fade end for system sound</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#wait_system_sound_stop">wait_system_sound_stop</a></span></td><td class= "taglisteven">Wait for sound to stop for system sound</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#fadein_se">fadein_se</a></span></td><td class= "taglistodd">Fade in for SE</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#fadeout_se">fadeout_se</a></span></td><td class= "taglisteven">Fade out for SE</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#fade_pause_se">fade_pause_se</a></span></td><td class= "taglistodd">Poses for SE</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#fade_se">fade_se</a></span></td><td class= "taglisteven">Fade for SE</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#play_se">play_se</a></span></td><td class= "taglistodd">Sound playback for SE</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#stop_se">stop_se</a></span></td><td class= "taglisteven">Sound stop for SE</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#se_option">se_option</a></span></td><td class= "taglistodd">Option settings for SE</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#wait_se_fade">wait_se_fade</a></span></td><td class= "taglisteven">Wait for fade end for SE</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#wait_se_stop">wait_se_stop</a></span></td><td class= "taglistodd">Waiting for sound to stop for SE</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#fadein_voice">fadein_voice</a></span></td><td class= "taglisteven">Fade in for voice</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#fadeout_voice">fadeout_voice</a></span></td><td class= "taglistodd">Fade out for voice</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#fade_pause_voice">fade_pause_voice</a></span></td><td class= "taglisteven">Poses for voice</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#fade_voice">fade_voice</a></span></td><td class= "taglistodd">Fade for voices</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#play_voice">play_voice</a></span></td><td class= "taglisteven">Play sound for voice</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#stop_voice">stop_voice</a></span></td><td class= "taglistodd">Stop sound for voice</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#voice_option">voice_option</a></span></td><td class= "taglisteven">Option settings for voice</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#wait_voice_fade">wait_voice_fade</a></span></td><td class= "taglistodd">Wait for voice fade to end</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#wait_voice_stop">wait_voice_stop</a></span></td><td class= "taglisteven">Waiting for voice sound to stop</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#add_bgm_buffer">add_bgm_buffer</a></span></td><td class= "taglistodd">Add BGM buffer</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#free_bgm_buffers">free_bgm_buffers</a></span></td><td class= "taglisteven">Release BGM buffer</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#bgm_option">bgm_option</a></span></td><td class= "taglistodd">BGM option settings</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#set_bgm_label">set_bgm_label</a></span></td><td class= "taglisteven">BGM buffer event settings</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#set_bgm_stop">set_bgm_stop</a></span></td><td class= "taglistodd">BGM buffer stop event setting</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#fadein_bgm">fadein_bgm</a></span></td><td class= "taglisteven">Fade in for BGM</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#fadeout_bgm">fadeout_bgm</a></span></td><td class= "taglistodd">Fade out for BGM</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#fade_pause_bgm">fade_pause_bgm</a></span></td><td class= "taglisteven">BGM pose</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#fade_bgm">fade_bgm</a></span></td><td class= "taglistodd">Fade for BGM</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#pause_bgm">pause_bgm</a></span></td><td class= "taglisteven">BGM pose</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#resume_bgm">resume_bgm</a></span></td><td class= "taglistodd">BGM resume</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#play_bgm">play_bgm</a></span></td><td class= "taglisteven">Sound playback for BGM</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#stop_bgm">stop_bgm</a></span></td><td class= "taglistodd">Stop for background music</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#exchange_bgm">exchange_bgm</a></span></td><td class= "taglisteven">Sound replacement for BGM</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#clear_bgm_label">clear_bgm_label</a></span></td><td class= "taglistodd">Clear BGM event</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#clear_bgm_stop">clear_bgm_stop</a></span></td><td class= "taglisteven">Clear stop event for BGM</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#wait_bgm_fade">wait_bgm_fade</a></span></td><td class= "taglistodd">Waiting for BGM fade to end</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#wait_bgm_stop">wait_bgm_stop</a></span></td><td class= "taglisteven">Waiting for BGM sound to stop</td></tr>
 </tbody></table><br /><br /></div></div>
 
-<h1><a name="system_sound_buffers" id="system_sound_buffers" class="targanchor"><span class="b">system_sound_buffers</span>(別名なし)</a></h1>
-<div class="taggenre">効果音操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ system_sound_buffers の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="system_sound_buffers_count" id="system_sound_buffers_count">count</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">バッファの数</td><td class="tagattribdesc">バッファの数を指定します。<br />
-</tbody></table><div class="tagremarks">システム用サウンドバッファの数を指定します。<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<h1><a name="system_sound_buffers" id="system_sound_buffers" class="targanchor"><span class="b">system_sound_buffers</span>(aliasnone)</a></h1>
+<div class="taggenre">Sound effect operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of system_sound_buffers attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="system_sound_buffers_count" id="system_sound_buffers_count">count</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Number of buffers</td><td class="tagattribdesc">Specifies the number of buffers. <br />
+</tbody></table><div class="tagremarks">Specifies the number of sound buffers for the system. <br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
-<h1><a name="se_buffers" id="se_buffers" class="targanchor"><span class="b">se_buffers</span>(別名なし)</a></h1>
-<div class="taggenre">効果音操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ se_buffers の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="se_buffers_count" id="se_buffers_count">count</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">バッファの数</td><td class="tagattribdesc">バッファの数を指定します。<br />
-</tbody></table><div class="tagremarks">SE用サウンドバッファの数を指定します。<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<h1><a name="se_buffers" id="se_buffers" class="targanchor"><span class="b">se_buffers</span>(aliasnone)</a></h1>
+<div class="taggenre">Sound effect operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of se_buffers attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="se_buffers_count" id="se_buffers_count">count</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Number of buffers</td><td class="tagattribdesc">Specifies the number of buffers. <br />
+</tbody></table><div class="tagremarks">Specify the number of sound buffers for SE. <br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
-<h1><a name="voice_buffers" id="voice_buffers" class="targanchor"><span class="b">voice_buffers</span>(別名なし)</a></h1>
-<div class="taggenre">効果音操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ voice_buffers の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="voice_buffers_count" id="voice_buffers_count">count</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">バッファの数</td><td class="tagattribdesc">バッファの数を指定します。<br />
-</tbody></table><div class="tagremarks">ボイス用サウンドバッファの数を指定します。<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<h1><a name="voice_buffers" id="voice_buffers" class="targanchor"><span class="b">voice_buffers</span>(aliasnone)</a></h1>
+<div class="taggenre">Sound effect operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of voice_buffers attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="voice_buffers_count" id="voice_buffers_count">count</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Number of buffers</td><td class="tagattribdesc">Specifies the number of buffers. <br />
+</tbody></table><div class="tagremarks">Specifies the number of sound buffers for voices. <br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="fadein_system_sound" id="fadein_system_sound" class="targanchor"><span class="b">fadein_system_sound</span>(fadeinss)</a></h1>
-<div class="taggenre">効果音操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ fadein_system_sound の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="fadein_system_sound_buffer" id="fadein_system_sound_buffer">buffer</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">バッファ番号</td><td class="tagattribdesc">バッファの番号を指定する。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fadein_system_sound_loop" id="fadein_system_sound_loop">loop</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">true を指定するとループ再生します。<br />
-false を指定するとループしません。<br />
-デフォルトは false です。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fadein_system_sound_storage" id="fadein_system_sound_storage">storage</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">再生する音声ファイル名を指定します。<br />
-<tr><td class="tagattribalias">start</td><td class="tagattribname"><a class="targanchor" name="fadein_system_sound_label" id="fadein_system_sound_label">label</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ラベル名</td><td class="tagattribdesc">ループチューナーで作成したラベル名を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fadein_system_sound_time" id="fadein_system_sound_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">フェードしている時間をミリ秒単位で指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fadein_system_sound_delay" id="fadein_system_sound_delay">delay</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">再生までのディレイをミリ秒単位で指定します。<br />
-</tbody></table><div class="tagremarks">システム用サウンドをフェードイン再生します。<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="taggenre">Sound effect operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of fadein_system_sound attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="fadein_system_sound_buffer" id="fadein_system_sound_buffer">buffer</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Buffer number</td><td class="tagattribdesc">Specify the buffer number. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fadein_system_sound_loop" id="fadein_system_sound_loop">loop</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If true is specified, it will play in a loop. <br />
+If you specify false, it will not loop. <br />
+Default is false. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fadein_system_sound_storage" id="fadein_system_sound_storage">storage</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">File name</td><td class="tagattribdesc">Specify the name of the audio file to play. <br />
+<tr><td class="tagattribalias">start</td><td class="tagattribname"><a class="targanchor" name="fadein_system_sound_label" id="fadein_system_sound_label">label</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Label name</td><td class="tagattribdesc">Specify the label name created with the loop tuner. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fadein_system_sound_time" id="fadein_system_sound_time">time</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">in milliseconds</td><td class="tagattribdesc">Specifies the fade time in milliseconds . <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fadein_system_sound_delay" id="fadein_system_sound_delay">delay</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">in milliseconds</td><td class="tagattribdesc">Specifies the delay before playback in milliseconds. <br />
+</tbody></table><div class="tagremarks">Plays the system sound with a fade-in. <br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="fadeout_system_sound" id="fadeout_system_sound" class="targanchor"><span class="b">fadeout_system_sound</span>(fadeoutss)</a></h1>
-<div class="taggenre">効果音操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ fadeout_system_sound の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="fadeout_system_sound_buffer" id="fadeout_system_sound_buffer">buffer</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">バッファ番号</td><td class="tagattribdesc">バッファの番号を指定する。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fadeout_system_sound_time" id="fadeout_system_sound_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">フェードする時間をミリ秒単位で指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fadeout_system_sound_delay" id="fadeout_system_sound_delay">delay</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">フェード開始するまでのディレイをミリ秒単位で指定します。<br />
-</tbody></table><div class="tagremarks">システム用サウンドをフェードアウトします。<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="taggenre">Sound effect operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of fadeout_system_sound attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="fadeout_system_sound_buffer" id="fadeout_system_sound_buffer">buffer</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Buffer number</td><td class="tagattribdesc">Specify the buffer number. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fadeout_system_sound_time" id="fadeout_system_sound_time">time</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">in milliseconds</td><td class="tagattribdesc">Specifies the fade time in milliseconds. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fadeout_system_sound_delay" id="fadeout_system_sound_delay">delay</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">in milliseconds</td><td class="tagattribdesc">Specifies the delay in milliseconds before the fade starts. Masu. <br />
+</tbody></table><div class="tagremarks">Fade out system sounds. <br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="fade_system_sound" id="fade_system_sound" class="targanchor"><span class="b">fade_system_sound</span>(fadess)</a></h1>
-<div class="taggenre">効果音操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ fade_system_sound の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="fade_system_sound_buffer" id="fade_system_sound_buffer">buffer</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">バッファ番号</td><td class="tagattribdesc">バッファの番号を指定する。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fade_system_sound_volume" id="fade_system_sound_volume">volume</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0 ～ 100</td><td class="tagattribdesc">到達するボリュームを指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fade_system_sound_time" id="fade_system_sound_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">フェードしている時間をミリ秒単位で指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fade_system_sound_delay" id="fade_system_sound_delay">delay</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">フェード開始までのディレイをミリ秒単位で指定します。<br />
-</tbody></table><div class="tagremarks">指定したバッファのフェードを行います。<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="taggenre">Sound effect operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of fade_system_sound attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="fade_system_sound_buffer" id="fade_system_sound_buffer">buffer</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Buffer number</td><td class="tagattribdesc">Specify the buffer number. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fade_system_sound_volume" id="fade_system_sound_volume">volume</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">0 to 100</td><td class="tagattribdesc">Specifies the volume to reach. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fade_system_sound_time" id="fade_system_sound_time">time</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">in milliseconds</td><td class="tagattribdesc">Specifies the fade time in milliseconds . <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fade_system_sound_delay" id="fade_system_sound_delay">delay</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">in milliseconds</td><td class="tagattribdesc">Specifies the delay before the start of the fade in milliseconds . <br />
+</tbody></table><div class="tagremarks">Fades the specified buffer. <br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="play_system_sound" id="play_system_sound" class="targanchor"><span class="b">play_system_sound</span>(playss)</a></h1>
-<div class="taggenre">効果音操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ play_system_sound の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="play_system_sound_buffer" id="play_system_sound_buffer">buffer</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">バッファ番号</td><td class="tagattribdesc">バッファの番号を指定する。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="play_system_sound_loop" id="play_system_sound_loop">loop</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">ループするかどうかを指定。<br />
-true を指定するとループします。<br />
-false を指定するとループしません。<br />
-デフォルトは false です。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="play_system_sound_storage" id="play_system_sound_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">再生するサウンドのファイル名を指定します。<br />
-<tr><td class="tagattribalias">start</td><td class="tagattribname"><a class="targanchor" name="play_system_sound_label" id="play_system_sound_label">label</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ラベル名</td><td class="tagattribdesc">ループチューナーで作成したラベル名を指定します。<br />
-</tbody></table><div class="tagremarks">システム用効果音を再生します。<br />
+<div class="taggenre">Sound effect operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of play_system_sound attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="play_system_sound_buffer" id="play_system_sound_buffer">buffer</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Buffer number</td><td class="tagattribdesc">Specify the buffer number. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="play_system_sound_loop" id="play_system_sound_loop">loop</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies whether to loop. <br />
+Specifying true will loop. <br />
+If you specify false, it will not loop. <br />
+Default is false. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="play_system_sound_storage" id="play_system_sound_storage">storage</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">File name</td><td class="tagattribdesc">Specifies the file name of the sound to play. <br />
+<tr><td class="tagattribalias">start</td><td class="tagattribname"><a class="targanchor" name="play_system_sound_label" id="play_system_sound_label">label</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Label name</td><td class="tagattribdesc">Specify the label name created with the loop tuner. <br />
+</tbody></table><div class="tagremarks">Plays system sound effects. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="stop_system_sound" id="stop_system_sound" class="targanchor"><span class="b">stop_system_sound</span>(stopss)</a></h1>
-<div class="taggenre">効果音操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ stop_system_sound の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="stop_system_sound_buffer" id="stop_system_sound_buffer">buffer</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">バッファ番号</td><td class="tagattribdesc">バッファの番号を指定する。<br />
-</tbody></table><div class="tagremarks">システム用効果音を停止します。<br />
+<div class="taggenre">Sound effect operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of stop_system_sound attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="stop_system_sound_buffer" id="stop_system_sound_buffer">buffer</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Buffer number</td><td class="tagattribdesc">Specify the buffer number. <br />
+</tbody></table><div class="tagremarks">Stops system sound effects. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="system_sound_option" id="system_sound_option" class="targanchor"><span class="b">system_sound_option</span>(ssopt)</h1>
-<div class="taggenre">効果音操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ system_sound_option の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="system_sound_option_buffer" id="system_sound_option_buffer">buffer</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">バッファ番号</td><td class="tagattribdesc">バッファの番号を指定する。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="system_sound_option_volume" id="system_sound_option_volume">volume</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0～100</td><td class="tagattribdesc">ボリュームを指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="system_sound_option_pan" id="system_sound_option_pan">pan</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">パン</td><td class="tagattribdesc">パンを指定します。<br />
--100が完全な左、0が中央、100が完全な右です。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="system_sound_option_master_volume" id="system_sound_option_master_volume">master_volume</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0～100</td><td class="tagattribdesc">マスターボリュームを設定します。<br />
-全ての効果音及びBGMに影響します。<br />
-</tbody></table><div class="tagremarks">システム効果音の設定を変更します。<br />
+<div class="taggenre">Sound effect operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of system_sound_option attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="system_sound_option_buffer" id="system_sound_option_buffer">buffer</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Buffer number</td><td class="tagattribdesc">Specify the buffer number. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="system_sound_option_volume" id="system_sound_option_volume">volume</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">0 to 100</td><td class="tagattribdesc">Specify the volume. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="system_sound_option_pan" id="system_sound_option_pan">pan</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">bread</td><td class="tagattribdesc">Specifies bread. <br />
+-100 is full left, 0 is center, and 100 is full right. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="system_sound_option_master_volume" id="system_sound_option_master_volume">master_volume</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">0~100</td><td class="tagattribdesc">Set the master volume. <br />
+Affects all sound effects and BGM. <br />
+</tbody></table><div class="tagremarks">Change system sound effect settings. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="wait_system_sound_fade" id="wait_system_sound_fade" class="targanchor"><span class="b">wait_system_sound_fade</span>(wsf)</h1>
-<div class="taggenre">効果音操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ wait_system_sound_fade の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="wait_system_sound_fade_buffer" id="wait_system_sound_fade_buffer">buffer</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">バッファ番号</td><td class="tagattribdesc">バッファの番号を指定する。<br />
-<tr><td class="tagattribalias">canskip</td><td class="tagattribname"><a class="targanchor" name="wait_system_sound_fade_skip" id="wait_system_sound_fade_skip">skip</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定するとスキップ可能になります。<br />
-falseを指定するとスキップ不可となり必ずフェード終了まで待つようになります。<br />
-</tbody></table><div class="tagremarks">システム効果音のフェードを待ちます。<br />
+<div class="taggenre">Sound effect operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of wait_system_sound_fade attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="wait_system_sound_fade_buffer" id="wait_system_sound_fade_buffer">buffer</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Buffer number</td><td class="tagattribdesc">Specify the buffer number. <br />
+<tr><td class="tagattribalias">canskip</td><td class="tagattribname"><a class="targanchor" name="wait_system_sound_fade_skip" id="wait_system_sound_fade_skip">skip</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifying true allows skipping. <br />
+If you specify false, it will not be skipped and will always wait until the end of the fade. <br />
+</tbody></table><div class="tagremarks">Wait for system sound effects to fade. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="wait_system_sound_stop" id="wait_system_sound_stop" class="targanchor"><span class="b">wait_system_sound_stop</span>(wss)</h1>
-<div class="taggenre">効果音操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ wait_system_sound_stop の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="wait_system_sound_stop_buffer" id="wait_system_sound_stop_buffer">buffer</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">バッファ番号</td><td class="tagattribdesc">バッファの番号を指定する。<br />
-<tr><td class="tagattribalias">canskip</td><td class="tagattribname"><a class="targanchor" name="wait_system_sound_stop_skip" id="wait_system_sound_stop_skip">skip</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定するとスキップ可能になります。<br />
-falseを指定するとスキップ不可となり必ず再生終了まで待つようになります。<br />
-</tbody></table><div class="tagremarks">システム効果音の停止を待ちます。<br />
+<div class="taggenre">Sound effect operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of wait_system_sound_stop attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="wait_system_sound_stop_buffer" id="wait_system_sound_stop_buffer">buffer</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Buffer number</td><td class="tagattribdesc">Specify the buffer number. <br />
+<tr><td class="tagattribalias">canskip</td><td class="tagattribname"><a class="targanchor" name="wait_system_sound_stop_skip" id="wait_system_sound_stop_skip">skip</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If true is specified, it becomes skippable. <br />
+If you specify false, it will not be skippable and will always wait until the end of playback. <br />
+</tbody></table><div class="tagremarks">Wait for the system sound effect to stop. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="fadein_se" id="fadein_se" class="targanchor"><span class="b">fadein_se</span>(fadeinse)</h1>
-<div class="taggenre">効果音操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ fadein_se の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="fadein_se_buffer" id="fadein_se_buffer">buffer</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">バッファ番号</td><td class="tagattribdesc">バッファの番号を指定する。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fadein_se_loop" id="fadein_se_loop">loop</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定するとループします。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fadein_se_storage" id="fadein_se_storage">storage</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">再生するサウンドストレージ名を指定します。<br />
-<tr><td class="tagattribalias">start</td><td class="tagattribname"><a class="targanchor" name="fadein_se_label" id="fadein_se_label">label</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ラベル名</td><td class="tagattribdesc">ループチューナーで作成したラベル名を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fadein_se_time" id="fadein_se_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">フェードしている時間をミリ秒単位で指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fadein_se_delay" id="fadein_se_delay">delay</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">再生までのディレイをミリ秒単位で指定します。<br />
-</tbody></table><div class="tagremarks">システム効果音フェードイン再生します。<br />
+<div class="taggenre">Sound effect operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of fadein_se attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="fadein_se_buffer" id="fadein_se_buffer">buffer</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Buffer number</td><td class="tagattribdesc">Specify the buffer number. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fadein_se_loop" id="fadein_se_loop">loop</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If true is specified, it will loop. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fadein_se_storage" id="fadein_se_storage">storage</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the sound storage name to play. <br />
+<tr><td class="tagattribalias">start</td><td class="tagattribname"><a class="targanchor" name="fadein_se_label" id="fadein_se_label">label</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Label name</td><td class="tagattribdesc">Specify the label name created with the loop tuner. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fadein_se_time" id="fadein_se_time">time</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">in milliseconds</td><td class="tagattribdesc">Specifies the fade time in milliseconds . <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fadein_se_delay" id="fadein_se_delay">delay</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">in milliseconds</td><td class="tagattribdesc">Specifies the delay before playback in milliseconds. <br />
+</tbody></table><div class="tagremarks">Plays the system sound effect fade-in. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="fadeout_se" id="fadeout_se" class="targanchor"><span class="b">fadeout_se</span>(fadeoutse)</h1>
-<div class="taggenre">効果音操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ fadeout_se の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="fadeout_se_buffer" id="fadeout_se_buffer">buffer</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">バッファ番号</td><td class="tagattribdesc">バッファの番号を指定する。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fadeout_se_time" id="fadeout_se_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">フェードしている時間をミリ秒単位で指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fadeout_se_delay" id="fadeout_se_delay">delay</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">フェード停止開始までのディレイをミリ秒単位で指定します。<br />
-</tbody></table><div class="tagremarks">システム効果音のフェードアウトします。<br />
+<div class="taggenre">Sound effect operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of fadeout_se attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="fadeout_se_buffer" id="fadeout_se_buffer">buffer</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Buffer number</td><td class="tagattribdesc">Specify the buffer number. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fadeout_se_time" id="fadeout_se_time">time</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">in milliseconds</td><td class="tagattribdesc">Specifies the fade time in milliseconds . <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fadeout_se_delay" id="fadeout_se_delay">delay</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">in milliseconds</td><td class="tagattribdesc">Specifies the delay in milliseconds before the fade stops. Masu. <br />
+</tbody></table><div class="tagremarks">Fade out system sound effects. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="fade_pause_se" id="fade_pause_se" class="targanchor"><span class="b">fade_pause_se</span>(fadepausese)</h1>
-<div class="taggenre">効果音操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ fade_pause_se の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="fade_pause_se_buffer" id="fade_pause_se_buffer">buffer</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">バッファ番号</td><td class="tagattribdesc">バッファの番号を指定する。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fade_pause_se_time" id="fade_pause_se_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">フェードしている時間をミリ秒単位で指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fade_pause_se_delay" id="fade_pause_se_delay">delay</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">フェード停止開始までのディレイをミリ秒単位で指定します。<br />
-</tbody></table><div class="tagremarks">システム効果音のフェードアウトしながらポーズします。<br />
+<div class="taggenre">Sound effect operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of fade_pause_se attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="fade_pause_se_buffer" id="fade_pause_se_buffer">buffer</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Buffer number</td><td class="tagattribdesc">Specify the buffer number. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fade_pause_se_time" id="fade_pause_se_time">time</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">in milliseconds</td><td class="tagattribdesc">Specifies the fade time in milliseconds . <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fade_pause_se_delay" id="fade_pause_se_delay">delay</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">in milliseconds</td><td class="tagattribdesc">Specifies the delay in milliseconds before the fade stops. Masu. <br />
+</tbody></table><div class="tagremarks">Pause while the system sound effect fades out. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="fade_se" id="fade_se" class="targanchor"><span class="b">fade_se</span>(fadese)</h1>
-<div class="taggenre">効果音操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ fade_se の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="fade_se_buffer" id="fade_se_buffer">buffer</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">バッファ番号</td><td class="tagattribdesc">バッファの番号を指定する。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fade_se_volume" id="fade_se_volume">volume</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0～100</td><td class="tagattribdesc">ボリュームを指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fade_se_time" id="fade_se_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">フェードしている時間をミリ秒単位で指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fade_se_delay" id="fade_se_delay">delay</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">フェード停止開始までのディレイをミリ秒単位で指定します。<br />
-</tbody></table><div class="tagremarks">システム効果音のフェードアウトしながらポーズします。<br />
+<div class="taggenre">Sound effect operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of fade_se attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="fade_se_buffer" id="fade_se_buffer">buffer</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Buffer number</td><td class="tagattribdesc">Specify the buffer number. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fade_se_volume" id="fade_se_volume">volume</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">0 to 100</td><td class="tagattribdesc">Specify the volume. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fade_se_time" id="fade_se_time">time</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">in milliseconds</td><td class="tagattribdesc">Specifies the fade time in milliseconds . <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fade_se_delay" id="fade_se_delay">delay</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">in milliseconds</td><td class="tagattribdesc">Specifies the delay in milliseconds before the fade stops. Masu. <br />
+</tbody></table><div class="tagremarks">Pause while the system sound effect fades out. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="play_se" id="play_se" class="targanchor"><span class="b">play_se</span>(playse)</h1>
-<div class="taggenre">効果音操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ play_se の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="play_se_buffer" id="play_se_buffer">buffer</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">バッファ番号</td><td class="tagattribdesc">バッファの番号を指定する。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="play_se_loop" id="play_se_loop">loop</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定するとループします。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="play_se_storage" id="play_se_storage">storage</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">再生するサウンドストレージ名を指定します。<br />
-<tr><td class="tagattribalias">start</td><td class="tagattribname"><a class="targanchor" name="play_se_label" id="play_se_label">label</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ラベル名</td><td class="tagattribdesc">ループチューナーで作成したラベル名を指定します。<br />
-</tbody></table><div class="tagremarks">システム効果音を再生します。<br />
+<div class="taggenre">Sound effect operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of play_se attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="play_se_buffer" id="play_se_buffer">buffer</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Buffer number</td><td class="tagattribdesc">Specify the buffer number. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="play_se_loop" id="play_se_loop">loop</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If true is specified, it will loop. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="play_se_storage" id="play_se_storage">storage</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the sound storage name to play. <br />
+<tr><td class="tagattribalias">start</td><td class="tagattribname"><a class="targanchor" name="play_se_label" id="play_se_label">label</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Label name</td><td class="tagattribdesc">Specify the label name created with the loop tuner. <br />
+</tbody></table><div class="tagremarks">Plays system sound effects. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="stop_se" id="stop_se" class="targanchor"><span class="b">stop_se</span>(stopse)</a></h1>
-<div class="taggenre">効果音操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ stop_se の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="stop_se_buffer" id="stop_se_buffer">buffer</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">バッファ番号</td><td class="tagattribdesc">バッファの番号を指定する。<br />
-</tbody></table><div class="tagremarks">システム用効果音を停止します。<br />
+<div class="taggenre">Sound effect operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of stop_se attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="stop_se_buffer" id="stop_se_buffer">buffer</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Buffer number</td><td class="tagattribdesc">Specify the buffer number. <br />
+</tbody></table><div class="tagremarks">Stops system sound effects. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="se_option" id="se_option" class="targanchor"><span class="b">se_option</span>(seopt)</h1>
-<div class="taggenre">効果音操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ se_option の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="se_option_buffer" id="se_option_buffer">buffer</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">バッファ番号</td><td class="tagattribdesc">バッファの番号を指定する。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="se_option_volume" id="se_option_volume">volume</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0～100</td><td class="tagattribdesc">ボリュームを指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="se_option_pan" id="se_option_pan">pan</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">パン</td><td class="tagattribdesc">パンを指定します。<br />
--100が完全な左、0が中央、100が完全な右です。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="se_option_master_volume" id="se_option_master_volume">master_volume</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0～100</td><td class="tagattribdesc">マスターボリュームを設定します。<br />
-全ての効果音及びBGMに影響します。<br />
-</tbody></table><div class="tagremarks">効果音の設定を変更します。<br />
+<div class="taggenre">Sound effect operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of se_option attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="se_option_buffer" id="se_option_buffer">buffer</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Buffer number</td><td class="tagattribdesc">Specify the buffer number. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="se_option_volume" id="se_option_volume">volume</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">0 to 100</td><td class="tagattribdesc">Specify the volume. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="se_option_pan" id="se_option_pan">pan</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">bread</td><td class="tagattribdesc">Specifies bread. <br />
+-100 is full left, 0 is center, and 100 is full right. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="se_option_master_volume" id="se_option_master_volume">master_volume</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">0~100</td><td class="tagattribdesc">Set the master volume. <br />
+Affects all sound effects and BGM. <br />
+</tbody></table><div class="tagremarks">Change sound effect settings. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="wait_se_fade" id="wait_se_fade" class="targanchor"><span class="b">wait_se_fade</span>(wf)</h1>
-<div class="taggenre">効果音操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ wait_se_fade の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="wait_se_fade_buffer" id="wait_se_fade_buffer">buffer</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">バッファ番号</td><td class="tagattribdesc">バッファの番号を指定する。<br />
-<tr><td class="tagattribalias">canskip</td><td class="tagattribname"><a class="targanchor" name="wait_se_fade_skip" id="wait_se_fade_skip">skip</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定するとスキップ可能になります。<br />
-falseを指定するとスキップ不可となり必ずフェード終了まで待つようになります。<br />
-</tbody></table><div class="tagremarks">効果音のフェードを待ちます。<br />
+<div class="taggenre">Sound effect operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of wait_se_fade attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="wait_se_fade_buffer" id="wait_se_fade_buffer">buffer</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Buffer number</td><td class="tagattribdesc">Specify the buffer number. <br />
+<tr><td class="tagattribalias">canskip</td><td class="tagattribname"><a class="targanchor" name="wait_se_fade_skip" id="wait_se_fade_skip">skip</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifying true allows skipping. <br />
+If you specify false, it will not be skipped and will always wait until the end of the fade. <br />
+</tbody></table><div class="tagremarks">Wait for the sound effect to fade. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="wait_se_stop" id="wait_se_stop" class="targanchor"><span class="b">wait_se_stop</span>(ws)</h1>
-<div class="taggenre">効果音操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ wait_se_stop の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="wait_se_stop_buffer" id="wait_se_stop_buffer">buffer</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">バッファ番号</td><td class="tagattribdesc">バッファの番号を指定する。<br />
-<tr><td class="tagattribalias">canskip</td><td class="tagattribname"><a class="targanchor" name="wait_se_stop_skip" id="wait_se_stop_skip">skip</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定するとスキップ可能になります。<br />
-falseを指定するとスキップ不可となり必ず再生終了まで待つようになります。<br />
-</tbody></table><div class="tagremarks">効果音の停止を待ちます。<br />
+<div class="taggenre">Sound effect operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of wait_se_stop attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="wait_se_stop_buffer" id="wait_se_stop_buffer">buffer</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Buffer number</td><td class="tagattribdesc">Specify the buffer number. <br />
+<tr><td class="tagattribalias">canskip</td><td class="tagattribname"><a class="targanchor" name="wait_se_stop_skip" id="wait_se_stop_skip">skip</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If true is specified, it becomes skippable. <br />
+If you specify false, it will not be skippable and will always wait until the end of playback. <br />
+</tbody></table><div class="tagremarks">Wait for the sound effect to stop. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="fadein_voice" id="fadein_voice" class="targanchor"><span class="b">fadein_voice</span>(fadeinvo)</h1>
-<div class="taggenre">ボイス操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ fadein_voice の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="fadein_voice_buffer" id="fadein_voice_buffer">buffer</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">バッファ番号</td><td class="tagattribdesc">バッファの番号を指定する。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fadein_voice_loop" id="fadein_voice_loop">loop</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定するとループします。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fadein_voice_storage" id="fadein_voice_storage">storage</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">再生するサウンドストレージ名を指定します。<br />
-<tr><td class="tagattribalias">start</td><td class="tagattribname"><a class="targanchor" name="fadein_voice_label" id="fadein_voice_label">label</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ラベル名</td><td class="tagattribdesc">ループチューナーで作成したラベル名を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fadein_voice_time" id="fadein_voice_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">フェードしている時間をミリ秒単位で指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fadein_voice_delay" id="fadein_voice_delay">delay</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">再生までのディレイをミリ秒単位で指定します。<br />
-</tbody></table><div class="tagremarks">ボイスのフェードイン再生します。<br />
+<div class="taggenre">Voice operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of fadein_voice attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="fadein_voice_buffer" id="fadein_voice_buffer">buffer</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Buffer number</td><td class="tagattribdesc">Specify the buffer number. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fadein_voice_loop" id="fadein_voice_loop">loop</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If true is specified, it will loop. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fadein_voice_storage" id="fadein_voice_storage">storage</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the sound storage name to play. <br />
+<tr><td class="tagattribalias">start</td><td class="tagattribname"><a class="targanchor" name="fadein_voice_label" id="fadein_voice_label">label</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Label name</td><td class="tagattribdesc">Specify the label name created with the loop tuner. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fadein_voice_time" id="fadein_voice_time">time</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">in milliseconds</td><td class="tagattribdesc">Specifies the fade time in milliseconds . <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fadein_voice_delay" id="fadein_voice_delay">delay</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">in milliseconds</td><td class="tagattribdesc">Specifies the delay before playback in milliseconds. <br />
+</tbody></table><div class="tagremarks">Plays the voice fade-in. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="fadeout_voice" id="fadeout_voice" class="targanchor"><span class="b">fadeout_voice</span>(fadeoutvo)</h1>
-<div class="taggenre">ボイス操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ fadeout_voice の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="fadeout_voice_buffer" id="fadeout_voice_buffer">buffer</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">バッファ番号</td><td class="tagattribdesc">バッファの番号を指定する。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fadeout_voice_time" id="fadeout_voice_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">フェードしている時間をミリ秒単位で指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fadeout_voice_delay" id="fadeout_voice_delay">delay</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">フェード停止開始までのディレイをミリ秒単位で指定します。<br />
-</tbody></table><div class="tagremarks">ボイスのフェードアウトします。<br />
+<div class="taggenre">Voice operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of fadeout_voice attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="fadeout_voice_buffer" id="fadeout_voice_buffer">buffer</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Buffer number</td><td class="tagattribdesc">Specify the buffer number. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fadeout_voice_time" id="fadeout_voice_time">time</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">in milliseconds</td><td class="tagattribdesc">Specifies the fade time in milliseconds . <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fadeout_voice_delay" id="fadeout_voice_delay">delay</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">in milliseconds</td><td class="tagattribdesc">Specifies the delay in milliseconds before the fade stops. Masu. <br />
+</tbody></table><div class="tagremarks">Fade out the voice. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="fade_pause_voice" id="fade_pause_voice" class="targanchor"><span class="b">fade_pause_voice</span>(fadepausevo)</h1>
-<div class="taggenre">ボイス操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ fade_pause_voice の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="fade_pause_voice_buffer" id="fade_pause_voice_buffer">buffer</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">バッファ番号</td><td class="tagattribdesc">バッファの番号を指定する。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fade_pause_voice_time" id="fade_pause_voice_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">フェードしている時間をミリ秒単位で指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fade_pause_voice_delay" id="fade_pause_voice_delay">delay</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">フェード停止開始までのディレイをミリ秒単位で指定します。<br />
-</tbody></table><div class="tagremarks">ボイスのフェードアウトしながらポーズします。<br />
+<div class="taggenre">Voice operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of fade_pause_voice attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="fade_pause_voice_buffer" id="fade_pause_voice_buffer">buffer</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Buffer number</td><td class="tagattribdesc">Specify the buffer number. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fade_pause_voice_time" id="fade_pause_voice_time">time</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">in milliseconds</td><td class="tagattribdesc">Specifies the fade time in milliseconds . <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fade_pause_voice_delay" id="fade_pause_voice_delay">delay</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">in milliseconds</td><td class="tagattribdesc">Specifies the delay in milliseconds before the fade stops. Masu. <br />
+</tbody></table><div class="tagremarks">Pause while the voice fades out. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="fade_voice" id="fade_voice" class="targanchor"><span class="b">fade_voice</span>(fadevo)</h1>
-<div class="taggenre">ボイス操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ fade_voice の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="fade_voice_buffer" id="fade_voice_buffer">buffer</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">バッファ番号</td><td class="tagattribdesc">バッファの番号を指定する。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fade_voice_volume" id="fade_voice_volume">volume</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0～100</td><td class="tagattribdesc">ボリュームを指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fade_voice_time" id="fade_voice_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">フェードしている時間をミリ秒単位で指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fade_voice_delay" id="fade_voice_delay">delay</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">フェード停止開始までのディレイをミリ秒単位で指定します。<br />
-</tbody></table><div class="tagremarks">ボイスを現在の音量から指定音量までフェードします。<br />
+<div class="taggenre">Voice operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of fade_voice attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="fade_voice_buffer" id="fade_voice_buffer">buffer</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Buffer number</td><td class="tagattribdesc">Specify the buffer number. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fade_voice_volume" id="fade_voice_volume">volume</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">0 to 100</td><td class="tagattribdesc">Specify the volume. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fade_voice_time" id="fade_voice_time">time</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">in milliseconds</td><td class="tagattribdesc">Specifies the fade time in milliseconds . <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fade_voice_delay" id="fade_voice_delay">delay</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">in milliseconds</td><td class="tagattribdesc">Specifies the delay in milliseconds before the fade stops. Masu. <br />
+</tbody></table><div class="tagremarks">Fades the voice from its current volume to the specified volume. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="play_voice" id="play_voice" class="targanchor"><span class="b">play_voice</span>(playvo)</h1>
-<div class="taggenre">ボイス操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ play_voice の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="play_voice_buffer" id="play_voice_buffer">buffer</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">バッファ番号</td><td class="tagattribdesc">バッファの番号を指定する。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="play_voice_loop" id="play_voice_loop">loop</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定するとループします。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="play_voice_storage" id="play_voice_storage">storage</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">再生するサウンドストレージ名を指定します。<br />
-<tr><td class="tagattribalias">start</td><td class="tagattribname"><a class="targanchor" name="play_voice_label" id="play_voice_label">label</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ラベル名</td><td class="tagattribdesc">ループチューナーで作成したラベル名を指定します。<br />
-</tbody></table><div class="tagremarks">ボイスを再生します。<br />
+<div class="taggenre">Voice operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of play_voice attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="play_voice_buffer" id="play_voice_buffer">buffer</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Buffer number</td><td class="tagattribdesc">Specify the buffer number. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="play_voice_loop" id="play_voice_loop">loop</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If true is specified, it will loop. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="play_voice_storage" id="play_voice_storage">storage</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the sound storage name to play. <br />
+<tr><td class="tagattribalias">start</td><td class="tagattribname"><a class="targanchor" name="play_voice_label" id="play_voice_label">label</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Label name</td><td class="tagattribdesc">Specify the label name created with the loop tuner. <br />
+</tbody></table><div class="tagremarks">Play the voice. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="stop_voice" id="stop_voice" class="targanchor"><span class="b">stop_voice</span>(stopvo)</a></h1>
-<div class="taggenre">ボイス操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ stop_voice の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="stop_voice_buffer" id="stop_voice_buffer">buffer</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">バッファ番号</td><td class="tagattribdesc">バッファの番号を指定する。<br />
-</tbody></table><div class="tagremarks">ボイスを停止します。<br />
+<div class="taggenre">Voice operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of stop_voice attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="stop_voice_buffer" id="stop_voice_buffer">buffer</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Buffer number</td><td class="tagattribdesc">Specify the buffer number. <br />
+</tbody></table><div class="tagremarks">Stop the voice. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="voice_option" id="voice_option" class="targanchor"><span class="b">voice_option</span>(voopt)</h1>
-<div class="taggenre">ボイス操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ voice_option の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="voice_option_buffer" id="voice_option_buffer">buffer</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">バッファ番号</td><td class="tagattribdesc">バッファの番号を指定する。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="voice_option_volume" id="voice_option_volume">volume</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0～100</td><td class="tagattribdesc">ボリュームを指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="voice_option_pan" id="voice_option_pan">pan</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">パン</td><td class="tagattribdesc">パンを指定します。<br />
--100が完全な左、0が中央、100が完全な右です。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="voice_option_master_volume" id="voice_option_master_volume">master_volume</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0～100</td><td class="tagattribdesc">マスターボリュームを設定します。<br />
-全ての効果音及びBGMに影響します。<br />
-</tbody></table><div class="tagremarks">ボイスの設定を変更します。<br />
+<div class="taggenre">Voice operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of voice_option attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="voice_option_buffer" id="voice_option_buffer">buffer</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Buffer number</td><td class="tagattribdesc">Specify the buffer number. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="voice_option_volume" id="voice_option_volume">volume</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">0 to 100</td><td class="tagattribdesc">Specify the volume. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="voice_option_pan" id="voice_option_pan">pan</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">bread</td><td class="tagattribdesc">Specifies bread. <br />
+-100 is full left, 0 is center, and 100 is full right. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="voice_option_master_volume" id="voice_option_master_volume">master_volume</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">0~100</td><td class="tagattribdesc">Set the master volume. <br />
+Affects all sound effects and BGM. <br />
+</tbody></table><div class="tagremarks">Change voice settings. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="wait_voice_fade" id="wait_voice_fade" class="targanchor"><span class="b">wait_voice_fade</span>(wvf)</h1>
-<div class="taggenre">ボイス操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ wait_voice_fade の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="wait_voice_fade_buffer" id="wait_voice_fade_buffer">buffer</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">バッファ番号</td><td class="tagattribdesc">バッファの番号を指定する。<br />
-<tr><td class="tagattribalias">canskip</td><td class="tagattribname"><a class="targanchor" name="wait_voice_fade_skip" id="wait_voice_fade_skip">skip</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定するとスキップ可能になります。<br />
-falseを指定するとスキップ不可となり必ずフェード終了まで待つようになります。<br />
-</tbody></table><div class="tagremarks">ボイスのフェードを待ちます。<br />
+<div class="taggenre">Voice operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of wait_voice_fade attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="wait_voice_fade_buffer" id="wait_voice_fade_buffer">buffer</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Buffer number</td><td class="tagattribdesc">Specify the buffer number. <br />
+<tr><td class="tagattribalias">canskip</td><td class="tagattribname"><a class="targanchor" name="wait_voice_fade_skip" id="wait_voice_fade_skip">skip</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifying true allows skipping. <br />
+If you specify false, it will not be skipped and will always wait until the end of the fade. <br />
+</tbody></table><div class="tagremarks">Wait for the voice to fade. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="wait_voice_stop" id="wait_voice_stop" class="targanchor"><span class="b">wait_voice_stop</span>(wvs)</h1>
-<div class="taggenre">ボイス操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ wait_voice_stop の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="wait_voice_stop_buffer" id="wait_voice_stop_buffer">buffer</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">バッファ番号</td><td class="tagattribdesc">バッファの番号を指定する。<br />
-<tr><td class="tagattribalias">canskip</td><td class="tagattribname"><a class="targanchor" name="wait_voice_stop_skip" id="wait_voice_stop_skip">skip</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定するとスキップ可能になります。<br />
-falseを指定するとスキップ不可となり必ず再生終了まで待つようになります。<br />
-</tbody></table><div class="tagremarks">ボイスの停止を待ちます。<br />
+<div class="taggenre">Voice operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of wait_voice_stop attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="wait_voice_stop_buffer" id="wait_voice_stop_buffer">buffer</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Buffer number</td><td class="tagattribdesc">Specify the buffer number. <br />
+<tr><td class="tagattribalias">canskip</td><td class="tagattribname"><a class="targanchor" name="wait_voice_stop_skip" id="wait_voice_stop_skip">skip</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If true is specified, it becomes skippable. <br />
+If you specify false, it will not be skippable and will always wait until the end of playback. <br />
+</tbody></table><div class="tagremarks">Wait for the voice to stop. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
-<h1><a name="add_bgm_buffer" id="add_bgm_buffer" class="targanchor"><span class="b">add_bgm_buffer</span>(別名なし)</h1>
-<div class="taggenre">BGM操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ add_bgm_buffer の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="add_bgm_buffer_type" id="add_bgm_buffer_type">type</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">BGMタイプ</td><td class="tagattribdesc">BGMのタイプを指定する。<br />
-WAVE : WAVEのBGMバッファを追加します。<br />
-MIDI : MIDIのBGMバッファを追加します。(未実装)<br />
-CDMA : CDMAのBGMバッファを追加します。(未実装)<br />
-</tbody></table><div class="tagremarks">BGMバッファを追加する。<br />
-一番最初に追加されたBGMバッファがデフォルトのバッファとなります。<br />
+<h1><a name="add_bgm_buffer" id="add_bgm_buffer" class="targanchor"><span class="b">add_bgm_buffer</span>(aliasnone)</h1>
+<div class="taggenre">BGM operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of add_bgm_buffer attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="add_bgm_buffer_type" id="add_bgm_buffer_type">type</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">BGM type</td><td class="tagattribdesc">Specify the BGM type. <br />
+WAVE: Add WAVE BGM buffer. <br />
+MIDI: Adds MIDI BGM buffer. (Not implemented)<br />
+CDMA: Add CDMA BGM buffer. (Not implemented)<br />
+</tbody></table><div class="tagremarks">Add BGM buffer. <br />
+The first BGM buffer added becomes the default buffer. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
-<h1><a name="free_bgm_buffers" id="free_bgm_buffers" class="targanchor"><span class="b">free_bgm_buffers</span>(別名なし)</h1>
-<div class="taggenre">BGM操作</div>
-</tbody></table><div class="tagremarks">BGMバッファを全て開放する。<br />
+<h1><a name="free_bgm_buffers" id="free_bgm_buffers" class="targanchor"><span class="b">free_bgm_buffers</span>(aliasnone)</h1>
+<div class="taggenre">BGM operations</div>
+</tbody></table><div class="tagremarks">Free all BGM buffers. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="bgm_option" id="bgm_option" class="targanchor"><span class="b">bgm_option</span>(bgmopt)</h1>
-<div class="taggenre">BGM操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ bgm_option の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="bgm_option_buffer" id="bgm_option_buffer">buffer</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">バッファ番号</td><td class="tagattribdesc">バッファの番号を指定する。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="bgm_option_volume" id="bgm_option_volume">volume</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0～100</td><td class="tagattribdesc">ボリュームを指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="bgm_option_pan" id="bgm_option_pan">pan</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">パン</td><td class="tagattribdesc">パンを指定します。<br />
--100が完全な左、0が中央、100が完全な右です。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="bgm_option_master_volume" id="bgm_option_master_volume">master_volume</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0～100</td><td class="tagattribdesc">マスターボリュームを設定します。<br />
-全ての効果音及びBGMに影響します。<br />
-</tbody></table><div class="tagremarks">BGMの設定を変更します。<br />
+<div class="taggenre">BGM operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of bgm_option attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="bgm_option_buffer" id="bgm_option_buffer">buffer</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Buffer number</td><td class="tagattribdesc">Specify the buffer number. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="bgm_option_volume" id="bgm_option_volume">volume</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">0 to 100</td><td class="tagattribdesc">Specify the volume. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="bgm_option_pan" id="bgm_option_pan">pan</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">bread</td><td class="tagattribdesc">Specifies bread. <br />
+-100 is full left, 0 is center, and 100 is full right. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="bgm_option_master_volume" id="bgm_option_master_volume">master_volume</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">0~100</td><td class="tagattribdesc">Set the master volume. <br />
+Affects all sound effects and BGM. <br />
+</tbody></table><div class="tagremarks">Change BGM settings. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="set_bgm_label" id="set_bgm_label" class="targanchor"><span class="b">set_bgm_label</span>(setbgmlabel)</h1>
-<div class="taggenre">BGM操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ set_bgm_label の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="set_bgm_label_name" id="set_bgm_label_name">name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ラベル名</td><td class="tagattribdesc">ループチューナーで作成したラベル名を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="set_bgm_label_storage" id="set_bgm_label_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">シナリオストレージ名</td><td class="tagattribdesc">ラベル実行時に実行するシナリオスクリプトを指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="set_bgm_label_target" id="set_bgm_label_target">target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">シナリオラベル</td><td class="tagattribdesc">ラベル実行時に実行するシナリオのラベル名を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="set_bgm_label_exp" id="set_bgm_label_exp">exp</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">TJSスクリプト</td><td class="tagattribdesc">ラベル実行時に実行するTJSスクリプトを指定します。<br />
-</tbody></table><div class="tagremarks">BGMのラベルイベントを設定します。<br />
+<div class="taggenre">BGM operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of set_bgm_label attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="set_bgm_label_name" id="set_bgm_label_name">name</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Label name</td><td class="tagattribdesc">Specify the label name created with the loop tuner. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="set_bgm_label_storage" id="set_bgm_label_storage">storage</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Scenario storage name</td><td class="tagattribdesc">Specify the scenario script to be executed when the label is executed. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="set_bgm_label_target" id="set_bgm_label_target">target</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Scenario label</td><td class="tagattribdesc">Specify the label name of the scenario to be executed when the label is executed. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="set_bgm_label_exp" id="set_bgm_label_exp">exp</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">TJS script</td><td class="tagattribdesc">Specify the TJS script to be executed when the label is executed. <br />
+</tbody></table><div class="tagremarks">Set label event for BGM. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="set_bgm_stop" id="set_bgm_stop" class="targanchor"><span class="b">set_bgm_stop</span>(setbgmstop)</h1>
-<div class="taggenre">BGM操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ set_bgm_stop の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="set_bgm_stop_storage" id="set_bgm_stop_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">シナリオストレージ名</td><td class="tagattribdesc">BGM停止時に実行するシナリオスクリプトを指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="set_bgm_stop_target" id="set_bgm_stop_target">target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">シナリオラベル</td><td class="tagattribdesc">BGM停止時に実行するシナリオのラベル名を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="set_bgm_stop_exp" id="set_bgm_stop_exp">exp</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">TJSスクリプト</td><td class="tagattribdesc">BGM停止時に実行するTJSスクリプトを指定します。<br />
-</tbody></table><div class="tagremarks">BGMの停止イベントを設定します。<br />
+<div class="taggenre">BGM operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of set_bgm_stop attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="set_bgm_stop_storage" id="set_bgm_stop_storage">storage</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Scenario storage name</td><td class="tagattribdesc">Specify the scenario script to be executed when BGM is stopped. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="set_bgm_stop_target" id="set_bgm_stop_target">target</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Scenario label</td><td class="tagattribdesc">Specify the label name of the scenario to be executed when BGM is stopped. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="set_bgm_stop_exp" id="set_bgm_stop_exp">exp</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">TJS script</td><td class="tagattribdesc">Specify the TJS script to be executed when BGM is stopped. <br />
+</tbody></table><div class="tagremarks">Set the BGM stop event. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="fadein_bgm" id="fadein_bgm" class="targanchor"><span class="b">fadein_bgm</span>(fadeinbgm)</h1>
-<div class="taggenre">BGM操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ fadein_bgm の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="fadein_bgm_buffer" id="fadein_bgm_buffer">buffer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">バッファ番号</td><td class="tagattribdesc">バッファの番号を指定する。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fadein_bgm_loop" id="fadein_bgm_loop">loop</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定するとループします。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fadein_bgm_storage" id="fadein_bgm_storage">storage</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">再生するサウンドストレージ名を指定します。<br />
-<tr><td class="tagattribalias">start</td><td class="tagattribname"><a class="targanchor" name="fadein_bgm_label" id="fadein_bgm_label">label</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ラベル名</td><td class="tagattribdesc">ループチューナーで作成したラベル名を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fadein_bgm_time" id="fadein_bgm_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">フェードしている時間をミリ秒単位で指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fadein_bgm_delay" id="fadein_bgm_delay">delay</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">再生までのディレイをミリ秒単位で指定します。<br />
-</tbody></table><div class="tagremarks">BGMのフェードイン再生します。<br />
+<div class="taggenre">BGM operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of fadein_bgm attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="fadein_bgm_buffer" id="fadein_bgm_buffer">buffer</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Buffer number</td><td class="tagattribdesc">Specify the buffer number. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fadein_bgm_loop" id="fadein_bgm_loop">loop</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If true is specified, it will loop. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fadein_bgm_storage" id="fadein_bgm_storage">storage</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the sound storage name to play. <br />
+<tr><td class="tagattribalias">start</td><td class="tagattribname"><a class="targanchor" name="fadein_bgm_label" id="fadein_bgm_label">label</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Label name</td><td class="tagattribdesc">Specify the label name created with the loop tuner. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fadein_bgm_time" id="fadein_bgm_time">time</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">in milliseconds</td><td class="tagattribdesc">Specifies the fade time in milliseconds . <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fadein_bgm_delay" id="fadein_bgm_delay">delay</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">in milliseconds</td><td class="tagattribdesc">Specifies the delay before playback in milliseconds. <br />
+</tbody></table><div class="tagremarks">Plays background music with fade-in. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="fadeout_bgm" id="fadeout_bgm" class="targanchor"><span class="b">fadeout_bgm</span>(fadeoutbgm)</h1>
-<div class="taggenre">BGM操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ fadeout_bgm の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="fadeout_bgm_buffer" id="fadeout_bgm_buffer">buffer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">バッファ番号</td><td class="tagattribdesc">バッファの番号を指定する。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fadeout_bgm_time" id="fadeout_bgm_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">フェードしている時間をミリ秒単位で指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fadeout_bgm_delay" id="fadeout_bgm_delay">delay</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">フェード停止開始までのディレイをミリ秒単位で指定します。<br />
-</tbody></table><div class="tagremarks">BGMのフェードアウトします。<br />
+<div class="taggenre">BGM operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of fadeout_bgm attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="fadeout_bgm_buffer" id="fadeout_bgm_buffer">buffer</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Buffer number</td><td class="tagattribdesc">Specify the buffer number. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fadeout_bgm_time" id="fadeout_bgm_time">time</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">in milliseconds</td><td class="tagattribdesc">Specifies the fade time in milliseconds . <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fadeout_bgm_delay" id="fadeout_bgm_delay">delay</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">in milliseconds</td><td class="tagattribdesc">Specifies the delay in milliseconds before the fade stops. Masu. <br />
+</tbody></table><div class="tagremarks">BGM fades out. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="fade_pause_bgm" id="fade_pause_bgm" class="targanchor"><span class="b">fade_pause_bgm</span>(fadepausebgm)</h1>
-<div class="taggenre">BGM操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ fade_pause_bgm の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="fade_pause_bgm_buffer" id="fade_pause_bgm_buffer">buffer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">バッファ番号</td><td class="tagattribdesc">バッファの番号を指定する。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fade_pause_bgm_time" id="fade_pause_bgm_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">フェードしている時間をミリ秒単位で指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fade_pause_bgm_delay" id="fade_pause_bgm_delay">delay</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">フェード停止開始までのディレイをミリ秒単位で指定します。<br />
-</tbody></table><div class="tagremarks">BGMのフェードアウトしながらポーズします。<br />
+<div class="taggenre">BGM operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of fade_pause_bgm attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="fade_pause_bgm_buffer" id="fade_pause_bgm_buffer">buffer</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Buffer number</td><td class="tagattribdesc">Specify the buffer number. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fade_pause_bgm_time" id="fade_pause_bgm_time">time</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">in milliseconds</td><td class="tagattribdesc">Specifies the fade time in milliseconds . <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fade_pause_bgm_delay" id="fade_pause_bgm_delay">delay</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">in milliseconds</td><td class="tagattribdesc">Specifies the delay in milliseconds before the fade stops. Masu. <br />
+</tbody></table><div class="tagremarks">Pause while the background music fades out. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="fade_bgm" id="fade_bgm" class="targanchor"><span class="b">fade_bgm</span>(fadebgm)</h1>
-<div class="taggenre">BGM操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ fade_bgm の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="fade_bgm_buffer" id="fade_bgm_buffer">buffer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">バッファ番号</td><td class="tagattribdesc">バッファの番号を指定する。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fade_bgm_volume" id="fade_bgm_volume">volume</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0～100</td><td class="tagattribdesc">ボリュームを指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fade_bgm_time" id="fade_bgm_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">フェードしている時間をミリ秒単位で指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fade_bgm_delay" id="fade_bgm_delay">delay</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">フェード停止開始までのディレイをミリ秒単位で指定します。<br />
-</tbody></table><div class="tagremarks">BGMを現在の音量から指定音量までフェードします。<br />
+<div class="taggenre">BGM operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of fade_bgm attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="fade_bgm_buffer" id="fade_bgm_buffer">buffer</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Buffer number</td><td class="tagattribdesc">Specify the buffer number. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fade_bgm_volume" id="fade_bgm_volume">volume</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">0 to 100</td><td class="tagattribdesc">Specify the volume. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fade_bgm_time" id="fade_bgm_time">time</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">in milliseconds</td><td class="tagattribdesc">Specifies the fade time in milliseconds . <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fade_bgm_delay" id="fade_bgm_delay">delay</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">in milliseconds</td><td class="tagattribdesc">Specifies the delay in milliseconds before the fade stops. Masu. <br />
+</tbody></table><div class="tagremarks">Fades the background music from the current volume to the specified volume. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="pause_bgm" id="pause_bgm" class="targanchor"><span class="b">pause_bgm</span>(pausebgm)</h1>
-<div class="taggenre">BGM操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ pause_bgm の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="pause_bgm_buffer" id="pause_bgm_buffer">buffer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">バッファ番号</td><td class="tagattribdesc">バッファの番号を指定する。<br />
-</tbody></table><div class="tagremarks">BGMをポーズします。<br />
+<div class="taggenre">BGM operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of pause_bgm attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="pause_bgm_buffer" id="pause_bgm_buffer">buffer</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Buffer number</td><td class="tagattribdesc">Specify the buffer number. <br />
+</tbody></table><div class="tagremarks">Pause BGM. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="resume_bgm" id="resume_bgm" class="targanchor"><span class="b">resume_bgm</span>(resumebgm)</h1>
-<div class="taggenre">BGM操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ resume_bgm の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="resume_bgm_buffer" id="resume_bgm_buffer">buffer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">バッファ番号</td><td class="tagattribdesc">バッファの番号を指定する。<br />
-</tbody></table><div class="tagremarks">BGMをポーズ解除します。<br />
+<div class="taggenre">BGM operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of resume_bgm attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="resume_bgm_buffer" id="resume_bgm_buffer">buffer</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Buffer number</td><td class="tagattribdesc">Specify the buffer number. <br />
+</tbody></table><div class="tagremarks">Unpause BGM. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="play_bgm" id="play_bgm" class="targanchor"><span class="b">play_bgm</span>(playbgm)</h1>
-<div class="taggenre">BGM操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ play_bgm の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="play_bgm_buffer" id="play_bgm_buffer">buffer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">バッファ番号</td><td class="tagattribdesc">バッファの番号を指定する。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="play_bgm_loop" id="play_bgm_loop">loop</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定するとループします。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="play_bgm_storage" id="play_bgm_storage">storage</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">再生するサウンドストレージ名を指定します。<br />
-<tr><td class="tagattribalias">start</td><td class="tagattribname"><a class="targanchor" name="play_bgm_label" id="play_bgm_label">label</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ラベル名</td><td class="tagattribdesc">ループチューナーで作成したラベル名を指定します。<br />
-</tbody></table><div class="tagremarks">BGMを再生します。<br />
+<div class="taggenre">BGM operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of play_bgm attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="play_bgm_buffer" id="play_bgm_buffer">buffer</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Buffer number</td><td class="tagattribdesc">Specify the buffer number. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="play_bgm_loop" id="play_bgm_loop">loop</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If true is specified, it will loop. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="play_bgm_storage" id="play_bgm_storage">storage</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the sound storage name to play. <br />
+<tr><td class="tagattribalias">start</td><td class="tagattribname"><a class="targanchor" name="play_bgm_label" id="play_bgm_label">label</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Label name</td><td class="tagattribdesc">Specify the label name created with the loop tuner. <br />
+</tbody></table><div class="tagremarks">Play BGM. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="stop_bgm" id="stop_bgm" class="targanchor"><span class="b">stop_bgm</span>(stopbgm)</a></h1>
-<div class="taggenre">BGM操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ stop_bgm の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="stop_bgm_buffer" id="stop_bgm_buffer">buffer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">バッファ番号</td><td class="tagattribdesc">バッファの番号を指定する。<br />
-</tbody></table><div class="tagremarks">BGMを停止します。<br />
+<div class="taggenre">BGM operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of stop_bgm attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="stop_bgm_buffer" id="stop_bgm_buffer">buffer</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Buffer number</td><td class="tagattribdesc">Specify the buffer number. <br />
+</tbody></table><div class="tagremarks">Stop BGM. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="exchange_bgm" id="exchange_bgm" class="targanchor"><span class="b">exchange_bgm</span>(xchgbgm)</h1>
-<div class="taggenre">BGM操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ exchange_bgm の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="exchange_bgm_buffer" id="exchange_bgm_buffer">buffer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">バッファ番号</td><td class="tagattribdesc">バッファの番号を指定する。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="exchange_bgm_loop" id="exchange_bgm_loop">loop</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定するとループします。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="exchange_bgm_storage" id="exchange_bgm_storage">storage</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">再生するサウンドストレージ名を指定します。<br />
-<tr><td class="tagattribalias">start</td><td class="tagattribname"><a class="targanchor" name="exchange_bgm_label" id="exchange_bgm_label">label</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ラベル名</td><td class="tagattribdesc">ループチューナーで作成したラベル名を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="exchange_bgm_time" id="exchange_bgm_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">フェードしている時間をミリ秒単位で指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="exchange_bgm_delay" id="exchange_bgm_delay">delay</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">再生までのディレイをミリ秒単位で指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="exchange_bgm_overlap" id="exchange_bgm_overlap">overlap</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">BGMが重なっている時間ををミリ秒単位で指定します。<br />
-</tbody></table><div class="tagremarks">BGMの入れ替えをします。<br />
+<div class="taggenre">BGM operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of exchange_bgm attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="exchange_bgm_buffer" id="exchange_bgm_buffer">buffer</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Buffer number</td><td class="tagattribdesc">Specify the buffer number. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="exchange_bgm_loop" id="exchange_bgm_loop">loop</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If true is specified, it will loop. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="exchange_bgm_storage" id="exchange_bgm_storage">storage</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the sound storage name to play. <br />
+<tr><td class="tagattribalias">start</td><td class="tagattribname"><a class="targanchor" name="exchange_bgm_label" id="exchange_bgm_label">label</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Label name</td><td class="tagattribdesc">Specify the label name created with the loop tuner. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="exchange_bgm_time" id="exchange_bgm_time">time</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">in milliseconds</td><td class="tagattribdesc">Specifies the fade time in milliseconds . <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="exchange_bgm_delay" id="exchange_bgm_delay">delay</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">in milliseconds</td><td class="tagattribdesc">Specifies the delay before playback in milliseconds. <br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="exchange_bgm_overlap" id="exchange_bgm_overlap">overlap</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">in milliseconds</td><td class="tagattribdesc">Specify the time in milliseconds that the background music overlaps To do. <br />
+</tbody></table><div class="tagremarks">Replace the BGM. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="clear_bgm_label" id="clear_bgm_label" class="targanchor"><span class="b">clear_bgm_label</span>(clearbgmlabel)</a></h1>
-<div class="taggenre">BGM操作</div>
-</tbody></table><div class="tagremarks">BGMのラベルイベントをクリアします。<br />
+<div class="taggenre">BGM operations</div>
+</tbody></table><div class="tagremarks">Clears BGM label events. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="clear_bgm_stop" id="clear_bgm_stop" class="targanchor"><span class="b">clear_bgm_stop</span>(clearbgmstop)</a></h1>
-<div class="taggenre">BGM操作</div>
-</tbody></table><div class="tagremarks">BGMの停止イベントをクリアします。<br />
+<div class="taggenre">BGM operations</div>
+</tbody></table><div class="tagremarks">Clears the BGM stop event. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="wait_bgm_fade" id="wait_bgm_fade" class="targanchor"><span class="b">wait_bgm_fade</span>(wb)</h1>
-<div class="taggenre">BGM操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ wait_bgm_fade の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="wait_bgm_fade_buffer" id="wait_bgm_fade_buffer">buffer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">バッファ番号</td><td class="tagattribdesc">バッファの番号を指定する。<br />
-<tr><td class="tagattribalias">canskip</td><td class="tagattribname"><a class="targanchor" name="wait_bgm_fade_skip" id="wait_bgm_fade_skip">skip</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定するとスキップ可能になります。<br />
-falseを指定するとスキップ不可となり必ずフェード終了まで待つようになります。<br />
-</tbody></table><div class="tagremarks">BGMのフェードを待ちます。<br />
+<div class="taggenre">BGM operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of wait_bgm_fade attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="wait_bgm_fade_buffer" id="wait_bgm_fade_buffer">buffer</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Buffer number</td><td class="tagattribdesc">Specify the buffer number. <br />
+<tr><td class="tagattribalias">canskip</td><td class="tagattribname"><a class="targanchor" name="wait_bgm_fade_skip" id="wait_bgm_fade_skip">skip</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifying true allows skipping. <br />
+If you specify false, it will not be skipped and will always wait until the end of the fade. <br />
+</tbody></table><div class="tagremarks">Wait for the background music to fade. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="wait_bgm_stop" id="wait_bgm_stop" class="targanchor"><span class="b">wait_bgm_stop</span>(wl)</h1>
-<div class="taggenre">BGM操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ wait_bgm_stop の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="wait_bgm_stop_buffer" id="wait_bgm_stop_buffer">buffer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">バッファ番号</td><td class="tagattribdesc">バッファの番号を指定する。<br />
-<tr><td class="tagattribalias">canskip</td><td class="tagattribname"><a class="targanchor" name="wait_bgm_stop_skip" id="wait_bgm_stop_skip">skip</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定するとスキップ可能になります。<br />
-falseを指定するとスキップ不可となり必ずフェード終了まで待つようになります。<br />
-</tbody></table><div class="tagremarks">BGMの停止を待ちます。<br />
+<div class="taggenre">BGM operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of wait_bgm_stop attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="wait_bgm_stop_buffer" id="wait_bgm_stop_buffer">buffer</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Buffer number</td><td class="tagattribdesc">Specify the buffer number. <br />
+<tr><td class="tagattribalias">canskip</td><td class="tagattribname"><a class="targanchor" name="wait_bgm_stop_skip" id="wait_bgm_stop_skip">skip</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifying true allows skipping. <br />
+If you specify false, it will not be skipped and will always wait until the end of the fade. <br />
+</tbody></table><div class="tagremarks">Wait for the BGM to stop. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 	<script type="text/javascript" charset="Shift_JIS" src="documentid.js" ></script>
 	<script type="text/javascript" charset="Shift_JIS" src="postcontent.js" ></script>

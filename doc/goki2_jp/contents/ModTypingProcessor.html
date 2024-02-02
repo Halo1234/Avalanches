@@ -3,223 +3,222 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
-	<title>ModTypingProcessorのタグ</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>ModTypingProcessor tags</title>
 	<meta name="author" content="Halo" />
 	<meta http-equiv="Content-Style-Type" content="text/css" />
 	<meta http-equiv="Content-Script-Type" content="text/javascript" />
-	<link href="browser.css" type="text/css" rel="stylesheet" title="吉里吉里関連リファレンス用標準スタイル" />
+	<link href="browser.css" type="text/css" rel="stylesheet" title="Standard style for Kirikiri-related reference" />
 	<link href="mailto:halosuke@gmail.com" rev="Made" />
-	<link href="index.html" target="_top" rel="Start" title="トップページ" />
+	<link href="index.html" target="_top" rel="Start" title="Top page" />
 </head>
 <body>
 
-<h1><a name="tags" id="tags">ModTypingProcessorのタグ</a></h1>
-<div class="para"><div>　ModTypingProcessor で使用可能なタグのリファレンスです。<br />
+<h1><a name="tags" id="tags">ModTypingProcessor tags</a></h1>
+<div class="para"><div>Reference of tags available for ModTypingProcessor. <br />
 <br />
-タイピングゲームのワードデータはエクセルで入力する事ができます。<br />
-/src/data/typing_words/words.xlsを編集してください。<br />
-キャプション列にはキャプションとして表示する文字列を指定します。<br />
-ルビ列には入力すべき文字列をカタカナで指定します。<br />
-データを作成するには/tools/make_word/run.batを実行します。<br />
-同じ場所にワードデータが生成されるのでプロジェクトフォルダにコピーして[load_typing_words]タグで読み込んでください。<br />
-
-<h1><a name="genre" id="genre" class="targanchor">ジャンル・タグ一覧</a></h1>
+Word data for the typing game can be entered in Excel. <br />
+Edit /src/data/typing_words/words.xls. <br />
+Specify the string to be displayed as a caption in the caption column. <br />
+Specify the character string to be entered in the ruby column in katakana. <br />
+Run /tools/make_word/run.bat to create the data. <br />
+Word data will be generated in the same location, so please copy it to the project folder and load it with the [load_typing_words] tag. <br />
+<h1><a name="genre" id="genre" class="targanchor">Genre/tag list</a></h1>
 
 
 <div class="para"><div><br />
 <table class="taglist"><tbody>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#load_roman_table">load_roman_table</a></span></td><td class="taglisteven">ローマ字テーブルを読み込みます</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#typing_base_layer">typing_base_layer</a></span></td><td class="taglistodd">タイピングベースレイヤの設定を行います</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#typing_config">typing_config</a></span></td><td class="taglisteven">タイピングゲームの設定を行います</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#show_typing_base_layer">show_typing_base_layer</a></span></td><td class="taglistodd">タイピングベースレイヤの表示</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#wait_show_typing_base_layer">wait_show_typing_base_layer</a></span></td><td class="taglisteven">タイピングベースレイヤの表示待ち</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#hide_typing_base_layer">hide_typing_base_layer</a></span></td><td class="taglistodd">タイピングベースレイヤの非表示</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#wait_hide_typing_base_layer">wait_hide_typing_base_layer</a></span></td><td class="taglisteven">タイピングベースレイヤの非表示待ち</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#typing_start">typing_start</a></span></td><td class="taglistodd">タイピングゲーム開始</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#typing_end">typing_end</a></span></td><td class="taglisteven">タイピングゲームの終了</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#load_typing_words">load_typing_words</a></span></td><td class="taglistodd">タイピングワードの読み込み</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#add_typing_word">add_typing_word</a></span></td><td class="taglisteven">タイピングワードの追加</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#remove_typing_word">remove_typing_word</a></span></td><td class="taglistodd">タイピングワードの削除</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#clear_typing_word_list">clear_typing_word_list</a></span></td><td class="taglisteven">タイピングワードの全クリア</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#show_typing_target">show_typing_target</a></span></td><td class="taglistodd">タイピングオブジェクトの生成と表示</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#hide_typing_target">hide_typing_target</a></span></td><td class="taglisteven">タイピングオブジェクトの破棄</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#wait_typing">wait_typing</a></span></td><td class="taglistodd">タイピング完了を待つ</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#dump_typing_word_list">dump_typing_word_list</a></span></td><td class="taglisteven">タイピングワードのダンプ</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#load_roman_table">load_roman_table</a></span></td><td class= "taglisteven">Load Roman table</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#typing_base_layer">typing_base_layer</a></span></td><td class= "taglistodd">Configure the typing base layer</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#typing_config">typing_config</a></span></td><td class= "taglisteven">Configure the typing game</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#show_typing_base_layer">show_typing_base_layer</a></span></td><td class= "taglistodd">Show typing base layer</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#wait_show_typing_base_layer">wait_show_typing_base_layer</a></span></td><td class= "taglisteven">Waiting for display of typing base layer</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#hide_typing_base_layer">hide_typing_base_layer</a></span></td><td class= "taglistodd">Hide typing base layer</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#wait_hide_typing_base_layer">wait_hide_typing_base_layer</a></span></td><td class= "taglisteven">Waiting for typing base layer to be hidden</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#typing_start">typing_start</a></span></td><td class= "taglistodd">Start typing game</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#typing_end">typing_end</a></span></td><td class= "taglisteven">End typing game</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#load_typing_words">load_typing_words</a></span></td><td class= "taglistodd">Load typing word</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#add_typing_word">add_typing_word</a></span></td><td class= "taglisteven">Add typing word</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#remove_typing_word">remove_typing_word</a></span></td><td class= "taglistodd">Delete typing word</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#clear_typing_word_list">clear_typing_word_list</a></span></td><td class= "taglisteven">Clear all typing words</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#show_typing_target">show_typing_target</a></span></td><td class= "taglistodd">Generation and display of typing objects</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#hide_typing_target">hide_typing_target</a></span></td><td class= "taglisteven">Destroying typing object</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#wait_typing">wait_typing</a></span></td><td class= "taglistodd">Wait for typing to complete</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#dump_typing_word_list">dump_typing_word_list</a></span></td><td class= "taglisteven">Dump typing words</td></tr>
 </tbody></table><br /><br /></div></div>
 
-<h1><a name="load_roman_table" id="load_roman_table" class="targanchor"><span class="b">load_roman_table</span>(別名なし)</a></h1>
-<div class="taggenre">タイピング操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ load_roman_table の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_roman_table_language" id="load_roman_table_language">language</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">特定言語のローマ字テーブルを指定します。<br />
-ここで指定するストレージ名はツール「make_roman_table」で生成したローマ字テーブルを指定します。<br />
-拡張子は指定しないでください。<br />
-</tbody></table><div class="tagremarks">ローマ字テーブルの作り方はまず、/src/data/roman_alphabet/japanese.xlsを編集します。<br />
-編集方法は内容を見ればわかると思いますが簡単な説明が/src/data/roman_alphabet/readme.txtにあります。<br />
-編集後、/tools/make_roman_table/japanese.batを実行すると/tools/make_roman_table/配下に「japanese.dic」と「japanese_symbol.dic」が生成されます。<br />
-この二つのファイルを開発環境に配置して、このタグを利用して読み込みます。<br />
-<div class="tagexample"><code class="bq"><span class="weak">例:</span><br />
-; 「japanese.dic」と「japanese_symbol.dic」を読み込む。<br />
+<h1><a name="load_roman_table" id="load_roman_table" class="targanchor"><span class="b">load_roman_table</span>(No alias)</a></h1>
+<div class="taggenre">Typing operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of load_roman_table attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="load_roman_table_language" id="load_roman_table_language">language</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the Romanization table for a specific language. <br />
+The storage name specified here specifies the Roman table generated by the tool "make_roman_table". <br />
+Do not specify an extension. <br />
+</tbody></table><div class="tagremarks">To create a Roman alphabet table, first edit /src/data/roman_alphabet/japanese.xls. <br />
+You can understand how to edit by looking at the content, but a simple explanation is available in /src/data/roman_alphabet/readme.txt. <br />
+After editing, when you run /tools/make_roman_table/japanese.bat, "japanese.dic" and "japanese_symbol.dic" are generated under /tools/make_roman_table/. <br />
+Place these two files in the development environment and read them using this tag. <br />
+<div class="tagexample"><code class="bq"><span class="weak">Example:</span><br />
+; Load "japanese.dic" and "japanese_symbol.dic". <br />
 [load_roman_table language=japanese]<br />
 </code></div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
-<h1><a name="typing_base_layer" id="typing_base_layer" class="targanchor"><span class="b">typing_base_layer</span>(別名なし)</a></h1>
-<div class="taggenre">タイピング操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ typing_base_layer の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="typing_base_layer_absolute" id="typing_base_layer_absolute">absolute</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">位置</td><td class="tagattribdesc">タイピングベースレイヤの位置を整数で指定します。<br />
-デフォルトは0です。<br />
-</tbody></table><div class="tagremarks">タイピングベースレイヤの設定を行います。<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<h1><a name="typing_base_layer" id="typing_base_layer" class="targanchor"><span class="b">typing_base_layer</span>(No alias)</a></h1>
+<div class="taggenre">Typing operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of typing_base_layer attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="typing_base_layer_absolute" id="typing_base_layer_absolute">absolute</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Position</td><td class="tagattribdesc">Specify the position of the typing base layer as an integer. <br />
+Default is 0. <br />
+</tbody></table><div class="tagremarks">Configure the typing base layer. <br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
-<h1><a name="typing_config" id="typing_config" class="targanchor"><span class="b">typing_config</span>(別名なし)</a></h1>
-<div class="taggenre">タイピング操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ typing_config の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="typing_config_accept_storage" id="typing_config_accept_storage">accept_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">シナリオストレージ名</td><td class="tagattribdesc">タイピングオブジェクトが入力完了した場合に実行するシナリオストレージを指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="typing_config_accept_target" id="typing_config_accept_target">accept_target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ラベル名</td><td class="tagattribdesc">タイピングオブジェクトが入力完了した場合に実行するラベル名を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="typing_config_end_storage" id="typing_config_end_storage">end_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">シナリオストレージ名</td><td class="tagattribdesc">タイピングがタイムアウトした場合に実行するシナリオストレージを指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="typing_config_end_target" id="typing_config_end_target">end_target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ラベル名</td><td class="tagattribdesc">タイピングがタイムアウトした場合に実行するラベル名を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="typing_config_target_image" id="typing_config_target_image">target_image</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">画像ストレージ名</td><td class="tagattribdesc">タイピングオブジェクトに使用する画像ストレージ名を指定します。<br />
-,で区切っていくつでも指定できます。<br />
-ここで指定した画像ファイルがランダムで読み込まれます。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="typing_config_index" id="typing_config_index">index</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">位置</td><td class="tagattribdesc">タイピングベースレイヤの位置を整数で指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="typing_config_limit" id="typing_config_limit">limit</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">秒単位</td><td class="tagattribdesc">タイピングゲームのタイムリミットを秒単位で指定します。<br />
-</tbody></table><div class="tagremarks">タイピングの設定を行います。<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<h1><a name="typing_config" id="typing_config" class="targanchor"><span class="b">typing_config</span>(No alias)</a></h1>
+<div class="taggenre">Typing operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of typing_config attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="typing_config_accept_storage" id="typing_config_accept_storage">accept_storage</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Scenario storage name</td><td class="tagattribdesc">Scenario storage to be executed when typing object is completed Specify. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="typing_config_accept_target" id="typing_config_accept_target">accept_target</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Label name</td><td class="tagattribdesc">Specify the label name to be executed when the typing object is completed To do. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="typing_config_end_storage" id="typing_config_end_storage">end_storage</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Scenario storage name</td><td class="tagattribdesc">Specifies the scenario storage to run if typing times out. Masu. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="typing_config_end_target" id="typing_config_end_target">end_target</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Label name</td><td class="tagattribdesc">Specifies the label name to run if typing times out . <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="typing_config_target_image" id="typing_config_target_image">target_image</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Image storage name</td><td class="tagattribdesc">Specifies the image storage name to use for the typing object. <br />
+You can specify as many as you want by separating them with ,. <br />
+The image file specified here will be loaded randomly. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="typing_config_index" id="typing_config_index">index</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Position</td><td class="tagattribdesc">Specify the position of the typing base layer as an integer. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="typing_config_limit" id="typing_config_limit">limit</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">in seconds</td><td class="tagattribdesc">Specifies the time limit for the typing game in seconds. <br />
+</tbody></table><div class="tagremarks">Configure typing settings. <br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
-<h1><a name="show_typing_base_layer" id="show_typing_base_layer" class="targanchor"><span class="b">show_typing_base_layer</span>(別名なし)</a></h1>
-<div class="taggenre">タイピング操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ show_typing_base_layer の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="show_typing_base_layer_type" id="show_typing_base_layer_type">type</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">fade or vista</td><td class="tagattribdesc">表示タイプを指定します。<br />
-ここで指定したタイプによって表示エフェクトが変わります。<br />
-デフォルトは'vista'です。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="show_typing_base_layer_time" id="show_typing_base_layer_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">表示効果にかける時間をミリ秒単位で指定します。<br />
-デフォルトは200です。<br />
-</tbody></table><div class="tagremarks">タイピングベースレイヤを表示します。<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<h1><a name="show_typing_base_layer" id="show_typing_base_layer" class="targanchor"><span class="b">show_typing_base_layer</span>(No alias)</a></h1>
+<div class="taggenre">Typing operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of show_typing_base_layer attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="show_typing_base_layer_type" id="show_typing_base_layer_type">type</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">fade or vista</td><td class="tagattribdesc">Specifies the display type. <br />
+The display effect changes depending on the type specified here. <br />
+Default is 'vista'. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="show_typing_base_layer_time" id="show_typing_base_layer_time">time</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">in milliseconds</td><td class="tagattribdesc">Specifies the time to apply the display effect in milliseconds . <br />
+Default is 200. <br />
+</tbody></table><div class="tagremarks">Displays the typing base layer. <br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
-<h1><a name="wait_show_typing_base_layer" id="wait_show_typing_base_layer" class="targanchor"><span class="b">wait_show_typing_base_layer</span>(別名なし)</a></h1>
-<div class="taggenre">タイピング操作</div>
-</tbody></table><div class="tagremarks">タイピングベースレイヤの表示を待ちます。<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<h1><a name="wait_show_typing_base_layer" id="wait_show_typing_base_layer" class="targanchor"><span class="b">wait_show_typing_base_layer</span>(No alias)</a></h1>
+<div class="taggenre">Typing operations</div>
+</tbody></table><div class="tagremarks">Wait for the typing base layer to display. <br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
-<h1><a name="hide_typing_base_layer" id="hide_typing_base_layer" class="targanchor"><span class="b">hide_typing_base_layer</span>(別名なし)</a></h1>
-<div class="taggenre">タイピング操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ hide_typing_base_layer の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="hide_typing_base_layer_type" id="hide_typing_base_layer_type">type</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">fade or vista</td><td class="tagattribdesc">表示タイプを指定します。<br />
-ここで指定したタイプによって表示エフェクトが変わります。<br />
-デフォルトは'vista'です。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="hide_typing_base_layer_time" id="hide_typing_base_layer_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">表示効果にかける時間をミリ秒単位で指定します。<br />
-デフォルトは200です。<br />
-</tbody></table><div class="tagremarks">タイピングベースレイヤを非表示にします。<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<h1><a name="hide_typing_base_layer" id="hide_typing_base_layer" class="targanchor"><span class="b">hide_typing_base_layer</span>(No alias)</a></h1>
+<div class="taggenre">Typing operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of hide_typing_base_layer attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="hide_typing_base_layer_type" id="hide_typing_base_layer_type">type</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">fade or vista</td><td class="tagattribdesc">Specifies the display type. <br />
+The display effect changes depending on the type specified here. <br />
+Default is 'vista'. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="hide_typing_base_layer_time" id="hide_typing_base_layer_time">time</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">in milliseconds</td><td class="tagattribdesc">Specifies the time to apply the display effect in milliseconds . <br />
+Default is 200. <br />
+</tbody></table><div class="tagremarks">Hide the typing base layer. <br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
-<h1><a name="wait_hide_typing_base_layer" id="wait_hide_typing_base_layer" class="targanchor"><span class="b">wait_hide_typing_base_layer</span>(別名なし)</a></h1>
-<div class="taggenre">タイピング操作</div>
-</tbody></table><div class="tagremarks">タイピングベースレイヤの非表示を待ちます。<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<h1><a name="wait_hide_typing_base_layer" id="wait_hide_typing_base_layer" class="targanchor"><span class="b">wait_hide_typing_base_layer</span>(No alias)</a></h1>
+<div class="taggenre">Typing operations</div>
+</tbody></table><div class="tagremarks">Wait for the typing base layer to hide. <br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
-<h1><a name="typing_start" id="typing_start" class="targanchor"><span class="b">typing_start</span>(別名なし)</a></h1>
-<div class="taggenre">タイピング操作</div>
-</tbody></table><div class="tagremarks">タイピングをスタートします。<br />
-このタグでタイピングをスタートしない限り入力を受け付けません。<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<h1><a name="typing_start" id="typing_start" class="targanchor"><span class="b">typing_start</span>(No alias)</a></h1>
+<div class="taggenre">Typing operations</div>
+</tbody></table><div class="tagremarks">Start typing. <br />
+No input will be accepted unless you start typing with this tag. <br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
-<h1><a name="typing_end" id="typing_end" class="targanchor"><span class="b">typing_end</span>(別名なし)</a></h1>
-<div class="taggenre">タイピング操作</div>
-</tbody></table><div class="tagremarks">タイピングを終了します。<br />
-このタグはタイピング終了イベントを発生させます。<br />
+<h1><a name="typing_end" id="typing_end" class="targanchor"><span class="b">typing_end</span>(No alias)</a></h1>
+<div class="taggenre">Typing operations</div>
+</tbody></table><div class="tagremarks">Finish typing. <br />
+This tag fires the typing end event. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
-<h1><a name="load_typing_words" id="load_typing_words" class="targanchor"><span class="b">load_typing_words</span>(別名なし)</a></h1>
-<div class="taggenre">タイピング操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ load_typing_words の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="load_typing_words_storage" id="load_typing_words_storage">storage</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">タイピングワードのストレージ名を指定します。<br />
-</tbody></table><div class="tagremarks">タイピングワードを読み込みます。<br />
-タイピングワードの作り方は/stc/data/typing_words/words.xlsを参考にワードデータを編集します。<br />
-編集後、/tools/make_word/readme.txtを参照して*.batファイルを作成します。<br />
-あとは、*.batファイルを実行して生成された*.dicファイルを開発環境にコピーして、このタグを利用してタイピングワードを読み込みます。<br />
+<h1><a name="load_typing_words" id="load_typing_words" class="targanchor"><span class="b">load_typing_words</span>(No alias)</a></h1>
+<div class="taggenre">Typing operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of load_typing_words attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="load_typing_words_storage" id="load_typing_words_storage">storage</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the storage name for the typing word. <br />
+</tbody></table><div class="tagremarks">Read typing words. <br />
+To create typing words, edit the word data by referring to /stc/data/typing_words/words.xls. <br />
+After editing, refer to /tools/make_word/readme.txt to create a *.bat file. <br />
+Next, run the *.bat file, copy the generated *.dic file to the development environment, and use this tag to read the typing word. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
-<h1><a name="add_typing_word" id="add_typing_word" class="targanchor"><span class="b">add_typing_word</span>(別名なし)</h1>
-<div class="taggenre">タイピング操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ add_typing_word の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="add_typing_word_caption" id="add_typing_word_caption">caption</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">キャプション文字列</td><td class="tagattribdesc">タイピングワードのキャプションを指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="add_typing_word_ruby" id="add_typing_word_ruby">ruby</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">文字</td><td class="tagattribdesc">タイピングワードのルビを指定します。<br />
-ここに指定できる文字は[load_roman_table]タグで読み込んだ文字のみです。<br />
-通常はカタカナと記号のみになります。<br />
-</tbody></table><div class="tagremarks">タイピングワードを追加します。<br />
+<h1><a name="add_typing_word" id="add_typing_word" class="targanchor"><span class="b">add_typing_word</span>(No alias)</h1>
+<div class="taggenre">Typing operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of add_typing_word attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="add_typing_word_caption" id="add_typing_word_caption">caption</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Caption string</td><td class="tagattribdesc">Specifies the caption for the typing word. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="add_typing_word_ruby" id="add_typing_word_ruby">ruby</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Character</td><td class="tagattribdesc">Specifies the ruby of the typing word. <br />
+The only characters that can be specified here are the characters loaded with the [load_roman_table] tag. <br />
+Usually it is just katakana and symbols. <br />
+</tbody></table><div class="tagremarks">Add typing words. <br />
 </div>
-<div class="tagexample"><code class="bq"><span class="weak">例:</span><br />
-; ワードを追加する。<br />
-[add_typing_word caption=漢字 ruby=カンジ]<br />
+<div class="tagexample"><code class="bq"><span class="weak">Example:</span><br />
+; Add word. <br />
+[add_typing_word caption=Kanji ruby=Kanji]<br />
 </code></div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
-<h1><a name="remove_typing_word" id="remove_typing_word" class="targanchor"><span class="b">remove_typing_word</span>(別名なし)</h1>
-<div class="taggenre">タイピング操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ remove_typing_word の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="remove_typing_word_caption" id="remove_typing_word_caption">caption</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">キャプション文字列</td><td class="tagattribdesc">削除するタイピングワードのキャプション文字列を指定します。<br />
-<tr><td class="tagattribalias">canskip</td><td class="tagattribname"><a class="targanchor" name="remove_typing_word_ruby" id="remove_typing_word_ruby">ruby</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ルビ文字列</td><td class="tagattribdesc">削除するタイピングワードのルビ文字列を指定します。<br />
-</tbody></table><div class="tagremarks">タイピングワードを削除します。<br />
+<h1><a name="remove_typing_word" id="remove_typing_word" class="targanchor"><span class="b">remove_typing_word</span>(No alias)</h1>
+<div class="taggenre">Typing operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of remove_typing_word attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">buf</td><td class="tagattribname"><a class="targanchor" name="remove_typing_word_caption" id="remove_typing_word_caption">caption</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Caption string</td><td class="tagattribdesc">Specify the caption string of the typing word to be deleted. <br />
+<tr><td class="tagattribalias">canskip</td><td class="tagattribname"><a class="targanchor" name="remove_typing_word_ruby" id="remove_typing_word_ruby">ruby</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Ruby string</td><td class="tagattribdesc">Specify the ruby string of the typing word to be deleted. <br />
+</tbody></table><div class="tagremarks">Remove typing words. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
-<h1><a name="clear_typing_word_list" id="clear_typing_word_list" class="targanchor"><span class="b">clear_typing_word_list</span>(別名なし)</h1>
-<div class="taggenre">タイピング操作</div>
-</tbody></table><div class="tagremarks">タイピングワードを全てクリアします。<br />
+<h1><a name="clear_typing_word_list" id="clear_typing_word_list" class="targanchor"><span class="b">clear_typing_word_list</span>(No alias)</h1>
+<div class="taggenre">Typing operations</div>
+</tbody></table><div class="tagremarks">Clears all typing words. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
-<h1><a name="show_typing_target" id="show_typing_target" class="targanchor"><span class="b">show_typing_target</span>(別名なし)</h1>
-<div class="taggenre">タイピング操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ show_typing_target の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="show_typing_target_caption" id="show_typing_target_caption">caption</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">キャプション文字列</td><td class="tagattribdesc">表示するタイピングオブジェクトのキャプション文字列を指定します。<br />
-"random"を指定すると読み込まれているタイピングワードからランダムでワードを読み込みます。<br />
-デフォルトは"random"です。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="show_typing_target_ruby" id="show_typing_target_ruby">ruby</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ルビ文字列</td><td class="tagattribdesc">表示するタイピングオブジェクトのルビ文字列を指定します。<br />
-"random"を指定すると読み込まれているタイピングワードからランダムでワードを読み込みます。<br />
-デフォルトは"random"です。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="show_typing_target_storage" id="show_typing_target_storage">storage</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">タイピングオブジェクトの画像ストレージ名を指定します。<br />
-省略すると[typing_config]で指定された画像ストレージ名からランダムで読み込まれます。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="show_typing_target_position" id="show_typing_target_position">position</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">random or center</td><td class="tagattribdesc">表示位置を指定します。<br />
-ここでrandom/centerを指定するとleft/top共にrandom/centerを指定されたものをみなします。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="show_typing_target_left" id="show_typing_target_left">left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位 or random or center</td><td class="tagattribdesc">左隅位置を指定します。<br />
-randomを指定するとランダム位置に表示します。<br />
-centerを指定すると中央に表示します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="show_typing_target_top" id="show_typing_target_top">top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位 or radom or center</td><td class="tagattribdesc">上隅位置を指定します。<br />
-randomを指定するとランダム位置に表示します。<br />
-centerを指定すると中央に表示します。<br />
-</tbody></table><div class="tagremarks">タイピングオブジェクトを表示します。<br />
+<h1><a name="show_typing_target" id="show_typing_target" class="targanchor"><span class="b">show_typing_target</span>(No alias)</h1>
+<div class="taggenre">Typing operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of show_typing_target attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="show_typing_target_caption" id="show_typing_target_caption">caption</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Caption string</td><td class="tagattribdesc">Specifies the caption string of the typing object to be displayed. <br />
+If you specify "random", a word will be read at random from the typing words that have been read. <br />
+Default is "random". <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="show_typing_target_ruby" id="show_typing_target_ruby">ruby</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Ruby string</td><td class="tagattribdesc">Specifies the ruby string of the typing object to be displayed. <br />
+If you specify "random", a word will be read at random from the typing words that have been read. <br />
+Default is "random". <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="show_typing_target_storage" id="show_typing_target_storage">storage</a></td ><td class="tagattribrequired">yes</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the image storage name for the typing object. <br />
+If omitted, it will be loaded randomly from the image storage name specified in [typing_config]. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="show_typing_target_position" id="show_typing_target_position">position</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">random or center</td><td class="tagattribdesc">Specify the display position. <br />
+If you specify random/center here, both left and top will be treated as random/center. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="show_typing_target_left" id="show_typing_target_left">left</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">in pixels or random or center</td><td class="tagattribdesc">Specifies the left corner position. <br />
+If you specify random, it will be displayed at a random position. <br />
+If you specify center, it will be displayed in the center. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="show_typing_target_top" id="show_typing_target_top">top</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">in pixels or radom or center</td><td class="tagattribdesc">Specifies the top corner position. <br />
+If you specify random, it will be displayed at a random position. <br />
+If you specify center, it will be displayed in the center. <br />
+</tbody></table><div class="tagremarks">Displays typing objects. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
-<h1><a name="hide_typing_target" id="hide_typing_target" class="targanchor"><span class="b">hide_typing_target</span>(別名なし)</h1>
-<div class="taggenre">タイピング操作</div>
-</tbody></table><div class="tagremarks">タイピングオブジェクトを全て削除します。<br />
+<h1><a name="hide_typing_target" id="hide_typing_target" class="targanchor"><span class="b">hide_typing_target</span>(No alias)</h1>
+<div class="taggenre">Typing operations</div>
+</tbody></table><div class="tagremarks">hide all typing objects. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
-<h1><a name="wait_typing" id="wait_typing" class="targanchor"><span class="b">wait_typing</span>(別名なし)</h1>
-<div class="taggenre">タイピング操作</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ wait_typing の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="wait_typing_count" id="wait_typing_count">count</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数</td><td class="tagattribdesc">タイピングオブジェクトがここで指定した数以下になると実行を再開します。<br />
-省略するとこのタグは即座に実行を再開します。<br />
-</tbody></table><div class="tagremarks">タイピング入力完了を待ちます。<br />
-このタグを実行するとシナリオスクリプトは停止します。<br />
-タイピングオブジェクトがここで指定した数以下になると実行を再開します。<br />
-[typing_config]タグで指定したイベントが優先されます。<br />
+<h1><a name="wait_typing" id="wait_typing" class="targanchor"><span class="b">wait_typing</span>(No alias)</h1>
+<div class="taggenre">Typing operations</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of wait_typing attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="wait_typing_count" id="wait_typing_count">count</a></td ><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Resume execution when the number of typing objects falls below the number specified here. Masu. <br />
+If omitted, this tag resumes execution immediately. <br />
+</tbody></table><div class="tagremarks">Wait for typing input to complete. <br />
+Executing this tag will stop the scenario script. <br />
+Execution will resume when the number of typing objects falls below the number specified here. <br />
+Events specified in the [typing_config] tag have priority. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
-<h1><a name="dump_typing_word_list" id="dump_typing_word_list" class="targanchor"><span class="b">dump_typing_word_list</span>(別名なし)</h1>
-<div class="taggenre">タイピング操作</div>
-</tbody></table><div class="tagremarks">タイピングワードのリストをログに出力します。<br />
-このタグはデバッグ用です。<br />
+<h1><a name="dump_typing_word_list" id="dump_typing_word_list" class="targanchor"><span class="b">dump_typing_word_list</span>(No alias)</h1>
+<div class="taggenre">Typing operations</div>
+</tbody></table><div class="tagremarks">Outputs a list of typing words to the log. <br />
+This tag is for debugging purposes. <br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 	<script type="text/javascript" charset="Shift_JIS" src="documentid.js" ></script>
 	<script type="text/javascript" charset="Shift_JIS" src="postcontent.js" ></script>
