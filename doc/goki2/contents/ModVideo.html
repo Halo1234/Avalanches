@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+	<title>ModVideoのタグ</title>
+	<meta name="author" content="Halo" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript" />
+	<link href="browser.css" type="text/css" rel="stylesheet" title="吉里吉里関連リファレンス用標準スタイル" />
+	<link href="mailto:halosuke@gmail.com" rev="Made" />
+	<link href="index.html" target="_top" rel="Start" title="トップページ" />
+</head>
+<body>
+
+<h1><a name="tags" id="tags">ModVideoのタグ</a></h1>
+<div class="para"><div>　ModVideo で使用可能なタグのリファレンスです。<br />
+
+<h1><a name="genre" id="genre" class="targanchor">ジャンル・タグ一覧</a></h1>
+
+
+<div class="para"><div><br />
+<table class="taglist"><tbody>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#video_buffers">video_buffers</a></span></td><td class="taglisteven">ビデオ用のバッファの数を指定する</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#video">video</a></span></td><td class="taglistodd">ビデオの設定を行います</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#set_video_layer">set_video_layer</a></span></td><td class="taglisteven">ビデオレイヤの設定を行います</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#clear_video_layer">clear_video_layer</a></span></td><td class="taglistodd">ビデオレイヤの設定をクリアします</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#open_video">open_video</a></span></td><td class="taglisteven">動画ファイルをオープンします</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#prepare_video">prepare_video</a></span></td><td class="taglistodd">動画再生準備を行います</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#play_video">play_video</a></span></td><td class="taglisteven">動画を再生します</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#rewind_video">rewind_video</a></span></td><td class="taglistodd">動画の位置を先頭にします</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#pause_video">pause_video</a></span></td><td class="taglisteven">動画をポーズします</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#resume_video">resume_video</a></span></td><td class="taglistodd">動画のポーズ解除します</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#set_video_event">set_video_event</a></span></td><td class="taglisteven">動画のイベントを設定します</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#set_video_segment_loop">set_video_segment_loop</a></span></td><td class="taglistodd">動画のセグメントループを設定します</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#wait_video">wait_video</a></span></td><td class="taglisteven">動画の再生終了待ちを行います</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#stop_video">stop_video</a></span></td><td class="taglistodd">動画を停止します</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#close_video">close_video</a></span></td><td class="taglisteven">動画をクローズします</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#cancel_video_event">cancel_video_event</a></span></td><td class="taglistodd">ビデオイベントをクリアします</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#cancel_video_segment_loop">cancel_video_segment_loop</a></span></td><td class="taglisteven">動画のセグメントループ設定をクリアします</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#wait_period_event">wait_period_event</a></span></td><td class="taglistodd">ピリオドイベントを待ちます</td></tr>
+</tbody></table><br /><br /></div></div>
+
+<h1><a name="video_buffers" id="video_buffers" class="targanchor"><span class="b">video_buffers</span>(別名なし)</a></h1>
+<div class="taggenre">ビデオ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ video_buffers の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="video_buffers_count" id="video_buffers_count">count</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">バッファの数</td><td class="tagattribdesc">バッファの数を指定します。<br />
+</tbody></table><div class="tagremarks">ビデオバッファの数を指定します。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="video" id="video" class="targanchor"><span class="b">video</span>(別名なし)</a></h1>
+<div class="taggenre">ビデオ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ video の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="video_slot" id="video_slot">slot</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">バッファの番号（0～）</td><td class="tagattribdesc">バッファの番号を指定します。<br />
+デフォルトは0です。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="video_left" id="video_left">left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">ビデオ表示位置の左端を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="video_top" id="video_top">top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">ビデオ表示位置の上端を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="video_width" id="video_width">width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">ビデオの幅を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="video_height" id="video_height">height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">ビデオの高さを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="video_position" id="video_position">position</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">ビデオの再生位置をミリ秒単位で指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="video_loop" id="video_loop">loop</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定すると再生がループします。<br />
+falseを指定するとループしません。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="video_frame" id="video_frame">frame</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">フレーム番号</td><td class="tagattribdesc">ビデオの再生位置をフレーム単位で指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="video_mode" id="video_mode">mode</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">"layer" or "mixer" or "overlay"</td><td class="tagattribdesc">ビデオの描画モードを指定します。<br />
+<tr><td class="tagattribalias">playrate</td><td class="tagattribname"><a class="targanchor" name="video_play_rate" id="video_play_rate">play_rate</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0.0～</td><td class="tagattribdesc">ビデオの再生スピードを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="video_volume" id="video_volume">volume</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0～100</td><td class="tagattribdesc">オーディオの音量を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="video_pan" id="video_pan">pan</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">-100～100</td><td class="tagattribdesc">パンを指定します。<br />
+<tr><td class="tagattribalias">audiostreamnum</td><td class="tagattribname"><a class="targanchor" name="video_audio_stream_number" id="video_audio_stream_number">audio_stream_number</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0～</td><td class="tagattribdesc">音声ストリーム番号を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="video_visible" id="video_visible">visible</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定するとビデオを表示します。<br />
+falseを指定すると非表示になります。<br />
+</tbody></table><div class="tagremarks">ビデオ表示領域の設定をします。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="set_video_layer" id="set_video_layer" class="targanchor"><span class="b">set_video_layer</span>(videolayer)</a></h1>
+<div class="taggenre">ビデオ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ set_video_layer の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="set_video_layer_slot" id="set_video_layer_slot">slot</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">バッファの番号（0～）</td><td class="tagattribdesc">バッファの番号を指定します。<br />
+デフォルトは0です。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="set_video_layer_channel" id="set_video_layer_channel">channel</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">1 or 2</td><td class="tagattribdesc">再生するチャンネルを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="set_video_layer_layer" id="set_video_layer_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">レイヤ番号</td><td class="tagattribdesc">再生するレイヤを指定します。<br />
+省略するとbaseとみなされます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="set_video_layer_page" id="set_video_layer_page">page</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">fore or back</td><td class="tagattribdesc">再生するページを指定します。<br />
+省略するとforeとみなされます。<br />
+</tbody></table><div class="tagremarks">ビデオレイヤの設定をします。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="clear_video_layer" id="clear_video_layer" class="targanchor"><span class="b">clear_video_layer</span>(clearvideolayer)</a></h1>
+<div class="taggenre">ビデオ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ clear_video_layer の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="clear_video_layer_slot" id="clear_video_layer_slot">slot</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">バッファの番号（0～）</td><td class="tagattribdesc">バッファの番号を指定します。<br />
+デフォルトは0です。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="clear_video_layer_channel" id="clear_video_layer_channel">channel</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">1 or 2</td><td class="tagattribdesc">設定をクリアするチャンネルを指定します。<br />
+</tbody></table><div class="tagremarks">ビデオレイヤの設定をクリアします。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="open_video" id="open_video" class="targanchor"><span class="b">open_video</span>(openvideo)</a></h1>
+<div class="taggenre">ビデオ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ open_video の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="open_video_slot" id="open_video_slot">slot</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">バッファの番号（0～）</td><td class="tagattribdesc">バッファの番号を指定します。<br />
+デフォルトは0です。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="open_video_storage" id="open_video_storage">storage</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">オープンするビデオストレージ名を指定します。<br />
+</tbody></table><div class="tagremarks">ビデオをオープンします。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="prepare_video" id="prepare_video" class="targanchor"><span class="b">prepare_video</span>(preparevideo)</a></h1>
+<div class="taggenre">ビデオ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ prepare_video の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="prepare_video_slot" id="prepare_video_slot">slot</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">バッファの番号（0～）</td><td class="tagattribdesc">バッファの番号を指定します。<br />
+デフォルトは0です。<br />
+</tbody></table><div class="tagremarks">ビデオの再生準備を行います。<br />
+このタグの直後に[wp for=prepare]で準備完了を待ってください。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="play_video" id="play_video" class="targanchor"><span class="b">play_video</span>(playvideo)</a></h1>
+<div class="taggenre">ビデオ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ play_video の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="play_video_slot" id="play_video_slot">slot</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">バッファの番号（0～）</td><td class="tagattribdesc">バッファの番号を指定します。<br />
+デフォルトは0です。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="play_video_storage" id="play_video_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">再生するビデオストレージ名を指定します。<br />
+[open_video]タグで既にオープンしている場合は省略可能です。
+</tbody></table><div class="tagremarks">ビデオを再生します。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="rewind_video" id="rewind_video" class="targanchor"><span class="b">rewind_video</span>(rewindvideo)</a></h1>
+<div class="taggenre">ビデオ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ rewind_video の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="rewind_video_slot" id="rewind_video_slot">slot</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">バッファの番号（0～）</td><td class="tagattribdesc">バッファの番号を指定します。<br />
+デフォルトは0です。<br />
+</tbody></table><div class="tagremarks">ビデオを先頭まで巻き戻します。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="pause_video" id="pause_video" class="targanchor"><span class="b">pause_video</span>(pausevideo)</a></h1>
+<div class="taggenre">ビデオ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ pause_video の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="pause_video_slot" id="pause_video_slot">slot</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">バッファの番号（0～）</td><td class="tagattribdesc">バッファの番号を指定します。<br />
+デフォルトは0です。<br />
+</tbody></table><div class="tagremarks">ビデオを一時停止します。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="resume_video" id="resume_video" class="targanchor"><span class="b">resume_video</span>(resumevideo)</a></h1>
+<div class="taggenre">ビデオ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ resume_video の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="resume_video_slot" id="resume_video_slot">slot</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">バッファの番号（0～）</td><td class="tagattribdesc">バッファの番号を指定します。<br />
+デフォルトは0です。<br />
+</tbody></table><div class="tagremarks">ビデオを一時停止します。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="set_video_event" id="set_video_event" class="targanchor"><span class="b">set_video_event</span>(videoevent)</a></h1>
+<div class="taggenre">ビデオ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ set_video_event の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="set_video_event_slot" id="set_video_event_slot">slot</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">バッファの番号（0～）</td><td class="tagattribdesc">バッファの番号を指定します。<br />
+デフォルトは0です。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="set_video_event_frame" id="set_video_event_frame">frame</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">フレーム番号</td><td class="tagattribdesc">ピリオドイベントを発生させるフレーム番号を指定します。<br />
+省略すると0とみなします。<br />
+</tbody></table><div class="tagremarks">ピリオドイベントを設定します。<br />
+ピリオドイベントは[wp]タグで待つことができます。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="set_video_segment_loop" id="set_video_segment_loop" class="targanchor"><span class="b">set_video_segment_loop</span>(videosegloop)</a></h1>
+<div class="taggenre">ビデオ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ set_video_segment_loop の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="set_video_segment_loop_slot" id="set_video_segment_loop_slot">slot</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">バッファの番号（0～）</td><td class="tagattribdesc">バッファの番号を指定します。<br />
+デフォルトは0です。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="set_video_segment_loop_start" id="set_video_segment_loop_start">start</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">フレーム番号</td><td class="tagattribdesc">ループする始点のフレーム番号を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="set_video_segment_loop_end" id="set_video_segment_loop_end">end</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">フレーム番号</td><td class="tagattribdesc">ループする終点のフレーム番号を指定します。<br />
+</tbody></table><div class="tagremarks">ビデオをループします。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="wait_video" id="wait_video" class="targanchor"><span class="b">wait_video</span>(wv)</a></h1>
+<div class="taggenre">ビデオ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ wait_video の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="wait_video_slot" id="wait_video_slot">slot</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">バッファの番号（0～）</td><td class="tagattribdesc">バッファの番号を指定します。<br />
+デフォルトは0です。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="wait_video_skip" id="wait_video_skip">skip</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定するとスキップ可能となります。<br />
+falseを指定するとスキップ不可となります。<br />
+デフォルトはfalseです。<br />
+</tbody></table><div class="tagremarks">ビデオの再生待ちをします。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="stop_video" id="stop_video" class="targanchor"><span class="b">stop_video</span>(stopvideo)</a></h1>
+<div class="taggenre">ビデオ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ stop_video の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="stop_video_slot" id="stop_video_slot">slot</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">バッファの番号（0～）</td><td class="tagattribdesc">バッファの番号を指定します。<br />
+デフォルトは0です。<br />
+</tbody></table><div class="tagremarks">ビデオを停止します。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="close_video" id="close_video" class="targanchor"><span class="b">close_video</span>(closevideo)</a></h1>
+<div class="taggenre">ビデオ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ close_video の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="close_video_slot" id="close_video_slot">slot</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">バッファの番号（0～）</td><td class="tagattribdesc">バッファの番号を指定します。<br />
+デフォルトは0です。<br />
+</tbody></table><div class="tagremarks">ビデオをクローズします。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="cancel_video_event" id="cancel_video_event" class="targanchor"><span class="b">cancel_video_event</span>(cancelvideoevent)</a></h1>
+<div class="taggenre">ビデオ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ cancel_video_event の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cancel_video_event_slot" id="cancel_video_event_slot">slot</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">バッファの番号（0～）</td><td class="tagattribdesc">バッファの番号を指定します。<br />
+デフォルトは0です。<br />
+</tbody></table><div class="tagremarks">ピリオドイベントをキャンセルします。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="cancel_video_segment_loop" id="cancel_video_segment_loop" class="targanchor"><span class="b">cancel_video_segment_loop</span>(cancelvideosegloop)</a></h1>
+<div class="taggenre">ビデオ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ cancel_video_segment_loop の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cancel_video_segment_loop_slot" id="cancel_video_segment_loop_slot">slot</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">バッファの番号（0～）</td><td class="tagattribdesc">バッファの番号を指定します。<br />
+デフォルトは0です。<br />
+</tbody></table><div class="tagremarks">セグメントループをキャンセルします。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="wait_period_event" id="wait_period_event" class="targanchor"><span class="b">wait_period_event</span>(wp)</a></h1>
+<div class="taggenre">ビデオ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ wait_period_event の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="wait_period_event_slot" id="wait_period_event_slot">slot</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">バッファの番号（0～）</td><td class="tagattribdesc">バッファの番号を指定します。<br />
+デフォルトは0です。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="wait_period_event_for" id="wait_period_event_for">for</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">loop or period or prepare or segLoop</td><td class="tagattribdesc">待つイベントの種類を指定します。<br />
+loopを指定するとループ終端を待ちます。<br />
+periodを指定するとピリオドイベントを待ちます。<br />
+prepareを指定するとprepare_videoの準備完了を待ちます。<br />
+segLoopを指定するとセグメントループ終端を待ちます。<br />
+</tbody></table><div class="tagremarks">イベントを待ちます。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+	<script type="text/javascript" charset="Shift_JIS" src="documentid.js" ></script>
+	<script type="text/javascript" charset="Shift_JIS" src="postcontent.js" ></script>
+</body></html>

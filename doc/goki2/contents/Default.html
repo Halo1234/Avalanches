@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+	<title>デフォルトのタグ</title>
+	<meta name="author" content="Halo" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript" />
+	<link href="browser.css" type="text/css" rel="stylesheet" title="吉里吉里関連リファレンス用標準スタイル" />
+	<link href="mailto:halosuke@gmail.com" rev="Made" />
+	<link href="index.html" target="_top" rel="Start" title="トップページ" />
+</head>
+<body>
+
+<h1><a name="tags" id="tags">デフォルトのタグ</a></h1>
+<div class="para"><div>　デフォルトで使用可能なタグのリファレンスです。<br />
+各モジュールを読み込む事によって重複しているタグがあります。<br />
+重複している場合、後に読み込んだモジュールのタグが有効になります。<br />
+<br />
+syntaxタグはGConductorの機能により以下のように書く事ができます。<br />
+@!tag /pattern=&lt;TEST&gt;_suffix &amp;group=g1 element=name-&gt;value<br />
+
+<h1><a name="genre" id="genre" class="targanchor">ジャンル・タグ一覧</a></h1>
+
+
+<div class="para"><div><br />
+<table class="taglist"><tbody>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#window">window</a></span></td><td class="taglisteven">ウインドウの設定を行います</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#title">title</a></span></td><td class="taglistodd">タイトルを設定します</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#load_module">load_module</a></span></td><td class="taglisteven">TJSモジュールを読み込みます</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#close">close</a></span></td><td class="taglistodd">ウインドウを閉じます</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#single">single</a></span></td><td class="taglisteven">2重起動防止</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#cr_handling">cr_handling</a></span></td><td class="taglistodd">改行コードの扱いを設定します</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#version">version</a></span></td><td class="taglisteven">バージョンを設定します</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#update_initializer">update_initializer</a></span></td><td class="taglistodd">未実装</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#load_plugin">load_plugin</a></span></td><td class="taglisteven">プラグインを読み込みます</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#que">que</a></span></td><td class="taglistodd">スクリプトキューにスクリプトを追加します</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#dump_script_que">dump_script_que</a></span></td><td class="taglisteven">スクリプトキューの内容をログにダンプします</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#next">next</a></span></td><td class="taglistodd">スクリプトキューにある次のシナリオを実行します</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#auto_jump">auto_jump</a></span></td><td class="taglisteven">スクリプトの自動実行を設定します</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#syntax">syntax</a></span></td><td class="taglistodd">拡張構文を設定します</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#redirect">redirect</a></span></td><td class="taglisteven">タグのリダイレクト先を設定します</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#notice">notice</a></span></td><td class="taglistodd">noticeメッセージを出力します</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#log">log</a></span></td><td class="taglisteven">ログを出力します</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#ch">ch</a></span></td><td class="taglistodd">文字を出力します</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#r">r</a></span></td><td class="taglisteven">改行を出力します</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#s">s</a></span></td><td class="taglistodd">シナリオを停止します</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#end">end</a></span></td><td class="taglisteven">シナリオを終了します</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#wait">wait</a></span></td><td class="taglistodd">指定時間待ちます</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#reset_wait">reset_wait</a></span></td><td class="taglisteven">指定時間待つ基準時間を記録します</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#wait_click">wait_click</a></span></td><td class="taglistodd">クリックを待ちます</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#eval">eval</a></span></td><td class="taglisteven">TJSスクリプトを実行します</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#input">input</a></span></td><td class="taglistodd">文字入力します</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#trace">trace</a></span></td><td class="taglisteven">トレースログを出力します</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#breath_bound">breath_bound</a></span></td><td class="taglistodd">ブレス閾値を指定します</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#break">break</a></span></td><td class="taglisteven">コンダクタをブレークします</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#breath">breath</a></span></td><td class="taglistodd">コンダクタをブレスします</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#breath_clear">breath_clear</a></span></td><td class="taglisteven">コンダクタのブレス状態をクリアします</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#call">call</a></span></td><td class="taglisteven">スクリプトをコールします</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#jump">jump</a></span></td><td class="taglistodd">指定スクリプトにジャンプします</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#return">return</a></span></td><td class="taglisteven">コール先から戻ります</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#script">script</a></span></td><td class="taglistodd">TJSスクリプト実行します</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#ask_close">ask_close</a></span></td><td class="taglisteven">閉じるダイアログの画像指定</td></tr>
+</tbody></table><br /><br /></div></div>
+
+<h1><a name="window" id="window" class="targanchor"><span class="b">window</span>(別名なし)</a></h1>
+<div class="taggenre">ウインドウ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ window の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="window_caption" id="window_caption">caption</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">キャプション</td><td class="tagattribdesc">ウインドウのキャプションを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="window_width" id="window_width">width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">ウインドウの幅を指定します。<br />
+これはクライアント領域の幅です。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="window_height" id="window_height">height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">ウインドウの高さを指定します。<br />
+これはクライアント領域の高さです。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="window_alt_enter" id="window_alt_enter">alt_enter</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定するとAlt + Enterでスクリーンモード切替ができるようになります。<br />
+falseを指定するとキーボードでスクリーンモードの切替はできなくなります。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="window_fix_position_to_center" id="window_fix_position_to_center">fix_position_to_center</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定するとウインドウ位置をデスクトップ中央に表示します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="window_full_screen" id="window_full_screen">full_screen</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定するとフルスクリーン表示になります。<br />
+falseを指定するとウインドウ表示になります。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="window_visible" id="window_visible">visible</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定するとウインドウが表示されます。<br />
+falseを指定するとウインドウが非表示になります。<br />
+</tbody></table><div class="tagremarks">ウインドウの設定を行います。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="title" id="title" class="targanchor"><span class="b">title</span>(別名なし)</a></h1>
+<div class="taggenre">ウインドウ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ title の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="title_name" id="title_name">name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">タイトル</td><td class="tagattribdesc">ゲームタイトルを設定します。<br />
+</tbody></table><div class="tagremarks">タイトルの設定を行います。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="load_module" id="load_module" class="targanchor"><span class="b">load_module</span>(別名なし)</a></h1>
+<div class="taggenre">モジュール</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ load_module の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_module_name" id="load_module_name">name</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">モジュール名</td><td class="tagattribdesc">TJSモジュール名を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_module_automation" id="load_module_automation">automation</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定するとモジュール名の最初の文字を小文字にした名前で別名を登録します。<br />
+falseを指定すると別名を登録しません。<br />
+デフォルトはtrueです。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_module_alias" id="load_module_alias">alias</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">モジュール別名</td><td class="tagattribdesc">モジュールの別名を指定します。<br />
+</tbody></table><div class="tagremarks">ＴＪＳモジュールの読み込みを行います。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="close" id="close" class="targanchor"><span class="b">close</span>(別名なし)</a></h1>
+<div class="taggenre">ウインドウ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ close の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="close_ask" id="close_ask">ask</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定すると閉じる確認ダイアログを表示します。<br />
+falseを指定すると確認せずにウインドウを閉じます。<br />
+デフォルトはtrueです。<br />
+</tbody></table><div class="tagremarks">ウインドウを閉じます。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="single" id="single" class="targanchor"><span class="b">single</span>(別名なし)</a></h1>
+<div class="taggenre">制御</div>
+</tbody></table><div class="tagremarks">2重起動防止タグです。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="cr_handling" id="cr_handling" class="targanchor"><span class="b">cr_handling</span>(別名なし)</a></h1>
+<div class="taggenre">制御</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ cr_handling の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="cr_handling_ignore" id="cr_handling_ignore">ignore</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定すると改行コードを無視します。<br />
+falseを指定すると改行コードを[r]タグとして扱います。<br />
+デフォルトはfalseです。<br />
+</tbody></table><div class="tagremarks">改行コードの扱いを設定します。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="version" id="version" class="targanchor"><span class="b">version</span>(別名なし)</a></h1>
+<div class="taggenre">バージョン</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ version の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="version_title" id="version_title">title</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ゲームタイトル</td><td class="tagattribdesc">ゲームのタイトルを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="version_major" id="version_major">major</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">バージョン番号</td><td class="tagattribdesc">メジャーバージョン番号を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="version_minor" id="version_minor">minor</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">バージョン番号</td><td class="tagattribdesc">マイナーバージョン番号を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="version_special" id="version_special">special</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">バージョン文字列</td><td class="tagattribdesc">バージョン情報に付加する文字列を指定します。<br />
+体験版リリース時に「体験版」などと指定するとよいでしょう。<br />
+</tbody></table><div class="tagremarks">バージョン情報を設定します。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="update_initializer" id="update_initializer" class="targanchor"><span class="b">update_initializer</span>(別名なし)</a></h1>
+<div class="taggenre">制御</div>
+</tbody></table><div class="tagremarks">未実装機能です。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="load_plugin" id="load_plugin" class="targanchor"><span class="b">load_plugin</span>(loadplugin)</a></h1>
+<div class="taggenre">プラグイン</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ load_plugin の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">module</td><td class="tagattribname"><a class="targanchor" name="load_plugin_name" id="load_plugin_name">name</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">プラグイン名</td><td class="tagattribdesc">読み込むプラグインのファイル名を指定します。<br />
+</tbody></table><div class="tagremarks">プラグインを読み込みます。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="que" id="que" class="targanchor"><span class="b">que</span>(別名なし)</a></h1>
+<div class="taggenre">スクリプト操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ que の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="que_clear" id="que_clear">clear</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定するとキューをクリアします。<br />
+falseを指定するとクリアしません。<br />
+デフォルトはfalseです。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="que_add" id="que_add">add</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定するとシナリオストレージを後ろに追加します。<br />
+デフォルトはtrueです。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="que_unshift" id="que_unshift">unshift</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定するとシナリオストレージを先頭に追加します。<br />
+デフォルトはfalseです。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="que_storage" id="que_storage">storage</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">シナリオストレージ名</td><td class="tagattribdesc">追加するシナリオストレージ名を指定します。<br />
+カンマ(,)で区切っていくつでも指定できます。<br />
+</tbody></table><div class="tagremarks">シナリオキューにシナリオを追加します。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="dump_script_que" id="dump_script_que" class="targanchor"><span class="b">dump_script_que</span>(別名なし)</a></h1>
+<div class="taggenre">スクリプト操作</div>
+</tbody></table><div class="tagremarks">シナリオキューの内容をログに出力します。<br />
+このタグはデバッグ用です。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="next" id="next" class="targanchor"><span class="b">next</span>(別名なし)</a></h1>
+<div class="taggenre">スクリプト操作</div>
+</tbody></table><div class="tagremarks">シナリオキューの次のシナリオを実行します。<br />
+[que]タグで追加した次のシナリオを実行します。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="auto_jump" id="auto_jump" class="targanchor"><span class="b">auto_jump</span>(別名なし)</a></h1>
+<div class="taggenre">スクリプト操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ auto_jump の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="auto_jump_off" id="auto_jump_off">off</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定するとシナリオのオートジャンプ機能を無効化します。<br />
+falseを指定するとシナリオのオートジャンプ機能を有効化します。<br />
+デフォルトはfalseです。<br />
+</tbody></table><div class="tagremarks">シナリオのオートジャンプ機能を設定します。<br />
+[auto_jump !off]ならばシナリオ終端に達した時、シナリオキューの次のシナリオを実行します。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="syntax" id="syntax" class="targanchor"><span class="b">syntax</span>(別名なし)</a></h1>
+<div class="taggenre">スクリプト操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ syntax の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="syntax_target_tag_name" id="syntax_target_tag_name">target_tag_name</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">タグ名</td><td class="tagattribdesc">拡張構文を利用するタグ名を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="syntax_target_tag_/" id="syntax_target_tag_/">/</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">パターン</td><td class="tagattribdesc">拡張構文のパターンを指定します。<br />
+/test=&lt;PATTERN&gt;を指定すると、pattern=値と指定された場合にtest=値で置き換えられます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="syntax_target_tag_&" id="syntax_target_tag_&">&amp;</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">グループ</td><td class="tagattribdesc">拡張構文のグループを指定します。<br />
+&amp;test=groupを指定するとgroupを指定した時にtest=1とします。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="syntax_target_tag" id="syntax_target_tag">-&gt;</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">変換指定</td><td class="tagattribdesc">変換指定を設定します。<br />
+pose=ポーズ１-&gt;pose1を指定するとポーズ１がpose1に変換されます。<br />
+</tbody></table><div class="tagremarks">スクリプトの拡張構文を設定します。<br />
+@syntax target_tag_name=tag name=名前-&gt;ハロ &amp;group=グループ /storage=&lt;NAME&gt;_立ち絵 を指定すると<br />
+@tag ハロ グループ を実行すると<br />
+@tag ハロ name=ハロ group=1 storage=ハロ_立ち絵 を指定した事と同じ意味になります。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="redirect" id="redirect" class="targanchor"><span class="b">redirect</span>(別名なし)</a></h1>
+<div class="taggenre">スクリプト操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ redirect の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="redirect_alias" id="redirect_alias">alias</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">タグの別名</td><td class="tagattribdesc">タグの別名を指定します。<br />
+ここで指定した名前がnameで指定したタグにリダイレクトします。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="redirect_name" id="redirect_name">name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">タグの名前</td><td class="tagattribdesc">タグの名前を指定します。<br />
+aliasで指定したタグ名がここで指定したタグにリダイレクトされます。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="redirect_remove" id="redirect_remove">remove</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定するとaliasで指定した別名が削除されます。<br />
+falseを指定するとaliasの追加が行われます。<br />
+デフォルトはfalseです。<br />
+</tbody></table><div class="tagremarks">リダイレクト先の追加/削除を行います。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="notice" id="notice" class="targanchor"><span class="b">notice</span>(別名なし)</a></h1>
+<div class="taggenre">ログ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ notice の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="notice_message" id="notice_message">message</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">テキスト</td><td class="tagattribdesc">noticeメッセージを指定します。<br />
+ここで指定したメッセージがnoticeとして出力されます。<br />
+</tbody></table><div class="tagremarks">noticeメッセージを出力します。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="log" id="log" class="targanchor"><span class="b">log</span>(別名なし)</a></h1>
+<div class="taggenre">ログ操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ log の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="log_message" id="log_message">message</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">テキスト</td><td class="tagattribdesc">logメッセージを指定します。<br />
+ここで指定したメッセージがlogとして出力されます。<br />
+</tbody></table><div class="tagremarks">logメッセージを出力します。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="ch" id="ch" class="targanchor"><span class="b">ch</span>(別名なし)</a></h1>
+<div class="taggenre">テキスト操作</div>
+</tbody></table><div class="tagremarks">何もしません。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="r" id="r" class="targanchor"><span class="b">r</span>(別名なし)</a></h1>
+<div class="taggenre">テキスト操作</div>
+</tbody></table><div class="tagremarks">何もしません。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="s" id="s" class="targanchor"><span class="b">s</span>(別名なし)</a></h1>
+<div class="taggenre">スクリプト操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ s の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="s_eof" id="s_eof">eof</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定するとファイル終端とします。<br />
+ファイル終端で[auto_jump]タグの自動ジャンプが有効化されていれば次のシナリオを実行します。<br />
+それ以外の場合、シナリオ停止します。<br />
+この属性はKAGParserによって自動的に設定されるため直接指定する事はないでしょう。<br />
+</tbody></table><div class="tagremarks">シナリオ停止します。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="end" id="end" class="targanchor"><span class="b">end</span>(別名なし)</a></h1>
+<div class="taggenre">スクリプト操作</div>
+</tbody></table><div class="tagremarks">シナリオを破棄して、interrupt状態になります。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="wait" id="wait" class="targanchor"><span class="b">wait</span>(別名なし)</a></h1>
+<div class="taggenre">スクリプト操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ wait の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="wait_time" id="wait_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">待つ時間をミリ秒単位で指定します。<br />
+デフォルトは0です。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="wait_mode" id="wait_mode">mode</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">until</td><td class="tagattribdesc">untilを指定すると[reset_wait]タグが実行された時間からの経過時間を待ちます。<br />
+<tr><td class="tagattribalias">canskip</td><td class="tagattribname"><a class="targanchor" name="wait_skip" id="wait_skip">skip</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定するとスキップ可能になります。<br />
+falseを指定するとスキップ不可となります。<br />
+デフォルトはtrueです。<br />
+</tbody></table><div class="tagremarks">指定時間待ちます。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="reset_wait" id="reset_wait" class="targanchor"><span class="b">reset_wait</span>(resetwait)</a></h1>
+<div class="taggenre">スクリプト操作</div>
+</tbody></table><div class="tagremarks">[wait]タグにmode=untilが指定された場合の基準時間を記録します。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="wait_click" id="wait_click" class="targanchor"><span class="b">wait_click</span>(waitclick)</a></h1>
+<div class="taggenre">スクリプト操作</div>
+</tbody></table><div class="tagremarks">左クリックを待ちます。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="eval" id="eval" class="targanchor"><span class="b">eval</span>(別名なし)</a></h1>
+<div class="taggenre">スクリプト操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ eval の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="eval_exp" id="eval_exp">exp</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">TJSスクリプト</td><td class="tagattribdesc">実行するTJSスクリプトを指定します。<br />
+</tbody></table><div class="tagremarks">指定されたTJSスクリプトを実行します。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="input" id="input" class="targanchor"><span class="b">input</span>(別名なし)</a></h1>
+<div class="taggenre">スクリプト操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ input の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="input_name" id="input_name">name</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">変数名</td><td class="tagattribdesc">入力したい文字列を格納する変数名を指定します。<br />
+この変数に既に値が設定されていた場合、初期値として表示します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="input_prompt" id="input_prompt">prompt</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">文字列</td><td class="tagattribdesc">プロンプトとして入力欄のすぐ上に表示される文字列を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="input_title" id="input_title">title</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">文字列</td><td class="tagattribdesc">入力ダイアログのタイトルを指定します。<br />
+</tbody></table><div class="tagremarks">文字列入力ダイアログを表示します。<br />
+<div class="tagexample"><code class="bq"><span class="weak">例:</span><br />
+; 変数 f.name を用意する<br />
+[eval exp="f.name='ハロ'"]<br />
+; 入力ダイアログの表示<br />
+[input name=f.name prompt="名前を入力してください" title="名前の入力"]<br />
+</code></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="trace" id="trace" class="targanchor"><span class="b">trace</span>(別名なし)</a></h1>
+<div class="taggenre">スクリプト操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ trace の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="trace_exp" id="trace_exp">exp</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">TJS式</td><td class="tagattribdesc">評価するTJS式を指定します。<br />
+ここで指定したTJS式の結果の型と値がログに出力されます。<br />
+</tbody></table><div class="tagremarks">TJS式の評価。<br />
+デバッグ用のタグです。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="breath_bound" id="breath_bound" class="targanchor"><span class="b">breath_bound</span>(別名なし)</a></h1>
+<div class="taggenre">スクリプト操作</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ breath_bound の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="breath_bound_bound" id="breath_bound_bound">bound</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">ブレス状態になるまでのbreathタグの数を指定します。<br />
+デフォルトは0です。<br />
+</tbody></table><div class="tagremarks">GConductorがブレス状態になるまでのbreathタグの数を指定します。<br />
+ここで指定した値の数だけブレスタグをまとめて処理します。<br />
+この値が大きいほど負荷が高くなりますが、適切な値であればスキップ処理が高速化されます。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="break" id="break" class="targanchor"><span class="b">break</span>(別名なし)</a></h1>
+<div class="taggenre">スクリプト操作</div>
+</tbody></table><div class="tagremarks">GConductorをブレーク状態にします。<br />
+ブレーク状態になるとGConductorは一旦制御を吉里吉里に戻します。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="breath" id="breath" class="targanchor"><span class="b">breath</span>(別名なし)</a></h1>
+<div class="taggenre">スクリプト操作</div>
+</tbody></table><div class="tagremarks">GConductorのブレスカウンタを+1します。<br />
+ブレスカウンタが[breath_bound]タグで指定した数を超えるとブレス状態になります。<br />
+ブレス状態になるとGConductorは一旦制御を吉里吉里に戻します。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="breath_clear" id="breath_clear" class="targanchor"><span class="b">breath_clear</span>(別名なし)</a></h1>
+<div class="taggenre">スクリプト操作</div>
+</tbody></table><div class="tagremarks">GConductorを強制的にブレス状態にします。<br />
+その際、ブレスカウンタは0で初期化されます。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="call" id="call" class="targanchor"><span class="b">call</span>(別名なし)</a></h1>
+<div class="taggenre">スクリプト操作</div>
+</tbody></table><div class="tagremarks">callタグのハンドラです。<br />
+このタグはデフォルトでは実装されていません。<br />
+必要であれば実装してください。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="jump" id="jump" class="targanchor"><span class="b">jump</span>(別名なし)</a></h1>
+<div class="taggenre">スクリプト操作</div>
+</tbody></table><div class="tagremarks">jumpタグのハンドラです。<br />
+このタグはデフォルトでは実装されていません。<br />
+必要であれば実装してください。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="return" id="return" class="targanchor"><span class="b">return</span>(別名なし)</a></h1>
+<div class="taggenre">スクリプト操作</div>
+</tbody></table><div class="tagremarks">returnタグのハンドラです。<br />
+このタグはデフォルトでは実装されていません。<br />
+必要であれば実装してください。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="script" id="script" class="targanchor"><span class="b">script</span>(別名なし)</a></h1>
+<div class="taggenre">スクリプト操作</div>
+</tbody></table><div class="tagremarks">scriptタグのハンドラです。<br />
+このタグはデフォルトでは実装されていません。<br />
+必要であれば実装してください。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+<h1><a name="ask_close" id="ask_close" class="targanchor"><span class="b">ask_close</span>(別名なし)</a></h1>
+<div class="taggenre">制御</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ ask_close の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_close_base_storage" id="ask_close_base_storage">base_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">閉じるダイアログの背景画像を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_close_yes" id="ask_close_yes">yes</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">閉じるダイアログのはいボタン画像を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_close_no" id="ask_close_no">no</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">閉じるダイアログのいいえボタン画像を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_close_confirm" id="ask_close_confirm">confirm</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">閉じるダイアログの確認チェックボックスの画像を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_close_yes_left" id="ask_close_yes_left">yes_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X座標</td><td class="tagattribdesc">はいボタンの位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_close_yes_top" id="ask_close_yes_top">yes_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y座標</td><td class="tagattribdesc">はいボタンの位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_close_no_left" id="ask_close_no_left">no_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X座標</td><td class="tagattribdesc">いいえボタンの位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_close_no_top" id="ask_close_no_top">no_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y座標</td><td class="tagattribdesc">いいえボタンの位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_close_confirm_left" id="ask_close_confirm_left">confirm_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X座標</td><td class="tagattribdesc">確認チェックボックスの位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_close_confirm_top" id="ask_close_confirm_top">confirm_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y座標</td><td class="tagattribdesc">確認チェックボックスの位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="ask_close_confirm_caption" id="ask_close_confirm_caption">confirm_caption</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">キャプション</td><td class="tagattribdesc">終了確認を行うかどうかを設定するチェックボックスのキャプションを指定します。<br />
+</tbody></table><div class="tagremarks">閉じるダイアログの画像を指定します。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
+
+	<script type="text/javascript" charset="Shift_JIS" src="documentid.js" ></script>
+	<script type="text/javascript" charset="Shift_JIS" src="postcontent.js" ></script>
+</body></html>
