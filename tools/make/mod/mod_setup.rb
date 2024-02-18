@@ -72,7 +72,8 @@ EOT
 	#---
 	# NSIS テンプレートやヘッダがある場所
 	def nsis_module_dir_path
-		return "./mod"
+		config = @archiver.config
+		return "./nsis_#{config['SETTINGS']['language']}"
 	end
 
 	#---
@@ -202,7 +203,7 @@ private
 			file << "\n"
 			file << "!verbose 3\n".encode("UTF-8")
 			file << "\n"
-            file << "!define LANGUAGE\t\t\"#{config['SETTINGS']['language']}\"\n".encode("UTF-8")
+			file << "!define LANGUAGE\t\t\"#{config['SETTINGS']['language']}\"\n".encode("UTF-8")
 			file << "\n"
 			file << "!define UPDATE_NUMBER\t#{config['UPDATEINFO']['high'].to_i}\n".encode("UTF-8")
 			file << "\n"
@@ -212,7 +213,7 @@ private
 			file << "\n"
 			file << "!define TOP_DIR\t\t\"#{get_work_dir_path_base_relative_path('.')}\"\n".encode("UTF-8")
 			file << "!define ROOT_DIR\t\"#{get_work_dir_path_base_relative_path(@archiver.root_dir)}\"\n".encode("UTF-8")
-			file << "!define MODNSIS_DIR\t\"${TOP_DIR}\\mod\"\n".encode("UTF-8")
+			file << "!define MODNSIS_DIR\t\"${TOP_DIR}\\nsis_#{config['SETTINGS']['language']}\"\n".encode("UTF-8")
 			file << "\n"
 			file << "!define PUBLISHER\t\"#{config['VENDERINFO']['publisher']}\"\n".encode("UTF-8")
 			file << "!define VENDER\t\t\"#{config['VENDERINFO']['name']}\"\n".encode("UTF-8")

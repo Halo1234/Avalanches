@@ -61,6 +61,62 @@ Options:
 EOS
 end
 
+def show_usage_english
+	puts <<EOS
+Synopsis:
+ ruby #{File.basename(__FILE__)} [Options] TARGET
+
+Example:
+ ruby #{File.basename(__FILE__)} --cf=./config.ini TestProducts
+
+Description:
+  Generates the package specified by TARGET.
+
+Options:
+  --configuration-file
+  --cf
+   Specify the configuration file.
+   The configuration file is in Windows INI file format.
+   The default configuration file is config.ini.
+
+   Please refer to config.ini for information on how to write the configuration file.
+
+  --version-encoding
+  --ve
+   version.* Specifies the script encoding.
+   Default is utf-16le.
+
+  -help
+  -h
+   Display usage details (this text).
+
+  -no-archive
+  -na
+  Does not create an archive.
+
+  -no-package
+  -np
+   Does not create an installer.
+
+  --patch-number
+  --pn
+   Specify the modification file number to create.
+   An error will occur if the modification file number corresponding to the configuration file is not recorded.
+   You can also include multiple fix files in a package using the --pn=LOW:HIGH format.
+   For example, if you enter --pn=1:3, a package including modified files 1 to 3 will be created.
+   Furthermore, LOW can be omitted. In that case, LOW is assumed to be 1.
+   In other words, in the previous example, you could write --pn=:3.
+
+  -ROM
+   If specified, the installer will be created in a form optimized for ROM.
+   If not specified, the installer will be archived into a single executable file.
+
+  -verbose
+  -v
+   Print conversion details.
+EOS
+end
+
 # *
 # * Global settings
 
@@ -105,7 +161,11 @@ require "mod_setup.rb"
 cmdp = CmdParam.new(ARGV)
 
 if(cmdp['-help'] || cmdp['-h'])
-	show_usage()
+    if(cmdp['-english'])
+        show_usage_english()
+    else
+        show_usage()
+    end
 	exit
 end
 
