@@ -56,6 +56,57 @@ Options:
 EOS
 end
 
+def show_usage_english
+	puts <<EOS
+Synopsis:
+ ruby #{File.basename(__FILE__)} Options
+
+Example:
+ ruby #{File.basename(__FILE__)} --i=foo/bar/input --o=foo/bar/output --language=japanese -v
+
+Description:
+  Loads the Roman alphabet mapping table for the specified language and converts it to a *.dic file.
+
+Options:
+  --file-type
+   Specify the file type (extension) to read from the input source.
+   By default it loads .ods.
+   It doesn't matter whether you include '.' or not.
+
+  -help
+  -h
+   Display usage details (this text).
+
+  --language
+  --lang
+   Specify the language.
+   The values that can be specified here are essentially the file names that exist in the input source.
+
+   That is, it reads INPUT-PATH\\LANGUAGE.FILE-TYPE.
+
+  --input-path
+  --i
+   Specify the input source.
+   The default input source is the current directory.
+
+  --output-encoding
+   Specifies the character encoding of the output text.
+   A list of possible encoding names can be obtained with the following command.
+   The default character encoding is CP932.
+
+    #ruby -e "puts Encoding.name_list"
+
+  --output-path
+  --o
+   Specify the output destination.
+   The default output destination is the current directory.
+
+  -verbose
+  -v
+   Print conversion details.
+EOS
+end
+
 # *
 # * Global settings
 
@@ -104,7 +155,11 @@ require 'mod_convxlsx.rb'
 cmdp = CmdParam.new(ARGV)
 
 if(cmdp['-help'] || cmdp['-h'])
-	show_usage()
+    if(cmdp['-english'])
+        show_usage_english()
+    else
+        show_usage()
+    end
 	exit
 end
 
