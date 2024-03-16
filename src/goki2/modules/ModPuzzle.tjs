@@ -1,0 +1,31 @@
+/*
+**/
+
+
+/**/
+class ModPuzzle extends GModule
+{
+	/**/
+	function ModPuzzle(container, name)
+	{
+		super.GModule(...);
+	}
+
+	/**/
+	function createExtensionTagHandlers()
+	{
+		return %[
+
+			/* @puzzle_option */
+			'puzzle_option' => function (elm) {
+			} incontextof this,
+
+			/* @puzzle */
+			'puzzle' => function (elm) {
+			} incontextof this,
+
+		];
+	}
+}
+
+
