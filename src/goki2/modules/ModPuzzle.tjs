@@ -3,8 +3,311 @@
 
 
 /**/
+class PuzzleBlockLayer extends GWidgetLayer
+{
+	var topPieceLayer_;
+	var bottomPieceLayer_;
+
+	/* const */var V_UP = 1;
+	/* const */var V_DOWN = 2;
+	/* const */var H_LEFT = 3;
+	/* const */var H_RIGHT = 4;
+
+	var direction_;
+
+	/**/
+	function PuzzleBlockLayer(window, parent, handler)
+	{
+		super.GWidgetLayer(...);
+
+		topPieceLayer_ = createPieceLayer(window, this);
+		topPieceLayer_.loadImages("piece_red");
+		topPieceLayer_.setSizeToImageSize();
+		topPieceLayer_.setPos(topPieceLayer_.width, 0);
+		topPieceLayer_.visible = true;
+		bottomPieceLayer_ = createPieceLayer(window, this);
+		bottomPieceLayer_.loadImages("piece_blue");
+		bottomPieceLayer_.setSizeToImageSize();
+		bottomPieceLayer_.setPos(bottomPieceLayer_.width, bottomPieceLayer_.height);
+		bottomPieceLayer_.visible = true;
+
+		direction_ = V_UP;
+	}
+
+	/**/
+	function createPieceLayer(window, parent, handler)
+	{
+		var obj = new global.GLayer(window, parent, handler);
+
+		return obj;
+	}
+
+	/**/
+	function turnUpToLeft()
+	{
+		with(mover)
+		{
+			.transformMoveLeft = width >> 1;
+			.transformMoveTop = 32 + 16;
+			.useTransform = true;
+			.withChildren = true;
+			.looping = false;
+
+			.clear();
+			.addFrame(0.0, %[x : "left", y : "top", angle : 0]);
+			.addFrame(1.0, %[x : "left", y : "top", angle : 90]);
+
+			.time = 200;
+			.delay = 0;
+			.accel = 0;
+			.start();
+
+			direction_ = H_LEFT;
+		}
+	}
+
+	/**/
+	function turnLeftToDown()
+	{
+		with(mover)
+		{
+			.transformMoveLeft = width >> 1;
+			.transformMoveTop = 32 + 16;
+			.useTransform = true;
+			.withChildren = true;
+			.looping = false;
+
+			.clear();
+			.addFrame(0.0, %[x : "left", y : "top", angle : 0]);
+			.addFrame(1.0, %[x : "left", y : "top", angle : 90]);
+
+			.time = 200;
+			.delay = 0;
+			.accel = 0;
+			.start();
+
+			direction_ = H_RIGHT;
+		}
+	}
+
+	/**/
+	function turnDownToRight()
+	{
+		with(mover)
+		{
+			.transformMoveLeft = width >> 1;
+			.transformMoveTop = 32 + 16;
+			.useTransform = true;
+			.withChildren = true;
+			.looping = false;
+
+			.clear();
+			.addFrame(0.0, %[x : "left", y : "top", angle : 0]);
+			.addFrame(1.0, %[x : "left", y : "top", angle : 90]);
+
+			.time = 200;
+			.delay = 0;
+			.accel = 0;
+			.start();
+
+			direction_ = V_DOWN;
+		}
+	}
+
+	/**/
+	function turnRightToUp()
+	{
+		with(mover)
+		{
+			.transformMoveLeft = width >> 1;
+			.transformMoveTop = 32 + 16;
+			.useTransform = true;
+			.withChildren = true;
+			.looping = false;
+
+			.clear();
+			.addFrame(0.0, %[x : "left", y : "top", angle : 0]);
+			.addFrame(1.0, %[x : "left", y : "top", angle : 90]);
+
+			.time = 200;
+			.delay = 0;
+			.accel = 0;
+			.start();
+
+			direction_ = V_UP;
+		}
+	}
+
+	/**/
+	function turnLeft()
+	{
+		switch(direction_)
+		{
+		case V_UP:		turnUpToLeft(); break;
+		case V_DOWN:	turnLeftToDown(); break;
+		case H_LEFT:	turnDownToRight(); break;
+		case H_RIGHT:	turnRightToUp(); break;
+		}
+	}
+
+	/**/
+	function turnRight()
+	{
+	}
+
+	/**/
+	function endTurn()
+	{
+		var width = Math.max(topPieceLayer.width, bottomPieceLayer.width);
+		var height = Math.max(topPieceLayer.height, bottomPieceLayer.height);
+
+		switch(direction_)
+		{
+		case V_UP:
+			topPieceLayer.setPos(topPieceLayer.width, 0);
+			break;
+
+		case V_DOWN:
+			topPieceLayer.setPos(topPieceLayer.width, topPieceLayer.height << 1);
+			break;
+
+		case H_LEFT:
+			topPieceLayer.setPos(0, topPieceLayer.height);
+			break;
+
+		case H_RIGHT:
+			topPieceLayer.setPos(topPieceLayer.width << 1, topPieceLayer.height);
+			break;
+		}
+	}
+
+	/**/
+	function onCallHandler(message, elm)
+	{
+		switch(message)
+		{
+		case 'onStopMover':	endTurn(); break;
+		}
+	}
+
+	/**/
+	property topPieceLayer
+	{
+		getter		{ return topPieceLayer_; }
+	}
+
+	/**/
+	property bottomPieceLayer
+	{
+		getter		{ return bottomPieceLayer_; }
+	}
+}
+
+/**/
+class PuzzleAreaLayer extends GWidgetLayer
+{
+	var currentBlockLayer_;
+
+	/**/
+	function PuzzleAreaLayer(window, parent, handler)
+	{
+		super.GWidgetLayer(...);
+	}
+
+	/**/
+	function createBlockLayer(window, parent, handler)
+	{
+		var obj = new PuzzleBlockLayer(window, parent, handler);
+
+		obj.setSize(32 * 3, 32 * 3);
+		obj.setPos((380 - obj.width) >> 1, (580 - obj.height) >> 1);
+
+		return obj;
+	}
+
+	/**/
+	function onKeyDown(key, shift)
+	{
+		switch(key)
+		{
+		case window.enterKey:
+		case window.enterButton:
+			currentBlockLayer_.turnLeft();
+			break;
+
+		case window.cancelKey:
+		case window.cancelButton:
+			currentBlockLayer_.turnRight();
+			break;
+		}
+	}
+
+	/**/
+	function onPieceEvent(obj, message, elm)
+	{
+	}
+
+	/**/
+	property currentBlockLayer
+	{
+		getter		{ return (currentBlockLayer_ === void ? (currentBlockLayer_ = createBlockLayer(window, this, onPieceEvent)) : currentBlockLayer_); }
+	}
+}
+
+/**/
+class PuzzleBaseLayer extends GFormLayer
+{
+	var puzzleAreaLayer1_;
+	var puzzleAreaLayer2_;
+
+	/**/
+	function PuzzleBaseLayer(window, parent, handler)
+	{
+		super.GFormLayer(...);
+
+		puzzleAreaLayer1.currentBlockLayer.visible = true;
+	}
+
+	/**/
+	function createPuzzleAreaLayer(window, parent, handler)
+	{
+		var obj = new PuzzleAreaLayer(window, parent, handler);
+
+		obj.hasImage = false;
+		obj.visible = true;
+
+		return obj;
+	}
+
+	/**/
+	function onPuzzleAreaEvent(obj, message, elm)
+	{
+	}
+
+	/**/
+	function onKeyDown(key, shift)
+	{
+		puzzleAreaLayer1.onKeyDown(key, shift);
+	}
+
+	/**/
+	property puzzleAreaLayer1
+	{
+		getter		{ return (puzzleAreaLayer1_ === void ? (puzzleAreaLayer1_ = createPuzzleAreaLayer(window, this, onPuzzleAreaEvent)) : puzzleAreaLayer1_); }
+	}
+
+	/**/
+	property puzzleAreaLayer2
+	{
+		getter		{ return (puzzleAreaLayer2_ === void ? (puzzleAreaLayer2_ = createPuzzleAreaLayer(window, this, onPuzzleAreaEvent)) : puzzleAreaLayer2_); }
+	}
+}
+
+/**/
 class ModPuzzle extends GModule
 {
+	var baseLayer_;
+
 	/**/
 	function ModPuzzle(container, name)
 	{
@@ -18,13 +321,76 @@ class ModPuzzle extends GModule
 
 			/* @puzzle_option */
 			'puzzle_option' => function (elm) {
+				baseLayer.loadImages(elm.base_storage) if elm.base_storage !== void;
+				if(elm.puzzle_area_left1 !== void && elm.puzzle_area_top1 !== void)
+				{
+					baseLayer.puzzleAreaLayer1.setPos(+elm.puzzle_area_left1, +elm.puzzle_area_top1);
+				}
+				if(elm.puzzle_area_width1 !== void && elm.puzzle_area_height1 !== void)
+				{
+					baseLayer.puzzleAreaLayer1.setSize(+elm.puzzle_area_width1, +elm.puzzle_area_height1);
+				}
+				if(elm.puzzle_area_left2 !== void && elm.puzzle_area_top2 !== void)
+				{
+					baseLayer.puzzleAreaLayer2.setPos(+elm.puzzle_area_left2, +elm.puzzle_area_top2);
+				}
+				if(elm.puzzle_area_width2 !== void && elm.puzzle_area_height2 !== void)
+				{
+					baseLayer.puzzleAreaLayer2.setSize(+elm.puzzle_area_width2, +elm.puzzle_area_height2);
+				}
+			} incontextof this,
+
+			/* @puzzle_piece */
+			'puzzle_piece' => function (elm) {
 			} incontextof this,
 
 			/* @puzzle */
 			'puzzle' => function (elm) {
+				baseLayer.show() if GObjectUtils.toBoolean(elm.show);
+				baseLayer.hide() if GObjectUtils.toBoolean(elm.hide);
+			} incontextof this,
+
+			/**/
+			'wait_puzzle_show' => function (elm, c) {
+				if(baseLayer.showRunning)
+					c.waitSignal(%['show_puzzle_base_layer_completed' => null]);
+			} incontextof this,
+
+			/**/
+			'wait_puzzle_hide' => function (elm, c) {
+				if(baseLayer.hideRunning)
+					c.waitSignal(%['hide_puzzle_base_layer_completed' => null]);
 			} incontextof this,
 
 		];
+	}
+
+	/**/
+	function createBaseLayer(window, parent, handler)
+	{
+		var obj = new PuzzleBaseLayer(window, parent, handler);
+
+		obj.setSize(window.scWidth, window.scHeight);
+		obj.absolute = 1030000;
+		obj.visible = false;
+
+		return obj;
+	}
+
+	/**/
+	function onBaseLayerEvent(obj, message, elm)
+	{
+		switch(message)
+		{
+		case 'onShowCompleted':	window.conductor.signal('show_puzzle_base_layer_completed'); break;
+		case 'onHideCompleted':	window.conductor.signal('hide_puzzle_base_layer_completed'); break;
+		}
+	}
+
+	/**/
+	property baseLayer
+	{
+		getter		{ return (baseLayer_ === void ? (baseLayer_ = createBaseLayer(window, window.primaryLayer, onBaseLayerEvent)) : baseLayer_); }
 	}
 }
 
