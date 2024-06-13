@@ -156,6 +156,20 @@ class PuzzleBlockLayer extends GWidgetLayer
 	}
 
 	/**/
+	function moveLeft()
+	{
+		left -= 32;
+		mover.updateCacheImage();
+	}
+
+	/**/
+	function moveRight()
+	{
+		left += 32;
+		mover.updateCacheImage();
+	}
+
+	/**/
 	function endTurn()
 	{
 		var width = Math.max(topPieceLayer.width, bottomPieceLayer.width);
@@ -230,14 +244,22 @@ class PuzzleAreaLayer extends GWidgetLayer
 	{
 		switch(key)
 		{
+		case VK_LEFT:
+			currentBlockLayer.moveLeft();
+			break;
+
+		case VK_RIGHT:
+			currentBlockLayer.moveRight();
+			break;
+
 		case window.enterKey:
 		case window.enterButton:
-			currentBlockLayer_.turnLeft();
+			currentBlockLayer.turnLeft();
 			break;
 
 		case window.cancelKey:
 		case window.cancelButton:
-			currentBlockLayer_.turnRight();
+			currentBlockLayer.turnRight();
 			break;
 		}
 	}
