@@ -1,8 +1,10 @@
 
 *label|
 
-@puzzle_option puzzle_area_left1=10 puzzle_area_top1=10 puzzle_area_width1=380 puzzle_area_height1=580
-@puzzle_option puzzle_area_left2=410 puzzle_area_top2=10 puzzle_area_width2=380 puzzle_area_height2=580
+@puzzle_option view_grid_line dump_map
+
+@puzzle_option puzzle_user_left1=10 puzzle_user_top1=128 puzzle_user_width1=380 puzzle_user_height1=458
+@puzzle_option puzzle_user_left2=410 puzzle_user_top2=128 puzzle_user_width2=380 puzzle_user_height2=458
 
 @puzzle_piece storage=piece_red
 @puzzle_piece storage=piece_blue
