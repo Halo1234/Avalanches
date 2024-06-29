@@ -5,11 +5,11 @@
 
 @puzzle_option interval=1000
 
-@puzzle_option puzzle_user_left1=10 puzzle_user_top1=128 puzzle_user_width1=380 puzzle_user_height1=458
-@puzzle_option puzzle_user_left2=410 puzzle_user_top2=128 puzzle_user_width2=380 puzzle_user_height2=458
+@puzzle_option user1_left=10 user1_top=128 user1_width=380 user1_height=458
+@puzzle_option user2_left=410 user2_top=128 user2_width=380 user2_height=458
 
-@puzzle_option puzzle_user_gameover1=puzzle_gameover1
-@puzzle_option puzzle_user_gameover2=puzzle_gameover1
+@puzzle_option user1_gameover=puzzle_gameover1
+@puzzle_option user2_gameover=puzzle_gameover1
 
 @puzzle_piece storage=piece_red
 @puzzle_piece storage=piece_blue
