@@ -15,6 +15,7 @@
 @puzzle_piece storage=piece_blue
 @puzzle_piece storage=piece_green
 @puzzle_piece storage=piece_yellow
+@puzzle_piece storage=piece_ojama ojama
 
 @puzzle show
 @s
