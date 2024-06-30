@@ -1,7 +1,8 @@
 
 *label|
 
-@puzzle_option view_grid_line dump_map
+;@puzzle_option view_grid_line dump_map
+@puzzle_option view_grid_line
 
 @puzzle_option interval=1000
 
@@ -10,6 +11,11 @@
 
 @puzzle_option user1_gameover=puzzle_gameover1
 @puzzle_option user2_gameover=puzzle_gameover1
+
+@puzzle_option attack_effect_storage=puzlle_attack_effect
+@puzzle_option ojama_icon=ojama_icon1 ojama_bound=0
+@puzzle_option ojama_icon=ojama_icon2 ojama_bound=10
+@puzzle_option ojama_icon=ojama_icon3 ojama_bound=20
 
 @puzzle_piece storage=piece_red
 @puzzle_piece storage=piece_blue
