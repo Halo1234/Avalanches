@@ -2,7 +2,7 @@
 *label|
 
 ;@puzzle_option view_grid_line dump_map
-@puzzle_option view_grid_line
+@puzzle_option view_grid_line debug_ojama
 
 @puzzle_option interval=1000
 
