@@ -1,0 +1,8 @@
+
+LIBRARY BlueMonday-88
+
+EXPORTS
+	V2Link		@1
+	V2Unlink	@2
+
+
