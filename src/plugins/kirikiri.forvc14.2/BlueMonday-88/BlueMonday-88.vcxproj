@@ -31,6 +31,7 @@
     <ClInclude Include="..\ncbind\ncb_foreach.h" />
     <ClInclude Include="..\ncbind\ncb_invoke.hpp" />
     <ClInclude Include="..\tp_stub.h" />
+    <ClInclude Include="CutMask.h" />
     <ClInclude Include="MagicNumber.h" />
     <ClInclude Include="Version.h" />
   </ItemGroup>
