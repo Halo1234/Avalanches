@@ -1,0 +1,17 @@
+/*
+ $Author: halo $
+ $Revision: 22 $
+*/
+
+
+#if !defined BM88_MAGICNUMBER_H_GUARD
+#define BM88_MAGICNUMBER_H_GUARD
+
+
+#define MN_BM88MAJORVERSION		0x0001
+#define MN_BM88MINORVERSION		0x0003
+
+
+#endif	/* BM88_MAGICNUMBER_H_GUARD */
+
+
