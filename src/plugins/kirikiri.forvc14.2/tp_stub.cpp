@@ -1,7 +1,7 @@
 /*
 
 	TVP2 ( T Visual Presenter 2 )  A script authoring tool
-	Copyright (C) 2000-2008 W.Dee <dee@kikyou.info> and contributors
+	Copyright (C) 2000-2009 W.Dee <dee@kikyou.info> and contributors
 
 	See details of license at "license.txt"
 */
@@ -337,7 +337,10 @@ void * TVPImportFuncPtr55a9b73f877bfd4c6d8157e7b1c458df = NULL;
 void * TVPImportFuncPtrd070209f152dd22087e6e996e02c85cf = NULL;
 void * TVPImportFuncPtr308f905626bc51c7ef9b65b2c0ca34b2 = NULL;
 void * TVPImportFuncPtr95aab2a1ac9491e8026f4977e0918760 = NULL;
+void * TVPImportFuncPtre0ac94325eb783ca2fe7856a54444c90 = NULL;
 void * TVPImportFuncPtr0c99a79e866f08b4df3914e83fc203dc = NULL;
+void * TVPImportFuncPtrf2de531a016173057ff3540e47fed4e6 = NULL;
+void * TVPImportFuncPtr4224a9066d8d13d6d7e12f1ace6a5beb = NULL;
 void * TVPImportFuncPtr900476efbc2031e643c042ca8e63a3d7 = NULL;
 void * TVPImportFuncPtr07dfce61d490cf671a2d5359d713d64a = NULL;
 void * TVPImportFuncPtr52d30ac8479ef7e870b5aff076482799 = NULL;
@@ -361,11 +364,17 @@ void * TVPImportFuncPtrf27f455c8f30cbaf1706faac3c7b8e02 = NULL;
 void * TVPImportFuncPtr78ec453a50b2800bb01347e8ebbac000 = NULL;
 void * TVPImportFuncPtr0936d0f6fc53339d255893e58bcc6699 = NULL;
 void * TVPImportFuncPtrf4f7181b7fd679784c50b0cc7ba4c60e = NULL;
+void * TVPImportFuncPtr79816d7e5741c2416fefe2c2a8baef00 = NULL;
 void * TVPImportFuncPtr42a3d248fab928f16555abcceca62834 = NULL;
+void * TVPImportFuncPtr926d6212b8b1b238e7bef9b17a3ee643 = NULL;
 void * TVPImportFuncPtr236e3d626784d80ca2cc5b2fe14cd9c6 = NULL;
+void * TVPImportFuncPtr1bfac11a5f95c842f97a8bb57d4019de = NULL;
 void * TVPImportFuncPtr198ce21c54b0cea4c1bf5eeba35349ab = NULL;
+void * TVPImportFuncPtr590a1ec7f64904eaa32b5c771bb5f8cd = NULL;
 void * TVPImportFuncPtrdd13d4bc2b48540a92f047bf015b829b = NULL;
+void * TVPImportFuncPtr0ff502d492598d2211405180bfb4d1e1 = NULL;
 void * TVPImportFuncPtrcf5401746759bfe38918087aaab6c57b = NULL;
+void * TVPImportFuncPtr04e84aa7d8cf0477d55c700164544b38 = NULL;
 void * TVPImportFuncPtr449039d3afbfbd52a63130a3b227a490 = NULL;
 void * TVPImportFuncPtr347a4fa85af84e223c4b61d33ead694a = NULL;
 void * TVPImportFuncPtr4ad1dd24b3b4769ee10149eea006af7a = NULL;
@@ -390,11 +399,16 @@ void * TVPImportFuncPtreba9b272d78a4b0cd7f9212e29a58607 = NULL;
 void * TVPImportFuncPtrcfbe8ee9d43aa64ae4190eac91f7c55f = NULL;
 void * TVPImportFuncPtra4308a386968ef5d23025ab8a9e8c6db = NULL;
 void * TVPImportFuncPtr5a4fcbe1e398e3d9690d571acbbbae9f = NULL;
-void * TVPImportFuncPtrb8305ae2ae49a3f7f711105e77bafdf0 = NULL;
+void * TVPImportFuncPtr5b62f504fe6d22428d7518d6c52d775d = NULL;
 void * TVPImportFuncPtrfb3b405f8747b54f26c332b9e6af81cd = NULL;
 void * TVPImportFuncPtrb7ccd11d130f186883c109d2ba17b598 = NULL;
 void * TVPImportFuncPtrcf8ab6c24f25993ccc7663e572ac2991 = NULL;
 void * TVPImportFuncPtrba40ffbca76695b54a02aa8c1f1e047b = NULL;
+void * TVPImportFuncPtrc97720e639e95ba5130ce9dd78d30403 = NULL;
+void * TVPImportFuncPtrc5557ac5391b1b831a22e64b65d1746c = NULL;
+void * TVPImportFuncPtr3243a4c32d4f674f1bbc8d3895257568 = NULL;
+void * TVPImportFuncPtr78390a3d08879903ee9558e9df68db4d = NULL;
+void * TVPImportFuncPtr58e9454d7096a52808f9a83b9ce25ff0 = NULL;
 void * TVPImportFuncPtrcdefadd0c3bf15b4639b2f0338a40585 = NULL;
 void * TVPImportFuncPtr4bf80e9bac16b9e3f9bf385b2fbce657 = NULL;
 void * TVPImportFuncPtr51aeacf2b6ef9deb01c3b3db201d6bf9 = NULL;
@@ -420,17 +434,18 @@ void * TVPImportFuncPtrd9b1c73516daea6a9c6564e2b731615a = NULL;
 void * TVPImportFuncPtr003f9d3de568fcd71dd532f33d38839c = NULL;
 void * TVPImportFuncPtr5da29a19bbe279a89be00e16c59d7641 = NULL;
 void * TVPImportFuncPtrc1b52e8f3578d11f369552a887e13c5b = NULL;
-void * TVPImportFuncPtrdcd6ba3960e3e2cf6dbe585b1f67b0ac = NULL;
+void * TVPImportFuncPtrb94ead6de9316bc65758c5aefb564078 = NULL;
+void * TVPImportFuncPtr8a35be936d2aca049e398a081e511c97 = NULL;
 void * TVPImportFuncPtr5b1fa785e397e643dd09cb43c2f2f4db = NULL;
 void * TVPImportFuncPtr29af78765c764c566e6adc77e0ea7041 = NULL;
 void * TVPImportFuncPtr9e0df54e4c24ee28d5517c1743faa3a3 = NULL;
+void * TVPImportFuncPtrd3aaa55d66777d7308ffa7a348c84841 = NULL;
 void * TVPImportFuncPtrb426fbfb6ccb4e89c252b6af566995b8 = NULL;
-void * TVPImportFuncPtr678c2b211f8d8f661f6fdd95c52fbaa8 = NULL;
-void * TVPImportFuncPtr9ec5b02d14238454101dad083b5dfc3b = NULL;
-void * TVPImportFuncPtr471b3daf08ed9b828679d0dae78250ed = NULL;
-void * TVPImportFuncPtrd0bb2c604ee6f0bba72ddc017f6416eb = NULL;
-void * TVPImportFuncPtr3ab4d4d7b57eea827e7bb7c263afb951 = NULL;
-void * TVPImportFuncPtrdc025d3981a832b095736a0214b98797 = NULL;
+void * TVPImportFuncPtrc145419db7b63f7488ea05a2a8826c1d = NULL;
+void * TVPImportFuncPtrd795cd5ebfb6ca6f1b91bafbe66d7a65 = NULL;
+void * TVPImportFuncPtr4564a3ce5cf48cb47e63a3948cef03be = NULL;
+void * TVPImportFuncPtrbee2775f2e4042043b7cb08056d2ae5c = NULL;
+void * TVPImportFuncPtr5fd8dfd2816a2cfd4a51cab41053d575 = NULL;
 void * TVPImportFuncPtr9982ebedc12d343cb098e2a7b25bdef1 = NULL;
 void * TVPImportFuncPtr81eeacbed5ee6129bef4b370e28b5d10 = NULL;
 void * TVPImportFuncPtr6ed1088905d99012d2fb5827ea19527e = NULL;
@@ -601,6 +616,9 @@ void * TVPImportFuncPtr4d99b9e38121251b40a90cd2bd5fea63 = NULL;
 void * TVPImportFuncPtrf1509827696ebf5627bee1a45d675fb8 = NULL;
 void * TVPImportFuncPtrbbb625e23229350453161810c41419dd = NULL;
 void * TVPImportFuncPtr489a6aae30de0feff5d3c5fbd42ae325 = NULL;
+void * TVPImportFuncPtr6b9a349305f8c689dcfdbcea2566769c = NULL;
+void * TVPImportFuncPtr6320d208ce1a570aca52c3cdf7421f7c = NULL;
+void * TVPImportFuncPtr0f83f0459badd1cd352041b9243d712f = NULL;
 void * TVPImportFuncPtr186a94b2fed609ed2d2a7ac1a2bed87f = NULL;
 void * TVPImportFuncPtrbde8efb9971664f2b52fe912745e2791 = NULL;
 void * TVPImportFuncPtr386d6fa5cb73e3519b62d20470e5414b = NULL;
@@ -693,6 +711,8 @@ void * TVPImportFuncPtr923884216edf134d07d8e70f8f57e827 = NULL;
 void * TVPImportFuncPtre48798dc69498f80b6633bb405eda6eb = NULL;
 void * TVPImportFuncPtr998a5e1aa5cd85689795348fc540a655 = NULL;
 void * TVPImportFuncPtr5f6d263c0d48d03f6eb0dc44c9dd0be2 = NULL;
+void * TVPImportFuncPtrbf363ba3d5b54df9d6df35a518deb6b0 = NULL;
+void * TVPImportFuncPtr6cc8a24cc7ce23179d1d4ccab7a8c97b = NULL;
 
 //---------------------------------------------------------------------------
 // tTJSDispatch

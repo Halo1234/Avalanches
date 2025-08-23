@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\ncbind\ncbind.cpp" />
     <ClCompile Include="..\tp_stub.cpp" />
     <ClCompile Include="BM88Version.cpp" />
     <ClCompile Include="CutMask.cpp" />
@@ -26,6 +27,9 @@
     <ClCompile Include="Registory.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\ncbind\ncbind.hpp" />
+    <ClInclude Include="..\ncbind\ncb_foreach.h" />
+    <ClInclude Include="..\ncbind\ncb_invoke.hpp" />
     <ClInclude Include="..\tp_stub.h" />
     <ClInclude Include="MagicNumber.h" />
     <ClInclude Include="Version.h" />
@@ -89,7 +93,7 @@
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LinkIncremental>true</LinkIncremental>
+    <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -134,15 +138,24 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;BLUEMONDAY88_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>ncbind.hpp</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(SolutionDir)..\..\common\include;$(SolutionDir)ncbind;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
     </Link>
+    <PostBuildEvent>
+      <Command>set OUTPUT_DIRECTORY="$(SolutionDir)..\..\..\tools\krkrz\plugin"
+
+if not exist %OUTPUT_DIRECTORY% mkdir %OUTPUT_DIRECTORY%
+
+copy "$(TargetDir)$(TargetFileName)" %OUTPUT_DIRECTORY%</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -152,8 +165,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;BLUEMONDAY88_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>ncbind.hpp</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(SolutionDir)..\..\common\include;$(SolutionDir)ncbind;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -162,7 +175,16 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
     </Link>
+    <PostBuildEvent>
+      <Command>set OUTPUT_DIRECTORY="$(SolutionDir)..\..\..\tools\krkrz\plugin"
+
+if not exist %OUTPUT_DIRECTORY% mkdir %OUTPUT_DIRECTORY%
+
+copy "$(TargetDir)$(TargetFileName)" %OUTPUT_DIRECTORY%</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

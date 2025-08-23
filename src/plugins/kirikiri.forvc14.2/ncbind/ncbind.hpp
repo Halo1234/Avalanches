@@ -1,12 +1,15 @@
 #ifndef _ncbind_hpp_
 #define _ncbind_hpp_
 
+#ifndef NO_V2LINK
 #include <windows.h>
+#endif
+
 #include "tp_stub.h"
 #include "ncb_invoke.hpp"
 
 ////////////////////////////////////////
-// ƒƒOo—Í—pƒ}ƒNƒ
+// ãƒ­ã‚°å‡ºåŠ›ç”¨ãƒã‚¯ãƒ­
 
 #define NCB_WARN(n)     TVPAddLog(ttstr(n))
 #define NCB_WARN_2(a,b) TVPAddLog(ttstr(a) + ttstr(b))
@@ -25,7 +28,7 @@
 
 
 ////////////////////////////////////////
-// ‹¤’ÊŒ^’è‹`
+// å…±é€šå‹å®šç¾©
 struct ncbTypedefs {
 	typedef tjs_char const*           NameT;
 	typedef tjs_uint32                FlagsT;
@@ -35,21 +38,21 @@ struct ncbTypedefs {
 	typedef tTJSNativeInstanceType    InstanceTypeT;
 	typedef tTJSNativeClassForPlugin  ClassObjectT;
 
-	/// Œ^‚Ìó‚¯“n‚µ‚Åg—p
+	/// å‹ã®å—ã‘æ¸¡ã—ã§ä½¿ç”¨
 	template <typename T> struct Tag { typedef T Type; };
 
-	/// ê‡‚í‚¯‚Åg—p
+	/// å ´åˆã‚ã‘ã§ä½¿ç”¨
 	template <int  N> struct NumTag  { enum { n = N }; };
 	template <bool B> struct BoolTag { enum { b = B }; };
 
-	// tTJSVariant::Type() ƒ‰ƒbƒp (‚±‚±‚Å‚¢‚¢‚Ì‚©”÷–­‚¾‚¯‚Ç)
+	// tTJSVariant::Type() ãƒ©ãƒƒãƒ‘ (ã“ã“ã§ã„ã„ã®ã‹å¾®å¦™ã ã‘ã©)
 	static inline tTJSVariantType GetVariantType(tTJSVariant const &var) { return (const_cast<tTJSVariant*>(&var))->Type(); }
 //	static inline tTJSVariantType GetVariantType(tTJSVariant &var)       { return var.Type(); }
 
-	// ƒR[ƒ‹ƒoƒbƒNŒ^
+	// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å‹
 	typedef tTJSNativeClassMethodCallback CallbackT;
 
-	// ƒCƒ“ƒXƒ^ƒ“ƒX‚É•ÏŠ·‚µ‚Ä“n‚·ƒR[ƒ‹ƒoƒbƒN
+	// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã«å¤‰æ›ã—ã¦æ¸¡ã™ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 	template <class T> 
 	struct CallbackWithInstance {
 		typedef tjs_error (TJS_INTF_METHOD    *Type)(tTJSVariant *result, tjs_int numparams, tTJSVariant **param, T *nativeInstance);
@@ -65,12 +68,12 @@ struct ncbTypedefs {
 	template <        typename ERR> struct TypeAssert<true, ERR> { typedef typename ERR::CompileError Result; };
 };
 
-/// ƒTƒuƒNƒ‰ƒXƒtƒ‰ƒO
+/// ã‚µãƒ–ã‚¯ãƒ©ã‚¹ãƒ•ãƒ©ã‚°
 template <class T>
 struct ncbSubClassCheck { enum { IsSubClass = false }; };
 
 ////////////////////////////////////////
-/// NativeClass –¼‘O/ID/ƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg•Û—p
+/// NativeClass åå‰/ID/ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆä¿æŒç”¨
 template <class T>
 struct ncbClassInfo {
 	typedef T NativeClassT;
@@ -79,13 +82,13 @@ struct ncbClassInfo {
 	typedef ncbTypedefs::IdentT       IdentT;
 	typedef ncbTypedefs::ClassObjectT ClassObjectT;
 
-	/// ƒvƒƒpƒeƒBæ“¾
+	/// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£å–å¾—
 	static inline NameT         GetName()        { return _info.name; }
 	static inline IdentT        GetID()          { return _info.id; }
 	static inline ClassObjectT *GetClassObject() { return _info.obj; }
 	static inline bool          IsSubClass()     { return ncbSubClassCheck<NativeClassT>::IsSubClass; }
 
-	/// ƒCƒjƒVƒƒƒ‰ƒCƒU
+	/// ã‚¤ãƒ‹ã‚·ãƒ£ãƒ©ã‚¤ã‚¶
 	static inline bool Set(NameT name, IdentT id, ClassObjectT *obj) {
 		if (_info.initialized) return false;
 		_info.name = name;
@@ -93,7 +96,7 @@ struct ncbClassInfo {
 		_info.obj  = obj;
 		return (_info.initialized = true);
 	}
-	/// Ä‰Šú‰»
+	/// å†åˆæœŸåŒ–
 	static inline void Clear() {
 		_info.name = 0;
 		_info.id   = 0;
@@ -112,10 +115,11 @@ private:
 	static InfoT _info;
 };
 template <> struct ncbClassInfo<void> {};
+template <class T> typename ncbClassInfo<T>::InfoT ncbClassInfo<T>::_info;
 
 
 ////////////////////////////////////////
-/// ƒCƒ“ƒXƒ^ƒ“ƒXƒAƒ_ƒvƒ^
+/// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚¢ãƒ€ãƒ—ã‚¿
 template <class T>
 struct ncbInstanceAdaptor : public tTJSNativeInstance {
 	typedef T NativeClassT;
@@ -125,22 +129,22 @@ struct ncbInstanceAdaptor : public tTJSNativeInstance {
 	/*constructor*/ ncbInstanceAdaptor() : _instance(0), _sticky(false) {}
 	/*destructor*/ ~ncbInstanceAdaptor() { _deleteInstance(); }
 
-	// TJS2 ƒIƒuƒWƒFƒNƒg‚ªì¬‚³‚ê‚é‚Æ‚«‚ÉŒÄ‚Î‚ê‚é
+	// TJS2 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒä½œæˆã•ã‚Œã‚‹ã¨ãã«å‘¼ã°ã‚Œã‚‹
 	//tjs_error TJS_INTF_METHOD Construct(tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *tjs_obj);
-	// c‚Ì‚¾‚ªCTJS_BEGIN_NATIVE_CONSTRUCTOR ƒ}ƒNƒ‚©‚çŒÄ‚Î‚ê‚é‚Ì‚Å
-	// ã‹Lƒ}ƒNƒ‚ğg—p‚¹‚¸‚É“Æ©À‘•‚µ‚Ä‚¢‚é‚±‚±‚Å‚Íg—p‚µ‚È‚¢(ËncbNativeClassConstructor)
+	// â€¦ã®ã ãŒï¼ŒTJS_BEGIN_NATIVE_CONSTRUCTOR ãƒã‚¯ãƒ­ã‹ã‚‰å‘¼ã°ã‚Œã‚‹ã®ã§
+	// ä¸Šè¨˜ãƒã‚¯ãƒ­ã‚’ä½¿ç”¨ã›ãšã«ç‹¬è‡ªå®Ÿè£…ã—ã¦ã„ã‚‹ã“ã“ã§ã¯ä½¿ç”¨ã—ãªã„(â‡’ncbNativeClassConstructor)
 
-	/// ƒIƒuƒWƒFƒNƒg‚ª–³Œø‰»‚³‚ê‚é‚Æ‚«‚ÉŒÄ‚Î‚ê‚é
+	/// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒç„¡åŠ¹åŒ–ã•ã‚Œã‚‹ã¨ãã«å‘¼ã°ã‚Œã‚‹
 	void TJS_INTF_METHOD Invalidate() { _deleteInstance(); }
 
 private:
-	/// ÀƒCƒ“ƒXƒ^ƒ“ƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	/// å®Ÿã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	NativeClassT *_instance;
 
-	/// delete‚µ‚È‚¢ƒtƒ‰ƒO
+	/// deleteã—ãªã„ãƒ•ãƒ©ã‚°
 	bool _sticky;
 
-	/// ÀƒCƒ“ƒXƒ^ƒ“ƒX”jŠü
+	/// å®Ÿã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç ´æ£„
 	void _deleteInstance() {
 		if (_instance && !_sticky) delete _instance;
 		_instance = 0;
@@ -151,9 +155,9 @@ public:
 	void setSticky() { _sticky = true; }
 
 	//--------------------------------------
-	// staticƒwƒ‹ƒpŠÖ”
+	// staticãƒ˜ãƒ«ãƒ‘é–¢æ•°
 
-	/// iTJSDispatch2 ‚©‚ç Adaptor ‚ğæ“¾
+	/// iTJSDispatch2 ã‹ã‚‰ Adaptor ã‚’å–å¾—
 	static AdaptorT *GetAdaptor(iTJSDispatch2 *obj, bool err = false) {
 		iTJSNativeInstance* adp = 0;
 		if (!obj) {
@@ -167,13 +171,13 @@ public:
 		return static_cast<AdaptorT*>(adp);
 	}
 
-	/// iTJSDispatch2 ‚©‚ç NativeClassƒCƒ“ƒXƒ^ƒ“ƒX‚ğæ“¾
+	/// iTJSDispatch2 ã‹ã‚‰ NativeClassã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’å–å¾—
 	static NativeClassT *GetNativeInstance(iTJSDispatch2 *obj, bool err = false) {
 		AdaptorT *adp = GetAdaptor(obj, err);
 		return adp ? adp->_instance : 0;
 	}
 
-	/// NativeClassƒCƒ“ƒXƒ^ƒ“ƒX‚ğİ’è
+	/// NativeClassã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’è¨­å®š
 	static bool SetNativeInstance(iTJSDispatch2 *obj, NativeClassT *instance, bool err = false) {
 		AdaptorT *adp = GetAdaptor(obj, err);
 		if (!adp) return false;
@@ -181,7 +185,7 @@ public:
 		return true;
 	}
 
-	/// ƒAƒ_ƒvƒ^‚ğ¶¬‚µ‚Â‚ÂNativeClassƒCƒ“ƒXƒ^ƒ“ƒX‚ğİ’è
+	/// ã‚¢ãƒ€ãƒ—ã‚¿ã‚’ç”Ÿæˆã—ã¤ã¤NativeClassã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’è¨­å®š
 	static bool SetAdaptorWithNativeInstance(iTJSDispatch2 *obj, NativeClassT *instance, bool err = false) {
 		AdaptorT *adp = GetAdaptor(obj, false);
 		if (adp) {
@@ -199,7 +203,7 @@ public:
 		return true;
 	}
 
-	/// ƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg‚©‚çAdaptorƒCƒ“ƒXƒ^ƒ“ƒX‚ğ¶¬‚µ‚Äinstance‚ğ‘ã“ü
+	/// ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‹ã‚‰Adaptorã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ç”Ÿæˆã—ã¦instanceã‚’ä»£å…¥
 	static iTJSDispatch2* CreateAdaptor(NativeClassT *inst, bool sticky = false, bool err = false) {
 		typename ClassInfoT::ClassObjectT *clsobj = ClassInfoT::GetClassObject();
 		if (!clsobj) {
@@ -209,7 +213,7 @@ public:
 
 		iTJSDispatch2 *global = TVPGetScriptDispatch(), *obj = 0;
 		tTJSVariant dummy, *param = &dummy;
-		// ˆø”‚ª1‚Â‚Å‚©‚Âvoid‚Å‚ ‚ê‚ÎÀƒCƒ“ƒXƒ^ƒ“ƒX‚ğnew‚µ‚È‚¢“®ì‚É‚È‚é
+		// å¼•æ•°ãŒ1ã¤ã§ã‹ã¤voidã§ã‚ã‚Œã°å®Ÿã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’newã—ãªã„å‹•ä½œã«ãªã‚‹
 		tjs_error r = clsobj->CreateNew(0, 0, 0, &obj, 1, &param, global);
 		if (global) global->Release();
 
@@ -225,17 +229,17 @@ public:
 		return obj;
 	}
 
-	/// ‹ó‚Ì Adaptor ‚ğ¶¬‚·‚é (tTJSNativeClassForPluginŒ^‚ÌŠÖ”)
+	/// ç©ºã® Adaptor ã‚’ç”Ÿæˆã™ã‚‹ (tTJSNativeClassForPluginå‹ã®é–¢æ•°)
 	static iTJSNativeInstance* TJS_INTF_METHOD CreateEmptyAdaptor() {
 		return static_cast<iTJSNativeInstance*>(new AdaptorT());
 	}
 };
 
 ////////////////////////////////////////
-/// Œ^•ÏŠ·—pƒwƒ‹ƒpƒeƒ“ƒvƒŒ[ƒg
+/// å‹å¤‰æ›ç”¨ãƒ˜ãƒ«ãƒ‘ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆ
 struct ncbTypeConvertor {
 
-	/// FROM ‚©‚ç TO ‚Ö•ÏŠ·‚Å‚«‚é‚©
+	/// FROM ã‹ã‚‰ TO ã¸å¤‰æ›ã§ãã‚‹ã‹
 	template <typename FROM, typename TO>
 	struct Conversion {
 	private:
@@ -257,66 +261,66 @@ struct ncbTypeConvertor {
 #define NCB_INNER_CONVERSION_SPECIALIZATION \
 	template <> struct ncbTypeConvertor::Conversion<void, void> { enum { Exists = false, Same = true  }; };
 
-	/// Cüqæ‚èŠO‚µ(ƒ|ƒCƒ“ƒ^CQÆCconst“™‚ğŠO‚µ‚½‘f‚ÌŒ^‚ª typedef ‚³‚ê‚é)
+	/// ä¿®é£¾å­å–ã‚Šå¤–ã—(ãƒã‚¤ãƒ³ã‚¿ï¼Œå‚ç…§ï¼Œconstç­‰ã‚’å¤–ã—ãŸç´ ã®å‹ãŒ typedef ã•ã‚Œã‚‹)
 	template <typename T> struct Stripper             { typedef T Type; };
 	template <typename T> struct Stripper<T*>         { typedef typename Stripper<T>::Type Type; };
 	template <typename T> struct Stripper<T&>         { typedef typename Stripper<T>::Type Type; };
 	template <typename T> struct Stripper<const    T> { typedef typename Stripper<T>::Type Type; };
 //	template <typename T> struct Stripper<volatile T> { typedef typename Stripper<T>::Type Type; };
 
-	/// ƒ|ƒCƒ“ƒ^æ“¾
+	/// ãƒã‚¤ãƒ³ã‚¿å–å¾—
 	template <typename T> struct ToPointer            { static T* Get(T &t) { return &t; } };
 	template <typename T> struct ToPointer<T&>        { static T* Get(T &t) { return &t; } };
 	template <typename T> struct ToPointer<T*>        { static T* Get(T* t) { return  t; } };
 	template <typename T> struct ToPointer<T const&>  { static T* Get(T const &t) { return const_cast<T*>(&t); } };
 	template <typename T> struct ToPointer<T const*>  { static T* Get(T const *t) { return const_cast<T*>( t); } };
 
-	/// ƒ|ƒCƒ“ƒ^ËCüq•ÏŠ·
+	/// ãƒã‚¤ãƒ³ã‚¿â‡’ä¿®é£¾å­å¤‰æ›
 	template <typename T> struct ToTarget             { static T& Get(T *t) { return *t; } };
 	template <typename T> struct ToTarget<T&>         { static T& Get(T *t) { return *t; } };
 	template <typename T> struct ToTarget<T*>         { static T* Get(T *t) { return  t; } };
 
-	/// constŠO‚µ
+	/// constå¤–ã—
 	template <typename T> struct NonConst             { typedef T  Type; };
 	template <typename T> struct NonConst<const T>    { typedef T  Type; };
 	template <typename T> struct NonConst<const T&>   { typedef T& Type; };
 	template <typename T> struct NonConst<const T*>   { typedef T* Type; };
 
-	/// reference ŠO‚µ
+	/// reference å¤–ã—
 	template <typename T> struct NonReference         { typedef T Type; };
 	template <typename T> struct NonReference<T&>     { typedef T Type; };
 
-	// ’¼ƒRƒs[“®ì
+	// ç›´ã‚³ãƒ”ãƒ¼å‹•ä½œ
 	struct DirectCopy {
 		template <typename DST, typename SRC>
 		inline void operator()(DST &dst, SRC const &src) const { dst = src; }
 	};
 
-	// ƒLƒƒƒXƒg“®ì
+	// ã‚­ãƒ£ã‚¹ãƒˆå‹•ä½œ
 	template <typename CAST>
 	struct CastCopy {
 		template <typename DST, typename SRC>
 		inline void operator()(DST &dst, SRC const &src) const { dst = static_cast<DST>(static_cast<CAST>(src)); }
 	};
 
-	// Œ^“Áê‰»‚ª‘¶İ‚·‚é‚©‚Ìƒ}ƒbƒv—p
+	// å‹ç‰¹æ®ŠåŒ–ãŒå­˜åœ¨ã™ã‚‹ã‹ã®ãƒãƒƒãƒ—ç”¨
 	template <typename T, bool SRCF>
 	struct SpecialMap {
 		enum { Exists = false, Modifier = false, IsSource = SRCF };
 		typedef T Type;
 	};
 
-	/// “®ì–¢’èiƒRƒ“ƒpƒCƒ‹ƒGƒ‰[—pj
+	/// å‹•ä½œæœªå®šï¼ˆã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚¨ãƒ©ãƒ¼ç”¨ï¼‰
 	struct NCB_COMPILE_ERROR_NoImplement;
 
-	// ƒRƒ“ƒo[ƒ^“®ì‘I‘ğ
+	// ã‚³ãƒ³ãƒãƒ¼ã‚¿å‹•ä½œé¸æŠ
 	struct SelectConvertorTypeBase {
 	protected:
-		/// ‚R€‰‰Zq
+		/// ï¼“é …æ¼”ç®—å­
 		template <bool EXP, class THEN, class ELSE> struct ifelse                   { typedef ELSE Type; };
 		template <          class THEN, class ELSE> struct ifelse<true, THEN, ELSE> { typedef THEN Type; };
 
-		/// “Áê‰»‚ª‘¶İ‚·‚é‚©’²‚×‚éƒeƒ“ƒvƒŒ[ƒg
+		/// ç‰¹æ®ŠåŒ–ãŒå­˜åœ¨ã™ã‚‹ã‹èª¿ã¹ã‚‹ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆ
 		template <typename T, bool IsSrcF>
 		struct hasSpecial {
 			typedef typename Stripper<T>::Type StripT;
@@ -339,7 +343,7 @@ struct ncbTypeConvertor {
 		};
 	};
 
-	/// ƒRƒ“ƒo[ƒ^‚Ìƒ^ƒCƒv‚ğ’²‚×‚é
+	/// ã‚³ãƒ³ãƒãƒ¼ã‚¿ã®ã‚¿ã‚¤ãƒ—ã‚’èª¿ã¹ã‚‹
 	template <typename SRC, typename DST>
 	struct SelectConvertorType : public SelectConvertorTypeBase {
 	private:
@@ -356,18 +360,18 @@ struct ncbTypeConvertor {
 		typedef typename select::Type Type;
 	};
 };
-// ncbTypeConvertor::Conversion ‚Ì“Áê‰»
+// ncbTypeConvertor::Conversion ã®ç‰¹æ®ŠåŒ–
        NCB_INNER_CONVERSION_SPECIALIZATION
 #undef NCB_INNER_CONVERSION_SPECIALIZATION
 
 //--------------------------------------
-/// •Ô‚è’l‚ÌŒ^‚ğ³Šm‚Éæ‚è‚½‚¢ê‡CƒRƒ“ƒo[ƒ^‚Í‚±‚ê‚ğŒp³‚·‚é
+/// è¿”ã‚Šå€¤ã®å‹ã‚’æ­£ç¢ºã«å–ã‚ŠãŸã„å ´åˆï¼Œã‚³ãƒ³ãƒãƒ¼ã‚¿ã¯ã“ã‚Œã‚’ç¶™æ‰¿ã™ã‚‹
 struct ncbStrictResultConvertor {};
 
 //--------------------------------------
-// TypeConvertorŠÖ˜A‚ÌŠeíƒ}ƒNƒ
+// TypeConvertoré–¢é€£ã®å„ç¨®ãƒã‚¯ãƒ­
 
-/// SpecialMap ‚É“o˜^‚·‚éƒ}ƒNƒ
+/// SpecialMap ã«ç™»éŒ²ã™ã‚‹ãƒã‚¯ãƒ­
 #define NCB_TYPECONV_MAPSET(mapsel, type, conv, mod) \
 	template <> struct ncbTypeConvertor::SpecialMap<type, mapsel> { \
 		enum { Exists = true, Modifier = mod, IsSource = mapsel }; \
@@ -376,21 +380,21 @@ struct ncbStrictResultConvertor {};
 #define NCB_TYPECONV_SRCMAP_SET(type, conv, mod) NCB_TYPECONV_MAPSET(true,  type, conv, mod)
 #define NCB_TYPECONV_DSTMAP_SET(type, conv, mod) NCB_TYPECONV_MAPSET(false, type, conv, mod)
 
-/// DirectCopy“®ì‚Æ‚µ‚Äƒ}ƒbƒv‚É“o˜^
+/// DirectCopyå‹•ä½œã¨ã—ã¦ãƒãƒƒãƒ—ã«ç™»éŒ²
 #define NCB_TYPECONV_DIRECT(type) \
 	NCB_TYPECONV_SRCMAP_SET(type, ncbTypeConvertor::DirectCopy, false); \
 	NCB_TYPECONV_DSTMAP_SET(type, ncbTypeConvertor::DirectCopy, false)
 
-/// Cast“®ì‚Æ‚µ‚Äƒ}ƒbƒv‚É“o˜^
+/// Castå‹•ä½œã¨ã—ã¦ãƒãƒƒãƒ—ã«ç™»éŒ²
 #define NCB_TYPECONV_CAST(type, cast) \
 	NCB_TYPECONV_SRCMAP_SET(type, ncbTypeConvertor::CastCopy<cast>, false); \
 	NCB_TYPECONV_DSTMAP_SET(type, ncbTypeConvertor::CastCopy<cast>, false)
 
-/// ”’lƒLƒƒƒXƒg‚Å“o˜^
+/// æ•°å€¤ã‚­ãƒ£ã‚¹ãƒˆã§ç™»éŒ²
 #define NCB_TYPECONV_CAST_INTEGER(type)    NCB_TYPECONV_CAST(type, tTVInteger)
 #define NCB_TYPECONV_CAST_REAL(type)       NCB_TYPECONV_CAST(type, tTVReal)
 
-/// ”’l‚ÍƒLƒƒƒXƒg‚Å•ÏŠ·‚·‚é
+/// æ•°å€¤ã¯ã‚­ãƒ£ã‚¹ãƒˆã§å¤‰æ›ã™ã‚‹
 NCB_TYPECONV_CAST_INTEGER(   signed char);
 NCB_TYPECONV_CAST_INTEGER( unsigned char);
 NCB_TYPECONV_CAST_INTEGER(    signed int);
@@ -403,29 +407,35 @@ NCB_TYPECONV_CAST_REAL(            float);
 NCB_TYPECONV_CAST_REAL(           double);
 NCB_TYPECONV_CAST(            bool, bool);
 
-// ƒiƒ[•¶š•ÏŠ·
+// ãƒŠãƒ­ãƒ¼æ–‡å­—å¤‰æ›
 struct ncbNarrowCharConvertor {
-	/// ˆê“I‚Éƒoƒbƒtƒ@‚ğŠm•Û‚µ‚Ä‚»‚±‚É NarrowStr ‚Æ‚µ‚Ä‘‚«‚Ş
+	/// ä¸€æ™‚çš„ã«ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿ã—ã¦ãã“ã« NarrowStr ã¨ã—ã¦æ›¸ãè¾¼ã‚€
 	struct ToNChar {
-		/// Constructor (ƒƒ\ƒbƒh‚ªŒÄ‚Î‚ê‚é‘O)
+		/// Constructor (ãƒ¡ã‚½ãƒƒãƒ‰ãŒå‘¼ã°ã‚Œã‚‹å‰)
 		ToNChar() : _nstr(0) {}
-		/// Destructor (ƒƒ\ƒbƒh‚ªŒÄ‚Î‚ê‚½Œã)
+		/// Destructor (ãƒ¡ã‚½ãƒƒãƒ‰ãŒå‘¼ã°ã‚ŒãŸå¾Œ)
 		~ToNChar() {
 			if (_nstr) {
 				//				NCB_LOG_W("~ncbVariatToNChar > delete[]");
 				delete[] _nstr;
 			}
 		}
-		/// ˆø‚«”‚ğó‚¯“n‚·‚½‚ß‚Ìƒtƒ@ƒ“ƒNƒ^
+		/// å¼•ãæ•°ã‚’å—ã‘æ¸¡ã™ãŸã‚ã®ãƒ•ã‚¡ãƒ³ã‚¯ã‚¿
 		template <typename DST>
 		inline void operator()(DST &dst, tTJSVariant const &src) {
 			if (ncbTypedefs::GetVariantType(src) == tvtString) {
 				tTJSString s(src.AsStringNoAddRef());
+#ifdef NCBIND_UTF8
+				tjs_int len = TVPWideCharToUtf8String( s.c_str(), NULL );
+				_nstr = new tjs_nchar[len+1];
+				TVPWideCharToUtf8String( s.c_str(), _nstr );
+				_nstr[len] = 0;
+#else
 				tjs_int len = s.GetNarrowStrLen();
-
 //				NCB_LOG_W("ncbVariatToNChar::operator() > new tjs_nchar[]");
 				_nstr = new tjs_nchar[len+1];
 				s.ToNarrowStr(_nstr, len+1);
+#endif
 			}
 			dst = static_cast<DST>(_nstr);
 		}
@@ -436,30 +446,45 @@ struct ncbNarrowCharConvertor {
 		template <typename SRC>
 		inline void operator()(tTJSVariant &dst, SRC const &src) const {
 //			NCB_LOG_2("ncbNCharToVariatTo::operator() : ", src);
+#ifdef NCBIND_UTF8
+			tjs_int len = TVPUtf8ToWideCharString(src, NULL );
+			if( len > 0 ) {
+				auto buf = std::make_unique<tjs_char[]>(len);
+				if (buf) {
+					tjs_char *dat = buf->get();
+					TVPUtf8ToWideCharString(src, dat);
+					dst = tTJSString(dat, len);
+				}
+			} else {
+				dst = TJS_W("");
+			}
+#else
 			dst = tTJSString(src);
+#endif
 		}
 	};
 };
-// Narrow•¶š—ñ‚Æ‚µ‚Ä“o˜^‚·‚éƒ}ƒNƒ
+// Narrowæ–‡å­—åˆ—ã¨ã—ã¦ç™»éŒ²ã™ã‚‹ãƒã‚¯ãƒ­
 #define NCB_TYPECONV_NARROW_STRING(type) \
 	NCB_TYPECONV_SRCMAP_SET(type, ncbNarrowCharConvertor::ToVariant, false); \
 	NCB_TYPECONV_DSTMAP_SET(type, ncbNarrowCharConvertor::ToNChar,   false)
 
-/// signed char ‚Æ char ‚Á‚Ä•Ê•¨‚È‚Ì‚©‚·‚çH
+/// signed char ã¨ char ã£ã¦åˆ¥ç‰©ãªã®ã‹ã™ã‚‰ï¼Ÿ
 NCB_TYPECONV_NARROW_STRING(         char const*);
 NCB_TYPECONV_NARROW_STRING(  signed char const*);
 NCB_TYPECONV_NARROW_STRING(unsigned char const*);
 
-// ƒƒCƒh•¶š•ÏŠ·
+// ãƒ¯ã‚¤ãƒ‰æ–‡å­—å¤‰æ›
 struct ncbWideCharConvertor {
 	struct ToWChar {
 		template <typename DST>
 		inline void operator()(DST &dst, tTJSVariant const &src) {
-			dst = static_cast<DST>(src.GetString());
+			const tjs_char *str = src.GetString();
+			dst = static_cast<DST>(str ? str : L"");
 		}
 	};
 };
-// Wide•¶š—ñ‚Æ‚µ‚Ä“o˜^‚·‚éƒ}ƒNƒ
+// Wideæ–‡å­—åˆ—ã¨ã—ã¦ç™»éŒ²ã™ã‚‹ãƒã‚¯ãƒ­
 #define NCB_TYPECONV_WIDE_STRING(type) \
 	NCB_TYPECONV_SRCMAP_SET(type, ncbTypeConvertor::CastCopy<tjs_char const*>, false); \
 	NCB_TYPECONV_DSTMAP_SET(type, ncbWideCharConvertor::ToWChar,               false)
@@ -467,7 +492,7 @@ struct ncbWideCharConvertor {
 NCB_TYPECONV_WIDE_STRING(tjs_char const*);
 
 
-/// std::string‚È‚Ç‚ğ c_str() ‚Åó‚¯“n‚·
+/// std::stringãªã©ã‚’ c_str() ã§å—ã‘æ¸¡ã™
 template <class StringT>
 struct ncbStringConvertor {
 	typedef ncbTypedefs      DefsT;
@@ -487,10 +512,17 @@ struct ncbStringConvertor {
 		dst = ConvT::ToTarget<STR>::Get(&_temp);
 	}
 	inline void set(tTJSString const &str, DefsT::NumTag<sizeof(tjs_nchar)>) { // for Narrow char
+#ifdef NCBIND_UTF8
+		tjs_int len = TVPWideCharToUtf8String( str.c_str(), NULL );
+		tjs_nchar tmp[len];
+	    TVPWideCharToUtf8String( str.c_str(), tmp );
+		_temp.assign(tmp, len);
+#else
 		tjs_int len = str.GetNarrowStrLen();
 		tjs_nchar tmp[len+1];
 		str.ToNarrowStr(tmp, len+1);
 		_temp.assign(tmp, len);
+#endif
 	}
 	inline void set(tTJSString const &str, DefsT::NumTag<sizeof(tjs_char)>) { // for Wide char
 		_temp = str.c_str();
@@ -503,7 +535,7 @@ private:
 	NCB_TYPECONV_DSTMAP_SET(type, ncbStringConvertor<type>, true)
 
 
-/// ƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒXƒAƒ_ƒvƒ^‚Å Boxing/Unboxing ‚·‚é
+/// ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚¢ãƒ€ãƒ—ã‚¿ã§ Boxing/Unboxing ã™ã‚‹
 struct ncbNativeObjectBoxing {
 	typedef tTJSVariant VarT;
 	typedef ncbTypeConvertor ConvT;
@@ -521,11 +553,11 @@ struct ncbNativeObjectBoxing {
 			typedef typename ConvT::Stripper<TargetT>::Type ClassT;
 			typedef ncbInstanceAdaptor<ClassT>              AdaptorT;
 
-			ClassT *p = box<TargetT>::Get(src);						//< ƒRƒs[/QÆ/ƒ|ƒCƒ“ƒ^ê‡•ª‚¯
-			bool const s = box<TargetT>::Sticky;					//< sticky ƒtƒ‰ƒO
-			iTJSDispatch2 *adpobj = AdaptorT::CreateAdaptor(p, s);	//< ƒAƒ_ƒvƒ^TJSƒIƒuƒWƒFƒNƒg¶¬
-			dst = adpobj;											//< Variant‚ÉƒRƒs[
-			adpobj->Release();										//< ƒRƒs[Ï‚İ‚È‚Ì‚Åadaptor‚Í•s—v
+			ClassT *p = box<TargetT>::Get(src);						//< ã‚³ãƒ”ãƒ¼/å‚ç…§/ãƒã‚¤ãƒ³ã‚¿å ´åˆåˆ†ã‘
+			bool const s = box<TargetT>::Sticky;					//< sticky ãƒ•ãƒ©ã‚°
+			iTJSDispatch2 *adpobj = AdaptorT::CreateAdaptor(p, s);	//< ã‚¢ãƒ€ãƒ—ã‚¿TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆ
+			dst = tTJSVariant(adpobj, adpobj);						//< Variantã«ã‚³ãƒ”ãƒ¼
+			adpobj->Release();										//< ã‚³ãƒ”ãƒ¼æ¸ˆã¿ãªã®ã§adaptorã¯ä¸è¦
 		}
 
 		// for reference
@@ -543,21 +575,21 @@ struct ncbNativeObjectBoxing {
 			typedef typename ConvT::Stripper<TargetT>::Type ClassT;
 			typedef ncbInstanceAdaptor<ClassT>              AdaptorT;
 
-			iTJSDispatch2 *obj = src.AsObjectNoAddRef();			//< QÆƒJƒEƒ“ƒ^‘‰Á‚È‚µ‚ÅDispatchƒIƒuƒWƒFƒNƒgæ“¾
-			ClassT *p = AdaptorT::GetNativeInstance(obj, true);		//< ÀƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾
-			dst = ConvT::ToTarget<TargetT>::Get(p);					//< •K—v‚Æ‚³‚ê‚éŒ^‚É•ÏŠ·‚µ‚Ä•Ô‚·
+			iTJSDispatch2 *obj = src.AsObjectNoAddRef();			//< å‚ç…§ã‚«ã‚¦ãƒ³ã‚¿å¢—åŠ ãªã—ã§Dispatchã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå–å¾—
+			ClassT *p = AdaptorT::GetNativeInstance(obj, true);		//< å®Ÿã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
+			dst = ConvT::ToTarget<TargetT>::Get(p);					//< å¿…è¦ã¨ã•ã‚Œã‚‹å‹ã«å¤‰æ›ã—ã¦è¿”ã™
 		}
 	};
 };
 
-/// ƒ{ƒbƒNƒX‰»‚·‚éŒ^‚Æ‚µ‚Ä“o˜^‚·‚éƒ}ƒNƒ
+/// ãƒœãƒƒã‚¯ã‚¹åŒ–ã™ã‚‹å‹ã¨ã—ã¦ç™»éŒ²ã™ã‚‹ãƒã‚¯ãƒ­
 #define NCB_TYPECONV_BOXING(type) \
 	NCB_TYPECONV_SRCMAP_SET(type, ncbNativeObjectBoxing::Boxing,   true); \
 	NCB_TYPECONV_DSTMAP_SET(type, ncbNativeObjectBoxing::Unboxing, true)
 
 
 
-/// “Áê‰»—p‚Ìƒ}ƒNƒ (©“®•ÏŠ·‚Å‚È‚­’¼‚Åw’è‚·‚éê‡‚Í‚±‚Ìƒ}ƒNƒ‚ğg—p‚·‚é)
+/// ç‰¹æ®ŠåŒ–ç”¨ã®ãƒã‚¯ãƒ­ (è‡ªå‹•å¤‰æ›ã§ãªãç›´ã§æŒ‡å®šã™ã‚‹å ´åˆã¯ã“ã®ãƒã‚¯ãƒ­ã‚’ä½¿ç”¨ã™ã‚‹)
 #define NCB_SET_TOVARIANT_CONVERTOR(type, convertor) \
 	template <> struct ncbTypeConvertor::SelectConvertorType<type, tTJSVariant> { typedef convertor Type; }
 
@@ -568,10 +600,10 @@ struct ncbNativeObjectBoxing {
 	NCB_SET_TOVARIANT_CONVERTOR(type, convertor); \
 	NCB_SET_TOVALUE_CONVERTOR(  type, convertor) \
 
-/// •Ô‚è’l‚È‚µ‚Ìê‡‚Ìƒ_ƒ~[‚Ì TOVARIANT ‚ğ“o˜^
+/// è¿”ã‚Šå€¤ãªã—ã®å ´åˆã®ãƒ€ãƒŸãƒ¼ã® TOVARIANT ã‚’ç™»éŒ²
 NCB_SET_TOVARIANT_CONVERTOR(void, struct {});
 
-// iTJSDispatch2*‚ğˆø‚«”E•Ô‚è’l‚É‚·‚éê‡
+// iTJSDispatch2*ã‚’å¼•ãæ•°ãƒ»è¿”ã‚Šå€¤ã«ã™ã‚‹å ´åˆ
 struct ncbDispatchConvertor {
 	inline void operator ()(tTJSVariant &dst, iTJSDispatch2* &src) const {
 		dst = tTJSVariant(src, src);
@@ -590,20 +622,21 @@ NCB_SET_TOVALUE_CONVERTOR(  iTJSDispatch2 const*, ncbDispatchConvertor);
 
 
 /*
-	Œ^•ÏŠ·‚ğ’¼‚Å‘‚«‚½‚¢‚Í
+	å‹å¤‰æ›ã‚’ç›´ã§æ›¸ããŸã„æ™‚ã¯
 
-	struct CustomType; // •ÏŠ·‚·‚é‘ÎÛ‚ÌŒ^
-	struct CustomConvertor { // ƒRƒ“ƒo[ƒ^
+	struct CustomType; // å¤‰æ›ã™ã‚‹å¯¾è±¡ã®å‹
+	struct CustomConvertor { // ã‚³ãƒ³ãƒãƒ¼ã‚¿
 		void operator ()(tTJSVariant &dst, CustomType const &src);
 		void operator ()(CustomType const &src, tTJSVariant &dst);
 	};
 	NCB_SET_CONVERTOR(CustomType, CustomConvertor);
-	‚Æ‚¢‚Á‚½‚æ‚¤‚ÈŠ´‚¶‚Å“K“–‚É
+	ã¨ã„ã£ãŸã‚ˆã†ãªæ„Ÿã˜ã§é©å½“ã«
  */
 
-// Dicionary/Array Œü‚¯ƒ‰ƒbƒp(è”²‚«À‘•)
+// Dicionary/Array å‘ã‘ãƒ©ãƒƒãƒ‘(æ‰‹æŠœãå®Ÿè£…)
 struct ncbPropAccessor {
 	typedef ncbTypedefs   DefsT;
+	typedef DefsT::NameT  NameT;
 	typedef DefsT::FlagsT FlagsT;
 	typedef DefsT::NameT  KeyT;
 	typedef tjs_int32     IndexT;
@@ -616,13 +649,32 @@ struct ncbPropAccessor {
 	ncbPropAccessor(iTJSDispatch2 *obj, bool addref = true) : _obj(obj) {
 		if (addref) _obj->AddRef();
 	}
+	ncbPropAccessor(ncbPropAccessor const &ref) : _obj(ref._obj) { _obj->AddRef(); }
+	ncbPropAccessor(tTJSVariant var) : _obj(var.AsObject()) {
+		//_obj->AddRef();
+	}
+    ncbPropAccessor(NameT name) {
+	    tTJSVariant val;
+	    iTJSDispatch2 *global = TVPGetScriptDispatch();
+	    if (global) {
+	        global->PropGet(0, name, 0, &val, global);
+		}
+	    _obj = val.AsObject();
+	}
 	virtual ~ncbPropAccessor() {
-		_obj->Release();
+	    if (_obj) {
+		    _obj->Release();
+		}
 	}
 	CountT GetCount() const {
 		CountT sz;
 		ErrorT r = _obj->GetCount(&sz, 0, 0, _obj);
 		return (r == TJS_S_OK) ? sz : 0;
+	}
+	CountT GetArrayCount() const {
+		VariantT var;
+		_obj->PropGet(0, L"count", 0, &var, _obj);
+		return (CountT)var;
 	}
 	template <typename TargetT>
 	TargetT GetValue(IndexT ofs, DefsT::Tag<TargetT> const &tag, FlagsT f = 0) {
@@ -631,18 +683,108 @@ struct ncbPropAccessor {
 		return _toTarget(var, tag);
 	}
 	template <typename TargetT>
+	TargetT GetValue(iTJSDispatch2 *obj, IndexT ofs, DefsT::Tag<TargetT> const &tag, FlagsT f = 0) {
+		VariantT var;
+		_obj->PropGetByNum(f, ofs, &var, obj);
+		return _toTarget(var, tag);
+	}
+	tjs_intptr_t getIntPtrValue(IndexT ofs, tjs_intptr_t defaultValue=0) {
+		if (HasValue(ofs)) {
+			return GetValue(ofs, DefsT::Tag<tjs_intptr_t>());
+		} else {
+			return defaultValue;
+		}
+	}
+	tjs_int getIntValue(IndexT ofs, tjs_int defaultValue=0) {
+		if (HasValue(ofs)) {
+			return GetValue(ofs, DefsT::Tag<tjs_int>());
+		} else {
+			return defaultValue;
+		}
+	}
+	tjs_real getRealValue(IndexT ofs, tjs_real defaultValue=0) {
+		if (HasValue(ofs)) {
+			return GetValue(ofs, DefsT::Tag<tjs_real>());
+		} else {
+			return defaultValue;
+		}
+	}
+	ttstr getStrValue(IndexT ofs, ttstr const &defaultValue=ttstr("")) {
+		if (HasValue(ofs)) {
+			return GetValue(ofs, DefsT::Tag<ttstr>());
+		} else {
+			return defaultValue;
+		}
+	}
+	template <typename TargetT>
 	TargetT GetValue(KeyT key, DefsT::Tag<TargetT> const &tag, FlagsT f = 0, HintT hint = 0) {
 		VariantT var;
 		_obj->PropGet(f, key, hint, &var, _obj);
 		return _toTarget(var, tag);
 	}
-	bool HasValue(IndexT ofs) {
+	template <typename TargetT>
+	TargetT GetValue(iTJSDispatch2* obj, KeyT key, DefsT::Tag<TargetT> const &tag, FlagsT f = 0, HintT hint = 0) {
 		VariantT var;
+		_obj->PropGet(f, key, hint, &var, obj);
+		return _toTarget(var, tag);
+	}
+	tjs_intptr_t getIntPtrValue(KeyT key, tjs_intptr_t defaultValue=0) {
+		if (HasValue(key)) {
+			return GetValue(key, DefsT::Tag<tjs_intptr_t>());
+		} else {
+			return defaultValue;
+		}
+	}
+	tjs_int getIntValue(KeyT key, tjs_int defaultValue=0) {
+		if (HasValue(key)) {
+			return GetValue(key, DefsT::Tag<tjs_int>());
+		} else {
+			return defaultValue;
+		}
+	}
+	tjs_real getRealValue(KeyT key, tjs_real defaultValue=0) {
+		if (HasValue(key)) {
+			return GetValue(key, DefsT::Tag<tjs_real>());
+		} else {
+			return defaultValue;
+		}
+	}
+	ttstr getStrValue(KeyT key, ttstr const &defaultValue=ttstr("")) {
+		if (HasValue(key)) {
+			return GetValue(key, DefsT::Tag<ttstr>());
+		} else {
+			return defaultValue;
+		}
+	}
+	bool checkVariant(IndexT ofs, VariantT &var) {
 		return TJS_SUCCEEDED(_obj->PropGetByNum(TJS_MEMBERMUSTEXIST, ofs, &var, _obj));
 	}
-	bool HasValue(KeyT key, HintT hint = 0) {
+	bool checkVariant(KeyT key, VariantT &var) {
+		return TJS_SUCCEEDED(_obj->PropGet(TJS_MEMBERMUSTEXIST, key, 0, &var, _obj));
+	}
+	bool HasValue(IndexT ofs, tTJSVariantType *type = 0) {
 		VariantT var;
-		return TJS_SUCCEEDED(_obj->PropGet(TJS_MEMBERMUSTEXIST, key, hint, &var, _obj));
+		bool ret = TJS_SUCCEEDED(_obj->PropGetByNum(TJS_MEMBERMUSTEXIST, ofs, &var, _obj));
+		if (ret && type) *type = var.Type();
+		return ret;
+	}
+	bool HasValue(iTJSDispatch2 *obj, IndexT ofs, tTJSVariantType *type = 0) {
+		VariantT var;
+		bool ret = TJS_SUCCEEDED(_obj->PropGetByNum(TJS_MEMBERMUSTEXIST, ofs, &var, obj));
+		if (ret && type) *type = var.Type();
+		return ret;
+	}
+	bool HasValue(KeyT key, HintT hint = 0, tTJSVariantType *type = 0) {
+		VariantT var;
+		bool ret = TJS_SUCCEEDED(_obj->PropGet(TJS_MEMBERMUSTEXIST, key, hint, &var, _obj));
+		if (ret && type) *type = var.Type();
+		return ret;
+	}
+	bool HasValue(iTJSDispatch2 *obj, KeyT key, HintT hint = 0, tTJSVariantType *type = 0) {
+		VariantT var;
+		bool ret = TJS_SUCCEEDED(_obj->PropGet(TJS_MEMBERMUSTEXIST, key, hint, &var, obj));
+		if (ret && type) *type = var.Type();
+		return ret;
 	}
 	template <typename TargetT>
 	bool SetValue(IndexT ofs, TargetT const &val, FlagsT f = TJS_MEMBERENSURE) {
@@ -651,20 +793,63 @@ struct ncbPropAccessor {
 		return (_obj->PropSetByNum(f, ofs, &var, _obj) == TJS_S_OK);
 	}
 	template <typename TargetT>
+	bool SetValue(iTJSDispatch2 *obj, IndexT ofs, TargetT const &val, FlagsT f = TJS_MEMBERENSURE) {
+		VariantT var;
+		_toVariant(var, val);
+		return (_obj->PropSetByNum(f, ofs, &var, obj) == TJS_S_OK);
+	}
+	template <typename TargetT>
 	bool SetValue(KeyT key, TargetT const &val, FlagsT f = TJS_MEMBERENSURE, HintT hint = 0) {
 		VariantT var;
 		_toVariant(var, val);
 		return (_obj->PropSet(f, key, hint, &var, _obj) == TJS_S_OK);
 	}
+	template <typename TargetT>
+	bool SetValue(iTJSDispatch2 *obj, KeyT key, TargetT const &val, FlagsT f = TJS_MEMBERENSURE, HintT hint = 0) {
+		VariantT var;
+		_toVariant(var, val);
+		return (_obj->PropSet(f, key, hint, &var, obj) == TJS_S_OK);
+	}
 	bool IsValid() const { return _obj != 0; }
 	iTJSDispatch2* GetDispatch() const { return _obj; }
 	operator iTJSDispatch2*   () const { return _obj; }
+
+#undef  FOREACH_START
+#define FOREACH_START 1
+#undef  FOREACH_END
+#define FOREACH_END   FOREACH_MAX
+#define FCALL_PRM_EXT(num) tTJSVariant          param ## num
+#define FCALL_SET_EXT(num) params[ num - 1 ] = &param ## num;
+	// FuncCallã‚’ä»»æ„å€‹æ•°ã®tTJSVariantã‚’å¼•æ•°ã§å—ã‘ã‚‹ã‚ˆã†ãªãƒ¡ã‚½ãƒƒãƒ‰ã‚’å±•é–‹
+#undef  FOREACH
+#define FOREACH \
+	tjs_error TJS_INTF_METHOD FuncCall(tjs_uint32 flag, const tjs_char *membername, tjs_uint32 *hint, tTJSVariant *result, FOREACH_COMMA_EXT(FCALL_PRM_EXT) ) { \
+		tTJSVariant *params[FOREACH_COUNT]; FOREACH_SPACE_EXT(FCALL_SET_EXT) \
+		return _obj->FuncCall(flag, membername, hint, result, FOREACH_COUNT, params, _obj); \
+	}
+#include FOREACH_INCLUDE
+#undef  FOREACH
+#define FOREACH \
+	tjs_error TJS_INTF_METHOD FuncCall(iTJSDispatch2 *obj, tjs_uint32 flag, const tjs_char *membername, tjs_uint32 *hint, tTJSVariant *result, FOREACH_COMMA_EXT(FCALL_PRM_EXT) ) { \
+		tTJSVariant *params[FOREACH_COUNT]; FOREACH_SPACE_EXT(FCALL_SET_EXT) \
+		return _obj->FuncCall(flag, membername, hint, result, FOREACH_COUNT, params, obj); \
+	}
+#include FOREACH_INCLUDE
+#undef  FCALL_PRM_EXT
+#undef  FCALL_SET_EXT
+	// å¼•æ•°ãªã—ã®å ´åˆã ã‘ç‰¹æ®Š
+	tjs_error TJS_INTF_METHOD FuncCall(tjs_uint32 flag, const tjs_char *membername, tjs_uint32 *hint, tTJSVariant *result) {
+		return _obj->FuncCall(flag, membername, hint, result, 0, NULL, _obj);
+	}
+	tjs_error TJS_INTF_METHOD FuncCall(iTJSDispatch2 *obj, tjs_uint32 flag, const tjs_char *membername, tjs_uint32 *hint, tTJSVariant *result) {
+		return _obj->FuncCall(flag, membername, hint, result, 0, NULL, obj);
+	}
 protected:
 	iTJSDispatch2 *_obj;
 
 	template <typename TargetT>
 	TargetT _toTarget(VariantT &v, DefsT::Tag<TargetT> const&) {
-		typedef typename ncbTypeConvertor::SelectConvertorType<TargetT, VariantT>::Type ToTargetT;
+		typedef typename ncbTypeConvertor::SelectConvertorType<VariantT, TargetT>::Type ToTargetT;
 		TargetT r;
 		ToTargetT conv;
 		conv(r, v);
@@ -672,7 +857,7 @@ protected:
 	}
 	template <typename TargetT>
 	void _toVariant(VariantT &v, TargetT const &r) {
-		typedef typename ncbTypeConvertor::SelectConvertorType<VariantT, TargetT>::Type ToVariantT;
+		typedef typename ncbTypeConvertor::SelectConvertorType<TargetT, VariantT>::Type ToVariantT;
 		ToVariantT conv;
 		conv(v, r);
 	}
@@ -686,14 +871,18 @@ protected:
 
 struct ncbArrayAccessor : public ncbPropAccessor {
 	ncbArrayAccessor() : ncbPropAccessor(TJSCreateArrayObject(), false) {}
+private:
+	ncbArrayAccessor(ncbArrayAccessor const&);
 };
 struct ncbDictionaryAccessor : public ncbPropAccessor {
 	ncbDictionaryAccessor() : ncbPropAccessor(TJSCreateDictionaryObject(), false) {}
+private:
+	ncbDictionaryAccessor(ncbDictionaryAccessor const&);
 };
 
 
 ////////////////////////////////////////
-/// ƒƒ\ƒbƒhƒIƒuƒWƒFƒNƒgi‚ÆC‚»‚Ìƒ^ƒCƒv‚Æƒtƒ‰ƒOj‚ğó‚¯“n‚·‚½‚ß‚ÌƒCƒ“ƒ^[ƒtƒF[ƒX
+/// ãƒ¡ã‚½ãƒƒãƒ‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆï¼ˆã¨ï¼Œãã®ã‚¿ã‚¤ãƒ—ã¨ãƒ•ãƒ©ã‚°ï¼‰ã‚’å—ã‘æ¸¡ã™ãŸã‚ã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
 struct ncbIMethodObject {
 	typedef iTJSDispatch2*             DispatchT;
 	typedef ncbTypedefs::FlagsT        FlagsT;
@@ -706,7 +895,7 @@ struct ncbIMethodObject {
 };
 
 ////////////////////////////////////////
-/// ƒƒ\ƒbƒhŒÄ‚Ño‚µ—pƒx[ƒXƒNƒ‰ƒX
+/// ãƒ¡ã‚½ãƒƒãƒ‰å‘¼ã³å‡ºã—ç”¨ãƒ™ãƒ¼ã‚¹ã‚¯ãƒ©ã‚¹
 
 struct ncbNativeClassMethodBase : public tTJSDispatch {
 	typedef tTJSDispatch             BaseT;
@@ -721,8 +910,8 @@ struct ncbNativeClassMethodBase : public tTJSDispatch {
 	/// constructor
 	ncbNativeClassMethodBase(MethodTypeT t) : _type(t), _name(0) {
 		_imethod = this;
-		switch (t) { // ƒ^ƒCƒv–¼‚ğİ’è
-//		case nitClass:    _name = TJS_W("Class");    break; // ƒNƒ‰ƒX‚É‚È‚é‚±‚Æ‚Í‚ ‚è‚¦‚È‚¢
+		switch (t) { // ã‚¿ã‚¤ãƒ—åã‚’è¨­å®š
+//		case nitClass:    _name = TJS_W("Class");    break; // ã‚¯ãƒ©ã‚¹ã«ãªã‚‹ã“ã¨ã¯ã‚ã‚Šãˆãªã„
 		case nitMethod:   _name = TJS_W("Function"); break;
 		case nitProperty: _name = TJS_W("Property"); break;
 		default: break;
@@ -730,12 +919,12 @@ struct ncbNativeClassMethodBase : public tTJSDispatch {
 	}
 	~ncbNativeClassMethodBase() {}
 
-	/// IsInstanceOf À‘•
+	/// IsInstanceOf å®Ÿè£…
 	tjs_error TJS_INTF_METHOD IsInstanceOf(
 		tjs_uint32 flag, const tjs_char *membername, tjs_uint32 *hint, 
 		const tjs_char *classname, iTJSDispatch2 *objthis)
 	{
-		// ©•ª©g(membername==0)‚Å”äŠrƒNƒ‰ƒX–¼‚ª_name‚È‚çTRUEC‚»‚êˆÈŠO‚ÍŠÛ“Š‚°
+		// è‡ªåˆ†è‡ªèº«(membername==0)ã§æ¯”è¼ƒã‚¯ãƒ©ã‚¹åãŒ_nameãªã‚‰TRUEï¼Œãã‚Œä»¥å¤–ã¯ä¸¸æŠ•ã’
 		return (!membername && _name && !TJS_stricmp(classname, _name)) ? TJS_S_TRUE
 			: BaseT::IsInstanceOf(flag, membername, hint, classname, objthis);
 	}
@@ -744,17 +933,17 @@ private:
 	MethodTypeT const _type;
 	NameT _name;
 
-	// private‚Å‰B•Á‚µ‚Ä‚İ‚é
+	// privateã§éš è”½ã—ã¦ã¿ã‚‹
 	typedef DefsT::CallerT CallerT;
 
 	//--------------------------------------
-	/// TJSNativeClassRegisterNCM ‚É“n‚·ƒ^ƒCƒv
+	/// TJSNativeClassRegisterNCM ã«æ¸¡ã™ã‚¿ã‚¤ãƒ—
 	virtual TypesT GetType() const { return _type; }
 
-	/// TJSNativeClassRegisterNCM ‚É“n‚·ƒtƒ‰ƒO
+	/// TJSNativeClassRegisterNCM ã«æ¸¡ã™ãƒ•ãƒ©ã‚°
 	virtual FlagsT GetFlags() const { return 0; }
 
-	/// IMethod À‘•
+	/// IMethod å®Ÿè£…
 	struct iMethod : public ncbIMethodObject {
 		typedef ncbNativeClassMethodBase MethodObjectT;
 		void operator = (MethodObjectT *mo) { _this = mo; }
@@ -767,14 +956,14 @@ private:
 	} _imethod;
 
 protected:
-	/// IMethod æ“¾
+	/// IMethod å–å¾—
 	iMethodT GetIMethod() const { return &_imethod; }
 
 
 
 	//--------------------------------------
 protected:
-	/// tMethodTraitsƒ‰ƒbƒp[
+	/// tMethodTraitsãƒ©ãƒƒãƒ‘ãƒ¼
 	template <typename T>
 	struct traits {
 		typedef CallerT::tMethodTraits<T> TraitsT;
@@ -786,11 +975,11 @@ protected:
 
 	//--------------------------------------
 private:
-	/// ˆø”/•Ô‚è’l‚Ìˆø‚«“n‚µ—pƒtƒ@ƒ“ƒNƒ^ (ncb_invoke.hpp/MethodCaller‚É“n‚·‚½‚ß‚É•K—v)
+	/// å¼•æ•°/è¿”ã‚Šå€¤ã®å¼•ãæ¸¡ã—ç”¨ãƒ•ã‚¡ãƒ³ã‚¯ã‚¿ (ncb_invoke.hpp/MethodCallerã«æ¸¡ã™ãŸã‚ã«å¿…è¦)
 	template <typename METHOD>
 	struct paramsFunctor {
 		typedef traits<METHOD> TraitsT;
-		// ‹Œƒeƒ“ƒvƒŒƒpƒ‰ƒƒ^
+		// æ—§ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ‘ãƒ©ãƒ¡ã‚¿
 		typedef typename TraitsT::ResultT RES;
 		typedef typename TraitsT::ArgsT   ARGS;
 		enum { ARGC = TraitsT::ArgsCount };
@@ -806,31 +995,31 @@ private:
 
 		template <typename T> struct ArgsExtor { typedef typename ConvT::SelectConvertorType<VariantT, typename TypeWrap<T>::Type>::Type Type; };
 		typedef CallerT::tArgsExtract<ArgsExtor, ARGS, ARGC> ArgsConvT;
-		/* ArgsConvT ‚ÍˆÈ‰º‚Ì‚æ‚¤‚É“WŠJ‚³‚ê‚éF
+		/* ArgsConvT ã¯ä»¥ä¸‹ã®ã‚ˆã†ã«å±•é–‹ã•ã‚Œã‚‹ï¼š
 			struct ArgsConvT {
-				ncbToValueConvertor<ARGS::Arg1Type> t1; // ˆê”Ô–Ú‚Ìˆø”‚Ì ncbToValueConvertor
-				ncbToValueConvertor<ARGS::Arg2Type> t2; // “ñ”Ô–Ú‚Ì
+				ncbToValueConvertor<ARGS::Arg1Type> t1; // ä¸€ç•ªç›®ã®å¼•æ•°ã® ncbToValueConvertor
+				ncbToValueConvertor<ARGS::Arg2Type> t2; // äºŒç•ªç›®ã®
 				  :
-				ncbToValueConvertor<ARGS::Arg[ARGC]Type> tARGC; // ARGC”Ô–Ú‚Ì
+				ncbToValueConvertor<ARGS::Arg[ARGC]Type> tARGC; // ARGCç•ªç›®ã®
 			}; */
 
 		/// constructor
 		paramsFunctor(VariantT *r, tjs_int n, VariantT const *const *p) : _numparams(n), _result(r),_param(p) {}
 
-		/// ˆø”‚ğ NativeClassMethod ‚Öˆø“n‚µ
+		/// å¼•æ•°ã‚’ NativeClassMethod ã¸å¼•æ¸¡ã—
 		template <int N, typename T>
 		inline T operator ()(CallerT::tNumTag<N> const& /*index*/, CallerT::tTypeTag<T> const& /*type*/) {
 			typedef typename TypeWrap<T>::Type ParamT;
 			ParamT ret;
-			// N”Ô–Ú‚Ì ncbToValueConvertor ‚ğæ‚èo‚µ‚Ä•ÏŠ·
+			// Nç•ªç›®ã® ncbToValueConvertor ã‚’å–ã‚Šå‡ºã—ã¦å¤‰æ›
 			(CallerT::tArgsSelect<ArgsConvT, N>::Get(_aconv))(ret, (_numparams >= N) ? *(_param[N - 1]) : VariantT());
 			return TypeWrap<T>::Restore(ret);
 		}
 
-		/// NativeClassMethod ‚Ì•Ô‚è’l‚È‚µ
+		/// NativeClassMethod ã®è¿”ã‚Šå€¤ãªã—
 		inline bool operator ()() const { return true; }
 
-		/// NativeClassMethod ‚Ì•Ô‚è’l‚ğresult‚ÖŠi”[
+		/// NativeClassMethod ã®è¿”ã‚Šå€¤ã‚’resultã¸æ ¼ç´
 		template <typename ResultT>
 		inline bool operator()(ResultT r, CallerT::tTypeTag<ResultT> const&) {
 			return SetResult(r, DefsT::Tag<ResultT>(),  DefsT::BoolTag<StrictResult>());
@@ -839,7 +1028,7 @@ private:
 		// StrictResult = false
 		template <typename ResultT>
 		inline bool SetResult(ResultT r, DefsT::Tag<ResultT> const&, DefsT::BoolTag<false> const&) {
-			if (_result) _rconv(*_result, r); // ncbToVariantConvertor ‚Å•Ô‚è’l‚É•ÏŠ·
+			if (_result) _rconv(*_result, r); // ncbToVariantConvertor ã§è¿”ã‚Šå€¤ã«å¤‰æ›
 			return true;
 		}
 
@@ -862,17 +1051,17 @@ private:
 
 
 	private:
-		// Œ^•ÏŠ·—pƒ[ƒN
+		// å‹å¤‰æ›ç”¨ãƒ¯ãƒ¼ã‚¯
 		ArgsConvT   _aconv;
 		ResultConvT _rconv;
 
-		// ˆø”E•Ô‚è’lƒpƒ‰ƒ[ƒ^
+		// å¼•æ•°ãƒ»è¿”ã‚Šå€¤ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 		tjs_int                _numparams;
 		VariantT             * _result;
 		VariantT const *const* _param;
 	};
 
-	// æ“ª‚ÉƒCƒ“ƒXƒ^ƒ“ƒXƒ|ƒCƒ“ƒ^‚ğ“n‚·PROXY METHOD‚Ìƒtƒ@ƒ“ƒNƒ^
+	// å…ˆé ­ã«ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãƒã‚¤ãƒ³ã‚¿ã‚’æ¸¡ã™PROXY METHODã®ãƒ•ã‚¡ãƒ³ã‚¯ã‚¿
 	template <class CLASS, class FUNCT>
 	struct paramsFunctorWithInstance : public FUNCT {
 		typedef FUNCT       BaseT;
@@ -891,7 +1080,7 @@ private:
 
 	//--------------------------------------
 private:
-	/// ƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX‚ğæ“¾‚·‚é‚½‚ß‚Ìƒeƒ“ƒvƒŒ[ƒgi“Áê‰»‚Åã‘‚«‚Å‚«‚é‚æ‚¤‚É‚·‚é‚½‚ß
+	/// ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’å–å¾—ã™ã‚‹ãŸã‚ã®ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆï¼ˆç‰¹æ®ŠåŒ–ã§ä¸Šæ›¸ãã§ãã‚‹ã‚ˆã†ã«ã™ã‚‹ãŸã‚
 	template <class T>
 	struct nativeInstanceGetterBase {
 		typedef T  ClassT;
@@ -902,7 +1091,7 @@ private:
 		nativeInstanceGetterBase() : _error(TJS_S_OK) {}
 
 		inline ClassT *GetNativeInstance(DispatchT objthis) {
-			ClassT *r = AdaptorT::GetNativeInstance(objthis); // ÀƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒ|ƒCƒ“ƒ^
+			ClassT *r = AdaptorT::GetNativeInstance(objthis); // å®Ÿã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿
 			if (!r) SetError(TJS_E_NATIVECLASSCRASH);
 			return r;
 		}
@@ -913,17 +1102,17 @@ private:
 		inline ErrorT  GetError() const   { return _error; }
 		inline void    SetError(ErrorT e) { _error = e; }
 
-		/// ƒfƒtƒHƒ‹ƒg“®ì
+		/// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå‹•ä½œ
 		inline ClassT* Get(DispatchT objthis) { return GetNativeInstance(objthis); }
 	private:
 		ErrorT _error;
 	};
 
-	/// w’è‚ª‚È‚¢ê‡‚ÍƒfƒtƒHƒ‹ƒg“®ìiBase‚ÌGet‚ªŒÄ‚Î‚ê‚éj
+	/// æŒ‡å®šãŒãªã„å ´åˆã¯ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå‹•ä½œï¼ˆBaseã®GetãŒå‘¼ã°ã‚Œã‚‹ï¼‰
 	template <class T>
 	struct nativeInstanceGetter : public nativeInstanceGetterBase<T> {};
 
-	/// Bridge—p
+	/// Bridgeç”¨
 	template <class FROM, class TO, typename CONV>
 	struct bridgeInstanceGetter : public nativeInstanceGetterBase<FROM> {
 		typedef                          nativeInstanceGetterBase<FROM> BaseT;
@@ -935,22 +1124,22 @@ private:
 		CONV conv;
 	};
 
-	// ƒ_ƒ~[—p
+	// ãƒ€ãƒŸãƒ¼ç”¨
 	typedef struct dummyGetter { dummyGetter() {} } const noInstanceGetter;
 
 	//--------------------------------------
 protected:
-	/// ƒƒ\ƒbƒh/ƒRƒ“ƒXƒgƒ‰ƒNƒ^ŒÄ‚Ño‚µ‚Étry/catch‚ğ‹²‚İ‚Ş‚½‚ß‚Ìƒwƒ‹ƒpƒeƒ“ƒvƒŒ[ƒg
+	/// ãƒ¡ã‚½ãƒƒãƒ‰/ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿å‘¼ã³å‡ºã—ã«try/catchã‚’æŒŸã¿è¾¼ã‚€ãŸã‚ã®ãƒ˜ãƒ«ãƒ‘ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆ
 	template <bool  IsAny>  struct invokeHookAll   { template <typename T> static inline typename T::ResultT Do(T &t) { return t(); } };
 	template <class ClassT> struct invokeHookClass { template <typename T> static inline typename T::ResultT Do(T &t) { return invokeHookAll<T::Hook>::Do(t); } };
 
 	//--------------------------------------
 protected:
-	// ƒtƒbƒN‚Ìˆø‚«”‚É“n‚·ƒtƒ@ƒ“ƒNƒ^‚Ìƒx[ƒXiƒpƒ‰ƒ[ƒ^•Ûj
+	// ãƒ•ãƒƒã‚¯ã®å¼•ãæ•°ã«æ¸¡ã™ãƒ•ã‚¡ãƒ³ã‚¯ã‚¿ã®ãƒ™ãƒ¼ã‚¹ï¼ˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä¿æŒï¼‰
 	struct doInvokeBase {
 		typedef tjs_error ResultT;
 		enum { Hook = true };
-		enum { ivsMethod, ivsProxy, ivsConstructor };
+		enum { ivsMethod, ivsProxy, ivsConstructor, ivsFactory };
 
 		typedef tTJSVariant  * RetT;
 		typedef tjs_int        NumT;
@@ -964,17 +1153,17 @@ protected:
 		ArgsT const _param;
 		ObjT  const _objthis;
 
-		// ’Êíƒƒ\ƒbƒh
+		// é€šå¸¸ãƒ¡ã‚½ãƒƒãƒ‰
 		template <typename MethodT, class ClassT, class FunctorT>
 		ResultT CallInvoke(MethodT const &m, ClassT *inst, DefsT::Tag<FunctorT>, DefsT::NumTag<ivsMethod>) const {
 			return CallerT::Invoke(FunctorT(_result, _numparams, _param),       m, inst) ? TJS_S_OK : TJS_E_FAIL;
 		}
-		// Proxy —p
+		// Proxy ç”¨
 		template <typename MethodT, class ClassT, class FunctorT>
 		ResultT CallInvoke(MethodT const &m, ClassT *inst, DefsT::Tag<FunctorT>, DefsT::NumTag<ivsProxy>) const {
 			return CallerT::Invoke(FunctorT(_result, _numparams, _param, inst), m, inst) ? TJS_S_OK : TJS_E_FAIL;
 		}
-		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^—p
+		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ç”¨
 		template <typename MethodT, class ClassT, class FunctorT>
 		ResultT CallInvoke(MethodT const &,  ClassT *inst, DefsT::Tag<FunctorT>, DefsT::NumTag<ivsConstructor>) const {
 			try {
@@ -993,40 +1182,60 @@ protected:
 			}
 			return TJS_S_OK;
 		}
-		// ƒCƒ“ƒXƒ^ƒ“ƒXæ“¾
+		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ä»£æ›¿ãƒ•ã‚¡ã‚¯ãƒˆãƒª
+		template <typename MethodT, class ClassT, class FunctorT>
+		ResultT CallInvoke(MethodT const &m, ClassT *inst, DefsT::Tag<FunctorT>, DefsT::NumTag<ivsFactory>) const {
+			typedef ncbInstanceAdaptor<ClassT> AdaptorT;
+			try {
+				if (!(inst = CallerT::Factory(FunctorT(_result, _numparams, _param, _objthis), m))) {
+					TVPThrowExceptionMessage(TJS_W("NativeClassInstance creation faild."));
+					return TJS_E_FAIL;
+				}
+				if (!ncbInstanceAdaptor<ClassT>::SetNativeInstance(_objthis, inst)) {
+					delete inst;
+					return TJS_E_NATIVECLASSCRASH;
+				}
+			} catch (...) {
+				if (inst) delete inst;
+				throw;
+			}
+			return TJS_S_OK;
+		}
+
+		// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹å–å¾—
 		template <class ClassT, typename GetterT>
 		ResultT GetInstance(ClassT **obj, GetterT &g) const {
 			*obj = g.Get(_objthis);
 			return g.GetError();
 		}
-		// ƒCƒ“ƒXƒ^ƒ“ƒX‚È‚µ
+		// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãªã—
 		template <class ANY>
 		ResultT GetInstance(ANY**, noInstanceGetter&) const { return TJS_S_OK; }
 	};
-	// ƒNƒ‰ƒXƒƒ\ƒbƒhŒÄ‚Ño‚µƒtƒ@ƒ“ƒNƒ^
+	// ã‚¯ãƒ©ã‚¹ãƒ¡ã‚½ãƒƒãƒ‰å‘¼ã³å‡ºã—ãƒ•ã‚¡ãƒ³ã‚¯ã‚¿
 	template <class SELECTOR>
 	struct doInvoke : public doInvokeBase {
 		typedef SELECTOR SelectorT;
-		typedef typename SelectorT::RefClassT    RefClassT;    // ‘åŒ³‚ÌƒlƒCƒeƒBƒuƒNƒ‰ƒX
-		typedef typename SelectorT::ClassT       ClassT;       // ƒƒ\ƒbƒhŒÄ‚Ño‚µ‚Ì‘ÎÛƒNƒ‰ƒX(static‚È‚çvoid, bridge‚È‚ç“]‘—æƒNƒ‰ƒX)
-		typedef typename SelectorT::MethodT      MethodT;      // ƒƒ\ƒbƒhŒ^
-		typedef typename SelectorT::GetInstanceT GetInstanceT; // ƒCƒ“ƒXƒ^ƒ“ƒXæ“¾‚·‚é‚½‚ß‚ÌŒ^(void‚È‚çæ“¾‚µ‚È‚¢, bridge‚È‚ç“]‘—æƒCƒ“ƒXƒ^ƒ“ƒXæ“¾)
-		typedef typename SelectorT::FunctorT     FunctorT;     // ˆø‚«”æ“¾—pƒtƒ@ƒ“ƒNƒ^Œ^(’Êí‚ÍparamsFunctor, proxy‚È‚çparamsFunctorWithInstance)
+		typedef typename SelectorT::RefClassT    RefClassT;    // å¤§å…ƒã®ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¯ãƒ©ã‚¹
+		typedef typename SelectorT::ClassT       ClassT;       // ãƒ¡ã‚½ãƒƒãƒ‰å‘¼ã³å‡ºã—ã®å¯¾è±¡ã‚¯ãƒ©ã‚¹(staticãªã‚‰void, bridgeãªã‚‰è»¢é€å…ˆã‚¯ãƒ©ã‚¹)
+		typedef typename SelectorT::MethodT      MethodT;      // ãƒ¡ã‚½ãƒƒãƒ‰å‹
+		typedef typename SelectorT::GetInstanceT GetInstanceT; // ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹å–å¾—ã™ã‚‹ãŸã‚ã®å‹(voidãªã‚‰å–å¾—ã—ãªã„, bridgeãªã‚‰è»¢é€å…ˆã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹å–å¾—)
+		typedef typename SelectorT::FunctorT     FunctorT;     // å¼•ãæ•°å–å¾—ç”¨ãƒ•ã‚¡ãƒ³ã‚¯ã‚¿å‹(é€šå¸¸ã¯paramsFunctor, proxyãªã‚‰paramsFunctorWithInstance)
 		//enum { InvokeSelect = SelectorT::InvokeSelect };     // ivsMethod, ivsProxy, ivsConstructor
-		//enum { ArgsCount = SelectorT::ArgsCount };           // ˆø”‚ÌŒÂ”(proxy ‚È‚ç-1‚³‚ê‚½’l)
+		//enum { ArgsCount = SelectorT::ArgsCount };           // å¼•æ•°ã®å€‹æ•°(proxy ãªã‚‰-1ã•ã‚ŒãŸå€¤)
 
 		doInvoke(MethodT const &m, RetT r, NumT n, ArgsT p, ObjT o) : doInvokeBase(r, n, p, o), _m(m) {}
 		inline ResultT operator()() const {
-			// ˆø‚«”‚ÌŒÂ”‚ª­‚È‚¢ê‡‚ÍƒGƒ‰[
+			// å¼•ãæ•°ã®å€‹æ•°ãŒå°‘ãªã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 			if (_numparams < SelectorT::ArgsCount) return TJS_E_BADPARAMCOUNT;
 
-			// ƒCƒ“ƒXƒ^ƒ“ƒXƒ|ƒCƒ“ƒ^‚ğæ“¾
+			// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
 			ClassT *inst = 0;
 			GetInstanceT gi;
 			ResultT r = GetInstance(&inst, gi);
 			if (TJS_FAILED(r)) return r;
 
-			// ƒCƒ“ƒXƒ^ƒ“ƒX‚ğ“n‚µ‚ÄƒNƒ‰ƒXƒƒ\ƒbƒh‚ğÀs
+			// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’æ¸¡ã—ã¦ã‚¯ãƒ©ã‚¹ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å®Ÿè¡Œ
 			return CallInvoke(_m, inst, DefsT::Tag<FunctorT>(), DefsT::NumTag<SelectorT::InvokeSelect>());
 		}
 		inline ResultT Invoke() const {
@@ -1038,8 +1247,9 @@ protected:
 	//--------------------------------------
 public:
 	struct InvokeType {
-		// InvokeCommand‚Ég—p‚·‚éê‡‚í‚¯—pƒ^ƒO
+		// InvokeCommandã«ä½¿ç”¨ã™ã‚‹å ´åˆã‚ã‘ç”¨ã‚¿ã‚°
 		struct ivtCtor {};
+		struct ivtFactory {};
 		struct ivtNormal {};
 		template <class BASE>
 		struct ivtProxy { typedef BASE BaseT; };
@@ -1057,8 +1267,8 @@ public:
 			typedef traits<MethodT> TraitsT;
 			typedef typename TraitsT::ClassT ClassT;
 			typedef typename DefsT::TypeSelect<
-				(DefsT::TypeEqual<ClassT, void>::Result), noInstanceGetter, nativeInstanceGetter<ClassT> >::Result GetInstanceT;
-			// GetInstanceT=     (ClassT==void) ?         noInstanceGetter: nativeInstanceGetter<ClassT>;
+				(DefsT::TypeEqual<ClassT, void>::Result), noInstanceGetter, nativeInstanceGetter<RefClassT> >::Result GetInstanceT;
+			// GetInstanceT=     (ClassT==void) ?         noInstanceGetter: nativeInstanceGetter<RefClassT>;
 			typedef paramsFunctor<MethodT> FunctorT;
 			enum {
 				InvokeSelect = doInvokeBase::ivsMethod,
@@ -1068,7 +1278,7 @@ public:
 					//   Flags =         (ClassT==void) ?        TJS_STATICMEMBER :0;
 			};
 		};
-		// Bridge : instanceGetter ‚ğ’u‚«Š·‚¦
+		// Bridge : instanceGetter ã‚’ç½®ãæ›ãˆ
 		template <class REFCLASS, typename METHOD, typename BRIDGE>
 		struct InvokeCommand<REFCLASS, METHOD, ivtBridge<BRIDGE> > {
 			typedef                            ivtBridge<BRIDGE> BridgeT;
@@ -1084,7 +1294,7 @@ public:
 				Flags        = 0,
 			};
 		};
-		// Proxy : Normal ‚©‚ç FunctorT ‚Æ ArgsCount ‚ğ’u‚«Š·‚¦‚é
+		// Proxy : Normal ã‹ã‚‰ FunctorT ã¨ ArgsCount ã‚’ç½®ãæ›ãˆã‚‹
 		template <class REFCLASS, typename METHOD>
 		struct InvokeCommand<REFCLASS, METHOD, ivtProxy<ivtNormal> > : public InvokeCommand<REFCLASS, METHOD> {
 			typedef /*                                                      */InvokeCommand<REFCLASS, METHOD> BaseT;
@@ -1097,7 +1307,7 @@ public:
 				Flags        = 0,
 			};
 		};
-		// ProxyBridge : Bridge ‚©‚ç FunctorT ‚Æ ArgsCount ‚ğ’u‚«Š·‚¦‚é
+		// ProxyBridge : Bridge ã‹ã‚‰ FunctorT ã¨ ArgsCount ã‚’ç½®ãæ›ãˆã‚‹
 		template <class REFCLASS, typename METHOD, class BRIDGE>
 		struct InvokeCommand<      REFCLASS, METHOD, ivtProxy< ivtBridge<BRIDGE> > >
 			: public InvokeCommand<REFCLASS, METHOD,           ivtBridge<BRIDGE> > {
@@ -1123,8 +1333,33 @@ public:
 				ArgsCount = TraitsT::ArgsCount
 			};
 		};
+		// Factory
+		template <class CLASS, typename METHOD>
+		struct InvokeCommand<CLASS, METHOD, ivtFactory> {
+			typedef CLASS RefClassT;
+			typedef CLASS ClassT;
+			typedef METHOD   MethodT;
+			typedef noInstanceGetter GetInstanceT;
+			typedef traits<METHOD> TraitsT;
+			typedef paramsFunctorWithInstance<iTJSDispatch2, paramsFunctor<METHOD> > FunctorT;
+			enum {
+				InvokeSelect = doInvokeBase::ivsFactory,
+				ArgsCount = TraitsT::ArgsCount - 1
+			};
+			// ãƒ•ã‚¡ã‚¯ãƒˆãƒªé–¢æ•°ã®è¿”ã‚Šå€¤ãƒã‚§ãƒƒã‚¯
+			struct NoInstanceReturn {};
+			typedef typename DefsT::TypeAssert<
+				!DefsT::TypeEqual<typename TraitsT::ResultT, ClassT*>::Result,
+			/**/NoInstanceReturn>::Result CheckResultType;
+
+			// staticãƒ¡ã‚½ãƒƒãƒ‰ãƒã‚§ãƒƒã‚¯
+			struct NoStaticMethod {};
+			typedef typename DefsT::TypeAssert<
+				!DefsT::TypeEqual<typename TraitsT::ClassT, void>::Result,
+			/**/NoStaticMethod >::Result CheckClassType;
+		};
 		
-		// ƒvƒƒpƒeƒB‚Í Getter ‚Æ Setter ‚Ì InvokeCommand ‚ğ‘©‚Ë‚é
+		// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã¯ Getter ã¨ Setter ã® InvokeCommand ã‚’æŸã­ã‚‹
 		template <class REFCLASS, typename GETTER, typename SETTER, class SEL>
 		struct PropertyCommand {
 			typedef InvokeCommand<REFCLASS, GETTER, SEL> GetCommandT;
@@ -1136,9 +1371,9 @@ public:
 
 
 ////////////////////////////////////////
-/// ƒƒ\ƒbƒhŒÄ‚Ño‚µƒNƒ‰ƒXƒeƒ“ƒvƒŒ[ƒg
-// –{—ˆ‚Í TJSCreateNativeClassMethodi‹y‚Ñ‹g—¢‹g—¢“à‚ÌtTJSNativeClassMethodj‚ğg—p‚·‚é‚Æ‚±‚ë‚ğ
-// ©‘O‚ÅÀ‘•‚·‚é(TJSCreateNativeClassMethod‚Å‚Ístatic‚ÈŠÖ”‚µ‚©ŒÄ‚×‚È‚¢‚Ì‚Åƒƒ\ƒbƒh‚Ö‚Ìƒ|ƒCƒ“ƒ^‚Ì•Û‚ª¢“ï‚È‚½‚ß)
+/// ãƒ¡ã‚½ãƒƒãƒ‰å‘¼ã³å‡ºã—ã‚¯ãƒ©ã‚¹ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆ
+// æœ¬æ¥ã¯ TJSCreateNativeClassMethodï¼ˆåŠã³å‰é‡Œå‰é‡Œå†…ã®tTJSNativeClassMethodï¼‰ã‚’ä½¿ç”¨ã™ã‚‹ã¨ã“ã‚ã‚’
+// è‡ªå‰ã§å®Ÿè£…ã™ã‚‹(TJSCreateNativeClassMethodã§ã¯staticãªé–¢æ•°ã—ã‹å‘¼ã¹ãªã„ã®ã§ãƒ¡ã‚½ãƒƒãƒ‰ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã®ä¿æŒãŒå›°é›£ãªãŸã‚)
 template <class CommandT>
 struct ncbNativeClassMethod : public ncbNativeClassMethodBase { 
 	typedef ncbNativeClassMethod ThisClassT;
@@ -1149,18 +1384,18 @@ struct ncbNativeClassMethod : public ncbNativeClassMethodBase {
 		if (!_method) TVPThrowExceptionMessage(TJS_W("No method pointer."));
 	} 
 
-	/// FuncCallÀ‘•
+	/// FuncCallå®Ÿè£…
 	tjs_error  TJS_INTF_METHOD FuncCall(
 		tjs_uint32 flag, const tjs_char * membername, tjs_uint32 *hint, 
 		tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *objthis)
 	{
-		// ©•ª©g‚ªŒÄ‚Î‚ê‚½‚Ì‚Å‚Í‚È‚¢ê‡‚ÍŠÛ“Š‚°
+		// è‡ªåˆ†è‡ªèº«ãŒå‘¼ã°ã‚ŒãŸã®ã§ã¯ãªã„å ´åˆã¯ä¸¸æŠ•ã’
 		if (membername) return BaseT::FuncCall(flag, membername, hint, result, numparams, param, objthis);
 
-		// ƒGƒ‰[ƒ`ƒFƒbƒN
+		// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 		if (!objthis) return TJS_E_NATIVECLASSCRASH;
 
-		// ƒƒ\ƒbƒhŒÄ‚Ño‚µ
+		// ãƒ¡ã‚½ãƒƒãƒ‰å‘¼ã³å‡ºã—
 		return (doInvoke<CommandT>(_method, result, numparams, param, objthis)).Invoke();
 	}
 	/// factory
@@ -1170,39 +1405,86 @@ protected:
 	MethodT const _method;
 
 private:
-	/// TJSNativeClassRegisterNCMƒtƒ‰ƒO
+	/// TJSNativeClassRegisterNCMãƒ•ãƒ©ã‚°
 	FlagsT GetFlags() const { return CommandT::Flags; }
 };
 
 ////////////////////////////////////////
-/// ƒRƒ“ƒXƒgƒ‰ƒNƒ^ŒÄ‚Ño‚µƒNƒ‰ƒXƒeƒ“ƒvƒŒ[ƒg
+/// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿å‘¼ã³å‡ºã—ã‚¯ãƒ©ã‚¹ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆ
 template <class CommandT>
 struct ncbNativeClassConstructor : public ncbNativeClassMethodBase {
 	typedef ncbNativeClassConstructor ThisClassT;
 	typedef typename CommandT::MethodT MethodT;
 
 	/// constructor
-	ncbNativeClassConstructor() : ncbNativeClassMethodBase(nitMethod) {}
+	ncbNativeClassConstructor(MethodT m) : ncbNativeClassMethodBase(nitMethod), _method(m) {
+		if (!_method && CommandT::InvokeSelect == doInvokeBase::ivsFactory)
+			TVPThrowExceptionMessage(TJS_W("No factory pointer."));
+	}
 
-	/// FuncCallÀ‘•
+	/// FuncCallå®Ÿè£…
 	tjs_error  TJS_INTF_METHOD FuncCall(
 		tjs_uint32 flag, const tjs_char * membername, tjs_uint32 *hint, 
 		tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *objthis)
 	{
-		// ©•ª©g‚ªŒÄ‚Î‚ê‚½‚Ì‚Å‚Í‚È‚¢ê‡‚ÍŠÛ“Š‚°
+		// è‡ªåˆ†è‡ªèº«ãŒå‘¼ã°ã‚ŒãŸã®ã§ã¯ãªã„å ´åˆã¯ä¸¸æŠ•ã’
 		if (membername) return BaseT::FuncCall(flag, membername, hint, result, numparams, param, objthis);
 
-		// ˆø‚«”‚ª‚Ğ‚Æ‚Â‚Å‚©‚Âvoid‚Ìê‡‚ÍƒCƒ“ƒXƒ^ƒ“ƒX‚ğİ’è‚µ‚È‚¢
+		// å¼•ãæ•°ãŒã²ã¨ã¤ã§ã‹ã¤voidã®å ´åˆã¯ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’è¨­å®šã—ãªã„
 		if ((numparams == 1) && (ncbTypedefs::GetVariantType(*param[0]) == tvtVoid)) {
 //			NCB_LOG_W("Constructor(void)");
 			return TJS_S_OK;
 		}
-		// ƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX¶¬
-		return (doInvoke<CommandT>(0, result, numparams, param, objthis)).Invoke();
+		// ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç”Ÿæˆ
+		return (doInvoke<CommandT>(_method, result, numparams, param, objthis)).Invoke();
 	}
 
 	/// iMethod factory
-	static iMethodT Create(bool create = true) { return !create ? 0 : (new ThisClassT())->GetIMethod(); }
+	static iMethodT Create(MethodT m, bool create = true) { return !create ? 0 : (new ThisClassT(m))->GetIMethod(); }
+
+protected:
+	MethodT const _method;
+};
+
+template <class ClassT>
+struct ncbNativeClassFactory : public ncbNativeClassMethodBase {
+	typedef ncbNativeClassFactory ThisClassT;
+	typedef tjs_error (TJS_INTF_METHOD *MethodT)(ClassT **result, tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *objthis);
+
+	/// constructor
+	ncbNativeClassFactory(MethodT m) : ncbNativeClassMethodBase(nitMethod), _method(m) {
+		if (!_method) TVPThrowExceptionMessage(TJS_W("No factory pointer."));
+	}
+
+	/// FuncCallå®Ÿè£…
+	tjs_error  TJS_INTF_METHOD FuncCall(
+		tjs_uint32 flag, const tjs_char * membername, tjs_uint32 *hint, 
+		tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *objthis)
+	{
+		// è‡ªåˆ†è‡ªèº«ãŒå‘¼ã°ã‚ŒãŸã®ã§ã¯ãªã„å ´åˆã¯ä¸¸æŠ•ã’
+		if (membername) return BaseT::FuncCall(flag, membername, hint, result, numparams, param, objthis);
+
+		// å¼•ãæ•°ãŒã²ã¨ã¤ã§ã‹ã¤voidã®å ´åˆã¯ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’è¨­å®šã—ãªã„
+		if ((numparams == 1) && (ncbTypedefs::GetVariantType(*param[0]) == tvtVoid)) {
+//			NCB_LOG_W("Constructor(void)");
+			return TJS_S_OK;
+		}
+		// ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç”Ÿæˆ
+		ClassT *inst = 0;
+		tjs_error r = _method(&inst, numparams, param, objthis);
+		if (r != TJS_S_OK) return r;
+		if (!ncbInstanceAdaptor<ClassT>::SetNativeInstance(objthis, inst)) {
+			delete inst;
+			return TJS_E_NATIVECLASSCRASH;
+		}
+		return TJS_S_OK;
+	}
+
+	/// iMethod factory
+	static iMethodT Create(MethodT m, bool create = true) { return !create ? 0 : (new ThisClassT(m))->GetIMethod(); }
+
+protected:
+	MethodT const _method;
 };
 
 
@@ -1219,36 +1501,36 @@ struct ncbNativeClassProperty : public ncbNativeClassMethodBase {
 	/// constructor
 	ncbNativeClassProperty(GetterT get, SetterT set) : ncbNativeClassMethodBase(nitProperty), _getter(get), _setter(set) {}
 
-	/// PropGet À‘•
+	/// PropGet å®Ÿè£…
 	tjs_error TJS_INTF_METHOD PropGet(
 		tjs_uint32 flag, const tjs_char * membername, tjs_uint32 *hint, 
 		tTJSVariant *result, iTJSDispatch2 *objthis)
 	{
-		// ©•ª©g‚ªŒÄ‚Î‚ê‚½‚Ì‚Å‚Í‚È‚¢ê‡‚ÍŠÛ“Š‚°
+		// è‡ªåˆ†è‡ªèº«ãŒå‘¼ã°ã‚ŒãŸã®ã§ã¯ãªã„å ´åˆã¯ä¸¸æŠ•ã’
 		if (membername) return BaseT::PropGet(flag, membername, hint, result, objthis);
 
-		// ƒGƒ‰[ƒ`ƒFƒbƒN
+		// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 		if (!_getter) return TJS_E_ACCESSDENYED;
 		if (!objthis) return TJS_E_NATIVECLASSCRASH;
 
-		// ƒƒ\ƒbƒhŒÄ‚Ño‚µ
+		// ãƒ¡ã‚½ãƒƒãƒ‰å‘¼ã³å‡ºã—
 		return (doInvoke<GetCommandT>(_getter, result, 0, 0, objthis)).Invoke();
 	}
 
-	/// PropSet À‘•
+	/// PropSet å®Ÿè£…
 	tjs_error TJS_INTF_METHOD PropSet(
 		tjs_uint32 flag, const tjs_char *membername, tjs_uint32 *hint, 
 		const tTJSVariant *param, iTJSDispatch2 *objthis)
 	{
-		// ©•ª©g‚ªŒÄ‚Î‚ê‚½‚Ì‚Å‚Í‚È‚¢ê‡‚ÍŠÛ“Š‚°
+		// è‡ªåˆ†è‡ªèº«ãŒå‘¼ã°ã‚ŒãŸã®ã§ã¯ãªã„å ´åˆã¯ä¸¸æŠ•ã’
 		if (membername) return BaseT::PropSet(flag, membername, hint, param, objthis);
 
-		// ƒGƒ‰[ƒ`ƒFƒbƒN
+		// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 		if (!_setter) return TJS_E_ACCESSDENYED;
 		if (!objthis) return TJS_E_NATIVECLASSCRASH;
 		if (!param)   return TJS_E_FAIL;
 
-		// ƒƒ\ƒbƒhŒÄ‚Ño‚µ
+		// ãƒ¡ã‚½ãƒƒãƒ‰å‘¼ã³å‡ºã—
 		return (doInvoke<SetCommandT>(_setter, 0, 1, const_cast<tTJSVariant**>(&param), objthis)).Invoke();
 	}
 
@@ -1256,21 +1538,21 @@ struct ncbNativeClassProperty : public ncbNativeClassMethodBase {
 	static iMethodT Create(GetterT g, SetterT s, bool create = true) { return !create ? 0 : (new ThisClassT(g, s))->GetIMethod(); }
 
 private:
-	/// TJSNativeClassRegisterNCMƒtƒ‰ƒO
+	/// TJSNativeClassRegisterNCMãƒ•ãƒ©ã‚°
 	FlagsT GetFlags() const { return GetCommandT::Flags; }
 
 protected:
-	/// ƒvƒƒpƒeƒBƒƒ\ƒbƒh‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	/// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ¡ã‚½ãƒƒãƒ‰ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	GetterT const _getter;
 	SetterT const _setter;
 };
 
 
 ////////////////////////////////////////
-/// ¶ƒR[ƒ‹ƒoƒbƒN—p
+/// ç”Ÿã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ç”¨
 template <typename T> struct ncbRawCallbackMethod;
 
-// ƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒ|ƒCƒ“ƒ^‚Ì‚İ‚ ‚ç‚©‚¶‚ßæ“¾‚·‚éƒR[ƒ‹ƒoƒbƒN
+// ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿ã®ã¿ã‚ã‚‰ã‹ã˜ã‚å–å¾—ã™ã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 template <class T>
 struct ncbRawCallbackMethod<
 /*        */tjs_error (TJS_INTF_METHOD *         )(tTJSVariant *result, tjs_int numparams, tTJSVariant **param, T *nativeInstance) > : public ncbNativeClassMethodBase {
@@ -1282,34 +1564,34 @@ struct ncbRawCallbackMethod<
 
 	/// constructor
 	ncbRawCallbackMethod(CallbackT m, FlagsT f)
-		: ncbNativeClassMethodBase(nitMethod), // TJSƒIƒuƒWƒFƒNƒg“I‚É‚Í Function
+		: ncbNativeClassMethodBase(nitMethod), // TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆçš„ã«ã¯ Function
 		  _callback(m), _flag(f)
 	{
 		if (!_callback) TVPThrowExceptionMessage(TJS_W("No callback pointer."));
 	}
 
-	/// FuncCallÀ‘•
+	/// FuncCallå®Ÿè£…
 	tjs_error  TJS_INTF_METHOD FuncCall(
 		tjs_uint32 flag, const tjs_char * membername, tjs_uint32 *hint, 
 		tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *objthis)
 	{
-		// ©•ª©g‚ªŒÄ‚Î‚ê‚½‚Ì‚Å‚Í‚È‚¢ê‡‚ÍŠÛ“Š‚°
+		// è‡ªåˆ†è‡ªèº«ãŒå‘¼ã°ã‚ŒãŸã®ã§ã¯ãªã„å ´åˆã¯ä¸¸æŠ•ã’
 		if (membername) return BaseT::FuncCall(flag, membername, hint, result, numparams, param, objthis);
 
-		// ƒGƒ‰[ƒ`ƒFƒbƒN
+		// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 		if (!objthis) return TJS_E_NATIVECLASSCRASH;
 
-		// •Ô‚è’lƒNƒŠƒA
+		// è¿”ã‚Šå€¤ã‚¯ãƒªã‚¢
 		if (result) result->Clear();
 
 		NativeClassT *obj = 0;
 		if (!(_flag & TJS_STATICMEMBER)) {
-			//< ÀƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒ|ƒCƒ“ƒ^
+			//< å®Ÿã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿
 			obj = AdaptorT::GetNativeInstance(objthis); 
 			if (!obj) return TJS_E_NATIVECLASSCRASH;
 		}
-		// CallbackŒÄ‚Ño‚µ
-		return _callback(result, numparams, param, obj);     //< CallbackŒÄ‚Ño‚µ
+		// Callbackå‘¼ã³å‡ºã—
+		return _callback(result, numparams, param, obj);     //< Callbackå‘¼ã³å‡ºã—
 	}
 
 	/// factory
@@ -1323,7 +1605,7 @@ private:
 	FlagsT    GetFlags()    const { return _flag; }
 };
 
-/// ]—ˆ‚Ì TJSCreateNativeClassMethod—p ncbIMethodObjectƒ‰ƒbƒp
+/// å¾“æ¥ã® TJSCreateNativeClassMethodç”¨ ncbIMethodObjectãƒ©ãƒƒãƒ‘
 template <>
 struct ncbRawCallbackMethod<tTJSNativeClassMethodCallback> : public ncbIMethodObject {
 	typedef ncbRawCallbackMethod ThisClassT;
@@ -1337,6 +1619,14 @@ struct ncbRawCallbackMethod<tTJSNativeClassMethodCallback> : public ncbIMethodOb
 	TypesT    GetType()     const { return nitMethod; }
 	void      Release()     const { delete this; }
 
+	/// Propertyã‹ã‚‰FuncCallãŒç›´æ¥å‘¼ã°ã‚Œã‚‹ã®ã§ãƒ©ãƒƒãƒ—
+	tjs_error  TJS_INTF_METHOD FuncCall(
+		tjs_uint32 flag, const tjs_char * membername, tjs_uint32 *hint, 
+		tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *objthis)
+	{
+		return _dispatch->FuncCall(flag, membername, hint, result, numparams, param, objthis);
+	}
+
 	/// factory
 	static iMethodT Create(CallbackT cb, FlagsT f, bool create = true) { return !create ? 0 : (new ThisClassT(cb, f)); }
 private:
@@ -1346,9 +1636,9 @@ private:
 
 
 ////////////////////////////////////////
-/// ƒvƒƒpƒeƒB—p RawCallback
+/// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ç”¨ RawCallback
 
-// ncbRawCallbackMethod ‚Æ AccessDenied ‚ğ•Ô‚·ƒ_ƒ~[Œ^‚ÌƒZƒŒƒNƒ^
+// ncbRawCallbackMethod ã¨ AccessDenied ã‚’è¿”ã™ãƒ€ãƒŸãƒ¼å‹ã®ã‚»ãƒ¬ã‚¯ã‚¿
 template <typename CallbackT>
 struct ncbRawCallbackPropertySelector {
 	typedef ncbRawCallbackMethod<CallbackT> Type;
@@ -1366,7 +1656,7 @@ struct ncbRawCallbackPropertySelector<int> {
 	} Type;
 };
 
-// ncbRawCallbackMethod ‚ğ“ñ‚Â‘©‚Ë‚ÄÀ‘•
+// ncbRawCallbackMethod ã‚’äºŒã¤æŸã­ã¦å®Ÿè£…
 template <typename GETTER, typename SETTER>
 struct ncbRawCallbackProperty : public ncbNativeClassMethodBase {
 	typedef ncbRawCallbackProperty ThisClassT;
@@ -1377,32 +1667,33 @@ struct ncbRawCallbackProperty : public ncbNativeClassMethodBase {
 
 	/// constructor
 	ncbRawCallbackProperty(GetCallbackT get, SetCallbackT set, FlagsT f)
-		: ncbNativeClassMethodBase(nitProperty), // TJSƒIƒuƒWƒFƒNƒg“I‚É‚Í Property
+		: ncbNativeClassMethodBase(nitProperty), // TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆçš„ã«ã¯ Property
 		  _getter(get, f), _setter(set, f), _flag(f) {} 
 
-	/// PropGet À‘•
+	/// PropGet å®Ÿè£…
 	tjs_error TJS_INTF_METHOD PropGet(
 		tjs_uint32 flag, const tjs_char * membername, tjs_uint32 *hint, 
 		tTJSVariant *result, iTJSDispatch2 *objthis)
 	{
-		// ©•ª©g‚ªŒÄ‚Î‚ê‚½‚Ì‚Å‚Í‚È‚¢ê‡‚ÍŠÛ“Š‚°
+		// è‡ªåˆ†è‡ªèº«ãŒå‘¼ã°ã‚ŒãŸã®ã§ã¯ãªã„å ´åˆã¯ä¸¸æŠ•ã’
 		if (membername) return BaseT::PropGet(flag, membername, hint, result, objthis);
-		// ƒƒ\ƒbƒhŒÄ‚Ño‚µ
+		// ãƒ¡ã‚½ãƒƒãƒ‰å‘¼ã³å‡ºã—
 		return _getter.FuncCall(flag, membername, hint, result, 0, 0, objthis);
 	}
 
-	/// PropSet À‘•
+	/// PropSet å®Ÿè£…
 	tjs_error TJS_INTF_METHOD PropSet(
 		tjs_uint32 flag, const tjs_char *membername, tjs_uint32 *hint, 
 		const tTJSVariant *param, iTJSDispatch2 *objthis)
 	{
-		// ©•ª©g‚ªŒÄ‚Î‚ê‚½‚Ì‚Å‚Í‚È‚¢ê‡‚ÍŠÛ“Š‚°
+		// è‡ªåˆ†è‡ªèº«ãŒå‘¼ã°ã‚ŒãŸã®ã§ã¯ãªã„å ´åˆã¯ä¸¸æŠ•ã’
 		if (membername) return BaseT::PropSet(flag, membername, hint, param, objthis);
-		// ƒƒ\ƒbƒhŒÄ‚Ño‚µ
-		return _setter.FuncCall(flag, membername, hint, 0, 1, &param, objthis);
+		// ãƒ¡ã‚½ãƒƒãƒ‰å‘¼ã³å‡ºã—
+		tTJSVariant *params[1] = { const_cast<tTJSVariant *>(param) };
+		return _setter.FuncCall(flag, membername, hint, 0, 1, params, objthis);
 	}
 
-	/// TJSNativeClassRegisterNCMƒtƒ‰ƒO
+	/// TJSNativeClassRegisterNCMãƒ•ãƒ©ã‚°
 	FlagsT GetFlags() const { return _flag; }
 
 	/// factory
@@ -1414,13 +1705,13 @@ protected:
 };
 
 
-/// ƒTƒuƒNƒ‰ƒX“o˜^—p
+/// ã‚µãƒ–ã‚¯ãƒ©ã‚¹ç™»éŒ²ç”¨
 template <class T>
 struct ncbSubClassItem;
 
 
 ////////////////////////////////////////
-/// NativeClass ƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg“o˜^ƒeƒ“ƒvƒŒ[ƒg
+/// NativeClass ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç™»éŒ²ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆ
 
 template <class IMPL>
 struct ncbRegistClass : public ncbNativeClassMethodBase::InvokeType {
@@ -1472,27 +1763,27 @@ public:
 	void DoItem(_NameT   n, _ItemT t)	{ if (_isRegist) _impl.RegistItem(n,         t); else _impl.UnregistItem(n);         }
 	void DoItem(_StringT s, _ItemT t)	{ if (_isRegist) _impl.RegistItem(s.c_str(), t); else _impl.UnregistItem(s.c_str()); }
 
-	/// ƒƒ\ƒbƒh‚ğ“o˜^‚·‚é
+	/// ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ç™»éŒ²ã™ã‚‹
 	template <typename NAME, typename MethodT, class IVT>
 	void Method(NAME n, MethodT m, IVT const&) {
 		DoItem(GetName(n), ncbNativeClassMethod< InvokeCommand<ClassT, MethodT, IVT> >::Create(m, _isRegist));
 	}
 
-	/// ƒvƒƒpƒeƒB‚ğ“o˜^‚·‚é
+	/// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’ç™»éŒ²ã™ã‚‹
 	template <typename NAME, typename GetterT, typename SetterT, class IVT>
 	void Property(NAME n, GetterT g, SetterT s, IVT const&) {
 		DoItem(GetName(n), ncbNativeClassProperty< PropertyCommand<ClassT, GetterT, SetterT, IVT> >::Create(g, s, _isRegist));
 	}
 
-	// “Ç‚İ‚İE‘‚«‚İê—pƒvƒƒpƒeƒB
+	// èª­ã¿è¾¼ã¿ãƒ»æ›¸ãè¾¼ã¿å°‚ç”¨ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
 	template <typename NAME, typename GetterT, class IVT> void Property(NAME n, GetterT g, int, IVT const &tag) { Property(n, g, static_cast<GetterT>(0), tag); }
 	template <typename NAME, typename SetterT, class IVT> void Property(NAME n, int, SetterT s, IVT const &tag) { Property(n, static_cast<SetterT>(0), s, tag); }
 
-	// InvokeTypeÈ—ª
+	// InvokeTypeçœç•¥æ™‚
 	template <typename NAME, typename MethodT>                   void Method(  NAME n, MethodT m)            { Method(  n, m,    Normal); }
 	template <typename NAME, typename GetterT, typename SetterT> void Property(NAME n, GetterT g, SetterT s) { Property(n, g, s, Normal); }
 
-	// Bridge 
+	// Bridge æ™‚
 	template <typename N, typename M, class B>             void Method(  N n, M m,           Bridge<B> const&) { Method(  n, m,    getBridgeType(     &B::operator())); }
 	template <typename N, typename M, class B>             void Method(  N n, M m,      ProxyBridge<B> const&) { Method(  n, m,    getProxyBridgeType(&B::operator())); }
 	template <typename N, typename M, class B>             void Method(  N n, M m,      BridgeProxy<B> const&) { Method(  n, m,    getProxyBridgeType(&B::operator())); }
@@ -1500,12 +1791,12 @@ public:
 	template <typename N, typename G, typename S, class B> void Property(N n, G g, S s, ProxyBridge<B> const&) { Property(n, g, s, getProxyBridgeType(&B::operator())); }
 	template <typename N, typename G, typename S, class B> void Property(N n, G g, S s, BridgeProxy<B> const&) { Property(n, g, s, getProxyBridgeType(&B::operator())); }
 
-	/// ƒRƒ“ƒXƒgƒ‰ƒNƒ^‚ğ“o˜^‚·‚é
+	/// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã‚’ç™»éŒ²ã™ã‚‹
 	template <typename MethodT>
 	void Constructor(TypeWrap<MethodT>) {
-		DoItem(GetName(), ncbNativeClassConstructor< InvokeCommand<ClassT, MethodT, ivtCtor> >::Create(_isRegist));
+		DoItem(GetName(), ncbNativeClassConstructor< InvokeCommand<ClassT, MethodT, ivtCtor> >::Create(0, _isRegist));
 	}
-	// ƒfƒtƒHƒ‹ƒgƒRƒ“ƒXƒgƒ‰ƒNƒ^‚Ì“o˜^
+	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã®ç™»éŒ²
 	void Constructor(int dummy = 0) { Constructor(TypeWrap<void (_ClassT::*)()>()); }
 #undef  FOREACH_START
 #define FOREACH_START 1
@@ -1513,8 +1804,8 @@ public:
 #define FOREACH_END   FOREACH_MAX
 #define CTOR_PRM_EXT(n) typename T ## n
 #define CTOR_ARG_EXT(n)          T ## n
-	// ƒeƒ“ƒvƒŒ‚É‚æ‚é“WŠJ
-	// Constructor<T1, T2, ...>(0); ‚Å ClassT(T1, T2, ...) ‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^‚ğ“o˜^‚·‚é
+	// ãƒ†ãƒ³ãƒ—ãƒ¬ã«ã‚ˆã‚‹å±•é–‹
+	// Constructor<T1, T2, ...>(0); ã§ ClassT(T1, T2, ...) ã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã‚’ç™»éŒ²ã™ã‚‹
 #undef  FOREACH
 #define FOREACH \
 	template <FOREACH_COMMA_EXT(CTOR_PRM_EXT) > \
@@ -1524,6 +1815,17 @@ public:
 #include FOREACH_INCLUDE
 #undef  CTOR_PRM_EXT
 #undef  CTOR_ARG_EXT
+
+	// ãƒ•ã‚¡ã‚¯ãƒˆãƒªã‚’ç™»éŒ²
+	template <typename MethodT>
+	void Factory(MethodT m) {
+		DoItem(GetName(), ncbNativeClassConstructor< InvokeCommand<ClassT, MethodT, ivtFactory> >::Create(m, _isRegist));
+	}
+	// RawCallback Factory
+	void RawCallback(typename ncbNativeClassFactory<ClassT>::MethodT m) { Factory(m); }
+	void Factory(    typename ncbNativeClassFactory<ClassT>::MethodT m) {
+		DoItem(GetName(),     ncbNativeClassFactory<ClassT>::Create(m, _isRegist));
+	}
 
 	/// RawCallback Method
 	template <typename NAME, typename MethodT>
@@ -1537,7 +1839,7 @@ public:
 		DoItem(GetName(n), ncbRawCallbackProperty<GetterT, SetterT>::Create(g, s, flags, _isRegist));
 	}
 
-	/// ƒTƒuƒNƒ‰ƒX‚ğ“o˜^‚·‚é
+	/// ã‚µãƒ–ã‚¯ãƒ©ã‚¹ã‚’ç™»éŒ²ã™ã‚‹
 	template <typename NAME, typename CLASS>
 	void SubClass(NAME n, TypeWrap<CLASS>) {
 		typedef ncbSubClassItem<CLASS> SubClassT;
@@ -1546,7 +1848,7 @@ public:
 		DoItem(GetName(n), SubClassT::Create(_isRegist));
 	}
 
-	/// tTJSVariant‚ğ“o˜^‚·‚é
+	/// tTJSVariantã‚’ç™»éŒ²ã™ã‚‹
 	template <typename NAME, typename VALUE>
 	void Variant(NAME n, VALUE const v, _FlagsT flag = TJS_STATICMEMBER) {
 		typedef typename ncbTypeConvertor::SelectConvertorType<tTJSVariant, VALUE>::Type ConvT;
@@ -1601,20 +1903,20 @@ struct ncbRegistNativeClass : public ncbRegistNativeClassBase {
 	void RegistBegin() {
 		NCB_LOG_2(TJS_W("BeginRegistClass: "), _className);
 
-		// ƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg‚ğ¶¬
+		// ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆ
 		_classobj = TJSCreateNativeClassForPlugin(_className, AdaptorT::CreateEmptyAdaptor);
 
-		// ƒNƒ‰ƒXID‚ğ¶¬
+		// ã‚¯ãƒ©ã‚¹IDã‚’ç”Ÿæˆ
 		IdentT id  = TJSRegisterNativeClass(_className);
 
-		// ncbClassInfo‚É“o˜^
+		// ncbClassInfoã«ç™»éŒ²
 		if (!ClassInfoT::Set(_className, id, _classobj))
 			TVPThrowExceptionMessage(TJS_W("Already registerd class."));
 
-		// ƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg‚ÉID‚ğİ’è
+		// ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«IDã‚’è¨­å®š
 		TJSNativeClassSetClassID(_classobj, id);
 
-		// ‹ó‚Ìfinalizeƒƒ\ƒbƒh‚ğ’Ç‰Á
+		// ç©ºã®finalizeãƒ¡ã‚½ãƒƒãƒ‰ã‚’è¿½åŠ 
 		TJSNativeClassRegisterNCM(_classobj, TJS_W("finalize"),
 								  TJSCreateNativeClassMethod(EmptyCallback),
 								  _className, nitMethod);
@@ -1637,44 +1939,44 @@ struct ncbRegistNativeClass : public ncbRegistNativeClassBase {
 	}
 
 	void RegistEnd() {
-		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^‚ª‚È‚¢ê‡‚ÍƒGƒ‰[‚ğ•Ô‚·ƒRƒ“ƒXƒgƒ‰ƒNƒ^‚ğ’Ç‰Á‚·‚é
+		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ãŒãªã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼ã‚’è¿”ã™ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã‚’è¿½åŠ ã™ã‚‹
 		_AddDummyConstructor();
 
-		// TJS ‚ÌƒOƒ[ƒoƒ‹ƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚é
+		// TJS ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹
 		iTJSDispatch2 *global = TVPGetScriptDispatch();
 		if (!global) {
 			NCB_WARN_W("No Global Dispatch, Regist failed.");
 			return;
 		}
 
-		// 2 _classobj ‚ğ tTJSVariant Œ^‚É•ÏŠ·
+		// 2 _classobj ã‚’ tTJSVariant å‹ã«å¤‰æ›
 		tTJSVariant val(static_cast<iTJSDispatch2*>(_classobj));
 
-		// 3 ‚·‚Å‚É val ‚ª _classobj ‚ğ•Û‚µ‚Ä‚¢‚é‚Ì‚ÅA_classobj ‚Í Release ‚·‚é
+		// 3 ã™ã§ã« val ãŒ _classobj ã‚’ä¿æŒã—ã¦ã„ã‚‹ã®ã§ã€_classobj ã¯ Release ã™ã‚‹
 		_classobj->Release();
 
-		// 4 global ‚Ì PropSet ƒƒ\ƒbƒh‚ğ—p‚¢AƒIƒuƒWƒFƒNƒg‚ğ“o˜^‚·‚é
+		// 4 global ã® PropSet ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ç”¨ã„ã€ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç™»éŒ²ã™ã‚‹
 		global->PropSet(
-			TJS_MEMBERENSURE, // ƒƒ“ƒo‚ª‚È‚©‚Á‚½ê‡‚É‚Íì¬‚·‚é‚æ‚¤‚É‚·‚éƒtƒ‰ƒO
-			_className, // ƒƒ“ƒo–¼
-			0, // ƒqƒ“ƒg ( –{—ˆ‚Íƒƒ“ƒo–¼‚ÌƒnƒbƒVƒ…’l‚¾‚ªANULL ‚Å‚à‚æ‚¢ )
-			&val, // “o˜^‚·‚é’l
-			global // ƒRƒ“ƒeƒLƒXƒg ( global ‚Å‚æ‚¢ )
+			TJS_MEMBERENSURE, // ãƒ¡ãƒ³ãƒãŒãªã‹ã£ãŸå ´åˆã«ã¯ä½œæˆã™ã‚‹ã‚ˆã†ã«ã™ã‚‹ãƒ•ãƒ©ã‚°
+			_className, // ãƒ¡ãƒ³ãƒå
+			0, // ãƒ’ãƒ³ãƒˆ ( æœ¬æ¥ã¯ãƒ¡ãƒ³ãƒåã®ãƒãƒƒã‚·ãƒ¥å€¤ã ãŒã€NULL ã§ã‚‚ã‚ˆã„ )
+			&val, // ç™»éŒ²ã™ã‚‹å€¤
+			global // ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ ( global ã§ã‚ˆã„ )
 			);
 
-		// - global ‚ğ Release ‚·‚é
+		// - global ã‚’ Release ã™ã‚‹
 		global->Release();
 
-		// val ‚ğƒNƒŠƒA‚·‚éB
-		// ‚±‚ê‚Í•K‚¸s‚¤B‚»‚¤‚µ‚È‚¢‚Æ val ‚ª•Û‚µ‚Ä‚¢‚éƒIƒuƒWƒFƒNƒg
-		// ‚ª Release ‚³‚ê‚¸AŸ‚Ég‚¤ TVPPluginGlobalRefCount ‚ª³Šm‚É‚È‚ç‚È‚¢B
+		// val ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹ã€‚
+		// ã“ã‚Œã¯å¿…ãšè¡Œã†ã€‚ãã†ã—ãªã„ã¨ val ãŒä¿æŒã—ã¦ã„ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+		// ãŒ Release ã•ã‚Œãšã€æ¬¡ã«ä½¿ã† TVPPluginGlobalRefCount ãŒæ­£ç¢ºã«ãªã‚‰ãªã„ã€‚
 		//val.Clear();
-		// c‚Ì‚¾‚ªƒ[ƒJƒ‹ƒXƒR[ƒv‚Å©“®“I‚ÉÁ‹‚³‚ê‚é‚Ì‚Å•K—v‚È‚¢
+		// â€¦ã®ã ãŒãƒ­ãƒ¼ã‚«ãƒ«ã‚¹ã‚³ãƒ¼ãƒ—ã§è‡ªå‹•çš„ã«æ¶ˆå»ã•ã‚Œã‚‹ã®ã§å¿…è¦ãªã„
 
 		NCB_LOG_2(TJS_W("EndRegistClass: "), _className);
 	}
 
-	/// ƒvƒ‰ƒOƒCƒ“ŠJ•ú‚ÉƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg‚ğƒŠƒŠ[ƒX‚·‚é
+	/// ãƒ—ãƒ©ã‚°ã‚¤ãƒ³é–‹æ”¾æ™‚ã«ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ãƒªãƒªãƒ¼ã‚¹ã™ã‚‹
 	void UnregistEnd() {
 		iTJSDispatch2 *global = TVPGetScriptDispatch();
 		if (global) {
@@ -1689,13 +1991,13 @@ struct ncbRegistNativeClass : public ncbRegistNativeClassBase {
 	}
 
 private:
-	ClassObjectT *_classobj;	//< ƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg
-	bool          _hasCtor;		//< ƒRƒ“ƒXƒgƒ‰ƒNƒ^‚ğ“o˜^‚µ‚½‚©
+	ClassObjectT *_classobj;	//< ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	bool          _hasCtor;		//< ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã‚’ç™»éŒ²ã—ãŸã‹
 
-	/// ‹ó‚Ìƒƒ\ƒbƒh(finalize Callback—p)
+	/// ç©ºã®ãƒ¡ã‚½ãƒƒãƒ‰(finalize Callbackç”¨)
 	static tjs_error TJS_INTF_METHOD EmptyCallback(  tTJSVariant *, tjs_int, tTJSVariant **, iTJSDispatch2 *) { return TJS_S_OK; }
 
-	/// ƒGƒ‰[‚ğ•Ô‚·ƒƒ\ƒbƒh(empty Constructor—p)
+	/// ã‚¨ãƒ©ãƒ¼ã‚’è¿”ã™ãƒ¡ã‚½ãƒƒãƒ‰(empty Constructorç”¨)
 	static tjs_error TJS_INTF_METHOD NotImplCallback(tTJSVariant *, tjs_int, tTJSVariant **, iTJSDispatch2 *) { return TJS_E_NOTIMPL; }
 
 protected:
@@ -1755,7 +2057,7 @@ struct ncbSubClassItem : public ncbIMethodObject {
 
 
 ////////////////////////////////////////
-/// Šù‘¶ƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg‚ğ•ÏX‚·‚é
+/// æ—¢å­˜ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å¤‰æ›´ã™ã‚‹
 
 template <class CLASS>
 struct ncbAttachTJS2Class : public ncbRegistNativeClassBase {
@@ -1770,15 +2072,15 @@ struct ncbAttachTJS2Class : public ncbRegistNativeClassBase {
 	void RegistBegin() {
 		NCB_LOG_2(TJS_W("BeginAttachTJS2Class: "), _className);
 
-		// TJS ‚ÌƒOƒ[ƒoƒ‹ƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚é
+		// TJS ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹
 		_global = TVPGetScriptDispatch();
 		_tjs2ClassObj = GetGlobalObject(_tjs2ClassName, _global);
 
-		// ƒNƒ‰ƒXID‚ğ¶¬
+		// ã‚¯ãƒ©ã‚¹IDã‚’ç”Ÿæˆ
 		IdentT id  = TJSRegisterNativeClass(_className);
 		NCB_LOG_2(TJS_W("  ID: "), (tjs_int)id);
 
-		// ncbClassInfo‚É“o˜^
+		// ncbClassInfoã«ç™»éŒ²
 		if (!ClassInfoT::Set(_className, id, 0)) {
 			TVPThrowExceptionMessage(TJS_W("Already registerd class:"), ttstr(_className));
 		}
@@ -1806,12 +2108,12 @@ struct ncbAttachTJS2Class : public ncbRegistNativeClassBase {
 		if (_global) _global->Release();
 		_global = 0;
 		NCB_LOG_2(TJS_W("EndAttachClass: "), _className);
-		// _tjs2ClassObj ‚Í NoAddRef ‚È‚Ì‚Å Release •s—v
+		// _tjs2ClassObj ã¯ NoAddRef ãªã®ã§ Release ä¸è¦
 	}
 
 	void UnregistBegin() {
 		NCB_LOG_2(TJS_W("BeginDetach: "), _className);
-		// ƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg‚ğæ“¾
+		// ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—
 		iTJSDispatch2 *global = TVPGetScriptDispatch();
 		if (global) {
 			_tjs2ClassObj = GetGlobalObject(_tjs2ClassName, global);
@@ -1829,14 +2131,14 @@ struct ncbAttachTJS2Class : public ncbRegistNativeClassBase {
 	void UnregistEnd() {
 		ClassInfoT::Clear();
 		NCB_LOG_2(TJS_W("EndDetach: "), _className);
-		// _tjs2ClassObj ‚Í NoAddRef ‚È‚Ì‚Å Release •s—v
+		// _tjs2ClassObj ã¯ NoAddRef ãªã®ã§ Release ä¸è¦
 	}
 protected:
 	NameT const    _tjs2ClassName;
-	iTJSDispatch2* _tjs2ClassObj;	//< ƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg
+	iTJSDispatch2* _tjs2ClassObj;	//< ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	iTJSDispatch2* _global;
 
-	// ƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg‚ğæ“¾
+	// ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—
 	static iTJSDispatch2* GetGlobalObject(NameT name, iTJSDispatch2 *global) {
 		tTJSVariant val;
 		if (global) global->PropGet(0, name, 0, &val, global);
@@ -1852,8 +2154,8 @@ protected:
 
 
 ////////////////////////////////////////
-/// TJSƒNƒ‰ƒX©“®ƒŒƒWƒXƒgƒNƒ‰ƒXiƒXƒŒƒbƒhƒAƒ“ƒZ[ƒt‚È‚Ì‚Å•K—v‚È‚ç“K“–‚ÉC³‚Ì‚±‚Æj
-// Šî–{“I‚É static const ‚ÈƒCƒ“ƒXƒ^ƒ“ƒX‚µ‚©g—p‚³‚ê‚È‚¢‚Ì‚Å‚±‚ê‚Å\•ª‚È‹C‚Í‚·‚é
+/// TJSã‚¯ãƒ©ã‚¹è‡ªå‹•ãƒ¬ã‚¸ã‚¹ãƒˆã‚¯ãƒ©ã‚¹ï¼ˆã‚¹ãƒ¬ãƒƒãƒ‰ã‚¢ãƒ³ã‚»ãƒ¼ãƒ•ãªã®ã§å¿…è¦ãªã‚‰é©å½“ã«ä¿®æ­£ã®ã“ã¨ï¼‰
+// åŸºæœ¬çš„ã« static const ãªã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã—ã‹ä½¿ç”¨ã•ã‚Œãªã„ã®ã§ã“ã‚Œã§ååˆ†ãªæ°—ã¯ã™ã‚‹
 struct ncbAutoRegister {
 	typedef ncbAutoRegister ThisClassT;
 	typedef void (*CallBackT)();
@@ -1889,10 +2191,10 @@ private:
 template <class T>
 struct  ncbNativeClassAutoRegister : public ncbAutoRegister {
 	/**/ncbNativeClassAutoRegister(NameT n) : ncbAutoRegister(ClassRegist), _name(n) {}
-private:
+
 	typedef ncbRegistNativeClass<T> DelegateT;
 	typedef ncbRegistClass<DelegateT> RegistT;
-
+private:
 	NameT const _name;
 protected:
 	void Regist()   const { DelegateT d(_name); { RegistT r(d, true);  r.Regist(); } }
@@ -1901,9 +2203,9 @@ protected:
 
 #define NCB_REGISTER_CLASS_COMMON(cls, tmpl, init) \
 	template    struct ncbClassInfo<cls>; \
-	template <>        ncbClassInfo<cls>::InfoT ncbClassInfo<cls>::_info; \
+/*	template <>        ncbClassInfo<cls>::InfoT ncbClassInfo<cls>::_info;*/ \
 	static tmpl<cls> tmpl ## _ ## cls init; \
-	void   tmpl<cls>::RegistT::Regist()
+	template <> void   tmpl<cls>::RegistT::Regist()
 
 #define NCB_REGISTER_CLASS_DELAY(name, cls) \
 	NCB_REGISTER_CLASS_COMMON(cls, ncbNativeClassAutoRegister, (TJS_W(# name)))
@@ -1916,8 +2218,8 @@ protected:
 #define NCB_REGISTER_SUBCLASS_DELAY(cls) \
 	template <> struct ncbSubClassCheck<cls> { enum { IsSubClass = true }; }; \
 	template    struct ncbClassInfo<cls>; \
-	template <>        ncbClassInfo<cls>::InfoT ncbClassInfo<cls>::_info; \
-	void   ncbRegistClass<ncbRegistSubClass<cls> >::Regist()
+/*	template <>        ncbClassInfo<cls>::InfoT ncbClassInfo<cls>::_info;*/ \
+	template <> void   ncbRegistClass<ncbRegistSubClass<cls> >::Regist()
 
 #define NCB_REGISTER_SUBCLASS(cls) \
 	NCB_TYPECONV_BOXING(cls); \
@@ -1927,10 +2229,10 @@ protected:
 template <class T>
 struct  ncbAttachTJS2ClassAutoRegister : public ncbAutoRegister {
 	/**/ncbAttachTJS2ClassAutoRegister(NameT ncn, NameT tjscn) : ncbAutoRegister(ClassRegist), _nativeClassName(ncn), _tjs2ClassName(tjscn) {}
-protected:
+
 	typedef ncbAttachTJS2Class<T>     DelegateT;
 	typedef ncbRegistClass<DelegateT> RegistT;
-
+protected:
 	void Regist()   const { DelegateT d(_nativeClassName, _tjs2ClassName); { RegistT r(d, true);  r.Regist(); } }
 	void Unregist() const { DelegateT d(_nativeClassName, _tjs2ClassName); { RegistT r(d, false); r.Regist(); } }
 private:
@@ -1938,6 +2240,33 @@ private:
 	NameT const _tjs2ClassName;
 };
 
+////////////////////////////////////////
+template <class T>
+struct  ncbRequireClassAutoRegister : public ncbAutoRegister {
+	/**/ncbRequireClassAutoRegister(NameT name, NameT sub = 0) : ncbAutoRegister(ClassRegist), _className(name), _expName(sub) {}
+
+	typedef ncbClassInfo<T> ClassInfoT;
+protected:
+	void Regist()   const {
+		NCB_LOG_2(TJS_W("RequireClass: "), _className);
+
+		// ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå–å¾—
+		tTJSVariant val;
+		TVPExecuteExpression(ttstr(_expName ? _expName : _className), &val);
+		if (val.Type() != tvtObject)
+			TVPThrowExceptionMessage(TJS_W("Require class not found."));
+
+		// IDã¨ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç™»éŒ²
+		if (!ClassInfoT::Set(_className, TJSFindNativeClassID(_className), val.AsObjectNoAddRef()))
+			TVPThrowExceptionMessage(TJS_W("Already registerd class."));
+	}
+	void Unregist() const {}
+private:
+	NameT const _className;
+	NameT const _expName;
+};
+
+////////////////////////////////////////
 #define NCB_GET_INSTANCE_HOOK(cls) \
 	template <> struct ncbNativeClassMethodBase::nativeInstanceGetter<cls> : public ncbNativeClassMethodBase::nativeInstanceGetterBase<cls>
 
@@ -1960,11 +2289,15 @@ private:
 	NCB_ATTACHED_INSTANCE_DELAY_CREATE(cls); \
 	NCB_ATTACH_CLASS_WITH_HOOK(cls, attach)
 
+#define NCB_REQUIRE_CLASS(cls)          template struct ncbClassInfo<cls>; static ncbRequireClassAutoRegister<cls> ncbRequireClass_ ## cls(TJS_W(# cls), 0)
+#define NCB_REQUIRE_SUBCLASS(cls, name) template struct ncbClassInfo<cls>; static ncbRequireClassAutoRegister<cls> ncbRequireClass_ ## cls(TJS_W(# cls), TJS_W(# name))
+
+
 ////////////////////////////////////////
 #define NCB_METHOD_RAW_CALLBACK(name, cb, flag)         RawCallback(TJS_W(# name), cb,          flag)
-#define NCB_PROPRETY_RAW_CALLBACK(name, get, set, flag) RawCallback(TJS_W(# name), get,    set, flag)
-#define NCB_PROPRETY_RAW_CALLBACK_RO(name, get, flag)   RawCallback(TJS_W(# name), get, (int)0, flag)
-#define NCB_PROPRETY_RAW_CALLBACK_WO(name, set, flag)   RawCallback(TJS_W(# name), (int)0, set, flag)
+#define NCB_PROPERTY_RAW_CALLBACK(name, get, set, flag) RawCallback(TJS_W(# name), get,    set, flag)
+#define NCB_PROPERTY_RAW_CALLBACK_RO(name, get, flag)   RawCallback(TJS_W(# name), get, (int)0, flag)
+#define NCB_PROPERTY_RAW_CALLBACK_WO(name, set, flag)   RawCallback(TJS_W(# name), (int)0, set, flag)
 
 #define NCB_CONSTRUCTOR(cargs)                          Constructor(TypeWrap<void (Class::*) cargs >())
 
@@ -1982,7 +2315,7 @@ private:
 #define NCB_PROPERTY_DETAIL_RO(name, RT,RR,RM,RA)       Property(TJS_W(# name), NCB_METHOD_CAST(RT,RR,RM,RA), (int)0)
 #define NCB_PROPERTY_DETAIL_WO(name, WT,WR,WM,WA)       Property(TJS_W(# name), (int)0,                       NCB_METHOD_CAST(WT,WR,WM,WA))
 
-// ‚³‚ ‰½‚ª‚È‚ñ‚¾‚©‚í‚©‚ñ‚È‚­‚È‚Á‚Ä‚«‚Ü‚µ‚½iŠ¾
+// ã•ã‚ä½•ãŒãªã‚“ã ã‹ã‚ã‹ã‚“ãªããªã£ã¦ãã¾ã—ãŸï¼ˆæ±—
 #define NCB_METHOD_PROXY(name, method)                  Method(TJS_W(# name), &method, Proxy)
 #define NCB_METHOD_PROXY_DETAIL(name, T,R,M,A)          Method(TJS_W(# name), NCB_METHOD_CAST(T,R,M,A), Proxy)
 #define NCB_PROPERTY_PROXY(name,get,set)                Property(TJS_W(# name), &get, &set, Proxy)
@@ -1997,7 +2330,7 @@ private:
 
 
 ////////////////////////////////////////
-/// TJSƒtƒ@ƒ“ƒNƒVƒ‡ƒ“©“®ƒŒƒWƒXƒgƒNƒ‰ƒX
+/// TJSãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³è‡ªå‹•ãƒ¬ã‚¸ã‚¹ãƒˆã‚¯ãƒ©ã‚¹
 
 struct  ncbNativeFunctionAutoRegister : public ncbAutoRegister {
 	ncbNativeFunctionAutoRegister() : ncbAutoRegister(ClassRegist) {}
@@ -2040,9 +2373,18 @@ private:
 		if (!attach) ret = global;
 		else {
 			tTJSVariant val;
-			global->PropGet(0, attach, 0, &val, global);
-			global->Release();
+			NameT p = attach;
+			// ãƒ”ãƒªã‚ªãƒ‰æœ‰ç„¡ãƒã‚§ãƒƒã‚¯
+			while (*p) if (*p++ == TJS_W('.')) break;
+			if (!*p) {
+				// globalç›´ä¸‹
+				global->PropGet(0, attach, 0, &val, global);
+			} else {
+				// è¤‡æ•°éšå±¤å¥¥ã®å ´åˆã¯é¢å€’ãªã®ã§evalã§èª¤é­”åŒ–ã™
+				TVPExecuteExpression(ttstr(attach), &val);
+			}
 			ret = val.AsObject();
+			global->Release();
 		}
 		return ret;
 	}
@@ -2050,21 +2392,22 @@ private:
 template <typename DUMMY>
 struct ncbNativeFunctionAutoRegisterTempl;
 
-#define NCB_REGISTER_FUNCTION_COMMON(name, attach, function) \
-	struct ncbFunctionTag_ ## name {}; \
-	template <> struct ncbNativeFunctionAutoRegisterTempl<ncbFunctionTag_ ## name> : public ncbNativeFunctionAutoRegister \
+#define NCB_REGISTER_FUNCTION_COMMON(name, tag, attach, function) \
+	struct ncbFunctionTag_ ## tag {}; \
+	template <> struct ncbNativeFunctionAutoRegisterTempl<ncbFunctionTag_ ## tag> : public ncbNativeFunctionAutoRegister \
 	{	void Regist()   const { RegistFunction(TJS_W(# name), attach, &function); } \
 		void Unregist() const { UnregistFunction(TJS_W(# name), attach); } }; \
-	static ncbNativeFunctionAutoRegisterTempl<ncbFunctionTag_ ## name> ncbFunctionAutoRegister_ ## name
+	static ncbNativeFunctionAutoRegisterTempl<ncbFunctionTag_ ## tag> ncbFunctionAutoRegister_ ## tag
 
-#define NCB_REGISTER_FUNCTION(name, function)       NCB_REGISTER_FUNCTION_COMMON(name, 0, function)
-#define NCB_ATTACH_FUNCTION(name, attach, function) NCB_REGISTER_FUNCTION_COMMON(name, TJS_W(# attach), function)
+#define NCB_REGISTER_FUNCTION(name, function)                    NCB_REGISTER_FUNCTION_COMMON(name, name, 0, function)
+#define NCB_ATTACH_FUNCTION(name, attach, function)              NCB_REGISTER_FUNCTION_COMMON(name, attach ## _ ## name, TJS_W(# attach), function)
+#define NCB_ATTACH_FUNCTION_WITHTAG(name, tag, attach, function) NCB_REGISTER_FUNCTION_COMMON(name, tag ## _ ## name, TJS_W(# attach), function)
 
 
 
 
 ////////////////////////////////////////
-/// ƒŒƒWƒXƒg‘OŒã‚ÌƒR[ƒ‹ƒoƒbƒN“o˜^
+/// ãƒ¬ã‚¸ã‚¹ãƒˆå‰å¾Œã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ç™»éŒ²
 struct ncbCallbackAutoRegister : public ncbAutoRegister {
 	typedef void (*CallbackT)();
 
@@ -2083,5 +2426,11 @@ private:
 #define NCB_PRE_UNREGIST_CALLBACK(cb)  NCB_REGISTER_CALLBACK(PreRegist,  0, &cb, 0_ ## cb)
 #define NCB_POST_UNREGIST_CALLBACK(cb) NCB_REGISTER_CALLBACK(PostRegist, 0, &cb, 0_ ## cb)
 
+#ifndef NO_V2LINK
+////////////////////////////////////////
+/// ãƒ¬ã‚¸ã‚¹ãƒˆå‰å¾Œã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ç™»éŒ²
+#define NCB_DLL_HINSTANCE gDllInstance
+extern HINSTANCE gDllInstance;
+#endif
 
 #endif

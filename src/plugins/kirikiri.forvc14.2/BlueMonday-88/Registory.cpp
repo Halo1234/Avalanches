@@ -4,6 +4,8 @@
 */
 
 
+#pragma warning(disable:4312)
+
 #include"ncbind.hpp"
 #include"Kim/KimException.h"
 #include<vector>
@@ -15,12 +17,12 @@ namespace bm88 {
 
 		/**/
 		inline
-		tjs_nchar* ToLegacyString(const ttstr &str, std::vector<tjs_nchar> &buf)
+		const tjs_nchar* ToLegacyString(const ttstr &str, std::vector<tjs_nchar> &buf)
 		{
 			if(str.IsEmpty())
-				return "";
+				return TJS_N("");
 			buf.resize(str.GetNarrowStrLen() + 1);
-			str.ToNarrowStr(&buf[0], buf.size());
+			str.ToNarrowStr(&buf[0], static_cast<tjs_int>(buf.size()));
 			return &buf[0];
 		};
 
@@ -30,7 +32,7 @@ namespace bm88 {
 
 		/**/
 		template<class T> inline
-		void RegistGlobalValue(iTJSDispatch2 *global_ptr, tjs_char* member_name, T value)
+		void RegistGlobalValue(iTJSDispatch2 *global_ptr, const tjs_char* member_name, T value)
 		{
 			tTJSVariant val = value;
 
@@ -120,7 +122,7 @@ namespace bm88 {
 		inline
 		void RegWriteValueDoubleWord(HKEY key, const ttstr &name, const DWORD buffer)
 		{
-			RegWriteValue(key, name, reinterpret_cast<BYTE*>(buffer), REG_DWORD, sizeof(DWORD));
+			RegWriteValue(key, name, reinterpret_cast<const BYTE*>(buffer), REG_DWORD, sizeof(DWORD));
 		};
 
 		/**/
@@ -144,11 +146,11 @@ void RegistRegistoryClassConstantValue()
 {
 	iTJSDispatch2* p = TVPGetScriptDispatch();
 
-	bm88::details::RegistGlobalValue(p, TJS_W("HKLM"), reinterpret_cast<tjs_int32>(HKEY_LOCAL_MACHINE));
-	bm88::details::RegistGlobalValue(p, TJS_W("HKCR"), reinterpret_cast<tjs_int32>(HKEY_CLASSES_ROOT));
-	bm88::details::RegistGlobalValue(p, TJS_W("HKUR"), reinterpret_cast<tjs_int32>(HKEY_USERS));
-	bm88::details::RegistGlobalValue(p, TJS_W("HKCU"), reinterpret_cast<tjs_int32>(HKEY_CURRENT_USER));
-	bm88::details::RegistGlobalValue(p, TJS_W("HKCC"), reinterpret_cast<tjs_int32>(HKEY_CURRENT_CONFIG));
+	bm88::details::RegistGlobalValue(p, TJS_W("HKLM"), HKEY_LOCAL_MACHINE);
+	bm88::details::RegistGlobalValue(p, TJS_W("HKCR"), HKEY_CLASSES_ROOT);
+	bm88::details::RegistGlobalValue(p, TJS_W("HKUR"), HKEY_USERS);
+	bm88::details::RegistGlobalValue(p, TJS_W("HKCU"), HKEY_CURRENT_USER);
+	bm88::details::RegistGlobalValue(p, TJS_W("HKCC"), HKEY_CURRENT_CONFIG);
 
 	p->Release();
 }

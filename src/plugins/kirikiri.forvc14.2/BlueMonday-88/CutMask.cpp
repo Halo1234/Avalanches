@@ -3,6 +3,7 @@
  $Revision: 22 $
 */
 
+#pragma warning(disable:4312)
 
 #include"ncbind.hpp"
 
