@@ -1,6 +1,4 @@
 /*
- $Author: halo $
- $Revision: 22 $
 */
 
 #pragma warning(disable:4312)

@@ -24,6 +24,7 @@
     <ClCompile Include="BM88Version.cpp" />
     <ClCompile Include="CutMask.cpp" />
     <ClCompile Include="Mod2DC.cpp" />
+    <ClCompile Include="PuzzleCalc.cpp" />
     <ClCompile Include="Registory.cpp" />
   </ItemGroup>
   <ItemGroup>
