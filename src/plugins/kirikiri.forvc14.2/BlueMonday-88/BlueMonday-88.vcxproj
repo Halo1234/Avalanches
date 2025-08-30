@@ -28,6 +28,12 @@
     <ClCompile Include="Registory.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\common\include\kim\KimAssert.h" />
+    <ClInclude Include="..\..\..\common\include\kim\KimConfig.h" />
+    <ClInclude Include="..\..\..\common\include\kim\KimException.h" />
+    <ClInclude Include="..\..\..\common\include\kim\KimFile.h" />
+    <ClInclude Include="..\..\..\common\include\kim\KimSingleton.h" />
+    <ClInclude Include="..\..\..\common\include\kim\KimText.h" />
     <ClInclude Include="..\ncbind\ncbind.hpp" />
     <ClInclude Include="..\ncbind\ncb_foreach.h" />
     <ClInclude Include="..\ncbind\ncb_invoke.hpp" />
