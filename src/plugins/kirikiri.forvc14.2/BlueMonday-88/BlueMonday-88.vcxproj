@@ -115,6 +115,13 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
     </Link>
+    <PostBuildEvent>
+      <Command>set OUTPUT_DIRECTORY="$(SolutionDir)..\..\..\tools\krkrz\plugin"
+
+if not exist %OUTPUT_DIRECTORY% mkdir %OUTPUT_DIRECTORY%
+
+copy "$(TargetDir)$(TargetFileName)" %OUTPUT_DIRECTORY%</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -135,6 +142,13 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
     </Link>
+    <PostBuildEvent>
+      <Command>set OUTPUT_DIRECTORY="$(SolutionDir)..\..\..\tools\krkrz\plugin"
+
+if not exist %OUTPUT_DIRECTORY% mkdir %OUTPUT_DIRECTORY%
+
+copy "$(TargetDir)$(TargetFileName)" %OUTPUT_DIRECTORY%</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
