@@ -1,4 +1,4 @@
-#ifndef _ncbind_hpp_
+﻿#ifndef _ncbind_hpp_
 #define _ncbind_hpp_
 
 #ifndef NO_V2LINK
