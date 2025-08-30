@@ -159,10 +159,14 @@ class RegistoryKey
 	typedef std::vector<tjs_nchar>	buffer_type;
 
 public:
+public:
 	RegistoryKey(tjs_int root, ttstr SubkeyPath) :
 		m_root(reinterpret_cast<HKEY>(root)),
 		m_path(SubkeyPath),
-		m_key(NULL)
+		m_key(NULL),
+		m_subkeys(0),
+		m_values(0),
+		m_bufsize(0)
 	{
 		NCB_LOG_2(SubkeyPath, TJS_W(" RegistoryKey initialized."));
 	};
