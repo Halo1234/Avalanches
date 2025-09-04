@@ -310,6 +310,78 @@ public:
 		NextStep(m_Root, piece1, piece2);
 	};
 
+	/**/
+	tTJSVariant GetNextBlock()
+	{
+		node_type::pointer_type next = GetNextBlockFromList(m_Root);
+		tTJSVariant dictionary;
+
+		TVPExecuteExpression(TJS_W("%[]"), &dictionary);
+
+		// Dictionary オブジェクトを取得
+		iTJSDispatch2* dictObj = dictionary.AsObjectNoAddRef();
+		tTJSVariant value(next->block.piece1.x);
+
+		dictObj->PropSet(TJS_MEMBERENSURE, TJS_W("x1"), nullptr, &value, dictObj);
+		value = next->block.piece1.y;
+		dictObj->PropSet(TJS_MEMBERENSURE, TJS_W("y1"), nullptr, &value, dictObj);
+		value = next->block.piece1.type;
+		dictObj->PropSet(TJS_MEMBERENSURE, TJS_W("type1"), nullptr, &value, dictObj);
+
+		value = next->block.piece2.x;
+		dictObj->PropSet(TJS_MEMBERENSURE, TJS_W("x2"), nullptr, &value, dictObj);
+		value = next->block.piece2.y;
+		dictObj->PropSet(TJS_MEMBERENSURE, TJS_W("y2"), nullptr, &value, dictObj);
+		value = next->block.piece2.type;
+		dictObj->PropSet(TJS_MEMBERENSURE, TJS_W("type2"), nullptr, &value, dictObj);
+
+		value = static_cast<tjs_int>(next->dir);
+		dictObj->PropSet(TJS_MEMBERENSURE, TJS_W("dir"), nullptr, &value, dictObj);
+		
+		return tTJSVariant(dictObj, dictObj);
+	};
+	/*
+	* 最も価値の高い子ノードを新しいルートとして設定し、他のノードを削除する
+	*/
+	void SetNextRoot()
+	{
+		if (!m_Root || !m_Root->first_child) {
+			return; // ルートまたは子ノードがない場合は何もしない
+		}
+
+		// 最も価値の高い子ノードを特定する
+		node_type::pointer_type best_child = GetNextBlockFromList(m_Root);
+		if (!best_child) {
+			return; // 最適な子ノードが見つからない場合は何もしない
+		}
+
+		// 最初に、新しいルートとなるノードを親（m_Root）から切り離す
+		node_type::pointer_type current = m_Root->first_child;
+		node_type::pointer_type prev = nullptr;
+		while (current) {
+			if (current == best_child) {
+				// best_child をリストから外す
+				if (prev) {
+					prev->next_sibling = current->next_sibling;
+				}
+				else {
+					m_Root->first_child = current->next_sibling;
+				}
+				break;
+			}
+			prev = current;
+			current = current->next_sibling;
+		}
+
+		// 新しいルートの兄弟ノードを含む、元のルートのすべての子孫を削除する
+		DeleteNodeRecursive(m_Root);
+
+		// 新しいルートを設定する
+		m_Root = best_child;
+		m_Root->pParent = nullptr;
+		m_Root->next_sibling = nullptr;
+	}
+
 private:
 	/*
 	* 追加したアロケータを返す
@@ -767,6 +839,26 @@ private:
 	};
 
 	/**/
+	node_type::pointer_type GetNextBlockFromList(node_type::pointer_type list)
+	{
+		if (!list || !list->first_child) return nullptr;
+
+		node_type::pointer_type best = nullptr;
+		tjs_int maxValue = std::numeric_limits<tjs_int>::lowest();
+
+		for (node_type::pointer_type child = list->first_child; child; child = child->next_sibling)
+		{
+			if (child->value > maxValue)
+			{
+				maxValue = child->value;
+				best = child;
+			}
+		}
+
+		return best;
+	}
+
+	/**/
 	void ShiftCandidate(node_type::pointer_type node)
 	{
 		if (!node)
@@ -920,6 +1012,9 @@ NCB_REGISTER_CLASS(PuzzleAICore)
 	Method("addOjamaType", &Class::AddOjamaType);
 
 	Method("addNextBlock", &Class::AddNextBlock);
+	Method("getNextBlock", &Class::GetNextBlock);
+
+	Method("setNextRoot", &Class::SetNextRoot);
 
 	Property("level", &Class::GetLevel, 0);
 	Property("linking", &Class::GetLinking, 0);
