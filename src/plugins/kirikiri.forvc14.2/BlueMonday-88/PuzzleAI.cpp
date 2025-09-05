@@ -308,6 +308,12 @@ public:
 	tTJSVariant GetNextBlock()
 	{
 		node_type::pointer_type next = GetNextBlockFromList(m_Root);
+
+		if (next == nullptr)
+		{
+			TVPThrowExceptionMessage(TJS_W("GetNextBlockFromList()Ç™NULLÇï‘ÇµÇ‹ÇµÇΩÅB"));
+		}
+
 		tTJSVariant dictionary;
 
 		TVPExecuteExpression(TJS_W("%[]"), &dictionary);
