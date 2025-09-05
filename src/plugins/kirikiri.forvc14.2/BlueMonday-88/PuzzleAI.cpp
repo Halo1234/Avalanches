@@ -54,15 +54,9 @@ namespace bm88 {
 			tjs_int chain;
 			tjs_int fire;
 			pointer_type pParent;
-			pointer_type first_child;    // <--- 最初の子供を指す
-			pointer_type next_sibling;   // <--- 次の兄弟を指す
+			pointer_type first_child;    // 最初の子供を指す
+			pointer_type next_sibling;   // 次の兄弟を指す
 			tjs_int map[1];
-
-			// デストラクタを追加
-			~PuzzleNode()
-			{
-				// メンバポインタの解放は行わない（アロケータで管理するため）
-			}
 		};
 
 		/*
@@ -224,7 +218,7 @@ public:
 		m_SizeOfNode(0),
 		m_MapSize(0),
 		m_Level(0), m_MaxChain(0), m_Linking(0),
-		m_Root(NULL)
+		m_Root(nullptr)
 	{
 	};
 	/**/
@@ -410,14 +404,14 @@ private:
 	/**/
 	node_type* AllocNode()
 	{
-		void* raw = NULL;
-		allocator_type* target_alloc = NULL;
+		void* raw = nullptr;
+		allocator_type* target_alloc = nullptr;
 
 		// 既存のアロケータを順に試す
 		for (auto alloc : m_Alloc)
 		{
 			raw = alloc->Allocate();
-			if (raw != NULL)
+			if (raw != nullptr)
 			{
 				target_alloc = alloc;
 				break;
@@ -425,12 +419,12 @@ private:
 		}
 
 		// 既存のアロケータで確保できなかった場合
-		if (raw == NULL)
+		if (raw == nullptr)
 		{
 			target_alloc = AddAllocator();
 			raw = target_alloc->Allocate();
 
-			if (raw == NULL)
+			if (raw == nullptr)
 			{
 				// これでも確保できない場合は例外
 				TVPThrowExceptionMessage(TJS_W("AIの計算領域のメモリ確保に失敗しました。"));
@@ -495,7 +489,7 @@ private:
 			bm88::details::PuzzleDirection::DIR_RIGHT
 		};
 
-		if (current == NULL)
+		if (current == nullptr)
 		{
 			return;
 		}
@@ -603,11 +597,11 @@ private:
 				tjs_int value = node->value;
 				node_type::pointer_type tmp = node->pParent;
 
-				if (tmp != NULL)
+				if (tmp != nullptr)
 				{
 					if (value > tmp->value)
 					{
-						while (tmp != NULL)
+						while (tmp != nullptr)
 						{
 							tmp->value = value;
 							tmp = tmp->pParent;
@@ -660,10 +654,20 @@ private:
 			}
 		}
 
-		ClearMap(checked);
 
-		current->chain = GetChainCount(current, checked);
-		current->fire = (current->chain == 0 ? false : true);
+		// 連鎖数計算
+		if (isErase)
+		{
+			ClearMap(checked);
+
+			current->chain = GetChainCount(current, checked);
+			current->fire = (current->chain == 0 ? false : true);
+		}
+		else
+		{
+			current->chain = 0;
+			current->fire = false;
+		}
 
 		if (current->chain >= m_MaxChain)
 		{
@@ -672,18 +676,16 @@ private:
 		}
 		else
 		{
-			// 連鎖させない
-			current->myValue = current->value = value;
-		}
-
-		current->value = value;
-
-		// 連鎖数計算
-		if (isErase)
-		{
-			ClearMap(checked);
-
-			current->chain = GetChainCount(current, checked);
+			if (current->fire)
+			{
+				// 連鎖させない
+				current->myValue = value;
+				current->value = 0;
+			}
+			else
+			{
+				current->myValue = current->value = value;
+			}
 		}
 	};
 
@@ -712,10 +714,10 @@ private:
 			checked[address] = 1;
 
 			v++;
-			v += GetLinkCount(x + 1, y, p, map, checked);
-			v += GetLinkCount(x - 1, y, p, map, checked);
-			v += GetLinkCount(x, y + 1, p, map, checked);
-			v += GetLinkCount(x, y - 1, p, map, checked);
+			v += GetLinkCount(x + 1, y, type, map, checked);
+			v += GetLinkCount(x - 1, y, type, map, checked);
+			v += GetLinkCount(x, y + 1, type, map, checked);
+			v += GetLinkCount(x, y - 1, type, map, checked);
 		}
 
 		return v;
@@ -1007,6 +1009,7 @@ NCB_REGISTER_CLASS(PuzzleAICore)
 	Constructor();
 
 	Method("setLevel", &Class::SetLevel);
+	Method("setLinking", &Class::SetLinking);
 
 	Method("setMapSize", &Class::SetMapSize);
 	Method("addOjamaType", &Class::AddOjamaType);
