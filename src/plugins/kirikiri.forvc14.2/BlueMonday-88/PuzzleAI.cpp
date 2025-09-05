@@ -8,6 +8,7 @@
 #include <unordered_set>
 #include <unordered_map>
 #include <functional>
+#include <algorithm>
 #include"ncbind.hpp"
 #include"kim/KimException.h"
 
@@ -210,6 +211,21 @@ public:
 
 	typedef std::vector<allocator_type*>	allocators;
 
+private:
+	// マップの状態をハッシュ値に変換する関数オブジェクト
+	struct MapHasher {
+		std::size_t operator()(const std::vector<tjs_int>& map) const {
+			std::size_t hash = map.size();
+			for (const auto& i : map) {
+				hash ^= i + 0x9e3779b9 + (hash << 6) + (hash >> 2);
+			}
+			return hash;
+		}
+	};
+	// マップの状態をキャッシュするマップ
+	std::unordered_map<std::vector<tjs_int>, tjs_int, MapHasher> m_ChainCountCache;
+
+
 public:
 	/**/
 	PuzzleAICore() :
@@ -374,7 +390,7 @@ public:
 		}
 
 		// 新しいルートの兄弟ノードを含む、元のルートのすべての子孫を削除する
-		DeleteNodeRecursive(m_Root);
+		DeleteNodeIterative(m_Root);
 
 		// 新しいルートを設定する
 		m_Root = best_child;
@@ -466,22 +482,30 @@ private:
 	/*
 	* 次の手を計算する
 	*/
-	void NextStep(node_type* current, const tjs_int piece1, const tjs_int piece2)
+	void NextStep(node_type* root, const tjs_int piece1, const tjs_int piece2)
 	{
-		// 子ノードがない場合、つまりcurrentが葉ノードの場合
-		if (current->first_child == nullptr)
-		{
-			// このノードに新しい手を追加
-			CalcNextStep(current, piece1, piece2);
+		if (root == nullptr) {
+			return;
 		}
-		else
-		{
-			// 子ノードがある場合、各子ノードに対して再帰的に次の手を計算
-			node_type::pointer_type child = current->first_child;
-			while (child != nullptr)
-			{
-				NextStep(child, piece1, piece2);
-				child = child->next_sibling;
+
+		std::vector<node_type::pointer_type> stack;
+		stack.push_back(root);
+
+		while (!stack.empty()) {
+			node_type::pointer_type current = stack.back();
+			stack.pop_back();
+
+			// 子ノードがない場合（葉ノード）に処理を行う
+			if (current->first_child == nullptr) {
+				CalcNextStep(current, piece1, piece2);
+			}
+			else {
+				// 子ノードがある場合、すべての子ノードをスタックにプッシュ
+				node_type::pointer_type child = current->first_child;
+				while (child != nullptr) {
+					stack.push_back(child);
+					child = child->next_sibling;
+				}
 			}
 		}
 	}
@@ -664,9 +688,7 @@ private:
 		// 連鎖数計算
 		if (isErase)
 		{
-			ClearMap(checked);
-
-			current->chain = GetChainCount(current, checked);
+			current->chain = GetChainCount(current);
 			current->fire = (current->chain == 0 ? false : true);
 		}
 		else
@@ -698,149 +720,181 @@ private:
 	/*
 	* ぷよが連結している数を返す
 	*/
-	tjs_int GetLinkCount(const tjs_int x, const tjs_int y, const tjs_int type, const tjs_int* map, map_type& checked) const
+	tjs_int GetLinkCount(const tjs_int start_x, const tjs_int start_y, const tjs_int type, const tjs_int* map, map_type& checked) const
 	{
-		if (!IsValidPos(x, y))
-		{
+		// スタート位置が有効か、チェック済みか、タイプが一致するか確認
+		if (!IsValidPos(start_x, start_y) || checked[start_y * m_Width + start_x] || map[start_y * m_Width + start_x] != type) {
 			return 0;
 		}
 
-		tjs_int address = y * m_Width + x;
+		tjs_int count = 0;
+		std::vector<Pos> queue;
 
-		if (checked[address])
-		{
-			return 0;
+		// スタート位置をキューに追加し、チェック済みとする
+		queue.push_back(Pos(start_x, start_y));
+		checked[start_y * m_Width + start_x] = 1;
+		count++;
+
+		size_t head = 0;
+		while (head < queue.size()) {
+			Pos current = queue[head++];
+
+			// 上下左右の隣接ノードを探索
+			const int dx[] = { 1, -1, 0, 0 };
+			const int dy[] = { 0, 0, 1, -1 };
+
+			for (int i = 0; i < 4; ++i) {
+				tjs_int next_x = current.m_x + dx[i];
+				tjs_int next_y = current.m_y + dy[i];
+
+				// 隣接ノードが有効な座標で、未チェック、かつ同じタイプであればキューに追加
+				if (IsValidPos(next_x, next_y) && !checked[next_y * m_Width + next_x] && map[next_y * m_Width + next_x] == type) {
+					queue.push_back(Pos(next_x, next_y));
+					checked[next_y * m_Width + next_x] = 1;
+					count++;
+				}
+			}
 		}
-
-		tjs_int p = map[address];
-		tjs_int v = 0;
-
-		if (p == type)
-		{
-			checked[address] = 1;
-
-			v++;
-			v += GetLinkCount(x + 1, y, type, map, checked);
-			v += GetLinkCount(x - 1, y, type, map, checked);
-			v += GetLinkCount(x, y + 1, type, map, checked);
-			v += GetLinkCount(x, y - 1, type, map, checked);
-		}
-
-		return v;
-	};
+		return count;
+	}
 	/*
 	* 連鎖する回数を返す
 	*/
-	tjs_int GetChainCount(node_type* node, map_type& checked)
+	tjs_int GetChainCount(node_type* node)
 	{
-		tjs_int c = 0;
-		tjs_int l1 = GetLinkCount(node->block.piece1.x, node->block.piece1.y, node->block.piece1.type, node->map, checked);
-		tjs_int l2 = GetLinkCount(node->block.piece2.x, node->block.piece2.y, node->block.piece2.type, node->map, checked);
+		// シミュレーション用のマップコピー
+		std::vector<tjs_int> simulation_map(m_MapSize);
+		memcpy(simulation_map.data(), node->map, m_MapSize);
 
-		if (l1 >= m_Linking || l2 >= m_Linking)
-		{
-			c++;
+		// 最初の消去をチェック
+		bool first_erase_occurred = false;
+		map_type checked(m_MapSize);
 
-			if (l1 >= m_Linking)
-			{
-				MarkErasePiecese(node->block.piece1.x, node->block.piece1.y, node->block.piece1.type, node->map, checked);
+		if (CountAndMarkConnectedPieces(node->block.piece1.x, node->block.piece1.y, simulation_map, checked) >= m_Linking) {
+			first_erase_occurred = true;
+		}
+		if (CountAndMarkConnectedPieces(node->block.piece2.x, node->block.piece2.y, simulation_map, checked) >= m_Linking) {
+			first_erase_occurred = true;
+		}
+
+		if (!first_erase_occurred) {
+			return 0;
+		}
+
+		tjs_int chain_count = 1;
+
+		// 連鎖が続く限りループ
+		while (true) {
+			// 現在のマップ状態のキャッシュキーを作成
+			std::vector<tjs_int> current_map_state = simulation_map;
+
+			// キャッシュチェック
+			if (m_ChainCountCache.count(current_map_state)) {
+				chain_count += m_ChainCountCache[current_map_state];
+				break; // キャッシュに存在するので連鎖計算を終了
 			}
-			if (l2 >= m_Linking)
-			{
-				MarkErasePiecese(node->block.piece2.x, node->block.piece2.y, node->block.piece2.type, node->map, checked);
-			}
 
-			tjs_int link;
-			pos_type drop;
+			// ピースを落下させる
+			std::vector<Pos> dropped_pieces;
+			DropPiecese(simulation_map.data(), dropped_pieces);
 
-			do
-			{
-				drop.clear();
-				ClearMap(checked);
+			bool next_erase_occurred = false;
+			ClearMap(checked);
 
-				DropPiecese(node->map, drop);
-
-				bool isErase = false;
-
-				for (pos_type::iterator ite = drop.begin(); ite != drop.end(); ite++)
-				{
-					link = GetLinkCount(ite->m_x, ite->m_y, node->map[ite->m_y * m_Width + ite->m_x], node->map, checked);
-					if (link >= m_Linking)
-					{
-						isErase = true;
-						MarkErasePiecese(ite->m_x, ite->m_y, node->map[ite->m_y * m_Width + ite->m_x], node->map, checked);
+			for (const auto& pos : dropped_pieces) {
+				if (simulation_map[pos.m_y * m_Width + pos.m_x] != 0) {
+					if (CountAndMarkConnectedPieces(pos.m_x, pos.m_y, simulation_map, checked) >= m_Linking) {
+						next_erase_occurred = true;
 					}
 				}
+			}
 
-				if (isErase)
-				{
-					c++;
-				}
-			} while (!drop.empty());
+			if (next_erase_occurred) {
+				chain_count++;
+			}
+			else {
+				// キャッシュに結果を保存
+				m_ChainCountCache[current_map_state] = chain_count - 1; // 1連鎖目を除く
+				break;
+			}
 		}
 
-		return c;
-	};
-	/*
-	* 消去するぷよをマーク
-	*/
-	tjs_int MarkErasePiecese(const tjs_int x, const tjs_int y, const tjs_int type, tjs_int* map, map_type& checked)
+		return chain_count;
+	}
+
+	/**
+	 * @brief 連結したピースを数え、同時に消去済みとしてマークする反復関数
+	 * @param x, y 開始座標
+	 * @param map マップデータ（消去対象は-1に書き換えられる）
+	 * @param checked チェック済み状態を管理するマップ
+	 * @return 連結数
+	 */
+	tjs_int CountAndMarkConnectedPieces(const tjs_int start_x, const tjs_int start_y, std::vector<tjs_int>& map, map_type& checked)
 	{
-		if (!IsValidPos(x, y))
-		{
+		const tjs_int start_type = map[start_y * m_Width + start_x];
+		if (start_type == 0 || checked[start_y * m_Width + start_x]) {
 			return 0;
 		}
 
-		tjs_int address = y * m_Width + x;
+		tjs_int count = 0;
+		std::vector<Pos> queue;
+		queue.push_back(Pos(start_x, start_y));
+		checked[start_y * m_Width + start_x] = 1;
 
-		if (checked[address])
-		{
-			return 0;
-		}
-		checked[address] = 1;
+		size_t head = 0;
+		while (head < queue.size()) {
+			const Pos current = queue[head++];
+			const tjs_int current_address = current.m_y * m_Width + current.m_x;
 
-		// 繋がっていない
-		if (map[address] != type)
-		{
-			return 0;
-		}
+			if (map[current_address] == start_type) {
+				count++;
 
-		map[address] = -1;
-		tjs_int c = 1;
+				const int dx[] = { 1, -1, 0, 0 };
+				const int dy[] = { 0, 0, 1, -1 };
 
-		c += MarkErasePiecese(x + 1, y, type, map, checked);
-		c += MarkErasePiecese(x - 1, y, type, map, checked);
-		c += MarkErasePiecese(x, y + 1, type, map, checked);
-		c += MarkErasePiecese(x, y - 1, type, map, checked);
+				for (int i = 0; i < 4; ++i) {
+					const tjs_int next_x = current.m_x + dx[i];
+					const tjs_int next_y = current.m_y + dy[i];
+					const tjs_int next_address = next_y * m_Width + next_x;
 
-		return c;
-	};
-	/**/
-	void DropPiecese(tjs_int* map, pos_type& drop)
-	{
-		for (tjs_int y = m_Height - 1; y >= 0; y--)
-		{
-			for (tjs_int x = 0; x < m_Width; x++)
-			{
-				tjs_int address1 = y * m_Width + x;
-
-				if (map[address1] != -1)
-				{
-					continue;
-				}
-
-				for (tjs_int i = y - 1; i >= 0; i--)
-				{
-					tjs_int address2 = y * m_Width + i;
-
-					if (map[address1] == -1 || map[address2] == 0)
-					{
-						continue;
+					if (IsValidPos(next_x, next_y) && !checked[next_address] && map[next_address] == start_type) {
+						queue.push_back(Pos(next_x, next_y));
+						checked[next_address] = 1;
 					}
+				}
+			}
+		}
 
-					map[address1] = map[address2];
-					map[address2] = 0;
-					drop.push_back(Pos(x, y));
+		// 消去対象のピースをマークする
+		if (count >= m_Linking) {
+			for (const auto& pos : queue) {
+				map[pos.m_y * m_Width + pos.m_x] = -1;
+			}
+		}
+
+		return count;
+	}
+
+	/**
+	 * @brief ピースを落下させる最適化された関数
+	 * @param map マップデータ
+	 * @param dropped_pieces 落下したピースの座標を格納するベクトル
+	 */
+	void DropPiecese(tjs_int* map, std::vector<Pos>& dropped_pieces)
+	{
+		dropped_pieces.clear();
+		for (tjs_int x = 0; x < m_Width; x++) {
+			tjs_int write_y = m_Height - 1;
+			for (tjs_int y = m_Height - 1; y >= 0; y--) {
+				if (map[y * m_Width + x] != -1) {
+					if (write_y != y) {
+						map[write_y * m_Width + x] = map[y * m_Width + x];
+						if (map[write_y * m_Width + x] != 0) {
+							dropped_pieces.push_back(Pos(x, write_y));
+						}
+						map[y * m_Width + x] = 0;
+					}
+					write_y--;
 				}
 			}
 		}
@@ -869,33 +923,46 @@ private:
 	/**/
 	void ShiftCandidate(node_type::pointer_type node)
 	{
-		if (!node)
-		{
+		if (!node || !node->first_child) {
 			return;
 		}
 
-		// 新しいデータ構造に合わせて再帰呼び出し
-		node_type::pointer_type child = node->first_child;
-		while (child != nullptr)
-		{
-			ShiftCandidate(child);
-			child = child->next_sibling;
+		// 子ノードを一時的なリストに集める
+		std::vector<node_type::pointer_type> children;
+		node_type::pointer_type current = node->first_child;
+		while (current) {
+			ShiftCandidate(current); // 再帰的に子ノードを処理
+			children.push_back(current);
+			current = current->next_sibling;
 		}
 
-		// 最大値を探す
-		tjs_int max = 0;
-		child = node->first_child;
-		while (child != nullptr)
-		{
-			if (child->value > max)
-			{
-				max = child->value;
+		// 評価値で降順にソート
+		std::sort(children.begin(), children.end(), [](const node_type::pointer_type& a, const node_type::pointer_type& b) {
+			return a->value > b->value;
+		});
+
+		// 上位3つ（またはそれ以下）のノードを新しいリストに再構築
+		node->first_child = nullptr;
+		node_type::pointer_type last_child = nullptr;
+		size_t count = 0;
+		for (auto& child : children) {
+			if (count >= 2) {
+				// 上位3つを超えたノードは削除
+				DeleteNodeIterative(child);
 			}
-			child = child->next_sibling;
+			else {
+				// 上位3つを残す
+				child->next_sibling = nullptr;
+				if (last_child) {
+					last_child->next_sibling = child;
+				}
+				else {
+					node->first_child = child;
+				}
+				last_child = child;
+				count++;
+			}
 		}
-
-		// 最大値未満のノードを削除
-		RemoveNodesBelowValue(node, max);
 	}
 	/**/
 	void RemoveNodesBelowValue(node_type::pointer_type parent, tjs_int threshold)
@@ -909,8 +976,8 @@ private:
 		{
 			if (current->value < threshold)
 			{
-				// 子孫も含めて再帰的に削除
-				DeleteNodeRecursive(current);
+				// 子孫も含めて削除
+				DeleteNodeIterative(current);
 
 				// リストからノードを外す
 				if (prev)
@@ -934,32 +1001,43 @@ private:
 	}
 
 	/**/
-	void DeleteNodeRecursive(node_type::pointer_type node)
+	void DeleteNodeIterative(node_type::pointer_type root)
 	{
-		if (!node) return;
-
-		// まず子ノードをすべて再帰的に削除
-		node_type::pointer_type current = node->first_child;
-		while (current)
-		{
-			node_type::pointer_type next = current->next_sibling;
-			DeleteNodeRecursive(current);
-			current = next;
+		if (!root) {
+			return;
 		}
 
-		// デストラクタを明示的に呼び出す（std::vectorは無いので不要だが、ベストプラクティスとして）
-		// node->~PuzzleNode();
+		std::vector<node_type::pointer_type> stack;
+		stack.push_back(root);
 
-		// アロケータからメモリを解放
-		for (auto alloc : m_Alloc)
-		{
-			if (alloc->HasPointer(node))
-			{
-				alloc->Deallocate(node);
-				break;
+		while (!stack.empty()) {
+			node_type::pointer_type current = stack.back();
+
+			// 子ノードがまだスタックにプッシュされていない場合
+			if (current->first_child) {
+				// 子ノードをスタックにプッシュ
+				node_type::pointer_type child = current->first_child;
+				while (child) {
+					stack.push_back(child);
+					child = child->next_sibling;
+				}
+				// 子ノードを処理するために、現在のノードはスタックに残しておく
+				current->first_child = nullptr; // これが、子ノードが処理済みであるというフラグの役割を果たす
+			}
+			else {
+				// 子ノードがすべて処理済み、または子ノードがない場合、ノードを削除
+				stack.pop_back();
+
+				// アロケータからメモリを解放
+				for (auto alloc : m_Alloc) {
+					if (alloc->HasPointer(current)) {
+						alloc->Deallocate(current);
+						break;
+					}
+				}
 			}
 		}
-	};
+	}
 
 	/**/
 	void ClearMap(map_type& map) const
