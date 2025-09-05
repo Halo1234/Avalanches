@@ -689,7 +689,8 @@ private:
 		if (isErase)
 		{
 			current->chain = GetChainCount(current);
-			current->fire = (current->chain == 0 ? false : true);
+			// 連鎖が発生しなかった場合はfireをfalseに
+			current->fire = (current->chain > 0);
 		}
 		else
 		{
@@ -697,23 +698,18 @@ private:
 			current->fire = false;
 		}
 
-		if (current->chain >= m_MaxChain)
+		// 評価値の最終決定ロジックを修正
+		if (current->fire && current->chain >= m_MaxChain)
 		{
-			// 連鎖開始
-			current->myValue = current->value = value + (current->chain * 100);
+			// 連鎖数がm_MaxChain以上なら、連鎖による評価値を加算
+			current->myValue = value + (current->chain * 100);
+			current->value = current->myValue;
 		}
 		else
 		{
-			if (current->fire)
-			{
-				// 連鎖させない
-				current->myValue = value;
-				current->value = 0;
-			}
-			else
-			{
-				current->myValue = current->value = value;
-			}
+			// それ以外の場合は、連鎖の評価値は加算しない
+			current->myValue = value;
+			current->value = value;
 		}
 	};
 
