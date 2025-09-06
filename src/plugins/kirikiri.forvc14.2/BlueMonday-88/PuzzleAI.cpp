@@ -594,8 +594,11 @@ private:
 					}
 				}
 
+				tjs_int address1 = y * m_Width + x;
+				tjs_int address2 = y2 * m_Width + x2;
+
 				// 配置不可
-				if (current->map[y * m_Width + x] != 0 || current->map[y2 * m_Width + x2] != 0)
+				if (current->map[address1] != 0 || current->map[address2] != 0)
 				{
 					continue;
 				}
@@ -614,8 +617,8 @@ private:
 				::memcpy(node->map, current->map, m_MapSize);
 
 				// 配置
-				node->map[y * m_Width + x] = piece1;
-				node->map[y2 * m_Width + x2] = piece2;
+				node->map[address1] = piece1;
+				node->map[address2] = piece2;
 
 				// リンク
 				AddChileNode(current, node);
@@ -718,8 +721,10 @@ private:
 	*/
 	tjs_int GetLinkCount(const tjs_int start_x, const tjs_int start_y, const tjs_int type, const tjs_int* map, map_type& checked) const
 	{
+		tjs_int address1 = start_y * m_Width + start_x;
+
 		// スタート位置が有効か、チェック済みか、タイプが一致するか確認
-		if (!IsValidPos(start_x, start_y) || checked[start_y * m_Width + start_x] || map[start_y * m_Width + start_x] != type) {
+		if (!IsValidPos(start_x, start_y) || checked[address1] || map[address1] != type) {
 			return 0;
 		}
 
@@ -728,7 +733,7 @@ private:
 
 		// スタート位置をキューに追加し、チェック済みとする
 		queue.push_back(Pos(start_x, start_y));
-		checked[start_y * m_Width + start_x] = 1;
+		checked[address1] = 1;
 		count++;
 
 		size_t head = 0;
@@ -742,11 +747,12 @@ private:
 			for (int i = 0; i < 4; ++i) {
 				tjs_int next_x = current.m_x + dx[i];
 				tjs_int next_y = current.m_y + dy[i];
+				tjs_int address2 = next_y * m_Width + next_x;
 
 				// 隣接ノードが有効な座標で、未チェック、かつ同じタイプであればキューに追加
-				if (IsValidPos(next_x, next_y) && !checked[next_y * m_Width + next_x] && map[next_y * m_Width + next_x] == type) {
+				if (IsValidPos(next_x, next_y) && !checked[address2] && map[address2] == type) {
 					queue.push_back(Pos(next_x, next_y));
-					checked[next_y * m_Width + next_x] = 1;
+					checked[address2] = 1;
 					count++;
 				}
 			}
@@ -827,15 +833,16 @@ private:
 	 */
 	tjs_int CountAndMarkConnectedPieces(const tjs_int start_x, const tjs_int start_y, std::vector<tjs_int>& map, map_type& checked)
 	{
-		const tjs_int start_type = map[start_y * m_Width + start_x];
-		if (start_type == 0 || checked[start_y * m_Width + start_x]) {
+		tjs_int address = start_y * m_Width + start_x;
+		const tjs_int start_type = map[address];
+		if (start_type == 0 || checked[address]) {
 			return 0;
 		}
 
 		tjs_int count = 0;
 		std::vector<Pos> queue;
 		queue.push_back(Pos(start_x, start_y));
-		checked[start_y * m_Width + start_x] = 1;
+		checked[address] = 1;
 
 		size_t head = 0;
 		while (head < queue.size()) {
@@ -882,10 +889,12 @@ private:
 		for (tjs_int x = 0; x < m_Width; x++) {
 			tjs_int write_y = m_Height - 1;
 			for (tjs_int y = m_Height - 1; y >= 0; y--) {
-				if (map[y * m_Width + x] != -1) {
+				tjs_int address1	 = y * m_Width + x;
+				if (map[address1] != -1) {
 					if (write_y != y) {
-						map[write_y * m_Width + x] = map[y * m_Width + x];
-						if (map[write_y * m_Width + x] != 0) {
+						tjs_int address2 = write_y * m_Width + x;
+						map[address2] = map[address1];
+						if (map[address2] != 0) {
 							dropped_pieces.push_back(Pos(x, write_y));
 						}
 						map[y * m_Width + x] = 0;
