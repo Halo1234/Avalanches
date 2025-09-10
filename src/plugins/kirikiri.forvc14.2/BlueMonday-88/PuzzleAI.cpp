@@ -833,16 +833,16 @@ private:
 	 */
 	tjs_int CountAndMarkConnectedPieces(const tjs_int start_x, const tjs_int start_y, std::vector<tjs_int>& map, map_type& checked)
 	{
-		tjs_int address = start_y * m_Width + start_x;
-		const tjs_int start_type = map[address];
-		if (start_type == 0 || checked[address]) {
+		const tjs_int start_type = map[start_y * m_Width + start_x];
+		if (start_type == 0 || checked[start_y * m_Width + start_x]) {
 			return 0;
 		}
 
-		tjs_int count = 0;
+		// 連結しているピースの座標を一時的に格納するベクトル
+		std::vector<Pos> connected_pieces;
 		std::vector<Pos> queue;
 		queue.push_back(Pos(start_x, start_y));
-		checked[address] = 1;
+		checked[start_y * m_Width + start_x] = 1;
 
 		size_t head = 0;
 		while (head < queue.size()) {
@@ -850,7 +850,7 @@ private:
 			const tjs_int current_address = current.m_y * m_Width + current.m_x;
 
 			if (map[current_address] == start_type) {
-				count++;
+				connected_pieces.push_back(current);
 
 				const int dx[] = { 1, -1, 0, 0 };
 				const int dy[] = { 0, 0, 1, -1 };
@@ -868,14 +868,35 @@ private:
 			}
 		}
 
-		// 消去対象のピースをマークする
-		if (count >= m_Linking) {
-			for (const auto& pos : queue) {
+		// 連結数が消去条件を満たしている場合
+		if (connected_pieces.size() >= static_cast<size_t>(m_Linking)) {
+			// 消去対象のピースをマーク
+			for (const auto& pos : connected_pieces) {
 				map[pos.m_y * m_Width + pos.m_x] = -1;
+			}
+
+			// おじゃまぷよを消すための追加処理
+			for (const auto& pos : connected_pieces) {
+				const int dx[] = { 1, -1, 0, 0 };
+				const int dy[] = { 0, 0, 1, -1 };
+
+				for (int i = 0; i < 4; ++i) {
+					const tjs_int next_x = pos.m_x + dx[i];
+					const tjs_int next_y = pos.m_y + dy[i];
+
+					if (IsValidPos(next_x, next_y)) {
+						const tjs_int next_address = next_y * m_Width + next_x;
+						// 隣接するピースがおじゃまぷよであり、かつまだ消去済みでない場合
+						// m_OjamaTypesは、おじゃまぷよのタイプを保持する`std::vector`を想定
+						if (std::find(m_OjamaTypes.begin(), m_OjamaTypes.end(), map[next_address]) != m_OjamaTypes.end()) {
+							map[next_address] = -1; // おじゃまぷよを消去済みとしてマーク
+						}
+					}
+				}
 			}
 		}
 
-		return count;
+		return connected_pieces.size();
 	}
 
 	/**
