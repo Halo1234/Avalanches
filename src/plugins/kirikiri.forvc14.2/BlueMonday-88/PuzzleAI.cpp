@@ -310,6 +310,61 @@ public:
 	{
 		m_OjamaTypes.push_back(type);
 	};
+	/**/
+	void SetOjamaPieces(iTJSDispatch2* mapArray)
+	{
+		// 引数が有効なTJS2オブジェクトかチェック
+		if (!mapArray) {
+			TVPThrowExceptionMessage(TJS_W("引数は有効なTJS2の配列である必要があります。"));
+		}
+
+		// 配列のサイズを取得
+		tjs_int arraySize = 0;
+		tTJSVariant arraySizeV(arraySize);
+		if (TJS_FAILED(mapArray->PropGet(TJS_MEMBERENSURE, TJS_W("count"), nullptr, &arraySizeV, mapArray))) {
+			TVPThrowExceptionMessage(TJS_W("TJS2の配列のサイズを取得できませんでした。"));
+		}
+		arraySize = arraySizeV;
+
+		// 辞書配列の配列を走査し、x, y, idを取得してマップに設定
+		for (tjs_int i = 0; i < arraySize; i++) {
+			tTJSVariant element;
+			std::wstring index = std::to_wstring(i);
+			if (TJS_FAILED(mapArray->PropGet(TJS_MEMBERENSURE, index.c_str(), nullptr, &element, mapArray))) {
+				continue; // 取得に失敗したらスキップ
+			}
+
+			if (element.Type() != tvtObject) {
+				TVPThrowExceptionMessage(TJS_W("配列の要素は辞書オブジェクトである必要があります。"));
+			}
+
+			iTJSDispatch2* dictObj = element.AsObjectNoAddRef();
+			if (!dictObj) {
+				continue; // オブジェクトが取得できなければスキップ
+			}
+
+			tjs_int x = 0, y = 0, type = 0;
+			tTJSVariant v_x, v_y, v_type;
+
+			// 'x' プロパティを取得
+			if (TJS_SUCCEEDED(dictObj->PropGet(TJS_MEMBERENSURE, TJS_W("gridX"), nullptr, &v_x, dictObj)) && v_x.Type() == tvtInteger) {
+				x = (tjs_int)v_x;
+			}
+			// 'y' プロパティを取得
+			if (TJS_SUCCEEDED(dictObj->PropGet(TJS_MEMBERENSURE, TJS_W("gridY"), nullptr, &v_y, dictObj)) && v_y.Type() == tvtInteger) {
+				y = (tjs_int)v_y;
+			}
+			// 'id' プロパティを取得
+			if (TJS_SUCCEEDED(dictObj->PropGet(TJS_MEMBERENSURE, TJS_W("id"), nullptr, &v_type, dictObj)) && v_type.Type() == tvtInteger) {
+				type = (tjs_int)v_type;
+			}
+
+			// 取得した座標が有効かチェックし、マップにおじゃまぷよとして配置
+			if (IsValidPos(x, y)) {
+				m_Root->map[y * m_Width + x] = type;
+			}
+		}
+	}
 
 	/*
 	* piece1:回転軸
@@ -396,6 +451,59 @@ public:
 		m_Root = best_child;
 		m_Root->pParent = nullptr;
 		m_Root->next_sibling = nullptr;
+	}
+	/*
+	* ルートノードを残して、子ノードとすべての子孫を削除する
+	*/
+	void Clear()
+	{
+		if (!m_Root) {
+			return; // ルートノードが存在しない場合は何もしない
+		}
+
+		// ルートノードの最初の子を根とするツリー全体を削除する
+		node_type::pointer_type child = m_Root->first_child;
+		while (child) {
+			// 次の兄弟ノードへのポインタを一時的に保存
+			node_type::pointer_type next_sibling = child->next_sibling;
+
+			// 現在の子ノードと、そのすべての子孫を削除する
+			DeleteNodeIterative(child);
+
+			// 次の兄弟ノードへ進む
+			child = next_sibling;
+		}
+
+		// ルートノードの first_child ポインタを nullptr に設定してツリーをクリアする
+		m_Root->first_child = nullptr;
+	}
+	/*
+	* ルートノードのmapや関連情報を初期化する
+	*/
+	void InitializeRootNode()
+	{
+		// ルートノードが存在しない場合は、まず作成する
+		if (!m_Root) {
+			m_Root = AllocNode();
+		}
+
+		// ルートノードの盤面をゼロで初期化
+		::memset(m_Root->map, 0, m_MapSize);
+
+		// 評価値や連鎖数などを初期値にリセット
+		m_Root->value = 0;
+		m_Root->myValue = 0;
+		m_Root->chain = 0;
+		m_Root->fire = 0;
+
+		// 既存の子ノードがあればすべて削除する
+		Clear();
+	}
+
+	/**/
+	void DumpRootMap()
+	{
+		DumpNodeMap(m_Root);
 	}
 
 private:
@@ -1084,19 +1192,36 @@ private:
 		parent->first_child = child;
 	}
 
-	/**/
-	void DumpMap(node_type::pointer_type node)
+	/*
+	* 指定されたノードのmapを標準出力にダンプする
+	*/
+	void DumpNodeMap(node_type::pointer_type node)
 	{
-		std::cout << "value = " << node->value << "(x : " << node->block.piece1.x << ", y : " << node->block.piece1.y << ") dir : " << (tjs_int)node->dir << std::endl;
+		if (!node) {
+			std::cout << "Error: The specified node is NULL." << std::endl;
+			return;
+		}
+
+		// ノードの基本情報と評価値を表示
+		std::cout << "--- Puzzle Node Dump ---" << std::endl;
+		std::cout << "Value: " << node->value << std::endl;
+		std::cout << "My Value: " << node->myValue << std::endl;
+		std::cout << "Chain: " << node->chain << std::endl;
+		std::cout << "Fire: " << (node->fire ? "true" : "false") << std::endl;
+
+		// 盤面情報を表示
+		std::cout << "Map (Width=" << m_Width << ", Height=" << m_Height << "):" << std::endl;
 		for (tjs_int y = 0; y < m_Height; y++)
 		{
+			std::cout << "| ";
 			for (tjs_int x = 0; x < m_Width; x++)
 			{
-				std::cout << node->map[y * m_Width + x] << ",";
+				std::cout << node->map[y * m_Width + x] << " ";
 			}
-			std::cout << std::endl;
+			std::cout << "|" << std::endl;
 		}
-	};
+		std::cout << "------------------------" << std::endl;
+	}
 
 	allocators m_Alloc;
 	tjs_int m_Width;
@@ -1110,7 +1235,7 @@ private:
 	tjs_int m_MaxChain;
 	tjs_int m_Linking;
 
-	node_type* m_Root;
+	node_type::pointer_type m_Root;
 };
 
 /**/
@@ -1124,10 +1249,17 @@ NCB_REGISTER_CLASS(PuzzleAICore)
 	Method("setMapSize", &Class::SetMapSize);
 	Method("addOjamaType", &Class::AddOjamaType);
 
+	Method("setOjamaPieces", &Class::SetOjamaPieces);
+
 	Method("addNextBlock", &Class::AddNextBlock);
 	Method("getNextBlock", &Class::GetNextBlock);
 
 	Method("setNextRoot", &Class::SetNextRoot);
+
+	Method("clear", &Class::Clear);
+	Method("initializeRootNode", &Class::InitializeRootNode);
+
+	Method("dumpRootMap", &Class::DumpRootMap);
 
 	Property("level", &Class::GetLevel, 0);
 	Property("linking", &Class::GetLinking, 0);
