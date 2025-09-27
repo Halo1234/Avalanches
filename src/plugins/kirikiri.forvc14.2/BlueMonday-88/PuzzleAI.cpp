@@ -222,9 +222,6 @@ private:
 			return hash;
 		}
 	};
-	// マップの状態をキャッシュするマップ
-	std::unordered_map<std::vector<tjs_int>, tjs_int, MapHasher> m_ChainCountCache;
-
 
 public:
 	/**/
@@ -234,7 +231,8 @@ public:
 		m_SizeOfNode(0),
 		m_MapSize(0),
 		m_Level(0), m_MaxChain(0), m_Linking(0),
-		m_Root(nullptr)
+		m_Root(nullptr),
+		m_Debug(0)
 	{
 	};
 	/**/
@@ -501,6 +499,12 @@ public:
 	}
 
 	/**/
+	void SetDebugMode(tjs_int bDebug)
+	{
+		m_Debug = bDebug;
+	}
+
+	/**/
 	void DumpRootMap()
 	{
 		DumpNodeMap(m_Root);
@@ -632,6 +636,8 @@ private:
 			return;
 		}
 
+//		std::cout << "begin CalcNextStep() function" << std::endl;
+
 		for (tjs_int i = 0; i < KIM_ARRAY_COUNT(dirs); i++)
 		{
 			// まずは回転軸の位置を決定する
@@ -690,15 +696,25 @@ private:
 					x2 += 1;
 					break;
 				}
-				for (tjs_int tmp = y2 + 1; tmp < m_Height; tmp++)
+				if (current->map[y2 * m_Width + x2] == 0)
 				{
-					if (current->map[tmp * m_Width + x2] == 0 && (x == x2 && y == (y2 - 1)))
+					// 下へ
+					while (y2 < m_Height - 1 && current->map[(y2 + 1) * m_Width + x2] == 0)
 					{
-						y2++;
-						if (y2 >= m_Height)
+						// (x, y) == (x2, y2 + 1)の場合、そこには今回発生したピースが配置される予定なので抜ける
+						if (x2 == x && (y2 + 1) == y)
 						{
-							y2 = m_Height - 1;
+							break;
 						}
+						y2++;
+					}
+				}
+				else
+				{
+					// 上へ
+					while (y2 > 0 && current->map[y2 * m_Width + x2] != 0)
+					{
+						y2--;
 					}
 				}
 
@@ -738,19 +754,19 @@ private:
 				tjs_int value = node->value;
 				node_type::pointer_type tmp = node->pParent;
 
-				if (tmp != nullptr)
+				while (tmp != nullptr)
 				{
-					if (value > tmp->value)
+					if (value <= tmp->value)
 					{
-						while (tmp != nullptr)
-						{
-							tmp->value = value;
-							tmp = tmp->pParent;
-						}
+						break;
 					}
+					tmp->value = value;
+					tmp = tmp->pParent;
 				}
 			}
 		}
+
+//		std::cout << "end CalcNextStep() function" << std::endl;
 
 		ShiftCandidate(m_Root);
 	};
@@ -784,7 +800,7 @@ private:
 
 				if (v > 1)
 				{
-					value += v * 2;
+					value += v;
 
 					// 消える？
 					if (v >= m_Linking)
@@ -794,7 +810,6 @@ private:
 				}
 			}
 		}
-
 
 		// 連鎖数計算
 		if (isErase)
@@ -819,8 +834,21 @@ private:
 		else
 		{
 			// それ以外の場合は、連鎖の評価値は加算しない
-			current->myValue = value;
-			current->value = value;
+			if (current->fire)
+			{
+				current->myValue = value;
+				current->value = 0;
+			}
+			else
+			{
+				current->myValue = value;
+				current->value = value;
+			}
+		}
+
+		if (m_Debug)
+		{
+			DumpNodeMap(current);
 		}
 	};
 
@@ -898,15 +926,15 @@ private:
 			// 現在のマップ状態のキャッシュキーを作成
 			std::vector<tjs_int> current_map_state = simulation_map;
 
+			// ピースを落下させる
+			std::vector<Pos> dropped_pieces;
+			DropPiecese(simulation_map.data(), dropped_pieces);
+
 			// キャッシュチェック
 			if (m_ChainCountCache.count(current_map_state)) {
 				chain_count += m_ChainCountCache[current_map_state];
 				break; // キャッシュに存在するので連鎖計算を終了
 			}
-
-			// ピースを落下させる
-			std::vector<Pos> dropped_pieces;
-			DropPiecese(simulation_map.data(), dropped_pieces);
 
 			bool next_erase_occurred = false;
 			ClearMap(checked);
@@ -928,6 +956,7 @@ private:
 				break;
 			}
 		}
+		memcpy(node->map, simulation_map.data(), m_MapSize);
 
 		return chain_count;
 	}
@@ -942,7 +971,7 @@ private:
 	tjs_int CountAndMarkConnectedPieces(const tjs_int start_x, const tjs_int start_y, std::vector<tjs_int>& map, map_type& checked)
 	{
 		const tjs_int start_type = map[start_y * m_Width + start_x];
-		if (start_type == 0 || checked[start_y * m_Width + start_x]) {
+		if (start_type == 0 || start_type == -1 || checked[start_y * m_Width + start_x]) {
 			return 0;
 		}
 
@@ -1202,6 +1231,22 @@ private:
 			return;
 		}
 
+		// PuzzleDirectionを文字列に変換するヘルパー関数
+		auto getDirString = [](bm88::details::PuzzleDirection dir) -> std::string {
+			switch (dir) {
+			case bm88::details::PuzzleDirection::DIR_UP:
+				return "UP";
+			case bm88::details::PuzzleDirection::DIR_DOWN:
+				return "DOWN";
+			case bm88::details::PuzzleDirection::DIR_LEFT:
+				return "LEFT";
+			case bm88::details::PuzzleDirection::DIR_RIGHT:
+				return "RIGHT";
+			default:
+				return "UNKNOWN";
+			}
+		};
+
 		// ノードの基本情報と評価値を表示
 		std::cout << "--- Puzzle Node Dump ---" << std::endl;
 		std::cout << "Value: " << node->value << std::endl;
@@ -1209,8 +1254,13 @@ private:
 		std::cout << "Chain: " << node->chain << std::endl;
 		std::cout << "Fire: " << (node->fire ? "true" : "false") << std::endl;
 
+		// dirの文字列表示を追加
+		std::cout << "Direction: " << getDirString(node->dir) << std::endl;
+
 		// 盤面情報を表示
 		std::cout << "Map (Width=" << m_Width << ", Height=" << m_Height << "):" << std::endl;
+		std::cout << "Piece1 : (" << node->block.piece1.x << ", " << node->block.piece1.y << ") type : " << node->block.piece1.type << std::endl;
+		std::cout << "Piece2 : (" << node->block.piece2.x << ", " << node->block.piece2.y << ") type : " << node->block.piece2.type << std::endl;
 		for (tjs_int y = 0; y < m_Height; y++)
 		{
 			std::cout << "| ";
@@ -1231,11 +1281,16 @@ private:
 
 	vector_type m_OjamaTypes;
 
+	// マップの状態をキャッシュするマップ
+	std::unordered_map<std::vector<tjs_int>, tjs_int, MapHasher> m_ChainCountCache;
+
 	tjs_int m_Level;
 	tjs_int m_MaxChain;
 	tjs_int m_Linking;
 
 	node_type::pointer_type m_Root;
+
+	tjs_int m_Debug;
 };
 
 /**/
@@ -1260,6 +1315,7 @@ NCB_REGISTER_CLASS(PuzzleAICore)
 	Method("initializeRootNode", &Class::InitializeRootNode);
 
 	Method("dumpRootMap", &Class::DumpRootMap);
+	Method("setDebugMode", &Class::SetDebugMode);
 
 	Property("level", &Class::GetLevel, 0);
 	Property("linking", &Class::GetLinking, 0);
