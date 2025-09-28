@@ -30,8 +30,8 @@ namespace bm88 {
 		/**/
 		struct PuzzleBlock
 		{
-			PuzzlePiece piece1;		// 回転軸
-			PuzzlePiece piece2;		// 回転側
+			PuzzlePiece piece1;		// 回転側
+			PuzzlePiece piece2;		// 回転軸
 		};
 
 		/**/
@@ -389,19 +389,19 @@ public:
 
 		// Dictionary オブジェクトを取得
 		iTJSDispatch2* dictObj = dictionary.AsObjectNoAddRef();
-		tTJSVariant value(next->block.piece1.x);
+		tTJSVariant value(next->block.piece2.x);
 
 		dictObj->PropSet(TJS_MEMBERENSURE, TJS_W("x1"), nullptr, &value, dictObj);
-		value = next->block.piece1.y;
+		value = next->block.piece2.y;
 		dictObj->PropSet(TJS_MEMBERENSURE, TJS_W("y1"), nullptr, &value, dictObj);
-		value = next->block.piece1.type;
+		value = next->block.piece2.type;
 		dictObj->PropSet(TJS_MEMBERENSURE, TJS_W("type1"), nullptr, &value, dictObj);
 
-		value = next->block.piece2.x;
+		value = next->block.piece1.x;
 		dictObj->PropSet(TJS_MEMBERENSURE, TJS_W("x2"), nullptr, &value, dictObj);
-		value = next->block.piece2.y;
+		value = next->block.piece1.y;
 		dictObj->PropSet(TJS_MEMBERENSURE, TJS_W("y2"), nullptr, &value, dictObj);
-		value = next->block.piece2.type;
+		value = next->block.piece1.type;
 		dictObj->PropSet(TJS_MEMBERENSURE, TJS_W("type2"), nullptr, &value, dictObj);
 
 		value = static_cast<tjs_int>(next->dir);
@@ -730,19 +730,19 @@ private:
 				node_type* node = AllocNode();
 
 				node->block.piece1.type = piece1;
-				node->block.piece1.x = x;
-				node->block.piece1.y = y;
+				node->block.piece1.x = x2;
+				node->block.piece1.y = y2;
 				node->block.piece2.type = piece2;
-				node->block.piece2.x = x2;
-				node->block.piece2.y = y2;
+				node->block.piece2.x = x;
+				node->block.piece2.y = y;
 				node->dir = dirs[i];
 
 				// マップ内容を親から継承する
 				::memcpy(node->map, current->map, m_MapSize);
 
 				// 配置
-				node->map[address1] = piece1;
-				node->map[address2] = piece2;
+				node->map[address1] = piece2;
+				node->map[address2] = piece1;
 
 				// リンク
 				AddChileNode(current, node);
