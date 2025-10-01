@@ -227,6 +227,7 @@ public:
 	/**/
 	PuzzleAICore() :
 		m_Alloc(),
+		m_EntryX(0), m_EntryY(0),
 		m_Width(0), m_Height(0),
 		m_SizeOfNode(0),
 		m_MapSize(0),
@@ -241,6 +242,13 @@ public:
 		// デストラクタで確保したアロケータを全て解放する
 		FreeAllocators();
 	};
+
+	/**/
+	void SetEntryPoint(const tjs_int entryX, const tjs_int entryY)
+	{
+		m_EntryX = entryX;
+		m_EntryY = entryY;
+	}
 
 	/**/
 	void SetLevel(const tjs_int level)
@@ -636,12 +644,44 @@ private:
 			return;
 		}
 
+		// 配置可能な X 座標の範囲を決定する
+		tjs_int start_x = 0;
+		tjs_int end_x = m_Width - 1;
+
+		// 左側（m_EntryX から左）のチェック
+		// m_EntryX より左側の列をチェックし、Y=0 まで積み上がっている列を探す
+		for (tjs_int x = m_EntryX - 1; x >= 0; x--)
+		{
+			// Y=0 (最上段) のセルが埋まっているかチェック
+			if (current->map[0 * m_Width + x] != 0)
+			{
+				// Y=0 まで積み上がっている場合、その列とそれより左側は配置不可
+				// したがって、配置可能な左端を x の右隣 (x + 1) に設定
+				start_x = x + 1;
+				break;
+			}
+		}
+
+		// 右側（m_EntryX から右）のチェック
+		// m_EntryX より右側の列をチェックし、Y=0 まで積み上がっている列を探す
+		for (tjs_int x = m_EntryX + 1; x < m_Width; x++)
+		{
+			// Y=0 (最上段) のセルが埋まっているかチェック
+			if (current->map[0 * m_Width + x] != 0)
+			{
+				// Y=0 まで積み上がっている場合、その列とそれより右側は配置不可
+				// したがって、配置可能な右端を x の左隣 (x - 1) に設定
+				end_x = x - 1;
+				break;
+			}
+		}
+
 //		std::cout << "begin CalcNextStep() function" << std::endl;
 
 		for (tjs_int i = 0; i < KIM_ARRAY_COUNT(dirs); i++)
 		{
 			// まずは回転軸の位置を決定する
-			for (tjs_int x = 0; x < m_Width; x++)
+			for (tjs_int x = start_x; x <= end_x; x++)
 			{
 				// xが0または最大値の場合、向きによっては配置できない
 				if ((x == 0 && dirs[i] == bm88::details::PuzzleDirection::DIR_LEFT) ||
@@ -1274,6 +1314,8 @@ private:
 	}
 
 	allocators m_Alloc;
+	tjs_int m_EntryX;
+	tjs_int m_EntryY;
 	tjs_int m_Width;
 	tjs_int m_Height;
 	tjs_int m_MapSize;
@@ -1297,6 +1339,8 @@ private:
 NCB_REGISTER_CLASS(PuzzleAICore)
 {
 	Constructor();
+
+	Method("setEntryPoint", &Class::SetEntryPoint);
 
 	Method("setLevel", &Class::SetLevel);
 	Method("setLinking", &Class::SetLinking);
