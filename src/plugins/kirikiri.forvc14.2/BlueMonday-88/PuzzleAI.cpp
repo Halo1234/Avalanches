@@ -676,6 +676,26 @@ private:
 	};
 
 	/*
+	* 出現ポイントの列が危険域に達しているかチェックする
+	*/
+	bool IsDangerState(node_type* node) const
+	{
+		// Y=1 (上から2行目) の位置をチェックする。
+		// Y=0 は見えない位置、Y=1 は実質的な最上段とする。
+		// EntryY (通常は0か1) よりも上の位置、ここではY=1を危険ラインとする。
+		const tjs_int danger_y = 3;
+
+		if (!IsValidPos(m_EntryX, danger_y)) {
+			// 通常は発生しないが、座標が不正なら安全と見なす
+			return false;
+		}
+
+		// エントリーX座標の Y=1 の位置にピースがあれば危険
+		tjs_int address = danger_y * m_Width + m_EntryX;
+		return (node->map[address] != 0);
+	}
+
+	/*
 	* 次の手を計算する
 	*/
 	void NextStep(node_type* root, const tjs_int piece1, const tjs_int piece2)
@@ -959,6 +979,29 @@ private:
 			{
 				current->myValue = value;
 				current->value = value;
+			}
+
+
+			// 2. 最終評価値 (value) を決定
+			if (IsDangerState(current))
+			{
+				// 危機回避モード: 連鎖数や目標を無視し、目の前の消去を最優先する
+				// myValueから連鎖ボーナスを除去し、連結数と連鎖発生そのものを評価する
+				current->value = value + (current->fire ? 500 : 0); // 例: 消去発生に高い固定点
+			}
+			else
+			{
+				// 通常モード: 連鎖目標を達成できているかチェック
+				if (current->fire && current->chain >= m_MaxChain)
+				{
+					// 連鎖目標達成: myValueをそのまま最終評価値とする
+					current->value = current->myValue;
+				}
+				else
+				{
+					// 連鎖目標未達成: 連鎖ボーナスを無視する
+					current->value = value;
+				}
 			}
 		}
 
