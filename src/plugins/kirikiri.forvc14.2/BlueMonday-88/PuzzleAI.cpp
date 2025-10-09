@@ -518,6 +518,61 @@ public:
 		DumpNodeMap(m_Root);
 	}
 
+	/**
+	 * ルートノードのマップ状態をTJS2の二次元配列（配列の配列）として返す
+	 */
+	tTJSVariant GetRootMap()
+	{
+		// ルートノードが存在しない場合はNULLを返すか、空の配列を返す
+		if (!m_Root) {
+			// TJSではnullを返す
+			return tTJSVariant(nullptr, nullptr);
+		}
+
+		// TJS2の配列オブジェクト（外側の配列）を作成
+		tTJSVariant mapArrayV;
+		TVPExecuteExpression(TJS_W("[]"), &mapArrayV);
+		iTJSDispatch2* mapArray = mapArrayV.AsObjectNoAddRef();
+		if (!mapArray) {
+			TVPThrowExceptionMessage(TJS_W("TJS2の配列オブジェクトの作成に失敗しました。"));
+		}
+
+		// TJS配列は自動的に参照カウントが増加するため、ここではAddRef不要
+
+		for (tjs_int y = 0; y < m_Height; y++)
+		{
+			// TJS2の配列オブジェクト（内側の配列、行）を作成
+			tTJSVariant rowArrayV;
+			TVPExecuteExpression(TJS_W("[]"), &rowArrayV);
+			iTJSDispatch2* rowArray = rowArrayV.AsObjectNoAddRef();
+			if (!rowArray) {
+				TVPThrowExceptionMessage(TJS_W("TJS2の内部配列オブジェクトの作成に失敗しました。"));
+			}
+
+			for (tjs_int x = 0; x < m_Width; x++)
+			{
+				// マップの値を取得
+				tjs_int value = m_Root->map[y * m_Width + x];
+
+				// 内側の配列に行の要素（ぷよのタイプ）を設定
+				tTJSVariant tjsValue(value);
+				std::wstring index = std::to_wstring(x);
+				rowArray->PropSet(TJS_MEMBERENSURE, index.c_str(), nullptr, &tjsValue, rowArray);
+			}
+
+			// 外側の配列に行の配列を設定
+			tTJSVariant tjsRow(rowArray, rowArray); // DispatchをVariantでラップ
+			std::wstring index = std::to_wstring(y);
+			mapArray->PropSet(TJS_MEMBERENSURE, index.c_str(), nullptr, &tjsRow, mapArray);
+
+			// rowArrayはtjsRowとして保持されるため、ここで解放処理は不要
+			// TJSの参照カウント機構により管理されます。
+		}
+
+		// 最終的なVariantを返す
+		return mapArrayV;
+	};
+
 private:
 	/*
 	* 追加したアロケータを返す
@@ -598,6 +653,27 @@ private:
 
 		return true;
 	}
+
+	/**/
+	bool IsOjamaPiece(const tjs_int id)
+	{
+		if (std::find(m_OjamaTypes.begin(), m_OjamaTypes.end(), id) != m_OjamaTypes.end()) {
+			return true;
+		}
+
+		return false;
+	};
+
+	/**/
+	bool IsNormalPiece(const tjs_int id)
+	{
+		if (!IsOjamaPiece(id) && id != 0)
+		{
+			return true;
+		}
+
+		return false;
+	};
 
 	/*
 	* 次の手を計算する
@@ -980,7 +1056,8 @@ private:
 			ClearMap(checked);
 
 			for (const auto& pos : dropped_pieces) {
-				if (simulation_map[pos.m_y * m_Width + pos.m_x] != 0) {
+				//std::cout << "落ちてきたピース: (" << pos.m_x << ", " << pos.m_y << ") is normal : " << IsNormalPiece(simulation_map[pos.m_y * m_Width + pos.m_x]) << std::endl;
+				if (IsNormalPiece(simulation_map[pos.m_y * m_Width + pos.m_x])) {
 					if (CountAndMarkConnectedPieces(pos.m_x, pos.m_y, simulation_map, checked) >= m_Linking) {
 						next_erase_occurred = true;
 					}
@@ -1050,6 +1127,7 @@ private:
 			// 消去対象のピースをマーク
 			for (const auto& pos : connected_pieces) {
 				map[pos.m_y * m_Width + pos.m_x] = -1;
+				//std::cout << "消去ピース: " << pos.m_x << ", " << pos.m_y << ")" << std::endl;
 			}
 
 			// おじゃまぷよを消すための追加処理
@@ -1065,7 +1143,7 @@ private:
 						const tjs_int next_address = next_y * m_Width + next_x;
 						// 隣接するピースがおじゃまぷよであり、かつまだ消去済みでない場合
 						// m_OjamaTypesは、おじゃまぷよのタイプを保持する`std::vector`を想定
-						if (std::find(m_OjamaTypes.begin(), m_OjamaTypes.end(), map[next_address]) != m_OjamaTypes.end()) {
+						if (IsOjamaPiece(map[next_address])) {
 							map[next_address] = -1; // おじゃまぷよを消去済みとしてマーク
 						}
 					}
@@ -1098,6 +1176,9 @@ private:
 						map[y * m_Width + x] = 0;
 					}
 					write_y--;
+				}
+				else {
+					map[y * m_Width + x] = 0;
 				}
 			}
 		}
@@ -1360,6 +1441,8 @@ NCB_REGISTER_CLASS(PuzzleAICore)
 
 	Method("dumpRootMap", &Class::DumpRootMap);
 	Method("setDebugMode", &Class::SetDebugMode);
+
+	Method("getRootMap", &Class::GetRootMap);
 
 	Property("level", &Class::GetLevel, 0);
 	Property("linking", &Class::GetLinking, 0);
