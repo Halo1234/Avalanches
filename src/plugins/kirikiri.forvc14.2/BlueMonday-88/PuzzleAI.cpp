@@ -788,7 +788,7 @@ private:
 
 				// y位置を決定する
 				tjs_int y = 0;
-				for (y = m_Height - 1; y >= 0; y--)
+				for (y = m_Height - 1; y >= 1; y--)
 				{
 					if (current->map[y * m_Width + x] == 0)
 					{
@@ -807,8 +807,8 @@ private:
 				}
 
 				// yが最大値の場合、向きによっては配置できない
-				// yが1の場合配置できない
-				if (y == 1 || ((y == m_Height - 1) && dirs[i] == bm88::details::PuzzleDirection::DIR_DOWN))
+				// yが0以下の場合配置できない
+				if (y <= 0 || ((y == m_Height - 1) && dirs[i] == bm88::details::PuzzleDirection::DIR_DOWN))
 				{
 					continue;
 				}
@@ -852,6 +852,11 @@ private:
 					{
 						y2--;
 					}
+				}
+
+				if (y2 <= 0)
+				{
+					continue;
 				}
 
 				tjs_int address1 = y * m_Width + x;
