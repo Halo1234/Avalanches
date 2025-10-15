@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\ncbind\ncbind.cpp" />
+    <ClCompile Include="..\tp_stub.cpp" />
+    <ClCompile Include="BM88Version.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="CutMask.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="Mod2DC.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="Registory.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="PuzzleAI.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\ncbind\ncbind.hpp" />
+    <ClInclude Include="..\ncbind\ncb_foreach.h" />
+    <ClInclude Include="..\ncbind\ncb_invoke.hpp" />
+    <ClInclude Include="..\tp_stub.h" />
+    <ClInclude Include="CutMask.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicNumber.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\common\include\kim\KimAssert.h">
+      <Filter>header\kim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\common\include\kim\KimConfig.h">
+      <Filter>header\kim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\common\include\kim\KimException.h">
+      <Filter>header\kim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\common\include\kim\KimFile.h">
+      <Filter>header\kim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\common\include\kim\KimSingleton.h">
+      <Filter>header\kim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\common\include\kim\KimText.h">
+      <Filter>header\kim</Filter>
+    </ClInclude>
+    <ClInclude Include="Version.h">
+      <Filter>header</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="source">
+      <UniqueIdentifier>{df0817b1-cecb-426e-8598-c413b05eea18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="header">
+      <UniqueIdentifier>{a437d3ec-dfbf-4740-8cee-3deb6fe0e810}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="header\kim">
+      <UniqueIdentifier>{d7e7d60f-dee3-4d23-808a-7fcd2c68666a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
