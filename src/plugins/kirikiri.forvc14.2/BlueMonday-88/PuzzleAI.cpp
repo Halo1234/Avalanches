@@ -680,9 +680,9 @@ private:
 	*/
 	bool IsDangerState(node_type* node) const
 	{
-		// Y=1 (上から2行目) の位置をチェックする。
-		// Y=0 は見えない位置、Y=1 は実質的な最上段とする。
-		// EntryY (通常は0か1) よりも上の位置、ここではY=1を危険ラインとする。
+		// Y=3 (上から4行目) の位置をチェックする。
+		// Y=0 は見えない位置、Y=3 は実質的な最上段とする。
+		// EntryY (通常は0か1) よりも上の位置、ここではY=3を危険ラインとする。
 		const tjs_int danger_y = 3;
 
 		if (!IsValidPos(m_EntryX, danger_y)) {
@@ -690,7 +690,7 @@ private:
 			return false;
 		}
 
-		// エントリーX座標の Y=1 の位置にピースがあれば危険
+		// エントリーX座標の Y=3 の位置にピースがあれば危険
 		tjs_int address = danger_y * m_Width + m_EntryX;
 		return (node->map[address] != 0);
 	}
