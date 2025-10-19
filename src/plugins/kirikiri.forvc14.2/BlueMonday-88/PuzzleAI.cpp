@@ -488,9 +488,9 @@ public:
 	*/
 	void InitializeRootNode()
 	{
-		// ルートノードが存在しない場合は、まず作成する
+		// ルートノードが存在しない場合は、何もしない
 		if (!m_Root) {
-			m_Root = AllocNode();
+			return;
 		}
 
 		// ルートノードの盤面をゼロで初期化
