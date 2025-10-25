@@ -2,6 +2,8 @@
 */
 
 
+#define NOMINMAX
+
 #include<vector>
 #include<iostream>
 #include<type_traits>
@@ -681,56 +683,33 @@ private:
 	bool IsDangerState(node_type* node) const
 	{
 		// Y=3 (上から4行目) の位置をチェックする。
-		// Y=0 は見えない位置、Y=3 は実質的な最上段とする。
-		// EntryY (通常は0か1) よりも上の位置、ここではY=3を危険ラインとする。
 		const tjs_int danger_y = 3;
 
+		// 危険ラインY座標が有効かチェック
 		if (!IsValidPos(m_EntryX, danger_y)) {
 			// 通常は発生しないが、座標が不正なら安全と見なす
 			return false;
 		}
-		// エントリーX座標の Y=3 の位置にピースがあれば危険
-		if (node->map[danger_y * m_Width + m_EntryX] != 0)
+
+		// エントリーX座標 (m_EntryX) のプラスマイナス 2 の範囲をチェック
+		// 範囲: [m_EntryX - 2, m_EntryX + 2]
+		const tjs_int start_x = std::max(0, m_EntryX - 2);
+		const tjs_int end_x = std::min(m_Width - 1, m_EntryX + 2);
+
+		for (tjs_int x = start_x; x <= end_x; ++x)
 		{
-			return true;
+			// X座標も有効か再チェック (start_x, end_x の計算で境界処理済みだが念のため)
+			if (IsValidPos(x, danger_y)) {
+				tjs_int address = danger_y * m_Width + x;
+
+				// 危険ラインにピースがあれば危険状態と判断
+				if (node->map[address] != 0) {
+					return true;
+				}
+			}
 		}
 
-		if (!IsValidPos(m_EntryX + 1, danger_y)) {
-			// 通常は発生しないが、座標が不正なら安全と見なす
-			return false;
-		}
-		if (node->map[danger_y * m_Width + m_EntryX + 1] != 0)
-		{
-			return true;
-		}
-
-		if (!IsValidPos(m_EntryX - 1, danger_y)) {
-			// 通常は発生しないが、座標が不正なら安全と見なす
-			return false;
-		}
-		if (node->map[danger_y * m_Width + m_EntryX - 1] != 0)
-		{
-			return true;
-		}
-
-		if (!IsValidPos(m_EntryX + 2, danger_y)) {
-			// 通常は発生しないが、座標が不正なら安全と見なす
-			return false;
-		}
-		if (node->map[danger_y * m_Width + m_EntryX + 2] != 0)
-		{
-			return true;
-		}
-
-		if (!IsValidPos(m_EntryX - 2, danger_y)) {
-			// 通常は発生しないが、座標が不正なら安全と見なす
-			return false;
-		}
-		if (node->map[danger_y * m_Width + m_EntryX - 2] != 0)
-		{
-			return true;
-		}
-
+		// 危険範囲のいずれの列にもピースがなければ安全
 		return false;
 	}
 
