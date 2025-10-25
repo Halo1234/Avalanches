@@ -689,10 +689,49 @@ private:
 			// 通常は発生しないが、座標が不正なら安全と見なす
 			return false;
 		}
-
 		// エントリーX座標の Y=3 の位置にピースがあれば危険
-		tjs_int address = danger_y * m_Width + m_EntryX;
-		return (node->map[address] != 0);
+		if (node->map[danger_y * m_Width + m_EntryX] != 0)
+		{
+			return true;
+		}
+
+		if (!IsValidPos(m_EntryX + 1, danger_y)) {
+			// 通常は発生しないが、座標が不正なら安全と見なす
+			return false;
+		}
+		if (node->map[danger_y * m_Width + m_EntryX + 1] != 0)
+		{
+			return true;
+		}
+
+		if (!IsValidPos(m_EntryX - 1, danger_y)) {
+			// 通常は発生しないが、座標が不正なら安全と見なす
+			return false;
+		}
+		if (node->map[danger_y * m_Width + m_EntryX - 1] != 0)
+		{
+			return true;
+		}
+
+		if (!IsValidPos(m_EntryX + 2, danger_y)) {
+			// 通常は発生しないが、座標が不正なら安全と見なす
+			return false;
+		}
+		if (node->map[danger_y * m_Width + m_EntryX + 2] != 0)
+		{
+			return true;
+		}
+
+		if (!IsValidPos(m_EntryX - 2, danger_y)) {
+			// 通常は発生しないが、座標が不正なら安全と見なす
+			return false;
+		}
+		if (node->map[danger_y * m_Width + m_EntryX - 2] != 0)
+		{
+			return true;
+		}
+
+		return false;
 	}
 
 	/*
