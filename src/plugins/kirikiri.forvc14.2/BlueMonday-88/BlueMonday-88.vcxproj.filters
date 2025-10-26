@@ -18,6 +18,9 @@
     <ClCompile Include="PuzzleAI.cpp">
       <Filter>source</Filter>
     </ClCompile>
+    <ClCompile Include="PuzzleINet.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\ncbind\ncbind.hpp" />

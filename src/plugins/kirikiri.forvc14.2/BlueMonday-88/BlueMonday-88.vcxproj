@@ -25,6 +25,7 @@
     <ClCompile Include="CutMask.cpp" />
     <ClCompile Include="Mod2DC.cpp" />
     <ClCompile Include="PuzzleAI.cpp" />
+    <ClCompile Include="PuzzleINet.cpp" />
     <ClCompile Include="Registory.cpp" />
   </ItemGroup>
   <ItemGroup>
