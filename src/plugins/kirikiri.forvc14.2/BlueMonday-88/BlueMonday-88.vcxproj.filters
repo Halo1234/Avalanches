@@ -18,7 +18,7 @@
     <ClCompile Include="PuzzleAI.cpp">
       <Filter>source</Filter>
     </ClCompile>
-    <ClCompile Include="PuzzleINet.cpp">
+    <ClCompile Include="Socket.cpp">
       <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>
