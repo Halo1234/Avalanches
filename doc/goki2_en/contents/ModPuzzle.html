@@ -39,15 +39,16 @@ Several events are defined in the puzzle piece animation script. <br />
 
 <h1><a name="genre" id="genre" class="targanchor">Genre/tag list</a></h1>
 
-
 <div class="para"><div><br />
 <table class="taglist"><tbody>
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#puzzle_option">puzzle_option</a></span></td><td class="taglisteven">Basic settings</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#puzzle_ai">puzzle_ai</a></span></td><td class="taglistodd">AI settings</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#puzzle_piece">puzzle_piece</a></span></td><td class="taglisteven">Piece-related settings</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#puzzle_se">puzzle_se</a></span></td><td class="taglistodd">Sound Effect Settings</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#puzzle">puzzle</a></span></td><td class="taglisteven">Basic Operations</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#wait_puzzle_show">wait_puzzle_show</a></span></td><td class="taglistodd">Waiting for the puzzle screen to appear</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#puzzle_inet">puzzle_inet</a></span></td><td class="taglisteven">Network settings</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#puzzle_piece">puzzle_piece</a></span></td><td class="taglistodd">Piece-related settings</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#puzzle_se">puzzle_se</a></span></td><td class="taglisteven">Sound effect settings</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#puzzle">puzzle</a></span></td><td class="taglistodd">Basic operations</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#wait_puzzle_initialize">wait_puzzle_initialize</a></span></td><td class="taglisteven">Waiting for initialization</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#wait_puzzle_show">wait_puzzle_show</a></span></td><td class="taglistodd">Waiting for the puzzle screen to display</td></tr>
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#wait_puzzle_hide">wait_puzzle_hide</a></span></td><td class="taglisteven">Waiting for the puzzle screen to disappear</td></tr>
 </tbody></table><br /><br /></div></div>
 
@@ -62,6 +63,10 @@ Several events are defined in the puzzle piece animation script. <br />
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_debug_stop2" id="puzzle_option_debug_stop2">debug_stop2</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Stops when User 2 detects an abnormality.<br />
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_debug_inet1" id="puzzle_option_debug_inet1">debug_inet1</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Outputs user 1's communication log to the console. <br />
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_debug_inet2" id="puzzle_option_debug_inet2">debug_inet2</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Outputs user 2's communication log to the console.<br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_initialize_failed_storage" id="puzzle_option_initialize_failed_storage">initialize_failed_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Scenario Storage</td><td class="tagattribdesc">Specify the scenario storage to run when initialization fails. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_initialize_failed_label" id="puzzle_option_initialize_failed_label">initialize_failed_label</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Label</td><td class="tagattribdesc">Specify the label to execute if initialization fails.<br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_communication_error_storage" id="puzzle_option_communication_error_storage">communication_error_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Scenario storage</td><td class="tagattribdesc">Specify the scenario storage to be executed when a communication error occurs during an online match and it is not possible to continue. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_communication_error_label" id="puzzle_option_communication_error_label">communication_error_label</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Label</td><td class="tagattribdesc">Specify the label to be executed when a communication error occurs during an online match and the game cannot continue.<br />
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_left_key1" id="puzzle_option_left_key1">left_key1</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Virtual Key Code</td><td class="tagattribdesc">Specify the virtual key code for the left key of User 1. <br />
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_right_key1" id="puzzle_option_right_key1">right_key1</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Virtual Key Code</td><td class="tagattribdesc">Specify the virtual key code for User 2's left key. <br />
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_down_key1" id="puzzle_option_down_key1">down_key1</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Virtual Key Code</td><td class="tagattribdesc">Specify the virtual key code for the down key for User 2. <br />
@@ -104,6 +109,33 @@ Several events are defined in the puzzle piece animation script. <br />
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_ai_enabled1" id="puzzle_ai_enabled1">enabled1</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Enable AI for user 1. <br />
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_ai_enabled2" id="puzzle_ai_enabled2">enabled2</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Enables AI for User 2. <br />
 </tbody></table><div class="tagremarks">Configures the puzzle AI. <br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+
+<h1><a name="puzzle_inet" id="puzzle_inet" class="targanchor"><span class="b">puzzle_inet</span> (No Alias)</a></h1>
+<div class="taggenre">Puzzle AI Settings</div>
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="List of attributes for tag puzzle_inet"><thead><tr><td>Alias</td><td>Attribute</td><td>Required?</td><td>Value</td><td>Description</td></tr></thead><tbody>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_inet_ip1" id="puzzle_inet_ip1">ip1</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">IP Address</td><td class="tagattribdesc">If sender1 is true, specify the destination of User 1's input. <br />
+If receiver1 is true, specify the IP addresses allowed for reception. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_inet_port1" id="puzzle_inet_port1">port1</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Port Number</td><td class="tagattribdesc">Specify the destination/receiving port number for User 1's input. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_inet_sender1" id="puzzle_inet_sender1">sender1</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Send user 1's input to the destination specified by ip1 and port1. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_inet_receiver1" id="puzzle_inet_receiver1">receiver1</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Receive user 1's input from the opponent. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_inet_ip2" id="puzzle_inet_ip2">ip2</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">IP Address</td><td class="tagattribdesc">If sender2 is true, specifies the destination for user 2's input. <br />
+If receiver2 is true, specifies the IP addresses allowed for reception. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_inet_port2" id="puzzle_inet_port2">port2</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Port number</td><td class="tagattribdesc">Specify the destination/receiving port number for User 2's input. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_inet_sender2" id="puzzle_inet_sender2">sender2</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Send user 2's input to the destination specified by ip2 and port2. <br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_inet_receiver2" id="puzzle_inet_receiver2">receiver2</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Receives user 2's input from the opponent. <br />
+</tbody></table><div class="tagremarks">Set up online battles. <br />
+<div class="tagexample"><code class="bq"><span class="weak">Example:</span><br />
+; Connect to 127.0.0.1. <br />
+@puzzle_inet ip1="127.0.0.1" sender1<br />
+@puzzle_inet ip2="127.0.0.1" receiver2<br />
+@puzzle initialize<br />
+; The waiting device calls [puzzle initialize] without specifying anything for ip1/ip2. <br />
+@puzzle_inet sender1<br />
+@puzzle_inet receiver2<br />
+@puzzle initialize<br />
+</code></div>
+</code></div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="puzzle_piece" id="puzzle_piece" class="targanchor"><span class="b">puzzle_piece</span> (No Alias)</a></h1>
@@ -151,6 +183,12 @@ Also specify this attribute after initializing the internal state with clear. <b
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_start" id="puzzle_start">start</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specify to start the game.<br />
 After starting, stop it with the [s] tag.<br />
 </tbody></table><div class="tagremarks">Specifies whether to show or hide the puzzle screen. <br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+
+<h1><a name="wait_puzzle_initialize" id="wait_puzzle_initialize" class="targanchor"><span class="b">wait_puzzle_initialize</span>(No alias)</a></h1>
+<div class="taggenre">Wait for puzzle game initialization to complete</div>
+</tbody></table><div class="tagremarks">Waits for puzzle game initialization to complete. <br />
+If initialization fails, jumps to the scenario storage/label specified in the puzzle_option tag's initialize_failed_storage/initialize_failed_label. <br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="wait_puzzle_show" id="wait_puzzle_show" class="targanchor"><span class="b">wait_puzzle_show</span>(No alias)</a></h1>
