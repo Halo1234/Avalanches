@@ -13,7 +13,7 @@
 
 #pragma comment(lib, "ws2_32.lib")
 
-#define SOCKET_BUFFER_SIZE		512
+#define SOCKET_BUFFER_SIZE		1024
 
 
 /**/
@@ -47,6 +47,18 @@ public:
 		Close();
 		CleanupWinsock();
 	};
+
+	/*
+	* ソケットのクローズ
+	*/
+	void Close()
+	{
+		if (m_Socket != INVALID_SOCKET)
+		{
+			closesocket(m_Socket);
+			m_Socket = INVALID_SOCKET;
+		}
+	}
 
 	/**/
 	void SetEventTrigger(iTJSDispatch2* obj)
@@ -394,18 +406,6 @@ private:
 	}
 
 	/*
-	* ソケットのクローズ
-	*/
-	void Close()
-	{
-		if (m_Socket != INVALID_SOCKET)
-		{
-			closesocket(m_Socket);
-			m_Socket = INVALID_SOCKET;
-		}
-	}
-
-	/*
 	* Winsock のクリーンアップ処理
 	*/
 	void CleanupWinsock()
@@ -436,6 +436,8 @@ private:
 NCB_REGISTER_CLASS(SocketUDP)
 {
 	Constructor();
+
+	Method("close", &Class::Close);
 
 	Method("setEventTrigger", &Class::SetEventTrigger);
 	Method("setErrorEventTrigger", &Class::SetErrorEventTrigger);
