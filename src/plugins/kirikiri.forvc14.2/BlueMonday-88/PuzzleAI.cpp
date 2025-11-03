@@ -89,6 +89,19 @@ namespace bm88 {
 			{
 				FreePool();
 			};
+			
+			// プール内の全てのブロックがフリーリストにあるか判定
+			bool IsEmpty() const
+			{
+				tjs_int free_count = 0;
+				FreeNode* current = m_FreeList;
+				while (current) {
+					free_count++;
+					current = current->next;
+				}
+				// フリーリストの数 == 全ブロック数 であれば空
+				return free_count == m_BlockCount;
+			};
 
 			void SetBlockSizeAndCount(const tjs_int size, const tjs_int count)
 			{
@@ -390,7 +403,7 @@ public:
 
 		if (next == nullptr)
 		{
-			TVPThrowExceptionMessage(TJS_W("GetNextBlockFromList()がNULLを返しました。"));
+			return tTJSVariant(nullptr, nullptr);
 		}
 
 		tTJSVariant dictionary;
@@ -460,30 +473,49 @@ public:
 		m_Root->pParent = nullptr;
 		m_Root->next_sibling = nullptr;
 	}
+	/**/
+	void ClearAll()
+	{
+		FreeAllocators();
+
+		// ルートを作る
+		m_Root = AllocNode();
+	}
 	/*
 	* ルートノードを残して、子ノードとすべての子孫を削除する
 	*/
 	void Clear()
 	{
 		if (!m_Root) {
-			return; // ルートノードが存在しない場合は何もしない
+			return;
 		}
 
-		// ルートノードの最初の子を根とするツリー全体を削除する
+		// ルートノードの子孫を全て削除し、メモリをアロケータのフリーリストに戻す
 		node_type::pointer_type child = m_Root->first_child;
 		while (child) {
-			// 次の兄弟ノードへのポインタを一時的に保存
 			node_type::pointer_type next_sibling = child->next_sibling;
-
-			// 現在の子ノードと、そのすべての子孫を削除する
 			DeleteNodeIterative(child);
-
-			// 次の兄弟ノードへ進む
 			child = next_sibling;
 		}
 
 		// ルートノードの first_child ポインタを nullptr に設定してツリーをクリアする
 		m_Root->first_child = nullptr;
+
+		// m_Allocを走査し、空になったアロケータを削除する
+		auto it = m_Alloc.begin();
+		while (it != m_Alloc.end()) {
+			bm88::details::PuzzleAllocator* alloc = *it;
+			if (alloc->IsEmpty()) {
+				// アロケータを削除
+				delete alloc;
+				// vectorから要素を削除し、イテレータを進める
+				it = m_Alloc.erase(it);
+			}
+			else {
+				// 空でなければ次へ進める
+				++it;
+			}
+		}
 	}
 	/*
 	* ルートノードのmapや関連情報を初期化する
@@ -1502,6 +1534,7 @@ NCB_REGISTER_CLASS(PuzzleAICore)
 
 	Method("setNextRoot", &Class::SetNextRoot);
 
+	Method("clearAll", &Class::ClearAll);
 	Method("clear", &Class::Clear);
 	Method("initializeRootNode", &Class::InitializeRootNode);
 
