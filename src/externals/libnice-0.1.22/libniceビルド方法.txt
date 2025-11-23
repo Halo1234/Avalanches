@@ -1,0 +1,26 @@
+# 例: C:\dev ディレクトリに移動
+cd C:\dev
+
+# vcpkgリポジトリをクローンする
+git clone https://github.com/microsoft/vcpkg.git
+
+# vcpkgディレクトリに移動
+cd vcpkg
+
+# スクリプトを実行してvcpkg.exeをビルドする
+.\bootstrap-vcpkg.bat
+
+# vcpkgとVisual Studioの統合
+.\vcpkg integrate install
+
+# 32bit版libniceインストール
+.\vcpkg install libnice:x86-windows-static
+
+# pthreadが無い場合
+.\vcpkg install pthreads:x86-windows
+
+# タイムアウト時間調整
+src\externals\libnice-0.1.22\ports\libnice\にあるポートファイルとパッチを(vcpkgインストール先)\vcpkg\ports\libniceに上書きしてビルドしてください。
+
+
+
