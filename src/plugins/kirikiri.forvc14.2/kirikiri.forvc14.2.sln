@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.36227.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BlueMonday-88", "BlueMonday-88\BlueMonday-88.vcxproj", "{F1279C14-B773-4B1F-A7A8-E003B589FE74}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Fischerspooner", "Fischerspooner\Fischerspooner.vcxproj", "{B962745F-CBED-43D3-963D-01314AC64EC9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{F1279C14-B773-4B1F-A7A8-E003B589FE74}.Release|x64.Build.0 = Release|x64
 		{F1279C14-B773-4B1F-A7A8-E003B589FE74}.Release|x86.ActiveCfg = Release|Win32
 		{F1279C14-B773-4B1F-A7A8-E003B589FE74}.Release|x86.Build.0 = Release|Win32
+		{B962745F-CBED-43D3-963D-01314AC64EC9}.Debug|x64.ActiveCfg = Debug|x64
+		{B962745F-CBED-43D3-963D-01314AC64EC9}.Debug|x64.Build.0 = Debug|x64
+		{B962745F-CBED-43D3-963D-01314AC64EC9}.Debug|x86.ActiveCfg = Debug|Win32
+		{B962745F-CBED-43D3-963D-01314AC64EC9}.Debug|x86.Build.0 = Debug|Win32
+		{B962745F-CBED-43D3-963D-01314AC64EC9}.Release|x64.ActiveCfg = Release|x64
+		{B962745F-CBED-43D3-963D-01314AC64EC9}.Release|x64.Build.0 = Release|x64
+		{B962745F-CBED-43D3-963D-01314AC64EC9}.Release|x86.ActiveCfg = Release|Win32
+		{B962745F-CBED-43D3-963D-01314AC64EC9}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

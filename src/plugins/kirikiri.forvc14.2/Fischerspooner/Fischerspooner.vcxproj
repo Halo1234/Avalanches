@@ -18,35 +18,11 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\ncbind\ncbind.cpp" />
-    <ClCompile Include="..\tp_stub.cpp" />
-    <ClCompile Include="BM88Version.cpp" />
-    <ClCompile Include="CutMask.cpp" />
-    <ClCompile Include="Mod2DC.cpp" />
-    <ClCompile Include="PuzzleAI.cpp" />
-    <ClCompile Include="Registory.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\..\common\include\kim\KimAssert.h" />
-    <ClInclude Include="..\..\..\common\include\kim\KimConfig.h" />
-    <ClInclude Include="..\..\..\common\include\kim\KimException.h" />
-    <ClInclude Include="..\..\..\common\include\kim\KimFile.h" />
-    <ClInclude Include="..\..\..\common\include\kim\KimSingleton.h" />
-    <ClInclude Include="..\..\..\common\include\kim\KimText.h" />
-    <ClInclude Include="..\ncbind\ncbind.hpp" />
-    <ClInclude Include="..\ncbind\ncb_foreach.h" />
-    <ClInclude Include="..\ncbind\ncb_invoke.hpp" />
-    <ClInclude Include="..\tp_stub.h" />
-    <ClInclude Include="CutMask.h" />
-    <ClInclude Include="MagicNumber.h" />
-    <ClInclude Include="Version.h" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{f1279c14-b773-4b1f-a7a8-e003b589fe74}</ProjectGuid>
-    <RootNamespace>BlueMonday88</RootNamespace>
+    <ProjectGuid>{b962745f-cbed-43d3-963d-01314ac64ec9}</ProjectGuid>
+    <RootNamespace>Fischerspooner</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -64,13 +40,13 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -96,16 +72,12 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(IncludePath)</IncludePath>
-    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(IncludePath)</IncludePath>
-    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LinkIncremental>false</LinkIncremental>
+    <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -114,26 +86,14 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;BLUEMONDAY88_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(SolutionDir)..\..\common\include;$(SolutionDir)ncbind;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
-    <PostBuildEvent>
-      <Command>set OUTPUT_DIRECTORY="$(SolutionDir)..\..\..\tools\krkrz\plugin"
-
-if not exist %OUTPUT_DIRECTORY% mkdir %OUTPUT_DIRECTORY%
-
-copy "$(TargetDir)$(TargetFileName)" %OUTPUT_DIRECTORY%</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -141,52 +101,28 @@ copy "$(TargetDir)$(TargetFileName)" %OUTPUT_DIRECTORY%</Command>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;BLUEMONDAY88_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(SolutionDir)..\..\common\include;$(SolutionDir)ncbind;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
-    <PostBuildEvent>
-      <Command>set OUTPUT_DIRECTORY="$(SolutionDir)..\..\..\tools\krkrz\plugin"
-
-if not exist %OUTPUT_DIRECTORY% mkdir %OUTPUT_DIRECTORY%
-
-copy "$(TargetDir)$(TargetFileName)" %OUTPUT_DIRECTORY%</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;BLUEMONDAY88_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile>ncbind.hpp</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\common\include;$(SolutionDir)ncbind;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <EnableUAC>false</EnableUAC>
-      <ModuleDefinitionFile>
-      </ModuleDefinitionFile>
     </Link>
-    <PostBuildEvent>
-      <Command>set OUTPUT_DIRECTORY="$(SolutionDir)..\..\..\tools\krkrz\plugin"
-
-if not exist %OUTPUT_DIRECTORY% mkdir %OUTPUT_DIRECTORY%
-
-copy "$(TargetDir)$(TargetFileName)" %OUTPUT_DIRECTORY%</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -194,29 +130,27 @@ copy "$(TargetDir)$(TargetFileName)" %OUTPUT_DIRECTORY%</Command>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;BLUEMONDAY88_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile>ncbind.hpp</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\common\include;$(SolutionDir)ncbind;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <EnableUAC>false</EnableUAC>
-      <ModuleDefinitionFile>
-      </ModuleDefinitionFile>
     </Link>
-    <PostBuildEvent>
-      <Command>set OUTPUT_DIRECTORY="$(SolutionDir)..\..\..\tools\krkrz\plugin"
-
-if not exist %OUTPUT_DIRECTORY% mkdir %OUTPUT_DIRECTORY%
-
-copy "$(TargetDir)$(TargetFileName)" %OUTPUT_DIRECTORY%</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\ncbind\ncbind.hpp" />
+    <ClInclude Include="..\ncbind\ncb_foreach.h" />
+    <ClInclude Include="..\ncbind\ncb_invoke.hpp" />
+    <ClInclude Include="..\tp_stub.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\ncbind\ncbind.cpp" />
+    <ClCompile Include="..\tp_stub.cpp" />
+    <ClCompile Include="Socket.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
