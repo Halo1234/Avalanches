@@ -195,6 +195,15 @@ namespace fis {
 				nice_address_free(addr);
 			}
 		}
+
+		/**/
+		static gboolean QuitLoopIdle(gpointer data)
+		{
+			GMainLoop* loop = static_cast<GMainLoop*>(data);
+
+			g_main_loop_quit(loop);
+			return G_SOURCE_REMOVE;
+		}
 	}
 }
 
@@ -205,6 +214,19 @@ public:
 	typedef char						char_type;
 	typedef std::vector<char_type>		buffer_type;
 
+private:
+	// GMainLoopスレッドに渡すためのデータを保持する構造体
+	struct ApplyRemoteSDPData {
+		SocketUDP* pThis;
+		std::string* sdp_str;
+	};
+
+	// 送信データを保持する構造体
+	struct SendDataData {
+		SocketUDP* pThis;
+		buffer_type* data_buf; // 送信データ
+	};
+
 public:
 	/**/
 	SocketUDP() :
@@ -212,18 +234,38 @@ public:
 		m_StreamID(0),
 		m_Gloop(nullptr),
 		m_IsReady(FALSE),
+		m_Tiebreaker(0),
+		m_IsControlling(FALSE),
 		m_Message(TJS_W("")),
 		m_Receiving(false),
 		m_Trigger(nullptr),
 		m_ErrorTrigger(nullptr)
 	{
+		WSADATA wsaData;
+		if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
+			// エラー処理 (致命的)
+		}
+
 		InitializeLibnice();
 	};
 	/**/
 	virtual ~SocketUDP()
 	{
 		StopReceiveThread();
+
+		if (m_Trigger)
+		{
+			m_Trigger->Release();
+		}
+		if (m_ErrorTrigger)
+		{
+			m_ErrorTrigger->Release();
+		}
+
 		Close();
+
+		// Winsock の終了処理
+		WSACleanup();
 	};
 
 	/**/
@@ -232,15 +274,14 @@ public:
 		if (m_Gloop)
 		{
 			g_main_loop_unref(m_Gloop);
+			m_Gloop = nullptr;
 		}
 		if (m_Agent)
 		{
 			g_object_unref(m_Agent);
+			m_Agent = nullptr;
 		}
 	}
-
-	/**/
-
 
 	/**/
 	tjs_int Initialize()
@@ -251,12 +292,9 @@ public:
 			return 1;
 		}
 
-		// 受信スレッド起動
-		if (StartReceiveThread() != 0)
-		{
-			m_Message = "受信スレッドの起動に失敗しました。";
-			return 1;
-		}
+		g_main_loop_run(m_Gloop);
+
+		Trigger();
 
 		return 0;
 	}
@@ -279,30 +317,63 @@ public:
 	};
 
 	/**/
-	ttstr GetSDPString() const
+	ttstr GetSDPString()
 	{
+		std::lock_guard<std::mutex> lock(m_Mutex);
 		return m_SDP;
 	}
 
-	/*
-	* データの送信
-	*/
-	tjs_int SendData(const ttstr data)
+	/**/
+	tjs_int IsControlling() const
 	{
-		buffer_type buf(data.GetNarrowStrLen());
+		return m_IsControlling;
+	}
 
-		data.ToNarrowStr(buf.data(), buf.size());
+	/*
+	* GMainLoopスレッドで実行される静的コールバック
+	*/
+	static gboolean SendDataInvoke(gpointer user_data)
+	{
+		SendDataData* data = reinterpret_cast<SendDataData*>(user_data);
+		SocketUDP* pThis = data->pThis;
+		const buffer_type* buf = data->data_buf;
 
-		gint sent_bytes = nice_agent_send(m_Agent, m_StreamID, 1, buf.size(), (const gchar*)buf.data());
+		gint sent_bytes = nice_agent_send(pThis->m_Agent, pThis->m_StreamID, 1, buf->size(), (const gchar*)buf->data());
 
 		if (sent_bytes == -1)
 		{
-			m_Message = TJS_W("nice_agent_send() failed.");
-
-			return 1;
+			// エラー処理（必要に応じて pThis->ErrorTrigger() を呼び出す）
+			// ただし、ErrorTrigger() は GMainLoopスレッドから TJSスレッドへの呼び出しになるため、
+			// 厳密なエラー通知設計が必要
 		}
 
-		return 0;
+		// 後処理
+		delete data->data_buf;
+		delete data;
+
+		return G_SOURCE_REMOVE;
+	}
+
+	/**/
+	tjs_int SendData(const ttstr data)
+	{
+		// データの準備
+		buffer_type* buf = new buffer_type(data.GetNarrowStrLen() + 1);
+		data.ToNarrowStr(buf->data(), buf->size());
+
+		// 構造体の準備
+		SendDataData* send_data = new SendDataData();
+		send_data->pThis = this;
+		send_data->data_buf = buf;
+
+		// GMainLoopが動作するスレッドへ処理を移譲
+		g_main_context_invoke(
+			g_main_loop_get_context(m_Gloop),
+			SocketUDP::SendDataInvoke,
+			send_data
+		);
+
+		return 0; // 送信要求は成功として即時リターン
 	}
 
 	/*
@@ -324,14 +395,16 @@ public:
 	/**/
 	void ApplyRemoteSDP(const ttstr sdp_text)
 	{
-		buffer_type buf(sdp_text.GetNarrowStrLen());
+		buffer_type buf(sdp_text.GetNarrowStrLen() + 1);
 		sdp_text.ToNarrowStr(buf.data(), buf.size());
 		std::istringstream sdp_stream(buf.data());
 		std::string line;
 		gchar* ufrag = nullptr;
 		gchar* pwd = nullptr;
 		GSList* remote_candidates = nullptr;
+		guint64 remote_tiebreaker = 0;
 
+		// SDPの解析
 		while (std::getline(sdp_stream, line))
 		{
 			if (line.find("ufrag=") == 0)
@@ -341,6 +414,12 @@ public:
 			else if (line.find("pwd=") == 0)
 			{
 				pwd = g_strdup(line.substr(4).c_str());
+			}
+			else if (line.find("tiebreaker=") == 0)
+			{
+				std::string val = line.substr(11);
+				std::istringstream iss(val);
+				iss >> remote_tiebreaker;
 			}
 			else if (line.find("candidate=") == 0)
 			{
@@ -365,6 +444,7 @@ public:
 				{
 					type = NICE_CANDIDATE_TYPE_RELAYED;
 				}
+
 
 				NiceCandidateTransport transport = NICE_CANDIDATE_TRANSPORT_UDP;
 				if (transport_str == "tcp-act")
@@ -399,142 +479,34 @@ public:
 			}
 		}
 
+		bool is_controlling = (m_Tiebreaker > remote_tiebreaker);
+		g_object_set(G_OBJECT(m_Agent), "controlling-mode", is_controlling ? TRUE : FALSE, nullptr);
+		m_IsControlling = is_controlling;
+
 		remote_candidates = g_slist_reverse(remote_candidates);
 
+		// libnice APIの呼び出しを GMainLoopスレッドで行う (スレッドセーフ)
 		if (ufrag && pwd) {
 			nice_agent_set_remote_credentials(m_Agent, m_StreamID, ufrag, pwd);
 		}
 
 		if (remote_candidates) {
 			gint accepted = nice_agent_set_remote_candidates(m_Agent, m_StreamID, 1, remote_candidates);
+			if (!accepted)
+			{
+				TVPThrowExceptionMessage(TJS_W("nice_agent_set_remote_candidatesがfalseを返しました。"));
+			}
 			g_print("リモート候補を %d 件設定しました。\n", accepted);
 		}
 
+		// 後処理
 		g_slist_free_full(remote_candidates, (GDestroyNotify)nice_candidate_free);
 		g_free(ufrag);
 		g_free(pwd);
-	}
 
-	/**/
-	static void NiceComponentStateChangedCB(NiceAgent* agent,
-		guint stream_id,
-		guint component_id,
-		guint state,
-		gpointer user_data)
-	{
-		SocketUDP* pThis = reinterpret_cast<SocketUDP*>(user_data);
-		NiceComponentState comp_state = (NiceComponentState)state;
+		g_main_loop_run(m_Gloop);
 
-		switch (comp_state) {
-		case NICE_COMPONENT_STATE_DISCONNECTED: break;
-		case NICE_COMPONENT_STATE_GATHERING: break;
-		case NICE_COMPONENT_STATE_CONNECTING: break;
-		case NICE_COMPONENT_STATE_READY:
-			pThis->m_IsReady = TRUE;
-			break;
-		case NICE_COMPONENT_STATE_FAILED:
-			pThis->m_IsReady = FALSE;
-			pThis->m_Message = TJS_W("状態がFAILEDになりました。");
-			g_main_loop_quit(pThis->m_Gloop);
-			// エラーイベント発射
-			pThis->ErrorTrigger();
-			break;
-		}
-	}
-
-	/**/
-	static void NiceRecvCB(NiceAgent* agent, guint stream_id, guint component_id, guint len, gchar* buf, gpointer user_data)
-	{
-		SocketUDP* pThis = reinterpret_cast<SocketUDP*>(user_data);
-		ttstr received_msg(buf, len);
-
-		{
-			std::lock_guard<std::mutex> lock(pThis->m_Mutex);
-			pThis->m_ReceivedQueue.push(buf);
-		}
-
-		// 受信イベント発射
-		pThis->Trigger();
-	}
-
-	/**/
-	static void NiceGatheringDone(NiceAgent* agent, guint stream_id, gpointer user_data)
-	{
-		SocketUDP* pThis = reinterpret_cast<SocketUDP*>(user_data);
-		// 資格情報（ufrag/pwd）
-		gchar* ufrag = NULL, * pwd = NULL;
-		nice_agent_get_local_credentials(agent, stream_id, &ufrag, &pwd);
-
-		// ローカル候補一覧を取得
-		GSList* cands = nice_agent_get_local_candidates(agent, stream_id, 1); // component=1
-
-		// 送信用ペイロードを組み立て（テキストでOK）
-		GString* payload = g_string_new(NULL);
-		g_string_append_printf(payload, "ufrag=%s\npwd=%s\n", ufrag, pwd);
-
-		for (GSList* l = cands; l; l = l->next) {
-			NiceCandidate* c = (NiceCandidate*)l->data;
-			gchar* cand_str = fis::details::CandidateToStringManual(c);
-			g_string_append_printf(payload, "candidate=%s\n", cand_str);
-			g_free(cand_str);
-		}
-
-		{
-			std::lock_guard<std::mutex> lock(pThis->m_Mutex);
-			pThis->m_SDP = ttstr(payload->str);
-		}
-
-		g_string_free(payload, TRUE);
-		g_slist_free_full(cands, (GDestroyNotify)nice_candidate_free);
-		g_free(ufrag);
-		g_free(pwd);
-
-		pThis->Trigger();
-	}
-
-private:
-	/**/
-	tjs_int InitializeLibnice()
-	{
-		m_Gloop = g_main_loop_new(nullptr, FALSE);
-
-		m_Agent = nice_agent_new(g_main_loop_get_context(m_Gloop), NICE_COMPATIBILITY_RFC5245);
-		if (!m_Agent) {
-			m_Message = "NiceAgent の作成に失敗しました。";
-			return 1;
-		}
-
-		// ローカルIPをlibniceに伝える
-		fis::details::AddLocalIPv4ToNice(m_Agent);
-
-		// STUNサーバー設定
-		g_object_set(G_OBJECT(m_Agent), "stun-server", STUN_SERVER, "stun-server-port", STUN_PORT, nullptr);
-
-		// シグナル接続
-		g_signal_connect(m_Agent, "component-state-changed", G_CALLBACK(SocketUDP::NiceComponentStateChangedCB), this);
-		g_signal_connect(m_Agent, "candidate-gathering-done", G_CALLBACK(SocketUDP::NiceGatheringDone), this);
-
-		// ストリーム追加
-		m_StreamID = nice_agent_add_stream(m_Agent, 1);
-		nice_agent_set_stream_name(m_Agent, m_StreamID, "application");
-
-		// 受信コールバック
-		nice_agent_attach_recv(m_Agent, m_StreamID, 1, g_main_loop_get_context(m_Gloop), SocketUDP::NiceRecvCB, this);
-
-		// 候補収集開始
-		if (!nice_agent_gather_candidates(m_Agent, m_StreamID)) {
-			m_Message = "候補収集の開始に失敗しました。";
-			return 1;
-		}
-
-		// 受信スレッド起動
-		if (StartReceiveThread() != 0)
-		{
-			m_Message = "受信スレッドの起動に失敗しました。";
-			return 1;
-		}
-
-		return 0;
+		Trigger();
 	}
 
 	/*
@@ -562,6 +534,13 @@ private:
 		{
 			m_Receiving = false; // ループ終了フラグを設定
 
+			// GMainLoopを停止させる（スレッドの正常終了のため）
+			if (m_Gloop)
+			{
+				// 別スレッドから g_main_loop_quit を呼び出すのはスレッドセーフ
+				g_main_loop_quit(m_Gloop);
+			}
+
 			// スレッドが有効な場合、joinして終了を待つ
 			if (m_ReceiveThread.joinable())
 			{
@@ -570,15 +549,138 @@ private:
 		}
 	}
 
+	/**/
+	static void NiceComponentStateChangedCB(NiceAgent* agent,
+		guint stream_id,
+		guint component_id,
+		guint state,
+		gpointer user_data)
+	{
+		SocketUDP* pThis = reinterpret_cast<SocketUDP*>(user_data);
+		NiceComponentState comp_state = (NiceComponentState)state;
+		GMainContext* ctx = g_main_loop_get_context(pThis->m_Gloop);
+		tjs_char buf[256];
+
+		switch (comp_state) {
+		case NICE_COMPONENT_STATE_DISCONNECTED: break;
+		case NICE_COMPONENT_STATE_GATHERING: break;
+		case NICE_COMPONENT_STATE_CONNECTING: break;
+		case NICE_COMPONENT_STATE_READY:
+			pThis->m_IsReady = TRUE;
+
+			// コンテキストに quit をスケジュール
+			g_main_context_invoke(ctx, fis::details::QuitLoopIdle, pThis->m_Gloop);
+			g_main_loop_quit(pThis->m_Gloop);
+			break;
+		case NICE_COMPONENT_STATE_FAILED:
+			pThis->m_IsReady = FALSE;
+			pThis->m_Message = TJS_W("状態がFAILEDになりました。");
+			g_main_loop_quit(pThis->m_Gloop);
+			// エラーイベント発射
+			pThis->ErrorTrigger();
+			break;
+		}
+	}
+
+	/**/
+	static void NiceRecvCB(NiceAgent* agent, guint stream_id, guint component_id, guint len, gchar* buf, gpointer user_data)
+	{
+		SocketUDP* pThis = reinterpret_cast<SocketUDP*>(user_data);
+		ttstr received_msg(buf, len);
+
+		{
+			std::lock_guard<std::mutex> lock(pThis->m_Mutex);
+			pThis->m_ReceivedQueue.push(received_msg);
+		}
+
+		// 受信イベント発射
+		pThis->Trigger();
+	}
+
+	/**/
+	static void NiceGatheringDone(NiceAgent* agent, guint stream_id, gpointer user_data)
+	{
+		SocketUDP* pThis = reinterpret_cast<SocketUDP*>(user_data);
+		// 資格情報（ufrag/pwd）
+		gchar* ufrag = NULL, * pwd = NULL;
+		nice_agent_get_local_credentials(agent, stream_id, &ufrag, &pwd);
+
+		// ローカル候補一覧を取得
+		GSList* cands = nice_agent_get_local_candidates(agent, stream_id, 1); // component=1
+
+		// 送信用ペイロードを組み立て（テキストでOK）
+		GString* payload = g_string_new(NULL);
+		g_string_append_printf(payload, "ufrag=%s\npwd=%s\n", ufrag, pwd);
+
+		g_string_append_printf(payload, "tiebreaker=%" G_GUINT64_FORMAT "\n", pThis->m_Tiebreaker);
+
+		for (GSList* l = cands; l; l = l->next) {
+			NiceCandidate* c = (NiceCandidate*)l->data;
+			gchar* cand_str = fis::details::CandidateToStringManual(c);
+			g_string_append_printf(payload, "candidate=%s\n", cand_str);
+			g_free(cand_str);
+		}
+
+		{
+			std::lock_guard<std::mutex> lock(pThis->m_Mutex);
+			pThis->m_SDP = ttstr(payload->str);
+		}
+
+		g_string_free(payload, TRUE);
+		g_slist_free_full(cands, (GDestroyNotify)nice_candidate_free);
+		g_free(ufrag);
+		g_free(pwd);
+
+		g_main_loop_quit(pThis->m_Gloop);
+	}
+
+private:
+	/**/
+	tjs_int InitializeLibnice()
+	{
+		m_Gloop = g_main_loop_new(nullptr, FALSE);
+
+		m_Agent = nice_agent_new(g_main_loop_get_context(m_Gloop), NICE_COMPATIBILITY_RFC5245);
+		if (!m_Agent) {
+			m_Message = "NiceAgent の作成に失敗しました。";
+			return 1;
+		}
+
+		// ローカルIPをlibniceに伝える
+		fis::details::AddLocalIPv4ToNice(m_Agent);
+
+		// STUNサーバー設定
+		g_object_set(G_OBJECT(m_Agent), "stun-server", STUN_SERVER, "stun-server-port", STUN_PORT, nullptr);
+
+		// tiebreaker をランダムに生成
+		guint64 tiebreaker = ((guint64)g_random_int() << 32) | g_random_int();
+		m_Tiebreaker = tiebreaker;
+
+		// controlling-mode は仮に TRUE（後で上書きする）
+		g_object_set(G_OBJECT(m_Agent), "controlling-mode", TRUE, "ice-tiebreaker", tiebreaker, nullptr);
+
+		// シグナル接続
+		g_signal_connect(m_Agent, "component-state-changed", G_CALLBACK(SocketUDP::NiceComponentStateChangedCB), this);
+		g_signal_connect(m_Agent, "candidate-gathering-done", G_CALLBACK(SocketUDP::NiceGatheringDone), this);
+
+		// ストリーム追加
+		m_StreamID = nice_agent_add_stream(m_Agent, 1);
+		nice_agent_set_stream_name(m_Agent, m_StreamID, "application");
+
+		// 受信コールバック
+		nice_agent_attach_recv(m_Agent, m_StreamID, 1, g_main_loop_get_context(m_Gloop), SocketUDP::NiceRecvCB, this);
+
+		return 0;
+	}
+
 	/*
 	* 受信ループ
 	*/
 	void ReceiveLoop()
 	{
-		while (m_Receiving)
-		{
-			g_main_loop_run(m_Gloop);
-		}
+		// g_main_loop_run はブロッキング処理
+		g_main_loop_run(m_Gloop);
+		// ループが終了（g_main_loop_quitが呼ばれた）場合、スレッドはここで終了する
 	}
 
 	/**/
@@ -628,6 +730,9 @@ private:
 	GMainLoop* m_Gloop;
 	gboolean m_IsReady;
 
+	guint64 m_Tiebreaker;
+	gboolean m_IsControlling;
+
 	std::thread m_ReceiveThread;
 	std::mutex m_Mutex;
 	std::queue<ttstr> m_ReceivedQueue;	// 受信データを格納するキュー
@@ -654,10 +759,14 @@ NCB_REGISTER_CLASS(SocketUDP)
 	Method("getSDPString", &Class::GetSDPString);
 	Method("applyRemoteSDP", &Class::ApplyRemoteSDP);
 
+	Method("startReceiveThread", &Class::StartReceiveThread);
+	Method("stopReceiveThread", &Class::StopReceiveThread);
+
 	Method("sendData", &Class::SendData);
 	Method("popReceivedData", &Class::PopReceivedData);
 
 	Property("message", &Class::GetMessage, 0);
+	Property("isControlling", &Class::IsControlling, 0);
 };
 
 
