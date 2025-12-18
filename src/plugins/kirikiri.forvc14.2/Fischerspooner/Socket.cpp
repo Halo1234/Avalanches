@@ -292,10 +292,6 @@ public:
 			return 1;
 		}
 
-		g_main_loop_run(m_Gloop);
-
-		Trigger();
-
 		return 0;
 	}
 
@@ -503,10 +499,6 @@ public:
 		g_slist_free_full(remote_candidates, (GDestroyNotify)nice_candidate_free);
 		g_free(ufrag);
 		g_free(pwd);
-
-		g_main_loop_run(m_Gloop);
-
-		Trigger();
 	}
 
 	/*
@@ -567,10 +559,8 @@ public:
 		case NICE_COMPONENT_STATE_CONNECTING: break;
 		case NICE_COMPONENT_STATE_READY:
 			pThis->m_IsReady = TRUE;
-
-			// コンテキストに quit をスケジュール
-			g_main_context_invoke(ctx, fis::details::QuitLoopIdle, pThis->m_Gloop);
-			g_main_loop_quit(pThis->m_Gloop);
+			// イベント発射
+			pThis->Trigger();
 			break;
 		case NICE_COMPONENT_STATE_FAILED:
 			pThis->m_IsReady = FALSE;
@@ -631,7 +621,7 @@ public:
 		g_free(ufrag);
 		g_free(pwd);
 
-		g_main_loop_quit(pThis->m_Gloop);
+		pThis->Trigger();
 	}
 
 private:
