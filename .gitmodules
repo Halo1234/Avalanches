@@ -1,0 +1,3 @@
+[submodule "src/externals/libdatachannel"]
+	path = src/externals/libdatachannel
+	url = https://github.com/paullouisageneau/libdatachannel.git

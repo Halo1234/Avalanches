@@ -1,0 +1,30 @@
+
+# /src/externals/libdatachannelに移動する
+git submodule update --init --recursive
+
+# 開発者コマンドプロンプトを開く
+メニューの[ツール] ＞ [コマンドライン] ＞ [開発者コマンドプロンプト]
+
+# /src/externals/libdatachannelに移動する
+mkdir build
+cd build
+
+# *.slnファイルを作成する
+cmake .. -G "Visual Studio 16 2019" -A Win32 -DOPENSSL_ROOT_DIR="C:/Program Files (x86)/OpenSSL-Win32" -DUSE_LIBS=OFF -DBUILD_SHARED_LIBS=OFF -DNO_EXAMPLES=ON -DCMAKE_INSTALL_PREFIX=./install
+
+# *.slnファイルを開く
+# プロジェクトのプロパティを開く
+# [構成プロパティ] ＞ [C/C++] ＞ [コード生成] ＞ [ランタイム ライブラリ]
+# [マルチスレッド (/MT)] （デバッグなら /MTd）に変更
+
+# ALL_BUILDプロジェクトをビルド
+# INSTALLプロジェクトをビルド
+
+# libdatachannelの出力先はDebugもReleaseも/src/externals/libdatachannel/build/installなのでデバッグ版をビルドした後で
+# install_dとフォルダ名をリネームしてください。
+
+# OpenSSLが必要です。
+# cmakeで自動的に取得してくれるらしいが、環境の問題なのか取得してくれなかったので
+# ビルドエラーになったら以下サイトからDLしてインストールしてください。(32bit版)
+# インストール中の「The OpenSSL binaries directory」の選択では、「The Windows system directory」ではなく「The OpenSSL /bin directory」 を選んでください。
+# https://slproweb.com/products/Win32OpenSSL.html
