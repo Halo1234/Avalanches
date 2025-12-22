@@ -89,10 +89,14 @@ public:
 		try {
 			rtc::Configuration config;
 			config.iceServers.emplace_back(STUN_SERVER);
-			rtc::IceServer turn(TURN_SERVER);
-			turn.username = TURN_USERNAME;
-			turn.password = TURN_PASSWORD;
-			config.iceServers.push_back(turn);
+
+			if (::strncmp(TURN_SERVER, "", strlen(TURN_SERVER)) != 0)
+			{
+				rtc::IceServer turn(TURN_SERVER);
+				turn.username = TURN_USERNAME;
+				turn.password = TURN_PASSWORD;
+				config.iceServers.push_back(turn);
+			}
 
 			m_PeerConnection = std::make_shared<rtc::PeerConnection>(config);
 			m_NotifiedOpenEvent = false;
