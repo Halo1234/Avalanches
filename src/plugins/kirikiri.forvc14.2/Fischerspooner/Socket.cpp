@@ -66,8 +66,8 @@ public:
 	/**/
 	SocketUDP() :
 		m_Message(TJS_W("")),
-		m_Receiving(false),
 		m_ConnectState(ConnectionState::Disconnected),
+		m_NotifiedOpenEvent(false),
 		m_Trigger(nullptr),
 		m_StatusChangeTrigger(nullptr),
 		m_ErrorTrigger(nullptr)
@@ -84,7 +84,7 @@ public:
 	}
 
 	/**/
-	tjs_int Initialize()
+	tjs_int Initialize(tjs_int isServer)
 	{
 		try {
 			rtc::Configuration config;
@@ -95,6 +95,7 @@ public:
 			config.iceServers.push_back(turn);
 
 			m_PeerConnection = std::make_shared<rtc::PeerConnection>(config);
+			m_NotifiedOpenEvent = false;
 
 			// --- コールバック設定 ---
 
@@ -149,10 +150,17 @@ public:
 				StatusChangeTrigger();
 			});
 
-			// 自分からDataChannelを作成（攻め側・Offer側）
-			// DataChannelの名前は任意
-			auto dc = m_PeerConnection->createDataChannel("SocketUDP");
-			SetupDataChannel(dc);
+			if (isServer)
+			{
+				// 自分からDataChannelを作成（攻め側・Offer側）
+				// DataChannelの名前は任意
+				auto dc = m_PeerConnection->createDataChannel("SocketUDP");
+				SetupDataChannel(dc);
+			}
+			else
+			{
+				// Answer側は何もしない
+			}
 
 			return 0;
 		}
@@ -209,23 +217,47 @@ public:
 				m_ReceivedQueue.push(ttstr(std::get<std::string>(data).c_str()));
 			}
 			// データが届いたことを通知
-			Trigger();
+			if (m_NotifiedOpenEvent)
+			{
+				// onOpen通知後にイベント発射する
+				Trigger();
+			}
 		});
 
 		m_DataChannel->onOpen([this]() {
-			m_Message = TJS_W("DataChannel Opened");
+			// 接続完了を通知
+			Trigger();
+			// オープンイベント通知済み
+			m_NotifiedOpenEvent = true;
 		});
 	}
 
 	/**/
 	tjs_int SetRemoteSDP(ttstr sdp)
 	{
-		if (!m_PeerConnection) return -1;
+		if (!m_PeerConnection)
+		{
+			m_Message = TJS_W("内部エラー：m_PeerConnectionがNULLです。");
+			return -1;
+		}
 		try {
-			buffer_type* buf = new buffer_type(sdp.GetNarrowStrLen() + 1);
-			sdp.ToNarrowStr(buf->data(), buf->size());
-			std::string sdp_str = buf->data();
+			std::vector<char> buf(sdp.GetNarrowStrLen() + 1);
+			sdp.ToNarrowStr(buf.data(), buf.size());
+			std::string sdp_str = buf.data();
+
+			if (sdp_str.empty())
+			{
+				m_Message = TJS_W("内部エラー：sdp_strが空です。\n");
+				m_Message += sdp;
+				return -1;
+			}
+
+			// 前後の不要な空白や改行を削る（パースエラー防止）
+			sdp_str.erase(0, sdp_str.find_first_not_of(" \n\r\t"));
+			sdp_str.erase(sdp_str.find_last_not_of(" \n\r\t") + 1);
+
 			m_PeerConnection->setRemoteDescription(rtc::Description(sdp_str));
+
 			return 0;
 		}
 		catch (const std::exception& e) {
@@ -238,10 +270,10 @@ public:
 	tjs_int SendData(const ttstr data)
 	{
 		if (m_DataChannel && m_DataChannel->isOpen()) {
-			buffer_type* buf = new buffer_type(data.GetNarrowStrLen() + 1);
-			data.ToNarrowStr(buf->data(), buf->size());
+			std::vector<char> buf(data.GetNarrowStrLen() + 1);
+			data.ToNarrowStr(buf.data(), buf.size());
 
-			m_DataChannel->send(buf->data());
+			m_DataChannel->send(buf.data());
 
 			return 0;
 		}
@@ -342,11 +374,10 @@ private:
 	std::shared_ptr<rtc::DataChannel> m_DataChannel;
 
 	ConnectionState m_ConnectState;
+	bool m_NotifiedOpenEvent;
 
-	std::thread m_ReceiveThread;
 	std::mutex m_Mutex;
 	std::queue<ttstr> m_ReceivedQueue;	// 受信データを格納するキュー
-	volatile bool m_Receiving;			// 受信ループの継続フラグ
 	ttstr m_SDP;
 
 	ttstr m_Message;
