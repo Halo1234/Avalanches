@@ -118,27 +118,9 @@
 <h1><a name="puzzle_inet" id="puzzle_inet" class="targanchor"><span class="b">puzzle_inet</span>(別名なし)</a></h1>
 <div class="taggenre">パズルAI設定</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ puzzle_inet の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_inet_ip1" id="puzzle_inet_ip1">ip1</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">IPアドレス</td><td class="tagattribdesc">sender1がtrueならば、ユーザー１の入力の送信先を指定します。<br />
-receiver1がtrueならば、受信を許可するIPを指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_inet_port1" id="puzzle_inet_port1">port1</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ポート番号</td><td class="tagattribdesc">ユーザー１の入力の送信先/受信ポート番号を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_inet_sender1" id="puzzle_inet_sender1">sender1</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">ユーザー１の入力をip1とport1で指定した送信先に送信します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_inet_receiver1" id="puzzle_inet_receiver1">receiver1</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">ユーザー１の入力を対戦相手から受信します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_inet_ip2" id="puzzle_inet_ip2">ip2</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">IPアドレス</td><td class="tagattribdesc">sender2がtrueならば、ユーザー２の入力の送信先を指定します。<br />
-receiver2がtrueならば、受信を許可するIPを指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_inet_port2" id="puzzle_inet_port2">port2</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ポート番号</td><td class="tagattribdesc">ユーザー２の入力の送信先/受信ポート番号を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_inet_sender2" id="puzzle_inet_sender2">sender2</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">ユーザー２の入力をip2とport2で指定した送信先に送信します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_inet_receiver2" id="puzzle_inet_receiver2">receiver2</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">ユーザー２の入力を対戦相手から受信します。<br />
-</tbody></table><div class="tagremarks">ネット対戦の設定を行います。<br />
-<div class="tagexample"><code class="bq"><span class="weak">例:</span><br />
-; 127.0.0.1に接続しにいきます。<br />
-@puzzle_inet ip1="127.0.0.1" sender1<br />
-@puzzle_inet ip2="127.0.0.1" receiver2<br />
-@puzzle initialize<br />
-; 接続待機する側はip1/ip2に何も指定せずに[puzzle initialize]を呼び出します。<br />
-@puzzle_inet sender1<br />
-@puzzle_inet receiver2<br />
-@puzzle initialize<br />
-</code></div>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_inet_enabled" id="puzzle_inet_enabled">enabled</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">ネット対戦を行う場合はtrueを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_inet_is_server" id="puzzle_inet_is_server">is_server</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">サーバー側ならtrueを指定。<br />
+クライアント側ならfalseを指定。<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
 
 <h1><a name="puzzle_piece" id="puzzle_piece" class="targanchor"><span class="b">puzzle_piece</span>(別名なし)</a></h1>

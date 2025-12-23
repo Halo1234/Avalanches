@@ -114,28 +114,9 @@ Several events are defined in the puzzle piece animation script. <br />
 <h1><a name="puzzle_inet" id="puzzle_inet" class="targanchor"><span class="b">puzzle_inet</span> (No Alias)</a></h1>
 <div class="taggenre">Puzzle AI Settings</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="List of attributes for tag puzzle_inet"><thead><tr><td>Alias</td><td>Attribute</td><td>Required?</td><td>Value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_inet_ip1" id="puzzle_inet_ip1">ip1</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">IP Address</td><td class="tagattribdesc">If sender1 is true, specify the destination of User 1's input. <br />
-If receiver1 is true, specify the IP addresses allowed for reception. <br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_inet_port1" id="puzzle_inet_port1">port1</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Port Number</td><td class="tagattribdesc">Specify the destination/receiving port number for User 1's input. <br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_inet_sender1" id="puzzle_inet_sender1">sender1</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Send user 1's input to the destination specified by ip1 and port1. <br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_inet_receiver1" id="puzzle_inet_receiver1">receiver1</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Receive user 1's input from the opponent. <br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_inet_ip2" id="puzzle_inet_ip2">ip2</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">IP Address</td><td class="tagattribdesc">If sender2 is true, specifies the destination for user 2's input. <br />
-If receiver2 is true, specifies the IP addresses allowed for reception. <br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_inet_port2" id="puzzle_inet_port2">port2</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Port number</td><td class="tagattribdesc">Specify the destination/receiving port number for User 2's input. <br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_inet_sender2" id="puzzle_inet_sender2">sender2</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Send user 2's input to the destination specified by ip2 and port2. <br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_inet_receiver2" id="puzzle_inet_receiver2">receiver2</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Receives user 2's input from the opponent. <br />
-</tbody></table><div class="tagremarks">Set up online battles. <br />
-<div class="tagexample"><code class="bq"><span class="weak">Example:</span><br />
-; Connect to 127.0.0.1. <br />
-@puzzle_inet ip1="127.0.0.1" sender1<br />
-@puzzle_inet ip2="127.0.0.1" receiver2<br />
-@puzzle initialize<br />
-; The waiting device calls [puzzle initialize] without specifying anything for ip1/ip2. <br />
-@puzzle_inet sender1<br />
-@puzzle_inet receiver2<br />
-@puzzle initialize<br />
-</code></div>
-</code></div>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_inet_enabled" id="puzzle_inet_enabled">enabled</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specify true if you are playing online.<br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_inet_is_server" id="puzzle_inet_is_server">is_server</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specify true if playing on the server side.<br />
+Specify false if playing on the client side. <br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="puzzle_piece" id="puzzle_piece" class="targanchor"><span class="b">puzzle_piece</span> (No Alias)</a></h1>
