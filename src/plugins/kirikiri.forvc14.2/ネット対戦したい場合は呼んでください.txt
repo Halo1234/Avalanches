@@ -1,0 +1,11 @@
+
+ネット対戦モードを使いたい場合はFischerspoonerのソースにTURNサーバーの情報を入力してリビルドしてください。
+
+対象ソース：
+/src/plugins/kirikiri.forvc14.2/Fischerspooner/Socket.cpp
+
+以下を入力してください。
+
+#define TURN_SERVER	""		// TURNサーバーアドレス
+#define TURN_USERNAME	""		// ユーザー名
+#define TURN_PASSWORD	""		// パスワード
