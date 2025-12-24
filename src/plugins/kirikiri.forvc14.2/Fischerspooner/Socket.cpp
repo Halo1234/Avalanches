@@ -81,6 +81,41 @@ public:
 	/**/
 	void Close()
 	{
+		std::lock_guard<std::mutex> lock(m_Mutex);
+
+		// DataChannel のクローズとリセット
+		if (m_DataChannel)
+		{
+			m_DataChannel->close();
+			// コールバックを解除して参照を外す
+			m_DataChannel->onMessage(nullptr);
+			m_DataChannel->onOpen(nullptr);
+			m_DataChannel->onClosed(nullptr);
+			m_DataChannel->onError(nullptr);
+			m_DataChannel.reset();
+		}
+
+		// PeerConnection のクローズとリセット
+		if (m_PeerConnection)
+		{
+			m_PeerConnection->close();
+			// コールバックを解除
+			m_PeerConnection->onLocalDescription(nullptr);
+			m_PeerConnection->onGatheringStateChange(nullptr);
+			m_PeerConnection->onDataChannel(nullptr);
+			m_PeerConnection->onStateChange(nullptr);
+			m_PeerConnection.reset();
+		}
+
+		// 状態変数のリセット
+		m_ConnectState = ConnectionState::Disconnected;
+		m_NotifiedOpenEvent = false;
+		m_SDP = TJS_W("");
+		m_Message = TJS_W("Closed");
+
+		// 受信キューのクリア
+		std::queue<ttstr> empty;
+		std::swap(m_ReceivedQueue, empty);
 	}
 
 	/**/
