@@ -160,11 +160,6 @@ public:
 				}
 			});
 
-			// ICEの状態変化（デバッグ用）
-			m_PeerConnection->onStateChange([](rtc::PeerConnection::State state) {
-				// std::cout << "State: " << state << std::endl;
-			});
-
 			// 相手からDataChannelが送られてきた場合（受け側）
 			m_PeerConnection->onDataChannel([this](std::shared_ptr<rtc::DataChannel> dc) {
 				SetupDataChannel(dc);
