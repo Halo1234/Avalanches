@@ -9,3 +9,8 @@
 #define TURN_SERVER	""		// TURNサーバーアドレス
 #define TURN_USERNAME	""		// ユーザー名
 #define TURN_PASSWORD	""		// パスワード
+
+Fischerspoonerはシグナリングサーバーについて考慮されてません。
+シグナリングサーバーを用意できるならプラグイン側にも実装が必要です。
+
+
