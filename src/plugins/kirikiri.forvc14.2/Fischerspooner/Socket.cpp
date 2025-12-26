@@ -445,6 +445,7 @@ NCB_REGISTER_CLASS(SocketUDP)
 	Method("popReceivedData", &Class::PopReceivedData);
 
 	Property("message", &Class::GetMessage, 0);
+	Property("connectionState", &Class::GetConnectionState, 0);
 };
 
 
