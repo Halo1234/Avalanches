@@ -126,6 +126,15 @@
       <IgnoreSpecificDefaultLibraries>LIBC.lib</IgnoreSpecificDefaultLibraries>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
+    <PostBuildEvent>
+      <Command>set OUTPUT_DIRECTORY="$(SolutionDir)..\..\..\tools\make\nsis_jp"
+if not exist %OUTPUT_DIRECTORY% mkdir %OUTPUT_DIRECTORY%
+copy "$(TargetDir)$(TargetFileName)" %OUTPUT_DIRECTORY%
+
+set OUTPUT_DIRECTORY="$(SolutionDir)..\..\..\tools\make\nsis_en"
+if not exist %OUTPUT_DIRECTORY% mkdir %OUTPUT_DIRECTORY%
+copy "$(TargetDir)$(TargetFileName)" %OUTPUT_DIRECTORY%</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -147,6 +156,15 @@
       <IgnoreSpecificDefaultLibraries>LIBC.lib</IgnoreSpecificDefaultLibraries>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
+    <PostBuildEvent>
+      <Command>set OUTPUT_DIRECTORY="$(SolutionDir)..\..\..\tools\make\nsis_jp"
+if not exist %OUTPUT_DIRECTORY% mkdir %OUTPUT_DIRECTORY%
+copy "$(TargetDir)$(TargetFileName)" %OUTPUT_DIRECTORY%
+
+set OUTPUT_DIRECTORY="$(SolutionDir)..\..\..\tools\make\nsis_en"
+if not exist %OUTPUT_DIRECTORY% mkdir %OUTPUT_DIRECTORY%
+copy "$(TargetDir)$(TargetFileName)" %OUTPUT_DIRECTORY%</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
