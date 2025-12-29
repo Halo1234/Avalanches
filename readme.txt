@@ -28,8 +28,7 @@ Avalanches（以下、本開発環境）は複数のソフトウェアによって構築されています。
 
 本開発環境は以下の環境での動作を確認しています。
 
-32bit Windows XP(SP3)/Vista/7/10
-64bit Windows 7/10/11
+64bit Windows 11
 
 
 
@@ -153,10 +152,7 @@ Avalanches（以下、本開発環境）は複数のソフトウェアによって構築されています。
 >> ・Ruby
 >>   http://www.ruby-lang.org/ja/
 >>
->>   version 2.2.3 で開発されました。
->>
->>   version 3.0.1 で動作確認しました。
->>   version 3.2.2 で動作確認しました。
+>>   version 3.2.9 で動作確認しました。
 
 
 >>--------------------------------------
@@ -168,8 +164,7 @@ Avalanches（以下、本開発環境）は複数のソフトウェアによって構築されています。
 >> ・NSIS
 >>   https://nsis.sourceforge.io/Download
 >>
->>   version 3.06.1 で動作確認しました。
->>   version 3.08 で動作確認しました。
+>>   version 3.11 で動作確認しました。
 
 
 
