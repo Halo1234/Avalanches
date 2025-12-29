@@ -27,8 +27,7 @@ but it is advisable to install it unless there is a specific reason not to.
 
 This development environment has been confirmed to operate in the following environments:
 
-32bit Windows XP(SP3)/Vista/7/10
-64bit Windows 7/10/11
+64bit Windows 11
 
 
 
@@ -150,10 +149,7 @@ Similarly, the notation '/foo/bar' refers to a file named 'bar' inside the 'foo'
 >> ERuby
 >>   http://www.ruby-lang.org/
 >>
->>   Developed with version 2.2.3.
->>
->>   Confirmed working on version 3.0.1.
->>   Confirmed working on version 3.2.2.
+>>   Confirmed working on version 3.2.9.
 
 
 >>--------------------------------------
@@ -165,8 +161,7 @@ Similarly, the notation '/foo/bar' refers to a file named 'bar' inside the 'foo'
 >> ENSIS
 >>   https://nsis.sourceforge.io/Download
 >>
->>   Confirmed working on version 3.06.1.
->>   Confirmed working on version 3.08.
+>>   Confirmed working on version 3.11
 
 
 
