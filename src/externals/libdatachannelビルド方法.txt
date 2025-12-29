@@ -1,9 +1,12 @@
 
 # /src/externals/libdatachannelに移動する
+cd /path_to_dir/src/externals/libdatachannel
 git submodule update --init --recursive
 
 # 開発者コマンドプロンプトを開く
 メニューの[ツール] ＞ [コマンドライン] ＞ [開発者コマンドプロンプト]
+
+# ここから開発者コマンドプロンプト
 
 # /src/externals/libdatachannelに移動する
 cd /path_to_dir/src/externals/libdatachannel
