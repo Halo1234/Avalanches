@@ -6,6 +6,7 @@ git submodule update --init --recursive
 メニューの[ツール] ＞ [コマンドライン] ＞ [開発者コマンドプロンプト]
 
 # /src/externals/libdatachannelに移動する
+cd /path_to_dir/src/externals/libdatachannel
 mkdir build
 cd build
 
