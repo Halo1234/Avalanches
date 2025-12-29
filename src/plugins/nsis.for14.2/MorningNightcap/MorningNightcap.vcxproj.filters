@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Entry.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="ExportFunctions.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="ExternalInstallerIndex.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="Index.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="KrkrCF.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="TextBasedFile.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ExternalInstallerIndex.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="Index.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="KrkrCF.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\NSISPlugin.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="TextBasedFile.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\common\include\kim\KimAssert.h">
+      <Filter>header\kim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\common\include\kim\KimConfig.h">
+      <Filter>header\kim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\common\include\kim\KimException.h">
+      <Filter>header\kim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\common\include\kim\KimFile.h">
+      <Filter>header\kim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\common\include\kim\KimSingleton.h">
+      <Filter>header\kim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\common\include\kim\KimText.h">
+      <Filter>header\kim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\api\api.h">
+      <Filter>header\api</Filter>
+    </ClInclude>
+    <ClInclude Include="..\api\nsis_tchar.h">
+      <Filter>header\api</Filter>
+    </ClInclude>
+    <ClInclude Include="..\api\pluginapi.h">
+      <Filter>header\api</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="header">
+      <UniqueIdentifier>{ba30f391-1cb3-41d3-ae5c-e059c9828aca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source">
+      <UniqueIdentifier>{d503c9de-2a4f-44ea-9bac-666c39c2f29d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="header\kim">
+      <UniqueIdentifier>{7b03a989-afff-48b1-b524-d4bc6bd804f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="header\api">
+      <UniqueIdentifier>{22e869e7-3243-492c-8ae2-541bc333ecc1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

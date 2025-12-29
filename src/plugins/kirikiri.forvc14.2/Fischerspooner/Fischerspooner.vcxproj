@@ -29,13 +29,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -108,7 +108,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>datachannel.lib;ws2_32.lib;crypt32.lib;iphlpapi.lib;usrsctp.lib;juice.lib;srtp2.lib;libcrypto.lib;libssl.lib;bcrypt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>datachannel.lib;ws2_32.lib;crypt32.lib;iphlpapi.lib;usrsctp.lib;juice.lib;srtp2.lib;libcrypto_static.lib;libssl_static.lib;bcrypt.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\externals\libdatachannel\build\install_d\lib;C:\Program Files (x86)\OpenSSL-Win32\lib\VC\x86\MTd;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
@@ -137,7 +137,7 @@ copy "$(TargetDir)$(TargetFileName)" %OUTPUT_DIRECTORY%</Command>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>datachannel.lib;ws2_32.lib;crypt32.lib;iphlpapi.lib;usrsctp.lib;juice.lib;srtp2.lib;libcrypto.lib;libssl.lib;bcrypt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>datachannel.lib;ws2_32.lib;crypt32.lib;iphlpapi.lib;usrsctp.lib;juice.lib;srtp2.lib;libcrypto_static.lib;libssl_static.lib;bcrypt.lib;legacy_stdio_definitions.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\externals\libdatachannel\build\install\lib;C:\Program Files (x86)\OpenSSL-Win32\lib\VC\x86\MT;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
