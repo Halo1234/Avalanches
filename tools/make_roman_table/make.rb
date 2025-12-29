@@ -119,7 +119,7 @@ file_type = ".ods"
 # 言語
 language = nil
 # 入力のエンコーディング方式
-input_file_encoding = __ENCODING__
+#input_file_encoding = __ENCODING__
 # 出力のエンコーディング方式
 output_file_encoding = __ENCODING__
 # 入力元
