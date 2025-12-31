@@ -4,7 +4,7 @@
 @message_layers *
 @endmacro
 
-@cv_layers /count=<LAYERS> /base=<LAYBASE> /step=<LAYSTEP>
+@!cv_layers /count=<LAYERS> /base=<LAYBASE> /step=<LAYSTEP>
 
 @redirect alias=cglayers name=cg_layers
 
