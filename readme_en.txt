@@ -71,6 +71,8 @@ Similarly, the notation '/foo/bar' refers to a file named 'bar' inside the 'foo'
  /tools/make_word/
  Tool for creating word data for a typing game.
 
+ /tools/make_cgmem/
+ This is a tool for generating data for CG recall.
 
 
 --- Softwares recommended to install
