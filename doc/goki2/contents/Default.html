@@ -21,7 +21,9 @@
 <br />
 syntaxタグはGConductorの機能により以下のように書く事ができます。<br />
 @!tag /pattern=&lt;TEST&gt;_suffix &amp;group=g1 element=name-&gt;value<br />
-
+<br />
+拡張構文はセーブされません。<br />
+そのため、構文の拡張は初期化時に行うようにしてください。<br />
 <h1><a name="genre" id="genre" class="targanchor">ジャンル・タグ一覧</a></h1>
 
 
@@ -192,6 +194,7 @@ falseを指定するとシナリオのオートジャンプ機能を有効化します。<br />
 /test=&lt;PATTERN&gt;を指定すると、pattern=値と指定された場合にtest=値で置き換えられます。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="syntax_target_tag_&" id="syntax_target_tag_&">&amp;</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">グループ</td><td class="tagattribdesc">拡張構文のグループを指定します。<br />
 &amp;test=groupを指定するとgroupを指定した時にtest=1とします。<br />
+グループに指定した属性が指定されるたびにtestの値はインクリメントされていきます。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="syntax_target_tag" id="syntax_target_tag">-&gt;</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">変換指定</td><td class="tagattribdesc">変換指定を設定します。<br />
 pose=ポーズ１-&gt;pose1を指定するとポーズ１がpose1に変換されます。<br />
 </tbody></table><div class="tagremarks">スクリプトの拡張構文を設定します。<br />

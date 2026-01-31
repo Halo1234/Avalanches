@@ -21,7 +21,9 @@ If there are duplicates, the tag of the module loaded later takes effect.<br />
 <br />
 The syntax tag can be written as follows using the GConductor function.<br />
 @!tag /pattern=&lt;TEST&gt;_suffix &amp;group=g1 element=name-&gt;value<br />
-
+<br />
+Extended syntax will not be saved.<br />
+Therefore, please make sure to extend the syntax during initialization.<br />
 <h1><a name="genre" id="genre" class="targanchor">Genre/tag list</a></h1>
 
 
@@ -191,6 +193,7 @@ Default is false.<br />
 If /test=&lt;PATTERN&gt; is specified, if pattern=value is specified, it will be replaced with test=value.<br />
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="syntax_target_tag_&" id="syntax_target_tag_&">&amp;</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Group</td><td class="tagattribdesc">Specifies a group of extended syntax.<br />
 If &amp;test=groupis specified, test=1 is set when group is specified.<br />
+Each time the attribute specified for the group is assigned, the value of test will be incremented.<br />
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="syntax_target_tag" id="syntax_target_tag">-&gt;</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Conversion specification</td><td class="tagattribdesc">Set conversion specifications.<br />
 If you specify pose=p1-&gt;pose1, p1 will be converted to pose1.<br />
 </tbody></table><div class="tagremarks">Sets the script's extended syntax.<br />
