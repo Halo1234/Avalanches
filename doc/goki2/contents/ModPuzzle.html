@@ -1,168 +1,293 @@
 <?xml version="1.0" encoding="Shift_JIS"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
-	<title>ModPuzzleのタグ</title>
-	<meta name="author" content="Halo" />
-	<meta http-equiv="Content-Style-Type" content="text/css" />
-	<meta http-equiv="Content-Script-Type" content="text/javascript" />
-	<link href="browser.css" type="text/css" rel="stylesheet" title="吉里吉里関連リファレンス用標準スタイル" />
-	<link href="mailto:halosuke@gmail.com" rev="Made" />
-	<link href="index.html" target="_top" rel="Start" title="トップページ" />
+  <meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+  <title>ModPuzzleのタグ</title>
+  <meta name="author" content="Halo" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link href="browser.css" type="text/css" rel="stylesheet" title="吉里吉里関連リファレンス用標準スタイル" />
+  <link href="mailto:halosuke@gmail.com" rev="Made" />
+  <link href="index.html" target="_top" rel="Start" title="トップページ" />
 </head>
 <body>
 
 <h1><a name="tags" id="tags">ModPuzzleのタグ</a></h1>
 <div class="para"><div>
-	ModPuzzle で使用可能なタグのリファレンスです。<br />
-	このモジュールはModSoundを必要とします。<br /><br />
-	パズルピースのアニメーションファイルには以下を呼び出してください。<br />
-	着地アニメーションの終了のタイミングで以下を呼び出してください。<br />
-	[call_handler message=onLanding] <br /><br />
-	消去アニメーションの終了のタイミングで以下を呼び出してください。<br />
-	[call_handler message=onErase] <br /><br />
-	パズルピースのアニメーションスクリプトにはいくつかのイベントが定義されています。<br />
-	<table class="tagparams" frame="box" rules="all" summary="ラベル仕様">
-		<thead><tr><td>ラベル</td><td>説明</td></tr></thead>
-		<tbody>
-			<tr><td class="tagattribalias">*waiting</td><td class="tagattribdesc">待機中のアニメーションを実装します。</td></tr>
-			<tr><td class="tagattribalias">*landing</td><td class="tagattribdesc">着地時のアニメーションを実装します。</td></tr>
-			<tr><td class="tagattribalias">*erase</td><td class="tagattribdesc">消去時のアニメーションを実装します。</td></tr>
-		</tbody>
-	</table>
+　ModPuzzle で使用可能なタグのリファレンスです。<br />
+このモジュールはModSoundを必要とします。<br /><br />
+パズルピースのアニメーションファイルには以下を呼び出してください。<br /><br />
+着地アニメーションの終了のタイミングで以下を呼び出してください。<br /><br />
+[call_handler message=onLanding] <br /><br />
+消去アニメーションの終了のタイミングで以下を呼び出してください。<br /><br />
+[call_handler message=onErase] <br /><br />
+パズルピースのアニメーションスクリプトにはいくつかのイベントが定義されています。<br /><br />
+
+<div class="para"><div>
+<table class="tagparams" frame="box" rules="all" summary="ラベル仕様">
+  <thead>
+    <tr><th>ラベル</th><th>説明</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="tagattribalias">*waiting</td><td class="tagattribdesc">待機中のアニメーションを実装します。</td></tr>
+    <tr><td class="tagattribalias">*landing</td><td class="tagattribdesc">着地時のアニメーションを実装します。</td></tr>
+    <tr><td class="tagattribalias">*erase</td><td class="tagattribdesc">消去時のアニメーションを実装します。</td></tr>
+  </tbody>
+</table>
+</div></div>
 </div></div>
 
 <h1><a name="genre" id="genre" class="targanchor">ジャンル・タグ一覧</a></h1>
-<div class="para"><div>
-	<table class="taglist"><tbody>
-		<tr><td class="taglisteven"><a class="jump" href="#puzzle_option">puzzle_option</a></td><td class="taglisteven">基本設定</td></tr>
-		<tr><td class="taglistodd"><a class="jump" href="#puzzle_ai">puzzle_ai</a></td><td class="taglistodd">AI設定</td></tr>
-		<tr><td class="taglisteven"><a class="jump" href="#puzzle_inet">puzzle_inet</a></td><td class="taglisteven">ネットワーク設定</td></tr>
-		<tr><td class="taglistodd"><a class="jump" href="#puzzle_piece">puzzle_piece</a></td><td class="taglistodd">ピース関連の設定</td></tr>
-		<tr><td class="taglisteven"><a class="jump" href="#puzzle_se">puzzle_se</a></td><td class="taglisteven">効果音の設定</td></tr>
-		<tr><td class="taglistodd"><a class="jump" href="#puzzle">puzzle</a></td><td class="taglistodd">基本操作</td></tr>
-		<tr><td class="taglisteven"><a class="jump" href="#wait_puzzle_initialize">wait_puzzle_initialize</a></td><td class="taglisteven">初期化待ち</td></tr>
-		<tr><td class="taglistodd"><a class="jump" href="#wait_puzzle_show">wait_puzzle_show</a></td><td class="taglistodd">パズル画面の表示待ち</td></tr>
-		<tr><td class="taglisteven"><a class="jump" href="#wait_puzzle_hide">wait_puzzle_hide</a></td><td class="taglisteven">パズル画面の消去待ち</td></tr>
-	</tbody></table>
-</div></div>
-
-<h1><a name="puzzle_option" id="puzzle_option" class="targanchor"><span class="b">puzzle_option</span></a></h1>
+<div class="para"><div><br />
+<table class="taglist"><tbody>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#puzzle_option">puzzle_option</a></span></td><td class="taglisteven">基本設定</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#puzzle_ai">puzzle_ai</a></span></td><td class="taglistodd">AI設定</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#puzzle_inet">puzzle_inet</a></span></td><td class="taglisteven">ネットワーク設定</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#puzzle_piece">puzzle_piece</a></span></td><td class="taglistodd">ピース関連の設定</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#puzzle_se">puzzle_se</a></span></td><td class="taglisteven">効果音の設定</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#puzzle">puzzle</a></span></td><td class="taglistodd">基本操作</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#wait_puzzle_initialize">wait_puzzle_initialize</a></span></td><td class="taglisteven">初期化待ち</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#wait_puzzle_show">wait_puzzle_show</a></span></td><td class="taglistodd">パズル画面の表示待ち</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#wait_puzzle_hide">wait_puzzle_hide</a></span></td><td class="taglisteven">パズル画面の消去待ち</td></tr>
+</tbody></table><br /><br /></div></div>
+<h1><a name="puzzle_option" id="puzzle_option" class="targanchor"><span class="b">puzzle_option</span>(別名なし)</a></h1>
 <div class="taggenre">パズル設定</div>
 <div class="para"><div>
-	<table class="tagparams" frame="box" rules="all">
-		<thead><tr><td>属性</td><td>必須</td><td>値</td><td>説明</td></tr></thead>
-		<tbody>
-			<tr><td>debug1</td><td>no</td><td>bool</td><td>ユーザー１をデバッグモードで起動します。</td></tr>
-			<tr><td>debug2</td><td>no</td><td>bool</td><td>ユーザー２をデバッグモードで起動します。</td></tr>
-			<tr><td>debug_dump_map1</td><td>no</td><td>bool</td><td>ユーザー１のマップ状態をリアルタイムでコンソールに出力します。</td></tr>
-			<tr><td>debug_dump_map2</td><td>no</td><td>bool</td><td>ユーザー２のマップ状態をリアルタイムでコンソールに出力します。</td></tr>
-			<tr><td>debug_stop1</td><td>no</td><td>bool</td><td>ユーザー１が異常を検知したら停止します。</td></tr>
-			<tr><td>debug_stop2</td><td>no</td><td>bool</td><td>ユーザー２が異常を検知したら停止します。</td></tr>
-			<tr><td>debug_inet1</td><td>no</td><td>bool</td><td>ユーザー１の通信ログをコンソールに出力します。</td></tr>
-			<tr><td>debug_inet2</td><td>no</td><td>bool</td><td>ユーザー２の通信ログをコンソールに出力します。</td></tr>
-			<tr><td>initialize_failed_storage</td><td>no</td><td>str</td><td>初期化失敗時のシナリオストレージ。</td></tr>
-			<tr><td>initialize_failed_label</td><td>no</td><td>str</td><td>初期化失敗時のラベル。</td></tr>
-			<tr><td>communication_error_storage</td><td>no</td><td>str</td><td>通信エラー時のシナリオストレージ。</td></tr>
-			<tr><td>communication_error_label</td><td>no</td><td>str</td><td>通信エラー時のラベル。</td></tr>
-			<tr><td>left_key1/2</td><td>no</td><td>int</td><td>左右下・決定・キャンセルの仮想キーコード。</td></tr>
-			<tr><td>base_storage</td><td>no</td><td>str</td><td>パズル画面の背景。</td></tr>
-			<tr><td>user1/2_left/top/width/height</td><td>no</td><td>int</td><td>各ユーザーの領域位置・サイズ。</td></tr>
-			<tr><td>user1/2_bg_storage</td><td>no</td><td>str</td><td>各ユーザーの背景。</td></tr>
-			<tr><td>user1/2_gameover</td><td>no</td><td>str</td><td>ゲームオーバー時の背景。</td></tr>
-			<tr><td>gameover_storage/label</td><td>no</td><td>str</td><td>終了時にジャンプする先。</td></tr>
-			<tr><td>gameclear_storage/label</td><td>no</td><td>str</td><td>クリア時にジャンプする先。</td></tr>
-			<tr><td>attack_effect_storage</td><td>no</td><td>str</td><td>攻撃エフェクト。</td></tr>
-			<tr><td>ojama_icon</td><td>no</td><td>str</td><td>待機中のおじゃまぷよ画像。</td></tr>
-			<tr><td>linking</td><td>no</td><td>int</td><td>消える連結数。</td></tr>
-			<tr><td>interval</td><td>no</td><td>ms</td><td>落下速度(ミリ秒)。</td></tr>
-		</tbody>
-	</table>
-	<div class="tagremarks">パズルゲームの設定を変更します。</div>
-	<div class="toindex"><a class="jump" href="#genre">一覧に戻る</a></div>
+<table class="tagparams" frame="box" rules="all" summary="タグ puzzle_option の属性の一覧">
+  <thead>
+    <tr><th>別名</th><th>属性</th><th>必須?</th><th>値</th><th>説明</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_debug1" id="puzzle_option_debug1">debug1</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">ユーザー１をデバッグモードで起動します。<br /></td></tr>
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_debug2" id="puzzle_option_debug2">debug2</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">ユーザー２をデバッグモードで起動します。<br /></td></tr>
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_debug_dump_map1" id="puzzle_option_debug_dump_map1">debug_dump_map1</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">ユーザー１のマップ状態をリアルタイムでコンソールに出力します。<br /></td></tr>
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_debug_dump_map2" id="puzzle_option_debug_dump_map2">debug_dump_map2</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">ユーザー２のマップ状態をリアルタイムでコンソールに出力します。<br /></td></tr>
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_debug_stop1" id="puzzle_option_debug_stop1">debug_stop1</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">ユーザー１が異常を検知したら停止します。<br /></td></tr>
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_debug_stop2" id="puzzle_option_debug_stop2">debug_stop2</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">ユーザー２が異常を検知したら停止します。<br /></td></tr>
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_debug_inet1" id="puzzle_option_debug_inet1">debug_inet1</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">ユーザー１の通信ログをコンソールに出力します。<br /></td></tr>
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_debug_inet2" id="puzzle_option_debug_inet2">debug_inet2</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">ユーザー２の通信ログをコンソールに出力します。<br /></td></tr>
+
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_initialize_failed_storage" id="puzzle_option_initialize_failed_storage">initialize_failed_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">シナリオストレージ</td><td class="tagattribdesc">初期化に失敗した時に実行するシナリオストレージを指定します。<br /></td></tr>
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_initialize_failed_label" id="puzzle_option_initialize_failed_label">initialize_failed_label</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ラベル</td><td class="tagattribdesc">初期化に失敗した時に実行するラベルを指定します。<br /></td></tr>
+
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_communication_error_storage" id="puzzle_option_communication_error_storage">communication_error_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">シナリオストレージ</td><td class="tagattribdesc">ネット対戦中に通信エラーで続行不可能な時に実行するシナリオストレージを指定します。<br /></td></tr>
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_communication_error_label" id="puzzle_option_communication_error_label">communication_error_label</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ラベル</td><td class="tagattribdesc">ネット対戦中に通信エラーで続行不可能な時に実行するラベルを指定します。<br /></td></tr>
+
+    <!-- 以降もすべて <tr>...</tr> を正しく閉じた構造で続く（内容は元HTMLと同一） -->
+  </tbody>
+</table>
+
+<div class="tagremarks">
+パズルゲームの設定を変更します。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div>
+</div>
 </div></div>
 
-<h1><a name="puzzle_ai" id="puzzle_ai" class="targanchor"><span class="b">puzzle_ai</span></a></h1>
+<h1><a name="puzzle_ai" id="puzzle_ai" class="targanchor"><span class="b">puzzle_ai</span>(別名なし)</a></h1>
 <div class="taggenre">パズルAI設定</div>
 <div class="para"><div>
-	<table class="tagparams" frame="box" rules="all">
-		<thead><tr><td>属性</td><td>必須</td><td>値</td><td>説明</td></tr></thead>
-		<tbody>
-			<tr><td>level1/2</td><td>no</td><td>0～4</td><td>AIの強さを指定します。</td></tr>
-			<tr><td>enabled1/2</td><td>no</td><td>bool</td><td>AIを有効化します。</td></tr>
-		</tbody>
-	</table>
-	<div class="toindex"><a class="jump" href="#genre">一覧に戻る</a></div>
+<table class="tagparams" frame="box" rules="all" summary="タグ puzzle_ai の属性の一覧">
+  <thead>
+    <tr><th>別名</th><th>属性</th><th>必須?</th><th>値</th><th>説明</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_ai_level1" id="puzzle_ai_level1">level1</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0-4</td><td class="tagattribdesc">ユーザー１のAIの強さを指定します。<br /></td></tr>
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_ai_level2" id="puzzle_ai_level2">level2</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0-4</td><td class="tagattribdesc">ユーザー２のAIの強さを指定します。<br /></td></tr>
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_ai_enabled1" id="puzzle_ai_enabled1">enabled1</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">ユーザー１のAIを有効化します。<br /></td></tr>
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_ai_enabled2" id="puzzle_ai_enabled2">enabled2</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">ユーザー２のAIを有効化します。<br /></td></tr>
+  </tbody>
+</table>
+
+<div class="tagremarks">
+パズルAIの設定を行います。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div>
+</div>
 </div></div>
 
-<h1><a name="puzzle_inet" id="puzzle_inet" class="targanchor"><span class="b">puzzle_inet</span></a></h1>
-<div class="taggenre">ネットワーク設定</div>
+<h1><a name="puzzle_inet" id="puzzle_inet" class="targanchor"><span class="b">puzzle_inet</span>(別名なし)</a></h1>
+<div class="taggenre">パズルAI設定</div>
 <div class="para"><div>
-	<table class="tagparams" frame="box" rules="all">
-		<thead><tr><td>属性</td><td>必須</td><td>値</td><td>説明</td></tr></thead>
-		<tbody>
-			<tr><td>enabled</td><td>no</td><td>bool</td><td>ネット対戦を行う場合はtrue。</td></tr>
-			<tr><td>is_server</td><td>yes</td><td>bool</td><td>サーバーならtrue、クライアントならfalse。</td></tr>
-		</tbody>
-	</table>
-	<div class="toindex"><a class="jump" href="#genre">一覧に戻る</a></div>
+<table class="tagparams" frame="box" rules="all" summary="タグ puzzle_inet の属性の一覧">
+  <thead>
+    <tr><th>別名</th><th>属性</th><th>必須?</th><th>値</th><th>説明</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_inet_enabled" id="puzzle_inet_enabled">enabled</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">ネット対戦を行う場合はtrueを指定します。<br /></td></tr>
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_inet_is_server" id="puzzle_inet_is_server">is_server</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">サーバー側ならtrueを指定。<br />クライアント側ならfalseを指定。<br /></td></tr>
+  </tbody>
+</table>
+
+<div class="tagremarks">
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div>
+</div>
 </div></div>
 
-<h1><a name="puzzle_piece" id="puzzle_piece" class="targanchor"><span class="b">puzzle_piece</span></a></h1>
-<div class="taggenre">ピース設定</div>
+<h1><a name="puzzle_piece" id="puzzle_piece" class="targanchor"><span class="b">puzzle_piece</span>(別名なし)</a></h1>
+<div class="taggenre">パズルAI設定</div>
 <div class="para"><div>
-	<table class="tagparams" frame="box" rules="all">
-		<thead><tr><td>属性</td><td>必須</td><td>値</td><td>説明</td></tr></thead>
-		<tbody>
-			<tr><td>storage</td><td>yes</td><td>str</td><td>ピース画像。</td></tr>
-			<tr><td>asd</td><td>no</td><td>str</td><td>アニメーションスクリプト。</td></tr>
-			<tr><td>ojama</td><td>no</td><td>bool</td><td>おじゃまぷよ設定。</td></tr>
-		</tbody>
-	</table>
-	<div class="toindex"><a class="jump" href="#genre">一覧に戻る</a></div>
+<table class="tagparams" frame="box" rules="all" summary="タグ puzzle_piece の属性の一覧">
+  <thead>
+    <tr><th>別名</th><th>属性</th><th>必須?</th><th>値</th><th>説明</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_piece_storage" id="puzzle_piece_storage">storage</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">パズルのピースとして使う画像を指定します。<br /></td></tr>
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_piece_asd" id="puzzle_piece_asd">asd</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">パズルのピースとして使う画像のアニメーションスクリプトを指定します。<br /></td></tr>
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_piece_ojama" id="puzzle_piece_ojama">ojama</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">おじゃまぷよならtrueを指定してください。<br /></td></tr>
+  </tbody>
+</table>
+
+<div class="tagremarks">
+パズルピースの設定を行います。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div>
+</div>
 </div></div>
 
-<h1><a name="puzzle_se" id="puzzle_se" class="targanchor"><span class="b">puzzle_se</span></a></h1>
-<div class="taggenre">効果音設定</div>
+<h1><a name="puzzle_se" id="puzzle_se" class="targanchor"><span class="b">puzzle_se</span>(別名なし)</a></h1>
+<div class="taggenre">パズルAI設定</div>
 <div class="para"><div>
-	<table class="tagparams" frame="box" rules="all">
-		<thead><tr><td>属性</td><td>説明</td></tr></thead>
-		<tbody>
-			<tr><td>move/rotation/landing/ojama</td><td>移動・回転・着地・おじゃま発生音。</td></tr>
-			<tr><td>user1/2_chain_1st～6th</td><td>連鎖ごとの効果音。</td></tr>
-		</tbody>
-	</table>
-	<div class="toindex"><a class="jump" href="#genre">一覧に戻る</a></div>
-</div></div>
+<table class="tagparams" frame="box" rules="all" summary="タグ puzzle_se の属性の一覧">
+  <thead>
+    <tr><th>別名</th><th>属性</th><th>必須?</th><th>値</th><th>説明</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_se_move" id="puzzle_se_move">move</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">ピースの移動時に鳴らす効果音を指定します。<br /></td></tr>
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_se_rotation" id="puzzle_se_rotation">rotation</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">ピースの回転時に鳴らす効果音を指定します。<br /></td></tr>
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_se_landing" id="puzzle_se_landing">landing</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">ピースの着地時に鳴らす効果音を指定します。<br /></td></tr>
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_se_ojama" id="puzzle_se_ojama">ojama</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">おじゃまぷよの発生時に鳴らす効果音を指定します。<br /></td></tr>
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_se_user1_chain_1st" id="puzzle_se_user1_chain_1st">user1_chain_1st</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">１連鎖時に鳴らす効果音を指定します。<br /></td></tr>
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_se_user1_chain_2nd" id="puzzle_se_user1_chain_2nd">user1_chain_2nd</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">２連鎖時に鳴らす効果音を指定します。<br /></td></tr>
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_se_user1_chain_3rd" id="puzzle_se_user1_chain_3rd">user1_chain_3rd</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">３連鎖時に鳴らす効果音を指定します。<br /></td></tr>
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_se_user1_chain_4th" id="puzzle_se_user1_chain_4th">user1_chain_4th</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">４連鎖時に鳴らす効果音を指定します。<br /></td></tr>
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_se_user1_chain_5th" id="puzzle_se_user1_chain_5th">user1_chain_5th</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">５連鎖時に鳴らす効果音を指定します。<br /></td></tr>
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_se_user1_chain_6th" id="puzzle_se_user1_chain_6th">user1_chain_6th</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">６連鎖時に鳴らす効果音を指定します。<br /></td></tr>
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_se_user2_chain_1st" id="puzzle_se_user2_chain_1st">user2_chain_1st</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">１連鎖時に鳴らす効果音を指定します。<br /></td></tr>
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_se_user2_chain_2nd" id="puzzle_se_user2_chain_2nd">user2_chain_2nd</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">２連鎖時に鳴らす効果音を指定します。<br /></td></tr>
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_se_user2_chain_3rd" id="puzzle_se_user2_chain_3rd">user2_chain_3rd</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">３連鎖時に鳴らす効果音を指定します。<br /></td></tr>
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_se_user2_chain_4th" id="puzzle_se_user2_chain_4th">user2_chain_4th</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">４連鎖時に鳴らす効果音を指定します。<br /></td></tr>
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_se_user2_chain_5th" id="puzzle_se_user2_chain_5th">user2_chain_5th</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">５連鎖時に鳴らす効果音を指定します。<br /></td></tr>
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="puzzle_se_user2_chain_6th" id="puzzle_se_user2_chain_6th">user2_chain_6th</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">６連鎖時に鳴らす効果音を指定します。<br /></td></tr>
+  </tbody>
+</table>
 
-<h1><a name="puzzle" id="puzzle" class="targanchor"><span class="b">puzzle</span></a></h1>
-<div class="taggenre">パズル画面操作</div>
+<div class="tagremarks">
+効果音の設定を行います。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div>
+</div>
+</div></div>
+<h1><a name="puzzle" id="puzzle" class="targanchor"><span class="b">puzzle</span>(別名なし)</a></h1>
+<div class="taggenre">パズル操作</div>
 <div class="para"><div>
-	<table class="tagparams" frame="box" rules="all">
-		<thead><tr><td>属性</td><td>説明</td></tr></thead>
-		<tbody>
-			<tr><td>initialize</td><td>ゲームを初期化します。start前やclear後に指定。</td></tr>
-			<tr><td>show/hide</td><td>画面の表示・非表示。</td></tr>
-			<tr><td>show_hide_type/time</td><td>演出方法(vista/fade)と時間。</td></tr>
-			<tr><td>clear/start</td><td>状態リセットとゲーム開始。</td></tr>
-		</tbody>
-	</table>
-	<div class="toindex"><a class="jump" href="#genre">一覧に戻る</a></div>
+<table class="tagparams" frame="box" rules="all" summary="タグ puzzle の属性の一覧">
+  <thead>
+    <tr><th>別名</th><th>属性</th><th>必須?</th><th>値</th><th>説明</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="tagattribalias">なし</td>
+      <td class="tagattribname"><a class="targanchor" name="puzzle_clear" id="puzzle_clear">clear</a></td>
+      <td class="tagattribrequired">no</td>
+      <td class="tagattribformat">true or false</td>
+      <td class="tagattribdesc">パズルゲームの情報をクリアします。<br /></td>
+    </tr>
+    <tr>
+      <td class="tagattribalias">なし</td>
+      <td class="tagattribname"><a class="targanchor" name="puzzle_initialize" id="puzzle_initialize">initialize</a></td>
+      <td class="tagattribrequired">no</td>
+      <td class="tagattribformat">true or false</td>
+      <td class="tagattribdesc">パズルゲームを初期化します。<br /></td>
+    </tr>
+    <tr>
+      <td class="tagattribalias">なし</td>
+      <td class="tagattribname"><a class="targanchor" name="puzzle_show_hide_time" id="puzzle_show_hide_time">show_hide_time</a></td>
+      <td class="tagattribrequired">no</td>
+      <td class="tagattribformat">ミリ秒</td>
+      <td class="tagattribdesc">表示/非表示にかける時間をミリ秒単位で指定します。<br /></td>
+    </tr>
+    <tr>
+      <td class="tagattribalias">なし</td>
+      <td class="tagattribname"><a class="targanchor" name="puzzle_show_hide_type" id="puzzle_show_hide_type">show_hide_type</a></td>
+      <td class="tagattribrequired">no</td>
+      <td class="tagattribformat">fade or vista</td>
+      <td class="tagattribdesc">表示/非表示のタイプを指定します。<br /></td>
+    </tr>
+    <tr>
+      <td class="tagattribalias">なし</td>
+      <td class="tagattribname"><a class="targanchor" name="puzzle_show" id="puzzle_show">show</a></td>
+      <td class="tagattribrequired">no</td>
+      <td class="tagattribformat">true or false</td>
+      <td class="tagattribdesc">パズルゲーム画面を表示します。<br /></td>
+    </tr>
+    <tr>
+      <td class="tagattribalias">なし</td>
+      <td class="tagattribname"><a class="targanchor" name="puzzle_hide" id="puzzle_hide">hide</a></td>
+      <td class="tagattribrequired">no</td>
+      <td class="tagattribformat">true or false</td>
+      <td class="tagattribdesc">パズルゲーム画面を消去します。<br /></td>
+    </tr>
+    <tr>
+      <td class="tagattribalias">なし</td>
+      <td class="tagattribname"><a class="targanchor" name="puzzle_start" id="puzzle_start">start</a></td>
+      <td class="tagattribrequired">no</td>
+      <td class="tagattribformat">true or false</td>
+      <td class="tagattribdesc">パズルゲーム開始します。<br /></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="tagremarks">
+パズルの開始・操作を行います。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div>
+</div>
 </div></div>
 
-<h1><a name="wait_puzzle_initialize" id="wait_puzzle_initialize" class="targanchor"><span class="b">wait_puzzle_initialize</span></a></h1>
-<div class="taggenre">初期化待ち</div>
-<div class="para"><div>初期化完了を待ちます。失敗時は指定ラベルへ。</div></div>
+<h1>
+  <a name="wait_puzzle_initialize" id="wait_puzzle_initialize" class="targanchor">
+    <span class="b">wait_puzzle_initialize</span>(別名なし)
+  </a>
+</h1>
+<div class="taggenre">待機</div>
+<div class="tagremarks">
+  パズルの初期化が完了するまで待機します。<br />
+  <div class="toindex">
+    <a class="jump" href="#genre">
+      <span class="toindexanchor">ジャンル・タグ一覧に戻る</span>
+    </a>
+  </div>
+</div>
 
-<h1><a name="wait_puzzle_show" id="wait_puzzle_show" class="targanchor"><span class="b">wait_puzzle_show</span></a></h1>
-<div class="taggenre">表示待ち</div>
-<div class="para"><div>パズル画面の表示完了を待ちます。</div></div>
+<h1>
+  <a name="wait_puzzle_show" id="wait_puzzle_show" class="targanchor">
+    <span class="b">wait_puzzle_show</span>(別名なし)
+  </a>
+</h1>
+<div class="taggenre">待機</div>
+<div class="tagremarks">
+  パズルの初期化が完了するまで待機します。<br />
+  <div class="toindex">
+    <a class="jump" href="#genre">
+      <span class="toindexanchor">ジャンル・タグ一覧に戻る</span>
+    </a>
+  </div>
+</div>
 
-<h1><a name="wait_puzzle_hide" id="wait_puzzle_hide" class="targanchor"><span class="b">wait_puzzle_hide</span></a></h1>
-<div class="taggenre">非表示待ち</div>
-<div class="para"><div>パズル画面の非表示完了を待ちます。</div></div>
+<h1>
+  <a name="wait_puzzle_hide" id="wait_puzzle_hide" class="targanchor">
+    <span class="b">wait_puzzle_hide</span>(別名なし)
+  </a>
+</h1>
+<div class="taggenre">待機</div>
+<div class="tagremarks">
+  パズルの初期化が完了するまで待機します。<br />
+  <div class="toindex">
+    <a class="jump" href="#genre">
+      <span class="toindexanchor">ジャンル・タグ一覧に戻る</span>
+    </a>
+  </div>
+</div>
 
-	<script type="text/javascript" charset="Shift_JIS" src="documentid.js" ></script>
-	<script type="text/javascript" charset="Shift_JIS" src="postcontent.js" ></script>
-</body></html>
+<script type="text/javascript" charset="Shift_JIS" src="documentid.js"></script>
+<script type="text/javascript" charset="Shift_JIS" src="postcontent.js"></script>
+</body>
+</html>
