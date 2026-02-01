@@ -16,11 +16,11 @@
     <ClCompile Include="PuzzleAI.cpp">
       <Filter>source</Filter>
     </ClCompile>
-    <ClCompile Include="..\ncbind\ncbind.cpp">
-      <Filter>header</Filter>
-    </ClCompile>
     <ClCompile Include="..\tp_stub.cpp">
-      <Filter>header</Filter>
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ncbind\ncbind.cpp">
+      <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
