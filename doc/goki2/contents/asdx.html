@@ -72,6 +72,8 @@
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fork_index" id="fork_index">index</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">開始するセルレイヤのインデックスを指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="fork_target" id="fork_target">target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">開始するアニメーションのラベルを指定します。<br />
 </tbody></table><div class="tagremarks">新たにセルアニメーションを開始します。<br />
+このタグを実行すると新しくセルレイヤが生成されます。<br />
+子スレッドが生成されると思ってもらって問題ありません。<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
 
 <h1><a name="looping" id="looping" class="targanchor"><span class="b">looping</span>(別名なし)</a></h1>
@@ -155,7 +157,7 @@ false を指定すると何もしません。<br />
 [layer_move position=0.0 x=0 y=0]<br />
 [layer_move position=0.5 x=100 y=100]<br />
 [layer_move position=1.0 x=200 y=200 time=1000 start]<br />
-; レイヤ0を(100, 100)に移動して続けて(200, 200)に移動します。<br />
+; レイヤを(100, 100)に移動して続けて(200, 200)に移動します。<br />
 </code></div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
 

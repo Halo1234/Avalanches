@@ -72,6 +72,8 @@ If omitted, the original image height will be used.<br />
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fork_index" id="fork_index">index</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">integer value</td><td class="tagattribdesc">Specifies the index of the cell layer to start from.<br />
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fork_target" id="fork_target">target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">integer value</td><td class="tagattribdesc">Specifies the label of the animation to start.<br />
 </tbody></table><div class="tagremarks">Starts a new cel animation.<br />
+Executing this tag creates a new cell layer.<br />
+You can think of it as creating a child thread.<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="looping" id="looping" class="targanchor"><span class="b">looping</span>(No alias)</a></h1>
@@ -155,7 +157,7 @@ Default is false.<br />
 [layer_move position=0.0 x=0 y=0]<br />
 [layer_move position=0.5 x=100 y=100]<br />
 [layer_move position=1.0 x=200 y=200 time=1000 start]<br />
-; Move layer 0 to (100, 100) and then to (200, 200).<br />
+; Move layer to (100, 100) and then to (200, 200).<br />
 </code></div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
