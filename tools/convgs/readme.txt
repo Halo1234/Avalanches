@@ -37,6 +37,8 @@
  RubyGem inifile >= 2.0.2
 
  インストール方法：
+  Windowsキー+Rを押してcmdを入力してエンター
+  コマンドプロンプトに以下を入力（$は含めない）してエンター
   $gem install inifile
 
 

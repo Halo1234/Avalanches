@@ -36,7 +36,9 @@ You can then convert it into a script file using this tool.
 --- Dependencies
   RubyGem inifile >= 2.0.2
 
-  Installation method:
+  Installation Instructions:
+  Press the Windows key + R, type cmd, and press Enter.
+  In the command prompt, enter the following (do not include $) and press Enter.
    $gem install inifile
 
 
