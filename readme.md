@@ -3,7 +3,8 @@
 ![GitHub total downloads](https://img.shields.io/github/downloads/Halo1234/Avalanches/total?style=flat-square&color=brightgreen)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/Halo1234/Avalanches?style=flat-square)
 
-吉里吉里2 / 吉里吉里Zをベースとした、ゲーム開発・運用を強力にサポートする統合開発環境です。SLGエディタ、シナリオコンバータ、タイピングゲーム用ツールなど、実践的なツール群を同梱しています。
+Avalanchesは吉里吉里2 / 吉里吉里Zをベースとした、ゲーム開発・運用を強力にサポートする統合開発環境です。SLGエディタ、シナリオコンバータ、タイピングゲーム用ツールなど、実践的なツール群を同梱しています。
+Avalanchesにはサポートする各ゲームのフレームワークとしてGOKI2が含まれます。
 
 [最新リリースをチェックする](https://github.com/Halo1234/Avalanches/releases/latest)
 
@@ -56,7 +57,7 @@
 
 ### 必須級（開発・管理）
 * **[TortoiseGit](https://tortoisegit.org/)**: リポジトリの取得・管理
-* **[Ruby](http://www.ruby-lang.org/ja/)**: ツール群（.rb）の実行に必要 (v3.2.9 動作確認済)
+* **[Ruby](http://www.ruby-lang.org/ja/)**: ツール群（.rb）の実行に必要 (v4.0.1 動作確認済)
 
 ### パッチ・インストーラ作成
 * **[TortoiseSVN](https://tortoisesvn.net/)**: パッチ作成時のログ読み込み用

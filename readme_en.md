@@ -3,7 +3,8 @@
 ![GitHub total downloads](https://img.shields.io/github/downloads/Halo1234/Avalanches/total?style=flat-square&color=brightgreen)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/Halo1234/Avalanches?style=flat-square)
 
-A powerful integrated development environment for game development and operation based on Kirikiri2 / KirikiriZ. It includes a suite of practical tools such as an SLG editor, scenario converter, and typing game tools.
+Avalanches is an integrated development environment based on KiriKiri2 / KiriKiriZ that strongly supports game development and operations.
+It includes practical tools such as an SLG editor, a scenario converter, and tools for typing games. Avalanches also includes GOKI2 as the framework for the games it supports.
 
 [Check the latest release](https://github.com/Halo1234/Avalanches/releases/latest)
 
@@ -56,7 +57,7 @@ To facilitate smooth development, we recommend installing the following tools ba
 
 ### Essential (Development & Management)
 * **[TortoiseGit](https://tortoisegit.org/)**: For repository retrieval and management
-* **[Ruby](http://www.ruby-lang.org/ja/)**: Required to run tools (.rb files) (Confirmed working with v3.2.9)
+* **[Ruby](http://www.ruby-lang.org/ja/)**: Required to run tools (.rb files) (Confirmed working with v4.0.1)
 
 ### Creating Patch Installers
 * **[TortoiseSVN](https://tortoisesvn.net/)**: For reading logs when creating patches
