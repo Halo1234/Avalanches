@@ -135,15 +135,18 @@ back を指定すると裏ページのレイヤが対象になります。<br />
 省略するとforeが指定されたものとみなします。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_partial_image_storage" id="load_partial_image_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">レイヤに読み込む画像ファイル名</td><td class="tagattribdesc">レイヤに読み込む画像ファイル名を指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_partial_image_key" id="load_partial_image_key">key</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">画像ファイルのキー値</td><td class="tagattribdesc">画像ファイルのキー値を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_partial_image_mode" id="load_partial_image_mode">mode</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">mode を指定</td><td class="tagattribdesc">mode を指定する。<br />
 <tr><td class="tagattribalias">dx</td><td class="tagattribname"><a class="targanchor" name="load_partial_image_dest_x" id="load_partial_image_dest_x">dest_x</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">重ね合わせ、あるいはコピーする先の左端 x 座標を (対象のレイヤ内の座標で)指定します。<br />
 <tr><td class="tagattribalias">dy</td><td class="tagattribname"><a class="targanchor" name="load_partial_image_dest_y" id="load_partial_image_dest_y">dest_y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">重ね合わせ、あるいはコピーする先の上端 y 座標を (対象のレイヤ内の座標で)指定します。<br />
 <tr><td class="tagattribalias">sx</td><td class="tagattribname"><a class="targanchor" name="load_partial_image_src_x" id="load_partial_image_src_x">src_x</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">重ね合わせ、あるいはコピーする元の左端 x 座標を (追加して読み込む画像内の座標で)指定します。省略すると 0 であると見なされます。<br />
 <tr><td class="tagattribalias">sy</td><td class="tagattribname"><a class="targanchor" name="load_partial_image_src_y" id="load_partial_image_src_y">src_y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">重ね合わせ、あるいはコピーする元の上端 y 座標を (追加して読み込む画像内の座標で)指定します。省略すると 0 であると見なされます。<br />
 <tr><td class="tagattribalias">sw</td><td class="tagattribname"><a class="targanchor" name="load_partial_image_src_w" id="load_partial_image_src_w">src_w</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">重ね合わせ、あるいはコピーする幅を 指定します。省略すると、追加して読み込む画像の幅すべてであると見なされます。<br />
 <tr><td class="tagattribalias">sh</td><td class="tagattribname"><a class="targanchor" name="load_partial_image_src_h" id="load_partial_image_src_h">src_h</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">重ね合わせ、あるいはコピーする高さを 指定します。省略すると、追加して読み込む画像の高さすべてであると見なされます。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_partial_image_mode" id="load_partial_image_mode">mode</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">モード</td><td class="tagattribdesc">モード値を指定します。<br />
-省略すると色ブレンドによる色調効果は行われません。<br />
+		<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_partial_image_mode" id="load_partial_image_mode">mode</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">"copy"または "opaque" または "pile" (デフォルト) または "alpha" または "add" または "sub" または "mul" または "dodge" または "darken" または "lighten" または "screen" または "psadd" または "pssub" または "psmul" または "psscreen" または "psoverlay" または "pshlight" または "psslight" または "psdodge" または "psdodge5" または "psburn" または "pslighten" または "psdarken" または "psdiff" または "psdiff5" または "psexcl"</td><td class="tagattribdesc">sx sy sw sh の各属性で指定した矩形領域を 重ね合わせるか、あるいは 単純にコピーするか、あるいは演算を行うかを指定します。<br />
+　"copy" または "opaque" を指定すると矩形領域は コピーされます。"copy" でも "opaque" でも同じ意味です。<br />
+　"pile" または "alpha" を指定すると、アルファ合成による重ね合わせが行われます。"pile" でも "alpha" でも同じ意味です。<br />
+　"addalpha" を指定すると、加算アルファ合成による重ね合わせが行われます。<br />
+　そのほかのモードについては image タグの mode 属性を参照してください。<br />
+　省略すると "pile" が指定されたと見なされます。例外的に TLG5/6 画像は画像中にどの重ね合わせモードで重ね合わされるかの情報を持っています (この情報は image タグで読み込まれる物と同一です)。この場合は、この属性が省略された場合は、その画像が情報として持っている重ね合わせモードに従います。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_partial_image_opacity" id="load_partial_image_opacity">opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">不透明度(0 ～ 255)</td><td class="tagattribdesc">mode 属性で "pile" を指定した場合の重ね合わせの不透明度、あるいは "add" "sub" "mul" "dodge" "darken" "lighten" "screen" の いずれかを指定した場合の演算の強度を指定します。省略すると 255 であると見なされます。<br />
 </tbody></table><div class="tagremarks">画像の部分読み込みをします。<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
@@ -182,7 +185,7 @@ edge と shadow 両方に true を指定することはできません。<br />
 </div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
 
-<h1><a name="clear_image" id="clear_image" class="targanchor"><span class="b">clear_image</span>画像のクリア</a></h1>
+<h1><a name="clear_image" id="clear_image" class="targanchor"><span class="b">clear_image</span>(freeimage)</a></h1>
 <div class="taggenre">レイヤ操作</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ clear_image の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="clear_image_layer" id="clear_image_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">立ち絵レイヤの名前</td><td class="tagattribdesc">立ち絵レイヤの名前を指定します。<br />
@@ -203,8 +206,8 @@ back を指定すると裏ページのレイヤが対象になります。<br />
 0 ～ N のいずれかになります。(N は cv_layers で指定した立ち絵レイヤの枚数 - 1)<br />
 省略するとbaseが指定されたものとみなします。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="assign_image_page" id="assign_image_page">page</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">対象レイヤのページ</td><td class="tagattribdesc">対象レイヤのページ名。<br />
-fore を指定すると表ページのレイヤが対象になります。<br />
-back を指定すると裏ページのレイヤが対象になります。<br />
+fore を指定すると裏ページから表ページへ状態がコピーされます。<br />
+back を指定すると表ページから裏ページへ状態がコピーされます。<br />
 省略するとforeが指定されたものとみなします。<br />
 </tbody></table><div class="tagremarks">表ページから裏ページへ画像をコピーします。<br />
 </div>
@@ -217,8 +220,8 @@ back を指定すると裏ページのレイヤが対象になります。<br />
 0 ～ N のいずれかになります。(N は cv_layers で指定した立ち絵レイヤの枚数 - 1)<br />
 省略するとbaseが指定されたものとみなします。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="assign_to_mirror_page" id="assign_to_mirror_page">page</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">対象レイヤのページ</td><td class="tagattribdesc">対象レイヤのページ名。<br />
-fore を指定すると表ページのレイヤが対象になります。<br />
-back を指定すると裏ページのレイヤが対象になります。<br />
+fore を指定すると裏ページから表ページへ状態がコピーされます。<br />
+back を指定すると表ページから裏ページへ状態がコピーされます。<br />
 省略するとforeが指定されたものとみなします。<br />
 </tbody></table><div class="tagremarks">裏ページから表ページへ画像をコピーします。<br />
 </div>
@@ -569,6 +572,7 @@ back を指定すると裏ページのレイヤが対象になります。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_cg_key" id="load_cg_key">key</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">画像ファイルのキー値</td><td class="tagattribdesc">画像ファイルのキー値を指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_cg_asd_storage" id="load_cg_asd_storage">asd_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">asd ファイル名を指定</td><td class="tagattribdesc">asd ファイル名を指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_cg_mode" id="load_cg_mode">mode</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">mode を指定</td><td class="tagattribdesc">mode を指定する。<br />
+load_partial_imageのmodeの説明を参照してください。<br />
 <tr><td class="tagattribalias">flipud</td><td class="tagattribname"><a class="targanchor" name="load_cg_flip_ud" id="load_cg_flip_ud">flip_ud</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">上下反転</td><td class="tagattribdesc">画像の上下を反転するかどうかを指定する。<br />
 <tr><td class="tagattribalias">fliplr</td><td class="tagattribname"><a class="targanchor" name="load_cg_flip_lr" id="load_cg_flip_lr">flip_lr</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">左右反転</td><td class="tagattribdesc">画像の左右を反転するかどうかを指定する。<br />
 <tr><td class="tagattribalias">clipleft</td><td class="tagattribname"><a class="targanchor" name="load_cg_clip_left" id="load_cg_clip_left">clip_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">画像表示位置</td><td class="tagattribdesc">画像の左表示位置を指定する。<br />
