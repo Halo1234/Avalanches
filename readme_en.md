@@ -12,7 +12,7 @@ It includes practical tools such as an SLG editor, a scenario converter, and too
 
 ## Table of Contents
 * [Introduction](#Introduction)
-* [System Requirements](#System Requirements)
+* [System Requirements](#System. Requirements)
 * [Directory Structure](#Directory Structure)
 * [Recommended Software](#Recommended Software)
 * [License](#License)
@@ -43,7 +43,7 @@ Utilizing the tools within `/tools/` enables efficient game data creation and co
 
 ### List of Included Tools
 * **`game_editor`**: SLG editor (item/character editing)
-* **`convgs`**: Scenario text ¨ Script conversion
+* **`convgs`**: Scenario text -> Script conversion
 * **`make`**: Master data creation
 * **`make_roman_table`**: Creates romaji conversion tables for typing games
 * **`make_word`**: Creates word data for typing games
