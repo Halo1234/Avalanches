@@ -62,6 +62,18 @@ exit : ゲーム終了<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="title_screen_id_target" id="title_screen_id_target">&lt;id&gt;_target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">ボタンを選択した時にジャンプするラベル名を指定します。<br />
 この項目はidがstartとexitの時のみ有効です。
 </tbody></table><div class="tagremarks">タイトル画面の項目を設定します。<br />
+<div class="tagexample"><code class="bq"><span class="weak">例:</span><br />
+*label|<br />
+@title_option click_sound=se001.ogg enter_sound=se002.ogg<br />
+@title_screen start_caption=スタート start_left=370 start_top=400 start_width=60 start_height=20 start_target=*start<br />
+@title_screen load_caption=ロード load_left=370 load_top=430 load_width=60 load_height=20<br />
+@title_screen cgmemory_caption=CG/回想 cgmemory_left=370 cgmemory_top=460 cgmemory_width=60 cgmemory_height=20<br />
+@title_screen system_caption=システム system_left=370 system_top=490 system_width=60 system_height=20<br />
+@title_screen exit_caption=終了 exit_left=370 exit_top=520 exit_width=60 exit_height=20 exit_target=*exit<br />
+<br />
+@title_screen show<br />
+@s<br />
+</code></div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
 
 	<script type="text/javascript" charset="Shift_JIS" src="documentid.js" ></script>
