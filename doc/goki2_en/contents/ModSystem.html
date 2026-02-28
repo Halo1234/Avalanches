@@ -169,6 +169,17 @@ message_sample : Sample message. <br />
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="system_id_sample_color" id="system_id_sample_color">&lt;id_sample&gt;_color</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">Specifies the background color of the message sample. <br />
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="system_id_sample_opacity" id="system_id_sample_opacity">&lt;id_sample&gt;_opacity</a ></td><td class="tagattribrequired">no</td><td class="tagattribformat">0 to 255</td><td class="tagattribdesc">Specifies the opacity of the message sample . <br />
 </tbody></table><div class="tagremarks">Set the items on the system screen. <br />
+<div class="tagexample"><code class="bq"><span class="weak">Example:</span><br />
+@system_option page_left=0 page_top=30 page_width=800 page_height=570 click_sound=se001.ogg enter_sound=se002.ogg<br />
+@system page=0 page_tab_caption=System page_tab_left=0 page_tab_top=0<br />
+@system page=0 skip_key_left=10 skip_key_top=10 skip_key_caption="Skip Key" skip_key_conf_left=130 skip_key_conf_top=10 skip_key_conf_width=60 skip_key_conf_height=20 skip_key_conf_color=0xFF0000<br />
+@system page=0 not_read_skip_key_left=10 not_read_skip_key_top=40 not_read_skip_key_caption="Unread Skip Key" not_read_skip_key_conf_left=130 not_read_skip_key_conf_top=40 not_read_skip_key_conf_width=60 not_read_skip_key_conf_height=20 not_read_skip_key_conf_color=0xFF0000<br />
+@system page=0 auto_mode_key_left=10 auto_mode_key_top=70 auto_mode_key_caption="Auto Mode Key" auto_mode_key_conf_left=130 auto_mode_key_conf_top=70 auto_mode_key_conf_width=60 auto_mode_key_conf_height=20 auto_mode_key_conf_color=0xFF0000<br />
+@system page=0 enter_key_left=10 enter_key_top=110 enter_key_caption="Confirm Key" enter_key_conf_left=130 enter_key_conf_top=110 enter_key_conf_width=60 enter_key_conf_height=20 enter_key_conf_color=0xFF0000<br />
+@system page=0 cancel_key_left=10 cancel_key_top=150 cancel_key_caption="Cancel Key" cancel_key_conf_left=130 cancel_key_conf_top=150 cancel_key_conf_width=60 cancel_key_conf_height=20 cancel_key_conf_color=0xFF0000<br />
+@system page=0 enter_button_left=10 enter_button_top=190 enter_button_caption="Confirm Button (PAD)" enter_button_conf_left=130 enter_button_conf_top=190 enter_button_conf_width=60 enter_button_conf_height=20 enter_button_conf_color=0xFF0000<br />
+@system page=0 cancel_button_left=10 cancel_button_top=230 cancel_button_caption="Cancel Button (PAD)" cancel_button_conf_left=130 cancel_button_conf_top=230 cancel_button_conf_width=60 cancel_button_conf_height=20 cancel_button_conf_color=0xFF0000<br />
+</code></div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="load_system_config" id="load_system_config" class="targanchor"><span class="b">load_system_config</span>(No alias)</a></h1>

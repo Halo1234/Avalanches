@@ -170,6 +170,17 @@ message_sample : サンプルメッセージ。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="system_id_sample_color" id="system_id_sample_color">&lt;id_sample&gt;_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">メッセージサンプルの背景色を指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="system_id_sample_opacity" id="system_id_sample_opacity">&lt;id_sample&gt;_opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0～255</td><td class="tagattribdesc">メッセージサンプルの不透明度を指定します。<br />
 </tbody></table><div class="tagremarks">システム画面の項目を設定します。<br />
+<div class="tagexample"><code class="bq"><span class="weak">例:</span><br />
+@system_option page_left=0 page_top=30 page_width=800 page_height=570 click_sound=se001.ogg enter_sound=se002.ogg<br />
+@system page=0 page_tab_caption=システム page_tab_left=0 page_tab_top=0<br />
+@system page=0 skip_key_left=10 skip_key_top=10 skip_key_caption="スキップキー" skip_key_conf_left=130 skip_key_conf_top=10 skip_key_conf_width=60 skip_key_conf_height=20 skip_key_conf_color=0xFF0000<br />
+@system page=0 not_read_skip_key_left=10 not_read_skip_key_top=40 not_read_skip_key_caption="既読スキップキー" not_read_skip_key_conf_left=130 not_read_skip_key_conf_top=40 not_read_skip_key_conf_width=60 not_read_skip_key_conf_height=20 not_read_skip_key_conf_color=0xFF0000<br />
+@system page=0 auto_mode_key_left=10 auto_mode_key_top=70 auto_mode_key_caption="オートモードキー" auto_mode_key_conf_left=130 auto_mode_key_conf_top=70 auto_mode_key_conf_width=60 auto_mode_key_conf_height=20 auto_mode_key_conf_color=0xFF0000<br />
+@system page=0 enter_key_left=10 enter_key_top=110 enter_key_caption="決定キー" enter_key_conf_left=130 enter_key_conf_top=110 enter_key_conf_width=60 enter_key_conf_height=20 enter_key_conf_color=0xFF0000<br />
+@system page=0 cancel_key_left=10 cancel_key_top=150 cancel_key_caption="キャンセルキー" cancel_key_conf_left=130 cancel_key_conf_top=150 cancel_key_conf_width=60 cancel_key_conf_height=20 cancel_key_conf_color=0xFF0000<br />
+@system page=0 enter_button_left=10 enter_button_top=190 enter_button_caption="決定キー（PAD）" enter_button_conf_left=130 enter_button_conf_top=190 enter_button_conf_width=60 enter_button_conf_height=20 enter_button_conf_color=0xFF0000<br />
+@system page=0 cancel_button_left=10 cancel_button_top=230 cancel_button_caption="キャンセルキー（PAD）" cancel_button_conf_left=130 cancel_button_conf_top=230 cancel_button_conf_width=60 cancel_button_conf_height=20 cancel_button_conf_color=0xFF0000<br />
+</code></div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
 
 <h1><a name="load_system_config" id="load_system_config" class="targanchor"><span class="b">load_system_config</span>(別名なし)</a></h1>
