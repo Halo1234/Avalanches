@@ -376,9 +376,7 @@ back を指定すると裏ページのレイヤが対象になります。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="move_spline" id="move_spline">spline</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">true を指定すると、path 属性で指定した位置をＢスプラインで 曲線補間した線上をレイヤが移動するようになります。<br />
 false を指定すると、path 属性で指定した位置を直線補間した線上を レイヤが移動します。<br />
 true を指定した場合は path には最低 2 点を指定してください。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="move_time" id="move_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">レイヤが path を指定した点から点を移動するのに必要な時間を指定します。<br />
-そのため、移動には、通過する点間の区間の数×この属性の値の時間がかかります。<br />
-ただし、accel 属性に 0 以外を指定した場合は 一点を通過する時間は 変化します ( 移動全体に要する時間は 通過する区間の数×この属性の値です )。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="move_time" id="move_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">レイヤが path を指定した始点から終点を移動するのに必要な時間を指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="move_delay" id="move_delay">delay</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">レイヤの自動移動が開始されるまでの時間を ms で指定します。<br />
 省略すると 0 であるとみなされます。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="move_path" id="move_path">path</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">"(x1,y1,opacity1) (x2,y2,opacity2) ..."</td><td class="tagattribdesc">移動位置を指定します。<br />
@@ -421,9 +419,7 @@ false を指定すると何もしません。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_looping" id="layer_move_looping">looping</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true 又は false</td><td class="tagattribdesc">ループするかどうかを指定します。<br />
 true を指定するとループします。<br />
 false を指定すると何もしません。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_time" id="layer_move_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">レイヤが path を指定した点から点を移動するのに必要な時間を指定します。<br />
-そのため、移動には、通過する点間の区間の数×この属性の値の時間がかかります。<br />
-ただし、accel 属性に 0 以外を指定した場合は 一点を通過する時間は 変化します ( 移動全体に要する時間は 通過する区間の数×この属性の値です )。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_time" id="layer_move_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">レイヤが path を指定した始点から終点を移動するのに必要な時間を指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_delay" id="layer_move_delay">delay</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">レイヤの自動移動が開始されるまでの時間を ms で指定します。<br />
 省略すると 0 であるとみなされます。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="layer_move_accel" id="layer_move_accel">accel</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">-1 未満の数または 0(デフォルト) または 1 より大きい数</td><td class="tagattribdesc">加速度的な動きを行わせるかどうかを指定します。<br />
