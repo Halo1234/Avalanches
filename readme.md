@@ -79,4 +79,4 @@ Avalanchesにはサポートする各ゲームのフレームワークとしてGOKI2が含まれます。
 ## 連絡先
 * **Email:** [halosuke@gmail.com](mailto:halosuke@gmail.com)
 * **Blog:** [http://halo.doorblog.jp/](http://halo.doorblog.jp/)
-* **GitHub:** [Issues](https://github.com/Halo1234/Avalanches/issues) まで
+* **GitHub:** 不具合報告などは[Issues](https://github.com/Halo1234/Avalanches/issues) まで

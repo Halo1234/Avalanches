@@ -79,4 +79,4 @@ Licensing terms follow the **Kirikiri 2** license.
 ## Contact
 * **Email:** [halosuke@gmail.com](mailto:halosuke@gmail.com)
 * **Blog:** [http://halo.doorblog.jp/](http://halo.doorblog.jp/)
-* **GitHub:** [Issues](https://github.com/Halo1234/Avalanches/issues)
+* **GitHub:** For bug reports and such, please go to [Issues](https://github.com/Halo1234/Avalanches/issues)
