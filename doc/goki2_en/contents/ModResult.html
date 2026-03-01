@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="shift_jis"?>
+<!doctype html public "-//w3c//dtd xhtml 1.0 transitional//en"
+  "http://www.w3.org/tr/xhtml1/dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=shift_jis" />
+  <title>modresult Tags</title>
+  <meta name="author" content="halo" />
+  <meta http-equiv="content-style-type" content="text/css" />
+  <meta http-equiv="content-script-type" content="text/javascript" />
+  <link href="browser.css" type="text/css" rel="stylesheet" title="Standard Style for Kirikiri Reference" />
+  <link href="mailto:halosuke@gmail.com" rev="made" />
+  <link href="index.html" target="_top" rel="start" title="Top Page" />
+</head>
+<body>
+
+<h1><a name="tags" id="tags">modresult Tags</a></h1>
+<div class="para"><div>
+    This is the reference for tags available in modresult.<br />
+    To load and display backgrounds or decorations, please use modimage.<br />
+    This module is specifically for displaying scores.<br />
+</div></div>
+
+<h1><a name="genre" id="genre" class="targanchor">Category / Tag List</a></h1>
+<div class="para"><div><br />
+<table class="taglist"><tbody>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#result_score_layers">result_score_layers</a></span></td><td class="taglisteven">Specify the number of layers for displaying the score</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#result">result</a></span></td><td class="taglistodd">Settings for the result screen</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#wait_show_result">wait_show_result</a></span></td><td class="taglisteven">Wait for the score layer to be displayed</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#wait_hide_result">wait_hide_result</a></span></td><td class="taglistodd">Wait for the score layer to be hidden</td></tr>
+</tbody></table><br /><br /></div></div>
+
+<h1><a name="result_score_layers" id="result_score_layers" class="targanchor"><span class="b">result_score_layers</span> (No alias)</a></h1>
+<div class="taggenre">Sets the number of layers for score display</div>
+<div class="para"><div>
+<table class="tagparams" frame="box" rules="all" summary="List of attributes for tag result_score_layers">
+  <thead>
+    <tr><th>Alias</th><th>Attribute</th><th>Required?</th><th>Value</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="result_score_layers_count" id="result_score_layers_count">count</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer (1 or more)</td><td class="tagattribdesc">Specifies the number of layers for score display.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="result_score_layers_base" id="result_score_layers_base">base</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer (0 or more)</td><td class="tagattribdesc">The base "absolute" value for the score display layers.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="result_score_layers_step" id="result_score_layers_step">step</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer (1 or more)</td><td class="tagattribdesc">Specifies the step value for score display layers.<br />
+The value specified here will be added to the "absolute" value sequentially.<br />
+</td></tr>
+  </tbody>
+</table>
+<div class="tagremarks">
+Defines the number of layers for score display.<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Back to Category / Tag List</span></a></div>
+</div>
+</div></div>
+
+<h1><a name="result" id="result" class="targanchor"><span class="b">result</span> (No alias)</a></h1>
+<div class="taggenre">Configure score display layer settings</div>
+<div class="para"><div>
+<table class="tagparams" frame="box" rules="all" summary="List of attributes for tag result">
+  <thead>
+    <tr><th>Alias</th><th>Attribute</th><th>Required?</th><th>Value</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="result_layer" id="result_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Score layer name</td><td class="tagattribdesc">Specifies the name of the score layer.<br />
+Value ranges from 0 to n (where n is the number of layers specified in result_score_layers - 1).<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="result_center_x" id="result_center_x">center_x</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel units</td><td class="tagattribdesc">Specifies the horizontal center position of the score display layer.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="result_center_y" id="result_center_y">center_y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel units</td><td class="tagattribdesc">Specifies the vertical center position of the score display layer.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="result_left" id="result_left">left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel units</td><td class="tagattribdesc">Specifies the X-coordinate (top-left) of the score display layer.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="result_top" id="result_top">top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel units</td><td class="tagattribdesc">Specifies the Y-coordinate (top-left) of the score display layer.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="result_right" id="result_right">right</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel units</td><td class="tagattribdesc">Specifies the X-coordinate (bottom-right) of the score display layer.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="result_bottom" id="result_bottom">bottom</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel units</td><td class="tagattribdesc">Specifies the Y-coordinate (bottom-right) of the score display layer.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="result_width" id="result_width">width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel units</td><td class="tagattribdesc">Specifies the width of the score display layer.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="result_height" id="result_height">height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel units</td><td class="tagattribdesc">Specifies the height of the score display layer.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="result_color" id="result_color">color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xrrggbb</td><td class="tagattribdesc">Specifies the background color of the score display layer.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="result_opacity" id="result_opacity">opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0-255</td><td class="tagattribdesc">Specifies the opacity of the score display layer.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="result_caption_align" id="result_caption_align">caption_align</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel / String</td><td class="tagattribdesc">"left": Left-aligned.<br />
+"right": Right-aligned.<br />
+"center": Centered.<br />
+Numerical values will specify an offset.<br />
+</td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="result_caption_color" id="result_caption_color">caption_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xrrggbb</td><td class="tagattribdesc">Specifies the text color of the score value.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="result_shadow_color" id="result_shadow_color">shadow_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xrrggbb</td><td class="tagattribdesc">Specifies the shadow color of the score value.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="result_edge_color" id="result_edge_color">edge_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xrrggbb</td><td class="tagattribdesc">Specifies the edge color of the score value.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="result_font_face" id="result_font_face">font_face</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Font name</td><td class="tagattribdesc">Specifies the font name for score display.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="result_font_size" id="result_font_size">font_size</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel units</td><td class="tagattribdesc">Specifies the font size for score display.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="result_score" id="result_score">score</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Score value</td><td class="tagattribdesc">Specifies the score value to be displayed.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="result_time" id="result_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ms</td><td class="tagattribdesc">Specifies the duration of the score display effect in milliseconds.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="result_completed_storage" id="result_completed_storage">completed_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the scenario file to execute after the score display and hiding process is complete.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="result_completed_target" id="result_completed_target">completed_target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Label name</td><td class="tagattribdesc">Specifies the label to jump to after the score display and hiding process is complete.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="result_show" id="result_show">show</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If set to true, starts displaying the score.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="result_hide" id="result_hide">hide</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If set to true, starts hiding the score display.<br /></td></tr>
+  </tbody>
+</table>
+<div class="tagremarks">
+Configures the score layer.<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Back to Category / Tag List</span></a></div>
+</div>
+</div></div>
+
+<h1><a name="wait_show_result" id="wait_show_result" class="targanchor"><span class="b">wait_show_result</span> (No alias)</a></h1>
+<div class="taggenre">Wait for Display</div>
+<div class="para"><div>
+<div class="tagremarks">
+Waits for the score layer's display effect to complete.<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Back to Category / Tag List</span></a></div>
+</div>
+</div></div>
+
+<h1><a name="wait_hide_result" id="wait_hide_result" class="targanchor"><span class="b">wait_hide_result</span> (No alias)</a></h1>
+<div class="taggenre">Wait for Hide</div>
+<div class="para"><div>
+<div class="tagremarks">
+Waits for the score layer's hiding effect to complete.<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Back to Category / Tag List</span></a></div>
+</div>
+</div></div>
+</body>
+</html>
