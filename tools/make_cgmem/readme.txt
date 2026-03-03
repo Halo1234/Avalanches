@@ -19,8 +19,12 @@
  @load_cgmemory storage=ファイル名.dic
  として読み込みます。
 
+ 詳しい使い方はヘルプを参照してください。
 
---- 情報
+ $ruby make.rb -h
+
+
+--- 依存関係
 
  RubyGem inifile >= 2.0.2
 

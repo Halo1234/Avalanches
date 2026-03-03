@@ -4,7 +4,14 @@
   Just run ***.bat for each language.
 
 
---- Information for administrators
+--- others
+
+  Please refer to the help for detailed usage information.
+
+  $ruby make.rb -h -english
+
+
+--- Dependencies
 
   RubyGem inifile >= 2.0.2
 

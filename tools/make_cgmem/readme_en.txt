@@ -18,8 +18,12 @@
   @load_cgmemory storage=filename.dic
   Load it as .
 
+  Please refer to the help for detailed usage information.
 
---- information
+  $ruby make.rb -h -english
+
+
+--- Dependencies
 
   RubyGem inifile >= 2.0.2
 
