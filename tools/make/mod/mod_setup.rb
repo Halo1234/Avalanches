@@ -316,7 +316,7 @@ private
 		File.open("#{work_dir_path}/install_shortcutitems", "w") { |file|
 			list.each { |fn|
 				case File.extname(fn).downcase
-				when ".exe"
+				when ".exe", ".bat"
 					if File.basename(fn, ".*") != "krkr"
 						fn.gsub!('/', '\\')
 						lnk = "#{File.basename(fn, ".*")}.lnk"
