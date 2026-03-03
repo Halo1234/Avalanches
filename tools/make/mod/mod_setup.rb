@@ -231,7 +231,11 @@ private
 			file << "\n"
 			file << "!define SETUP_TITLE\t\"#{setup_title(type)}\"\n".encode("UTF-8")
 			file << "\n"
-			file << "!include \"${MODNSIS_DIR}\\mod_nsis.nsh\"\n".encode("UTF-8")
+			if(type == "master")
+				file << "!include \"${MODNSIS_DIR}\\mod_nsis.nsh\"\n".encode("UTF-8")
+			else
+				file << "!include \"${MODNSIS_DIR}\\mod_nsis_update.nsh\"\n".encode("UTF-8")
+			end
 			file << "\n"
 			file << "OutFile \"${ROOT_DIR}\\dist\\${TARGET_NAME}\\\\#{File.basename(@archiver.work_dir)}\\GameInstaller.exe\"\n".encode("UTF-8")
 			file << "\n"
