@@ -11,6 +11,6 @@
   Installation Instructions:
   Press the Windows key + R, type cmd, and press Enter.
   In the command prompt, enter the following (do not include $) and press Enter.
-  $ruby make.rb -h -english
+  $gem install inifile
 
 

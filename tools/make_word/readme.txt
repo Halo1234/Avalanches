@@ -26,6 +26,6 @@
  インストール方法：
   Windowsキー+Rを押してcmdを入力してエンター
   コマンドプロンプトに以下を入力（$は含めない）してエンター
- $ruby make.rb -h
+  $gem install inifile
 
 
