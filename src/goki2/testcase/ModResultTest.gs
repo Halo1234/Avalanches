@@ -1,7 +1,7 @@
 
 
 *label|
-@image layer=0 center_x=400 center_y=300 page=fore storage=result_sample visible
+@image layer=0 page=fore storage=result_sample visible
 
 *label|
 @result_score_layers count=1
