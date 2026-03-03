@@ -350,7 +350,7 @@ public
 						file << token
 						line_number += 1
 					when :token_comment
-						file << ";#{token}"
+						file << "#{token}"
 					when :token_character_name
 						if(bracket_opened)
 							raise RuntimeError.new("Š‡ŒÊ‚ª•Â‚¶‚ç‚ê‚Ä‚¢‚È‚¢‘äŽŒ‚ª‚ ‚è‚Ü‚·B")
