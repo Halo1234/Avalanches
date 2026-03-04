@@ -1,5 +1,7 @@
 # Avalanches
 
+[English readme is here](./readme.en.md)
+
 ![GitHub total downloads](https://img.shields.io/github/downloads/Halo1234/Avalanches/total?style=flat-square&color=brightgreen)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/Halo1234/Avalanches?style=flat-square)
 
