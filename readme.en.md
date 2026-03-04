@@ -1,5 +1,5 @@
 # Avalanches
-[“ú–{Œê‚Ìreadme‚Í‚±‚¿‚ç](./readme.md)
+[æ—¥æœ¬èªã®readmeã¯ã“ã¡ã‚‰](./readme.md)
 
 ![GitHub total downloads](https://img.shields.io/github/downloads/Halo1234/Avalanches/total?style=flat-square&color=brightgreen)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/Halo1234/Avalanches?style=flat-square)
@@ -23,7 +23,7 @@ It includes practical tools such as an SLG editor, a scenario converter, and too
 
 ## Introduction
 This development environment is built using multiple software components.
-Utilizing the tools within `/tools/` enables efficient game data creation and conversion tasks. While the gRecommended Softwareh is not mandatory, installing it is recommended to utilize the full functionality.
+Utilizing the tools within `/tools/` enables efficient game data creation and conversion tasks. While the â€œRecommended Softwareâ€ is not mandatory, installing it is recommended to utilize the full functionality.
 
 ---
 
