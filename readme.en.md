@@ -39,7 +39,7 @@ Utilizing the tools within `/tools/` enables efficient game data creation and co
 | `/doc/` | Manuals and documentation |
 | `/dist/` | Output directory for generated master data |
 | `/src/` | Complete source code set |
-| `/src/goki2/` | GOKI2 (based on Kirikiri2) test and runtime environment. Launch tests with `run.bat`. |
+| `/src/goki2/` | GOKI2 (based on Kirikiri2) test and runtime environment. Launch tests with `run_en.bat`. |
 | `/tools/` | **Various tools (details below)** |
 
 ### List of Included Tools
