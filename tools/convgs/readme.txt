@@ -30,7 +30,7 @@
 
  詳しい使い方はヘルプを参照してください。
 
- $ruby convks.rb -h
+ $ruby convgs.rb -h
 
 
 --- 依存関係
