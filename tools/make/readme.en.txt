@@ -17,7 +17,9 @@
 
 --- others
 
-  See /src/data/products/readme.txt for names that can be specified for targets.
+  If your project source is located in /src/MyGame, the target should be set to "MyGame".
+  Additionally, please place any binaries to be installed in the /src/data/products/MyGame/ directory.
+  For more information regarding installation binaries, please refer to /src/data/products/readme.txt.
 
   You can also create an update program for the final binary.
   The contents of this update program are managed by sequential numbers starting from 1.
