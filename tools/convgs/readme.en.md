@@ -1,3 +1,5 @@
+[日本語のreadmeはこちら](./readme.md)
+
 ## What is this?
 This is a program for converting scenario text into script files.
 If you create the scenario in a predetermined format beforehand,
