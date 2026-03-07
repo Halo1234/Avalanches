@@ -33,7 +33,7 @@
 
  詳しい使い方はヘルプを参照してください。  
 
- $ruby convgs.rb -h  
+ `ruby convgs.rb -h`  
 
 
 ## 依存関係
@@ -41,7 +41,8 @@
 
  インストール方法：  
   Windowsキー+Rを押してcmdを入力してエンター  
-  コマンドプロンプトに以下を入力（$は含めない）してエンター  
-  $gem install inifile  
+  コマンドプロンプトに以下を入力してエンター  
+
+  `gem install inifile`  
 
 

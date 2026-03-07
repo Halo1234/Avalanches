@@ -29,14 +29,15 @@ Even so, if you are using SVN/GIT, you can revert, but it is not highly recommen
 
 Please refer to the help for detailed usage.
 
-$ruby convgs.rb -h
+`ruby convgs.rb -h`
 
 ## Dependencies
 RubyGem inifile >= 2.0.2
 
 Installation method:
 Press Windows Key + R, type cmd, and press Enter.
-In the command prompt, type the following (do not include $) and press Enter:
-$gem install inifile
+In the command prompt, type the following and press Enter:
+
+`gem install inifile`
 
 
