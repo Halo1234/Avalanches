@@ -18,11 +18,11 @@
 
  あなたのプロジェクトのソースが/src/MyGameにある場合、ターゲットは"MyGame"となります。  
 
-![ターゲット](../../doc/make_target_folder.png)  
+![ターゲット](../../doc/images/make_target_folder.png)  
 
  またインストールするバイナリなどを配置するフォルダは /src/data/products/MyGame/ 以下に配置してください。  
 
-![ターゲット](../../doc/make_resouce.png)  
+![ターゲット](../../doc/images/make_resouce.png)  
 
  インストールするバイナリなどについて、詳しくは /src/data/products/readme.txt を参照してください。  
 

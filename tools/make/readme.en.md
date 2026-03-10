@@ -16,11 +16,11 @@ Eventually, the final binary (master data, etc.) is output to /dist/MyGame/.
 
 If the source of your project is in /src/MyGame, the target will be "MyGame".  
 
-![Target](../../doc/make_target_folder.png)  
+![Target](../../doc/images/make_target_folder.png)  
 
 Also, the folder where you want to install binaries and other things should be located under /src/data/products/MyGame/.  
 
-![Target](../../doc/make_resouce.png)  
+![Target](../../doc/images/make_resouce.png)  
 
 For more information about which binaries to install, see /src/data/products/readme.txt.  
 
