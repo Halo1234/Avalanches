@@ -1,0 +1,22 @@
+/*
+*/
+
+/**/
+class ModRoguelike extends GModule
+{
+	/**/
+	function ModRoguelike(container, name)
+	{
+		super.GModule(container, name);
+	}
+
+	/**/
+	function createExtensionTagHandlers()
+	{
+		return %[
+
+		];
+	}
+}
+
+
