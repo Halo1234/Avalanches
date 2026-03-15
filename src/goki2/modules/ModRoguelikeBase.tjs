@@ -1,0 +1,82 @@
+/*
+*/
+
+/**/
+class RoguelikeBaseLayer extends GFormLayer
+{
+	var gridWidth_ = 64;
+	var gridHeight_ = 64;
+
+	var map_;						// マップ内容
+	var rooms_ = [];				// 現在配置されている部屋の情報
+
+	var roomDefinitions_ = [];		// 読み込まれている部屋の定義
+
+	/**/
+	function RoguelikeBaseLayer(window, parent, handler)
+	{
+		super.GFormLayer(window, parent, handler);
+
+		setMapSize(10, 10);
+	}
+
+	/*
+	* グリッドのサイズを指定します。
+	* ピクセル単位です。
+	*/
+	function setGridSize(width, height)
+	{
+		gridWidth_ = width;
+		gridHeight_ = height;
+	}
+
+	/*
+	* マップサイズを指定します。
+	* グリッド単位です。
+	*/
+	function setMapSize(width, height)
+	{
+		var map = [];
+
+		for(var y = 0; y < height; y++)
+		{
+			if(map[y] === void)
+			{
+				map[y] = [];
+			}
+
+			for(var x = 0; x < width; x++)
+			{
+				map[y][x] = 0;
+			}
+		}
+
+		map_.assign(map);
+	}
+
+	/**/
+	property gridWidth
+	{
+		getter		{ return gridWidth_; }
+	}
+
+	/**/
+	property gridHeight
+	{
+		getter		{ return gridHeight_; }
+	}
+
+	/**/
+	property mapWidth
+	{
+		getter		{ return map_[0].count; }
+	}
+
+	/**/
+	property mapHeight
+	{
+		getter		{ return map_.count; }
+	}
+}
+
+

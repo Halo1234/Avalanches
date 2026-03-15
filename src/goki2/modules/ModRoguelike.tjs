@@ -1,13 +1,32 @@
 /*
 */
 
+loadTJSScript("ModRoguelikeBase.tjs");
+
 /**/
 class ModRoguelike extends GModule
 {
+	var baseLayer_;
+
 	/**/
 	function ModRoguelike(container, name)
 	{
 		super.GModule(container, name);
+
+		 baseLayer_ = createBaseLayer(window, window.primaryLayer, onBaseEvent);
+	}
+
+	/**/
+	function createBaseLayer(window, parent, handler)
+	{
+		var obj = new ModRoguelikeBaseLayer(window, parent, handler);
+
+		obj.setSize(window.scWidth, window.scHeight);
+		obj.absolute = 1030000;
+		obj.hitThreshold = 256;
+		obj.visible = false;
+
+		return obj;
 	}
 
 	/**/
@@ -15,7 +34,33 @@ class ModRoguelike extends GModule
 	{
 		return %[
 
+			/* @roguelike_option */
+			'roguelike_option' => function (elm) {
+				with(baseLayer)
+				{
+					if(elm.gird_width !== void && elm.grid_height !== void)
+					{
+						.setGridSize(+elm.gird_width, +elm.grid_height);
+					}
+					if(elm.map_width !== void && elm.map_height !== void)
+					{
+						.setMapSize(+elm.map_width, +elm.map_height);
+					}
+				}
+			} incontextof this,
+
 		];
+	}
+
+	/**/
+	function onBaseEvent(obj, message, elm)
+	{
+	}
+
+	/**/
+	property baseLayer
+	{
+		getter		{ return baseLayer_; }
 	}
 }
 
