@@ -1,6 +1,8 @@
 
 
 *label|
+@roguelike_option debug
+
 @roguelike_option grid_width=64 grid_height=64
 @roguelike_option map_width=50 map_height=50
 
