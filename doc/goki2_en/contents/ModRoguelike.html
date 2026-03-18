@@ -48,6 +48,8 @@ Default is 10.<br />
 </td></tr>
     <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_map_height" id="roguelike_option_map_height">map_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">units (grid)</td><td class="tagattribdesc">Specifies the map size in grid units.<br />
 Default is 10.<br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_initial_room_index" id="roguelike_option_initial_room_index">initial_room_index</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Index starting from 0</td><td class="tagattribdesc">Specifies the index of the initial room.<br />
+The initial room corresponding to the specified index will be displayed as the starting room.<br />
 </td></tr>
   </tbody>
 </table>
@@ -119,6 +121,8 @@ Loads map chip (tile) data into the game.<br />
   </thead>
   <tbody>
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_room_storage" id="roguelike_load_room_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">File name</td><td class="tagattribdesc">Specifies the file name for room definitions.<br /></td></tr>
+<tr><tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_room_initial_room_index" id="roguelike_load_room_initial_room_index">initial_room_index</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Index starting from 0</td><td class="tagattribdesc">Specify the index here if the room definition to be loaded is the initial room.<br />
+This index is the value of the initial room index used in the roguelike_option tag.<br />
   </tbody>
 </table>
 <div class="tagremarks">
