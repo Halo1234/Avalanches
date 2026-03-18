@@ -37,20 +37,11 @@
     <tr><th>Alias</th><th>Attribute</th><th>Required?</th><th>Value</th><th>Description</th></tr>
   </thead>
   <tbody>
-    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_grid_width" id="roguelike_option_grid_width">grid_width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixels</td><td class="tagattribdesc">Specifies the grid size in pixels.<br />
-Default is 64.<br />
-</td></tr>
-    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_grid_height" id="roguelike_option_grid_height">grid_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixels</td><td class="tagattribdesc">Specifies the grid size in pixels.<br />
-Default is 64.<br />
-</td></tr>
-    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_map_width" id="roguelike_option_map_width">map_width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">units (grid)</td><td class="tagattribdesc">Specifies the map size in grid units.<br />
-Default is 10.<br />
-</td></tr>
-    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_map_height" id="roguelike_option_map_height">map_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">units (grid)</td><td class="tagattribdesc">Specifies the map size in grid units.<br />
-Default is 10.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_initial_room_index" id="roguelike_option_initial_room_index">initial_room_index</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Index starting from 0</td><td class="tagattribdesc">Specifies the index of the initial room.<br />
-The initial room corresponding to the specified index will be displayed as the starting room.<br />
-</td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_grid_width" id="roguelike_option_grid_width">grid_width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixels</td><td class="tagattribdesc">Specifies the grid size in pixels.<br />Default is 64.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_grid_height" id="roguelike_option_grid_height">grid_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixels</td><td class="tagattribdesc">Specifies the grid size in pixels.<br />Default is 64.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_map_width" id="roguelike_option_map_width">map_width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">units (grid)</td><td class="tagattribdesc">Specifies the map size in grid units.<br />Default is 10.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_map_height" id="roguelike_option_map_height">map_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">units (grid)</td><td class="tagattribdesc">Specifies the map size in grid units.<br />Default is 10.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_initial_room_index" id="roguelike_option_initial_room_index">initial_room_index</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Zero-based index</td><td class="tagattribdesc">Specifies the index of the initial room.<br />The room corresponding to this index will be displayed as the starting room.<br /></td></tr>
   </tbody>
 </table>
 <div class="tagremarks">
@@ -67,8 +58,10 @@ Configures the basic settings for the roguelike game.<br />
     <tr><th>Alias</th><th>Attribute</th><th>Required?</th><th>Value</th><th>Description</th></tr>
   </thead>
   <tbody>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_show_hide_time" id="roguelike_show_hide_time">show_hide_time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">milliseconds</td><td class="tagattribdesc">Specifies the duration of the show/hide effect in milliseconds.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_show_hide_type" id="roguelike_show_hide_type">show_hide_type</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">vista or fade</td><td class="tagattribdesc">Specifies the transition type for the show effect.<br /></td></tr>
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_show" id="roguelike_show">show</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Displays the roguelike game.<br /></td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_start" id="roguelike_start">start</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Starts the roguelike game.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_start" id="roguelike_start">start</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Starts the roguelike game logic.<br /></td></tr>
   </tbody>
 </table>
 <div class="tagremarks">
@@ -87,10 +80,12 @@ Controls the display (show/hide) and state (start/stop) of the roguelike game.<b
   <tbody>
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="rouglelike_load_character_name" id="rouglelike_load_character_name">name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Name</td><td class="tagattribdesc">Specifies the character name.<br /></td></tr>
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="rouglelike_load_character_storage" id="rouglelike_load_character_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">File name</td><td class="tagattribdesc">Specifies the file name of the character data.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="rouglelike_load_character_asd" id="rouglelike_load_character_asd">asd</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">File name</td><td class="tagattribdesc">Specifies the character's animation file (*.asd/*.asdx).<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="rouglelike_load_character_player" id="rouglelike_load_character_player">player</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Set to "true" if the character is controlled by the user.<br /></td></tr>
   </tbody>
 </table>
 <div class="tagremarks">
-Loads character data into the game.<br />
+Loads character data into the game engine.<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Back to Genre / Tag List</span></a></div>
 </div>
 </div></div>
@@ -121,8 +116,7 @@ Loads map chip (tile) data into the game.<br />
   </thead>
   <tbody>
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_room_storage" id="roguelike_load_room_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">File name</td><td class="tagattribdesc">Specifies the file name for room definitions.<br /></td></tr>
-<tr><tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_room_initial_room_index" id="roguelike_load_room_initial_room_index">initial_room_index</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Index starting from 0</td><td class="tagattribdesc">Specify the index here if the room definition to be loaded is the initial room.<br />
-This index is the value of the initial room index used in the roguelike_option tag.<br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_room_initial_room_index" id="roguelike_load_room_initial_room_index">initial_room_index</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Zero-based index</td><td class="tagattribdesc">If the room being loaded is the starting room, specify the index here.<br />This index corresponds to the value used in the "roguelike_option" tag.<br /></td></tr>
   </tbody>
 </table>
 <div class="tagremarks">
