@@ -23,7 +23,10 @@
 <div class="para"><div><br />
 <table class="taglist"><tbody>
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#roguelike_option">roguelike_option</a></span></td><td class="taglisteven">ローグライクゲームの基本設定</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#result">result</a></span></td><td class="taglistodd">リザルト画面の設定</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#roguelike">roguelike</a></span></td><td class="taglistodd">ローグライクゲームの制御</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#rouglelike_load_character">rouglelike_load_character</a></span></td><td class="taglisteven">キャラクターの読み込み</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#roguelike_load_chips">roguelike_load_chips</a></span></td><td class="taglistodd">マップチップ情報の読み込み</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#roguelike_load_room">roguelike_load_room</a></span></td><td class="taglisteven">部屋定義の読み込み</td></tr>
 </tbody></table><br /><br /></div></div>
 
 <h1><a name="roguelike_option" id="roguelike_option" class="targanchor"><span class="b">roguelike_option</span>(別名なし)</a></h1>
@@ -50,78 +53,79 @@
   </tbody>
 </table>
 <div class="tagremarks">
-スコア表示用レイヤの数を指定します。<br />
+ローグライクゲームの基本設定を行います。<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div>
 </div>
 </div></div>
 
-<h1><a name="result" id="result" class="targanchor"><span class="b">result</span>(別名なし)</a></h1>
-<div class="taggenre">スコア表示用レイヤの数を設定</div>
+<h1><a name="roguelike" id="roguelike" class="targanchor"><span class="b">roguelike</span>(別名なし)</a></h1>
+<div class="taggenre">ローグライクゲームの制御を行います。</div>
 <div class="para"><div>
-<table class="tagparams" frame="box" rules="all" summary="タグ result の属性の一覧">
+<table class="tagparams" frame="box" rules="all" summary="タグ roguelike の属性の一覧">
   <thead>
     <tr><th>別名</th><th>属性</th><th>必須?</th><th>値</th><th>説明</th></tr>
   </thead>
   <tbody>
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="result_layer" id="result_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">スコアレイヤの名前</td><td class="tagattribdesc">スコアレイヤの名前を指定します。<br />
-0 ～ N のいずれかになります。(N は result_score_layers で指定したスコアレイヤの枚数 - 1)<br /></td></tr>
-    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="result_center_x" id="result_center_x">center_x</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">スコア表示用レイヤ中央位置を指定します。<br /></td></tr>
-    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="result_center_y" id="result_center_y">center_y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">スコア表示用レイヤ中央位置を指定します。<br /></td></tr>
-    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="result_left" id="result_left">left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">スコア表示用レイヤ位置（左上隅）を指定します。<br /></td></tr>
-    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="result_top" id="result_top">top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">スコア表示用レイヤ位置（左上隅）を指定します。<br /></td></tr>
-    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="result_right" id="result_right">right</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">スコア表示用レイヤ位置（右下隅）を指定します。<br /></td></tr>
-    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="result_bottom" id="result_bottom">bottom</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">スコア表示用レイヤ位置（右下隅）を指定します。<br /></td></tr>
-    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="result_width" id="result_width">width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">スコア表示用レイヤのサイズを指定します。<br /></td></tr>
-    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="result_height" id="result_height">height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">スコア表示用レイヤのサイズを指定します。<br /></td></tr>
-    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="result_color" id="result_color">color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">スコア表示用レイヤの背景色を指定します。<br />
-    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="result_opacity" id="result_opacity">opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0-255</td><td class="tagattribdesc">スコア表示用レイヤの不透明度を指定します。<br />
-    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="result_caption_align" id="result_caption_align">caption_align</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">leftを指定すると左寄せになります。<br />
-rightを指定すると右寄せになります。<br />
-centerを指定すると中央になります。<br />
-数値を指定するとオフセット指定となります。<br />
-</td></tr>
-    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="result_caption_color" id="result_caption_color">caption_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">スコア値の文字色を指定します。<br />
-    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="result_shadow_color" id="result_shadow_color">shadow_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">スコア値の影色を指定します。<br />
-    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="result_edge_color" id="result_edge_color">edge_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">スコア値のエッジ色を指定します。<br />
-    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="result_font_face" id="result_font_face">font_face</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">フォント名</td><td class="tagattribdesc">スコア表示に使うフォント名を指定します。<br />
-    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="result_font_size" id="result_font_size">font_size</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">スコア表示に使うフォントのサイズを指定します。<br />
-    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="result_separator" id="result_separator">separator</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定すると、スコア表示に桁区切り記号を表示します。<br />
-    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="result_score" id="result_score">score</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">スコア値</td><td class="tagattribdesc">表示するスコアの値を指定します。<br />
-ここにはエンティティを指定する事を想定しています。<br />
-ModPuzzleのスコア(ユーザー１)：&amp;window.modules.modPuzzle.baseLayer.puzzleUserLayer1.score<br />
-ModPuzzleのスコア(ユーザー２)：&amp;window.modules.modPuzzle.baseLayer.puzzleUserLayer2.score<br />
-ModTypingProcessorのスコア：&amp;window.modules.modTypingProcessor.baseLayer.totalScore<br />
-ModTypingProcessorの誤入力回数：&amp;window.modules.modTypingProcessor.baseLayer.missHit<br />
-ModTypingProcessorの入力文字数：&amp;window.modules.modTypingProcessor.baseLayer.inputCharacterCount<br />
-    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="result_time" id="result_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">スコアの表示エフェクトにかける時間をミリ秒単位で指定します。<br />
-    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="result_completed_storage" id="result_completed_storage">completed_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ストレージ名</td><td class="tagattribdesc">スコア表示が終わって非表示が完了した後で実行するシナリオファイル名を指定します。<br />
-    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="result_completed_target" id="result_completed_target">completed_target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ラベル名</td><td class="tagattribdesc">スコア表示が終わって非表示が完了した後で実行するラベル名を指定します。<br />
-    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="result_show" id="result_show">show</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">指定するとスコア表示を開始します。<br />
-    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="result_hide" id="result_hide">hide</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">指定するとスコア表示を終了します。<br />
-    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="result_show_hide_type" id="result_show_hide_type">show_hide_type</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">vista or fade</td><td class="tagattribdesc">表示効果のタイプを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_show" id="roguelike_show">show</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">ローグライクゲームを表示します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_start" id="roguelike_start">start</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">ローグライクゲームを開始します。<br />
   </tbody>
 </table>
 <div class="tagremarks">
-スコアレイヤの指定をします。<br />
+ローグライクゲームの表示/非表示や開始/停止などの制御を行います。<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div>
 </div>
 </div></div>
 
-<h1><a name="wait_show_result" id="wait_show_result" class="targanchor"><span class="b">wait_show_result</span>(別名なし)</a></h1>
-<div class="taggenre">表示待ち</div>
+<h1><a name="rouglelike_load_character" id="rouglelike_load_character" class="targanchor"><span class="b">rouglelike_load_character</span>(別名なし)</a></h1>
+<div class="taggenre">キャラクターのロード。</div>
 <div class="para"><div>
+<table class="tagparams" frame="box" rules="all" summary="タグ rouglelike_load_character の属性の一覧">
+  <thead>
+    <tr><th>別名</th><th>属性</th><th>必須?</th><th>値</th><th>説明</th></tr>
+  </thead>
+  <tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="rouglelike_load_character_name" id="rouglelike_load_character_name">name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">名前</td><td class="tagattribdesc">キャラクター名を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="rouglelike_load_character_storage" id="rouglelike_load_character_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">キャラクターデータのファイル名を指定します。<br />
+  </tbody>
+</table>
 <div class="tagremarks">
-スコアレイヤの表示効果を待ちます。<br />
+キャラクターデータを読み込みます。<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div>
 </div>
 </div></div>
 
-<h1><a name="wait_hide_result" id="wait_hide_result" class="targanchor"><span class="b">wait_hide_result</span>(別名なし)</a></h1>
-<div class="taggenre">非表示待ち</div>
+<h1><a name="roguelike_load_chips" id="roguelike_load_chips" class="targanchor"><span class="b">roguelike_load_chips</span>(別名なし)</a></h1>
+<div class="taggenre">マップチップデータのロード。</div>
 <div class="para"><div>
+<table class="tagparams" frame="box" rules="all" summary="タグ roguelike_load_chips の属性の一覧">
+  <thead>
+    <tr><th>別名</th><th>属性</th><th>必須?</th><th>値</th><th>説明</th></tr>
+  </thead>
+  <tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="rouglelike_load_chips_storage" id="rouglelike_load_chips_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">マップチップ定義のファイル名を指定します。<br />
+  </tbody>
+</table>
 <div class="tagremarks">
-スコアレイヤの非表示効果を待ちます。<br />
+マップチップデータを読み込みます。<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div>
 </div>
 </div></div>
+
+<h1><a name="roguelike_load_room" id="roguelike_load_room" class="targanchor"><span class="b">roguelike_load_room</span>(別名なし)</a></h1>
+<div class="taggenre">部屋定義のロード。</div>
+<div class="para"><div>
+<table class="tagparams" frame="box" rules="all" summary="タグ roguelike_load_room の属性の一覧">
+  <thead>
+    <tr><th>別名</th><th>属性</th><th>必須?</th><th>値</th><th>説明</th></tr>
+  </thead>
+  <tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_room_storage" id="roguelike_load_room_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">部屋定義のファイル名を指定します。<br />
+  </tbody>
+</table>
+<div class="tagremarks">
+部屋定義を読み込みます。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div>
+</div>
+</div></div>
+
 
