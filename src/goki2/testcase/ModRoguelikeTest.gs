@@ -12,9 +12,9 @@
 @roguelike_load_room storage=initial_room001.map initial_room_index=0
 @roguelike_load_room storage=room001.map
 @roguelike_load_room storage=room002.map
-@roguelike_load_room storage=room003.map
+@roguelike_load_room storage=room003.map initial_room_index=1
 
-@roguelike_option initial_room_index=0
+@roguelike_option initial_room_index=1
 
 @roguelike show
 @roguelike start
