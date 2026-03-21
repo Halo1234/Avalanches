@@ -23,6 +23,7 @@
     <ClCompile Include="..\tp_stub.cpp" />
     <ClCompile Include="BM88Version.cpp" />
     <ClCompile Include="CutMask.cpp" />
+    <ClCompile Include="GetAsyncKeyState.cpp" />
     <ClCompile Include="Mod2DC.cpp" />
     <ClCompile Include="PuzzleAI.cpp" />
     <ClCompile Include="Registory.cpp" />
