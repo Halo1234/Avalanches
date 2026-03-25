@@ -16,6 +16,8 @@
 
 @roguelike_option initial_room_index=0
 
+@roguelike_character name=halo x=1 y=1
+
 @roguelike show
 @roguelike start
 @s

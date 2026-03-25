@@ -16,6 +16,8 @@
 
 @roguelike_option initial_room_index=1
 
+@roguelike_character name=ハロ x=1 y=1
+
 @roguelike show
 @roguelike start
 @s
