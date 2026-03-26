@@ -4,7 +4,7 @@
 @roguelike_option debug
 
 @roguelike_option grid_width=64 grid_height=64
-@roguelike_option map_width=50 map_height=50
+@roguelike_option map_width=100 map_height=100
 
 @rouglelike_load_character name=halo storage=rouglelike_main_character player
 @roguelike_load_chips storage=roguelike_mapchips.chp
