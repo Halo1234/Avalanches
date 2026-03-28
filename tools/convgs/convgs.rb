@@ -254,6 +254,7 @@ converter.verbose = verbose
 # 必要なものはココで全て変換しておく
 cc = conf['SIMPLE_PARSE']
 cc['main_characters'] = cc['main_characters'].split(/,/)
+cc['expand_r_tag'] = (cc['expand_r_tag'] == '0' ? false : true)
 cc['strip_brackets'] = (cc['strip_brackets'] == '0' ? false : true)
 cc['begin_brackets'] = (cc['begin_brackets'] == nil ? [''] : cc['begin_brackets'].split(//))
 cc['end_brackets'] = (cc['end_brackets'] == nil ? [''] : cc['end_brackets'].split(//))

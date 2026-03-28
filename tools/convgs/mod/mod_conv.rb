@@ -55,7 +55,7 @@ end
 class SimpleConverter < TextConverterBase
 
 public
-	attr_accessor :character_name_separator, :strip_brackets
+	attr_accessor :character_name_separator, :expand_r_tag, :strip_brackets
 	attr_accessor :begin_brackets, :end_brackets
 	attr_accessor :comment_line_sequence
 	attr_accessor :anonymous_text, :anonymous_text_character
@@ -68,6 +68,7 @@ public
 		super(input_encoding, output_encoding)
 		@character_name_separator = ""
 		@main_characters = []
+		@expand_r_tag = false
 		@strip_brackets = false
 		@begin_brackets = []
 		@end_brackets = []
@@ -133,9 +134,16 @@ public
 				[begin_brackets[i], :wild, end_brackets[i]],
 				:text_bb_eb
 			)
+			# BB ～ (CR)LF
+			lex.add_state_transition(
+				[begin_brackets[i], :wild, :crlf],
+				:text_bb_crlf
+			)
 		}
 		# テキストのみの行
 		lex.add_state_transition([:wild, :crlf], :text_crlf)
+		# 改行のみの行
+		lex.add_state_transition([:crlf], :only_crlf)
 		# コメント
 		if(!@comment_line_sequence.empty?)
 			# C ～ (CR)LF
@@ -145,7 +153,6 @@ public
 			lex.add_state_transition(arr, :comment_crlf)
 		end
 		lex.add_state_transition([:white_space], :white_space)
-		lex.add_state_transition([:crlf], :crlf)
 
 		tokens = []
 
@@ -218,7 +225,7 @@ public
 						lex.reset()
 					when :white_space
 						tokens << Token.new(lex.input_data.join(nil), :token_white_space)
-					when :crlf
+					when :only_crlf
 						tokens << Token.new("\n", :token_crlf)
 						line_number += 1
 						lex.reset()
@@ -343,6 +350,13 @@ public
 						case text_flag
 						when 1
 							text_flag = 2
+							if(@expand_r_tag)
+								if(tokens[0] != nil && tokens[0].token_id == :token_crlf)
+									file << "[p]"
+								else
+									file << "[r]"
+								end
+							end
 						when 2
 							text_flag = 0
 							last_name = ""
