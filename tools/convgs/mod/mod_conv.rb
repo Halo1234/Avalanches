@@ -180,7 +180,7 @@ public
 					case(lex.state?)
 					when :character_name_sep
 						text = lex.input_data.join(nil)
-						tokens << Token.new(@text[1, text.length - 2], :token_character_name)
+						tokens << Token.new(text[1, text.length - 2], :token_character_name)
 						lex.reset()
 					when :character_name_crlf
 						text = lex.input_data.join(nil)
