@@ -254,12 +254,18 @@ converter.verbose = verbose
 # 必要なものはココで全て変換しておく
 cc = conf['SIMPLE_PARSE']
 cc['main_characters'] = cc['main_characters'].split(/,/)
-cc['expand_r_tag'] = (cc['expand_r_tag'] == '0' ? false : true)
-cc['strip_brackets'] = (cc['strip_brackets'] == '0' ? false : true)
+if(cc['expand_r_tag'].instance_of?(String))
+	cc['expand_r_tag'] = (cc['expand_r_tag'] == '0' ? false : true)
+end
+if(cc['strip_brackets'].instance_of?(String))
+	cc['strip_brackets'] = (cc['strip_brackets'] == '0' ? false : true)
+end
 cc['begin_brackets'] = (cc['begin_brackets'] == nil ? [''] : cc['begin_brackets'].split(//))
 cc['end_brackets'] = (cc['end_brackets'] == nil ? [''] : cc['end_brackets'].split(//))
 cc['anonymous_text'] = cc['anonymous_text'].to_i
-cc['warning_only_name_appears'] = (cc['warning_only_name_appears'] == '0' ? false : true)
+if(cc['warning_only_name_appears'].instance_of?(String))
+	cc['warning_only_name_appears'] = (cc['warning_only_name_appears'] == '0' ? false : true)
+end
 
 converter.configure(cc)
 

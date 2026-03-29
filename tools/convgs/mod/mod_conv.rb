@@ -350,7 +350,7 @@ public
 						case text_flag
 						when 1
 							text_flag = 2
-							if(@expand_r_tag)
+							if(@expand_r_tag != 0)
 								if(tokens[0] != nil && tokens[0].token_id == :token_crlf)
 									file << "[p]"
 								else
@@ -370,7 +370,7 @@ public
 							raise RuntimeError.new("括弧が閉じられていない台詞があります。")
 						end
 						if(!last_name.empty?)
-							if(@warning_only_name_appears)
+							if(@warning_only_name_appears == true)
 								puts 'Warning:'
 								puts ' キャラクター名が台詞無しで現れました。'
 								puts " 行：#{last_name_line}"
@@ -395,12 +395,12 @@ public
 								last_name = @anonymous_text_character.clone()
 							end
 						end
-						file << token if !@strip_brackets
+						file << token if @strip_brackets == 0
 					when :token_eb
 						if(!bracket_opened)
 							raise RuntimeError.new("閉じ括弧が現れましたが開き括弧が現れていません。")
 						end
-						file << token if !@strip_brackets
+						file << token if @strip_brackets == 0
 						bracket_opened = false
 					when :token_text
 						if(last_name.empty?)
