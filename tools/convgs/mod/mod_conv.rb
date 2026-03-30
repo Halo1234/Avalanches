@@ -134,6 +134,11 @@ public
 				[begin_brackets[i], :wild, end_brackets[i]],
 				:text_bb_eb
 			)
+			# * Å` EB
+			lex.add_state_transition(
+				[:wild, end_brackets[i]],
+				:text_eb
+			)
 			# BB Å` (CR)LF
 			lex.add_state_transition(
 				[begin_brackets[i], :wild, :crlf],
