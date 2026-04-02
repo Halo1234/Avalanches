@@ -1,7 +1,7 @@
 
 
 *label|
-@roguelike_option debug
+@roguelike_option debug debug_dump_map
 
 @roguelike_option grid_width=64 grid_height=64
 @roguelike_option map_width=100 map_height=100
@@ -21,7 +21,9 @@
 
 @roguelike_character name=ハロ x=1 y=1
 
-@roguelike x=9 y=1 stairs_down
+@roguelike initialize
+
+@roguelike_option x=9 y=1 stairs_down
 
 @roguelike show
 @roguelike start
