@@ -40,6 +40,17 @@
   </thead>
   <tbody>
     <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_debug" id="roguelike_option_debug">debug</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">デバッグモードON/OFF。<br />
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_debug_dump_map" id="roguelike_option_debug_dump_map">debug_dump_map</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定するとマップ情報をコンソールに出力する。<br />
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_stairs_down" id="roguelike_option_stairs_down">stairs_down</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定すると(x, y)で指定した場所に降りる階段を配置します。<br />
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_stairs_up" id="roguelike_option_stairs_up">stairs_up</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定すると(x, y)で指定した場所に上る階段を配置します。<br />
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_x" id="roguelike_option_x">x</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">グリッド単位</td><td class="tagattribdesc">階段を配置する位置を指定します。<br />
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_y" id="roguelike_option_y">y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">グリッド単位</td><td class="tagattribdesc">階段を配置する位置を指定します。<br />
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_storage" id="roguelike_option_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">シナリオファイル名</td><td class="tagattribdesc">階段に侵入した時に実行するシナリオファイル名を指定します。<br />
+この属性値は階段に侵入する度に実行されます。<br />
+最初だけ実行したい場合は、この属性にvoidを指定してください。
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_target" id="roguelike_option_target">target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ラベル名</td><td class="tagattribdesc">階段に侵入した時に実行するラベル名を指定します。<br />
+この属性値は階段に侵入する度に実行されます。<br />
+最初だけ実行したい場合は、この属性にvoidを指定してください。
     <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_grid_width" id="roguelike_option_grid_width">grid_width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">グリッドのサイズをピクセル単位で指定します。<br />
 デフォルトは64です。<br />
 </td></tr>
@@ -51,8 +62,8 @@
 </td></tr>
     <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_map_height" id="roguelike_option_map_height">map_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">グリッド単位</td><td class="tagattribdesc">マップのサイズをグリッド単位で指定します。<br />
 デフォルトは10です。<br />
-    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_initial_room_index" id="roguelike_option_initial_room_index">initial_room_index</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0から始まるインデックス</td><td class="tagattribdesc">初期ルームのインデックスを指定します。<br />
-ここで指定した初期ルームのインデックスが初期ルームとして表示されます。<br />
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_initial_room_index" id="roguelike_option_initial_room_index">initial_room_index</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0から始まるインデックス</td><td class="tagattribdesc">初期部屋のインデックスを指定します。<br />
+ここで指定した初期部屋のインデックスが初期部屋として表示されます。<br />
 </td></tr>
 </td></tr>
   </tbody>
@@ -73,6 +84,10 @@
   <tbody>
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_show_hide_time" id="roguelike_show_hide_time">show_hide_time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">表示/非表示効果の時間をミリ秒単位で指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_show_hide_type" id="roguelike_show_hide_type">show_hide_type</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">vista or fade</td><td class="tagattribdesc">表示効果のタイプを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_initialize" id="roguelike_initialize">initialize</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定するとマップを初期化します。<br />
+roguelike_load_roomタグで初期部屋を定義してから初期化してください。<br />
+階段を配置する場合はこの属性で初期化後に配置してください。<br />
+階段配置後に初期化すると階段の情報が上書きされる可能性があります。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_show" id="roguelike_show">show</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">ローグライクゲームを表示します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_start" id="roguelike_start">start</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">ローグライクゲームを開始します。<br />
   </tbody>
@@ -133,8 +148,8 @@
   </thead>
   <tbody>
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_room_storage" id="roguelike_load_room_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">部屋定義のファイル名を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_room_initial_room_index" id="roguelike_load_room_initial_room_index">initial_room_index</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0から始まるインデックス</td><td class="tagattribdesc">読み込む部屋定義が初期ルームの場合ここでインデックスを指定します。<br />
-このインデックスはroguelike_optionタグで使用する初期ルームのインデックス値です。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_room_initial_room_index" id="roguelike_load_room_initial_room_index">initial_room_index</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0から始まるインデックス</td><td class="tagattribdesc">読み込む部屋定義が初期部屋の場合ここでインデックスを指定します。<br />
+このインデックスはroguelike_optionタグで使用する初期部屋のインデックス値です。<br />
   </tbody>
 </table>
 <div class="tagremarks">
