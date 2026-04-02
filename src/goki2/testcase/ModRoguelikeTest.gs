@@ -4,7 +4,7 @@
 @roguelike_option debug debug_dump_map
 
 @roguelike_option grid_width=64 grid_height=64
-@roguelike_option map_width=100 map_height=100
+@roguelike_option map_width=30 map_height=30
 
 @rouglelike_load_character name=ハロ storage=rouglelike_main_character player
 
