@@ -4,7 +4,7 @@
 @roguelike_option debug debug_dump_map
 
 @roguelike_option grid_width=64 grid_height=64
-@roguelike_option map_width=30 map_height=30
+@roguelike_option map_width=50 map_height=50
 
 @rouglelike_load_character name=ハロ storage=rouglelike_main_character player
 
@@ -14,16 +14,19 @@
 
 @roguelike_load_room storage=initial_room001.map initial_room_index=0
 @roguelike_load_room storage=room001.map
-@roguelike_load_room storage=room002.map
-@roguelike_load_room storage=room003.map initial_room_index=1
+;@roguelike_load_room storage=room002.map
+@roguelike_load_room storage=room003.map
+@roguelike_load_room storage=room004.map
+@roguelike_load_room storage=room005.map
+;@roguelike_load_room storage=room006.map
 
-@roguelike_option initial_room_index=1
+@roguelike_option initial_room_index=0
 
 @roguelike_character name=ハロ x=1 y=1
 
 @roguelike initialize
 
-@roguelike_option x=9 y=1 stairs_down
+@roguelike_option x=2 y=1 stairs_down
 
 @roguelike show
 @roguelike start
