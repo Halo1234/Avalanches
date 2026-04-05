@@ -42,6 +42,7 @@
 @wait_roguelike_hide
 
 @roguelike next_floor
+
 @roguelike show
 @wait_roguelike_show
 
@@ -49,5 +50,16 @@
 @s
 
 *to_up
+@roguelike hide
+@wait_roguelike_hide
+
+@roguelike_option initial_room_index=0
+@roguelike_character name=ハロ x=1 y=1
+@roguelike initialize
+
+@roguelike show
+@wait_roguelike_show
+
+@roguelike start
 @s
 
