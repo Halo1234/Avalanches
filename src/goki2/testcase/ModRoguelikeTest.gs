@@ -23,6 +23,7 @@
 @roguelike_load_room storage=room004.map
 @roguelike_load_room storage=room005.map
 @roguelike_load_room storage=room006.map
+@roguelike_load_room storage=room007.map
 
 @roguelike_option initial_room_index=0
 
