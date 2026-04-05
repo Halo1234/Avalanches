@@ -40,6 +40,12 @@
 *to_down
 @roguelike hide
 @wait_roguelike_hide
+
+@roguelike next_floor
+@roguelike show
+@wait_roguelike_show
+
+@roguelike start
 @s
 
 *to_up
