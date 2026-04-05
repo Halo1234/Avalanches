@@ -10,8 +10,11 @@
 @roguelike_load_character name=ハロ storage=rouglelike_main_character player
 
 @roguelike_load_chips storage=roguelike_mapchips.chp
-@roguelike_load_chips name=StairsDown group_id=100000000 stairs_down target=*to_down
-@roguelike_load_chips name=StairsUp group_id=100000001 stairs_up target=*to_up
+@roguelike_load_chips name=StairsDown group_id=100000000 stairs_down
+@roguelike_load_chips name=StairsUp group_id=100000001 stairs_up
+
+@roguelike_stairs_event name=StairsDown target=*to_down
+@roguelike_stairs_event name=StairsUp target=*to_up
 
 @roguelike_load_room storage=initial_room001.map initial_room_index=0
 @roguelike_load_room storage=room001.map
@@ -35,6 +38,8 @@
 @s
 
 *to_down
+@roguelike hide
+@wait_roguelike_hide
 @s
 
 *to_up
