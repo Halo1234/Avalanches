@@ -56,6 +56,7 @@
 @roguelike_option initial_room_index=0
 @roguelike_character name=ハロ x=1 y=1
 @roguelike initialize
+@roguelike_option x=2 y=1 stairs_down
 
 @roguelike show
 @wait_roguelike_show
