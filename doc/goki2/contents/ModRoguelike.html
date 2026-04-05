@@ -209,10 +209,14 @@ roguelike_load_roomタグで初期部屋を定義してから初期化してください。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_stairs_name" id="roguelike_stairs_name">name</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">階段名</td><td class="tagattribdesc">roguelike_load_chipsで指定した階段の名前を指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_stairs_storage" id="roguelike_stairs_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">シナリオファイル名</td><td class="tagattribdesc">指定した階段に侵入した際に実行するシナリオファイル名を指定します。<br />
 この属性値は階段に侵入する度に実行されます。<br />
-最初だけ実行したい場合は、この属性にvoidを指定してください。
+イベントを削除したい場合は、この属性にvoidを指定してください。<br />
+このイベントを実行すると階層移動は自動では行われません。<br />
+roguelikeタグにnext_floor属性を付けて呼び出すと階層移動します。
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_stairs_target" id="roguelike_stairs_target">target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ラベル名</td><td class="tagattribdesc">指定した階段に侵入した際に実行するラベル名を指定します。<br />
 この属性値は階段に侵入する度に実行されます。<br />
-最初だけ実行したい場合は、この属性にvoidを指定してください。
+イベントを削除したい場合は、この属性にvoidを指定してください。<br />
+このイベントを実行すると階層移動は自動では行われません。<br />
+roguelikeタグにnext_floor属性を付けて呼び出すと階層移動します。
   </tbody>
 </table>
 <div class="tagremarks">

@@ -16,8 +16,8 @@
 
 <h1><a name="tags" id="tags">ModRoguelike Tags</a></h1>
 <div class="para"><div>
-  This is the tag reference for ModRoguelike.<br />
-  The plugin this module depends on is BlueMonday-88.dll.<br />
+  Reference for tags available in ModRoguelike.<br />
+  This module depends on the BlueMonday-88.dll plugin.<br />
 </div></div>
 
 <h1><a name="genre" id="genre" class="targanchor">Genre / Tag List</a></h1>
@@ -191,8 +191,8 @@ Waits for the roguelike game interface to be hidden.<br />
   </thead>
   <tbody>
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_stairs_name" id="roguelike_stairs_name">name</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Stair Name</td><td class="tagattribdesc">Specifies the name of the stairs defined in roguelike_load_chips.<br /></td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_stairs_storage" id="roguelike_stairs_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Scenario file name</td><td class="tagattribdesc">Specifies the scenario file to execute upon entering the stairs. This runs every time the stairs are entered. Set to 'void' if you only want it to run the first time.<br /></td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_stairs_target" id="roguelike_stairs_target">target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Label name</td><td class="tagattribdesc">Specifies the label within the scenario to execute upon entering the stairs. This runs every time the stairs are entered. Set to 'void' if you only want it to run the first time.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_stairs_storage" id="roguelike_stairs_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Scenario file name</td><td class="tagattribdesc">Specifies the scenario file to execute upon entering the stairs. This runs every time the stairs are entered. To remove the event, specify "void" for this attribute. Executing this event will not automatically trigger a floor transition. To move to the next floor, call the roguelike tag with the next_floor attribute.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_stairs_target" id="roguelike_stairs_target">target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Label name</td><td class="tagattribdesc">Specifies the label within the scenario to execute upon entering the stairs. This runs every time the stairs are entered. To remove the event, specify "void" for this attribute. Executing this event will not automatically trigger a floor transition. To move to the next floor, call the roguelike tag with the next_floor attribute.<br /></td></tr>
   </tbody>
 </table>
 <div class="tagremarks">
@@ -203,4 +203,3 @@ Configures event triggers for stairs.<br />
 
 </body>
 </html>
-
