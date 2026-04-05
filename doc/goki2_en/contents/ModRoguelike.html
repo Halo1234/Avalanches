@@ -8,7 +8,7 @@
   <meta name="author" content="Halo" />
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta http-equiv="Content-Script-Type" content="text/javascript" />
-  <link href="browser.css" type="text/css" rel="stylesheet" title="Standard Style for KiriKiri Reference" />
+  <link href="browser.css" type="text/css" rel="stylesheet" title="Standard style for Kirikiri-related references" />
   <link href="mailto:halosuke@gmail.com" rev="Made" />
   <link href="index.html" target="_top" rel="Start" title="Top Page" />
 </head>
@@ -16,8 +16,8 @@
 
 <h1><a name="tags" id="tags">ModRoguelike Tags</a></h1>
 <div class="para"><div>
-  Reference for tags available in ModRoguelike.<br />
-  The plugin that this module depends on is BlueMonday-88.dll.<br />
+  This is the tag reference for ModRoguelike.<br />
+  The plugin this module depends on is BlueMonday-88.dll.<br />
 </div></div>
 
 <h1><a name="genre" id="genre" class="targanchor">Genre / Tag List</a></h1>
@@ -25,148 +25,140 @@
 <table class="taglist"><tbody>
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#roguelike_option">roguelike_option</a></span></td><td class="taglisteven">Basic settings for the roguelike game</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#roguelike">roguelike</a></span></td><td class="taglistodd">Control of the roguelike game</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#rouglelike_load_character">rouglelike_load_character</a></span></td><td class="taglisteven">Load character data</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#roguelike_load_chips">roguelike_load_chips</a></span></td><td class="taglistodd">Load map chip (tile) information</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#roguelike_load_room">roguelike_load_room</a></span></td><td class="taglisteven">Load room definitions</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#rouglelike_load_character">rouglelike_load_character</a></span></td><td class="taglisteven">Loading characters</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#roguelike_load_chips">roguelike_load_chips</a></span></td><td class="taglistodd">Loading map chip information</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#roguelike_load_room">roguelike_load_room</a></span></td><td class="taglisteven">Loading room definitions</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#roguelike_character">roguelike_character</a></span></td><td class="taglistodd">Character settings</td></tr>
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#wait_roguelike_show">wait_roguelike_show</a></span></td><td class="taglisteven">Wait for roguelike game display</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#wait_roguelike_hide">wait_roguelike_hide</a></span></td><td class="taglistodd">Wait for roguelike game hide</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#roguelike_stairs_event">roguelike_stairs_event</a></span></td><td class="taglisteven">Stair event settings</td></tr>
 </tbody></table><br /><br /></div></div>
 
 <h1><a name="roguelike_option" id="roguelike_option" class="targanchor"><span class="b">roguelike_option</span> (No alias)</a></h1>
 <div class="taggenre">Basic Settings</div>
 <div class="para"><div>
-<table class="tagparams" frame="box" rules="all" summary="List of attributes for tag roguelike_option">
+<table class="tagparams" frame="box" rules="all" summary="List of attributes for the roguelike_option tag">
   <thead>
     <tr><th>Alias</th><th>Attribute</th><th>Required?</th><th>Value</th><th>Description</th></tr>
   </thead>
   <tbody>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_debug" id="roguelike_option_debug">debug</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Toggle debug mode ON/OFF.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_debug_dump_map" id="roguelike_option_debug_dump_map">debug_dump_map</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If set to true, the map information will be output to the console.<br />
-    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_stairs_down" id="roguelike_option_stairs_down">stairs_down</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If set to true, descending stairs will be placed at the specified (x, y) coordinates.<br />
-    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_stairs_up" id="roguelike_option_stairs_up">stairs_up</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If set to true, ascending stairs will be placed at the specified (x, y) coordinates.<br />
-    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_x" id="roguelike_option_x">x</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Grid units</td><td class="tagattribdesc">Specifies the position to place the stairs.<br />
-    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_y" id="roguelike_option_y">y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Grid units</td><td class="tagattribdesc">Specifies the position to place the stairs.<br />
-    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_storage" id="roguelike_option_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Scenario file name</td><td class="tagattribdesc">Specifies the scenario file to be executed when entering the stairs.<br />
-This attribute value is executed every time you enter the stairs.<br />
-If you want it to be executed only the first time, please specify void for this attribute.
-    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_target" id="roguelike_option_target">target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Label name</td><td class="tagattribdesc">Specifies the label to be executed when entering the stairs.<br />
-This attribute value is executed every time you enter the stairs.<br />
-If you want it to be executed only the first time, please specify void for this attribute.
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_room_count_min" id="roguelike_option_room_count_min">room_count_min</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specifies the minimum number of rooms to be placed per floor.<br />
-    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_room_count_max" id="roguelike_option_room_count_max">room_count_max</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specifies the maximum number of rooms to be placed per floor.<br />
-    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_grid_width" id="roguelike_option_grid_width">grid_width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixels</td><td class="tagattribdesc">Specifies the grid size in pixels.<br />Default is 64.<br /></td></tr>
-    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_grid_height" id="roguelike_option_grid_height">grid_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixels</td><td class="tagattribdesc">Specifies the grid size in pixels.<br />Default is 64.<br /></td></tr>
-    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_map_width" id="roguelike_option_map_width">map_width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">units (grid)</td><td class="tagattribdesc">Specifies the map size in grid units.<br />Default is 10.<br /></td></tr>
-    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_map_height" id="roguelike_option_map_height">map_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">units (grid)</td><td class="tagattribdesc">Specifies the map size in grid units.<br />Default is 10.<br /></td></tr>
-    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_initial_room_index" id="roguelike_option_initial_room_index">initial_room_index</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Zero-based index</td><td class="tagattribdesc">Specifies the index of the initial room.<br />The room corresponding to this index will be displayed as the starting room.<br /></td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_max_floor" id="roguelike_option_max_floor">max_floor</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specifies the maximum depth (number of floors) the player can descend.<br />
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_debug" id="roguelike_option_debug">debug</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Toggles debug mode ON/OFF.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_debug_dump_map" id="roguelike_option_debug_dump_map">debug_dump_map</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If set to true, map information will be output to the console.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_stairs_down" id="roguelike_option_stairs_down">stairs_down</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If set to true, descending stairs will be placed at the specified (x, y) position.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_stairs_up" id="roguelike_option_stairs_up">stairs_up</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If set to true, ascending stairs will be placed at the specified (x, y) position.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_x" id="roguelike_option_x">x</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Grid units</td><td class="tagattribdesc">Specifies the X-coordinate for placing stairs.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_y" id="roguelike_option_y">y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Grid units</td><td class="tagattribdesc">Specifies the Y-coordinate for placing stairs.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_room_count_min" id="roguelike_option_room_count_min">room_count_min</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specifies the minimum number of rooms to be placed per floor.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_room_count_max" id="roguelike_option_room_count_max">room_count_max</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specifies the maximum number of rooms to be placed per floor.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_grid_width" id="roguelike_option_grid_width">grid_width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixels</td><td class="tagattribdesc">Specifies the grid size in pixels. Default is 64.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_grid_height" id="roguelike_option_grid_height">grid_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixels</td><td class="tagattribdesc">Specifies the grid size in pixels. Default is 64.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_map_width" id="roguelike_option_map_width">map_width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Grid units</td><td class="tagattribdesc">Specifies the map width in grid units. Default is 10.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_map_height" id="roguelike_option_map_height">map_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Grid units</td><td class="tagattribdesc">Specifies the map height in grid units. Default is 10.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_initial_room_index" id="roguelike_option_initial_room_index">initial_room_index</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0-based index</td><td class="tagattribdesc">Specifies the index of the initial room to be displayed.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_max_floor" id="roguelike_option_max_floor">max_floor</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specifies the maximum depth (number of floors) the player can descend.<br /></td></tr>
   </tbody>
 </table>
 <div class="tagremarks">
 Configures the basic settings for the roguelike game.<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Back to Genre / Tag List</span></a></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to Genre/Tag List</span></a></div>
 </div>
 </div></div>
 
 <h1><a name="roguelike" id="roguelike" class="targanchor"><span class="b">roguelike</span> (No alias)</a></h1>
 <div class="taggenre">Controls the roguelike game.</div>
 <div class="para"><div>
-<table class="tagparams" frame="box" rules="all" summary="List of attributes for tag roguelike">
+<table class="tagparams" frame="box" rules="all" summary="List of attributes for the roguelike tag">
   <thead>
     <tr><th>Alias</th><th>Attribute</th><th>Required?</th><th>Value</th><th>Description</th></tr>
   </thead>
   <tbody>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_show_hide_time" id="roguelike_show_hide_time">show_hide_time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">milliseconds</td><td class="tagattribdesc">Specifies the duration of the show/hide effect in milliseconds.<br /></td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_show_hide_type" id="roguelike_show_hide_type">show_hide_type</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">vista or fade</td><td class="tagattribdesc">Specifies the transition type for the show effect.<br /></td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_initialize" id="roguelike_initialize">initialize</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Set to true to initialize the map.<br />
-Please define the initial room using the <span class="tagname">roguelike_load_room</span> tag before initializing.<br />
-If you are placing stairs, use these attributes to place them after initialization.<br />
-If initialization occurs after placing stairs, the stair information may be overwritten.<br /></td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_show" id="roguelike_show">show</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Displays the roguelike game.<br /></td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_start" id="roguelike_start">start</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Starts the roguelike game logic.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_show_hide_time" id="roguelike_show_hide_time">show_hide_time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Milliseconds</td><td class="tagattribdesc">Specifies the duration for show/hide effects in milliseconds.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_show_hide_type" id="roguelike_show_hide_type">show_hide_type</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">vista or fade</td><td class="tagattribdesc">Specifies the type of visual transition effect.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_initialize" id="roguelike_initialize">initialize</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Initializes the map if set to true. Please define the initial room using the roguelike_load_room tag before initialization. If you are placing stairs, do so after initialization to avoid overwriting stair data.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_show" id="roguelike_show">show</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Displays the roguelike game interface.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_start" id="roguelike_start">start</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Starts the roguelike game session.<br /></td></tr>
   </tbody>
 </table>
 <div class="tagremarks">
-Controls the display (show/hide) and state (start/stop) of the roguelike game.<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Back to Genre / Tag List</span></a></div>
+Manages control functions such as show/hide and start/stop for the roguelike game.<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to Genre/Tag List</span></a></div>
 </div>
 </div></div>
 
 <h1><a name="rouglelike_load_character" id="rouglelike_load_character" class="targanchor"><span class="b">rouglelike_load_character</span> (No alias)</a></h1>
-<div class="taggenre">Load character.</div>
+<div class="taggenre">Character Loading.</div>
 <div class="para"><div>
-<table class="tagparams" frame="box" rules="all" summary="List of attributes for tag rouglelike_load_character">
+<table class="tagparams" frame="box" rules="all" summary="List of attributes for the rouglelike_load_character tag">
   <thead>
     <tr><th>Alias</th><th>Attribute</th><th>Required?</th><th>Value</th><th>Description</th></tr>
   </thead>
   <tbody>
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="rouglelike_load_character_name" id="rouglelike_load_character_name">name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Name</td><td class="tagattribdesc">Specifies the character name.<br /></td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="rouglelike_load_character_storage" id="rouglelike_load_character_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">File name</td><td class="tagattribdesc">Specifies the file name of the character data.<br /></td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="rouglelike_load_character_asd" id="rouglelike_load_character_asd">asd</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">File name</td><td class="tagattribdesc">Specifies the character's animation file (*.asd/*.asdx).<br /></td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="rouglelike_load_character_player" id="rouglelike_load_character_player">player</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Set to "true" if the character is controlled by the user.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="rouglelike_load_character_storage" id="rouglelike_load_character_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">File name</td><td class="tagattribdesc">Specifies the character data file name.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="rouglelike_load_character_asd" id="rouglelike_load_character_asd">asd</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">File name</td><td class="tagattribdesc">Specifies the animation definition file (*.asd/*.asdx) for the character.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="rouglelike_load_character_player" id="rouglelike_load_character_player">player</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Set to true if this is the character controlled by the user.<br /></td></tr>
   </tbody>
 </table>
 <div class="tagremarks">
-Loads character data into the game engine.<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Back to Genre / Tag List</span></a></div>
+Loads character data into the game.<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to Genre/Tag List</span></a></div>
 </div>
 </div></div>
 
 <h1><a name="roguelike_load_chips" id="roguelike_load_chips" class="targanchor"><span class="b">roguelike_load_chips</span> (No alias)</a></h1>
-<div class="taggenre">Load map chip (tile) data.</div>
+<div class="taggenre">Map Chip Data Loading.</div>
 <div class="para"><div>
-<table class="tagparams" frame="box" rules="all" summary="List of attributes for tag roguelike_load_chips">
+<table class="tagparams" frame="box" rules="all" summary="List of attributes for the roguelike_load_chips tag">
   <thead>
     <tr><th>Alias</th><th>Attribute</th><th>Required?</th><th>Value</th><th>Description</th></tr>
   </thead>
   <tbody>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="rouglelike_load_chips_storage" id="rouglelike_load_chips_storage">storage</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">File name</td><td class="tagattribdesc">Specifies the file name of the map chip definition.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="rouglelike_load_chips_name" id="rouglelike_load_chips_name">name</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">File name</td><td class="tagattribdesc">Specifies the file name of the map chip image.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="rouglelike_load_chips_group_id" id="rouglelike_load_chips_group_id">group_id</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Group ID</td><td class="tagattribdesc">Specifies the group ID for the map chip.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="rouglelike_load_chips_stairs_down" id="rouglelike_load_chips_stairs_down">stairs_down</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Set to true if the map chip represents descending stairs.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="rouglelike_load_chips_stairs_up" id="rouglelike_load_chips_stairs_up">stairs_up</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Set to true if the map chip represents ascending stairs.<br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="rouglelike_load_chips_storage" id="rouglelike_load_chips_storage">storage</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">File name</td><td class="tagattribdesc">Specifies the map chip definition file. Either this or the 'name' attribute must be provided.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="rouglelike_load_chips_name" id="rouglelike_load_chips_name">name</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">File name</td><td class="tagattribdesc">Specifies the map chip image file. Either this or the 'storage' attribute must be provided.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="rouglelike_load_chips_group_id" id="rouglelike_load_chips_group_id">group_id</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Group ID</td><td class="tagattribdesc">Specifies the group ID for the map chip specified by 'name'.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="rouglelike_load_chips_stairs_down" id="rouglelike_load_chips_stairs_down">stairs_down</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Set to true if the specified map chip represents descending stairs.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="rouglelike_load_chips_stairs_up" id="rouglelike_load_chips_stairs_up">stairs_up</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Set to true if the specified map chip represents ascending stairs.<br /></td></tr>
   </tbody>
 </table>
 <div class="tagremarks">
-Loads map chip (tile) data into the game.<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Back to Genre / Tag List</span></a></div>
+Loads map chip (tile) data.<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to Genre/Tag List</span></a></div>
 </div>
 </div></div>
 
 <h1><a name="roguelike_load_room" id="roguelike_load_room" class="targanchor"><span class="b">roguelike_load_room</span> (No alias)</a></h1>
-<div class="taggenre">Load room definitions.</div>
+<div class="taggenre">Room Definition Loading.</div>
 <div class="para"><div>
-<table class="tagparams" frame="box" rules="all" summary="List of attributes for tag roguelike_load_room">
+<table class="tagparams" frame="box" rules="all" summary="List of attributes for the roguelike_load_room tag">
   <thead>
     <tr><th>Alias</th><th>Attribute</th><th>Required?</th><th>Value</th><th>Description</th></tr>
   </thead>
   <tbody>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_room_storage" id="roguelike_load_room_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">File name</td><td class="tagattribdesc">Specifies the file name for room definitions.<br /></td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_room_initial_room_index" id="roguelike_load_room_initial_room_index">initial_room_index</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Zero-based index</td><td class="tagattribdesc">If the room being loaded is the starting room, specify the index here.<br />This index corresponds to the value used in the "roguelike_option" tag.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_room_storage" id="roguelike_load_room_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">File name</td><td class="tagattribdesc">Specifies the room definition file.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_room_initial_room_index" id="roguelike_load_room_initial_room_index">initial_room_index</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0-based index</td><td class="tagattribdesc">If the room being loaded is the initial room, specify its index here for use in roguelike_option.<br /></td></tr>
   </tbody>
 </table>
 <div class="tagremarks">
-Loads room definition data into the game.<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Back to Genre / Tag List</span></a></div>
+Loads room layout definitions.<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to Genre/Tag List</span></a></div>
 </div>
 </div></div>
 
 <h1><a name="roguelike_character" id="roguelike_character" class="targanchor"><span class="b">roguelike_character</span> (No alias)</a></h1>
-<div class="taggenre">Load room definitions.</div>
+<div class="taggenre">Character Setup.</div>
 <div class="para"><div>
 <table class="tagparams" frame="box" rules="all" summary="List of attributes for the roguelike_character tag">
   <thead>
     <tr><th>Alias</th><th>Attribute</th><th>Required?</th><th>Value</th><th>Description</th></tr>
   </thead>
   <tbody>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_character_name" id="roguelike_character_name">name</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Character Name</td><td class="tagattribdesc">Specifies the name of the character to be controlled.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_character_x" id="roguelike_character_x">x</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Grid Units</td><td class="tagattribdesc">Specifies the horizontal position to place the character.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_character_y" id="roguelike_character_y">y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Grid Units</td><td class="tagattribdesc">Specifies the vertical position to place the character.<br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_character_name" id="roguelike_character_name">name</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Character Name</td><td class="tagattribdesc">Specifies the name of the character to control.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_character_x" id="roguelike_character_x">x</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Grid units</td><td class="tagattribdesc">Specifies the X-coordinate for character placement.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_character_y" id="roguelike_character_y">y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Grid units</td><td class="tagattribdesc">Specifies the Y-coordinate for character placement.<br /></td></tr>
   </tbody>
 </table>
 <div class="tagremarks">
-Changes the character settings.<br />
+Modifies current character settings.<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to Genre/Tag List</span></a></div>
 </div>
 </div></div>
@@ -188,4 +180,26 @@ Waits for the roguelike game interface to be hidden.<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to Genre/Tag List</span></a></div>
 </div>
 </div></div>
+
+<h1><a name="roguelike_stairs_event" id="roguelike_stairs_event" class="targanchor"><span class="b">roguelike_stairs_event</span> (No alias)</a></h1>
+<div class="taggenre">Stair Events.</div>
+<div class="para"><div>
+<table class="tagparams" frame="box" rules="all" summary="List of attributes for the roguelike_stairs_event tag">
+  <thead>
+    <tr><th>Alias</th><th>Attribute</th><th>Required?</th><th>Value</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_stairs_name" id="roguelike_stairs_name">name</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Stair Name</td><td class="tagattribdesc">Specifies the name of the stairs defined in roguelike_load_chips.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_stairs_storage" id="roguelike_stairs_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Scenario file name</td><td class="tagattribdesc">Specifies the scenario file to execute upon entering the stairs. This runs every time the stairs are entered. Set to 'void' if you only want it to run the first time.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_stairs_target" id="roguelike_stairs_target">target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Label name</td><td class="tagattribdesc">Specifies the label within the scenario to execute upon entering the stairs. This runs every time the stairs are entered. Set to 'void' if you only want it to run the first time.<br /></td></tr>
+  </tbody>
+</table>
+<div class="tagremarks">
+Configures event triggers for stairs.<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to Genre/Tag List</span></a></div>
+</div>
+</div></div>
+
+</body>
+</html>
 
