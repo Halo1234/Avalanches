@@ -29,6 +29,8 @@
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#roguelike_load_chips">roguelike_load_chips</a></span></td><td class="taglistodd">Load map chip (tile) information</td></tr>
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#roguelike_load_room">roguelike_load_room</a></span></td><td class="taglisteven">Load room definitions</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#roguelike_character">roguelike_character</a></span></td><td class="taglistodd">Character settings</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#wait_roguelike_show">wait_roguelike_show</a></span></td><td class="taglisteven">Wait for roguelike game display</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#wait_roguelike_hide">wait_roguelike_hide</a></span></td><td class="taglistodd">Wait for roguelike game hide</td></tr>
 </tbody></table><br /><br /></div></div>
 
 <h1><a name="roguelike_option" id="roguelike_option" class="targanchor"><span class="b">roguelike_option</span> (No alias)</a></h1>
@@ -58,6 +60,7 @@ If you want it to be executed only the first time, please specify void for this 
     <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_map_width" id="roguelike_option_map_width">map_width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">units (grid)</td><td class="tagattribdesc">Specifies the map size in grid units.<br />Default is 10.<br /></td></tr>
     <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_map_height" id="roguelike_option_map_height">map_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">units (grid)</td><td class="tagattribdesc">Specifies the map size in grid units.<br />Default is 10.<br /></td></tr>
     <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_initial_room_index" id="roguelike_option_initial_room_index">initial_room_index</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Zero-based index</td><td class="tagattribdesc">Specifies the index of the initial room.<br />The room corresponding to this index will be displayed as the starting room.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_max_floor" id="roguelike_option_max_floor">max_floor</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specifies the maximum depth (number of floors) the player can descend.<br />
   </tbody>
 </table>
 <div class="tagremarks">
@@ -168,4 +171,21 @@ Changes the character settings.<br />
 </div>
 </div></div>
 
+<h1><a name="wait_roguelike_show" id="wait_roguelike_show" class="targanchor"><span class="b">wait_roguelike_show</span> (No alias)</a></h1>
+<div class="taggenre">Wait for display.</div>
+<div class="para"><div>
+<div class="tagremarks">
+Waits for the roguelike game interface to be displayed.<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to Genre/Tag List</span></a></div>
+</div>
+</div></div>
+
+<h1><a name="wait_roguelike_hide" id="wait_roguelike_hide" class="targanchor"><span class="b">wait_roguelike_hide</span> (No alias)</a></h1>
+<div class="taggenre">Wait for hide.</div>
+<div class="para"><div>
+<div class="tagremarks">
+Waits for the roguelike game interface to be hidden.<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to Genre/Tag List</span></a></div>
+</div>
+</div></div>
 

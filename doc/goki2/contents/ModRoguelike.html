@@ -29,6 +29,8 @@
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#roguelike_load_chips">roguelike_load_chips</a></span></td><td class="taglistodd">マップチップ情報の読み込み</td></tr>
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#roguelike_load_room">roguelike_load_room</a></span></td><td class="taglisteven">部屋定義の読み込み</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#roguelike_character">roguelike_character</a></span></td><td class="taglistodd">キャラクターの設定</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#wait_roguelike_show">wait_roguelike_show</a></span></td><td class="taglisteven">ローグライクゲーム表示待ち</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#wait_roguelike_hide">wait_roguelike_hide</a></span></td><td class="taglistodd">ローグライクゲーム非表示待ち</td></tr>
 </tbody></table><br /><br /></div></div>
 
 <h1><a name="roguelike_option" id="roguelike_option" class="targanchor"><span class="b">roguelike_option</span>(別名なし)</a></h1>
@@ -66,6 +68,7 @@
 デフォルトは10です。<br />
     <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_initial_room_index" id="roguelike_option_initial_room_index">initial_room_index</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0から始まるインデックス</td><td class="tagattribdesc">初期部屋のインデックスを指定します。<br />
 ここで指定した初期部屋のインデックスが初期部屋として表示されます。<br />
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_max_floor" id="roguelike_option_max_floor">max_floor</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">最大何階まで潜れるか指定します。<br />
 </td></tr>
 </td></tr>
   </tbody>
@@ -175,6 +178,24 @@ roguelike_load_roomタグで初期部屋を定義してから初期化してください。<br />
 </table>
 <div class="tagremarks">
 キャラクターの設定を変更します。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div>
+</div>
+</div></div>
+
+<h1><a name="wait_roguelike_show" id="wait_roguelike_show" class="targanchor"><span class="b">wait_roguelike_show</span>(別名なし)</a></h1>
+<div class="taggenre">表示待ち。</div>
+<div class="para"><div>
+<div class="tagremarks">
+ローグライクゲームの表示を待ちます。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div>
+</div>
+</div></div>
+
+<h1><a name="wait_roguelike_hide" id="wait_roguelike_hide" class="targanchor"><span class="b">wait_roguelike_hide</span>(別名なし)</a></h1>
+<div class="taggenre">非表示待ち。</div>
+<div class="para"><div>
+<div class="tagremarks">
+ローグライクゲームの非表示を待ちます。<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div>
 </div>
 </div></div>
