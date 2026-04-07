@@ -7,7 +7,7 @@
 
 Avalanchesは吉里吉里2 / 吉里吉里Zをベースとした、ゲーム開発・運用を強力にサポートする統合開発環境です。SLGエディタ、シナリオコンバータ、タイピングゲーム用ツールなど、実践的なツール群を同梱しています。
 Avalanchesにはサポートする各ゲームのフレームワークとしてGOKI2が含まれます。
-GOKI2を使ってすぐにゲーム開発を始めたい方は、[こちらのリンク](https://github.com/Halo1234/Avalanches/releases/latest)から最新のパッケージをダウンロードしてください。
+GOKI2を使ってすぐにゲーム開発を始めたい方は、[こちらのリンク](https://github.com/Halo1234/Avalanches/releases/latest)から最新のパッケージをダウンロードしてください。🚀
 
 [最新リリースをチェックする](https://github.com/Halo1234/Avalanches/releases/latest)
 
