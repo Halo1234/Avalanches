@@ -6,7 +6,7 @@
 
 Avalanches is an integrated development environment based on KiriKiri2 / KiriKiriZ that strongly supports game development and operations.
 It includes practical tools such as an SLG editor, a scenario converter, and tools for typing games. Avalanches also includes GOKI2 as the framework for the games it supports.
-If you want to start game development immediately using GOKI2, please download the latest package from [this link](https://github.com/Halo1234/Avalanches/releases/latest).:rocket:
+If you want to start game development immediately using GOKI2, please download the latest package from [this link](https://github.com/Halo1234/Avalanches/releases/latest).🚀
 
 [Check the latest release](https://github.com/Halo1234/Avalanches/releases/latest)
 
