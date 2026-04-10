@@ -22,9 +22,6 @@
     <ClCompile Include="..\ncbind\ncbind.cpp">
       <Filter>source</Filter>
     </ClCompile>
-    <ClCompile Include="GetAsyncKeyState.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CutMask.h">
