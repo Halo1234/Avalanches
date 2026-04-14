@@ -33,6 +33,7 @@ This module depends on the BlueMonday-88.dll plugin.<br />
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#wait_roguelike_show">wait_roguelike_show</a></span></td><td class="taglisteven">Wait for roguelike game display</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#wait_roguelike_hide">wait_roguelike_hide</a></span></td><td class="taglistodd">Wait for roguelike game hide</td></tr>
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#roguelike_stairs_event">roguelike_stairs_event</a></span></td><td class="taglisteven">Stair event settings</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#roguelike_load_item">roguelike_load_item</a></span></td><td class="taglisteven">Loading item information</td></tr>
 </tbody></table><br /><br /></div></div>
 
 <h1><a name="roguelike_option" id="roguelike_option" class="targanchor"><span class="b">roguelike_option</span> (No alias)</a></h1>
@@ -51,6 +52,8 @@ This module depends on the BlueMonday-88.dll plugin.<br />
     <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_y" id="roguelike_option_y">y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Grid units</td><td class="tagattribdesc">Specifies the Y-coordinate for placing stairs.<br /></td></tr>
     <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_room_count_min" id="roguelike_option_room_count_min">room_count_min</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specifies the minimum number of rooms to be placed per floor.<br /></td></tr>
     <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_room_count_max" id="roguelike_option_room_count_max">room_count_max</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specifies the maximum number of rooms to be placed per floor.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_item_count_min" id="roguelike_option_item_count_min">item_count_min</a></td><td class="tagattribrequired">No</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specifies the minimum number of items to place on one floor.<br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_item_count_max" id="roguelike_option_item_count_max">item_count_max</a></td><td class="tagattribrequired">No</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specifies the maximum number of items to place on one floor.<br />
     <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_grid_width" id="roguelike_option_grid_width">grid_width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixels</td><td class="tagattribdesc">Specifies the grid size in pixels. Default is 64.<br /></td></tr>
     <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_grid_height" id="roguelike_option_grid_height">grid_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixels</td><td class="tagattribdesc">Specifies the grid size in pixels. Default is 64.<br /></td></tr>
     <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_map_width" id="roguelike_option_map_width">map_width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Grid units</td><td class="tagattribdesc">Specifies the map width in grid units. Default is 10.<br /></td></tr>
@@ -220,6 +223,23 @@ Configures event triggers for stairs.<br />
 <div class="tagremarks">
 Changes the character settings.<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to Category/Tag List</span></a></div>
+</div>
+</div></div>
+
+<tr><h1><a name="roguelike_load_item" id="roguelike_load_item" class="targanchor"><span class="b">roguelike_load_item</span> (No alias)</a></h1>
+<div class="taggenre">Load item information.</div>
+<div class="para"><div>
+<table class="tagparams" frame="box" rules="all" summary="List of attributes for the tag roguelike_load_item">
+<thead>
+<tr><th>Alias</th><th>Attribute</th><th>Required?</th><th>Value</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_item_storage" id="roguelike_load_item_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">File name</td><td class="tagattribdesc">Specifies the file name of the item information to load.<br />
+</tbody>
+</table>
+<div class="tagremarks">
+Loads item information.<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to Genre/Tag List</span></a></div>
 </div>
 </div></div>
 

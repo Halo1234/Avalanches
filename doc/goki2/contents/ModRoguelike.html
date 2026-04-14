@@ -34,6 +34,7 @@
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#wait_roguelike_hide">wait_roguelike_hide</a></span></td><td class="taglistodd">ローグライクゲーム非表示待ち</td></tr>
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#roguelike_stairs_event">roguelike_stairs_event</a></span></td><td class="taglisteven">階段イベントの設定</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#roguelike_mini_map">roguelike_mini_map</a></span></td><td class="taglistodd">ミニマップの設定</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#roguelike_load_item">roguelike_load_item</a></span></td><td class="taglisteven">アイテム情報の読み込み</td></tr>
 </tbody></table><br /><br /></div></div>
 
 <h1><a name="roguelike_option" id="roguelike_option" class="targanchor"><span class="b">roguelike_option</span>(別名なし)</a></h1>
@@ -52,6 +53,8 @@
     <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_y" id="roguelike_option_y">y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">グリッド単位</td><td class="tagattribdesc">階段を配置する位置を指定します。<br />
     <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_room_count_min" id="roguelike_option_room_count_min">room_count_min</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">１階層で配置する部屋の最小数を指定します。<br />
     <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_room_count_max" id="roguelike_option_room_count_max">room_count_max</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">１階層で配置する部屋の最大数を指定します。<br />
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_item_count_min" id="roguelike_option_item_count_min">item_count_min</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">１階層で配置するアイテムの最小数を指定します。<br />
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_item_count_max" id="roguelike_option_item_count_max">item_count_max</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">１階層で配置するアイテムの最大数を指定します。<br />
     <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_grid_width" id="roguelike_option_grid_width">grid_width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">グリッドのサイズをピクセル単位で指定します。<br />
 デフォルトは64です。<br />
 </td></tr>
@@ -244,6 +247,23 @@ roguelikeタグにnext_floor属性を付けて呼び出すと階層移動します。
 </table>
 <div class="tagremarks">
 キャラクターの設定を変更します。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div>
+</div>
+</div></div>
+
+<h1><a name="roguelike_load_item" id="roguelike_load_item" class="targanchor"><span class="b">roguelike_load_item</span>(別名なし)</a></h1>
+<div class="taggenre">アイテム情報読み込み。</div>
+<div class="para"><div>
+<table class="tagparams" frame="box" rules="all" summary="タグ roguelike_load_item の属性の一覧">
+  <thead>
+    <tr><th>別名</th><th>属性</th><th>必須?</th><th>値</th><th>説明</th></tr>
+  </thead>
+  <tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_item_storage" id="roguelike_load_item_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">読み込むアイテム情報のファイル名を指定します。<br />
+  </tbody>
+</table>
+<div class="tagremarks">
+アイテム情報を読み込みます。<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div>
 </div>
 </div></div>
