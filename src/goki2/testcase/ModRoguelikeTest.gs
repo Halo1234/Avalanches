@@ -7,6 +7,7 @@
 @roguelike_option map_width=50 map_height=50
 @roguelike_option max_floor=10
 @roguelike_option room_count_min=4 room_count_max=8
+@roguelike_option item_count_min=4 item_count_max=8
 
 @roguelike_load_character name=ハロ storage=rouglelike_main_character player
 
@@ -16,6 +17,8 @@
 
 @roguelike_stairs_event name=StairsDown target=*to_down
 @roguelike_stairs_event name=StairsUp target=*to_up
+
+@roguelike_load_items storage=items.ary
 
 @roguelike_load_room storage=initial_room001.ary initial_room_index=0
 @roguelike_load_room storage=room001.ary
