@@ -11,6 +11,13 @@
 
 @roguelike_load_character name=ハロ storage=rouglelike_main_character player
 
+@roguelike_menu storage=RoguelikeMenuBack.png left=10 top=10
+@roguelike_menu item_button_caption=アイテム item_button_left=20 item_button_top=20 item_button_width=60 item_button_height=30
+@roguelike_menu foot_button_caption=足元 foot_button_left=110 foot_button_top=20 foot_button_width=60 foot_button_height=30
+@roguelike_menu map_button_caption=マップ map_button_left=20 map_button_top=60 map_button_width=60 map_button_height=30
+
+@roguelike_item_menu storage=RoguelikeItemMenuBack.png left=300 top=80 margin_left=50 margin_top=40 margin_right=50
+
 @roguelike_load_chips storage=roguelike_mapchips.dic
 @roguelike_load_chips name=StairsDown group_id=100000000 stairs_down
 @roguelike_load_chips name=StairsUp group_id=100000001 stairs_up
@@ -31,6 +38,7 @@
 
 @roguelike_option initial_room_index=0
 
+@roguelike_character name=ハロ add_item=薬草
 @roguelike_character name=ハロ x=1 y=1
 
 @roguelike initialize
