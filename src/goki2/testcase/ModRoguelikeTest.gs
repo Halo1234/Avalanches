@@ -18,6 +18,11 @@
 
 @roguelike_item_menu storage=RoguelikeItemMenuBack.png left=300 top=80 margin_left=50 margin_top=40 margin_right=50
 
+@roguelike_item_sub_menu storage=RoguelikeItemSubMenuBack.png left=680 top=100
+@roguelike_item_sub_menu used_button_caption=使う used_button_left=20 used_button_top=20 used_button_width=60 used_button_height=30
+@roguelike_item_sub_menu put_button_caption=置く put_button_left=20 put_button_top=60 put_button_width=60 put_button_height=30
+@roguelike_item_sub_menu throw_button_caption=投げる throw_button_left=20 throw_button_top=100 throw_button_width=60 throw_button_height=30
+
 @roguelike_load_chips storage=roguelike_mapchips.dic
 @roguelike_load_chips name=StairsDown group_id=100000000 stairs_down
 @roguelike_load_chips name=StairsUp group_id=100000001 stairs_up
