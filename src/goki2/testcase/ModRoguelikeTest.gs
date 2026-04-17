@@ -13,11 +13,12 @@
 @roguelike_load_character name=ハロ storage=rouglelike_main_character player
 
 @roguelike_menu storage=RoguelikeMenuBack.png left=10 top=10
-@roguelike_menu item_button_caption=アイテム item_button_left=20 item_button_top=20 item_button_width=60 item_button_height=30
-@roguelike_menu foot_button_caption=足元 foot_button_left=110 foot_button_top=20 foot_button_width=60 foot_button_height=30
-@roguelike_menu map_button_caption=マップ map_button_left=20 map_button_top=60 map_button_width=60 map_button_height=30
+@roguelike_menu item_button_caption=アイテム item_button_left=20 item_button_top=20 item_button_width=60 item_button_height=30 item_button_body_opacity=0 item_button_caption_color=0xFFFFFF
+@roguelike_menu foot_button_caption=足元 foot_button_left=110 foot_button_top=20 foot_button_width=60 foot_button_height=30 foot_button_body_opacity=0 foot_button_caption_color=0xFFFFFF
+@roguelike_menu map_button_caption=マップ map_button_left=20 map_button_top=60 map_button_width=60 map_button_height=30 map_button_body_opacity=0 map_button_caption_color=0xFFFFFF
 
 @roguelike_item_menu storage=RoguelikeItemMenuBack.png left=300 top=80 margin_left=50 margin_top=40 margin_right=50
+@roguelike_item_menu button_body_opacity=0 button_caption_color=0xFFFFFF
 
 @roguelike_item_sub_menu storage=RoguelikeItemSubMenuBack.png left=680 top=100
 @roguelike_item_sub_menu used_button_caption=使う used_button_left=20 used_button_top=20 used_button_width=60 used_button_height=30
