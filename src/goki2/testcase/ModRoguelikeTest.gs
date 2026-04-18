@@ -50,8 +50,8 @@
 @roguelike_option initial_room_index=0
 
 @roguelike_character name=ハロ add_item=薬草
-@roguelike_character name=ハロ add_item=エニグマの紙
-@roguelike_character name=ハロ add_item=鉄の剣
+@roguelike_character name=ハロ add_item=エニグマの紙 correction_value=10
+@roguelike_character name=ハロ add_item=鉄の剣 correction_value=0
 @roguelike_character name=ハロ x=1 y=1
 
 @roguelike initialize
