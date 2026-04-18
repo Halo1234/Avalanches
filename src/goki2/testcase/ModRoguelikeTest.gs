@@ -50,9 +50,29 @@
 @roguelike_option initial_room_index=0
 
 @roguelike_character name=ハロ add_item=薬草
-@roguelike_character name=ハロ add_item=エニグマの紙 correction_value=10
 @roguelike_character name=ハロ add_item=鉄の剣 correction_value=0
+@roguelike_character name=ハロ add_item=薬草
+@roguelike_character name=ハロ add_item=薬草
+@roguelike_character name=ハロ add_item=薬草
+@roguelike_character name=ハロ add_item=薬草
+@roguelike_character name=ハロ add_item=薬草
+@roguelike_character name=ハロ add_item=薬草
+@roguelike_character name=ハロ add_item=薬草
+@roguelike_character name=ハロ add_item=薬草
+@roguelike_character name=ハロ add_item=エニグマの紙 correction_value=1
 @roguelike_character name=ハロ x=1 y=1
+
+@roguelike_status storage=RoguelikeStatusBack.png left=10 top=350
+@roguelike_status weapon_power_label_caption=武器の強さ weapon_power_label_left=60 weapon_power_label_top=40 weapon_power_label_body_opacity=0 weapon_power_label_caption_color=0xFFFFFF
+@roguelike_status weapon_power_left=140 weapon_power_top=40 weapon_power_caption_color=0xFFFFFF weapon_power_body_opacity=0
+@roguelike_status armor_power_label_caption=防具の強さ armor_power_label_left=60 armor_power_label_top=60 armor_power_label_body_opacity=0 armor_power_label_caption_color=0xFFFFFF
+@roguelike_status armor_power_left=140 armor_power_top=60 armor_power_caption_color=0xFFFFFF armor_power_body_opacity=0
+@roguelike_status player_power_label_caption=力 player_power_label_left=60 player_power_label_top=80 player_power_label_body_opacity=0 player_power_label_caption_color=0xFFFFFF
+@roguelike_status player_power_left=140 player_power_top=80 player_power_caption_color=0xFFFFFF player_power_body_opacity=0
+@roguelike_status fullness_level_label_caption=満腹度 fullness_level_label_left=220 fullness_level_label_top=40 fullness_level_label_body_opacity=0 fullness_level_label_caption_color=0xFFFFFF
+@roguelike_status fullness_level_left=300 fullness_level_top=40 fullness_level_caption_color=0xFFFFFF fullness_level_body_opacity=0
+@roguelike_status experience_label_caption=経験値 experience_label_left=220 experience_label_top=60 experience_label_body_opacity=0 experience_label_caption_color=0xFFFFFF
+@roguelike_status experience_left=300 experience_top=60 experience_caption_color=0xFFFFFF experience_body_opacity=0
 
 @roguelike initialize
 
