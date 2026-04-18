@@ -74,6 +74,8 @@
     <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_max_floor" id="roguelike_option_max_floor">max_floor</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">最大何階まで潜れるか指定します。<br />
     <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_message" id="roguelike_option_message">message</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">レイヤ名</td><td class="tagattribdesc">メッセージ表示用のメッセージレイヤの名前を指定します。<br />
     <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_message_interval" id="roguelike_option_message_interval">message_interval</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">メッセージ表示用のメッセージレイヤを非表示にする時間をミリ秒単位で指定します。<br />
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_correction_value_min" id="roguelike_option_correction_value_min">correction_value_min</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">遠距離武器や入れるアイテムなどの補正値の最小値を指定します。<br />
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_correction_value_max" id="roguelike_option_correction_value_max">correction_value_max</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">遠距離武器や入れるアイテムなどの補正値の最大値を指定します。<br />
 </td></tr>
 </td></tr>
   </tbody>
@@ -183,6 +185,10 @@ roguelike_load_roomタグで初期部屋を定義してから初期化してください。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_character_x" id="roguelike_character_x">x</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">グリッド単位</td><td class="tagattribdesc">キャラクターを配置する位置を指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_character_y" id="roguelike_character_y">y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">グリッド単位</td><td class="tagattribdesc">キャラクターを配置する位置を指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_character_item_max" id="roguelike_character_item_max">item_max</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">１以上の整数値</td><td class="tagattribdesc">アイテム最大所持数を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_character_add_item" id="roguelike_character_add_item">add_item</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">アイテム名</td><td class="tagattribdesc">ここで指定したアイテムを所持します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_character_add_item_id" id="roguelike_character_add_item_id">add_item_id</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">アイテムID</td><td class="tagattribdesc">ここで指定したアイテムを所持します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_character_correction_value" id="roguelike_character_correction_value">correction_value</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0以上の整数値</td><td class="tagattribdesc">所持させるアイテムの補正値を指定します。<br />
+省略するとランダムな値が設定されます。<br />
   </tbody>
 </table>
 <div class="tagremarks">
