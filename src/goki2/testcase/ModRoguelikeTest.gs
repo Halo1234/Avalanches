@@ -20,10 +20,14 @@
 @roguelike_item_menu storage=RoguelikeItemMenuBack.png left=300 top=80 margin_left=50 margin_top=40 margin_right=50
 @roguelike_item_menu button_body_opacity=0 button_caption_color=0xFFFFFF
 
-@roguelike_item_sub_menu storage=RoguelikeItemSubMenuBack.png left=680 top=100
-@roguelike_item_sub_menu used_button_caption=使う used_button_left=20 used_button_top=20 used_button_width=60 used_button_height=30
-@roguelike_item_sub_menu put_button_caption=置く put_button_left=20 put_button_top=60 put_button_width=60 put_button_height=30
-@roguelike_item_sub_menu throw_button_caption=投げる throw_button_left=20 throw_button_top=100 throw_button_width=60 throw_button_height=30
+@roguelike_item_sub_menu storage=RoguelikeItemSubMenuBack.png left=680 top=100 margin_left=20 margin_top=20
+@roguelike_item_sub_menu used_button_caption=使う used_button_width=60 used_button_height=30 used_button_body_opacity=0 used_button_caption_color=0xFFFFFF
+@roguelike_item_sub_menu equip_button_caption=装備 equip_button_width=60 equip_button_height=30 equip_button_body_opacity=0 equip_button_caption_color=0xFFFFFF
+@roguelike_item_sub_menu see_button_caption=見る see_button_width=60 see_button_height=30 see_button_body_opacity=0 see_button_caption_color=0xFFFFFF
+@roguelike_item_sub_menu input_button_caption=入れる input_button_width=60 input_button_height=30 input_button_body_opacity=0 input_button_caption_color=0xFFFFFF
+@roguelike_item_sub_menu output_button_caption=出す output_button_width=60 output_button_height=30 output_button_body_opacity=0 output_button_caption_color=0xFFFFFF
+@roguelike_item_sub_menu put_button_caption=置く put_button_width=60 put_button_height=30 put_button_body_opacity=0 put_button_caption_color=0xFFFFFF
+@roguelike_item_sub_menu throw_button_caption=投げる throw_button_width=60 throw_button_height=30 throw_button_body_opacity=0 throw_button_caption_color=0xFFFFFF
 
 @roguelike_load_chips storage=roguelike_mapchips.dic
 @roguelike_load_chips name=StairsDown group_id=100000000 stairs_down
@@ -46,6 +50,8 @@
 @roguelike_option initial_room_index=0
 
 @roguelike_character name=ハロ add_item=薬草
+@roguelike_character name=ハロ add_item=エニグマの紙
+@roguelike_character name=ハロ add_item=鉄の剣
 @roguelike_character name=ハロ x=1 y=1
 
 @roguelike initialize
