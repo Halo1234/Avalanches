@@ -8,7 +8,7 @@
 @roguelike_option max_floor=10
 @roguelike_option room_count_min=4 room_count_max=8
 @roguelike_option item_count_min=4 item_count_max=8
-@roguelike_option message=message1
+@roguelike_option message=message1 font_size=16
 
 @roguelike_load_character name=ハロ storage=rouglelike_main_character player
 
