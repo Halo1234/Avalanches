@@ -64,16 +64,16 @@
 @roguelike_character name=ハロ add_item=エニグマの紙 correction_value=1
 @roguelike_character name=ハロ x=1 y=1
 
-@roguelike_status_bar left=10 top=10 width=780 height=80
+@roguelike_status_bar left=10 top=10 width=780 height=80 body_opacity=0
 @roguelike_status_bar floor_number_label_storage=RoguelikeStatusFloor.png floor_number_label_left=0 floor_number_label_top=0
-@roguelike_status_bar floor_number_left=70 floor_number_top=0 floor_number_width=40 floor_number_height=20
+@roguelike_status_bar floor_number_left=70 floor_number_top=0 floor_number_width=40 floor_number_height=20 floor_number_body_opacity=0 floor_number_caption_color=0xFFFFFF
 @roguelike_status_bar level_label_storage=RoguelikeStatusLv.png level_label_left=120 level_label_top=0
-@roguelike_status_bar level_left=190 level_top=0 level_width=40 level_height=20
+@roguelike_status_bar level_left=190 level_top=0 level_width=40 level_height=20 level_body_opacity=0 level_caption_color=0xFFFFFF
 @roguelike_status_bar hp_label_storage=RoguelikeStatusHP.png hp_label_left=240 hp_label_top=0
-@roguelike_status_bar hp_left=310 hp_top=0 hp_width=40 hp_height=20
+@roguelike_status_bar hp_left=310 hp_top=0 hp_width=40 hp_height=20 hp_body_opacity=0 hp_caption_color=0xFFFFFF
 @roguelike_status_bar hp_bar_left=310 hp_bar_top=20 hp_bar_width=200 hp_bar_height=10
 @roguelike_status_bar money_label_storage=RoguelikeStatusMoney.png money_label_left=720 money_label_top=0
-@roguelike_status_bar money_left=620 money_top=0 money_width=40 money_height=20
+@roguelike_status_bar money_left=640 money_top=0 money_width=80 money_height=20 money_body_opacity=0 money_caption_color=0xFFFFFF
 
 @roguelike_status storage=RoguelikeStatusBack.png left=10 top=350
 @roguelike_status weapon_power_label_caption=武器の強さ weapon_power_label_left=60 weapon_power_label_top=40 weapon_power_label_body_opacity=0 weapon_power_label_caption_color=0xFFFFFF
