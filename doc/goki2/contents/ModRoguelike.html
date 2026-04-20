@@ -40,6 +40,7 @@
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#roguelike_item_sub_menu">roguelike_item_sub_menu</a></span></td><td class="taglistodd">アイテムサブメニューの設定</td></tr>
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#roguelike_status">roguelike_status</a></span></td><td class="taglisteven">ステータスの設定</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#roguelike_status_bar">roguelike_status_bar</a></span></td><td class="taglistodd">帯状のステータスの設定</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#roguelike_yesno">roguelike_yesno</a></span></td><td class="taglisteven">Yes/Noメニューの設定</td></tr>
 </tbody></table><br /><br /></div></div>
 
 <h1><a name="roguelike_option" id="roguelike_option" class="targanchor"><span class="b">roguelike_option</span>(別名なし)</a></h1>
@@ -76,10 +77,14 @@
     <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_initial_room_index" id="roguelike_option_initial_room_index">initial_room_index</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0から始まるインデックス</td><td class="tagattribdesc">初期部屋のインデックスを指定します。<br />
 ここで指定した初期部屋のインデックスが初期部屋として表示されます。<br />
     <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_max_floor" id="roguelike_option_max_floor">max_floor</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">最大何階まで潜れるか指定します。<br />
-    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_message" id="roguelike_option_message">message</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">レイヤ名</td><td class="tagattribdesc">メッセージ表示用のメッセージレイヤの名前を指定します。<br />
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_message_layer_name" id="roguelike_option_message_layer_name">message_layer_name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">レイヤ名</td><td class="tagattribdesc">メッセージ表示用のメッセージレイヤの名前を指定します。<br />
     <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_message_interval" id="roguelike_option_message_interval">message_interval</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">メッセージ表示用のメッセージレイヤを非表示にする時間をミリ秒単位で指定します。<br />
     <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_correction_value_min" id="roguelike_option_correction_value_min">correction_value_min</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">遠距離武器や入れるアイテムなどの補正値の最小値を指定します。<br />
     <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_correction_value_max" id="roguelike_option_correction_value_max">correction_value_max</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">遠距離武器や入れるアイテムなどの補正値の最大値を指定します。<br />
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_message" id="roguelike_option_message">message</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">文字列</td><td class="tagattribdesc">表示するメッセージを指定します。<br />
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_message_auto_hide" id="roguelike_option_message_auto_hide">message_auto_hide</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定すると３秒後にメッセージが自動的に非表示になります。<br />
+falseを指定するとメッセージは明示的に非表示にされるまで表示されたままとなります。<br />
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_hide_message" id="roguelike_option_hide_message">hide_message</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定するとメッセージを非表示にします。<br />
 </td></tr>
 </td></tr>
   </tbody>
@@ -804,6 +809,59 @@ roguelikeタグにnext_floor属性を付けて呼び出すと階層移動します。
 </table>
 <div class="tagremarks">
 ステータスの設定を行います。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div>
+</div>
+</div></div>
+
+<h1><a name="roguelike_yesno" id="roguelike_yesno" class="targanchor"><span class="b">roguelike_yesno</span>(別名なし)</a></h1>
+<div class="taggenre">Yes/Noメニューの設定。</div>
+<div class="para"><div>
+<table class="tagparams" frame="box" rules="all" summary="タグ roguelike_yesno の属性の一覧">
+  <thead>
+    <tr><th>別名</th><th>属性</th><th>必須?</th><th>値</th><th>説明</th></tr>
+  </thead>
+  <tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_storage" id="roguelike_yesno_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">Yes/No背景の画像ファイル名を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_left" id="roguelike_yesno_left">left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">Yes/No背景の位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_top" id="roguelike_yesno_top">top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">Yes/No背景の位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_center_left" id="roguelike_yesno_center_left">center_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">Yes/No背景の中央位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_center_top" id="roguelike_yesno_center_top">center_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">Yes/No背景の中央位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_width" id="roguelike_yesno_width">width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">Yes/No背景の幅を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_height" id="roguelike_yesno_height">height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">Yes/No背景の高さを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_body_color" id="roguelike_yesno_body_color">body_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">Yes/No背景の背景色を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_body_opacity" id="roguelike_yesno_body_opacity">body_opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0 - 255</td><td class="tagattribdesc">Yes/No背景の背景の不透明度を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_show_hide_type" id="roguelike_yesno_show_hide_type">show_hide_type</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">fade or vista</td><td class="tagattribdesc">Yes/No背景の表示/非表示タイプを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_show_hide_time" id="roguelike_yesno_show_hide_time">show_hide_time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒</td><td class="tagattribdesc">Yes/No背景の表示/非表示にかける時間をミリ秒単位で指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_yes_storage" id="roguelike_status_bar_yes_storage">yes_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">Yesボタンの画像ファイル名を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_yes_left" id="roguelike_status_bar_yes_left">yes_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">Yesボタンの位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_yes_top" id="roguelike_status_bar_yes_top">yes_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">Yesボタンの位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_yes_center_left" id="roguelike_status_bar_yes_center_left">yes_center_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">Yesボタンの中央位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_yes_center_top" id="roguelike_status_bar_yes_center_top">yes_center_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">Yesボタンの中央位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_yes_width" id="roguelike_status_bar_yes_width">yes_width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">Yesボタンの幅を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_yes_height" id="roguelike_status_bar_yes_height">yes_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">Yesボタンの高さを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_yes_body_color" id="roguelike_status_bar_yes_body_color">yes_body_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">Yesボタンの背景色を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_yes_body_opacity" id="roguelike_status_bar_yes_body_opacity">yes_body_opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0 - 255</td><td class="tagattribdesc">Yesボタンの背景の不透明度を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_yes_caption_color" id="roguelike_status_bar_yes_caption_color">yes_caption_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">Yesボタンラベルのキャプションカラーを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_yes_shadow_color" id="roguelike_status_bar_yes_shadow_color">yes_shadow_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">Yesボタンラベルのシャドウカラーを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_yes_edge_color" id="roguelike_status_bar_yes_edge_color">yes_edge_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">Yesボタンラベルのエッジカラーを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_no_storage" id="roguelike_yesno_no_storage">no_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">Noボタンの画像ファイル名を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_no_left" id="roguelike_yesno_no_left">no_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">Noボタンの位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_no_top" id="roguelike_yesno_no_top">no_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">Noボタンの位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_no_center_left" id="roguelike_yesno_no_center_left">no_center_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">Noボタンの中央位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_no_center_top" id="roguelike_yesno_no_center_top">no_center_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">Noボタンの中央位置を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_no_width" id="roguelike_yesno_no_width">no_width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">Noボタンの幅を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_no_height" id="roguelike_yesno_no_height">no_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">Noボタンの高さを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_no_body_color" id="roguelike_yesno_no_body_color">no_body_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">Noボタンの背景色を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_no_body_opacity" id="roguelike_yesno_no_body_opacity">no_body_opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0 - 255</td><td class="tagattribdesc">Noボタンの背景の不透明度を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_no_caption_color" id="roguelike_yesno_no_caption_color">no_caption_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">Noボタンラベルのキャプションカラーを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_no_shadow_color" id="roguelike_yesno_no_shadow_color">no_shadow_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">Noボタンラベルのシャドウカラーを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_no_edge_color" id="roguelike_yesno_no_edge_color">no_edge_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">Noボタンラベルのエッジカラーを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_show" id="roguelike_yesno_show">show</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Yes/Noメニューを表示します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_hide" id="roguelike_yesno_hide">hide</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Yes/Noメニューを消去します。<br />
+  </tbody>
+</table>
+<div class="tagremarks">
+Yes/Noメニューの設定を行います。<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div>
 </div>
 </div></div>
