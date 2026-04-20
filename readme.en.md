@@ -74,7 +74,8 @@ To facilitate smooth development, we recommend installing the following tools ba
 ---
 
 ## License
-Licensing terms follow the **Kirikiri 2** license.
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ---
 
