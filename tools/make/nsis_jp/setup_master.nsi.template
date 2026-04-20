@@ -139,7 +139,7 @@ Section "MakeStartMenu" MUIEX_SECID_CREATESTARTMENU
 
 	!include "install_shortcutitems"
 
-	CreateShortCut "${SM_PRODUCT}\${MAINAPPLICATION_ALIAS}.lnk" "$ProductDir\krkr.eXe"
+	CreateShortCut "${SM_PRODUCT}\${MAINAPPLICATION_ALIAS}.lnk" "$ProductDir\krkr.eXe" "${COMMAND_OPTION}"
 
 SectionEnd
 
