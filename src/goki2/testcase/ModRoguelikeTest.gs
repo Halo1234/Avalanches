@@ -40,8 +40,8 @@
 @roguelike_load_chips name=StairsUp group_id=100000001 stairs_up
 
 ; 階段にイベント設定
-;@roguelike_stairs_event name=StairsDown target=*to_down
-;@roguelike_stairs_event name=StairsUp target=*to_up
+@roguelike_stairs_event name=StairsDown target=*to_down
+@roguelike_stairs_event name=StairsUp target=*to_up
 
 ; アイテム読み込み
 @roguelike_load_items storage=items.ary
