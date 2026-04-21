@@ -10,7 +10,7 @@
 @roguelike_option item_count_min=4 item_count_max=8
 @roguelike_option message_layer_name=message1 font_size=16
 
-@roguelike_load_character name=ハロ storage=rouglelike_main_character player
+@roguelike_load_character storage=プレイヤー.dic image_storage=rouglelike_main_character player
 
 ; メインメニュー
 @roguelike_menu storage=RoguelikeMenuBack.png left=10 top=10
@@ -60,18 +60,18 @@
 @roguelike_option initial_room_index=0
 
 ; アイテム所持
-@roguelike_character name=ハロ add_item=薬草
-@roguelike_character name=ハロ add_item=鉄の剣 correction_value=0
-@roguelike_character name=ハロ add_item=薬草
-@roguelike_character name=ハロ add_item=薬草
-@roguelike_character name=ハロ add_item=薬草
-@roguelike_character name=ハロ add_item=薬草
-@roguelike_character name=ハロ add_item=薬草
-@roguelike_character name=ハロ add_item=薬草
-@roguelike_character name=ハロ add_item=薬草
-@roguelike_character name=ハロ add_item=薬草
-@roguelike_character name=ハロ add_item=エニグマの紙 correction_value=1
-@roguelike_character name=ハロ x=1 y=1
+@roguelike_character name=プレイヤー add_item=薬草
+@roguelike_character name=プレイヤー add_item=鉄の剣 correction_value=0
+@roguelike_character name=プレイヤー add_item=薬草
+@roguelike_character name=プレイヤー add_item=薬草
+@roguelike_character name=プレイヤー add_item=薬草
+@roguelike_character name=プレイヤー add_item=薬草
+@roguelike_character name=プレイヤー add_item=薬草
+@roguelike_character name=プレイヤー add_item=薬草
+@roguelike_character name=プレイヤー add_item=薬草
+@roguelike_character name=プレイヤー add_item=薬草
+@roguelike_character name=プレイヤー add_item=エニグマの紙 correction_value=1
+@roguelike_character name=プレイヤー x=1 y=1
 
 ; ステータスバー設定
 @roguelike_status_bar left=10 top=10 width=780 height=80 body_opacity=0
@@ -157,7 +157,7 @@
 @wait_roguelike_hide
 
 @roguelike_option initial_room_index=0
-@roguelike_character name=ハロ x=1 y=1
+@roguelike_character name=プレイヤー x=1 y=1
 @roguelike initialize
 @roguelike_option x=2 y=1 stairs_down
 
