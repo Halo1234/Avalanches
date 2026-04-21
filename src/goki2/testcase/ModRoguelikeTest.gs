@@ -60,6 +60,7 @@
 @roguelike_option initial_room_index=0
 
 ; アイテム所持
+@roguelike_character name=プレイヤー x=1 y=1
 @roguelike_character name=プレイヤー add_item=薬草
 @roguelike_character name=プレイヤー add_item=鉄の剣 correction_value=0
 @roguelike_character name=プレイヤー add_item=薬草
@@ -71,7 +72,6 @@
 @roguelike_character name=プレイヤー add_item=薬草
 @roguelike_character name=プレイヤー add_item=薬草
 @roguelike_character name=プレイヤー add_item=エニグマの紙 correction_value=1
-@roguelike_character name=プレイヤー x=1 y=1
 
 ; ステータスバー設定
 @roguelike_status_bar left=10 top=10 width=780 height=80 body_opacity=0
