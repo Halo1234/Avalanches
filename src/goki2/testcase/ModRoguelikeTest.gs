@@ -59,8 +59,9 @@
 ; 初期部屋を部屋0にする
 @roguelike_option initial_room_index=0
 
-; アイテム所持
+; プレイヤー配置
 @roguelike_character name=プレイヤー x=1 y=1
+; アイテム所持
 @roguelike_character name=プレイヤー add_item=薬草
 @roguelike_character name=プレイヤー add_item=鉄の剣 correction_value=0
 @roguelike_character name=プレイヤー add_item=薬草
