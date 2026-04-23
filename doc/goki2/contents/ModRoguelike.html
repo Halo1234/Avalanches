@@ -26,7 +26,7 @@
 <table class="taglist"><tbody>
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#roguelike_option">roguelike_option</a></span></td><td class="taglisteven">ローグライクゲームの基本設定</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#roguelike">roguelike</a></span></td><td class="taglistodd">ローグライクゲームの制御</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#rouglelike_load_character">rouglelike_load_character</a></span></td><td class="taglisteven">キャラクターの読み込み</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#roguelike_load_character">roguelike_load_character</a></span></td><td class="taglisteven">キャラクターの読み込み</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#roguelike_load_chips">roguelike_load_chips</a></span></td><td class="taglistodd">マップチップ情報の読み込み</td></tr>
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#roguelike_load_room">roguelike_load_room</a></span></td><td class="taglisteven">部屋定義の読み込み</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#roguelike_character">roguelike_character</a></span></td><td class="taglistodd">キャラクターの設定</td></tr>
@@ -63,6 +63,8 @@
     <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_room_count_max" id="roguelike_option_room_count_max">room_count_max</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">１階層で配置する部屋の最大数を指定します。<br />
     <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_item_count_min" id="roguelike_option_item_count_min">item_count_min</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">１階層で配置するアイテムの最小数を指定します。<br />
     <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_item_count_max" id="roguelike_option_item_count_max">item_count_max</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">１階層で配置するアイテムの最大数を指定します。<br />
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_enemy_count_min" id="roguelike_option_enemy_count_min">enemy_count_min</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">１階層で配置する敵キャラクターの最大数を指定します。<br />
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_enemy_count_max" id="roguelike_option_enemy_count_max">enemy_count_max</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">１階層で配置する敵キャラクターの最大数を指定します。<br />
     <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_grid_width" id="roguelike_option_grid_width">grid_width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">グリッドのサイズをピクセル単位で指定します。<br />
 デフォルトは64です。<br />
 </td></tr>
@@ -120,18 +122,20 @@ roguelike_load_roomタグで初期部屋を定義してから初期化してください。<br />
 </div>
 </div></div>
 
-<h1><a name="rouglelike_load_character" id="rouglelike_load_character" class="targanchor"><span class="b">rouglelike_load_character</span>(別名なし)</a></h1>
+<h1><a name="roguelike_load_character" id="roguelike_load_character" class="targanchor"><span class="b">roguelike_load_character</span>(別名なし)</a></h1>
 <div class="taggenre">キャラクターのロード。</div>
 <div class="para"><div>
-<table class="tagparams" frame="box" rules="all" summary="タグ rouglelike_load_character の属性の一覧">
+<table class="tagparams" frame="box" rules="all" summary="タグ roguelike_load_character の属性の一覧">
   <thead>
     <tr><th>別名</th><th>属性</th><th>必須?</th><th>値</th><th>説明</th></tr>
   </thead>
   <tbody>
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="rouglelike_load_character_storage" id="rouglelike_load_character_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">キャラクターデータのファイル名を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="rouglelike_load_character_image_storage" id="rouglelike_load_character_image_storage">image_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">キャラクターの画像ファイル名を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="rouglelike_load_character_asd" id="rouglelike_load_character_asd">asd</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">キャラクターのアニメーションファイル名(*.asd/*.asdx)を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="rouglelike_load_character_player" id="rouglelike_load_character_player">player</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">ユーザーが操作するキャラクターの場合、この値は true となります。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_storage" id="roguelike_load_character_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">キャラクターデータのファイル名を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_image_storage" id="roguelike_load_character_image_storage">image_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">キャラクターの画像ファイル名を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_asd" id="roguelike_load_character_asd">asd</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">キャラクターのアニメーションファイル名(*.asd/*.asdx)を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_player" id="roguelike_load_character_player">player</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">ユーザーが操作するキャラクターの場合、この値は true となります。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_min_floor" id="roguelike_load_character_min_floor">min_floor</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">出現する最小階層。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_max_floor" id="roguelike_load_character_max_floor">max_floor</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">出現する最大階層。<br />
   </tbody>
 </table>
 <div class="tagremarks">
