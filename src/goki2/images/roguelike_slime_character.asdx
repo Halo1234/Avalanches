@@ -1,0 +1,82 @@
+
+;
+; rouglelike_main_character.asdx
+;
+
+@macro name=cell
+@option clip_left=%x clip_top=%y clip_width=128 clip_height=128
+@wait time=%time|100
+@endmacro
+@s
+
+*front
+@cell x=128 y=128
+@s
+
+*front_attack
+@cell x=128 y=256
+@cell x=128 y=128
+@s
+
+*back
+@cell x=128 y=128
+@s
+
+*back_attack
+@cell x=128 y=0
+@cell x=128 y=128
+@s
+
+*left
+@cell x=128 y=128
+@s
+
+*left_attack
+@cell x=0 y=128
+@cell x=128 y=128
+@s
+
+*right
+@cell x=128 y=128
+@s
+
+*right_attack
+@cell x=256 y=128
+@cell x=128 y=128
+@s
+
+*left_front
+@cell x=128 y=128
+@s
+
+*left_front_attack
+@cell x=0 y=256
+@cell x=128 y=128
+@s
+
+*right_front
+@cell x=128 y=128
+@s
+
+*right_front_attack
+@cell x=256 y=256
+@cell x=128 y=128
+@s
+
+*left_back
+@cell x=128 y=128
+@s
+
+*left_back_attack
+@cell x=0 y=0
+@cell x=128 y=128
+@s
+
+*right_back
+@cell x=128 y=128
+@s
+
+*right_back_attack
+@cell x=256 y=0
+@cell x=128 y=128
+@s

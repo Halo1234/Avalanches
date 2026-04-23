@@ -8,9 +8,11 @@
 @roguelike_option max_floor=10
 @roguelike_option room_count_min=4 room_count_max=8
 @roguelike_option item_count_min=4 item_count_max=8
+@roguelike_option enemy_count_min=4 enemy_count_max=8
 @roguelike_option message_layer_name=message1 font_size=16
 
-@roguelike_load_character storage=プレイヤー.dic image_storage=rouglelike_main_character player
+@roguelike_load_character storage=プレイヤー.dic image_storage=roguelike_main_character player
+@roguelike_load_character storage=スライム.dic image_storage=roguelike_slime_character
 
 ; メインメニュー
 @roguelike_menu storage=RoguelikeMenuBack.png left=10 top=10
