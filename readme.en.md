@@ -14,11 +14,11 @@ If you want to start game development immediately using GOKI2, please download t
 
 ## Table of Contents
 * [Introduction](#Introduction)
-* [System Requirements](#System. Requirements)
-* [Directory Structure](#Directory Structure)
-* [Recommended Software](#Recommended Software)
+* [System Requirements](#System-Requirements)
+* [Directory Structure](#Directory-Structure)
+* [Recommended Software](#Recommended-Software)
 * [License](#License)
-* [Contact Information](#Contact Information)
+* [Contact Information](#Contact-Information)
 
 ---
 
