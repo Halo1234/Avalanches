@@ -1,14 +1,16 @@
 
 
 *label|
-@roguelike_option debug debug_dump_map
+;@roguelike_option debug 
+@roguelike_option debug_dump_map
+@roguelike_option debug_show_enemies
 
 @roguelike_option grid_width=64 grid_height=64
 @roguelike_option map_width=50 map_height=50
 @roguelike_option max_floor=10
 @roguelike_option room_count_min=4 room_count_max=8
 @roguelike_option item_count_min=4 item_count_max=8
-@roguelike_option enemy_count_min=4 enemy_count_max=8
+@roguelike_option enemy_count_min=1 enemy_count_max=1
 @roguelike_option message_layer_name=message1 font_size=16
 
 @roguelike_load_character storage=プレイヤー.dic image_storage=roguelike_main_character player
@@ -50,13 +52,15 @@
 
 ; 部屋の読み込み
 @roguelike_load_room storage=initial_room001.ary initial_room_index=0
-@roguelike_load_room storage=room001.ary
-@roguelike_load_room storage=room002.ary
-@roguelike_load_room storage=room003.ary
-@roguelike_load_room storage=room004.ary
-@roguelike_load_room storage=room005.ary
+;@roguelike_load_room storage=room001.ary
+;@roguelike_load_room storage=room001.ary
+;@roguelike_load_room storage=room002.ary
+;@roguelike_load_room storage=room003.ary
+;@roguelike_load_room storage=room004.ary
+;@roguelike_load_room storage=room005.ary
 @roguelike_load_room storage=room006.ary
-@roguelike_load_room storage=room007.ary
+@roguelike_load_room storage=room006.ary
+;@roguelike_load_room storage=room007.ary
 
 ; 初期部屋を部屋0にする
 @roguelike_option initial_room_index=0
