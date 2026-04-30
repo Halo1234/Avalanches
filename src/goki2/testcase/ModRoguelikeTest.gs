@@ -4,6 +4,7 @@
 ;@roguelike_option debug 
 @roguelike_option debug_dump_map
 @roguelike_option debug_show_enemies
+@roguelike_option debug_move_enemies
 @roguelike_option debug_mini_map_full_open
 
 @roguelike_option grid_width=64 grid_height=64
@@ -11,7 +12,7 @@
 @roguelike_option max_floor=10
 @roguelike_option room_count_min=4 room_count_max=8
 @roguelike_option item_count_min=4 item_count_max=8
-@roguelike_option enemy_count_min=3 enemy_count_max=6
+@roguelike_option enemy_count_min=1 enemy_count_max=1
 @roguelike_option message_layer_name=message1 font_size=16
 
 @roguelike_load_character storage=プレイヤー.dic image_storage=roguelike_main_character player
