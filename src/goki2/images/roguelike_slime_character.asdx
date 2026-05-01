@@ -5,7 +5,7 @@
 
 @macro name=cell
 @option clip_left=%x clip_top=%y clip_width=128 clip_height=128
-@wait time=%time|100
+@wait time=%time|500
 @endmacro
 @s
 
