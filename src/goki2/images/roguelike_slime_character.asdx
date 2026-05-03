@@ -15,7 +15,7 @@
 
 *front_attack
 @cell x=128 y=256
-@cell x=128 y=128
+@cell x=128 y=128 time=0
 @s
 
 *back
@@ -24,7 +24,7 @@
 
 *back_attack
 @cell x=128 y=0
-@cell x=128 y=128
+@cell x=128 y=128 time=0
 @s
 
 *left
@@ -33,7 +33,7 @@
 
 *left_attack
 @cell x=0 y=128
-@cell x=128 y=128
+@cell x=128 y=128 time=0
 @s
 
 *right
@@ -42,7 +42,7 @@
 
 *right_attack
 @cell x=256 y=128
-@cell x=128 y=128
+@cell x=128 y=128 time=0
 @s
 
 *left_front
@@ -51,7 +51,7 @@
 
 *left_front_attack
 @cell x=0 y=256
-@cell x=128 y=128
+@cell x=128 y=128 time=0
 @s
 
 *right_front
@@ -60,7 +60,7 @@
 
 *right_front_attack
 @cell x=256 y=256
-@cell x=128 y=128
+@cell x=128 y=128 time=0
 @s
 
 *left_back
@@ -69,7 +69,7 @@
 
 *left_back_attack
 @cell x=0 y=0
-@cell x=128 y=128
+@cell x=128 y=128 time=0
 @s
 
 *right_back
@@ -78,5 +78,5 @@
 
 *right_back_attack
 @cell x=256 y=0
-@cell x=128 y=128
+@cell x=128 y=128 time=0
 @s
