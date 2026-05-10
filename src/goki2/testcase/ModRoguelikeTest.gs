@@ -4,11 +4,12 @@
 ;@roguelike_option debug 
 @roguelike_option debug_dump_map
 @roguelike_option debug_show_enemies
-;@roguelike_option debug_move_enemies
+@roguelike_option debug_move_enemies
 @roguelike_option debug_mini_map_full_open
 ;@roguelike_option debug_attack
 ;@roguelike_option debug_check_pos
-@roguelike_option debug_measure_time
+;@roguelike_option debug_measure_time
+;@roguelike_option debug_not_tracking_mode
 
 @roguelike_option grid_width=64 grid_height=64
 @roguelike_option map_width=50 map_height=50
