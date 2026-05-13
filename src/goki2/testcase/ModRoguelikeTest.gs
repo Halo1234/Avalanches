@@ -93,7 +93,7 @@
 @roguelike_status_bar level_label_storage=RoguelikeStatusLv.png level_label_left=120 level_label_top=0
 @roguelike_status_bar level_left=190 level_top=0 level_width=40 level_height=20 level_body_opacity=0 level_caption_color=0xFFFFFF
 @roguelike_status_bar hp_label_storage=RoguelikeStatusHP.png hp_label_left=240 hp_label_top=0
-@roguelike_status_bar hp_left=310 hp_top=0 hp_width=40 hp_height=20 hp_body_opacity=0 hp_caption_color=0xFFFFFF
+@roguelike_status_bar hp_left=310 hp_top=0 hp_width=80 hp_height=20 hp_body_opacity=0 hp_caption_color=0xFFFFFF
 @roguelike_status_bar hp_bar_left=310 hp_bar_top=20 hp_bar_width=200 hp_bar_height=10
 @roguelike_status_bar money_label_storage=RoguelikeStatusMoney.png money_label_left=720 money_label_top=0
 @roguelike_status_bar money_left=640 money_top=0 money_width=80 money_height=20 money_body_opacity=0 money_caption_color=0xFFFFFF
