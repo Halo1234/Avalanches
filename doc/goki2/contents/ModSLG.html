@@ -2191,7 +2191,7 @@ falseならば無効画像を使いません。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgshop_font_height" id="slgshop_font_height">font_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">フォントの高さを指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgshop_show_hide_type" id="slgshop_show_hide_type">show_hide_type</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">fade or vista</td><td class="tagattribdesc">表示効果タイプを指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgshop_show_hide_time" id="slgshop_show_hide_time">show_hide_time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒単位</td><td class="tagattribdesc">表示効果時間を指定します。<br />
-</tbody></table><div class="tagremarks">セーブロ度画面の設定を行います。<br />
+</tbody></table><div class="tagremarks">ショップ画面の設定を行います。<br />
 </div>
 <div class="tagexample"><code class="bq"><span class="weak">例:</span><br />
 ; ショップレイヤとリストレイヤの位置とサイズを設定する<br />
@@ -2222,6 +2222,7 @@ falseならば無効画像を使いません。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgweaponshop_y" id="slgweaponshop_y">y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">グリッド単位</td><td class="tagattribdesc">アイテムを追加する武器屋の位置を指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgweaponshop_item_name" id="slgweaponshop_item_name">item_name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">アイテム名</td><td class="tagattribdesc">追加するアイテム名を指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgweaponshop_count" id="slgweaponshop_count">count</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">追加するアイテムの数を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgweaponshop_clear" id="slgweaponshop_clear">clear</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">(x, y)で指定した場所の武器屋のアイテムをクリアする。<br />
 </tbody></table><div class="tagremarks">武器屋の設定を行います。<br />
 </div>
 <div class="tagexample"><code class="bq"><span class="weak">例:</span><br />
@@ -2249,6 +2250,7 @@ falseならば無効画像を使いません。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgarmorshop_y" id="slgarmorshop_y">y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">グリッド単位</td><td class="tagattribdesc">アイテムを追加する防具屋の位置を指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgarmorshop_item_name" id="slgarmorshop_item_name">item_name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">アイテム名</td><td class="tagattribdesc">追加するアイテム名を指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgarmorshop_count" id="slgarmorshop_count">count</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">追加するアイテムの数を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgarmorshop_clear" id="slgarmorshop_clear">clear</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">(x, y)で指定した場所の防具屋のアイテムをクリアする。<br />
 </tbody></table><div class="tagremarks">防具屋の設定を行います。<br />
 </div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
@@ -2268,6 +2270,7 @@ falseならば無効画像を使いません。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgitemshop_y" id="slgitemshop_y">y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">グリッド単位</td><td class="tagattribdesc">アイテムを追加するアイテム屋の位置を指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgitemshop_item_name" id="slgitemshop_item_name">item_name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">アイテム名</td><td class="tagattribdesc">追加するアイテム名を指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgitemshop_count" id="slgitemshop_count">count</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">追加するアイテムの数を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="slgitemshop_clear" id="slgitemshop_clear">clear</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">(x, y)で指定した場所の道具屋のアイテムをクリアする。<br />
 </tbody></table><div class="tagremarks">アイテム屋の設定を行います。<br />
 </div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
