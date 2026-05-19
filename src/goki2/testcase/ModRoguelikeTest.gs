@@ -23,7 +23,7 @@
 @roguelike_option message_layer_name=message1 font_size=16
 
 @roguelike_load_character storage=プレイヤー.dic image_storage=roguelike_main_character player
-;@roguelike_load_character storage=スライム.dic image_storage=roguelike_slime_character
+@roguelike_load_character storage=スライム.dic image_storage=roguelike_slime_character
 @roguelike_load_character storage=ドラゴン.dic image_storage=roguelike_dragon_character
 
 ; メインメニュー
