@@ -12,28 +12,28 @@ namespace bm88 {
 			len--;
 			for (; len >= (8 - 1); len -= 8)
 			{
-				if (!(src[len - 0] & 0xFF000000))
+				if ((src[len - 0] & 0xFF000000))
 					dest[len - 0] = (dest[len - 0] & 0xFFFFFF);
-				if (!(src[len - 1] & 0xFF000000))
+				if ((src[len - 1] & 0xFF000000))
 					dest[len - 1] = (dest[len - 1] & 0xFFFFFF);
-				if (!(src[len - 2] & 0xFF000000))
+				if ((src[len - 2] & 0xFF000000))
 					dest[len - 2] = (dest[len - 2] & 0xFFFFFF);
-				if (!(src[len - 3] & 0xFF000000))
+				if ((src[len - 3] & 0xFF000000))
 					dest[len - 3] = (dest[len - 3] & 0xFFFFFF);
-				if (!(src[len - 4] & 0xFF000000))
+				if ((src[len - 4] & 0xFF000000))
 					dest[len - 4] = (dest[len - 4] & 0xFFFFFF);
-				if (!(src[len - 5] & 0xFF000000))
+				if ((src[len - 5] & 0xFF000000))
 					dest[len - 5] = (dest[len - 5] & 0xFFFFFF);
-				if (!(src[len - 6] & 0xFF000000))
+				if ((src[len - 6] & 0xFF000000))
 					dest[len - 6] = (dest[len - 6] & 0xFFFFFF);
-				if (!(src[len - 7] & 0xFF000000))
+				if ((src[len - 7] & 0xFF000000))
 					dest[len - 7] = (dest[len - 7] & 0xFFFFFF);
 			}
 
 			// —]‚è
 			for (; len >= 0; len--)
 			{
-				if (!(src[len] & 0xFF000000))
+				if ((src[len] & 0xFF000000))
 					dest[len] = (dest[len] & 0xFFFFFF);
 			}
 		}
