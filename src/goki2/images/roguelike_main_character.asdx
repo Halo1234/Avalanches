@@ -6,6 +6,11 @@
 @option clip_left=%x clip_top=%y clip_width=128 clip_height=128
 @wait time=%time|100
 @endmacro
+
+@macro name=cell2
+@option clip_left=%x clip_top=%y clip_width=64 clip_height=64
+@wait time=%time|100
+@endmacro
 @s
 
 *front
@@ -55,3 +60,8 @@
 *right_back_attack
 @cell x=128 y=0
 @s
+
+*sleep
+@cell2 x=512 y=0
+@s
+

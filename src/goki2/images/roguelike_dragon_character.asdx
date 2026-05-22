@@ -8,6 +8,11 @@
 @wait time=%time|500
 @endmacro
 
+@macro name=cell2
+@option clip_left=%x clip_top=%y clip_width=64 clip_height=64
+@wait time=%time|500
+@endmacro
+
 @macro name=cell_big
 @option clip_left=%x clip_top=%y clip_width=192 clip_height=192
 @wait time=%time|500
@@ -108,4 +113,8 @@
 
 *right_back_long_attack
 @cell_big x=768 y=0
+@s
+
+*sleep
+@cell2 x=960 y=0
 @s
