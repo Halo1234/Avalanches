@@ -6,11 +6,11 @@
 ;@roguelike_option debug 
 @roguelike_option debug_dump_map
 @roguelike_option debug_show_enemies
-;@roguelike_option debug_move_enemies
+@roguelike_option debug_move_enemies
 @roguelike_option debug_mini_map_full_open
 ;@roguelike_option debug_attack
 ;@roguelike_option debug_check_pos
-@roguelike_option debug_measure_time
+;@roguelike_option debug_measure_time
 ;@roguelike_option debug_not_tracking_mode
 ;@roguelike_option debug_skip
 
@@ -21,6 +21,8 @@
 @roguelike_option item_count_min=4 item_count_max=8
 @roguelike_option enemy_count_min=4 enemy_count_max=8
 @roguelike_option message_layer_name=message1 font_size=16
+@roguelike_option enemy_sleeping=20
+@roguelike_option monster_house_rate=10
 
 @roguelike_load_character storage=プレイヤー.dic image_storage=roguelike_main_character player
 @roguelike_load_character storage=スライム.dic image_storage=roguelike_slime_character
@@ -95,7 +97,7 @@
 @roguelike_status_bar level_label_storage=RoguelikeStatusLv.png level_label_left=120 level_label_top=0
 @roguelike_status_bar level_left=190 level_top=0 level_width=40 level_height=20 level_body_opacity=0 level_caption_color=0xFFFFFF
 @roguelike_status_bar hp_label_storage=RoguelikeStatusHP.png hp_label_left=240 hp_label_top=0
-@roguelike_status_bar hp_left=310 hp_top=0 hp_width=80 hp_height=20 hp_body_opacity=0 hp_caption_color=0xFFFFFF
+@roguelike_status_bar hp_left=310 hp_top=0 hp_width=180 hp_height=20 hp_body_opacity=0 hp_caption_color=0xFFFFFF
 @roguelike_status_bar hp_bar_left=310 hp_bar_top=20 hp_bar_width=200 hp_bar_height=10
 @roguelike_status_bar money_label_storage=RoguelikeStatusMoney.png money_label_left=720 money_label_top=0
 @roguelike_status_bar money_left=640 money_top=0 money_width=80 money_height=20 money_body_opacity=0 money_caption_color=0xFFFFFF
