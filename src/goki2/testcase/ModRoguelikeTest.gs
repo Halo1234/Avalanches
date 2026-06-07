@@ -62,6 +62,9 @@
 ; アイテム読み込み
 @roguelike_load_items storage=items.ary
 
+; 罠読み込み
+@roguelike_load_trap storage=roguelike_trap.ary
+
 ; 部屋の読み込み
 @roguelike_load_room storage=initial_room001.ary initial_room_index=0
 @roguelike_load_room storage=room001.ary
