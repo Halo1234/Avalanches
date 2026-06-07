@@ -41,6 +41,7 @@
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#roguelike_status">roguelike_status</a></span></td><td class="taglisteven">ステータスの設定</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#roguelike_status_bar">roguelike_status_bar</a></span></td><td class="taglistodd">帯状のステータスの設定</td></tr>
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#roguelike_yesno">roguelike_yesno</a></span></td><td class="taglisteven">Yes/Noメニューの設定</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#roguelike_load_trap">roguelike_load_trap</a></span></td><td class="taglistodd">罠情報の読み込み</td></tr>
 </tbody></table><br /><br /></div></div>
 
 <h1><a name="roguelike_option" id="roguelike_option" class="targanchor"><span class="b">roguelike_option</span>(別名なし)</a></h1>
@@ -61,6 +62,8 @@
     <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_debug_measure_time" id="roguelike_option_debug_measure_time">debug_measure_time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定すると各処理にかかった時間をコンソールに出力する。<br />
     <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_debug_not_tracking_mode" id="roguelike_option_debug_not_tracking_mode">debug_not_tracking_mode</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定すると追跡モードにならない（攻撃もしない）。<br />
     <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_debug_skip" id="roguelike_option_debug_skip">debug_skip</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定するとスキップ中のログをコンソールに出力します。<br />
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_debug_show_trap" id="roguelike_option_debug_show_trap">debug_show_trap</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定すると罠を表示します。<br />
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_debug_trap" id="roguelike_option_debug_trap">debug_trap</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定すると罠のログをコンソールに出力します。<br />
     <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_font_size" id="roguelike_option_font_size">font_size</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">フォントサイズを指定します。<br />
     <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_font" id="roguelike_option_font">font</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">フォント名を指定します。<br />
     <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_stairs_down" id="roguelike_option_stairs_down">stairs_down</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定すると(x, y)で指定した場所に降りる階段を配置します。<br />
@@ -882,6 +885,23 @@ roguelikeタグにnext_floor属性を付けて呼び出すと階層移動します。
 </table>
 <div class="tagremarks">
 Yes/Noメニューの設定を行います。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div>
+</div>
+</div></div>
+
+<h1><a name="roguelike_load_trap" id="roguelike_load_trap" class="targanchor"><span class="b">roguelike_load_trap</span>(別名なし)</a></h1>
+<div class="taggenre">罠情報の読み込み。</div>
+<div class="para"><div>
+<table class="tagparams" frame="box" rules="all" summary="タグ roguelike_load_trap の属性の一覧">
+  <thead>
+    <tr><th>別名</th><th>属性</th><th>必須?</th><th>値</th><th>説明</th></tr>
+  </thead>
+  <tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_trap_storage" id="roguelike_load_trap_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">罠情報のファイル名を指定します。<br />
+  </tbody>
+</table>
+<div class="tagremarks">
+罠情報を読み込みます。<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div>
 </div>
 </div></div>
