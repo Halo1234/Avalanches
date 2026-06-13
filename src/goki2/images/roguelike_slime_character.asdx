@@ -83,7 +83,7 @@
 @s
 
 *damage
-@cell x=128 y=128 time=500
+@cell2 x=448 y=0 time=500
 @s
 
 
