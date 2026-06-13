@@ -118,3 +118,7 @@
 *sleep
 @cell2 x=960 y=0
 @s
+
+*damage
+@cell x=128 y=128 time=500
+@s

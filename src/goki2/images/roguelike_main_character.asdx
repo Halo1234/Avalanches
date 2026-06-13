@@ -65,3 +65,7 @@
 @cell2 x=512 y=0
 @s
 
+*damage
+@cell2 x=576 y=0 time=500
+@s
+
