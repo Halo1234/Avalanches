@@ -6,7 +6,7 @@
 ;@roguelike_option debug 
 @roguelike_option debug_dump_map
 @roguelike_option debug_show_enemies
-@roguelike_option debug_move_enemies
+;@roguelike_option debug_move_enemies
 @roguelike_option debug_mini_map_full_open
 ;@roguelike_option debug_attack
 ;@roguelike_option debug_check_pos
