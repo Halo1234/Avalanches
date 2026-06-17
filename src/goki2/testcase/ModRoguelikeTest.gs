@@ -22,6 +22,8 @@
 @roguelike_option room_count_min=4 room_count_max=8
 @roguelike_option item_count_min=4 item_count_max=8
 @roguelike_option enemy_count_min=4 enemy_count_max=8
+@roguelike_option enemy_count_min=4 enemy_count_max=8
+@roguelike_option trap_lower_floor=1 trap_upper_floor=99 trap_min=20 trap_max=30
 @roguelike_option message_layer_name=message1 font_size=16
 @roguelike_option enemy_sleeping=20
 @roguelike_option monster_house_rate=10
