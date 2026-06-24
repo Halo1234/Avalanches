@@ -21,7 +21,7 @@
 @s
 
 *front_attack
-@cell x=128 y=256 time=100
+@cell x=128 y=256
 @s
 
 *back
@@ -31,7 +31,7 @@
 @s
 
 *back_attack
-@cell x=128 y=0 time=100
+@cell x=128 y=0
 @s
 
 *left
@@ -41,7 +41,7 @@
 @s
 
 *left_attack
-@cell x=0 y=128 time=100
+@cell x=0 y=128
 @s
 
 *right
@@ -51,17 +51,17 @@
 @s
 
 *right_attack
-@cell x=256 y=128 time=100
+@cell x=256 y=128
 @s
 
 *left_front
-*left_confuse
-*left_make_slow
+*left_front_confuse
+*left_front_make_slow
 @cell x=128 y=128
 @s
 
 *left_front_attack
-@cell x=0 y=256 time=100
+@cell x=0 y=256
 @s
 
 *right_front
@@ -71,7 +71,7 @@
 @s
 
 *right_front_attack
-@cell x=256 y=256 time=100
+@cell x=256 y=256
 @s
 
 *left_back
@@ -81,7 +81,7 @@
 @s
 
 *left_back_attack
-@cell x=0 y=0 time=100
+@cell x=0 y=0
 @s
 
 *right_back
@@ -91,7 +91,7 @@
 @s
 
 *right_back_attack
-@cell x=256 y=0 time=100
+@cell x=256 y=0
 @s
 
 *sleep
@@ -99,7 +99,7 @@
 @s
 
 *damage
-@cell2 x=448 y=0 time=500
+@cell2 x=448 y=0
 @s
 
 
