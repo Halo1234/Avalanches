@@ -22,6 +22,7 @@
 *front
 *front_confuse
 *front_make_slow
+*front_do_not_move
 @cell x=128 y=128
 @s
 
@@ -36,6 +37,7 @@
 *back
 *back_confuse
 *back_make_slow
+*back_do_not_move
 @cell x=128 y=128
 @s
 
@@ -50,6 +52,7 @@
 *left
 *left_confuse
 *left_make_slow
+*left_do_not_move
 @cell x=128 y=128
 @s
 
@@ -64,6 +67,7 @@
 *right
 *right_confuse
 *right_make_slow
+*right_do_not_move
 @cell x=128 y=128
 @s
 
@@ -78,6 +82,7 @@
 *left_front
 *left_front_confuse
 *left_front_make_slow
+*left_front_do_not_move
 @cell x=128 y=128
 @s
 
@@ -92,6 +97,7 @@
 *right_front
 *right_front_confuse
 *right_front_make_slow
+*right_front_do_not_move
 @cell x=128 y=128
 @s
 
@@ -106,6 +112,7 @@
 *left_back
 *left_back_confuse
 *left_back_make_slow
+*left_back_do_not_move
 @cell x=128 y=128
 @s
 
@@ -120,6 +127,7 @@
 *right_back
 *right_back_confuse
 *right_back_make_slow
+*right_back_do_not_move
 @cell x=128 y=128
 @s
 
