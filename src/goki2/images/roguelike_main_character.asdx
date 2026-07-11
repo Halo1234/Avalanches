@@ -101,3 +101,15 @@
 @cell2 x=576 y=0 time=500
 @s
 
+*eat
+@cell2 x=640 y=0
+@cell2 x=704 y=0
+@cell2 x=768 y=0
+@cell2 x=640 y=64
+@cell2 x=704 y=64
+@cell2 x=768 y=64
+@cell2 x=640 y=128
+@cell2 x=704 y=128
+@cell2 x=768 y=128
+@s
+
