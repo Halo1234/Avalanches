@@ -16,7 +16,7 @@
 @roguelike_option debug_show_trap
 @roguelike_option debug_trap
 @roguelike_option debug_show_transparent_character
-;@roguelike_option debug_show_item_name
+@roguelike_option debug_show_item_name
 
 @roguelike_option grid_width=64 grid_height=64
 @roguelike_option map_width=50 map_height=50
@@ -94,7 +94,7 @@
 @roguelike_character name=プレイヤー add_item=イオナズンの巻物
 @roguelike_character name=プレイヤー add_item=鑑定の巻物
 @roguelike_character name=プレイヤー add_item=薬草
-@roguelike_character name=プレイヤー add_item=薬草
+@roguelike_character name=プレイヤー add_item=強化の巻物
 @roguelike_character name=プレイヤー add_item=薬草
 @roguelike_character name=プレイヤー add_item=薬草
 @roguelike_character name=プレイヤー add_item=エニグマの紙 correction_value=5
