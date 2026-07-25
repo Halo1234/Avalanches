@@ -92,7 +92,7 @@
 @roguelike_character name=プレイヤー add_item=即死の杖 correction_value=9
 @roguelike_character name=プレイヤー add_item=マップ表示の巻物
 @roguelike_character name=プレイヤー add_item=イオナズンの巻物
-@roguelike_character name=プレイヤー add_item=薬草
+@roguelike_character name=プレイヤー add_item=鑑定の巻物
 @roguelike_character name=プレイヤー add_item=薬草
 @roguelike_character name=プレイヤー add_item=薬草
 @roguelike_character name=プレイヤー add_item=薬草
