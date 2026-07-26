@@ -67,6 +67,7 @@
 
 ; アイテム読み込み
 @roguelike_load_items storage=items.ary
+@roguelike_load_item_type storage=itemtype.ary
 @roguelike_load_unidentified storage=unidentified.ary
 
 ; 罠読み込み
@@ -81,6 +82,11 @@
 @roguelike_load_room storage=room005.ary
 @roguelike_load_room storage=room006.ary
 @roguelike_load_room storage=room007.ary
+
+; 効果音設定
+@roguelike_sound sort=maou_se_sound22 enter=maou_se_sound19 button=maou_se_sound_pc01 ng=maou_se_onepoint33
+@roguelike_sound item_use0=maou_se_sound_drink01 item_use1=maou_se_magical07 item_use2=maou_se_sound_paper01 
+@roguelike_sound attack=maou_se_battle01 damage=maou_se_sound01
 
 ; 初期部屋を部屋0にする
 @roguelike_option initial_room_index=0
