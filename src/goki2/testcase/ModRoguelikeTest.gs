@@ -97,7 +97,7 @@
 @roguelike_character name=プレイヤー add_item=毒草
 @roguelike_character name=プレイヤー add_item=強化の巻物
 @roguelike_character name=プレイヤー add_item=鉄の矢
-@roguelike_character name=プレイヤー add_item=薬草
+@roguelike_character name=プレイヤー add_item=聖域の巻物
 @roguelike_character name=プレイヤー add_item=エニグマの紙 correction_value=5
 
 ; ステータスバー設定
