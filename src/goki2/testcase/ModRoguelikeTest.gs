@@ -5,7 +5,7 @@
 
 ;@roguelike_option debug 
 @roguelike_option debug_dump_map
-;@roguelike_option debug_show_enemies
+@roguelike_option debug_show_enemies
 ;@roguelike_option debug_move_enemies
 @roguelike_option debug_mini_map_full_open
 ;@roguelike_option debug_attack
@@ -16,7 +16,7 @@
 @roguelike_option debug_show_trap
 @roguelike_option debug_trap
 @roguelike_option debug_show_transparent_character
-;@roguelike_option debug_show_item_name
+@roguelike_option debug_show_item_name
 
 @roguelike_option grid_width=64 grid_height=64
 @roguelike_option map_width=50 map_height=50
@@ -27,7 +27,8 @@
 @roguelike_option trap_lower_floor=1 trap_upper_floor=99 trap_min=3 trap_max=5
 @roguelike_option message_layer_name=message1 font_size=16
 @roguelike_option enemy_sleeping=20
-@roguelike_option monster_house_rate=10
+@roguelike_option monster_house_rate=100
+@roguelike_option go_back_target=*go_back
 
 @roguelike_load_character storage=プレイヤー.dic image_storage=roguelike_main_character player
 @roguelike_load_character storage=スライム.dic image_storage=roguelike_slime_character
@@ -93,7 +94,7 @@
 @roguelike_character name=プレイヤー add_item=マップ表示の巻物
 @roguelike_character name=プレイヤー add_item=イオナズンの巻物
 @roguelike_character name=プレイヤー add_item=鑑定の巻物
-@roguelike_character name=プレイヤー add_item=薬草
+@roguelike_character name=プレイヤー add_item=鉄の盾
 @roguelike_character name=プレイヤー add_item=強化の巻物
 @roguelike_character name=プレイヤー add_item=鉄の矢
 @roguelike_character name=プレイヤー add_item=薬草
@@ -196,6 +197,18 @@
 *no_up
 @roguelike_option hide_message
 @roguelike_yesno hide
+
+@roguelike start
+@s
+
+*go_back
+@roguelike_option initial_room_index=0
+@roguelike_character name=プレイヤー x=1 y=1
+@roguelike initialize
+@roguelike_option x=2 y=1 stairs_down
+
+@roguelike show
+@wait_roguelike_show
 
 @roguelike start
 @s
