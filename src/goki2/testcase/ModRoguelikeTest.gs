@@ -94,7 +94,7 @@
 @roguelike_character name=プレイヤー add_item=マップ表示の巻物
 @roguelike_character name=プレイヤー add_item=イオナズンの巻物
 @roguelike_character name=プレイヤー add_item=鑑定の巻物
-@roguelike_character name=プレイヤー add_item=鉄の盾
+@roguelike_character name=プレイヤー add_item=毒草
 @roguelike_character name=プレイヤー add_item=強化の巻物
 @roguelike_character name=プレイヤー add_item=鉄の矢
 @roguelike_character name=プレイヤー add_item=薬草
