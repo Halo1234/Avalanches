@@ -43,6 +43,8 @@
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#roguelike_yesno">roguelike_yesno</a></span></td><td class="taglisteven">Yes/Noメニューの設定</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#roguelike_load_trap">roguelike_load_trap</a></span></td><td class="taglistodd">罠情報の読み込み</td></tr>
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#roguelike_load_unidentified">roguelike_load_unidentified</a></span></td><td class="taglistodd">未鑑定アイテム名の読み込み</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#roguelike_sound">roguelike_sound</a></span></td><td class="taglistodd">効果音設定</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#roguelike_load_item_type">roguelike_load_item_type</a></span></td><td class="taglistodd">アイテムタイプの読み込み</td></tr>
 </tbody></table><br /><br /></div></div>
 
 <h1><a name="roguelike_option" id="roguelike_option" class="targanchor"><span class="b">roguelike_option</span>(別名なし)</a></h1>
@@ -930,4 +932,54 @@ Yes/Noメニューの設定を行います。<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div>
 </div>
 </div></div>
+
+<h1><a name="roguelike_sound" id="roguelike_sound" class="targanchor"><span class="b">roguelike_sound</span>(別名なし)</a></h1>
+<div class="taggenre">効果音の設定。</div>
+<div class="para"><div>
+<table class="tagparams" frame="box" rules="all" summary="タグ roguelike_sound の属性の一覧">
+  <thead>
+    <tr><th>別名</th><th>属性</th><th>必須?</th><th>値</th><th>説明</th></tr>
+  </thead>
+  <tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_sound_enter" id="roguelike_sound_enter">enter</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">マウスが乗った時の効果音を指定します。<br />
+これはマウスが乗った時の音を全て同じ効果音に設定します。
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_sound_button" id="roguelike_sound_button">button</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">ボタンを押した時の効果音を指定します。<br />
+これはボタンを押した時の音を全て同じ効果音に設定します。
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_sound_menu_enter" id="roguelike_sound_menu_enter">menu_enter</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">メニューの項目にマウスが乗った時の効果音を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_sound_menu_button" id="roguelike_sound_menu_button">menu_button</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">メニューの項目を押した時の効果音を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_sound_sort" id="roguelike_sound_sort">sort</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">ソート時の効果音を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_sound_item_enter" id="roguelike_sound_item_enter">item_enter</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">アイテムリストの項目にマウスが乗った時の効果音を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_sound_item_button" id="roguelike_sound_item_button">item_button</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">アイテムリストの項目を押した時の効果音を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_sound_sub_menu_enter" id="roguelike_sound_sub_menu_enter">sub_menu_enter</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">サブメニューのボタンを表示した時の効果音を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_sound_sub_menu_button" id="roguelike_sound_sub_menu_button">sub_menu_button</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">サブメニューのボタンを表示した時の効果音を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_sound_item_useN" id="roguelike_sound_item_useN">item_useN</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">アイテム使用時の効果音を指定します。<br />
+属性名はitem_useNとなっており、Nはアイテムタイプのインデックスを指定します。
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_sound_attack" id="roguelike_sound_attack">attack</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">攻撃時の効果音を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_sound_ng" id="roguelike_sound_ng">ng</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">NG効果音を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_sound_damage" id="roguelike_sound_damage">damage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">ダメージ時の効果音を指定します。<br />
+  </tbody>
+</table>
+<div class="tagremarks">
+各種効果音を設定します。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div>
+</div>
+</div></div>
+
+<h1><a name="roguelike_load_item_type" id="roguelike_load_item_type" class="targanchor"><span class="b">roguelike_load_item_type</span>(別名なし)</a></h1>
+<div class="taggenre">アイテムタイプ読み込み</div>
+<div class="para"><div>
+<table class="tagparams" frame="box" rules="all" summary="タグ roguelike_load_item_type の属性の一覧">
+  <thead>
+    <tr><th>別名</th><th>属性</th><th>必須?</th><th>値</th><th>説明</th></tr>
+  </thead>
+  <tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_item_type" id="roguelike_load_item_type">storage</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">アイテムタイプのファイル名を指定します。<br />
+  </tbody>
+</table>
+<div class="tagremarks">
+アイテムタイプを読み込む。<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div>
+</div>
+</div></div>
+
 
