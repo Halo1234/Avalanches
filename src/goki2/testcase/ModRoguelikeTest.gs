@@ -87,7 +87,7 @@
 @roguelike_sound sort=maou_se_sound22 enter=maou_se_sound19 button=maou_se_sound_pc01 ng=maou_se_onepoint33
 @roguelike_sound item_use0=maou_se_sound_drink01 item_use1=maou_se_magical07 item_use2=maou_se_sound_paper01 
 @roguelike_sound attack=maou_se_battle01 damage=maou_se_sound01
-@roguelike_sound イオナズンの巻物=maou_se_battle_explosion06
+@roguelike_sound イオナズンの巻物=maou_se_battle_explosion06 レベルアップ=maou_se_jingle05
 
 ; 初期部屋を部屋0にする
 @roguelike_option initial_room_index=0
