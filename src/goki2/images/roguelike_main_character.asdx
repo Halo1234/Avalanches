@@ -16,89 +16,105 @@
 *front
 *front_throw
 *front_attack
+@cell x=384 y=128
+@s
+
 *front_confuse
 *front_make_slow
 *front_do_not_move
 *front_can_not_act
 *front_blind
-@cell x=384 y=128
 @s
 
 *back
 *back_throw
 *back_attack
+@cell x=256 y=128
+@s
+
 *back_confuse
 *back_make_slow
 *back_do_not_move
 *back_can_not_act
 *back_blind
-@cell x=256 y=128
 @s
 
 *left
 *left_throw
 *left_attack
+@cell x=384 y=0
+@s
+
 *left_confuse
 *left_make_slow
 *left_do_not_move
 *left_can_not_act
 *left_blind
-@cell x=384 y=0
 @s
 
 *right
 *right_throw
 *right_attack
+@cell x=0 y=0
+@s
+
 *right_confuse
 *right_make_slow
 *right_do_not_move
 *right_can_not_act
 *right_blind
-@cell x=0 y=0
 @s
 
 *left_front
 *left_front_throw
 *left_front_attack
+@cell x=128 y=128
+@s
+
 *left_front_confuse
 *left_front_make_slow
 *left_front_do_not_move
 *left_front_can_not_act
 *left_front_blind
-@cell x=128 y=128
 @s
 
 *right_front
 *right_front_throw
 *right_front_attack
+@cell x=256 y=0
+@s
+
 *right_front_confuse
 *right_front_make_slow
 *right_front_do_not_move
 *right_front_can_not_act
 *right_front_blind
-@cell x=256 y=0
 @s
 
 *left_back
 *left_back_throw
 *left_back_attack
+@cell x=0 y=128
+@s
+
 *left_back_confuse
 *left_back_make_slow
 *left_back_do_not_move
 *left_back_can_not_act
 *left_back_blind
-@cell x=0 y=128
 @s
 
 *right_back
 *right_back_throw
 *right_back_attack
+@cell x=128 y=0
+@s
+
 *right_back_confuse
 *right_back_make_slow
 *right_back_do_not_move
 *right_back_can_not_act
 *right_back_blind
-@cell x=128 y=0
 @s
 
 *sleep
@@ -119,5 +135,133 @@
 @cell2 x=640 y=128
 @cell2 x=704 y=128
 @cell2 x=768 y=128
+@s
+
+*front_weapon
+@cell2 x=192 y=448
+@s
+
+*front_weapon_attack
+@cell2 x=192 y=448
+@cell2 x=256 y=448
+@cell2 x=320 y=448
+@cell2 x=192 y=512
+@cell2 x=256 y=512
+@cell2 x=320 y=512
+@cell2 x=192 y=576
+@cell2 x=256 y=576
+@cell2 x=320 y=576
+@s
+
+*back_weapon
+@cell2 x=192 y=256
+@s
+
+*back_weapon_attack
+@cell2 x=192 y=256
+@cell2 x=256 y=256
+@cell2 x=320 y=256
+@cell2 x=192 y=320
+@cell2 x=256 y=320
+@cell2 x=320 y=320
+@cell2 x=192 y=384
+@cell2 x=256 y=384
+@cell2 x=320 y=384
+@s
+
+*left_weapon
+@cell2 x=0 y=448
+@s
+
+*left_weapon_attack
+@cell2 x=0 y=448
+@cell2 x=64 y=448
+@cell2 x=128 y=448
+@cell2 x=0 y=512
+@cell2 x=64 y=512
+@cell2 x=128 y=512
+@cell2 x=0 y=576
+@cell2 x=64 y=576
+@cell2 x=128 y=576
+@s
+
+*right_weapon
+@cell2 x=384 y=448
+@s
+
+*right_weapon_attack
+@cell2 x=384 y=448
+@cell2 x=448 y=448
+@cell2 x=512 y=448
+@cell2 x=384 y=512
+@cell2 x=448 y=512
+@cell2 x=512 y=512
+@cell2 x=384 y=576
+@cell2 x=448 y=576
+@cell2 x=512 y=576
+@s
+
+*left_front_weapon
+@cell2 x=0 y=640
+@s
+
+*left_front_weapon_attack
+@cell2 x=0 y=640
+@cell2 x=64 y=640
+@cell2 x=128 y=640
+@cell2 x=0 y=704
+@cell2 x=64 y=704
+@cell2 x=128 y=704
+@cell2 x=0 y=768
+@cell2 x=64 y=768
+@cell2 x=128 y=768
+@s
+
+*right_front_weapon
+@cell2 x=384 y=640
+@s
+
+*right_front_weapon_attack
+@cell2 x=384 y=640
+@cell2 x=448 y=640
+@cell2 x=512 y=640
+@cell2 x=384 y=704
+@cell2 x=448 y=704
+@cell2 x=512 y=704
+@cell2 x=384 y=768
+@cell2 x=448 y=768
+@cell2 x=512 y=768
+@s
+
+*left_back_weapon
+@cell2 x=0 y=256
+@s
+
+*left_back_weapon_attack
+@cell2 x=0 y=256
+@cell2 x=64 y=256
+@cell2 x=128 y=256
+@cell2 x=0 y=320
+@cell2 x=64 y=320
+@cell2 x=128 y=320
+@cell2 x=0 y=384
+@cell2 x=64 y=384
+@cell2 x=128 y=384
+@s
+
+*right_back_weapon
+@cell2 x=384 y=256
+@s
+
+*right_back_weapon_attack
+@cell2 x=384 y=256
+@cell2 x=448 y=256
+@cell2 x=512 y=256
+@cell2 x=384 y=320
+@cell2 x=448 y=320
+@cell2 x=512 y=320
+@cell2 x=384 y=384
+@cell2 x=448 y=384
+@cell2 x=512 y=384
 @s
 
