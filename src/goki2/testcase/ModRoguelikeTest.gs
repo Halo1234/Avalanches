@@ -27,7 +27,7 @@
 @roguelike_option trap_lower_floor=1 trap_upper_floor=99 trap_min=3 trap_max=5
 @roguelike_option message_layer_name=message1 font_size=16
 @roguelike_option enemy_sleeping=20
-@roguelike_option monster_house_rate=100
+@roguelike_option monster_house_rate=10
 @roguelike_option go_back_target=*go_back
 
 @roguelike_load_character storage=プレイヤー.dic image_storage=roguelike_main_character player
@@ -89,7 +89,8 @@
 ; 効果音設定
 @roguelike_sound sort=maou_se_sound22 enter=maou_se_sound19 button=maou_se_sound_pc01 ng=maou_se_onepoint33
 @roguelike_sound item_use0=maou_se_sound_drink01 item_use1=maou_se_magical07 item_use2=maou_se_sound_paper01 
-@roguelike_sound attack=maou_se_battle01 damage=maou_se_sound01
+@roguelike_sound attack_プレイヤー=maou_se_battle01
+@roguelike_sound damage=maou_se_sound01
 @roguelike_sound イオナズンの巻物=maou_se_battle_explosion06 レベルアップ=maou_se_jingle05
 @roguelike_sound ダメージ罠=maou_se_battle18 巻き込み型ダメージ罠=maou_se_battle18
 
