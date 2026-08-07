@@ -18,6 +18,7 @@
 *front_armor_attack
 *front_throw
 *front_attack
+*front_long_long_attack
 @cell x=384 y=128
 @s
 
@@ -33,6 +34,7 @@
 *back_armor_attack
 *back_throw
 *back_attack
+*back_long_long_attack
 @cell x=256 y=128
 @s
 
@@ -48,6 +50,7 @@
 *left_armor_attack
 *left_throw
 *left_attack
+*left_long_long_attack
 @cell x=384 y=0
 @s
 
@@ -63,6 +66,7 @@
 *right_armor_attack
 *right_throw
 *right_attack
+*right_long_long_attack
 @cell x=0 y=0
 @s
 
@@ -75,9 +79,10 @@
 
 *left_front
 *left_front_armor
-*left_front_armor_armor
+*left_front_armor_attack
 *left_front_throw
 *left_front_attack
+*left_front_long_long_attack
 @cell x=128 y=128
 @s
 
@@ -90,9 +95,10 @@
 
 *right_front
 *right_front_armor
-*right_front_armor_armor
+*right_front_armor_attack
 *right_front_throw
 *right_front_attack
+*right_front_long_long_attack
 @cell x=256 y=0
 @s
 
@@ -105,9 +111,10 @@
 
 *left_back
 *left_back_armor
-*left_back_armor_armor
+*left_back_armor_attack
 *left_back_throw
 *left_back_attack
+*left_back_long_long_attack
 @cell x=0 y=128
 @s
 
@@ -120,9 +127,10 @@
 
 *right_back
 *right_back_armor
-*right_back_armor_armor
+*right_back_armor_attack
 *right_back_throw
 *right_back_attack
+*right_back_long_long_attack
 @cell x=128 y=0
 @s
 

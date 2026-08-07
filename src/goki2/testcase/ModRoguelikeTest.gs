@@ -32,7 +32,7 @@
 
 @roguelike_load_character storage=プレイヤー.dic image_storage=roguelike_main_character player
 @roguelike_load_character storage=スライム.dic image_storage=roguelike_slime_character
-;@roguelike_load_character storage=ドラゴン.dic image_storage=roguelike_dragon_character
+@roguelike_load_character storage=ドラゴン.dic image_storage=roguelike_dragon_character
 
 ; メインメニュー
 @roguelike_menu storage=RoguelikeMenuBack.png left=10 top=10
