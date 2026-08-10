@@ -101,14 +101,14 @@
 @roguelike_character name=プレイヤー x=1 y=1
 ; アイテム所持
 @roguelike_character name=プレイヤー add_item=薬草
-@roguelike_character name=プレイヤー add_item=鉄の剣 correction_value=2 curse
+@roguelike_character name=プレイヤー add_item=鉄の剣 correction_value=2
 @roguelike_character name=プレイヤー add_item=即死の杖 correction_value=9
 @roguelike_character name=プレイヤー add_item=マップ表示の巻物
 @roguelike_character name=プレイヤー add_item=イオナズンの巻物
 @roguelike_character name=プレイヤー add_item=鑑定の巻物
 @roguelike_character name=プレイヤー add_item=毒草
 @roguelike_character name=プレイヤー add_item=強化の巻物
-@roguelike_character name=プレイヤー add_item=鉄の矢
+@roguelike_character name=プレイヤー add_item=鉄の矢 correction_value=9
 @roguelike_character name=プレイヤー add_item=聖域の巻物
 @roguelike_character name=プレイヤー add_item=エニグマの紙 correction_value=5
 
