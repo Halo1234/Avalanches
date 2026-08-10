@@ -149,6 +149,26 @@
 @cell2 x=576 y=0 time=500
 @s
 
+*left_fall_down
+*left_front_fall_down
+*left_back_fall_down
+@cell2 x=896 y=0 time=500
+@s
+
+*right_fall_down
+*right_front_fall_down
+*right_back_fall_down
+@cell2 x=832 y=0 time=500
+@s
+
+*front_fall_down
+@cell2 x=1024 y=0 time=500
+@s
+
+*back_fall_down
+@cell2 x=960 y=0 time=500
+@s
+
 *eat
 @cell2 x=640 y=0
 @cell2 x=704 y=0
