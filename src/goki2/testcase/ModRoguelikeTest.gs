@@ -16,7 +16,7 @@
 @roguelike_option debug_show_trap
 @roguelike_option debug_trap
 @roguelike_option debug_show_transparent_character
-@roguelike_option debug_show_item_name
+;@roguelike_option debug_show_item_name
 
 @roguelike_option grid_width=64 grid_height=64
 @roguelike_option map_width=50 map_height=50
@@ -55,6 +55,16 @@
 @roguelike_item_sub_menu output_button_caption=出す output_button_width=60 output_button_height=30 output_button_body_opacity=0 output_button_caption_color=0xFFFFFF
 @roguelike_item_sub_menu put_button_caption=置く put_button_width=60 put_button_height=30 put_button_body_opacity=0 put_button_caption_color=0xFFFFFF
 @roguelike_item_sub_menu throw_button_caption=投げる throw_button_width=60 throw_button_height=30 throw_button_body_opacity=0 throw_button_caption_color=0xFFFFFF
+@roguelike_item_sub_menu name_button_caption=名前 name_button_width=60 name_button_height=30 name_button_body_opacity=0 name_button_caption_color=0xFFFFFF
+
+; アイテム名編集
+@roguelike_edit_item_name storage=RoguelikeEditItemNameBack.png left=0 top=200 margin_left=70 margin_top=30 character_left=50 character_top=20
+@roguelike_edit_item_name viewer_storage=RoguelikeItemNameBack.png viewer_left=0 viewer_top=80 viewer_margin_left=70 viewer_margin_top=30 viewer_margin_right=70 viewer_margin_bottom=30 viewer_font_height=32
+@roguelike_edit_item_name kana_button_caption=全角カナ kana_button_left=650 kana_button_top=100 kana_button_width=80 kana_button_height=30
+@roguelike_edit_item_name delete_button_caption=削除 delete_button_left=650 delete_button_top=140 delete_button_width=80 delete_button_height=30
+@roguelike_edit_item_name cancel_button_caption=キャンセル cancel_button_left=650 cancel_button_top=180 cancel_button_width=80 cancel_button_height=30
+@roguelike_edit_item_name history_button_caption=履歴 history_button_left=650 history_button_top=220 history_button_width=80 history_button_height=30
+@roguelike_edit_item_name enter_button_caption=決定 enter_button_left=650 enter_button_top=220 enter_button_width=80 enter_button_height=30
 
 ; チップス読み込み
 @roguelike_load_chips storage=roguelike_mapchips.dic
@@ -104,6 +114,7 @@
 @roguelike_character name=プレイヤー add_item=鉄の剣 correction_value=2
 @roguelike_character name=プレイヤー add_item=即死の杖 correction_value=9
 @roguelike_character name=プレイヤー add_item=マップ表示の巻物
+@roguelike_character name=プレイヤー add_item=イオナズンの巻物
 @roguelike_character name=プレイヤー add_item=イオナズンの巻物
 @roguelike_character name=プレイヤー add_item=鑑定の巻物
 @roguelike_character name=プレイヤー add_item=毒草
