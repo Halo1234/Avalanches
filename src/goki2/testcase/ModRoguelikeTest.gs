@@ -17,6 +17,7 @@
 @roguelike_option debug_trap
 @roguelike_option debug_show_transparent_character
 ;@roguelike_option debug_show_item_name
+@roguelike_option debug_message_to_console
 
 @roguelike_option grid_width=64 grid_height=64
 @roguelike_option map_width=50 map_height=50
