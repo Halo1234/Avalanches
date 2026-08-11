@@ -32,7 +32,7 @@
 @roguelike_option go_back_target=*go_back
 
 @roguelike_load_character storage=プレイヤー.dic image_storage=roguelike_main_character player
-@roguelike_load_character storage=スライム.dic image_storage=roguelike_slime_character
+;@roguelike_load_character storage=スライム.dic image_storage=roguelike_slime_character
 @roguelike_load_character storage=ドラゴン.dic image_storage=roguelike_dragon_character
 
 ; メインメニュー
@@ -114,6 +114,7 @@
 ; アイテム所持
 @roguelike_character name=プレイヤー add_item=薬草
 @roguelike_character name=プレイヤー add_item=鉄の剣 correction_value=2
+@roguelike_character name=プレイヤー add_item=ドラゴンキラー correction_value=2
 @roguelike_character name=プレイヤー add_item=即死の杖 correction_value=9
 @roguelike_character name=プレイヤー add_item=マップ表示の巻物
 @roguelike_character name=プレイヤー add_item=イオナズンの巻物
