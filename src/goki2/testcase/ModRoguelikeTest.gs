@@ -16,7 +16,7 @@
 @roguelike_option debug_show_trap
 @roguelike_option debug_trap
 @roguelike_option debug_show_transparent_character
-;@roguelike_option debug_show_item_name
+@roguelike_option debug_show_item_name
 @roguelike_option debug_message_to_console
 
 @roguelike_option grid_width=64 grid_height=64
@@ -27,14 +27,15 @@
 @roguelike_option enemy_count_min=4 enemy_count_max=8
 @roguelike_option trap_lower_floor=1 trap_upper_floor=99 trap_min=3 trap_max=5
 @roguelike_option message_layer_name=message1 font_size=16
-@roguelike_option enemy_sleeping=10
-@roguelike_option enemy_wakeup=10
+@roguelike_option enemy_sleeping=20
+@roguelike_option enemy_wakeup=20
 @roguelike_option monster_house_rate=10
 @roguelike_option go_back_target=*go_back
 
 @roguelike_load_character storage=プレイヤー.dic image_storage=roguelike_main_character player
-;@roguelike_load_character storage=スライム.dic image_storage=roguelike_slime_character
+@roguelike_load_character storage=スライム.dic image_storage=roguelike_slime_character
 @roguelike_load_character storage=ドラゴン.dic image_storage=roguelike_dragon_character
+@roguelike_load_character storage=透明な敵.dic image_storage=roguelike_knight_character
 
 ; メインメニュー
 @roguelike_menu storage=RoguelikeMenuBack.png left=10 top=10
@@ -114,9 +115,10 @@
 @roguelike_character name=プレイヤー x=1 y=1
 ; アイテム所持
 @roguelike_character name=プレイヤー add_item=薬草
+@roguelike_character name=プレイヤー add_item=眠り草
 @roguelike_character name=プレイヤー add_item=鉄の剣 correction_value=2
 @roguelike_character name=プレイヤー add_item=ドラゴンキラー correction_value=2
-@roguelike_character name=プレイヤー add_item=腹減らずの指輪
+@roguelike_character name=プレイヤー add_item=敵が見える指輪
 @roguelike_character name=プレイヤー add_item=即死の杖 correction_value=9
 @roguelike_character name=プレイヤー add_item=マップ表示の巻物
 @roguelike_character name=プレイヤー add_item=イオナズンの巻物
