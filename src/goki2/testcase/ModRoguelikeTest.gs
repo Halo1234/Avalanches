@@ -103,7 +103,7 @@
 @roguelike_load_room storage=room007.ary
 
 ; BGM設定
-@roguelike_sound bgm_normal=maou_bgm_acoustic54 bgm_monster_house=bgm001
+@roguelike_sound bgm_initial=maou_bgm_acoustic52 bgm_normal=maou_bgm_acoustic54 bgm_monster_house=bgm001
 
 ; 効果音設定
 @roguelike_sound sort=maou_se_sound22 enter=maou_se_sound19 button=maou_se_sound_pc01 ng=maou_se_onepoint33
