@@ -24,8 +24,9 @@
 @roguelike_option max_floor=10
 @roguelike_option room_count_min=4 room_count_max=8
 @roguelike_option item_count_min=4 item_count_max=8
-@roguelike_option enemy_count_min=0 enemy_count_max=0
-@roguelike_option trap_lower_floor=1 trap_upper_floor=99 trap_min=5 trap_max=5
+@roguelike_option money_count_min=1 money_count_max=3
+@roguelike_option enemy_count_min=4 enemy_count_max=8
+@roguelike_option trap_lower_floor=1 trap_upper_floor=99 trap_min=3 trap_max=5
 @roguelike_option message_layer_name=message1 font_size=16
 @roguelike_option enemy_sleeping=20
 @roguelike_option enemy_wakeup=20
@@ -85,18 +86,21 @@
 @roguelike_load_item_type storage=itemtype.ary
 @roguelike_load_unidentified storage=unidentified.ary
 
+; お金アイコン指定
+@roguelike_money storage=お金アイコン
+
 ; 罠読み込み
 @roguelike_load_trap storage=roguelike_trap.ary
 
 ; 部屋の読み込み
 @roguelike_load_room storage=initial_room001.ary initial_room_index=0
 @roguelike_load_room storage=room001.ary
-;@roguelike_load_room storage=room002.ary
-;@roguelike_load_room storage=room003.ary
-;@roguelike_load_room storage=room004.ary
-;@roguelike_load_room storage=room005.ary
-;@roguelike_load_room storage=room006.ary
-;@roguelike_load_room storage=room007.ary
+@roguelike_load_room storage=room002.ary
+@roguelike_load_room storage=room003.ary
+@roguelike_load_room storage=room004.ary
+@roguelike_load_room storage=room005.ary
+@roguelike_load_room storage=room006.ary
+@roguelike_load_room storage=room007.ary
 
 ; BGM設定
 @roguelike_sound bgm_normal=maou_bgm_acoustic54 bgm_monster_house=bgm001
@@ -114,23 +118,6 @@
 
 ; プレイヤー配置
 @roguelike_character name=プレイヤー x=1 y=1
-; アイテム所持
-@roguelike_character name=プレイヤー add_item=薬草
-@roguelike_character name=プレイヤー add_item=眠り草
-@roguelike_character name=プレイヤー add_item=鉄の剣 correction_value=2
-@roguelike_character name=プレイヤー add_item=ドラゴンキラー correction_value=2
-@roguelike_character name=プレイヤー add_item=敵が見える指輪
-@roguelike_character name=プレイヤー add_item=即死の杖 correction_value=9
-@roguelike_character name=プレイヤー add_item=マップ表示の巻物
-@roguelike_character name=プレイヤー add_item=イオナズンの巻物
-@roguelike_character name=プレイヤー add_item=イオナズンの巻物
-@roguelike_character name=プレイヤー add_item=鑑定の巻物
-@roguelike_character name=プレイヤー add_item=毒草
-@roguelike_character name=プレイヤー add_item=強化の巻物
-@roguelike_character name=プレイヤー add_item=鉄の矢 correction_value=9
-@roguelike_character name=プレイヤー add_item=鉄の矢 correction_value=9
-@roguelike_character name=プレイヤー add_item=聖域の巻物
-@roguelike_character name=プレイヤー add_item=エニグマの紙 correction_value=5
 
 ; ステータスバー設定
 @roguelike_status_bar left=10 top=10 width=780 height=80 body_opacity=0
@@ -164,6 +151,24 @@
 
 ; 初期化
 @roguelike initialize
+
+; アイテム所持（初期化後に行う事）
+@roguelike_character name=プレイヤー add_item=薬草
+@roguelike_character name=プレイヤー add_item=眠り草
+@roguelike_character name=プレイヤー add_item=鉄の剣 correction_value=2
+@roguelike_character name=プレイヤー add_item=ドラゴンキラー correction_value=2
+@roguelike_character name=プレイヤー add_item=敵が見える指輪
+@roguelike_character name=プレイヤー add_item=即死の杖 correction_value=9
+@roguelike_character name=プレイヤー add_item=マップ表示の巻物
+@roguelike_character name=プレイヤー add_item=イオナズンの巻物
+@roguelike_character name=プレイヤー add_item=イオナズンの巻物
+@roguelike_character name=プレイヤー add_item=鑑定の巻物
+@roguelike_character name=プレイヤー add_item=毒草
+@roguelike_character name=プレイヤー add_item=強化の巻物
+@roguelike_character name=プレイヤー add_item=鉄の矢 correction_value=9
+@roguelike_character name=プレイヤー add_item=鉄の矢 correction_value=9
+@roguelike_character name=プレイヤー add_item=聖域の巻物
+@roguelike_character name=プレイヤー add_item=エニグマの紙 correction_value=5
 
 ; 初期部屋に降りる階段を設置
 @roguelike_option x=2 y=1 stairs_down
