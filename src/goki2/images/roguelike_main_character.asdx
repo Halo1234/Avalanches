@@ -325,3 +325,7 @@
 @cell2 x=512 y=384
 @s
 
+*die
+@cell2 x=1024 y=0 time=1000
+@s
+
