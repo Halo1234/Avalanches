@@ -61,6 +61,7 @@
 @roguelike_item_sub_menu put_button_caption=置く put_button_width=60 put_button_height=30 put_button_body_opacity=0 put_button_caption_color=0xFFFFFF
 @roguelike_item_sub_menu throw_button_caption=投げる throw_button_width=60 throw_button_height=30 throw_button_body_opacity=0 throw_button_caption_color=0xFFFFFF
 @roguelike_item_sub_menu name_button_caption=名前 name_button_width=60 name_button_height=30 name_button_body_opacity=0 name_button_caption_color=0xFFFFFF
+@roguelike_item_sub_menu shooting_button_caption=射撃 shooting_button_width=60 shooting_button_height=30 shooting_button_body_opacity=0 shooting_button_caption_color=0xFFFFFF
 
 ; アイテム名編集
 @roguelike_edit_item_name storage=RoguelikeEditItemNameBack.png left=0 top=200 margin_left=70 margin_top=30 character_left=50 character_top=20
