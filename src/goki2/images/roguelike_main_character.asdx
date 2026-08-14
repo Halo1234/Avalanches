@@ -8,7 +8,7 @@
 @endmacro
 
 @macro name=cell2
-@option clip_left=%x clip_top=%y clip_width=64 clip_height=64
+@option clip_left=%x clip_top=%y clip_width=64 clip_height=64 visible=%visible|true
 @wait time=%time|100
 @endmacro
 @s
@@ -29,6 +29,9 @@
 *front_do_not_move
 *front_can_not_act
 *front_blind
+*front_poison
+@load_cell storage=Roguelike_毒状態エフェクト
+@cell2 x=0 y=0
 @s
 
 *back
@@ -47,6 +50,7 @@
 *back_do_not_move
 *back_can_not_act
 *back_blind
+*back_poison
 @s
 
 *left
@@ -65,6 +69,7 @@
 *left_do_not_move
 *left_can_not_act
 *left_blind
+*left_poison
 @s
 
 *right
@@ -83,6 +88,7 @@
 *right_do_not_move
 *right_can_not_act
 *right_blind
+*right_poison
 @s
 
 *left_front
@@ -101,6 +107,7 @@
 *left_front_do_not_move
 *left_front_can_not_act
 *left_front_blind
+*left_front_poison
 @s
 
 *right_front
@@ -119,6 +126,7 @@
 *right_front_do_not_move
 *right_front_can_not_act
 *right_front_blind
+*right_front_poison
 @s
 
 *left_back
@@ -137,6 +145,7 @@
 *left_back_do_not_move
 *left_back_can_not_act
 *left_back_blind
+*left_back_poison
 @s
 
 *right_back
@@ -155,6 +164,7 @@
 *right_back_do_not_move
 *right_back_can_not_act
 *right_back_blind
+*right_back_poison
 @s
 
 *sleep
