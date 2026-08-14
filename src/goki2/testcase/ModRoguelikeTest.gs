@@ -155,7 +155,7 @@
 
 ; アイテム所持（初期化後に行う事）
 @roguelike_character name=プレイヤー add_item=薬草
-@roguelike_character name=プレイヤー add_item=眠り草
+@roguelike_character name=プレイヤー add_item=倍速の草
 @roguelike_character name=プレイヤー add_item=鉄の剣 correction_value=2
 @roguelike_character name=プレイヤー add_item=ドラゴンキラー correction_value=2
 @roguelike_character name=プレイヤー add_item=敵が見える指輪
