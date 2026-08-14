@@ -159,7 +159,7 @@
 @roguelike_character name=プレイヤー add_item=鉄の剣 correction_value=2
 @roguelike_character name=プレイヤー add_item=ドラゴンキラー correction_value=2
 @roguelike_character name=プレイヤー add_item=敵が見える指輪
-@roguelike_character name=プレイヤー add_item=即死の杖 correction_value=9
+@roguelike_character name=プレイヤー add_item=転ばぬ先の杖
 @roguelike_character name=プレイヤー add_item=マップ表示の巻物
 @roguelike_character name=プレイヤー add_item=イオナズンの巻物
 @roguelike_character name=プレイヤー add_item=イオナズンの巻物
