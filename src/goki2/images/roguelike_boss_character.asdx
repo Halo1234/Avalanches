@@ -1,0 +1,201 @@
+
+;
+; rouglelike_boss_character.asdx
+;
+
+@macro name=cell
+@option clip_left=%x clip_top=%y clip_width=128 clip_height=128
+@wait time=%time|500
+@endmacro
+
+*front
+@cell x=128 y=128
+@s
+
+*front_confuse
+*front_make_slow
+*front_do_not_move
+*front_can_not_act
+*front_blind
+@s
+
+*front_attack
+@cell x=128 y=256
+@s
+
+*front_long_attack
+@cell x=128 y=256
+@s
+
+*front_long_long_attack
+@cell x=128 y=256
+@s
+
+*back
+@cell x=128 y=128
+@s
+
+*back_confuse
+*back_make_slow
+*back_do_not_move
+*back_can_not_act
+*back_blind
+@s
+
+*back_attack
+@cell x=128 y=0
+@s
+
+*back_long_attack
+@cell x=128 y=0
+@s
+
+*back_long_long_attack
+@cell x=128 y=0
+@s
+
+*left
+@cell x=128 y=128
+@s
+
+*left_confuse
+*left_make_slow
+*left_do_not_move
+*left_can_not_act
+*left_blind
+@s
+
+*left_attack
+@cell x=0 y=128
+@s
+
+*left_long_attack
+@cell x=0 y=128
+@s
+
+*left_long_long_attack
+@cell x=0 y=128
+@s
+
+*right
+@cell x=128 y=128
+@s
+
+*right_confuse
+*right_make_slow
+*right_do_not_move
+*right_can_not_act
+*right_blind
+@s
+
+*right_attack
+@cell x=256 y=128
+@s
+
+*right_long_attack
+@cell x=256 y=128
+@s
+
+*right_long_long_attack
+@cell x=256 y=128
+@s
+
+*left_front
+@cell x=128 y=128
+@s
+
+*left_front_confuse
+*left_front_make_slow
+*left_front_do_not_move
+*left_front_can_not_act
+*left_front_blind
+@s
+
+*left_front_attack
+@cell x=0 y=256
+@s
+
+*left_front_long_attack
+@cell x=0 y=256
+@s
+
+*left_front_long_long_attack
+@cell x=0 y=256
+@s
+
+*right_front
+@cell x=128 y=128
+@s
+
+*right_front_confuse
+*right_front_make_slow
+*right_front_do_not_move
+*right_front_can_not_act
+*right_front_blind
+@s
+
+*right_front_attack
+@cell x=256 y=256
+@s
+
+*right_front_long_attack
+@cell x=256 y=256
+@s
+
+*right_front_long_long_attack
+@cell x=256 y=256
+@s
+
+*left_back
+@cell x=128 y=128
+@s
+
+*left_back_confuse
+*left_back_make_slow
+*left_back_do_not_move
+*left_back_can_not_act
+*left_back_blind
+@s
+
+*left_back_attack
+@cell x=0 y=0
+@s
+
+*left_back_long_attack
+@cell x=0 y=0
+@s
+
+*left_back_long_long_attack
+@cell x=0 y=0
+@s
+
+*right_back
+@cell x=128 y=128
+@s
+
+*right_back_confuse
+*right_back_make_slow
+*right_back_do_not_move
+*right_back_can_not_act
+*right_back_blind
+@s
+
+*right_back_attack
+@cell x=256 y=0
+@s
+
+*right_back_long_attack
+@cell x=256 y=0
+@s
+
+*right_back_long_long_attack
+@cell x=256 y=0
+@s
+
+*sleep
+@cell x=128 y=128
+@s
+
+*damage
+@cell x=128 y=128
+@s
