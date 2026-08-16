@@ -40,6 +40,7 @@
 @roguelike_load_character storage=スライム.dic image_storage=roguelike_slime_character
 @roguelike_load_character storage=ドラゴン.dic image_storage=roguelike_dragon_character
 @roguelike_load_character storage=透明な敵.dic image_storage=roguelike_knight_character
+@roguelike_load_character storage=店員.dic image_storage=roguelike_npc_character clerk
 @roguelike_load_character storage=ボス.dic image_storage=roguelike_boss_character boss
 
 ; メインメニュー
