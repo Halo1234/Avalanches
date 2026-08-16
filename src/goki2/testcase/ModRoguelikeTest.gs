@@ -34,6 +34,7 @@
 @roguelike_option go_back_target=*go_back
 @roguelike_option gameover_target=*gameover
 @roguelike_option return_trip
+@roguelike_option shop_rate=100
 
 @roguelike_load_character storage=プレイヤー.dic image_storage=roguelike_main_character player
 @roguelike_load_character storage=スライム.dic image_storage=roguelike_slime_character
@@ -98,6 +99,8 @@
 ; 部屋の読み込み
 @roguelike_load_room storage=initial_room001.ary initial_room
 @roguelike_load_room storage=room999.ary boss_room
+@roguelike_load_room storage=room_shop1.ary shop_room
+@roguelike_load_room storage=room_shop2.ary shop_room
 @roguelike_load_room storage=room001.ary
 @roguelike_load_room storage=room002.ary
 @roguelike_load_room storage=room003.ary
