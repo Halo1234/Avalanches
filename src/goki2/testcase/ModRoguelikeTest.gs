@@ -162,6 +162,7 @@
 @roguelike_character name=プレイヤー add_item=倍速の草
 @roguelike_character name=プレイヤー add_item=鉄の剣 correction_value=2
 @roguelike_character name=プレイヤー add_item=ドラゴンキラー correction_value=2
+@roguelike_character name=プレイヤー add_item=ダメージ罠設置
 @roguelike_character name=プレイヤー add_item=敵増殖の罠設置
 @roguelike_character name=プレイヤー add_item=即死の杖 correction_value=1
 @roguelike_character name=プレイヤー add_item=ワープの壺
