@@ -21,7 +21,7 @@
 
 @roguelike_option grid_width=64 grid_height=64
 @roguelike_option map_width=50 map_height=50
-@roguelike_option max_floor=10
+@roguelike_option max_floor=3
 @roguelike_option room_count_min=4 room_count_max=8
 @roguelike_option item_count_min=4 item_count_max=8
 @roguelike_option money_count_min=1 money_count_max=3
@@ -33,11 +33,13 @@
 @roguelike_option monster_house_rate=10
 @roguelike_option go_back_target=*go_back
 @roguelike_option gameover_target=*gameover
+@roguelike_option return_trip
 
 @roguelike_load_character storage=プレイヤー.dic image_storage=roguelike_main_character player
 @roguelike_load_character storage=スライム.dic image_storage=roguelike_slime_character
 @roguelike_load_character storage=ドラゴン.dic image_storage=roguelike_dragon_character
 @roguelike_load_character storage=透明な敵.dic image_storage=roguelike_knight_character
+@roguelike_load_character storage=ボス.dic image_storage=roguelike_boss_character boss
 
 ; メインメニュー
 @roguelike_menu storage=RoguelikeMenuBack.png left=10 top=10
@@ -94,7 +96,8 @@
 @roguelike_load_trap storage=roguelike_trap.ary
 
 ; 部屋の読み込み
-@roguelike_load_room storage=initial_room001.ary initial_room_index=0
+@roguelike_load_room storage=initial_room001.ary initial_room
+@roguelike_load_room storage=room999.ary boss_room
 @roguelike_load_room storage=room001.ary
 @roguelike_load_room storage=room002.ary
 @roguelike_load_room storage=room003.ary
@@ -104,7 +107,7 @@
 @roguelike_load_room storage=room007.ary
 
 ; BGM設定
-@roguelike_sound bgm_initial=maou_bgm_acoustic52 bgm_normal=maou_bgm_acoustic54 bgm_monster_house=bgm001
+@roguelike_sound bgm_initial=maou_bgm_acoustic52 bgm_normal=maou_bgm_acoustic54 bgm_monster_house=bgm001 bgm_boss=maou_bgm_neorock83
 
 ; 効果音設定
 @roguelike_sound sort=maou_se_sound22 enter=maou_se_sound19 button=maou_se_sound_pc01 ng=maou_se_onepoint33
@@ -116,6 +119,7 @@
 
 ; 初期部屋を部屋0にする
 @roguelike_option initial_room_index=0
+@roguelike_option boss_room_index=1
 
 ; プレイヤー配置
 @roguelike_character name=プレイヤー x=1 y=1
@@ -158,15 +162,15 @@
 @roguelike_character name=プレイヤー add_item=倍速の草
 @roguelike_character name=プレイヤー add_item=鉄の剣 correction_value=2
 @roguelike_character name=プレイヤー add_item=ドラゴンキラー correction_value=2
-@roguelike_character name=プレイヤー add_item=敵が見える指輪
-@roguelike_character name=プレイヤー add_item=転ばぬ先の杖
-@roguelike_character name=プレイヤー add_item=マップ表示の巻物
+@roguelike_character name=プレイヤー add_item=敵増殖の罠設置
+@roguelike_character name=プレイヤー add_item=即死の杖 correction_value=1
+@roguelike_character name=プレイヤー add_item=ワープの壺
 @roguelike_character name=プレイヤー add_item=イオナズンの巻物
 @roguelike_character name=プレイヤー add_item=イオナズンの巻物
 @roguelike_character name=プレイヤー add_item=鑑定の巻物
 @roguelike_character name=プレイヤー add_item=毒草
 @roguelike_character name=プレイヤー add_item=強化の巻物
-@roguelike_character name=プレイヤー add_item=鉄の矢 correction_value=9
+@roguelike_character name=プレイヤー add_item=鉄の矢 correction_value=1
 @roguelike_character name=プレイヤー add_item=鉄の矢 correction_value=9
 @roguelike_character name=プレイヤー add_item=聖域の巻物
 @roguelike_character name=プレイヤー add_item=エニグマの紙 correction_value=5
@@ -221,10 +225,7 @@
 @roguelike hide
 @wait_roguelike_hide
 
-@roguelike_option initial_room_index=0
-@roguelike_character name=プレイヤー x=1 y=1
-@roguelike initialize
-@roguelike_option x=2 y=1 stairs_down
+@roguelike next_floor
 
 @roguelike show
 @wait_roguelike_show
@@ -240,6 +241,18 @@
 @s
 
 *go_back
+@roguelike_option message=階段を上ります？ !message_auto_hide
+@roguelike_yesno yes_target=*go_back_to_up no_target=*no_up
+@roguelike_yesno show
+@s
+
+*go_back_to_up
+@roguelike_option hide_message
+@roguelike_yesno hide
+
+@roguelike hide
+@wait_roguelike_hide
+
 @roguelike_option initial_room_index=0
 @roguelike_character name=プレイヤー x=1 y=1
 @roguelike initialize
