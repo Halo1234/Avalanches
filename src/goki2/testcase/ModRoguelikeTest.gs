@@ -92,6 +92,7 @@
 @roguelike_item_sub_menu throw_button_caption=投げる throw_button_width=60 throw_button_height=30 throw_button_body_opacity=0 throw_button_caption_color=0xFFFFFF
 @roguelike_item_sub_menu name_button_caption=名前 name_button_width=60 name_button_height=30 name_button_body_opacity=0 name_button_caption_color=0xFFFFFF
 @roguelike_item_sub_menu shooting_button_caption=射撃 shooting_button_width=60 shooting_button_height=30 shooting_button_body_opacity=0 shooting_button_caption_color=0xFFFFFF
+@roguelike_item_sub_menu pickup_button_caption=拾う pickup_button_width=60 pickup_button_height=30 pickup_button_body_opacity=0 pickup_button_caption_color=0xFFFFFF
 
 ; アイテム名編集
 @roguelike_edit_item_name storage=RoguelikeEditItemNameBack.png left=0 top=200 margin_left=70 margin_top=30 character_left=50 character_top=20
@@ -163,7 +164,7 @@
 @roguelike initialize
 
 ; アイテム所持（初期化後に行う事）
-@roguelike_character name=プレイヤー add_item=薬草
+@roguelike_character name=プレイヤー add_item=薬草 correction_value=1
 @roguelike_character name=プレイヤー add_item=倍速の草
 @roguelike_character name=プレイヤー add_item=鉄の剣 correction_value=2
 @roguelike_character name=プレイヤー add_item=ドラゴンキラー correction_value=2
