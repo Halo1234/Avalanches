@@ -36,12 +36,37 @@
 @roguelike_option return_trip
 @roguelike_option shop_rate=100
 
+; チップス読み込み
+@roguelike_load_chips storage=roguelike_mapchips.dic
+@roguelike_load_chips name=StairsDown group_id=100000000 stairs_down
+@roguelike_load_chips name=StairsUp group_id=100000001 stairs_up
+
+; 部屋の読み込み
+@roguelike_load_room storage=initial_room001.ary initial_room
+@roguelike_load_room storage=room999.ary boss_room
+@roguelike_load_room storage=room_shop1.ary shop_room
+@roguelike_load_room storage=room_shop2.ary shop_room
+@roguelike_load_room storage=room001.ary
+@roguelike_load_room storage=room002.ary
+@roguelike_load_room storage=room003.ary
+@roguelike_load_room storage=room004.ary
+@roguelike_load_room storage=room005.ary
+@roguelike_load_room storage=room006.ary
+@roguelike_load_room storage=room007.ary
+
 @roguelike_load_character storage=プレイヤー.dic image_storage=roguelike_main_character player
 @roguelike_load_character storage=スライム.dic image_storage=roguelike_slime_character
 @roguelike_load_character storage=ドラゴン.dic image_storage=roguelike_dragon_character
 @roguelike_load_character storage=透明な敵.dic image_storage=roguelike_knight_character
 @roguelike_load_character storage=店員.dic image_storage=roguelike_npc_character clerk
 @roguelike_load_character storage=ボス.dic image_storage=roguelike_boss_character boss
+
+; 初期部屋を部屋0にする
+@roguelike_option initial_room_index=0
+@roguelike_option boss_room_index=1
+
+; プレイヤー配置
+@roguelike_character name=プレイヤー x=1 y=1
 
 ; メインメニュー
 @roguelike_menu storage=RoguelikeMenuBack.png left=10 top=10
@@ -52,6 +77,7 @@
 ; アイテムメニュー
 @roguelike_item_menu storage=RoguelikeItemMenuBack.png left=300 top=80 margin_left=50 margin_top=40 margin_right=50
 @roguelike_item_menu button_body_opacity=0 button_caption_color=0xFFFFFF
+@roguelike_item_menu price_body_opacity=0 price_caption_color=0xFF0000
 @roguelike_item_menu equip_icon_storage=RoguelikeStatusEquip.png curse_icon_storage=RoguelikeStatusCurse.png
 
 ; アイテムサブメニュー
@@ -77,11 +103,6 @@
 @roguelike_edit_item_name history_button_caption=履歴 history_button_left=650 history_button_top=220 history_button_width=80 history_button_height=30
 @roguelike_edit_item_name enter_button_caption=決定 enter_button_left=650 enter_button_top=260 enter_button_width=80 enter_button_height=30
 
-; チップス読み込み
-@roguelike_load_chips storage=roguelike_mapchips.dic
-@roguelike_load_chips name=StairsDown group_id=100000000 stairs_down
-@roguelike_load_chips name=StairsUp group_id=100000001 stairs_up
-
 ; 階段にイベント設定
 @roguelike_stairs_event name=StairsDown target=*to_down
 @roguelike_stairs_event name=StairsUp target=*to_up
@@ -97,21 +118,8 @@
 ; 罠読み込み
 @roguelike_load_trap storage=roguelike_trap.ary
 
-; 部屋の読み込み
-@roguelike_load_room storage=initial_room001.ary initial_room
-@roguelike_load_room storage=room999.ary boss_room
-@roguelike_load_room storage=room_shop1.ary shop_room
-@roguelike_load_room storage=room_shop2.ary shop_room
-@roguelike_load_room storage=room001.ary
-@roguelike_load_room storage=room002.ary
-@roguelike_load_room storage=room003.ary
-@roguelike_load_room storage=room004.ary
-@roguelike_load_room storage=room005.ary
-@roguelike_load_room storage=room006.ary
-@roguelike_load_room storage=room007.ary
-
 ; BGM設定
-@roguelike_sound bgm_initial=maou_bgm_acoustic52 bgm_normal=maou_bgm_acoustic54 bgm_monster_house=bgm001 bgm_boss=maou_bgm_neorock83
+@roguelike_sound bgm_initial=maou_bgm_acoustic52 bgm_normal=maou_bgm_acoustic54 bgm_monster_house=bgm001 bgm_boss=maou_bgm_neorock83 bgm_shop=maou_bgm_piano40
 
 ; 効果音設定
 @roguelike_sound sort=maou_se_sound22 enter=maou_se_sound19 button=maou_se_sound_pc01 ng=maou_se_onepoint33
@@ -120,13 +128,6 @@
 @roguelike_sound damage=maou_se_sound01 levelup=maou_se_jingle05
 @roguelike_sound イオナズンの巻物=maou_se_battle_explosion06
 @roguelike_sound ダメージ罠=maou_se_battle18 巻き込み型ダメージ罠=maou_se_battle18
-
-; 初期部屋を部屋0にする
-@roguelike_option initial_room_index=0
-@roguelike_option boss_room_index=1
-
-; プレイヤー配置
-@roguelike_character name=プレイヤー x=1 y=1
 
 ; ステータスバー設定
 @roguelike_status_bar left=10 top=10 width=780 height=80 body_opacity=0
@@ -179,6 +180,8 @@
 @roguelike_character name=プレイヤー add_item=鉄の矢 correction_value=9
 @roguelike_character name=プレイヤー add_item=聖域の巻物
 @roguelike_character name=プレイヤー add_item=エニグマの紙 correction_value=5
+
+@roguelike_character name=プレイヤー add_money=10000
 
 ; 初期部屋に降りる階段を設置
 @roguelike_option x=2 y=1 stairs_down
