@@ -166,7 +166,7 @@
 ; アイテム所持（初期化後に行う事）
 @roguelike_character name=プレイヤー add_item=薬草 correction_value=1
 @roguelike_character name=プレイヤー add_item=倍速の草
-@roguelike_character name=プレイヤー add_item=鉄の剣 correction_value=2
+@roguelike_character name=プレイヤー add_item=ドラゴンキラー correction_value=2
 @roguelike_character name=プレイヤー add_item=ドラゴンキラー correction_value=2
 @roguelike_character name=プレイヤー add_item=ダメージ罠設置
 @roguelike_character name=プレイヤー add_item=敵増殖の罠設置
@@ -177,8 +177,7 @@
 @roguelike_character name=プレイヤー add_item=鑑定の巻物
 @roguelike_character name=プレイヤー add_item=毒草
 @roguelike_character name=プレイヤー add_item=強化の巻物
-@roguelike_character name=プレイヤー add_item=鉄の矢 correction_value=1
-@roguelike_character name=プレイヤー add_item=鉄の矢 correction_value=9
+@roguelike_character name=プレイヤー add_item=鉄の矢 correction_value=99
 @roguelike_character name=プレイヤー add_item=聖域の巻物
 @roguelike_character name=プレイヤー add_item=エニグマの紙 correction_value=5
 
