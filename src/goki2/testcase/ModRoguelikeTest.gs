@@ -34,7 +34,7 @@
 @roguelike_option go_back_target=*go_back
 @roguelike_option gameover_target=*gameover
 @roguelike_option return_trip
-@roguelike_option shop_rate=100
+@roguelike_option shop_rate=10
 
 ; チップス読み込み
 @roguelike_load_chips storage=roguelike_mapchips.dic
