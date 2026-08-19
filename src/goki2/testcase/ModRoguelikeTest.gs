@@ -19,14 +19,28 @@
 @roguelike_option debug_show_item_name
 ;@roguelike_option debug_message_to_console
 
+@roguelike_save_load left=0 top=0 width=800 height=600 margin_left=20 margin_top=80
+@roguelike_save_load record_storage=RoguelikeSaveLoadRecord blank_thumbnail_storage=RoguelikeBlankThumbnail
+@roguelike_save_load font_height=24 caption_color=0xFFFFFF
+@roguelike_save_load thumbnail_left=80 thumbnail_top=10
+@roguelike_save_load index_left=250 index_top=20 index_opacity=0
+@roguelike_save_load subject_left=280 subject_top=20 subject_opacity=0
+@roguelike_save_load date_left=250 date_top=40 date_opacity=0
+@roguelike_save_load floor_left=280 floor_top=80 floor_opacity=0
+@roguelike_save_load death_left=380 death_top=80 death_opacity=0
+@roguelike_save_load show
+@s
+
+@roguelike_save_load hide
+
 @roguelike_option grid_width=64 grid_height=64
 @roguelike_option map_width=50 map_height=50
-@roguelike_option max_floor=3
+@roguelike_option max_floor=99
 @roguelike_option room_count_min=4 room_count_max=8
 @roguelike_option item_count_min=4 item_count_max=8
 @roguelike_option money_count_min=1 money_count_max=3
 @roguelike_option enemy_count_min=4 enemy_count_max=8
-@roguelike_option trap_lower_floor=1 trap_upper_floor=99 trap_min=3 trap_max=5
+@roguelike_option trap_lower_floor=1 trap_upper_floor=99 trap_min=1 trap_max=3
 @roguelike_option message_layer_name=message1 font_size=16
 @roguelike_option enemy_sleeping=20
 @roguelike_option enemy_wakeup=20
@@ -61,18 +75,12 @@
 @roguelike_load_character storage=店員.dic image_storage=roguelike_npc_character clerk
 @roguelike_load_character storage=ボス.dic image_storage=roguelike_boss_character boss
 
-; 初期部屋を部屋0にする
-@roguelike_option initial_room_index=0
-@roguelike_option boss_room_index=1
-
-; プレイヤー配置
-@roguelike_character name=プレイヤー x=1 y=1
-
 ; メインメニュー
 @roguelike_menu storage=RoguelikeMenuBack.png left=10 top=10
 @roguelike_menu item_button_caption=アイテム item_button_left=20 item_button_top=20 item_button_width=60 item_button_height=30 item_button_body_opacity=0 item_button_caption_color=0xFFFFFF
 @roguelike_menu foot_button_caption=足元 foot_button_left=110 foot_button_top=20 foot_button_width=60 foot_button_height=30 foot_button_body_opacity=0 foot_button_caption_color=0xFFFFFF
 @roguelike_menu map_button_caption=マップ map_button_left=20 map_button_top=60 map_button_width=60 map_button_height=30 map_button_body_opacity=0 map_button_caption_color=0xFFFFFF
+@roguelike_menu pause_button_caption=中断 pause_button_left=110 pause_button_top=60 pause_button_width=60 pause_button_height=30 pause_button_body_opacity=0 pause_button_caption_color=0xFFFFFF
 
 ; アイテムメニュー
 @roguelike_item_menu storage=RoguelikeItemMenuBack.png left=300 top=80 margin_left=50 margin_top=40 margin_right=50
@@ -103,21 +111,6 @@
 @roguelike_edit_item_name cancel_button_caption=キャンセル cancel_button_left=650 cancel_button_top=180 cancel_button_width=80 cancel_button_height=30
 @roguelike_edit_item_name history_button_caption=履歴 history_button_left=650 history_button_top=220 history_button_width=80 history_button_height=30
 @roguelike_edit_item_name enter_button_caption=決定 enter_button_left=650 enter_button_top=260 enter_button_width=80 enter_button_height=30
-
-; 階段にイベント設定
-@roguelike_stairs_event name=StairsDown target=*to_down
-@roguelike_stairs_event name=StairsUp target=*to_up
-
-; アイテム読み込み
-@roguelike_load_items storage=items.ary
-@roguelike_load_item_type storage=itemtype.ary
-@roguelike_load_unidentified storage=unidentified.ary
-
-; お金アイコン指定
-@roguelike_money storage=お金アイコン
-
-; 罠読み込み
-@roguelike_load_trap storage=roguelike_trap.ary
 
 ; BGM設定
 @roguelike_sound bgm_initial=maou_bgm_acoustic52 bgm_normal=maou_bgm_acoustic54 bgm_monster_house=bgm001 bgm_boss=maou_bgm_neorock83 bgm_shop=maou_bgm_piano40
@@ -160,6 +153,28 @@
 @roguelike_yesno yes_caption=はい yes_left=20 yes_top=20 yes_width=60 yes_height=30 yes_body_opacity=0 yes_caption_color=0xFFFFFF
 @roguelike_yesno no_caption=いいえ no_left=20 no_top=50 no_width=60 no_height=30 no_body_opacity=0 no_caption_color=0xFFFFFF
 
+; 初期部屋を部屋0にする
+@roguelike_option initial_room_index=0
+@roguelike_option boss_room_index=1
+
+; プレイヤー配置
+@roguelike_character name=プレイヤー x=1 y=1
+
+; 階段にイベント設定
+;@roguelike_stairs_event name=StairsDown target=*to_down
+;@roguelike_stairs_event name=StairsUp target=*to_up
+
+; アイテム読み込み
+@roguelike_load_items storage=items.ary
+@roguelike_load_item_type storage=itemtype.ary
+@roguelike_load_unidentified storage=unidentified.ary
+
+; お金アイコン指定
+@roguelike_money storage=お金アイコン
+
+; 罠読み込み
+@roguelike_load_trap storage=roguelike_trap.ary
+
 ; 初期化
 @roguelike initialize
 
@@ -187,6 +202,7 @@
 @roguelike_option x=2 y=1 stairs_down
 
 ; ゲーム開始
+*label|テストダンジョン
 @roguelike show
 @wait_roguelike_show
 @roguelike start
