@@ -19,6 +19,14 @@
 @roguelike_option debug_show_item_name
 ;@roguelike_option debug_message_to_console
 
+; 効果音設定
+@roguelike_sound sort=maou_se_sound22 enter=maou_se_sound19 button=maou_se_sound_pc01 ng=maou_se_onepoint33
+@roguelike_sound item_use0=maou_se_sound_drink01 item_use1=maou_se_magical07 item_use2=maou_se_sound_paper01 
+@roguelike_sound attack_プレイヤー=maou_se_battle01
+@roguelike_sound damage=maou_se_sound01 levelup=maou_se_jingle05
+@roguelike_sound イオナズンの巻物=maou_se_battle_explosion06
+@roguelike_sound ダメージ罠=maou_se_battle18 巻き込み型ダメージ罠=maou_se_battle18
+
 @roguelike_save_load left=0 top=0 width=800 height=600 margin_left=20 margin_top=80
 @roguelike_save_load record_storage=RoguelikeSaveLoadRecord blank_thumbnail_storage=RoguelikeBlankThumbnail
 @roguelike_save_load font_height=24 caption_color=0xFFFFFF
@@ -114,14 +122,6 @@
 
 ; BGM設定
 @roguelike_sound bgm_initial=maou_bgm_acoustic52 bgm_normal=maou_bgm_acoustic54 bgm_monster_house=bgm001 bgm_boss=maou_bgm_neorock83 bgm_shop=maou_bgm_piano40
-
-; 効果音設定
-@roguelike_sound sort=maou_se_sound22 enter=maou_se_sound19 button=maou_se_sound_pc01 ng=maou_se_onepoint33
-@roguelike_sound item_use0=maou_se_sound_drink01 item_use1=maou_se_magical07 item_use2=maou_se_sound_paper01 
-@roguelike_sound attack_プレイヤー=maou_se_battle01
-@roguelike_sound damage=maou_se_sound01 levelup=maou_se_jingle05
-@roguelike_sound イオナズンの巻物=maou_se_battle_explosion06
-@roguelike_sound ダメージ罠=maou_se_battle18 巻き込み型ダメージ罠=maou_se_battle18
 
 ; ステータスバー設定
 @roguelike_status_bar left=10 top=10 width=780 height=80 body_opacity=0
