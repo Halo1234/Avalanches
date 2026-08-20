@@ -17,8 +17,189 @@
 <h1><a name="tags" id="tags">ModRoguelikeのタグ</a></h1>
 <div class="para"><div>
 　ModRoguelike で使用可能なタグのリファレンスです。<br />
-このモジュールはModMessageを必要とします。<br />
+このモジュールはModMessage/ModSound/ModBookmarkを必要とします。<br />
 このモジュールが依存するプラグインはBlueMonday-88.dllです。<br />
+<br />
+キャラクターは画像ファイルと、同じファイル名で拡張子が*.asd/*.asdxのアニメーションファイルが必要です。<br />
+アニメーションファイルの仕様は以下の通りです。<br />
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="ラベル仕様"><thead><tr><td>ラベル</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">*fornt</td><td class="tagattribdesc">正面向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*back</td><td class="tagattribdesc">後ろ向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left</td><td class="tagattribdesc">左向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right</td><td class="tagattribdesc">右向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_front</td><td class="tagattribdesc">左前向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_front</td><td class="tagattribdesc">右前向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_back</td><td class="tagattribdesc">左後ろ向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_back</td><td class="tagattribdesc">右後ろ向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*front_armor</td><td class="tagattribdesc">盾を装備した正面向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*back_armor</td><td class="tagattribdesc">盾を装備した後ろ向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_armor</td><td class="tagattribdesc">盾を装備した左向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_armor</td><td class="tagattribdesc">盾を装備した右向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_front_armor</td><td class="tagattribdesc">盾を装備した左前向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_front_armor</td><td class="tagattribdesc">盾を装備した右前向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_back_armor</td><td class="tagattribdesc">盾を装備した左後ろ向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_back_armor</td><td class="tagattribdesc">盾を装備した右後ろ向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*front_weapon</td><td class="tagattribdesc">武器を装備した正面向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*back_weapon</td><td class="tagattribdesc">武器を装備した後ろ向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_weapon</td><td class="tagattribdesc">武器を装備した左向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_weapon</td><td class="tagattribdesc">武器を装備した右向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_front_weapon</td><td class="tagattribdesc">武器を装備した左前向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_front_weapon</td><td class="tagattribdesc">武器を装備した右前向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_back_weapon</td><td class="tagattribdesc">武器を装備した左後ろ向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_back_weapon</td><td class="tagattribdesc">武器を装備した右後ろ向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*front_weapon_armor</td><td class="tagattribdesc">武器と盾を装備した正面向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*back_weapon_armor</td><td class="tagattribdesc">武器と盾を装備した後ろ向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_weapon_armor</td><td class="tagattribdesc">武器と盾を装備した左向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_weapon_armor</td><td class="tagattribdesc">武器と盾を装備した右向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_front_weapon_armor</td><td class="tagattribdesc">武器と盾を装備した左前向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_front_weapon_armor</td><td class="tagattribdesc">武器と盾を装備した右前向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_back_weapon_armor</td><td class="tagattribdesc">武器と盾を装備した左後ろ向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_back_weapon_armor</td><td class="tagattribdesc">武器と盾を装備した右後ろ向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*front_throw</td><td class="tagattribdesc">正面向きの投げるアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*back_throw</td><td class="tagattribdesc">後ろ向きの投げるアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_throw</td><td class="tagattribdesc">左向きの投げるアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_throw</td><td class="tagattribdesc">右向きの投げるアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_front_throw</td><td class="tagattribdesc">左前向きの投げるアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_front_throw</td><td class="tagattribdesc">右前向きの投げるアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_back_throw</td><td class="tagattribdesc">左後ろ向きの投げるアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_back_throw</td><td class="tagattribdesc">右後ろ向きの投げるアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*front_attack</td><td class="tagattribdesc">正面向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*back_attack</td><td class="tagattribdesc">後ろ向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_attack</td><td class="tagattribdesc">左向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_attack</td><td class="tagattribdesc">右向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_front_attack</td><td class="tagattribdesc">左前向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_front_attack</td><td class="tagattribdesc">右前向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_back_attack</td><td class="tagattribdesc">左後ろ向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_back_attack</td><td class="tagattribdesc">右後ろ向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*front_long_attack</td><td class="tagattribdesc">正面向きの２マス先への中距離攻撃のアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*back_long_attack</td><td class="tagattribdesc">後ろ向きの２マス先への中距離攻撃のアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_long_attack</td><td class="tagattribdesc">左向きの２マス先への中距離攻撃のアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_long_attack</td><td class="tagattribdesc">右向きの２マス先への中距離攻撃のアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_front_long_attack</td><td class="tagattribdesc">左前向きの２マス先への中距離攻撃のアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_front_long_attack</td><td class="tagattribdesc">右前向きの２マス先への中距離攻撃のアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_back_long_attack</td><td class="tagattribdesc">左後ろ向きの２マス先への中距離攻撃のアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_back_long_attack</td><td class="tagattribdesc">右後ろ向きの２マス先への中距離攻撃のアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*front_long_long_attack</td><td class="tagattribdesc">正面向きの遠距離攻撃のアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*back_long_long_attack</td><td class="tagattribdesc">後ろ向きの遠距離攻撃のアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_long_long_attack</td><td class="tagattribdesc">左向きの遠距離攻撃のアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_long_long_attack</td><td class="tagattribdesc">右向きの遠距離攻撃のアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_front_long_long_attack</td><td class="tagattribdesc">左前向きの遠距離攻撃のアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_front_long_long_attack</td><td class="tagattribdesc">右前向きの遠距離攻撃のアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_back_long_long_attack</td><td class="tagattribdesc">左後ろ向きの遠距離攻撃のアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_back_long_long_attack</td><td class="tagattribdesc">右後ろ向きの遠距離攻撃のアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*front_double_speed</td><td class="tagattribdesc">正面向きの倍速アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*back_double_speed</td><td class="tagattribdesc">後ろ向きの倍速アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_double_speed</td><td class="tagattribdesc">左向きの倍速アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_double_speed</td><td class="tagattribdesc">右向きの倍速アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_front_double_speed</td><td class="tagattribdesc">左前向きの倍速アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_front_double_speed</td><td class="tagattribdesc">右前向きの倍速アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_back_double_speed</td><td class="tagattribdesc">左後ろ向きの倍速アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_back_double_speed</td><td class="tagattribdesc">右後ろ向きの倍速アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*front_double_speed_armor</td><td class="tagattribdesc">盾を装備した正面向きの倍速アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*back_double_speed_armor</td><td class="tagattribdesc">盾を装備した後ろ向きの倍速アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_double_speed_armor</td><td class="tagattribdesc">盾を装備した左向きの倍速アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_double_speed_armor</td><td class="tagattribdesc">盾を装備した右向きの倍速アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_front_double_speed_armor</td><td class="tagattribdesc">盾を装備した左前向きの倍速アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_front_double_speed_armor</td><td class="tagattribdesc">盾を装備した右前向きの倍速アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_back_double_speed_armor</td><td class="tagattribdesc">盾を装備した左後ろ向きの倍速アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_back_double_speed_armor</td><td class="tagattribdesc">盾を装備した右後ろ向きの倍速アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*front_double_speed_weapon</td><td class="tagattribdesc">武器を装備した正面向きの倍速アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*back_double_speed_weapon</td><td class="tagattribdesc">武器を装備した後ろ向きの倍速アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_double_speed_weapon</td><td class="tagattribdesc">武器を装備した左向きの倍速アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_double_speed_weapon</td><td class="tagattribdesc">武器を装備した右向きの倍速アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_front_double_speed_weapon</td><td class="tagattribdesc">武器を装備した左前向きの倍速アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_front_double_speed_weapon</td><td class="tagattribdesc">武器を装備した右前向きの倍速アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_back_double_speed_weapon</td><td class="tagattribdesc">武器を装備した左後ろ向きの倍速アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_back_double_speed_weapon</td><td class="tagattribdesc">武器を装備した右後ろ向きの倍速アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*front_double_speed_weapon_armor</td><td class="tagattribdesc">武器と盾を装備した正面向きの倍速アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*back_double_speed_weapon_armor</td><td class="tagattribdesc">武器と盾を装備した後ろ向きの倍速アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_double_speed_weapon_armor</td><td class="tagattribdesc">武器と盾を装備した左向きの倍速アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_double_speed_weapon_armor</td><td class="tagattribdesc">武器と盾を装備した右向きの倍速アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_front_double_speed_weapon_armor</td><td class="tagattribdesc">武器と盾を装備した左前向きの倍速アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_front_double_speed_weapon_armor</td><td class="tagattribdesc">武器と盾を装備した右前向きの倍速アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_back_double_speed_weapon_armor</td><td class="tagattribdesc">武器と盾を装備した左後ろ向きの倍速アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_back_double_speed_weapon_armor</td><td class="tagattribdesc">武器と盾を装備した右後ろ向きの倍速アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*front_fall_down</td><td class="tagattribdesc">正面向きの転ぶアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*back_fall_down</td><td class="tagattribdesc">後ろ向きの転ぶアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_fall_down</td><td class="tagattribdesc">左向きの転ぶアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_fall_down</td><td class="tagattribdesc">右向きの転ぶアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_front_fall_down</td><td class="tagattribdesc">左前向きの転ぶアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_front_fall_down</td><td class="tagattribdesc">右前向きの転ぶアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_back_fall_down</td><td class="tagattribdesc">左後ろ向きの転ぶアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_back_fall_down</td><td class="tagattribdesc">右後ろ向きの転ぶアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*front_weapon_attack</td><td class="tagattribdesc">武器を装備した正面向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*back_weapon_attack</td><td class="tagattribdesc">武器を装備した後ろ向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_weapon_attack</td><td class="tagattribdesc">武器を装備した左向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_weapon_attack</td><td class="tagattribdesc">武器を装備した右向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_front_weapon_attack</td><td class="tagattribdesc">武器を装備した左前向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_front_weapon_attack</td><td class="tagattribdesc">武器を装備した右前向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_back_weapon_attack</td><td class="tagattribdesc">武器を装備した左後ろ向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_back_weapon_attack</td><td class="tagattribdesc">武器を装備した右後ろ向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*front_weapon_armor_attack</td><td class="tagattribdesc">武器と盾を装備した正面向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*back_weapon_armor_attack</td><td class="tagattribdesc">武器と盾を装備した後ろ向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_weapon_armor_attack</td><td class="tagattribdesc">武器と盾を装備した左向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_weapon_armor_attack</td><td class="tagattribdesc">武器と盾を装備した右向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_front_weapon_armor_attack</td><td class="tagattribdesc">武器と盾を装備した左前向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_front_weapon_armor_attack</td><td class="tagattribdesc">武器と盾を装備した右前向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_back_weapon_armor_attack</td><td class="tagattribdesc">武器と盾を装備した左後ろ向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_back_weapon_armor_attack</td><td class="tagattribdesc">武器と盾を装備した右後ろ向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*sleep</td><td class="tagattribdesc">睡眠状態のアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*die</td><td class="tagattribdesc">力尽きた時のアニメーションを実装します。</td></tr>
+</tbody></table>
+
+状態異常はセルレイヤでアニメーションを行います。<br />
+以下はセルレイヤで実行されるアニメーションの仕様です。<br />
+<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="ラベル仕様"><thead><tr><td>ラベル</td><td>説明</td></tr></thead><tbody>
+<tr><td class="tagattribalias">*front_confuse</td><td class="tagattribdesc">混乱した正面向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*back_confuse</td><td class="tagattribdesc">混乱した後ろ向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_confuse</td><td class="tagattribdesc">混乱した左向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_confuse</td><td class="tagattribdesc">混乱した右向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_front_confuse</td><td class="tagattribdesc">混乱した左前向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_front_confuse</td><td class="tagattribdesc">混乱した右前向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_back_confuse</td><td class="tagattribdesc">混乱した左後ろ向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_back_confuse</td><td class="tagattribdesc">混乱した右後ろ向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*front_make_slow</td><td class="tagattribdesc">鈍足時の正面向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*back_make_slow</td><td class="tagattribdesc">鈍足時の後ろ向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_make_slow</td><td class="tagattribdesc">鈍足時の左向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_make_slow</td><td class="tagattribdesc">鈍足時の右向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_front_make_slow</td><td class="tagattribdesc">鈍足時の左前向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_front_make_slow</td><td class="tagattribdesc">鈍足時の右前向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_back_make_slow</td><td class="tagattribdesc">鈍足時の左後ろ向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_back_make_slow</td><td class="tagattribdesc">鈍足時の右後ろ向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*front_do_not_move</td><td class="tagattribdesc">移動不可時の正面向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*back_do_not_move</td><td class="tagattribdesc">移動不可時の後ろ向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_do_not_move</td><td class="tagattribdesc">移動不可時の左向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_do_not_move</td><td class="tagattribdesc">移動不可時の右向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_front_do_not_move</td><td class="tagattribdesc">移動不可時の左前向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_front_do_not_move</td><td class="tagattribdesc">移動不可時の右前向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_back_do_not_move</td><td class="tagattribdesc">移動不可時の左後ろ向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_back_do_not_move</td><td class="tagattribdesc">移動不可時の右後ろ向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*front_can_not_act</td><td class="tagattribdesc">行動不可時の正面向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*back_can_not_act</td><td class="tagattribdesc">行動不可時の後ろ向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_can_not_act</td><td class="tagattribdesc">行動不可時の左向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_can_not_act</td><td class="tagattribdesc">行動不可時の右向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_front_can_not_act</td><td class="tagattribdesc">行動不可時の左前向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_front_can_not_act</td><td class="tagattribdesc">行動不可時の右前向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_back_can_not_act</td><td class="tagattribdesc">行動不可時の左後ろ向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_back_can_not_act</td><td class="tagattribdesc">行動不可時の右後ろ向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*front_blind</td><td class="tagattribdesc">盲目時の正面向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*back_blind</td><td class="tagattribdesc">盲目時の後ろ向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_blind</td><td class="tagattribdesc">盲目時の左向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_blind</td><td class="tagattribdesc">盲目時の右向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_front_blind</td><td class="tagattribdesc">盲目時の左前向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_front_blind</td><td class="tagattribdesc">盲目時の右前向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_back_blind</td><td class="tagattribdesc">盲目時の左後ろ向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_back_blind</td><td class="tagattribdesc">盲目時の右後ろ向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*front_poison</td><td class="tagattribdesc">毒状態の正面向きのアニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*back_poison</td><td class="tagattribdesc">毒状態の後ろ向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_poison</td><td class="tagattribdesc">毒状態の左向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_poison</td><td class="tagattribdesc">毒状態の右向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_front_poison</td><td class="tagattribdesc">毒状態の左前向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_front_poison</td><td class="tagattribdesc">毒状態の右前向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*left_back_poison</td><td class="tagattribdesc">毒状態の左後ろ向きの攻撃アニメーションを実装します。</td></tr>
+<tr><td class="tagattribalias">*right_back_poison</td><td class="tagattribdesc">毒状態の右後ろ向きの攻撃アニメーションを実装します。</td></tr>
+</tbody></table>
+</div></div>
 </div></div>
 
 <h1><a name="genre" id="genre" class="targanchor">ジャンル・タグ一覧</a></h1>
