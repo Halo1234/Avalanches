@@ -195,7 +195,14 @@
 @cell2 x=512 y=0
 @s
 
-*damage
+*front_damage
+*back_damage
+*left_damage
+*right_damage
+*left_front_damage
+*right_front_damage
+*left_back_damage
+*right_back_damage
 @cell2 x=576 y=0 time=500
 @s
 

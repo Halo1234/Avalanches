@@ -196,6 +196,13 @@
 @cell x=128 y=128
 @s
 
-*damage
+*front_damage
+*back_damage
+*left_damage
+*right_damage
+*left_front_damage
+*right_front_damage
+*left_back_damage
+*right_back_damage
 @cell x=128 y=128
 @s
