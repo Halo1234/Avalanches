@@ -49,7 +49,7 @@
 @roguelike_option room_count_min=4 room_count_max=8
 @roguelike_option item_count_min=4 item_count_max=8
 @roguelike_option money_count_min=1 money_count_max=3
-@roguelike_option enemy_count_min=4 enemy_count_max=8
+@roguelike_option enemy_count_min=10 enemy_count_max=10
 @roguelike_option trap_lower_floor=1 trap_upper_floor=99 trap_min=1 trap_max=3
 @roguelike_option message_layer_name=message1 font_size=16
 @roguelike_option enemy_sleeping=20
@@ -81,8 +81,8 @@
 ; キャラクターの読み込み（未配置のため画面には表示されない）
 @roguelike_load_character storage=プレイヤー.dic image_storage=roguelike_main_character player
 @roguelike_load_character storage=スライム.dic image_storage=roguelike_slime_character min_floor=1 max_floor=10
-@roguelike_load_character storage=ドラゴン.dic image_storage=roguelike_dragon_character min_floor=2 max_floor=30
-@roguelike_load_character storage=透明な敵.dic image_storage=roguelike_knight_character min_floor=3 max_floor=30
+@roguelike_load_character storage=ドラゴン.dic image_storage=roguelike_dragon_character min_floor=1 max_floor=30
+@roguelike_load_character storage=透明な敵.dic image_storage=roguelike_knight_character min_floor=1 max_floor=30
 @roguelike_load_character storage=店員.dic image_storage=roguelike_npc_character clerk
 @roguelike_load_character storage=ボス.dic image_storage=roguelike_boss_character boss
 
