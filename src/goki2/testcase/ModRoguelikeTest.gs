@@ -36,6 +36,8 @@
 @roguelike_save_load date_left=250 date_top=40 date_opacity=0
 @roguelike_save_load floor_left=280 floor_top=80 floor_opacity=0
 @roguelike_save_load death_left=380 death_top=80 death_opacity=0
+@roguelike_save_load delete_button_left=630 delete_button_top=30 delete_button_width=60 delete_button_height=40 delete_button_caption=削除
+@roguelike_save_load data_max=10
 @roguelike_save_load show
 @s
 
