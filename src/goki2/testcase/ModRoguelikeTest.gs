@@ -76,6 +76,7 @@
 @roguelike_load_room storage=room006.ary
 @roguelike_load_room storage=room007.ary
 
+; キャラクターの読み込み（未配置のため画面には表示されない）
 @roguelike_load_character storage=プレイヤー.dic image_storage=roguelike_main_character player
 @roguelike_load_character storage=スライム.dic image_storage=roguelike_slime_character min_floor=1 max_floor=10
 @roguelike_load_character storage=ドラゴン.dic image_storage=roguelike_dragon_character min_floor=2 max_floor=30
