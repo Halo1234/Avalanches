@@ -49,7 +49,7 @@
 @roguelike_option room_count_min=4 room_count_max=8
 @roguelike_option item_count_min=4 item_count_max=8
 @roguelike_option money_count_min=1 money_count_max=3
-@roguelike_option enemy_count_min=10 enemy_count_max=10
+@roguelike_option enemy_count_min=4 enemy_count_max=8
 @roguelike_option trap_lower_floor=1 trap_upper_floor=99 trap_min=1 trap_max=3
 @roguelike_option message_layer_name=message1 font_size=16
 @roguelike_option enemy_sleeping=20
@@ -89,9 +89,10 @@
 ; メインメニュー
 @roguelike_menu storage=RoguelikeMenuBack.png left=10 top=10
 @roguelike_menu item_button_caption=アイテム item_button_left=20 item_button_top=20 item_button_width=60 item_button_height=30 item_button_body_opacity=0 item_button_caption_color=0xFFFFFF
-@roguelike_menu foot_button_caption=足元 foot_button_left=110 foot_button_top=20 foot_button_width=60 foot_button_height=30 foot_button_body_opacity=0 foot_button_caption_color=0xFFFFFF
+@roguelike_menu foot_button_caption=足元 foot_button_left=70 foot_button_top=20 foot_button_width=60 foot_button_height=30 foot_button_body_opacity=0 foot_button_caption_color=0xFFFFFF
 @roguelike_menu map_button_caption=マップ map_button_left=20 map_button_top=60 map_button_width=60 map_button_height=30 map_button_body_opacity=0 map_button_caption_color=0xFFFFFF
-@roguelike_menu pause_button_caption=中断 pause_button_left=110 pause_button_top=60 pause_button_width=60 pause_button_height=30 pause_button_body_opacity=0 pause_button_caption_color=0xFFFFFF
+@roguelike_menu pause_button_caption=中断 pause_button_left=70 pause_button_top=60 pause_button_width=60 pause_button_height=30 pause_button_body_opacity=0 pause_button_caption_color=0xFFFFFF
+@roguelike_menu giveup_button_caption=諦める giveup_button_left=120 giveup_button_top=20 giveup_button_width=60 giveup_button_height=30 giveup_button_body_opacity=0 giveup_button_caption_color=0xFFFFFF
 
 ; アイテムメニュー
 @roguelike_item_menu storage=RoguelikeItemMenuBack.png left=300 top=80 margin_left=50 margin_top=40 margin_right=50
