@@ -43,6 +43,10 @@
 
 @roguelike_save_load hide
 
+; BGM設定
+@roguelike_sound bgm_initial=maou_bgm_acoustic52 bgm_normal=maou_bgm_acoustic54 bgm_monster_house=bgm001 bgm_boss=maou_bgm_neorock83 bgm_shop=maou_bgm_piano40 bgm_steal=maou_bgm_orchestra24
+
+; 基本設定
 @roguelike_option grid_width=64 grid_height=64
 @roguelike_option map_width=50 map_height=50
 @roguelike_option max_floor=99
@@ -124,9 +128,6 @@
 @roguelike_edit_item_name history_button_caption=履歴 history_button_left=650 history_button_top=220 history_button_width=80 history_button_height=30
 @roguelike_edit_item_name enter_button_caption=決定 enter_button_left=650 enter_button_top=260 enter_button_width=80 enter_button_height=30
 
-; BGM設定
-@roguelike_sound bgm_initial=maou_bgm_acoustic52 bgm_normal=maou_bgm_acoustic54 bgm_monster_house=bgm001 bgm_boss=maou_bgm_neorock83 bgm_shop=maou_bgm_piano40
-
 ; ステータスバー設定
 @roguelike_status_bar left=10 top=10 width=780 height=80 body_opacity=0
 @roguelike_status_bar floor_number_label_storage=RoguelikeStatusFloor.png floor_number_label_left=0 floor_number_label_top=0
@@ -190,7 +191,7 @@
 @roguelike_character name=プレイヤー add_item=ダメージ罠設置
 @roguelike_character name=プレイヤー add_item=敵増殖の罠設置
 @roguelike_character name=プレイヤー add_item=即死の杖 correction_value=1
-@roguelike_character name=プレイヤー add_item=ワープの壺
+@roguelike_character name=プレイヤー add_item=ワープの壺 correction_value=5
 @roguelike_character name=プレイヤー add_item=イオナズンの巻物
 @roguelike_character name=プレイヤー add_item=イオナズンの巻物
 @roguelike_character name=プレイヤー add_item=鑑定の巻物
