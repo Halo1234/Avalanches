@@ -297,9 +297,7 @@
 </td></tr>
     <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_map_height" id="roguelike_option_map_height">map_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">グリッド単位</td><td class="tagattribdesc">マップのサイズをグリッド単位で指定します。<br />
 デフォルトは10です。<br />
-    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_initial_room_index" id="roguelike_option_initial_room_index">initial_room_index</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0から始まるインデックス</td><td class="tagattribdesc">初期部屋のインデックスを指定します。<br />
-    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_boss_room_index" id="roguelike_option_boss_room_index">boss_room_index</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0から始まるインデックス</td><td class="tagattribdesc">ボス部屋のインデックスを指定します。<br />
-    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_shop_room_index" id="roguelike_option_shop_room_index">shop_room_index</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0から始まるインデックス</td><td class="tagattribdesc">ショップ部屋のインデックスを指定します。<br />
+    <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_boss_room_name" id="roguelike_option_boss_room_name">boss_room_name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">部屋名</td><td class="tagattribdesc">roguelike_load_roomで指定したボス部屋の名前を指定します。<br />
     <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_go_back_storage" id="roguelike_option_go_back_storage">go_back_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">シナリオファイル名</td><td class="tagattribdesc">初期部屋に戻ってきた時に実行するシナリオファイル名を指定します。<br />
     <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_go_back_target" id="roguelike_option_go_back_target">go_back_target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ラベル名</td><td class="tagattribdesc">初期部屋に戻ってきた時に実行するラベル名を指定します。<br />
     <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_option_gameover_storage" id="roguelike_option_gameover_storage">gameover_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">シナリオファイル名</td><td class="tagattribdesc">ゲームオーバー時に実行するシナリオファイル名を指定します。<br />
@@ -403,10 +401,15 @@ roguelike_load_roomタグで初期部屋を定義してから初期化してください。<br />
     <tr><th>別名</th><th>属性</th><th>必須?</th><th>値</th><th>説明</th></tr>
   </thead>
   <tbody>
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_room_storage" id="roguelike_load_room_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">部屋定義のファイル名を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_room_name" id="roguelike_load_room_name">name</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">部屋名</td><td class="tagattribdesc">部屋の名前を付けてください。<br />
+roguelike_optionで指定するボス部屋は、ここで付けた名前を指定してください。
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_room_storage" id="roguelike_load_room_storage">storage</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">部屋定義のファイル名を指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_room_initial_room" id="roguelike_load_room_initial_room">initial_room</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">読み込む部屋定義が初期部屋の場合に指定します。<br />
+この値をtrueにすると通常マップには出現しない部屋となります。
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_room_boss_room" id="roguelike_load_room_boss_room">boss_room</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">読み込む部屋定義がボス部屋の場合に指定します。<br />
+この値をtrueにすると通常マップには出現しない部屋となります。
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_room_shop_room" id="roguelike_load_room_shop_room">shop_room</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">読み込む部屋定義がショップ部屋の場合に指定します。<br />
+この値をtrueにすると通常マップには出現しない部屋となります。
   </tbody>
 </table>
 <div class="tagremarks">
