@@ -70,17 +70,17 @@
 @roguelike_load_chips name=StairsUp group_id=100000001 stairs_up
 
 ; 部屋の読み込み
-@roguelike_load_room storage=initial_room001.ary initial_room
-@roguelike_load_room storage=room999.ary boss_room
-@roguelike_load_room storage=room_shop1.ary shop_room
-@roguelike_load_room storage=room_shop2.ary shop_room
-@roguelike_load_room storage=room001.ary
-@roguelike_load_room storage=room002.ary
-@roguelike_load_room storage=room003.ary
-@roguelike_load_room storage=room004.ary
-@roguelike_load_room storage=room005.ary
-@roguelike_load_room storage=room006.ary
-@roguelike_load_room storage=room007.ary
+@roguelike_load_room name=0 storage=initial_room001.ary initial_room
+@roguelike_load_room name=1 storage=room999.ary boss_room
+@roguelike_load_room name=2 storage=room_shop1.ary shop_room
+@roguelike_load_room name=3 storage=room_shop2.ary shop_room
+@roguelike_load_room name=4 storage=room001.ary
+@roguelike_load_room name=5 storage=room002.ary
+@roguelike_load_room name=6 storage=room003.ary
+@roguelike_load_room name=7 storage=room004.ary
+@roguelike_load_room name=8 storage=room005.ary
+@roguelike_load_room name=9 storage=room006.ary
+@roguelike_load_room name=10 storage=room007.ary
 
 ; キャラクターの読み込み（未配置のため画面には表示されない）
 @roguelike_load_character storage=プレイヤー.dic image_storage=roguelike_main_character player
@@ -158,13 +158,6 @@
 @roguelike_yesno yes_caption=はい yes_left=20 yes_top=20 yes_width=60 yes_height=30 yes_body_opacity=0 yes_caption_color=0xFFFFFF
 @roguelike_yesno no_caption=いいえ no_left=20 no_top=50 no_width=60 no_height=30 no_body_opacity=0 no_caption_color=0xFFFFFF
 
-; 初期部屋を部屋0にする
-@roguelike_option initial_room_index=0
-@roguelike_option boss_room_index=1
-
-; プレイヤー配置
-@roguelike_character name=プレイヤー x=1 y=1
-
 ; 階段にイベント設定
 ;@roguelike_stairs_event name=StairsDown target=*to_down
 ;@roguelike_stairs_event name=StairsUp target=*to_up
@@ -180,8 +173,14 @@
 ; 罠読み込み
 @roguelike_load_trap storage=roguelike_trap.ary
 
+; プレイヤー配置
+@roguelike_character name=プレイヤー x=1 y=1
+
 ; 初期化
 @roguelike initialize
+
+; 部屋配置
+@roguelike_deploy_room name=0 x=0 y=0
 
 ; アイテム所持（初期化後に行う事）
 @roguelike_character name=プレイヤー add_item=薬草 correction_value=1
