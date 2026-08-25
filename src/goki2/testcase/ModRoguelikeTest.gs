@@ -49,7 +49,7 @@
 ; 基本設定
 @roguelike_option grid_width=64 grid_height=64
 @roguelike_option map_width=50 map_height=50
-@roguelike_option max_floor=99
+@roguelike_option max_floor=2
 @roguelike_option room_count_min=4 room_count_max=8
 @roguelike_option item_count_min=4 item_count_max=8
 @roguelike_option money_count_min=1 money_count_max=3
@@ -71,16 +71,17 @@
 
 ; 部屋の読み込み
 @roguelike_load_room name=0 storage=initial_room001.ary initial_room
-@roguelike_load_room name=1 storage=room999.ary boss_room
-@roguelike_load_room name=2 storage=room_shop1.ary shop_room
-@roguelike_load_room name=3 storage=room_shop2.ary shop_room
-@roguelike_load_room name=4 storage=room001.ary
-@roguelike_load_room name=5 storage=room002.ary
-@roguelike_load_room name=6 storage=room003.ary
-@roguelike_load_room name=7 storage=room004.ary
-@roguelike_load_room name=8 storage=room005.ary
-@roguelike_load_room name=9 storage=room006.ary
-@roguelike_load_room name=10 storage=room007.ary
+@roguelike_load_room name=1 storage=initial_room002.ary initial_room
+@roguelike_load_room name=2 storage=room999.ary boss_room
+@roguelike_load_room name=3 storage=room_shop1.ary shop_room
+@roguelike_load_room name=4 storage=room_shop2.ary shop_room
+@roguelike_load_room name=5 storage=room001.ary
+@roguelike_load_room name=6 storage=room002.ary
+@roguelike_load_room name=7 storage=room003.ary
+@roguelike_load_room name=8 storage=room004.ary
+@roguelike_load_room name=9 storage=room005.ary
+@roguelike_load_room name=10 storage=room006.ary
+@roguelike_load_room name=11 storage=room007.ary
 
 ; キャラクターの読み込み（未配置のため画面には表示されない）
 @roguelike_load_character storage=プレイヤー.dic image_storage=roguelike_main_character player
@@ -89,6 +90,7 @@
 @roguelike_load_character storage=透明な敵.dic image_storage=roguelike_knight_character min_floor=1 max_floor=30
 @roguelike_load_character storage=店員.dic image_storage=roguelike_npc_character clerk
 @roguelike_load_character storage=ボス.dic image_storage=roguelike_boss_character boss
+@roguelike_load_character storage=案内員.dic image_storage=roguelike_npc_character npc event_target=*guide
 
 ; メインメニュー
 @roguelike_menu storage=RoguelikeMenuBack.png left=10 top=10
@@ -182,6 +184,8 @@
 ; 部屋配置
 @roguelike_deploy_room name=0 x=0 y=0
 
+@roguelike_map_event x=0 y=2 target=*warehouse
+
 ; アイテム所持（初期化後に行う事）
 @roguelike_character name=プレイヤー add_item=薬草 correction_value=1
 @roguelike_character name=プレイヤー add_item=倍速の草
@@ -209,6 +213,63 @@
 *label|テストダンジョン
 @roguelike show
 @wait_roguelike_show
+@roguelike start
+@s
+
+*initial_room
+@roguelike hide
+@wait_roguelike_hide
+
+@roguelike_option clear
+@roguelike_deploy_room name=0 x=0 y=0
+@roguelike_character name=プレイヤー x=1 y=2
+@roguelike_option x=2 y=1 stairs_down
+
+@roguelike show
+@wait_roguelike_show
+@roguelike start
+@s
+
+*warehouse
+@roguelike hide
+@wait_roguelike_hide
+
+@roguelike_option clear
+@roguelike_deploy_room name=1 x=0 y=0
+@roguelike_character name=プレイヤー x=8 y=1
+@roguelike_character name=案内員 x=2 y=1
+@roguelike_map_event x=9 y=1 target=*initial_room
+
+@roguelike show
+@wait_roguelike_show
+@roguelike start
+@s
+
+*guide
+@roguelike_option message=不思議のダンジョンに挑みますか？ !message_auto_hide
+@roguelike_yesno yes_target=*yes_dungeon no_target=*no_dungeon
+@roguelike_yesno show
+@s
+
+*yes_dungeon
+@roguelike_option hide_message
+@roguelike_yesno hide
+
+@roguelike hide
+@wait_roguelike_hide
+
+@roguelike next_floor
+
+@roguelike show
+@wait_roguelike_show
+
+@roguelike start
+@s
+
+*no_dungeon
+@roguelike_option hide_message
+@roguelike_yesno hide
+
 @roguelike start
 @s
 
@@ -269,9 +330,6 @@
 @s
 
 *go_back
-@roguelike_option message=階段を上ります？ !message_auto_hide
-@roguelike_yesno yes_target=*go_back_to_up no_target=*no_up
-@roguelike_yesno show
 @s
 
 *go_back_to_up
