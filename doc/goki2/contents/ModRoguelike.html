@@ -236,6 +236,8 @@
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#roguelike_load_item_type">roguelike_load_item_type</a></span></td><td class="taglisteven">アイテムタイプの読み込み</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#roguelike_edit_item_name">roguelike_edit_item_name</a></span></td><td class="taglistodd">アイテムの別名設定画面の設定</td></tr>
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#roguelike_save_load">roguelike_save_load</a></span></td><td class="taglisteven">セーブロード画面の設定</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#roguelike_deploy_room">roguelike_deploy_room</a></span></td><td class="taglistodd">部屋をマップに配置する</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#roguelike_map_event">roguelike_map_event</a></span></td><td class="taglisteven">マップイベントの設定</td></tr>
 </tbody></table><br /><br /></div></div>
 
 <h1><a name="roguelike_option" id="roguelike_option" class="targanchor"><span class="b">roguelike_option</span>(別名なし)</a></h1>
@@ -359,9 +361,16 @@ roguelike_load_roomタグで初期部屋を定義してから初期化してください。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_image_storage" id="roguelike_load_character_image_storage">image_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">キャラクターの画像ファイル名を指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_asd" id="roguelike_load_character_asd">asd</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">キャラクターのアニメーションファイル名(*.asd/*.asdx)を指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_player" id="roguelike_load_character_player">player</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">ユーザーが操作するキャラクターの場合、この値は true となります。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_boss" id="roguelike_load_character_boss">boss</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">ボスキャラクターの場合、この値は true となります。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_clerk" id="roguelike_load_character_clerk">clerk</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">ショップの店員の場合、この値は true となります。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_npc" id="roguelike_load_character_npc">npc</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">NPCの場合、この値は true となります。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_min_floor" id="roguelike_load_character_min_floor">min_floor</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">出現する最小階層。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_max_floor" id="roguelike_load_character_max_floor">max_floor</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">出現する最大階層。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_fullness_level_turn" id="roguelike_load_character_fullness_level_turn">fullness_level_turn</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">ここで指定したターン数が経過すると満腹度が1下がります。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_event_storage" id="roguelike_load_character_event_storage">event_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">シナリオファイル名</td><td class="tagattribdesc">話かけた時に実行するシナリオファイル名を指定します。<br />
+この値はnpcがtrueの時のみ有効です。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_event_target" id="roguelike_load_character_event_target">event_target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ラベル名</td><td class="tagattribdesc">話かけた時に実行するラベル名を指定します。<br />
+この値はnpcがtrueの時のみ有効です。<br />
   </tbody>
 </table>
 <div class="tagremarks">
@@ -1482,6 +1491,53 @@ Yes/Noメニューの設定を行います。<br />
 <div class="tagremarks">
 セーブロード画面の設定を行います。<br />
 データレコードを選択すると、ゲームデータは選択したレコードに自動的に保存されます。
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div>
+</div>
+</div></div>
+
+<h1><a name="roguelike_deploy_room" id="roguelike_deploy_room" class="targanchor"><span class="b">roguelike_deploy_room</span>(別名なし)</a></h1>
+<div class="taggenre">部屋をマップに配置する</div>
+<div class="para"><div>
+<table class="tagparams" frame="box" rules="all" summary="タグ roguelike_deploy_room の属性の一覧">
+  <thead>
+    <tr><th>別名</th><th>属性</th><th>必須?</th><th>値</th><th>説明</th></tr>
+  </thead>
+  <tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_deploy_room_name" id="roguelike_deploy_room_name">name</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">部屋名</td><td class="tagattribdesc">roguelike_load_roomタグで指定した部屋の名前を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_deploy_room_x" id="roguelike_deploy_room_x">x</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">グリッド単位</td><td class="tagattribdesc">部屋の表示位置を指定します。<br />
+省略すると0とみなします。
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_deploy_room_y" id="roguelike_deploy_room_y">y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">グリッド単位</td><td class="tagattribdesc">部屋の表示位置を指定します。<br />
+省略すると0とみなします。
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_deploy_room_clear" id="roguelike_deploy_room_clear">clear</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">trueを指定すると配置された部屋をクリアします。<br />
+  </tbody>
+</table>
+<div class="tagremarks">
+マップに部屋を配置します。<br />
+重複した座標など配置できない場合は例外が発生します。
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div>
+</div>
+</div></div>
+
+<h1><a name="roguelike_map_event" id="roguelike_map_event" class="targanchor"><span class="b">roguelike_map_event</span>(別名なし)</a></h1>
+<div class="taggenre">イベントをマップに配置する</div>
+<div class="para"><div>
+<table class="tagparams" frame="box" rules="all" summary="タグ roguelike_map_event の属性の一覧">
+  <thead>
+    <tr><th>別名</th><th>属性</th><th>必須?</th><th>値</th><th>説明</th></tr>
+  </thead>
+  <tbody>
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_map_event_x" id="roguelike_map_event_x">x</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">グリッド単位</td><td class="tagattribdesc">マップイベントを配置する場所を指定します。<br />
+省略すると0とみなします。
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_map_event_y" id="roguelike_map_event_y">y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">グリッド単位</td><td class="tagattribdesc">マップイベントを配置する場所を指定します。<br />
+省略すると0とみなします。
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_map_event_storage" id="roguelike_map_event_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">シナリオファイル名</td><td class="tagattribdesc">実行するシナリオファイル名を指定します。<br />
+この属性か、targetのどちらかが必須です。
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_map_event_target" id="roguelike_map_event_target">target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ラベル名</td><td class="tagattribdesc">実行するラベル名を指定します。<br />
+この属性か、storageのどちらかが必須です。
+  </tbody>
+</table>
+<div class="tagremarks">
+イベントをマップに配置します。<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div>
 </div>
 </div></div>

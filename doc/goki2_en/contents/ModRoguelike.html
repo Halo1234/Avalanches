@@ -233,6 +233,7 @@ Below are the specifications for animations executed on the cell layer.<br />
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#roguelike_load_item_type">roguelike_load_item_type</a></span></td><td class="taglisteven">Load item type</td></tr>
 <tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#roguelike_edit_item_name">roguelike_edit_item_name</a></span></td><td class="taglistodd">Settings screen for assigning alternate names to items</td></tr>
 <tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#roguelike_save_load">roguelike_save_load</a></span></td><td class="taglisteven">Save/load screen settings</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#roguelike_deploy_room">roguelike_deploy_room</a></span></td><td class="taglistodd">Place rooms on the map</td></tr>
 </tbody></table><br /><br /></div></div>
 
 <h1><a name="roguelike_option" id="roguelike_option" class="targanchor"><span class="b">roguelike_option</span> (No alias)</a></h1>
@@ -332,25 +333,30 @@ Manages control functions such as show/hide and start/stop for the roguelike gam
 </div></div>
 
 <h1><a name="roguelike_load_character" id="roguelike_load_character" class="targanchor"><span class="b">roguelike_load_character</span> (No alias)</a></h1>
-<div class="taggenre">Character Loading.</div>
+<div class="taggenre">Loading characters.</div>
 <div class="para"><div>
-<table class="tagparams" frame="box" rules="all" summary="List of attributes for the roguelike_load_character tag">
+<table class="tagparams" frame="box" rules="all" summary="List of attributes for tag roguelike_load_character">
   <thead>
     <tr><th>Alias</th><th>Attribute</th><th>Required?</th><th>Value</th><th>Description</th></tr>
   </thead>
   <tbody>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_storage" id="roguelike_load_character_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">file name</td><td class="tagattribdesc">Specifies the file name for the character data.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_image_storage" id="roguelike_load_character_image_storage">image_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">file name</td><td class="tagattribdesc">Specifies the image file name for the character.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_asd" id="roguelike_load_character_asd">asd</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">File name</td><td class="tagattribdesc">Specifies the animation definition file (*.asd/*.asdx) for the character.<br /></td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_player" id="roguelike_load_character_player">player</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Set to true if this is the character controlled by the user.<br /></td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_min_floor" id="roguelike_load_character_min_floor">min_floor</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">integer</td><td class="tagattribdesc">Minimum floor level for appearance.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_max_floor" id="roguelike_load_character_max_floor">max_floor</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">integer</td><td class="tagattribdesc">Maximum floor level for appearance.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_fullness_level_turn" id="roguelike_load_character_fullness_level_turn">fullness_level_turn</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">After the number of turns specified here passes, your fullness will decrease by 1.<br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_storage" id="roguelike_load_character_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">File name</td><td class="tagattribdesc">Specifies the file name for character data.<br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_image_storage" id="roguelike_load_character_image_storage">image_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">File name</td><td class="tagattribdesc">Specifies the image file name for the character.<br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_asd" id="roguelike_load_character_asd">asd</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">File name</td><td class="tagattribdesc">Specifies the animation file name (*.asd/*.asdx) for the character.<br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_player" id="roguelike_load_character_player">player</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">This value is true for player-controlled characters.<br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_boss" id="roguelike_load_character_boss">boss</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">This value is true for boss characters.<br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_clerk" id="roguelike_load_character_clerk">clerk</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">This value is true for shop clerks.<br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_npc" id="roguelike_load_character_npc">npc</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">This value is true for NPCs.<br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_min_floor" id="roguelike_load_character_min_floor">min_floor</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">The minimum floor where this character appears.<br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_max_floor" id="roguelike_load_character_max_floor">max_floor</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">The maximum floor where this character appears.<br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_fullness_level_turn" id="roguelike_load_character_fullness_level_turn">fullness_level_turn</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Fullness decreases by 1 after the specified number of turns elapses.<br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_event_storage" id="roguelike_load_character_event_storage">event_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Scenario file name</td><td class="tagattribdesc">Specifies the scenario file name to execute when spoken to.<br />This value is valid only when npc is true.<br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_event_target" id="roguelike_load_character_event_target">event_target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Label name</td><td class="tagattribdesc">Specifies the label name to execute when spoken to.<br />This value is valid only when npc is true.<br />
   </tbody>
 </table>
 <div class="tagremarks">
-Loads character data into the game.<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to Genre/Tag List</span></a></div>
+Loads character data.<br />
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to Genre / Tag List</span></a></div>
 </div>
 </div></div>
 
@@ -1573,6 +1579,29 @@ The font size specified here is also applied to records and child layers.
 Configures the save/load screen.<br />
 When a data record is selected, game data is automatically saved to the selected record.
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to Category/Tag List</span></a></div>
+</div>
+</div></div>
+
+<h1><a name="roguelike_deploy_room" id="roguelike_deploy_room" class="targanchor"><span class="b">roguelike_deploy_room</span> (No alias)</a></h1>
+<div class="taggenre">Deploying rooms to the map.</div>
+<div class="para"><div>
+<table class="tagparams" frame="box" rules="all" summary="List of attributes for tag roguelike_deploy_room">
+  <thead>
+    <tr><th>Alias</th><th>Attribute</th><th>Required?</th><th>Value</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_deploy_room_name" id="roguelike_deploy_room_name">name</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Room name</td><td class="tagattribdesc">Specifies the name of the room defined in the roguelike_load_room tag.<br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_deploy_room_x" id="roguelike_deploy_room_x">x</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Grid units</td><td class="tagattribdesc">Specifies the display position of the room.<br />
+If omitted, 0 is assumed.
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_deploy_room_y" id="roguelike_deploy_room_y">y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Grid units</td><td class="tagattribdesc">Specifies the display position of the room.<br />
+If omitted, 0 is assumed.
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_deploy_room_clear" id="roguelike_deploy_room_clear">clear</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If true is specified, clears the deployed room.<br />
+  </tbody>
+</table>
+<div class="tagremarks">
+Deploys a room on the map.<br />
+An exception will occur if placement fails, such as due to overlapping coordinates.
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to Genre / Tag List</span></a></div>
 </div>
 </div></div>
 
