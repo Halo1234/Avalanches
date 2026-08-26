@@ -235,6 +235,7 @@
 
 @roguelike_character name=プレイヤー add_item=ドラゴンキラー correction_value=2
 
+*label|初期部屋
 @roguelike show
 @wait_roguelike_show
 @roguelike start
@@ -269,6 +270,7 @@
 
 @roguelike_character name=プレイヤー add_item=ドラゴンキラー correction_value=2
 
+*label|初期部屋
 @roguelike show
 @wait_roguelike_show
 @roguelike start
