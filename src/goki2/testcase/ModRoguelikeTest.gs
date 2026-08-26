@@ -165,8 +165,8 @@
 ;@roguelike_stairs_event name=StairsUp target=*to_up
 
 ; 戻った時のイベント設定
-@roguelike_option money=500 money_target=*go_back_over500
-@roguelike_option money=2500 money_target=*go_back_over2500
+@roguelike_option money=500 money_target=*go_back_over500_init
+@roguelike_option money=2500 money_target=*go_back_over2500_init
 
 ; アイテム読み込み
 @roguelike_load_items storage=items.ary
@@ -221,11 +221,28 @@
 @roguelike start
 @s
 
-*go_back_over2500
+*go_back_over2500_init
 @roguelike hide
 @wait_roguelike_hide
 
 @eval exp="f.label = '*go_back_over2500'"
+
+@roguelike_option clear
+@roguelike_deploy_room name=0 x=0 y=0
+@roguelike_character name=プレイヤー x=1 y=2
+@roguelike_option x=2 y=1 stairs_down
+@roguelike_map_event x=0 y=2 target=*warehouse
+
+@roguelike_character name=プレイヤー add_item=ドラゴンキラー correction_value=2
+
+@roguelike show
+@wait_roguelike_show
+@roguelike start
+@s
+
+*go_back_over2500
+@roguelike hide
+@wait_roguelike_hide
 
 @roguelike_option clear
 @roguelike_deploy_room name=0 x=0 y=0
@@ -238,11 +255,28 @@
 @roguelike start
 @s
 
-*go_back_over500
+*go_back_over500_init
 @roguelike hide
 @wait_roguelike_hide
 
 @eval exp="f.label = '*go_back_over500'"
+
+@roguelike_option clear
+@roguelike_deploy_room name=0 x=0 y=0
+@roguelike_character name=プレイヤー x=1 y=2
+@roguelike_option x=2 y=1 stairs_down
+@roguelike_map_event x=0 y=2 target=*warehouse
+
+@roguelike_character name=プレイヤー add_item=ドラゴンキラー correction_value=2
+
+@roguelike show
+@wait_roguelike_show
+@roguelike start
+@s
+
+*go_back_over500
+@roguelike hide
+@wait_roguelike_hide
 
 @roguelike_option clear
 @roguelike_deploy_room name=0 x=0 y=0
