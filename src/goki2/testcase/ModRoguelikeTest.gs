@@ -49,7 +49,7 @@
 ; 基本設定
 @roguelike_option grid_width=64 grid_height=64
 @roguelike_option map_width=50 map_height=50
-@roguelike_option max_floor=1
+@roguelike_option max_floor=2
 @roguelike_option room_count_min=4 room_count_max=8
 @roguelike_option item_count_min=4 item_count_max=8
 @roguelike_option money_count_min=1 money_count_max=3
@@ -62,7 +62,7 @@
 @roguelike_option go_back_target=*go_back
 @roguelike_option gameover_target=*gameover
 @roguelike_option return_trip
-@roguelike_option shop_rate=10
+@roguelike_option shop_rate=100
 
 ; チップス読み込み
 @roguelike_load_chips storage=roguelike_mapchips.dic
@@ -325,7 +325,6 @@
 *label|不思議のダンジョン
 @roguelike show
 @wait_roguelike_show
-
 @roguelike start
 @s
 
@@ -398,6 +397,7 @@
 @roguelike_character name=プレイヤー x=1 y=2
 @roguelike_option x=2 y=1 stairs_down
 
+*label|初期部屋
 @roguelike show
 @wait_roguelike_show
 @roguelike start
