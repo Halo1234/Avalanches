@@ -49,7 +49,7 @@
 ; 基本設定
 @roguelike_option grid_width=64 grid_height=64
 @roguelike_option map_width=50 map_height=50
-@roguelike_option max_floor=2
+@roguelike_option max_floor=1
 @roguelike_option room_count_min=4 room_count_max=8
 @roguelike_option item_count_min=4 item_count_max=8
 @roguelike_option money_count_min=1 money_count_max=3
@@ -164,6 +164,10 @@
 ;@roguelike_stairs_event name=StairsDown target=*to_down
 ;@roguelike_stairs_event name=StairsUp target=*to_up
 
+; 戻った時のイベント設定
+@roguelike_option money=500 money_target=*go_back_over500
+@roguelike_option money=2500 money_target=*go_back_over2500
+
 ; アイテム読み込み
 @roguelike_load_items storage=items.ary
 @roguelike_load_item_type storage=itemtype.ary
@@ -183,8 +187,6 @@
 
 ; 部屋配置
 @roguelike_deploy_room name=0 x=0 y=0
-
-@roguelike_map_event x=0 y=2 target=*warehouse
 
 ; アイテム所持（初期化後に行う事）
 @roguelike_character name=プレイヤー add_item=薬草 correction_value=1
@@ -209,6 +211,9 @@
 ; 初期部屋に降りる階段を設置
 @roguelike_option x=2 y=1 stairs_down
 
+; ラベル名を保存する変数を用意
+@eval exp="f.label = '*go_back_init'"
+
 ; ゲーム開始
 *label|テストダンジョン
 @roguelike show
@@ -216,14 +221,34 @@
 @roguelike start
 @s
 
-*initial_room
+*go_back_over2500
 @roguelike hide
 @wait_roguelike_hide
+
+@eval exp="f.label = '*go_back_over2500'"
 
 @roguelike_option clear
 @roguelike_deploy_room name=0 x=0 y=0
 @roguelike_character name=プレイヤー x=1 y=2
 @roguelike_option x=2 y=1 stairs_down
+@roguelike_map_event x=0 y=2 target=*warehouse
+
+@roguelike show
+@wait_roguelike_show
+@roguelike start
+@s
+
+*go_back_over500
+@roguelike hide
+@wait_roguelike_hide
+
+@eval exp="f.label = '*go_back_over500'"
+
+@roguelike_option clear
+@roguelike_deploy_room name=0 x=0 y=0
+@roguelike_character name=プレイヤー x=1 y=2
+@roguelike_option x=2 y=1 stairs_down
+@roguelike_map_event x=0 y=2 target=*warehouse
 
 @roguelike show
 @wait_roguelike_show
@@ -238,7 +263,7 @@
 @roguelike_deploy_room name=1 x=0 y=0
 @roguelike_character name=プレイヤー x=8 y=1
 @roguelike_character name=案内員 x=2 y=1
-@roguelike_map_event x=9 y=1 target=*initial_room
+@roguelike_map_event x=9 y=1 target=*go_back_over500
 
 @roguelike show
 @wait_roguelike_show
@@ -258,8 +283,10 @@
 @roguelike hide
 @wait_roguelike_hide
 
+@roguelike_option max_floor=99
 @roguelike next_floor
 
+*label|不思議のダンジョン
 @roguelike show
 @wait_roguelike_show
 
@@ -329,7 +356,22 @@
 @roguelike start
 @s
 
+*go_back_init
+@roguelike_option clear
+@roguelike_deploy_room name=0 x=0 y=0
+@roguelike_character name=プレイヤー x=1 y=2
+@roguelike_option x=2 y=1 stairs_down
+
+@roguelike show
+@wait_roguelike_show
+@roguelike start
+@s
+
 *go_back
+@roguelike hide
+@wait_roguelike_hide
+
+@jump target="&f.label"
 @s
 
 *go_back_to_up
