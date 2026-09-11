@@ -3,7 +3,7 @@
 *label|
 @history enabled=false
 
-@roguelike_option debug 
+;@roguelike_option debug 
 @roguelike_option debug_dump_map
 @roguelike_option debug_show_enemies
 ;@roguelike_option debug_move_enemies
