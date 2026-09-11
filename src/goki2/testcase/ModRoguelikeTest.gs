@@ -76,13 +76,13 @@
 @roguelike_load_room name=2 storage=room999.ary boss_room
 @roguelike_load_room name=3 storage=room_shop1.ary shop_room
 @roguelike_load_room name=4 storage=room_shop2.ary shop_room
-;@roguelike_load_room name=5 storage=room001.ary
-;@roguelike_load_room name=6 storage=room002.ary
+@roguelike_load_room name=5 storage=room001.ary
+@roguelike_load_room name=6 storage=room002.ary
 @roguelike_load_room name=7 storage=room003.ary initial_room
-;@roguelike_load_room name=8 storage=room004.ary
-;@roguelike_load_room name=9 storage=room005.ary
-;@roguelike_load_room name=10 storage=room006.ary
-;@roguelike_load_room name=11 storage=room007.ary
+@roguelike_load_room name=8 storage=room004.ary
+@roguelike_load_room name=9 storage=room005.ary
+@roguelike_load_room name=10 storage=room006.ary
+@roguelike_load_room name=11 storage=room007.ary
 
 ; キャラクターの読み込み（未配置のため画面には表示されない）
 @roguelike_load_character storage=プレイヤー.dic image_storage=roguelike_main_character player
@@ -181,12 +181,12 @@
 @roguelike_load_trap storage=roguelike_trap.ary
 
 ; プレイヤー配置
-@roguelike_character name=プレイヤー x=2 y=3
+@roguelike_character name=プレイヤー x=1 y=1
 
 ; 初期化
 @roguelike initialize
 
-@roguelike_character name=透明な敵 x=5 y=3
+;@roguelike_character name=透明な敵 x=5 y=3
 ;@roguelike_character name=スライム x=6 y=5
 ; 部屋配置
 @roguelike_deploy_room name=7 x=0 y=0
