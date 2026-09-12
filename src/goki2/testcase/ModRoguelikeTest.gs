@@ -3,7 +3,7 @@
 *label|
 @history enabled=false
 
-;@roguelike_option debug 
+@roguelike_option debug 
 @roguelike_option debug_dump_map
 @roguelike_option debug_show_enemies
 ;@roguelike_option debug_move_enemies
@@ -78,7 +78,7 @@
 @roguelike_load_room name=4 storage=room_shop2.ary shop_room
 @roguelike_load_room name=5 storage=room001.ary
 @roguelike_load_room name=6 storage=room002.ary
-@roguelike_load_room name=7 storage=room003.ary initial_room
+@roguelike_load_room name=7 storage=room003.ary
 @roguelike_load_room name=8 storage=room004.ary
 @roguelike_load_room name=9 storage=room005.ary
 @roguelike_load_room name=10 storage=room006.ary
@@ -187,9 +187,9 @@
 @roguelike initialize
 
 ;@roguelike_character name=透明な敵 x=5 y=3
-;@roguelike_character name=スライム x=6 y=5
+;@roguelike_character name=スライム x=8 y=2
 ; 部屋配置
-@roguelike_deploy_room name=7 x=0 y=0
+@roguelike_deploy_room name=0 x=0 y=0
 
 ; アイテム所持（初期化後に行う事）
 @roguelike_character name=プレイヤー add_item=薬草 correction_value=1
