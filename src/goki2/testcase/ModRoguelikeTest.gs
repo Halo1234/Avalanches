@@ -14,7 +14,7 @@
 ;@roguelike_option debug_not_tracking_mode
 ;@roguelike_option debug_skip
 @roguelike_option debug_show_trap
-;@roguelike_option debug_trap
+@roguelike_option debug_trap
 @roguelike_option debug_show_transparent_character
 @roguelike_option debug_show_item_name
 ;@roguelike_option debug_message_to_console
@@ -54,15 +54,15 @@
 @roguelike_option item_count_min=4 item_count_max=8
 @roguelike_option money_count_min=1 money_count_max=3
 @roguelike_option enemy_count_min=4 enemy_count_max=8
-@roguelike_option trap_lower_floor=1 trap_upper_floor=99 trap_min=3 trap_max=5
+@roguelike_option trap_lower_floor=1 trap_upper_floor=99 trap_min=1 trap_max=3
 @roguelike_option message_layer_name=message1 font_size=16
-@roguelike_option enemy_sleeping=0
-@roguelike_option enemy_wakeup=0
-@roguelike_option monster_house_rate=0
+@roguelike_option enemy_sleeping=20
+@roguelike_option enemy_wakeup=20
+@roguelike_option monster_house_rate=20
 @roguelike_option go_back_target=*go_back
 @roguelike_option gameover_target=*gameover
 @roguelike_option return_trip
-@roguelike_option shop_rate=0
+@roguelike_option shop_rate=20
 @roguelike_option not_trap_triggered=20
 
 ; チップス読み込み
@@ -186,8 +186,8 @@
 ; 初期化
 @roguelike initialize
 
-;@roguelike_character name=透明な敵 x=5 y=3
-;@roguelike_character name=スライム x=8 y=2
+;@roguelike_character name=透明な敵 x=6 y=3
+;@roguelike_character name=スライム x=5 y=4
 ; 部屋配置
 @roguelike_deploy_room name=0 x=0 y=0
 
