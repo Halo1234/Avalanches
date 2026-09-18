@@ -1190,11 +1190,11 @@ Yes/Noメニューの設定を行います。<br />
   </thead>
   <tbody>
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_sound_bgm_initial" id="roguelike_sound_bgm_initial">bgm_initial</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">初期部屋のBGMを指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_sound_bgm_normal" id="roguelike_sound_bgm_normal">bgm_normal</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">通常時のBGMを指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_sound_bgm_monster_house" id="roguelike_sound_bgm_monster_house">bgm_monster_house</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">モンスターハウスのBGMを指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_sound_bgm_boss" id="roguelike_sound_bgm_boss">bgm_boss</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">ボス戦（最下層）のBGMを指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_sound_bgm_shop" id="roguelike_sound_bgm_shop">bgm_shop</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">ショップのBGMを指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_sound_bgm_steal" id="roguelike_sound_bgm_steal">bgm_steal</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">泥棒時のBGMを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_sound_bgm_room_groupN" id="roguelike_sound_bgm_room_groupN">bgm_room_groupN</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">グループN(N=マップエディタで指定したグループID)のBGMを指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_sound_enter" id="roguelike_sound_enter">enter</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">マウスが乗った時の効果音を指定します。<br />
 これはマウスが乗った時の音を全て同じ効果音に設定します。
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_sound_button" id="roguelike_sound_button">button</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">ボタンを押した時の効果音を指定します。<br />
@@ -1246,6 +1246,13 @@ Yes/Noメニューの設定を行います。<br />
 </table>
 <div class="tagremarks">
 各種効果音を設定します。<br />
+各部屋用のBGMは各部屋を読み込んだ後に設定してください。<br />
+<div class="tagexample"><code class="bq"><span class="weak">例:</span><br />
+; 先にroom001.ary(グループ=1)を読み込む(グループの値はマップエディタで指定したものです)<br />
+@roguelike_load_room name=0 storage=room001.ary]<br />
+; 続けてグループ1の部屋のBGMを設定する<br />
+[roguelike_sound bgm_room_group1=bgm_room1.ogg]<br />
+</code></div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div>
 </div>
 </div></div>
