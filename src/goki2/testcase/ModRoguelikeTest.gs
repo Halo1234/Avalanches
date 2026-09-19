@@ -19,30 +19,8 @@
 @roguelike_option debug_show_item_name
 ;@roguelike_option debug_message_to_console
 
-; アイテム読み込み
-@roguelike_load_items storage=items.ary
-@roguelike_load_item_type storage=itemtype.ary
-@roguelike_load_unidentified storage=unidentified.ary
-
-; 罠読み込み
-@roguelike_load_trap storage=roguelike_trap.ary
-
-; キャラクターの読み込み（未配置のため画面には表示されない）
-@roguelike_load_character storage=プレイヤー.dic image_storage=roguelike_main_character player
-@roguelike_load_character storage=スライム.dic image_storage=roguelike_slime_character min_floor=1 max_floor=10
-@roguelike_load_character storage=ドラゴン.dic image_storage=roguelike_dragon_character min_floor=1 max_floor=30
-@roguelike_load_character storage=透明な敵.dic image_storage=roguelike_knight_character min_floor=1 max_floor=30
-@roguelike_load_character storage=店員.dic image_storage=roguelike_npc_character clerk
-@roguelike_load_character storage=ボス.dic image_storage=roguelike_boss_character boss
-@roguelike_load_character storage=案内員.dic image_storage=roguelike_npc_character npc event_target=*guide
-
 ; 効果音設定
 @roguelike_sound sort=maou_se_sound22 enter=maou_se_sound19 button=maou_se_sound_pc01 ng=maou_se_onepoint33
-@roguelike_sound item_use0=maou_se_sound_drink01 item_use1=maou_se_magical07 item_use2=maou_se_sound_paper01 
-@roguelike_sound attack_プレイヤー=maou_se_battle01
-@roguelike_sound damage=maou_se_sound01 levelup=maou_se_jingle05
-@roguelike_sound イオナズンの巻物=maou_se_battle_explosion06
-@roguelike_sound ダメージ罠=maou_se_battle18 巻き込み型ダメージ罠=maou_se_battle18
 
 @roguelike_save_load left=0 top=0 width=800 height=600 margin_left=20 margin_top=80
 @roguelike_save_load record_storage=RoguelikeSaveLoadRecord blank_thumbnail_storage=RoguelikeBlankThumbnail
@@ -98,9 +76,33 @@
 @roguelike_load_room name=10 storage=room006.ary lower=2 upper=3
 @roguelike_load_room name=11 storage=room007.ary lower=2 upper=3
 
+; アイテム読み込み
+@roguelike_load_items storage=items.ary
+@roguelike_load_item_type storage=itemtype.ary
+@roguelike_load_unidentified storage=unidentified.ary
+
+; 罠読み込み
+@roguelike_load_trap storage=roguelike_trap.ary
+
+; キャラクターの読み込み（未配置のため画面には表示されない）
+@roguelike_load_character storage=プレイヤー.dic image_storage=roguelike_main_character player
+@roguelike_load_character storage=スライム.dic image_storage=roguelike_slime_character min_floor=1 max_floor=10
+@roguelike_load_character storage=ドラゴン.dic image_storage=roguelike_dragon_character min_floor=1 max_floor=30
+@roguelike_load_character storage=透明な敵.dic image_storage=roguelike_knight_character min_floor=1 max_floor=30
+@roguelike_load_character storage=店員.dic image_storage=roguelike_npc_character clerk
+@roguelike_load_character storage=ボス.dic image_storage=roguelike_boss_character boss
+@roguelike_load_character storage=案内員.dic image_storage=roguelike_npc_character npc event_target=*guide
+
 ; BGM設定
 @roguelike_sound bgm_initial=maou_bgm_acoustic52 bgm_monster_house=bgm001 bgm_boss=maou_bgm_neorock83 bgm_shop=maou_bgm_piano40 bgm_steal=maou_bgm_orchestra24
 @roguelike_sound bgm_room_group1=maou_bgm_acoustic54 bgm_room_group2=maou_bgm_healing17
+
+; 効果音設定
+@roguelike_sound item_use0=maou_se_sound_drink01 item_use1=maou_se_magical07 item_use2=maou_se_sound_paper01 
+@roguelike_sound attack_プレイヤー=maou_se_battle01
+@roguelike_sound damage=maou_se_sound01 levelup=maou_se_jingle05
+@roguelike_sound イオナズンの巻物=maou_se_battle_explosion06
+@roguelike_sound ダメージ罠=maou_se_battle18 巻き込み型ダメージ罠=maou_se_battle18
 
 ; メインメニュー
 @roguelike_menu storage=RoguelikeMenuBack.png left=10 top=10
