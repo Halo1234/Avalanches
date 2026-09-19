@@ -19,6 +19,14 @@
 @roguelike_option debug_show_item_name
 ;@roguelike_option debug_message_to_console
 
+; アイテム読み込み
+@roguelike_load_items storage=items.ary
+@roguelike_load_item_type storage=itemtype.ary
+@roguelike_load_unidentified storage=unidentified.ary
+
+; 罠読み込み
+@roguelike_load_trap storage=roguelike_trap.ary
+
 ; 効果音設定
 @roguelike_sound sort=maou_se_sound22 enter=maou_se_sound19 button=maou_se_sound_pc01 ng=maou_se_onepoint33
 @roguelike_sound item_use0=maou_se_sound_drink01 item_use1=maou_se_magical07 item_use2=maou_se_sound_paper01 
@@ -170,16 +178,8 @@
 @roguelike_option money=500 money_target=*go_back_over500_init
 @roguelike_option money=2500 money_target=*go_back_over2500_init
 
-; アイテム読み込み
-@roguelike_load_items storage=items.ary
-@roguelike_load_item_type storage=itemtype.ary
-@roguelike_load_unidentified storage=unidentified.ary
-
 ; お金アイコン指定
 @roguelike_money storage=お金アイコン
-
-; 罠読み込み
-@roguelike_load_trap storage=roguelike_trap.ary
 
 ; プレイヤー配置
 @roguelike_character name=プレイヤー x=1 y=1
