@@ -27,6 +27,15 @@
 ; 罠読み込み
 @roguelike_load_trap storage=roguelike_trap.ary
 
+; キャラクターの読み込み（未配置のため画面には表示されない）
+@roguelike_load_character storage=プレイヤー.dic image_storage=roguelike_main_character player
+@roguelike_load_character storage=スライム.dic image_storage=roguelike_slime_character min_floor=1 max_floor=10
+@roguelike_load_character storage=ドラゴン.dic image_storage=roguelike_dragon_character min_floor=1 max_floor=30
+@roguelike_load_character storage=透明な敵.dic image_storage=roguelike_knight_character min_floor=1 max_floor=30
+@roguelike_load_character storage=店員.dic image_storage=roguelike_npc_character clerk
+@roguelike_load_character storage=ボス.dic image_storage=roguelike_boss_character boss
+@roguelike_load_character storage=案内員.dic image_storage=roguelike_npc_character npc event_target=*guide
+
 ; 効果音設定
 @roguelike_sound sort=maou_se_sound22 enter=maou_se_sound19 button=maou_se_sound_pc01 ng=maou_se_onepoint33
 @roguelike_sound item_use0=maou_se_sound_drink01 item_use1=maou_se_magical07 item_use2=maou_se_sound_paper01 
@@ -92,15 +101,6 @@
 ; BGM設定
 @roguelike_sound bgm_initial=maou_bgm_acoustic52 bgm_monster_house=bgm001 bgm_boss=maou_bgm_neorock83 bgm_shop=maou_bgm_piano40 bgm_steal=maou_bgm_orchestra24
 @roguelike_sound bgm_room_group1=maou_bgm_acoustic54 bgm_room_group2=maou_bgm_healing17
-
-; キャラクターの読み込み（未配置のため画面には表示されない）
-@roguelike_load_character storage=プレイヤー.dic image_storage=roguelike_main_character player
-@roguelike_load_character storage=スライム.dic image_storage=roguelike_slime_character min_floor=1 max_floor=10
-@roguelike_load_character storage=ドラゴン.dic image_storage=roguelike_dragon_character min_floor=1 max_floor=30
-@roguelike_load_character storage=透明な敵.dic image_storage=roguelike_knight_character min_floor=1 max_floor=30
-@roguelike_load_character storage=店員.dic image_storage=roguelike_npc_character clerk
-@roguelike_load_character storage=ボス.dic image_storage=roguelike_boss_character boss
-@roguelike_load_character storage=案内員.dic image_storage=roguelike_npc_character npc event_target=*guide
 
 ; メインメニュー
 @roguelike_menu storage=RoguelikeMenuBack.png left=10 top=10
