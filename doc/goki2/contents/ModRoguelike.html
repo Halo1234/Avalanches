@@ -418,6 +418,12 @@ roguelike_load_roomタグで初期部屋を定義してから初期化してください。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_room_name" id="roguelike_load_room_name">name</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">部屋名</td><td class="tagattribdesc">部屋の名前を付けてください。<br />
 roguelike_optionで指定するボス部屋は、ここで付けた名前を指定してください。
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_room_storage" id="roguelike_load_room_storage">storage</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">部屋定義のファイル名を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_room_lower" id="roguelike_load_room_lower">lower</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">部屋が出現する下限フロアを指定します。<br />
+ここで指定したフロア以上で部屋が出現します。<br />
+省略すると1とみなします。
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_room_upper" id="roguelike_load_room_upper">upper</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">部屋が出現する上限フロアを指定します。<br />
+ここで指定したフロア以下で部屋が出現します。<br />
+省略すると[roguelike_option max_floor]で指定した値とみなします。
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_room_initial_room" id="roguelike_load_room_initial_room">initial_room</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">読み込む部屋定義が初期部屋の場合に指定します。<br />
 この値をtrueにすると通常マップには出現しない部屋となります。
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_room_boss_room" id="roguelike_load_room_boss_room">boss_room</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">読み込む部屋定義がボス部屋の場合に指定します。<br />
