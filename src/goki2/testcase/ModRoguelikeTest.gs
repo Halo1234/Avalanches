@@ -3,7 +3,7 @@
 *label|
 @history enabled=false
 
-@roguelike_option debug 
+;@roguelike_option debug 
 @roguelike_option debug_dump_map
 @roguelike_option debug_show_enemies
 ;@roguelike_option debug_move_enemies
@@ -14,7 +14,7 @@
 ;@roguelike_option debug_not_tracking_mode
 ;@roguelike_option debug_skip
 @roguelike_option debug_show_trap
-@roguelike_option debug_trap
+;@roguelike_option debug_trap
 @roguelike_option debug_show_transparent_character
 @roguelike_option debug_show_item_name
 ;@roguelike_option debug_message_to_console
@@ -43,32 +43,29 @@
 
 @roguelike_save_load hide
 
-; BGM設定
-@roguelike_sound bgm_initial=maou_bgm_acoustic52 bgm_normal=maou_bgm_acoustic54 bgm_monster_house=bgm001 bgm_boss=maou_bgm_neorock83 bgm_shop=maou_bgm_piano40 bgm_steal=maou_bgm_orchestra24
+; チップス読み込み
+@roguelike_load_chips storage=roguelike_mapchips.dic
+@roguelike_load_chips name=StairsDown group_id=100000000 stairs_down
+@roguelike_load_chips name=StairsUp group_id=100000001 stairs_up
 
 ; 基本設定
 @roguelike_option grid_width=64 grid_height=64
 @roguelike_option map_width=50 map_height=50
-@roguelike_option max_floor=2
+@roguelike_option max_floor=10
 @roguelike_option room_count_min=4 room_count_max=8
 @roguelike_option item_count_min=4 item_count_max=8
 @roguelike_option money_count_min=1 money_count_max=3
 @roguelike_option enemy_count_min=4 enemy_count_max=8
 @roguelike_option trap_lower_floor=1 trap_upper_floor=99 trap_min=1 trap_max=3
 @roguelike_option message_layer_name=message1 font_size=16
-@roguelike_option enemy_sleeping=20
-@roguelike_option enemy_wakeup=20
-@roguelike_option monster_house_rate=20
+@roguelike_option enemy_sleeping=100
+@roguelike_option enemy_wakeup=0
+@roguelike_option monster_house_rate=0
 @roguelike_option go_back_target=*go_back
 @roguelike_option gameover_target=*gameover
 @roguelike_option return_trip
-@roguelike_option shop_rate=20
+@roguelike_option shop_rate=0
 @roguelike_option not_trap_triggered=20
-
-; チップス読み込み
-@roguelike_load_chips storage=roguelike_mapchips.dic
-@roguelike_load_chips name=StairsDown group_id=100000000 stairs_down
-@roguelike_load_chips name=StairsUp group_id=100000001 stairs_up
 
 ; 部屋の読み込み
 @roguelike_load_room name=0 storage=initial_room001.ary initial_room
@@ -77,12 +74,16 @@
 @roguelike_load_room name=3 storage=room_shop1.ary shop_room
 @roguelike_load_room name=4 storage=room_shop2.ary shop_room
 @roguelike_load_room name=5 storage=room001.ary
-@roguelike_load_room name=6 storage=room002.ary
+@roguelike_load_room name=6 storage=room002.ary lower=2 upper=3
 @roguelike_load_room name=7 storage=room003.ary
 @roguelike_load_room name=8 storage=room004.ary
 @roguelike_load_room name=9 storage=room005.ary
-@roguelike_load_room name=10 storage=room006.ary
-@roguelike_load_room name=11 storage=room007.ary
+@roguelike_load_room name=10 storage=room006.ary lower=2 upper=3
+@roguelike_load_room name=11 storage=room007.ary lower=2 upper=3
+
+; BGM設定
+@roguelike_sound bgm_initial=maou_bgm_acoustic52 bgm_monster_house=bgm001 bgm_boss=maou_bgm_neorock83 bgm_shop=maou_bgm_piano40 bgm_steal=maou_bgm_orchestra24
+@roguelike_sound bgm_room_group1=maou_bgm_acoustic54 bgm_room_group2=maou_bgm_healing17
 
 ; キャラクターの読み込み（未配置のため画面には表示されない）
 @roguelike_load_character storage=プレイヤー.dic image_storage=roguelike_main_character player
