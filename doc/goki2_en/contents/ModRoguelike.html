@@ -409,6 +409,14 @@ If you set this value to true, it will become a room that normally doesn't appea
 </table>
 <div class="tagremarks">
 Loads room layout definitions.<br />
+The default value for the upper floor will be what you specify with [roguelike_option max_floor].<br />
+So, make sure to set [roguelike_option max_floor] before using this tag.<br />
+<div class="tagexample"><code class="bq"><span class="weak">Example:</span><br />
+; Set max_floor first<br />
+@roguelike_option max_floor=99]<br />
+; Then load the room without specifying upper.<br />
+; 99 will be used for upper.<br />
+[roguelike_load_room name=6 storage=room002.ary lower=1]<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to Genre/Tag List</span></a></div>
 </div>
 </div></div>

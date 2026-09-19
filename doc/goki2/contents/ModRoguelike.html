@@ -434,6 +434,15 @@ roguelike_optionで指定するボス部屋は、ここで付けた名前を指定してください。
 </table>
 <div class="tagremarks">
 部屋定義を読み込みます。<br />
+上限フロアのデフォルト値は[roguelike_option max_floor]で指定したものになります。<br />
+そのため、このタグより先に[roguelike_option max_floor]を指定してください。<br />
+<div class="tagexample"><code class="bq"><span class="weak">例:</span><br />
+; 先にmax_floorを指定する<br />
+@roguelike_option max_floor=99]<br />
+; 次にupperを省略して部屋を読み込みます。<br />
+; upperには99が指定されます。<br />
+[roguelike_load_room name=6 storage=room002.ary lower=1]<br />
+</code></div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div>
 </div>
 </div></div>
