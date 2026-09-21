@@ -46,7 +46,7 @@
 ; 基本設定
 @roguelike_option grid_width=64 grid_height=64
 @roguelike_option map_width=50 map_height=50
-@roguelike_option max_floor=10
+@roguelike_option max_floor=1
 @roguelike_option room_count_min=4 room_count_max=8
 @roguelike_option item_count_min=4 item_count_max=8
 @roguelike_option money_count_min=1 money_count_max=3
@@ -91,7 +91,7 @@
 @roguelike_load_character storage=透明な敵.dic image_storage=roguelike_knight_character min_floor=1 max_floor=30
 @roguelike_load_character storage=店員.dic image_storage=roguelike_npc_character clerk
 @roguelike_load_character storage=ボス.dic image_storage=roguelike_boss_character boss
-@roguelike_load_character storage=案内員.dic image_storage=roguelike_npc_character npc event_target=*guide
+@roguelike_load_character storage=案内員.dic image_storage=roguelike_npc_character npc
 
 ; BGM設定
 @roguelike_sound bgm_initial=maou_bgm_acoustic52 bgm_monster_house=bgm001 bgm_boss=maou_bgm_neorock83 bgm_shop=maou_bgm_piano40 bgm_steal=maou_bgm_orchestra24
@@ -185,35 +185,36 @@
 @roguelike_money storage=お金アイコン
 
 ; プレイヤー配置
-@roguelike_character name=プレイヤー x=1 y=1
+@roguelike_character id=player name=プレイヤー x=1 y=1
 
 ; 初期化
 @roguelike initialize
 
-;@roguelike_character name=透明な敵 x=6 y=3
-;@roguelike_character name=スライム x=5 y=4
+;@roguelike_character id=enemy1 name=透明な敵 x=6 y=3
+;@roguelike_character id=enemy2 name=スライム x=5 y=4
+@roguelike_character id=warehouse name=案内員 x=1 y=3 target=*warehouse
 ; 部屋配置
 @roguelike_deploy_room name=0 x=0 y=0
 
 ; アイテム所持（初期化後に行う事）
-@roguelike_character name=プレイヤー add_item=薬草 correction_value=1
-@roguelike_character name=プレイヤー add_item=倍速の草
-@roguelike_character name=プレイヤー add_item=ドラゴンキラー correction_value=2
-@roguelike_character name=プレイヤー add_item=ドラゴンキラー correction_value=2
-@roguelike_character name=プレイヤー add_item=ダメージ罠設置
-@roguelike_character name=プレイヤー add_item=敵増殖の罠設置
-@roguelike_character name=プレイヤー add_item=即死の杖 correction_value=1
-@roguelike_character name=プレイヤー add_item=ワープの壺 correction_value=5
-@roguelike_character name=プレイヤー add_item=イオナズンの巻物
-@roguelike_character name=プレイヤー add_item=イオナズンの巻物
-@roguelike_character name=プレイヤー add_item=鑑定の巻物
-@roguelike_character name=プレイヤー add_item=毒草
-@roguelike_character name=プレイヤー add_item=強化の巻物
-@roguelike_character name=プレイヤー add_item=鉄の矢 correction_value=99
-@roguelike_character name=プレイヤー add_item=聖域の巻物
-@roguelike_character name=プレイヤー add_item=エニグマの紙 correction_value=5
+@roguelike_character id=player add_item=薬草 correction_value=1
+@roguelike_character id=player add_item=倍速の草
+@roguelike_character id=player add_item=ドラゴンキラー correction_value=2
+@roguelike_character id=player add_item=ドラゴンキラー correction_value=2
+@roguelike_character id=player add_item=ダメージ罠設置
+@roguelike_character id=player add_item=敵増殖の罠設置
+@roguelike_character id=player add_item=即死の杖 correction_value=1
+@roguelike_character id=player add_item=ワープの壺 correction_value=5
+@roguelike_character id=player add_item=イオナズンの巻物
+@roguelike_character id=player add_item=イオナズンの巻物
+@roguelike_character id=player add_item=鑑定の巻物
+@roguelike_character id=player add_item=毒草
+@roguelike_character id=player add_item=強化の巻物
+@roguelike_character id=player add_item=鉄の矢 correction_value=99
+@roguelike_character id=player add_item=聖域の巻物
+@roguelike_character id=player add_item=エニグマの紙 correction_value=5
 
-@roguelike_character name=プレイヤー add_money=10000
+@roguelike_character id=player add_money=10000
 
 ; 初期部屋に降りる階段を設置
 @roguelike_option x=2 y=1 stairs_down
@@ -228,6 +229,7 @@
 @roguelike start
 @s
 
+; 2500Gオーバーで３段階目を初回表示
 *go_back_over2500_init
 @roguelike hide
 @wait_roguelike_hide
@@ -236,11 +238,11 @@
 
 @roguelike_option clear
 @roguelike_deploy_room name=0 x=0 y=0
-@roguelike_character name=プレイヤー x=1 y=2
+@roguelike_character id=player x=1 y=2
 @roguelike_option x=2 y=1 stairs_down
-@roguelike_map_event x=0 y=2 target=*warehouse
+@roguelike_map_event x=0 y=2 target=*2nd_room
 
-@roguelike_character name=プレイヤー add_item=ドラゴンキラー correction_value=2
+@roguelike_character id=player add_item=ドラゴンキラー correction_value=2
 
 *label|初期部屋
 @roguelike show
@@ -248,21 +250,23 @@
 @roguelike start
 @s
 
+; ３段階目の２回目以降の表示
 *go_back_over2500
 @roguelike hide
 @wait_roguelike_hide
 
 @roguelike_option clear
 @roguelike_deploy_room name=0 x=0 y=0
-@roguelike_character name=プレイヤー x=1 y=2
+@roguelike_character id=player x=1 y=2
 @roguelike_option x=2 y=1 stairs_down
-@roguelike_map_event x=0 y=2 target=*warehouse
+@roguelike_map_event x=0 y=2 target=*2nd_room
 
 @roguelike show
 @wait_roguelike_show
 @roguelike start
 @s
 
+; 500Gオーバーで２段階目を初回表示
 *go_back_over500_init
 @roguelike hide
 @wait_roguelike_hide
@@ -271,11 +275,11 @@
 
 @roguelike_option clear
 @roguelike_deploy_room name=0 x=0 y=0
-@roguelike_character name=プレイヤー x=1 y=2
+@roguelike_character id=player x=1 y=2
 @roguelike_option x=2 y=1 stairs_down
-@roguelike_map_event x=0 y=2 target=*warehouse
+@roguelike_map_event x=0 y=2 target=*2nd_room
 
-@roguelike_character name=プレイヤー add_item=ドラゴンキラー correction_value=2
+@roguelike_character id=player add_item=ドラゴンキラー correction_value=2
 
 *label|初期部屋
 @roguelike show
@@ -283,36 +287,42 @@
 @roguelike start
 @s
 
+; ２段階目の２回目以降の表示
 *go_back_over500
 @roguelike hide
 @wait_roguelike_hide
 
 @roguelike_option clear
 @roguelike_deploy_room name=0 x=0 y=0
-@roguelike_character name=プレイヤー x=1 y=2
+@roguelike_character id=player x=1 y=2
 @roguelike_option x=2 y=1 stairs_down
-@roguelike_map_event x=0 y=2 target=*warehouse
+@roguelike_map_event x=0 y=2 target=*2nd_room
 
+*label|初期部屋
 @roguelike show
 @wait_roguelike_show
 @roguelike start
 @s
 
-*warehouse
+; 倉庫、第二ダンジョンのあるフロア
+*2nd_room
 @roguelike hide
 @wait_roguelike_hide
 
 @roguelike_option clear
 @roguelike_deploy_room name=1 x=0 y=0
-@roguelike_character name=プレイヤー x=8 y=1
-@roguelike_character name=案内員 x=2 y=1
+@roguelike_character id=player x=8 y=1
+@roguelike_character id=guide name=案内員 x=2 y=1 target=*guide
+@roguelike_character id=warehouse name=案内員 x=4 y=1 target=*warehouse
 @roguelike_map_event x=9 y=1 target=*go_back_over500
 
+*label|初期部屋
 @roguelike show
 @wait_roguelike_show
 @roguelike start
 @s
 
+; 案内員に話しかける
 *guide
 @roguelike_option message=不思議のダンジョンに挑みますか？ !message_auto_hide
 @roguelike_yesno yes_target=*yes_dungeon no_target=*no_dungeon
@@ -342,6 +352,31 @@
 @roguelike start
 @s
 
+; 倉庫に話しかける
+*warehouse
+@roguelike_option message=倉庫を開きますか？ !message_auto_hide
+@roguelike_yesno yes_target=*yes_warehouse no_target=*no_warehouse
+@roguelike_yesno show
+@s
+
+*yes_warehouse
+@roguelike_option hide_message
+@roguelike_yesno hide
+
+@roguelike_warehouse opacity=0
+@roguelike_warehouse warehouse_storage=RoguelikeItemMenuBack.png warehouse_left=80 warehouse_top=80 warehouse_margin_left=50 warehouse_margin_top=40 warehouse_margin_right=50 warehouse_button_opacity=0
+@roguelike_warehouse player_storage=RoguelikeItemMenuBack.png player_left=420 player_top=80 player_margin_left=50 player_margin_top=40 player_margin_right=50 player_button_opacity=0
+@roguelike_warehouse show
+@s
+
+*no_warehouse
+@roguelike_option hide_message
+@roguelike_yesno hide
+
+@roguelike start
+@s
+
+; 階段を降りるイベント
 *to_down
 @roguelike_option message=階段を降りますか？ !message_auto_hide
 @roguelike_yesno yes_target=*yes_down no_target=*no_down
@@ -370,6 +405,7 @@
 @roguelike start
 @s
 
+; 階段を上るイベント
 *to_up
 @roguelike_option message=階段を上ります？ !message_auto_hide
 @roguelike_yesno yes_target=*yes_up no_target=*no_up
@@ -398,10 +434,11 @@
 @roguelike start
 @s
 
+; １段階目の２回目以降の表示
 *go_back_init
 @roguelike_option clear
 @roguelike_deploy_room name=0 x=0 y=0
-@roguelike_character name=プレイヤー x=1 y=2
+@roguelike_character id=player x=1 y=2
 @roguelike_option x=2 y=1 stairs_down
 
 *label|初期部屋
@@ -410,6 +447,7 @@
 @roguelike start
 @s
 
+; 戻ってきた
 *go_back
 @roguelike hide
 @wait_roguelike_hide
@@ -417,6 +455,7 @@
 @jump target="&f.label"
 @s
 
+; ゲームオーバーで戻ってきた
 *gameover
 @roguelike hide
 @wait_roguelike_hide
