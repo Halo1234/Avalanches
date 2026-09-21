@@ -53,7 +53,7 @@
 @roguelike_option enemy_count_min=4 enemy_count_max=8
 @roguelike_option trap_lower_floor=1 trap_upper_floor=99 trap_min=1 trap_max=3
 @roguelike_option message_layer_name=message1 font_size=16
-@roguelike_option enemy_sleeping=100
+@roguelike_option enemy_sleeping=0
 @roguelike_option enemy_wakeup=0
 @roguelike_option monster_house_rate=0
 @roguelike_option go_back_target=*go_back
@@ -245,6 +245,8 @@
 @roguelike_character id=player add_item=ドラゴンキラー correction_value=2
 
 *label|初期部屋
+@roguelike_save
+
 @roguelike show
 @wait_roguelike_show
 @roguelike start
@@ -260,6 +262,9 @@
 @roguelike_character id=player x=1 y=2
 @roguelike_option x=2 y=1 stairs_down
 @roguelike_map_event x=0 y=2 target=*2nd_room
+
+*label|初期部屋
+@roguelike_save
 
 @roguelike show
 @wait_roguelike_show
@@ -282,6 +287,8 @@
 @roguelike_character id=player add_item=ドラゴンキラー correction_value=2
 
 *label|初期部屋
+@roguelike_save
+
 @roguelike show
 @wait_roguelike_show
 @roguelike start
@@ -299,6 +306,8 @@
 @roguelike_map_event x=0 y=2 target=*2nd_room
 
 *label|初期部屋
+@roguelike_save
+
 @roguelike show
 @wait_roguelike_show
 @roguelike start
@@ -442,6 +451,8 @@
 @roguelike_option x=2 y=1 stairs_down
 
 *label|初期部屋
+@roguelike_save
+
 @roguelike show
 @wait_roguelike_show
 @roguelike start
