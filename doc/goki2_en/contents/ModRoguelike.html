@@ -1657,7 +1657,17 @@ An exception will occur if placement fails, such as due to overlapping coordinat
 <div class="taggenre">Save</div>
 <div class="para"><div>
 <div class="tagremarks">
-Saves your current state.<br />
+Saving the current state.<br />
+When you come back, it's a good idea to auto-save like this before showing the initial room.<br />
+<div class="tagexample"><code class="bq"><span class="weak">Example:</span><br />
+; Always place a save-possible label before display<br />
+*label|initial_room<br />
+@roguelike_save<br /><br />
+; Display initial room
+@roguelike show<br />
+@wait_roguelike_show<br />
+@roguelike start<br />
+@s<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Back to Genre & Tag List</span></a></div>
 </div>
 </div></div>

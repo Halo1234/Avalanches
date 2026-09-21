@@ -1597,6 +1597,18 @@ Yes/Noメニューの設定を行います。<br />
 <div class="para"><div>
 <div class="tagremarks">
 現在の状態をセーブします。<br />
+戻ってきた時は初期部屋表示前に以下のようにオートセーブするのがよいでしょう。<br />
+<div class="tagexample"><code class="bq"><span class="weak">例:</span><br />
+; 表示前は必ずセーブ可能ラベルを配置するようにする<br />
+*label|初期部屋<br />
+@roguelike_save<br />
+<br />
+; 初期部屋表示
+@roguelike show<br />
+@wait_roguelike_show<br />
+@roguelike start<br />
+@s<br />
+</code></div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div>
 </div>
 </div></div>
