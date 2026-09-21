@@ -3,7 +3,7 @@
 *label|
 @history enabled=false
 
-@roguelike_option debug 
+;@roguelike_option debug 
 @roguelike_option debug_dump_map
 @roguelike_option debug_show_enemies
 ;@roguelike_option debug_move_enemies
@@ -131,6 +131,7 @@
 @roguelike_item_sub_menu name_button_caption=名前 name_button_width=60 name_button_height=30 name_button_body_opacity=0 name_button_caption_color=0xFFFFFF
 @roguelike_item_sub_menu shooting_button_caption=射撃 shooting_button_width=60 shooting_button_height=30 shooting_button_body_opacity=0 shooting_button_caption_color=0xFFFFFF
 @roguelike_item_sub_menu pickup_button_caption=拾う pickup_button_width=60 pickup_button_height=30 pickup_button_body_opacity=0 pickup_button_caption_color=0xFFFFFF
+@roguelike_item_sub_menu exchange_button_caption=交換 exchange_button_width=60 exchange_button_height=30 exchange_button_body_opacity=0 exchange_button_caption_color=0xFFFFFF
 
 ; アイテム名編集
 @roguelike_edit_item_name storage=RoguelikeEditItemNameBack.png left=0 top=200 margin_left=70 margin_top=30 character_left=50 character_top=20
