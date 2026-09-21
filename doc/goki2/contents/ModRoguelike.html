@@ -452,8 +452,8 @@ roguelike_optionで指定するボス部屋は、ここで付けた名前を指定してください。
     <tr><th>別名</th><th>属性</th><th>必須?</th><th>値</th><th>説明</th></tr>
   </thead>
   <tbody>
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_character_id" id="roguelike_character_id">id</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">キャラクターID</td><td class="tagattribdesc">操作するキャラクターのIDを指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_character_name" id="roguelike_character_name">name</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">キャラクター名</td><td class="tagattribdesc">操作するキャラクターの名前を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_character_id" id="roguelike_character_id">id</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">キャラクターID</td><td class="tagattribdesc">操作するキャラクターのIDを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_character_name" id="roguelike_character_name">name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">キャラクター名</td><td class="tagattribdesc">操作するキャラクターの名前を指定します。<br />
 この値はroguelike_load_characterで読み込んだキャラクターの名前を（エディタで指定した名前）指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_character_x" id="roguelike_character_x">x</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">グリッド単位</td><td class="tagattribdesc">キャラクターを配置する位置を指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_character_y" id="roguelike_character_y">y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">グリッド単位</td><td class="tagattribdesc">キャラクターを配置する位置を指定します。<br />
@@ -476,6 +476,9 @@ roguelike_optionで指定するボス部屋は、ここで付けた名前を指定してください。
 </table>
 <div class="tagremarks">
 キャラクターの設定を変更します。<br />
+id属性またはname属性はどちらか一方が必須となります。<br />
+未配置のキャラクターを配置する時はid属性とname属性の両方を指定してください。<br />
+配置済みのキャラクターを操作する時はid属性を指定してください。<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div>
 </div>
 </div></div>

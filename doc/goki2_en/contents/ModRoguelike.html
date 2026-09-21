@@ -428,8 +428,8 @@ So, make sure to set [roguelike_option max_floor] before using this tag.<br />
     <tr><th>Alias</th><th>Attribute</th><th>Required?</th><th>Value</th><th>Description</th></tr>
   </thead>
   <tbody>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_character_id" id="roguelike_character_id">id</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Character ID</td><td class="tagattribdesc">Specifies the ID of the character to control.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_character_name" id="roguelike_character_name">name</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Character name</td><td class="tagattribdesc">Specifies the name of the character to control.<br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_character_id" id="roguelike_character_id">id</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Character ID</td><td class="tagattribdesc">Specifies the ID of the character to control.<br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_character_name" id="roguelike_character_name">name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Character name</td><td class="tagattribdesc">Specifies the name of the character to control.<br />
 This value specifies the character name (the name defined in the editor) loaded with roguelike_load_character.<br />
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_character_x" id="roguelike_character_x">x</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Grid units</td><td class="tagattribdesc">Specifies the position to place the character.<br />
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_character_y" id="roguelike_character_y">y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Grid units</td><td class="tagattribdesc">Specifies the position to place the character.<br />
@@ -452,6 +452,9 @@ If omitted, a random value will be set.<br />
 </table>
 <div class="tagremarks">
 Modifies character settings.<br />
+Either the id attribute or the name attribute is required.<br />
+When placing a character that hasn't been placed yet, please specify both the id and name attributes.<br />
+When manipulating a character that has already been placed, please specify the id attribute.<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Back to Genre / Tag List</span></a></div>
 </div>
 </div></div>
