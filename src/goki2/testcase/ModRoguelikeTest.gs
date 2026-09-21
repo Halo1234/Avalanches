@@ -3,7 +3,7 @@
 *label|
 @history enabled=false
 
-;@roguelike_option debug 
+@roguelike_option debug 
 @roguelike_option debug_dump_map
 @roguelike_option debug_show_enemies
 ;@roguelike_option debug_move_enemies
@@ -46,20 +46,20 @@
 ; 基本設定
 @roguelike_option grid_width=64 grid_height=64
 @roguelike_option map_width=50 map_height=50
-@roguelike_option max_floor=1
+@roguelike_option max_floor=10
 @roguelike_option room_count_min=4 room_count_max=8
 @roguelike_option item_count_min=4 item_count_max=8
 @roguelike_option money_count_min=1 money_count_max=3
 @roguelike_option enemy_count_min=4 enemy_count_max=8
 @roguelike_option trap_lower_floor=1 trap_upper_floor=99 trap_min=1 trap_max=3
 @roguelike_option message_layer_name=message1 font_size=16
-@roguelike_option enemy_sleeping=0
-@roguelike_option enemy_wakeup=0
-@roguelike_option monster_house_rate=0
+@roguelike_option enemy_sleeping=20
+@roguelike_option enemy_wakeup=20
+@roguelike_option monster_house_rate=20
 @roguelike_option go_back_target=*go_back
 @roguelike_option gameover_target=*gameover
 @roguelike_option return_trip
-@roguelike_option shop_rate=0
+@roguelike_option shop_rate=10
 @roguelike_option not_trap_triggered=20
 
 ; 部屋の読み込み
@@ -69,12 +69,12 @@
 @roguelike_load_room name=3 storage=room_shop1.ary shop_room
 @roguelike_load_room name=4 storage=room_shop2.ary shop_room
 @roguelike_load_room name=5 storage=room001.ary
-@roguelike_load_room name=6 storage=room002.ary lower=2 upper=3
+@roguelike_load_room name=6 storage=room002.ary lower=2 upper=10
 @roguelike_load_room name=7 storage=room003.ary
 @roguelike_load_room name=8 storage=room004.ary
 @roguelike_load_room name=9 storage=room005.ary
-@roguelike_load_room name=10 storage=room006.ary lower=2 upper=3
-@roguelike_load_room name=11 storage=room007.ary lower=2 upper=3
+@roguelike_load_room name=10 storage=room006.ary lower=2 upper=10
+@roguelike_load_room name=11 storage=room007.ary lower=2 upper=10
 
 ; アイテム読み込み
 @roguelike_load_items storage=items.ary
