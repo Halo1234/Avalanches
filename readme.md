@@ -89,5 +89,6 @@ Copyright (c) 2026 HALO
 
 ## 連絡先
 * **Email:** [halosuke@gmail.com](mailto:halosuke@gmail.com)
+* **Qiita:** [https://qiita.com/halo1234/items/09fd22503ed3ac11014d](https://qiita.com/halo1234/items/09fd22503ed3ac11014d)
 * **Blog:** [http://halo.doorblog.jp/](http://halo.doorblog.jp/)
 * **GitHub:** 不具合報告などは[Issues](https://github.com/Halo1234/Avalanches/issues) まで
