@@ -5,9 +5,9 @@
 
 @roguelike_option debug 
 @roguelike_option debug_dump_map
-@roguelike_option debug_show_enemies
+;@roguelike_option debug_show_enemies
 ;@roguelike_option debug_move_enemies
-@roguelike_option debug_mini_map_full_open
+;@roguelike_option debug_mini_map_full_open
 ;@roguelike_option debug_attack
 ;@roguelike_option debug_check_pos
 ;@roguelike_option debug_measure_time
@@ -16,7 +16,7 @@
 @roguelike_option debug_show_trap
 ;@roguelike_option debug_trap
 @roguelike_option debug_show_transparent_character
-@roguelike_option debug_show_item_name
+;@roguelike_option debug_show_item_name
 ;@roguelike_option debug_message_to_console
 
 ; 効果音設定
@@ -46,14 +46,14 @@
 ; 基本設定
 @roguelike_option grid_width=64 grid_height=64
 @roguelike_option map_width=50 map_height=50
-@roguelike_option max_floor=10
+@roguelike_option max_floor=5
 @roguelike_option room_count_min=4 room_count_max=8
 @roguelike_option item_count_min=4 item_count_max=8
 @roguelike_option money_count_min=1 money_count_max=3
 @roguelike_option enemy_count_min=4 enemy_count_max=8
 @roguelike_option trap_lower_floor=1 trap_upper_floor=99 trap_min=1 trap_max=3
 @roguelike_option message_layer_name=message1 font_size=16
-@roguelike_option enemy_sleeping=20
+@roguelike_option enemy_sleeping=0
 @roguelike_option enemy_wakeup=20
 @roguelike_option monster_house_rate=0
 @roguelike_option go_back_target=*go_back
@@ -98,7 +98,7 @@
 @roguelike_sound bgm_room_group1=maou_bgm_acoustic54 bgm_room_group2=maou_bgm_healing17
 
 ; 効果音設定
-@roguelike_sound item_use0=maou_se_sound_drink01 item_use1=maou_se_magical07 item_use2=maou_se_sound_paper01 
+@roguelike_sound item_use0=maou_se_sound_drink01 item_use1=maou_se_magical07 item_use2=maou_se_sound_paper01
 @roguelike_sound attack_プレイヤー=maou_se_battle01
 @roguelike_sound damage=maou_se_sound01 levelup=maou_se_jingle05
 @roguelike_sound イオナズンの巻物=maou_se_battle_explosion06
