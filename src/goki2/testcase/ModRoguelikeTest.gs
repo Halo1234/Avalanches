@@ -5,7 +5,7 @@
 
 @roguelike_option debug 
 @roguelike_option debug_dump_map
-;@roguelike_option debug_show_enemies
+@roguelike_option debug_show_enemies
 ;@roguelike_option debug_move_enemies
 ;@roguelike_option debug_mini_map_full_open
 ;@roguelike_option debug_attack
@@ -53,13 +53,13 @@
 @roguelike_option enemy_count_min=4 enemy_count_max=8
 @roguelike_option trap_lower_floor=1 trap_upper_floor=99 trap_min=1 trap_max=3
 @roguelike_option message_layer_name=message1 font_size=16
-@roguelike_option enemy_sleeping=0
+@roguelike_option enemy_sleeping=20
 @roguelike_option enemy_wakeup=20
-@roguelike_option monster_house_rate=0
+@roguelike_option monster_house_rate=10
 @roguelike_option go_back_target=*go_back
 @roguelike_option gameover_target=*gameover
 @roguelike_option return_trip
-@roguelike_option shop_rate=0
+@roguelike_option shop_rate=10
 @roguelike_option not_trap_triggered=20
 
 ; 部屋の読み込み
