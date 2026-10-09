@@ -16,7 +16,7 @@
 @roguelike_option debug_show_trap
 ;@roguelike_option debug_trap
 @roguelike_option debug_show_transparent_character
-;@roguelike_option debug_show_item_name
+@roguelike_option debug_show_item_name
 ;@roguelike_option debug_message_to_console
 
 ; 効果音設定
@@ -203,7 +203,7 @@
 @roguelike_character id=player add_item=ドラゴンキラー correction_value=2
 @roguelike_character id=player add_item=ダメージ罠設置
 @roguelike_character id=player add_item=敵増殖の罠設置
-@roguelike_character id=player add_item=即死の杖 correction_value=1
+@roguelike_character id=player add_item=混乱の杖 correction_value=10
 @roguelike_character id=player add_item=ワープの壺 correction_value=5
 @roguelike_character id=player add_item=イオナズンの巻物
 @roguelike_character id=player add_item=イオナズンの巻物
