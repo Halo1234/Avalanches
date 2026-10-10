@@ -44,12 +44,13 @@ Utilizing the tools within `/tools/` enables efficient game data creation and co
 | `/tools/` | **Various tools (details below)** |
 
 ### List of Included Tools
-* **`game_editor`**: SLG editor (item/character editing)
+* **`game_editor`**: SLG editor (map, item, character editing)
 * **`convgs`**: Scenario text -> Script conversion
 * **`make`**: Master data creation
 * **`make_roman_table`**: Creates romaji conversion tables for typing games
 * **`make_word`**: Creates word data for typing games
 * **`make_cgmem`**: Generates CG recall data
+* **`roguelike_editor`**: Editor for roguelike games (map, items, characters, traps editing)
 
 ---
 
