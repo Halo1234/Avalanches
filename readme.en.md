@@ -83,4 +83,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 * **Email:** [halosuke@gmail.com](mailto:halosuke@gmail.com)
 * **Qiita:** [https://qiita.com/halo1234/items/09fd22503ed3ac11014d](https://qiita.com/halo1234/items/09fd22503ed3ac11014d)
 * **Blog:** [http://halo.doorblog.jp/](http://halo.doorblog.jp/)
-* **GitHub:** For bug reports and such, please go to [Issues](https://github.com/Halo1234/Avalanches/issues)
+* **GitHub:** For bug reports and requests, please go to [Issues](https://github.com/Halo1234/Avalanches/issues)
