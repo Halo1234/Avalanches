@@ -16,7 +16,7 @@
 @roguelike_option debug_show_trap
 ;@roguelike_option debug_trap
 @roguelike_option debug_show_transparent_character
-@roguelike_option debug_show_item_name
+;@roguelike_option debug_show_item_name
 ;@roguelike_option debug_message_to_console
 
 ; 効果音設定
