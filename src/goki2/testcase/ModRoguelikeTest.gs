@@ -14,7 +14,7 @@
 ;@roguelike_option debug_not_tracking_mode
 ;@roguelike_option debug_skip
 @roguelike_option debug_show_trap
-;@roguelike_option debug_trap
+@roguelike_option debug_trap
 @roguelike_option debug_show_transparent_character
 ;@roguelike_option debug_show_item_name
 ;@roguelike_option debug_message_to_console
@@ -46,7 +46,7 @@
 ; 基本設定
 @roguelike_option grid_width=64 grid_height=64
 @roguelike_option map_width=50 map_height=50
-@roguelike_option max_floor=5
+@roguelike_option max_floor=10
 @roguelike_option room_count_min=4 room_count_max=8
 @roguelike_option item_count_min=4 item_count_max=8
 @roguelike_option money_count_min=1 money_count_max=3
@@ -197,22 +197,23 @@
 @roguelike_deploy_room name=0 x=0 y=0
 
 ; アイテム所持（初期化後に行う事）
-@roguelike_character id=player add_item=薬草 correction_value=1
-@roguelike_character id=player add_item=倍速の草
-@roguelike_character id=player add_item=ドラゴンキラー correction_value=2
-@roguelike_character id=player add_item=ドラゴンキラー correction_value=2
-@roguelike_character id=player add_item=ダメージ罠設置
-@roguelike_character id=player add_item=敵増殖の罠設置
-@roguelike_character id=player add_item=混乱の杖 correction_value=10
-@roguelike_character id=player add_item=ワープの壺 correction_value=5
-@roguelike_character id=player add_item=イオナズンの巻物
-@roguelike_character id=player add_item=イオナズンの巻物
-@roguelike_character id=player add_item=鑑定の巻物
-@roguelike_character id=player add_item=毒草
-@roguelike_character id=player add_item=強化の巻物
+@roguelike_character id=player add_item=大きなパン
+;@roguelike_character id=player add_item=薬草 correction_value=1
+;@roguelike_character id=player add_item=倍速の草
+;@roguelike_character id=player add_item=ドラゴンキラー correction_value=2
+;@roguelike_character id=player add_item=ドラゴンキラー correction_value=2
+;@roguelike_character id=player add_item=ダメージ罠設置
+;@roguelike_character id=player add_item=敵増殖の罠設置
+;@roguelike_character id=player add_item=混乱の杖 correction_value=10
+;@roguelike_character id=player add_item=ワープの壺 correction_value=5
+;@roguelike_character id=player add_item=イオナズンの巻物
+;@roguelike_character id=player add_item=イオナズンの巻物
+;@roguelike_character id=player add_item=鑑定の巻物
+;@roguelike_character id=player add_item=毒草
+@roguelike_character id=player add_item=罠避けの指輪
 @roguelike_character id=player add_item=鉄の矢 correction_value=99
-@roguelike_character id=player add_item=聖域の巻物
-@roguelike_character id=player add_item=エニグマの紙 correction_value=5
+;@roguelike_character id=player add_item=聖域の巻物
+;@roguelike_character id=player add_item=エニグマの紙 correction_value=5
 
 @roguelike_character id=player add_money=10000
 
