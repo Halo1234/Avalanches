@@ -16,7 +16,7 @@
 @roguelike_option debug_show_trap
 @roguelike_option debug_trap
 @roguelike_option debug_show_transparent_character
-;@roguelike_option debug_show_item_name
+@roguelike_option debug_show_item_name
 ;@roguelike_option debug_message_to_console
 
 ; 効果音設定
@@ -210,7 +210,7 @@
 ;@roguelike_character id=player add_item=イオナズンの巻物
 ;@roguelike_character id=player add_item=鑑定の巻物
 ;@roguelike_character id=player add_item=毒草
-@roguelike_character id=player add_item=罠避けの指輪
+;@roguelike_character id=player add_item=罠避けの指輪
 @roguelike_character id=player add_item=鉄の矢 correction_value=99
 ;@roguelike_character id=player add_item=聖域の巻物
 ;@roguelike_character id=player add_item=エニグマの紙 correction_value=5
