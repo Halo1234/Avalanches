@@ -198,6 +198,7 @@
 
 ; アイテム所持（初期化後に行う事）
 @roguelike_character id=player add_item=大きなパン
+@roguelike_character id=player add_item=腹減らずの指輪
 ;@roguelike_character id=player add_item=薬草 correction_value=1
 ;@roguelike_character id=player add_item=倍速の草
 ;@roguelike_character id=player add_item=ドラゴンキラー correction_value=2
