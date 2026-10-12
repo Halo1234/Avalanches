@@ -16,9 +16,11 @@
 
 <h1><a name="tags" id="tags">ModImage tags</a></h1>
 <div class="para"><div>Reference of tags available in ModImage.<br />
-
+<br />
+All the layers managed by ModImage are divided into a front page and a back page.<br />
+The front page is the layer currently being displayed, while the back page is a working layer that isn't shown.<br />
+Usually, you load images on the back page and update the screen by swapping the front and back pages using a [transition] tag or something similar.<br />
 <h1><a name="genre" id="genre" class="targanchor">Genre/tag list</a></h1>
-
 
 <div class="para"><div><br />
 <table class="taglist"><tbody>
@@ -58,6 +60,12 @@
 <tr><td class="tagattribalias">laystep</td><td class="tagattribname"><a class="targanchor" name="cv_layers_step" id="cv_layers_step">step</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">integer value</td><td class="tagattribdesc">Specify the step value for the absolute value of the portrait layer.<br />
 The value specified here will be added to the base value.<br />
 </tbody></table><div class="tagremarks">Specify the number of standing image layers.<br />
+<div class="tagexample"><code class="bq"><span class="weak">Example:</span><br />
+[cv_layers count=3 base=1000 step=100]<br />
+; The absolute value for layer=0 will be 1000.<br />
+; The absolute value for layer=1 will be 1100.<br />
+; The absolute value for layer=2 will be 1200.<br />
+</code></div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="cg_layers" id="cg_layers" class="targanchor"><span class="b">cg_layers</span>(cglayers)</a></h1>
@@ -81,7 +89,11 @@ If you specify fore, the layer on the fore page will be targeted.<br />
 If you specify back, the layer on the back page will be targeted.<br />
 If omitted, it is assumed that fore is specified.<br />
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="load_image_storage" id="load_image_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the image file name to be loaded into the layer.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="load_image_key" id="load_image_key">key</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">Specify the key value of the image file.<br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="load_image_key" id="load_image_key">key</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Key value of the image file</td><td class="tagattribdesc">Specifies which color to treat as transparent. If omitted, transparency is disabled.<br />
+By specifying transparency in the format key=0xRRGGBB in hexadecimal, the parts painted with RR (red) GG (green) BB (blue) will be made transparent. For example, key=0xff00ff means (r,g,b)=(255,0,255), which designates pure magenta as the transparent color.<br />
+You can also just specify a value, in which case that palette index will be treated as transparent. This works for 16-color or 256-color images.<br />
+If you specify key=adapt, the transparent color will be determined automatically. The color used will be the one that appears most frequently on the top line of the image. This works for 16-color or 256-color images.<br />
+If you are using a mask image, you do not need to specify this attribute.<br />
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="load_image_asd_storage" id="load_image_asd_storage">asd_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">asd/asdx Specify the file name.<br />
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="load_image_mode" id="load_image_mode">mode</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">String</td><td class="tagattribdesc">Specify mode.<br />
 Please refer to the description of the mode of load_partial_image.<br />
@@ -547,7 +559,7 @@ If omitted, base is assumed to be specified.<br />
 If you specify fore, the layer on the fore page will be targeted.<br />
 If you specify back, the layer on the back page will be targeted.<br />
 If omitted, it is assumed that fore is specified.<br />
-</tbody></table><div class="tagremarks">Discards the rendering results when rendering_target_released=true is specified in the layer_moveTag tag.<br />
+</tbody></table><div class="tagremarks">Discards the rendering results when rendering_target_released=false is specified in the layer_moveTag tag.<br />
 </div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 

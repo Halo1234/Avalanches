@@ -84,6 +84,16 @@ false を指定するとストアもセーブも行いません。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="bookmark_stack_size" id="bookmark_stack_size">stack_size</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">整数値</td><td class="tagattribdesc">一つ前に戻るバッファのサイズ。<br />
 5を指定すれば最大５つまで元に戻る事ができる。<br />
 </tbody></table><div class="tagremarks">セーブデータに関する設定を行います。<br />
+store_skippingにtrueを指定した場合、選択肢などで停止する（セーブ可能になった）時に正しくセーブ/ロードするために強制ストアを行ってください。<br />
+<div class="tagexample"><code class="bq"><span class="weak">例:</span><br />
+*label|<br />
+[ハロ]セーブ可能ラベル。store_skippingにtrueを指定した場合、スキップ中はここのストアは実行されない。<br />
+<br />
+*force_store|<br />
+[ハロ]強制ストアラベル。store_skippingにtrueを指定しても、必ずストアを実行する。<br />
+*force_store_hoge|<br />
+[ハロ]これも強制ストアラベル。<br />
+</code></div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
 
 <h1><a name="clear_system_variables" id="clear_system_variables" class="targanchor"><span class="b">clear_system_variables</span>(clearsysvar)</a></h1>
@@ -109,6 +119,9 @@ false を指定するとストアもセーブも行いません。<br />
 <div class="taggenre">セーブデータの削除</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="タグ erase_bookmark の属性の一覧"><thead><tr><td>別名</td><td>属性</td><td>必須?</td><td>値</td><td>説明</td></tr></thead><tbody>
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="erase_bookmark_number" id="erase_bookmark_number">number</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">削除するセーブデータ番号</td><td class="tagattribdesc">削除するセーブデータ番号を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="erase_bookmark_ask" id="erase_bookmark_ask">ask</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">削除する確認をするかどうか</td><td class="tagattribdesc">削除する確認をするかどうかを指定します。<br />
+true を指定すると削除する確認をします。<br />
+false を指定すると削除する確認をしません。<br />
 </tbody></table><div class="tagremarks">指定したセーブデータを削除します。<br />
 </div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
@@ -117,6 +130,18 @@ false を指定するとストアもセーブも行いません。<br />
 <div class="taggenre">レコード保存</div>
 <div class="tagremarks">現在位置のレコードを保存します。<br />
 </div>
+<div class="tagexample"><code class="bq"><span class="weak">例:</span><br />
+*label|<br />
+[record]<br />
+[ハロ]ここに戻ってくる。<br />
+<br />
+*label|<br />
+[ハロ]クリックすると一つ前に戻る。<br />
+<br />
+[go_back !ask]<br />
+; ここには到達しない。<br />
+[s]<br />
+</code></div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
 
 <h1><a name="go_back" id="go_back" class="targanchor"><span class="b">go_back</span>(goback)</a></h1>

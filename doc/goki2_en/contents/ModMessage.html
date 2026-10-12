@@ -186,7 +186,7 @@ The initial value is 50.<br />
 <h1><a name="current" id="current" class="targanchor"><span class="b">current</span>(No alias)</a></h1>
 <div class="taggenre">Message operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of current attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="current_layer" id="current_layer">layer</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">"message0" or "message1"</td><td class="tagattribdesc">Specify the message layer to be operated on.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="current_layer" id="current_layer">layer</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">"message0" or "message1" or "messageN"</td><td class="tagattribdesc">Specify the message layer to be operated on.<br />
 It can be one of message0 to messageN. (N is the number of message layers specified in message_layers - 1)<br />
 If omitted, the current message layer will be targeted.<br />
 </tbody></table><div class="tagremarks">Set the current layer.<br />
@@ -694,19 +694,6 @@ These settings can be configured separately for each message layer.<br />
 <h1><a name="graph" id="graph" class="targanchor"><span class="b">graph</span>(No alias)</a></h1>
 <div class="taggenre">Message operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of graph attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="graph_storage" id="graph_storage">storage</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the file name to display as a glyph.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="graph_key" id="graph_key">key</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">Specify the color to be transparent.<br />
-<tr><td class="tagattribalias">char</td><td class="tagattribname"><a class="targanchor" name="graph_character" id="graph_character">character</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If true is specified, glyphs will be displayed as characters.<br />
-In that case, color information is ignored.<br />
-If you specify false, the image will be displayed as is.<br />
-Default is true.<br />
-</tbody></table><div class="tagremarks">Specifies the image to display as a glyph.<br />
-</div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
-
-<h1><a name="graph" id="graph" class="targanchor"><span class="b">graph</span>(No alias)</a></h1>
-<div class="taggenre">Message operations</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of graph attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
 				<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="graph_storage" id="graph_storage">storage</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the image file name you want to display. The formats that can be read are the same as those that can be read with the image tag.<br />
 The file with _m appended to the file name (excluding the extension) specified here, if any, will be loaded as a mask image. Be sure to save the mask image in 256-color grayscale.<br />
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="graph_key" id="graph_key">key</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format or Palette index number or "adapt"</td><td class="tagattribdesc">Specify which color will be the extraction color. If omitted, the extraction color will be disabled.<br />
@@ -834,7 +821,7 @@ If omitted, execution starts from the beginning of the file.<br />
 </div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
-<h1><a name="history_icon" id="history_icon" class="targanchor"><span class="b">history_icon</span>(hact)</a></h1>
+<h1><a name="history_icon" id="history_icon" class="targanchor"><span class="b">history_icon</span>((No alias))</a></h1>
 <div class="taggenre">Message operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of history_icon attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_icon_storage" id="history_icon_storage">storage</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the icon to display in the history.<br />

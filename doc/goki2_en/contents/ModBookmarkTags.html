@@ -84,6 +84,15 @@ Default is true.<br />
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="bookmark_stack_size" id="bookmark_stack_size">stack_size</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">integer value</td><td class="tagattribdesc">The size of the buffer for going back one step.<br />
 Specifying 5 allows you to go back up to 5 steps.<br />
 </tbody></table><div class="tagremarks">Configure settings related to save data.<br />
+<div class="tagexample"><code class="bq"><span class="weak">Example:</span><br />
+*label|<br />
+[Halo] Savable label. If you set store_skipping to true, this store won't run while skipping.<br />
+<br />
+*force_store|<br />
+[Halo] Forced store label. Even if store_skipping is set to true, this will always execute the store.<br />
+*force_store_hoge|<br />
+[Halo] This is also a forced store label.<br />
+</code></div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="clear_system_variables" id="clear_system_variables" class="targanchor"><span class="b">clear_system_variables</span>(clearsysvar)</a></h1>
@@ -109,6 +118,7 @@ Specifying 5 allows you to go back up to 5 steps.<br />
 <div class="taggenre">Delete save data</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of erase_bookmark attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="erase_bookmark_number" id="erase_bookmark_number">number</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Save data number</td><td class="tagattribdesc">Specify the save data number to delete.<br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="erase_bookmark_ask" id="erase_bookmark_ask">ask</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Whether to confirm deletion</td><td class="tagattribdesc">Specifies whether to confirm deletion.<br />If true, deletion will be confirmed.<br />If false, deletion will not be confirmed.<br />
 </tbody></table><div class="tagremarks">Delete the specified save data.<br />
 </div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
@@ -117,6 +127,18 @@ Specifying 5 allows you to go back up to 5 steps.<br />
 <div class="taggenre">Record</div>
 <div class="tagremarks">Save a record of the current position.<br />
 </div>
+<div class="tagexample"><code class="bq"><span class="weak">Example:</span><br />
+*label|<br />
+[record]<br />
+[Hello] I'll come back here.<br />
+<br />
+*label|<br />
+[Hello] Click to go back one step.<br />
+<br />
+[go_back !ask]<br />
+; This will not be reached.<br />
+[s]<br />
+</code></div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="go_back" id="go_back" class="targanchor"><span class="b">go_back</span>(goback)</a></h1>

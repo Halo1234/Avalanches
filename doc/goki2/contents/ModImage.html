@@ -16,9 +16,11 @@
 
 <h1><a name="tags" id="tags">ModImageのタグ</a></h1>
 <div class="para"><div>　ModImage で使用可能なタグのリファレンスです。<br />
-
+<br />
+ModImageが管理するレイヤ群は全て、表ページと裏ページに分かれています。<br />
+表ページが現在表示されているレイヤで、裏ページは表示されない作業用のレイヤです。<br />
+通常は裏ページに画像を読み込み、[transition]タグなどで表裏のページを入れ替える事で画面を更新します。<br />
 <h1><a name="genre" id="genre" class="targanchor">ジャンル・タグ一覧</a></h1>
-
 
 <div class="para"><div><br />
 <table class="taglist"><tbody>
@@ -58,6 +60,12 @@
 <tr><td class="tagattribalias">laystep</td><td class="tagattribname"><a class="targanchor" name="cv_layers_step" id="cv_layers_step">step</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">立ち絵レイヤの absolute 値のステップ</td><td class="tagattribdesc">立ち絵レイヤの absolute 値のステップを指定します。<br />
 ここで指定された値がベース値にプラスされます。<br />
 </tbody></table><div class="tagremarks">立ち絵レイヤの枚数を指定します。<br />
+<div class="tagexample"><code class="bq"><span class="weak">例:</span><br />
+[cv_layers count=3 base=1000 step=100]<br />
+; layer=0のabsolute値は1000になります。<br />
+; layer=1のabsolute値は1100になります。<br />
+; layer=2のabsolute値は1200になります。<br />
+</code></div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
 
 <h1><a name="cg_layers" id="cg_layers" class="targanchor"><span class="b">cg_layers</span>(cglayers)</a></h1>
@@ -81,7 +89,11 @@ fore を指定すると表ページのレイヤが対象になります。<br />
 back を指定すると裏ページのレイヤが対象になります。<br />
 省略するとforeが指定されたものとみなします。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_image_storage" id="load_image_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">レイヤに読み込む画像ファイル名</td><td class="tagattribdesc">レイヤに読み込む画像ファイル名を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_image_key" id="load_image_key">key</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">画像ファイルのキー値</td><td class="tagattribdesc">画像ファイルのキー値を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_image_key" id="load_image_key">key</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">画像ファイルのキー値</td><td class="tagattribdesc">どの色を抜き色とするかを指定します。省略すると抜き色は無効になります。<br />
+key=0xRRGGBB という形式で 16 進数で抜き色を指定する と、RR(赤) GG(緑) BB(青)で塗られた部分を抜き色として透明にします。 たとえば、key=0xff00ff では (r,g,b)=(255,0,255) つまり真マゼンダの部 分を抜き色として透明にするという指定になります。<br />
+ただ単に数値を指定すれば、そのパレットインデックスの数値が抜き 色となります。16色/256色の画像に対して有効です。<br />
+key=adapt と指定すれば、自動的に抜き色が決定されます。 使用される抜き色は、画像の一番上のラインにて、一番多く使われている色です。 16色/256色の画像に対して有効です。<br />
+マスク画像を使用する場合は、この属性は指定する必要は ありません。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_image_asd_storage" id="load_image_asd_storage">asd_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">asd ファイル名を指定</td><td class="tagattribdesc">asd ファイル名を指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="load_image_mode" id="load_image_mode">mode</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">mode を指定</td><td class="tagattribdesc">mode を指定する。<br />
 load_partial_imageのmodeの説明を参照してください。<br />
@@ -551,7 +563,7 @@ back を指定すると裏ページのレイヤが対象になります。<br />
 fore を指定すると表ページのレイヤが対象になります。<br />
 back を指定すると裏ページのレイヤが対象になります。<br />
 省略するとforeが指定されたものとみなします。<br />
-</tbody></table><div class="tagremarks">layer_moveタグにrendering_target_released=trueを指定した場合の描画結果を破棄します。<br />
+</tbody></table><div class="tagremarks">layer_moveタグにrendering_target_released=falseを指定した場合の描画結果を破棄します。<br />
 </div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">ジャンル・タグ一覧に戻る</span></a></div></div></div>
 
