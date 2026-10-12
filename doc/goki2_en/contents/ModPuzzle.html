@@ -1,153 +1,70 @@
-<?xml version="1.0" encoding="Shift_JIS"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
-	<title>ModPuzzle Tags</title>
-	<meta name="author" content="Halo" />
-	<meta http-equiv="Content-Style-Type" content="text/css" />
-	<meta http-equiv="Content-Script-Type" content="text/javascript" />
-	<link href="browser.css" type="text/css" rel="stylesheet" title="Standard style for Kirikiri-related reference" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>ModPuzzle Tags</title>
+  <meta name="author" content="Halo" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link href="browser.css" type="text/css" rel="stylesheet" title="Standard Style for Kirikiri Reference" />
+  <link href="mailto:halosuke@gmail.com" rev="Made" />
+  <link href="index.html" target="_top" rel="Start" title="Top Page" />
 </head>
 <body>
 
 <h1><a name="tags" id="tags">ModPuzzle Tags</a></h1>
-<div class="para"><div> A reference to tags available in ModPuzzle. <br />
-The plugins that this module depends on are BlueMonday-88.dll / (if you want to play online) Fischerspooner.dll.<br />
-This module requires ModSound.<br />
-<br />
-Call the following in the puzzle piece animation file. <br />
-<br />
-Call the following at the end of the landing animation. <br />
-<br />
-[call_handler message=onLanding] <br />
-<br />
-Call the following at the end of the erasing animation. <br />
-<br />
-[call_handler message=onErase] <br />
-<br />
-Several events are defined in the puzzle piece animation script. <br />
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Label Specifications"><thead><tr><td>Label</td><td>explanation</td></tr></thead><tbody>
-<tr><td class="tagattribalias">*waiting</td><td class="tagattribdesc">Implements a waiting animation. </td></tr>
-<tr><td class="tagattribalias">*landing</td><td class="tagattribdesc">Implements a landing animation. </td></tr>
-<tr><td class="tagattribalias">*erase</td><td class="tagattribdesc">Implements an erasing animation. </td></tr>
-</tbody></table>
+<div class="para"><div>
+  Reference for tags available in ModPuzzle.<br />
+The plugins required by this module are BlueMonday-88.dll and (if playing online) Fischerspooner.dll.<br />
+This module requires ModSound.<br /><br />
+Please call the following in the puzzle piece animation file:<br /><br />
+Call the following at the end of the landing animation:<br /><br />
+[call_handler message=onLanding] <br /><br />
+Call the following at the end of the erase animation:<br /><br />
+[call_handler message=onErase] <br /><br />
+Several events are defined in the puzzle piece animation script:<br /><br />
+
+<div class="para"><div>
+<table class="tagparams" frame="box" rules="all" summary="Label Specifications">
+  <thead>
+    <tr><th>Label</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="tagattribalias">*waiting</td><td class="tagattribdesc">Implements the waiting animation.</td></tr>
+    <tr><td class="tagattribalias">*landing</td><td class="tagattribdesc">Implements the landing animation.</td></tr>
+    <tr><td class="tagattribalias">*erase</td><td class="tagattribdesc">Implements the erase animation.</td></tr>
+  </tbody>
+</table>
 </div></div>
 </div></div>
 
-<h1><a name="genre" id="genre" class="targanchor">Genre/tag list</a></h1>
-
+<h1><a name="genre" id="genre" class="targanchor">Categories &amp; Tag List</a></h1>
 <div class="para"><div><br />
 <table class="taglist"><tbody>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#puzzle_option">puzzle_option</a></span></td><td class="taglisteven">Basic settings</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#puzzle_ai">puzzle_ai</a></span></td><td class="taglistodd">AI settings</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#puzzle_inet">puzzle_inet</a></span></td><td class="taglisteven">Network settings</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#puzzle_piece">puzzle_piece</a></span></td><td class="taglistodd">Piece-related settings</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#puzzle_se">puzzle_se</a></span></td><td class="taglisteven">Sound effect settings</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#puzzle">puzzle</a></span></td><td class="taglistodd">Basic operations</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#wait_puzzle_initialize">wait_puzzle_initialize</a></span></td><td class="taglisteven">Waiting for initialization</td></tr>
-<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#wait_puzzle_show">wait_puzzle_show</a></span></td><td class="taglistodd">Waiting for the puzzle screen to display</td></tr>
-<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#wait_puzzle_hide">wait_puzzle_hide</a></span></td><td class="taglisteven">Waiting for the puzzle screen to disappear</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#puzzle_option">puzzle_option</a></span></td><td class="taglisteven">Basic Settings</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#puzzle_ai">puzzle_ai</a></span></td><td class="taglistodd">AI Settings</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#puzzle_inet">puzzle_inet</a></span></td><td class="taglisteven">Network Settings</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#puzzle_piece">puzzle_piece</a></span></td><td class="taglistodd">Piece Settings</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#puzzle_se">puzzle_se</a></span></td><td class="taglisteven">Sound Effect Settings</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#puzzle">puzzle</a></span></td><td class="taglistodd">Basic Operations</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#wait_puzzle_initialize">wait_puzzle_initialize</a></span></td><td class="taglisteven">Wait for Initialization</td></tr>
+<tr><td class="taglistodd"><span class="taglistlink"><a class="jump" href="#wait_puzzle_show">wait_puzzle_show</a></span></td><td class="taglistodd">Wait for Displaying Puzzle Screen</td></tr>
+<tr><td class="taglisteven"><span class="taglistlink"><a class="jump" href="#wait_puzzle_hide">wait_puzzle_hide</a></span></td><td class="taglisteven">Wait for Hiding Puzzle Screen</td></tr>
 </tbody></table><br /><br /></div></div>
 
-<h1><a name="puzzle_option" id="puzzle_option" class="targanchor"><span class="b">puzzle_option</span> (No Alias)</a></h1>
+<h1><a name="puzzle_option" id="puzzle_option" class="targanchor"><span class="b">puzzle_option</span> (No alias)</a></h1>
 <div class="taggenre">Puzzle Settings</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="List of attributes for tag puzzle_option"><thead><tr><td>Alias</td><td>Attribute</td><td>Required?</td><td>Value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_debug1" id="puzzle_option_debug1">debug1</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Start user 1 in debug mode. </td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_debug2" id="puzzle_option_debug2">debug2</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Start user 2 in debug mode. </td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_debug_dump_map1" id="puzzle_option_debug_dump_map1">debug_dump_map1</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Outputs the map status of user 1 to the console in real time. </td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_debug_dump_map2" id="puzzle_option_debug_dump_map2">debug_dump_map2</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Outputs the map status of user 2 to the console in real time. </td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_debug_stop1" id="puzzle_option_debug_stop1">debug_stop1</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Stops when User 1 detects an abnormality. </td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_debug_stop2" id="puzzle_option_debug_stop2">debug_stop2</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Stops when User 2 detects an abnormality.</td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_debug_inet1" id="puzzle_option_debug_inet1">debug_inet1</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Outputs user 1's communication log to the console. </td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_debug_inet2" id="puzzle_option_debug_inet2">debug_inet2</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Outputs user 2's communication log to the console.</td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_initialize_failed_storage" id="puzzle_option_initialize_failed_storage">initialize_failed_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Scenario Storage</td><td class="tagattribdesc">Specify the scenario storage to run when initialization fails. </td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_initialize_failed_label" id="puzzle_option_initialize_failed_label">initialize_failed_label</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Label</td><td class="tagattribdesc">Specify the label to execute if initialization fails.</td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_communication_error_storage" id="puzzle_option_communication_error_storage">communication_error_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Scenario storage</td><td class="tagattribdesc">Specify the scenario storage to be executed when a communication error occurs. </td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_communication_error_label" id="puzzle_option_communication_error_label">communication_error_label</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Label</td><td class="tagattribdesc">Specify the label to be executed when a communication error occurs.</td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_left_key1" id="puzzle_option_left_key1">left_key1</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Virtual Key Code</td><td class="tagattribdesc">Specify the virtual key code for the left key of User 1. </td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_right_key1" id="puzzle_option_right_key1">right_key1</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Virtual Key Code</td><td class="tagattribdesc">Specify the virtual key code for User 1's right key. </td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_down_key1" id="puzzle_option_down_key1">down_key1</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Virtual Key Code</td><td class="tagattribdesc">Specify the virtual key code for User 1's down key. </td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_enter_key1" id="puzzle_option_enter_key1">enter_key1</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Virtual Key Code</td><td class="tagattribdesc">Specify the virtual key code for User 1's Enter key. </td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_cancel_key1" id="puzzle_option_cancel_key1">cancel_key1</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Virtual Key Code</td><td class="tagattribdesc">Specify the virtual key code for User 1's cancel key. </td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_base_storage" id="puzzule_option_base_storage">base_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the background of the puzzle screen. </td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_user1_left" id="puzzle_option_user1_left">user1_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Coordinates</td><td class="tagattribdesc">Specify the area position for User 1. </td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_user1_width" id="puzzle_option_user1_width">user1_width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Size</td><td class="tagattribdesc">Specify the area size for User 1. </td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_gameover_storage" id="puzzle_option_gameover_storage">gameover_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the scenario storage to jump to when game over. </td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_linking" id="puzzle_option_linking">linking</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Number</td><td class="tagattribdesc">Specify the number of links required to disappear. </td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_interval" id="puzzle_option_interval">interval</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ms</td><td class="tagattribdesc">Specify the falling speed in milliseconds. </td></tr>
-</tbody></table><div class="tagremarks">Change the settings for puzzle games. <br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
-
-<h1><a name="puzzle_ai" id="puzzle_ai" class="targanchor"><span class="b">puzzle_ai</span> (no alias)</a></h1>
-<div class="taggenre">Puzzle AI settings</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="List of attributes for tag puzzle_ai"><thead><tr><td>Alias</td><td>Attribute</td><td>Required?</td><td>Value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_ai_level1" id="puzzle_ai_level1">level1</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0-4</td><td class="tagattribdesc">Specifies the AI strength of User 1.</td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_ai_level2" id="puzzle_ai_level2">level2</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0-4</td><td class="tagattribdesc">Specifies the AI strength of User 2. </td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_ai_enabled1" id="puzzle_ai_enabled1">enabled1</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Enable AI for user 1. </td></tr>
-</tbody></table><div class="tagremarks">Configures the puzzle AI. <br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
-
-<h1><a name="puzzle_inet" id="puzzle_inet" class="targanchor"><span class="b">puzzle_inet</span> (No Alias)</a></h1>
-<div class="taggenre">Puzzle Network Settings</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="List of attributes for tag puzzle_inet"><thead><tr><td>Alias</td><td>Attribute</td><td>Required?</td><td>Value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_inet_enabled" id="puzzle_inet_enabled">enabled</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specify true if you are playing online.</td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_inet_is_server" id="puzzle_inet_is_server">is_server</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specify true for server, false for client.</td></tr>
-</tbody></table><div class="tagremarks">Configure online settings. <br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
-
-<h1><a name="puzzle_piece" id="puzzle_piece" class="targanchor"><span class="b">puzzle_piece</span> (No Alias)</a></h1>
-<div class="taggenre">Puzzle Piece Settings</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="List of attributes for tag puzzle_piece"><thead><tr><td>Alias</td><td>Attribute</td><td>Required?</td><td>Value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_piece_storage" id="puzzle_piece_storage">storage</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Storage Name</td><td class="tagattribdesc">Specify the images for puzzle pieces.</td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_piece_asd" id="puzzle_piece_asd">asd</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage Name</td><td class="tagattribdesc">Specify the animation script. </td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_piece_ojama" id="puzzle_piece_ojama">ojama</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specify true for Ojama Puyo. </td></tr>
-</tbody></table><div class="tagremarks">Configure the puzzle piece settings. <br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
-
-<h1><a name="puzzle_se" id="puzzle_se" class="targanchor"><span class="b">puzzle_se</span> (No Alias)</a></h1>
-<div class="taggenre">Sound Effect Settings</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="List of attributes for tag puzzle_se"><thead><tr><td>Alias</td><td>Attribute</td><td>Required?</td><td>Value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_se_move" id="puzzle_se_move">move</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage Name</td><td class="tagattribdesc">Sound when a piece is moved.</td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_se_rotation" id="puzzle_se_rotation">rotation</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage Name</td><td class="tagattribdesc">Sound when a piece is rotated. </td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_se_landing" id="puzzle_se_landing">landing</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Sound when a piece lands. </td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_se_user1_chain_1st" id="puzzle_se_user1_chain_1st">user1_chain_1st</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Sound for the 1st chain. </td></tr>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_se_user1_chain_6th" id="puzzle_se_user1_chain_6th">user1_chain_6th</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Sound for the 6th chain.</td></tr>
-</tbody></table><div class="tagremarks">Set the sound effects. <br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
-
-<h1><a name="puzzle" id="puzzle" class="targanchor"><span class="b">puzzle</span> (No alias)</a></h1>
-<div class="taggenre">Puzzle Screen Operations</div>
-<div class="para"><div><table class="tagparams" frame="box" rules="all" summary="List of attributes for tag puzzle"><thead><tr><td>Alias</td><td>Attribute</td><td>Required?</td><td>Value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_initialize" id="puzzle_initialize">initialize</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Initializes the puzzle game. <br />
-Specify this attribute after all settings are complete and before start. <br />
-Also specify this attribute after initializing the internal state with clear. <br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_show_hide_type" id="puzzle_show_hide_type">show_hide_type</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">vista or fade</td><td class="tagattribdesc">Specifies how to show/hide the puzzle screen. <br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_show_hide_time" id="puzzle_show_hide_time">show_hide_time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">milliseconds</td><td class="tagattribdesc">Specify the show/hide time for the puzzle screen in milliseconds.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_show" id="puzzle_show">show</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Shows the puzzle screen.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_hide" id="puzzle_hide">hide</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Hides the puzzle screen.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_clear" id="puzzle_clear">clear</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifying this will reset the internal state to its initial state.<br />Clearing the game will also reset your score.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_start" id="puzzle_start">start</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specify to start the game.<br />
-After starting, stop it with the [s] tag.<br />
-</tbody></table><div class="tagremarks">Specifies whether to show or hide the puzzle screen. <br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
-
-<h1><a name="wait_puzzle_initialize" id="wait_puzzle_initialize" class="targanchor"><span class="b">wait_puzzle_initialize</span>(No alias)</a></h1>
-<div class="taggenre">Wait for puzzle game initialization to complete</div>
-</tbody></table><div class="tagremarks">Waits for puzzle game initialization to complete. <br />
-If initialization fails, jumps to the scenario storage/label specified in the puzzle_option tag's initialize_failed_storage/initialize_failed_label. <br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
-
-<h1><a name="wait_puzzle_show" id="wait_puzzle_show" class="targanchor"><span class="b">wait_puzzle_show</span>(No alias)</a></h1>
-<div class="taggenre">Waiting for puzzle screen operation</div>
-</tbody></table><div class="tagremarks">Wait for the puzzle screen to finish displaying. <br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
-
-<h1><a name="wait_puzzle_hide" id="wait_puzzle_hide" class="targanchor"><span class="b">wait_puzzle_hide</span>(No alias)</a></h1>
-<div class="taggenre">Waiting for puzzle screen operation</div>
-</tbody></table><div class="tagremarks">Wait for the puzzle screen to finish hiding. <br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
-
-	<script type="text/javascript" charset="Shift_JIS" src="documentid.js" ></script>
-	<script type="text/javascript" charset="Shift_JIS" src="postcontent.js" ></script>
-</body></html>
+<div class="para"><div>
+<table class="tagparams" frame="box" rules="all" summary="List of attributes for tag puzzle_option">
+  <thead>
+    <tr><th>Alias</th><th>Attribute</th><th>Required?</th><th>Value</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_debug1" id="puzzle_option_debug1">debug1</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Launches User 1 in debug mode.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_debug2" id="puzzle_option_debug2">debug2</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Launches User 2 in debug mode.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_debug_dump_map1" id="puzzle_option_debug_dump_map1">debug_dump_map1</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Outputs User 1's map state to the console in real time.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_debug_dump_map2" id="puzzle_option_debug_dump_map2">debug_dump_map2</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Outputs User 2's map state to the console in real time.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_debug_stop1" id="puzzle_option_debug_stop1">debug_stop1</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Stops execution if User 1 detects an error.<br /></td></tr>
+    <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="puzzle_option_debug_stop2" id="puzzle_option_debug_stop2">debug_stop2</a></td><td class="tagattribrequired">
