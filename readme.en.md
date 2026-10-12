@@ -60,12 +60,12 @@ To facilitate smooth development, we recommend installing the following tools ba
 
 ### Essential (Development & Management)
 * **[TortoiseGit](https://tortoisegit.org/)**: For repository retrieval and management
-* **[Ruby](http://www.ruby-lang.org/ja/)**: Required to run tools (.rb files) (Confirmed working with v4.0.1)
+* **[Ruby](http://www.ruby-lang.org/ja/)**: Required to run tools (.rb files) (Confirmed working with v4.0.7)
 
 ### Creating Patch Installers
 * **[TortoiseSVN](https://tortoisesvn.net/)**: For reading logs when creating patches
 * **[SlikSVN](https://sliksvn.com/download/)**: Required as the client when creating patches
-* **[NSIS](https://nsis.sourceforge.io/Download)**: For creating the installer (v3.11 tested)
+* **[NSIS](https://nsis.sourceforge.io/Download)**: For creating the installer (v3.13 tested)
 
 ### Data Input (Excel-Compatible Software)
 * **Microsoft Office (Excel)**: Recommended for inputting `*.xls/xlsx` format data

@@ -61,12 +61,12 @@ GOKI2を使ってすぐにゲーム開発を始めたい方は、[こちらの�
 
 ### 必須級（開発・管理）
 * **[TortoiseGit](https://tortoisegit.org/)**: リポジトリの取得・管理
-* **[Ruby](http://www.ruby-lang.org/ja/)**: ツール群（.rb）の実行に必要 (v4.0.1 動作確認済)
+* **[Ruby](http://www.ruby-lang.org/ja/)**: ツール群（.rb）の実行に必要 (v4.0.7 動作確認済)
 
 ### パッチ・インストーラ作成
 * **[TortoiseSVN](https://tortoisesvn.net/)**: パッチ作成時のログ読み込み用
 * **[SlikSVN](https://sliksvn.com/download/)**: パッチ作成時のクライアントとして必要
-* **[NSIS](https://nsis.sourceforge.io/Download)**: インストーラ作成用 (v3.11 動作確認済)
+* **[NSIS](https://nsis.sourceforge.io/Download)**: インストーラ作成用 (v3.13 動作確認済)
 
 ### データ入力（Excel互換ソフト）
 * **Microsoft Office (Excel)**: `*.xls/xlsx` 形式のデータ入力に推奨
