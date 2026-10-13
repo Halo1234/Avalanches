@@ -320,8 +320,8 @@
 
 *left_front_weapon
 *left_front_weapon_armor
-*left_double_speed_front_weapon
-*left_double_speed_front_weapon_armor
+*left_front_double_speed_weapon
+*left_front_double_speed_weapon_armor
 @cell2 x=0 y=640
 @s
 
@@ -340,8 +340,8 @@
 
 *right_front_weapon
 *right_front_weapon_armor
-*right_double_speed_front_weapon
-*right_double_speed_front_weapon_armor
+*right_front_double_speed_weapon
+*right_front_double_speed_weapon_armor
 @cell2 x=384 y=640
 @s
 
@@ -360,8 +360,8 @@
 
 *left_back_weapon
 *left_back_weapon_armor
-*left_double_speed_back_weapon
-*left_double_speed_back_weapon_armor
+*left_back_double_speed_weapon
+*left_back_double_speed_weapon_armor
 @cell2 x=0 y=256
 @s
 
@@ -380,8 +380,8 @@
 
 *right_back_weapon
 *right_back_weapon_armor
-*right_double_speed_back_weapon
-*right_double_speed_back_weapon_armor
+*right_back_double_speed_weapon
+*right_back_double_speed_weapon_armor
 @cell2 x=384 y=256
 @s
 
