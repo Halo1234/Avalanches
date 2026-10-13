@@ -207,8 +207,8 @@
 ;@roguelike_character id=player add_item=敵増殖の罠設置
 ;@roguelike_character id=player add_item=混乱の杖 correction_value=10
 ;@roguelike_character id=player add_item=ワープの壺 correction_value=5
-;@roguelike_character id=player add_item=イオナズンの巻物
-;@roguelike_character id=player add_item=イオナズンの巻物
+@roguelike_character id=player add_item=イオナズンの巻物
+@roguelike_character id=player add_item=イオナズンの巻物
 ;@roguelike_character id=player add_item=鑑定の巻物
 ;@roguelike_character id=player add_item=毒草
 ;@roguelike_character id=player add_item=罠避けの指輪
