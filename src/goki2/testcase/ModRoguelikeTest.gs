@@ -4,8 +4,8 @@
 @history enabled=false
 
 @roguelike_option debug 
-@roguelike_option debug_dump_map
-@roguelike_option debug_show_enemies
+;@roguelike_option debug_dump_map
+;@roguelike_option debug_show_enemies
 ;@roguelike_option debug_move_enemies
 ;@roguelike_option debug_mini_map_full_open
 ;@roguelike_option debug_attack
@@ -13,10 +13,10 @@
 ;@roguelike_option debug_measure_time
 ;@roguelike_option debug_not_tracking_mode
 ;@roguelike_option debug_skip
-@roguelike_option debug_show_trap
+;@roguelike_option debug_show_trap
 ;@roguelike_option debug_trap
-@roguelike_option debug_show_transparent_character
-@roguelike_option debug_show_item_name
+;@roguelike_option debug_show_transparent_character
+;@roguelike_option debug_show_item_name
 ;@roguelike_option debug_message_to_console
 
 ; 効果音設定
@@ -51,7 +51,7 @@
 @roguelike_option item_count_min=4 item_count_max=8
 @roguelike_option money_count_min=1 money_count_max=3
 @roguelike_option enemy_count_min=4 enemy_count_max=8
-@roguelike_option trap_lower_floor=1 trap_upper_floor=99 trap_min=1 trap_max=3
+@roguelike_option trap_lower_floor=1 trap_upper_floor=99 trap_min=30 trap_max=30
 @roguelike_option message_layer_name=message1 font_size=16
 @roguelike_option enemy_sleeping=20
 @roguelike_option enemy_wakeup=20
@@ -70,7 +70,7 @@
 @roguelike_load_room name=4 storage=room_shop2.ary shop_room
 @roguelike_load_room name=5 storage=room001.ary
 @roguelike_load_room name=6 storage=room002.ary lower=2 upper=10
-@roguelike_load_room name=7 storage=room003.ary
+@roguelike_load_room name=7 storage=room003.ary initial_room
 @roguelike_load_room name=8 storage=room004.ary
 @roguelike_load_room name=9 storage=room005.ary
 @roguelike_load_room name=10 storage=room006.ary lower=2 upper=10
@@ -185,34 +185,37 @@
 @roguelike_money storage=お金アイコン
 
 ; プレイヤー配置
-@roguelike_character id=player name=プレイヤー x=1 y=1
+@roguelike_character id=player name=プレイヤー x=3 y=3
 
 ; 初期化
 @roguelike initialize
 
 ;@roguelike_character id=enemy1 name=透明な敵 x=6 y=3
-;@roguelike_character id=enemy2 name=スライム x=5 y=4
+;@roguelike_character id=enemy2 name=スライム x=4 y=3
+;@roguelike_character id=enemy2 name=ドラゴン x=6 y=3
 @roguelike_character id=warehouse name=案内員 x=1 y=3 target=*warehouse
 ; 部屋配置
-@roguelike_deploy_room name=0 x=0 y=0
+@roguelike_deploy_room name=7 x=0 y=0
 
 ; アイテム所持（初期化後に行う事）
 @roguelike_character id=player add_item=大きなパン
 @roguelike_character id=player add_item=腹減らずの指輪
-;@roguelike_character id=player add_item=薬草 correction_value=1
+@roguelike_character id=player add_item=薬草
+@roguelike_character id=player add_item=毒草
 ;@roguelike_character id=player add_item=倍速の草
-;@roguelike_character id=player add_item=ドラゴンキラー correction_value=2
-;@roguelike_character id=player add_item=ドラゴンキラー correction_value=2
+@roguelike_character id=player add_item=ドラゴンキラー correction_value=2
+@roguelike_character id=player add_item=鉄の盾
+;@roguelike_character id=player add_item=鑑定の巻物
 ;@roguelike_character id=player add_item=ダメージ罠設置
 ;@roguelike_character id=player add_item=敵増殖の罠設置
 ;@roguelike_character id=player add_item=混乱の杖 correction_value=10
 ;@roguelike_character id=player add_item=ワープの壺 correction_value=5
-@roguelike_character id=player add_item=イオナズンの巻物
-@roguelike_character id=player add_item=イオナズンの巻物
+;@roguelike_character id=player add_item=イオナズンの巻物
+;@roguelike_character id=player add_item=イオナズンの巻物
 ;@roguelike_character id=player add_item=鑑定の巻物
 ;@roguelike_character id=player add_item=毒草
 ;@roguelike_character id=player add_item=罠避けの指輪
-@roguelike_character id=player add_item=鉄の矢 correction_value=99
+@roguelike_character id=player add_item=鉄の矢 correction_value=50
 ;@roguelike_character id=player add_item=聖域の巻物
 ;@roguelike_character id=player add_item=エニグマの紙 correction_value=5
 
