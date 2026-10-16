@@ -70,7 +70,7 @@
 @roguelike_load_room name=4 storage=room_shop2.ary shop_room
 @roguelike_load_room name=5 storage=room001.ary
 @roguelike_load_room name=6 storage=room002.ary lower=2 upper=10
-@roguelike_load_room name=7 storage=room003.ary initial_room
+@roguelike_load_room name=7 storage=room003.ary
 @roguelike_load_room name=8 storage=room004.ary
 @roguelike_load_room name=9 storage=room005.ary
 @roguelike_load_room name=10 storage=room006.ary lower=2 upper=10
@@ -185,7 +185,7 @@
 @roguelike_money storage=お金アイコン
 
 ; プレイヤー配置
-@roguelike_character id=player name=プレイヤー x=3 y=3
+@roguelike_character id=player name=プレイヤー x=1 y=1
 
 ; 初期化
 @roguelike initialize
@@ -195,7 +195,7 @@
 ;@roguelike_character id=enemy2 name=ドラゴン x=6 y=3
 @roguelike_character id=warehouse name=案内員 x=1 y=3 target=*warehouse
 ; 部屋配置
-@roguelike_deploy_room name=7 x=0 y=0
+@roguelike_deploy_room name=0 x=0 y=0
 
 ; アイテム所持（初期化後に行う事）
 @roguelike_character id=player add_item=大きなパン
