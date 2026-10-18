@@ -5,18 +5,18 @@
 
 @roguelike_option debug 
 ;@roguelike_option debug_dump_map
-;@roguelike_option debug_show_enemies
+@roguelike_option debug_show_enemies
 ;@roguelike_option debug_move_enemies
-;@roguelike_option debug_mini_map_full_open
+@roguelike_option debug_mini_map_full_open
 ;@roguelike_option debug_attack
 ;@roguelike_option debug_check_pos
 ;@roguelike_option debug_measure_time
 ;@roguelike_option debug_not_tracking_mode
 ;@roguelike_option debug_skip
-;@roguelike_option debug_show_trap
+@roguelike_option debug_show_trap
 ;@roguelike_option debug_trap
 ;@roguelike_option debug_show_transparent_character
-;@roguelike_option debug_show_item_name
+@roguelike_option debug_show_item_name
 ;@roguelike_option debug_message_to_console
 
 ; 効果音設定
@@ -51,7 +51,7 @@
 @roguelike_option item_count_min=4 item_count_max=8
 @roguelike_option money_count_min=1 money_count_max=3
 @roguelike_option enemy_count_min=4 enemy_count_max=8
-@roguelike_option trap_lower_floor=1 trap_upper_floor=99 trap_min=30 trap_max=30
+@roguelike_option trap_lower_floor=1 trap_upper_floor=99 trap_min=1 trap_max=3
 @roguelike_option message_layer_name=message1 font_size=16
 @roguelike_option enemy_sleeping=20
 @roguelike_option enemy_wakeup=20
@@ -201,7 +201,7 @@
 @roguelike_character id=player add_item=大きなパン
 @roguelike_character id=player add_item=腹減らずの指輪
 @roguelike_character id=player add_item=薬草
-@roguelike_character id=player add_item=毒草
+;@roguelike_character id=player add_item=毒草
 ;@roguelike_character id=player add_item=倍速の草
 @roguelike_character id=player add_item=ドラゴンキラー correction_value=2
 @roguelike_character id=player add_item=鉄の盾
@@ -209,7 +209,7 @@
 ;@roguelike_character id=player add_item=ダメージ罠設置
 ;@roguelike_character id=player add_item=敵増殖の罠設置
 ;@roguelike_character id=player add_item=混乱の杖 correction_value=10
-;@roguelike_character id=player add_item=ワープの壺 correction_value=5
+@roguelike_character id=player add_item=即死の杖 correction_value=5
 ;@roguelike_character id=player add_item=イオナズンの巻物
 ;@roguelike_character id=player add_item=イオナズンの巻物
 ;@roguelike_character id=player add_item=鑑定の巻物
