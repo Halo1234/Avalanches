@@ -61,6 +61,7 @@
 @roguelike_option return_trip
 @roguelike_option shop_rate=10
 @roguelike_option not_trap_triggered=20
+@roguelike_option warning_turn=500
 
 ; 部屋の読み込み
 @roguelike_load_room name=0 storage=initial_room001.ary initial_room
@@ -99,6 +100,7 @@
 
 ; 効果音設定
 @roguelike_sound item_use0=maou_se_sound_drink01 item_use1=maou_se_magical07 item_use2=maou_se_sound_paper01
+@roguelike_sound warning=maou_se_sound23
 @roguelike_sound attack_プレイヤー=maou_se_battle01
 @roguelike_sound damage=maou_se_sound01 levelup=maou_se_jingle05
 @roguelike_sound イオナズンの巻物=maou_se_battle_explosion06
