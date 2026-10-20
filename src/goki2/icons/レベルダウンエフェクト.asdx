@@ -1,0 +1,20 @@
+
+;
+; rouglelike_main_character.asdx
+;
+
+@macro name=cell
+@option clip_left=%x clip_top=%y clip_width=80 clip_height=120
+@wait time=%time|83
+@endmacro
+
+@s
+
+*anim
+@cell x=0 y=0
+@cell x=80 y=0
+@cell x=160 y=0
+@cell x=0 y=120
+@cell x=80 y=120
+@cell x=160 y=120
+@s
