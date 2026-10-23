@@ -102,7 +102,7 @@
 @roguelike_sound item_use0=maou_se_sound_drink01 item_use1=maou_se_magical07 item_use2=maou_se_sound_paper01
 @roguelike_sound warning=maou_se_sound23
 @roguelike_sound attack_プレイヤー=maou_se_battle01
-@roguelike_sound damage=maou_se_sound01 levelup=maou_se_jingle05
+@roguelike_sound damage=maou_se_sound01 critical_damage=maou_se_battle10 levelup=maou_se_jingle05
 @roguelike_sound イオナズンの巻物=maou_se_battle_explosion06
 @roguelike_sound ダメージ罠=maou_se_battle18 巻き込み型ダメージ罠=maou_se_battle18
 
