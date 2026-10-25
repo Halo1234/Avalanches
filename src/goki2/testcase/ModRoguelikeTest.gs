@@ -61,7 +61,7 @@
 @roguelike_option return_trip
 @roguelike_option shop_rate=10
 @roguelike_option not_trap_triggered=20
-@roguelike_option warning_turn=500
+@roguelike_option warning_turn=1000
 
 ; 部屋の読み込み
 @roguelike_load_room name=0 storage=initial_room001.ary initial_room
