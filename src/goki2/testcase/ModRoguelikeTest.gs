@@ -193,9 +193,12 @@
 @roguelike initialize
 
 ;@roguelike_character id=enemy1 name=透明な敵 x=6 y=3
-;@roguelike_character id=enemy2 name=スライム x=4 y=3
-;@roguelike_character id=enemy2 name=ドラゴン x=6 y=3
-@roguelike_character id=warehouse name=案内員 x=1 y=3 target=*warehouse
+;@roguelike_character id=enemy2 name=ドラゴン x=7 y=3
+;@roguelike_character id=enemy3 name=ドラゴン x=6 y=3
+;@roguelike_character id=enemy4 name=スライム x=4 y=3
+;@roguelike_character id=enemy5 name=ドラゴン x=5 y=5
+;@roguelike_character id=enemy6 name=ドラゴン x=3 y=5
+;@roguelike_character id=warehouse name=案内員 x=1 y=3 target=*warehouse
 ; 部屋配置
 @roguelike_deploy_room name=0 x=0 y=0
 
