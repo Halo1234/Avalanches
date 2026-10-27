@@ -703,6 +703,8 @@ key=0xRRGGBB という形式で 16 進数で抜き色を指定する と、RR(赤) GG(緑) BB(青)で塗
 ただ単に数値を指定すれば、そのパレットインデックスの数値が抜き 色となります。16色/256色の画像に対して有効です。<br />
 key=adapt と指定すれば、自動的に抜き色が決定されます。 使用される抜き色は、画像の一番上のラインにて、一番多く使われている色です。 16色/256色の画像に対して有効です。<br />
 マスク画像を使用する場合は、このタグを指定する必要はありません。<br />
+<tr><td class="tagattribalias">char</td><td class="tagattribname"><a class="targanchor" name="graph_character" id="graph_character">character</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">true を指定すると、画像はfont タグで 指定した色、影、袋文字の状態が、文字同様に表示されます。 そのため、true を設定すると画像の色情報は無視されます。 また、画像が影や袋文字である必要はありません。<br />
+graph タグが特殊記号の表示に使われることが多いことを 想定してデフォルトでは true になっているので、普通の 画像を表示する場合は注意してください。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="graph_alt" id="graph_alt">alt</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">代替文字</td><td class="tagattribdesc">メッセージ履歴に表示する、この画像の代替文字を指定します。 メッセージ履歴は文字情報しか表示できませんので、alt 属性に指定された文字が代わりに表示されます。<br />
 </tbody></table><div class="tagremarks">任意の画像をメッセージレイヤの文字位置に表示します。<br />
 通常は、フォントには含まれていないような特殊な記号を画像として用意し、それを表示させる用途に使用します。<br />
