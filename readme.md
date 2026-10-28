@@ -48,6 +48,7 @@ GOKI2を使ってすぐにゲーム開発を始めたい方は、[こちらの�
 * **`game_editor`**: SLG用エディタ（マップ・アイテム・キャラ編集）
 * **`convgs`**: シナリオテキスト → スクリプト変換
 * **`make`**: マスターデータ作成
+* **`krkr`**: /tools/krkr/kag3/kag3doc/index.htmlを一読してください
 * **`make_roman_table`**: タイピングゲーム用ローマ字対応表作成
 * **`make_word`**: タイピングゲーム用ワードデータ作成
 * **`make_cgmem`**: CG回想用データ生成
