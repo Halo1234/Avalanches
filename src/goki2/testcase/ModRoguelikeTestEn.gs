@@ -5,18 +5,18 @@
 
 @roguelike_option debug 
 ;@roguelike_option debug_dump_map
-@roguelike_option debug_show_enemies
+;@roguelike_option debug_show_enemies
 ;@roguelike_option debug_move_enemies
-@roguelike_option debug_mini_map_full_open
+;@roguelike_option debug_mini_map_full_open
 ;@roguelike_option debug_attack
 ;@roguelike_option debug_check_pos
 ;@roguelike_option debug_measure_time
 ;@roguelike_option debug_not_tracking_mode
 ;@roguelike_option debug_skip
-@roguelike_option debug_show_trap
+;@roguelike_option debug_show_trap
 ;@roguelike_option debug_trap
 ;@roguelike_option debug_show_transparent_character
-@roguelike_option debug_show_item_name
+;@roguelike_option debug_show_item_name
 ;@roguelike_option debug_message_to_console
 
 ; 効果音設定
@@ -139,7 +139,8 @@
 @roguelike_edit_item_name storage=RoguelikeEditItemNameBack.png left=0 top=200 margin_left=70 margin_top=30 character_left=50 character_top=20
 @roguelike_edit_item_name viewer_storage=RoguelikeItemNameBack.png viewer_left=0 viewer_top=80 viewer_margin_left=70 viewer_margin_top=30 viewer_margin_right=70 viewer_margin_bottom=30 viewer_font_height=32
 @roguelike_edit_item_name history_left=0 history_top=0 history_width=800 history_height=600 history_margin_left=40 history_margin_top=40 history_margin_right=40 history_margin_bottom=40 history_item_button_width=720 history_item_button_height=40 history_font_height=32
-@roguelike_edit_item_name kana_button_caption=Kana kana_button_left=650 kana_button_top=100 kana_button_width=80 kana_button_height=30
+@roguelike_edit_item_name kana_button_caption=Uppercase kana_button_left=650 kana_button_top=100 kana_button_width=80 kana_button_height=30
+@roguelike_edit_item_name hiragana_button_caption=Lowercase
 @roguelike_edit_item_name delete_button_caption=Delete delete_button_left=650 delete_button_top=140 delete_button_width=80 delete_button_height=30
 @roguelike_edit_item_name cancel_button_caption=Cancel cancel_button_left=650 cancel_button_top=180 cancel_button_width=80 cancel_button_height=30
 @roguelike_edit_item_name history_button_caption=History history_button_left=650 history_button_top=220 history_button_width=80 history_button_height=30
