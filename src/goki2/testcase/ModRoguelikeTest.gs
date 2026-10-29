@@ -7,16 +7,16 @@
 ;@roguelike_option debug_dump_map
 @roguelike_option debug_show_enemies
 ;@roguelike_option debug_move_enemies
-@roguelike_option debug_mini_map_full_open
+;@roguelike_option debug_mini_map_full_open
 ;@roguelike_option debug_attack
 ;@roguelike_option debug_check_pos
 ;@roguelike_option debug_measure_time
 ;@roguelike_option debug_not_tracking_mode
 ;@roguelike_option debug_skip
-@roguelike_option debug_show_trap
+;@roguelike_option debug_show_trap
 ;@roguelike_option debug_trap
 ;@roguelike_option debug_show_transparent_character
-@roguelike_option debug_show_item_name
+;@roguelike_option debug_show_item_name
 ;@roguelike_option debug_message_to_console
 
 ; 効果音設定
@@ -199,7 +199,9 @@
 ;@roguelike_character id=enemy4 name=スライム x=4 y=3
 ;@roguelike_character id=enemy5 name=ドラゴン x=5 y=5
 ;@roguelike_character id=enemy6 name=ドラゴン x=3 y=5
-;@roguelike_character id=warehouse name=案内員 x=1 y=3 target=*warehouse
+;@roguelike_character id=enemy8 name=スライム x=4 y=4
+;@roguelike_character id=enemy7 name=スライム x=3 y=4
+@roguelike_character id=warehouse name=案内員 x=1 y=3 target=*warehouse
 ; 部屋配置
 @roguelike_deploy_room name=0 x=0 y=0
 
