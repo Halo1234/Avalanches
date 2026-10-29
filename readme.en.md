@@ -47,7 +47,7 @@ Utilizing the tools within `/tools/` enables efficient game data creation and co
 * **`game_editor`**: SLG editor (map, item, character editing)
 * **`convgs`**: Scenario text -> Script conversion
 * **`make`**: Master data creation
-* **`krkr`**: Please take a look at /tools/krkr/kag3/kag3doc/index.html
+* **`krkr`**: If you're new to Kirikiri, please **read /tools/krkr/kag3/kag3doc/index.html**
 * **`make_roman_table`**: Creates romaji conversion tables for typing games
 * **`make_word`**: Creates word data for typing games
 * **`make_cgmem`**: Generates CG recall data
