@@ -10,7 +10,7 @@
 ;@roguelike_option debug_mini_map_full_open
 ;@roguelike_option debug_attack
 ;@roguelike_option debug_check_pos
-;@roguelike_option debug_measure_time
+@roguelike_option debug_measure_time
 ;@roguelike_option debug_not_tracking_mode
 ;@roguelike_option debug_skip
 ;@roguelike_option debug_show_trap
@@ -207,12 +207,12 @@
 
 ; アイテム所持（初期化後に行う事）
 @roguelike_character id=player add_item=大きなパン
-@roguelike_character id=player add_item=腹減らずの指輪
+@roguelike_character id=player add_item=腹減らずの指輪 equip
 @roguelike_character id=player add_item=薬草
 ;@roguelike_character id=player add_item=毒草
 ;@roguelike_character id=player add_item=倍速の草
-@roguelike_character id=player add_item=ドラゴンキラー correction_value=2
-@roguelike_character id=player add_item=鉄の盾
+@roguelike_character id=player add_item=ドラゴンキラー correction_value=2 equip
+@roguelike_character id=player add_item=鉄の盾 equip
 ;@roguelike_character id=player add_item=鑑定の巻物
 ;@roguelike_character id=player add_item=ダメージ罠設置
 ;@roguelike_character id=player add_item=敵増殖の罠設置
@@ -223,7 +223,7 @@
 ;@roguelike_character id=player add_item=鑑定の巻物
 ;@roguelike_character id=player add_item=毒草
 ;@roguelike_character id=player add_item=罠避けの指輪
-@roguelike_character id=player add_item=鉄の矢 correction_value=50
+@roguelike_character id=player add_item=鉄の矢 correction_value=50 equip
 ;@roguelike_character id=player add_item=聖域の巻物
 ;@roguelike_character id=player add_item=エニグマの紙 correction_value=5
 
