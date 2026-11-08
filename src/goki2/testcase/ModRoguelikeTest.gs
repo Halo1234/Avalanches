@@ -137,7 +137,7 @@
 
 ; アイテム名編集
 @roguelike_edit_item_name storage=RoguelikeEditItemNameBack.png left=0 top=200 margin_left=70 margin_top=30 character_left=50 character_top=20
-@roguelike_edit_item_name viewer_storage=RoguelikeItemNameBack.png viewer_left=0 viewer_top=80 viewer_margin_left=70 viewer_margin_top=30 viewer_margin_right=70 viewer_margin_bottom=30 viewer_font_height=32
+@roguelike_edit_item_name viewer_storage=RoguelikeItemNameBack.png viewer_left=0 viewer_top=80 viewer_margin_left=70 viewer_margin_top=30 viewer_margin_right=70 viewer_margin_bottom=30 viewer_font_height=32 viewer_edit_ghost_text=別名を入力してください。
 @roguelike_edit_item_name history_left=0 history_top=0 history_width=800 history_height=600 history_margin_left=40 history_margin_top=40 history_margin_right=40 history_margin_bottom=40 history_item_button_width=720 history_item_button_height=40 history_font_height=32
 @roguelike_edit_item_name kana_button_caption=全角カナ kana_button_left=650 kana_button_top=100 kana_button_width=80 kana_button_height=30
 @roguelike_edit_item_name hiragana_button_caption=全角かな
@@ -219,7 +219,7 @@
 ;@roguelike_character id=player add_item=混乱の杖 correction_value=10
 @roguelike_character id=player add_item=即死の杖 correction_value=5
 ;@roguelike_character id=player add_item=イオナズンの巻物
-;@roguelike_character id=player add_item=イオナズンの巻物
+@roguelike_character id=player add_item=イオナズンの巻物
 ;@roguelike_character id=player add_item=鑑定の巻物
 ;@roguelike_character id=player add_item=毒草
 ;@roguelike_character id=player add_item=罠避けの指輪
