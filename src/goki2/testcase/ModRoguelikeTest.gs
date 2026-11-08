@@ -223,7 +223,7 @@
 ;@roguelike_character id=player add_item=鑑定の巻物
 ;@roguelike_character id=player add_item=毒草
 ;@roguelike_character id=player add_item=罠避けの指輪
-@roguelike_character id=player add_item=鉄の矢 correction_value=50 equip
+@roguelike_character id=player add_item=鉄の矢 correction_value=10 equip
 ;@roguelike_character id=player add_item=聖域の巻物
 ;@roguelike_character id=player add_item=エニグマの紙 correction_value=5
 
