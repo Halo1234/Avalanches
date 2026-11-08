@@ -214,7 +214,7 @@
 @roguelike_character id=player add_item=ドラゴンキラー correction_value=2 equip
 @roguelike_character id=player add_item=鉄の盾 equip
 ;@roguelike_character id=player add_item=鑑定の巻物
-;@roguelike_character id=player add_item=ダメージ罠設置
+@roguelike_character id=player add_item=ダメージ罠設置
 ;@roguelike_character id=player add_item=敵増殖の罠設置
 ;@roguelike_character id=player add_item=混乱の杖 correction_value=10
 @roguelike_character id=player add_item=即死の杖 correction_value=5
