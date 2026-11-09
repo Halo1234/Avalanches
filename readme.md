@@ -8,7 +8,7 @@
 Avalanchesは吉里吉里2 / 吉里吉里Zをベースとした、ゲーム開発・運用を強力にサポートする統合開発環境です。SLGエディタ、シナリオコンバータ、タイピングゲーム用ツールなど、実践的なツール群を同梱しています。
 Avalanchesにはサポートする各ゲームのフレームワークとしてGOKI2が含まれます。
 GOKI2を使ってすぐにゲーム開発を始めたい方は、[こちらのリンク](https://github.com/Halo1234/Avalanches/releases/latest):rocket:から最新のパッケージをダウンロードしてください。
-吉里吉里を使うのが初めての場合はまず、**/tools/krkr/kag3/kag3doc/index.htmlを一読してください**
+吉里吉里を使うのが初めての場合はまず、**/tools/krkr/kag3/kag3doc/index.htmlのチュートリアルを一読してください**
 
 [最新リリースをチェックする](https://github.com/Halo1234/Avalanches/releases/latest)
 
@@ -49,7 +49,8 @@ GOKI2を使ってすぐにゲーム開発を始めたい方は、[こちらの�
 * **`game_editor`**: SLG用エディタ（マップ・アイテム・キャラ編集）
 * **`convgs`**: シナリオテキスト → スクリプト変換
 * **`make`**: マスターデータ作成
-* **`krkr`**: 吉里吉里が初めての方は、**/tools/krkr/kag3/kag3doc/index.htmlを一読してください**
+* **`krkr`**: 吉里吉里が初めての方は、**/tools/krkr/kag3/kag3doc/index.htmlのチュートリアルを一読してください**
+* **`krkrz`**: 吉里吉里Z本体です。
 * **`make_roman_table`**: タイピングゲーム用ローマ字対応表作成
 * **`make_word`**: タイピングゲーム用ワードデータ作成
 * **`make_cgmem`**: CG回想用データ生成

@@ -7,7 +7,7 @@
 Avalanches is an integrated development environment based on KiriKiri2 / KiriKiriZ that strongly supports game development and operations.
 It includes practical tools such as an SLG editor, a scenario converter, and tools for typing games. Avalanches also includes GOKI2 as the framework for the games it supports.
 If you want to start game development immediately using GOKI2, please download the latest package from [this link](https://github.com/Halo1234/Avalanches/releases/latest).🚀
-If it's your first time using Kirikiri, first, please read **/tools/krkr/kag3/kag3doc/index.html**
+If it's your first time using Kirikiri, first, **please read through the tutorial at /tools/krkr/kag3/kag3doc/index.html**
 
 [Check the latest release](https://github.com/Halo1234/Avalanches/releases/latest)
 
@@ -48,7 +48,8 @@ Utilizing the tools within `/tools/` enables efficient game data creation and co
 * **`game_editor`**: SLG editor (map, item, character editing)
 * **`convgs`**: Scenario text -> Script conversion
 * **`make`**: Master data creation
-* **`krkr`**: If you're new to Kirikiri, please **read /tools/krkr/kag3/kag3doc/index.html**
+* **`krkr`**: If you're new to Kirikiri, please **take a look at the tutorial at /tools/krkr/kag3/kag3doc/index.html**.
+* **`krkrz`**: This is the Kirikiri Z main program.
 * **`make_roman_table`**: Creates romaji conversion tables for typing games
 * **`make_word`**: Creates word data for typing games
 * **`make_cgmem`**: Generates CG recall data
