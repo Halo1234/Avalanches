@@ -226,7 +226,7 @@
 @roguelike_character id=player add_item=鉄の矢 correction_value=10 equip
 ;@roguelike_character id=player add_item=聖域の巻物
 ;@roguelike_character id=player add_item=エニグマの紙 correction_value=5
-@roguelike_character id=player add_item=出せないアイテム correction_value=5
+@roguelike_character id=player add_item=鑑定の壺 correction_value=5
 
 @roguelike_character id=player add_money=10000
 
