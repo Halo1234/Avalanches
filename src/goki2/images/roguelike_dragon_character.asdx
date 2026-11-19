@@ -20,6 +20,10 @@
 @s
 
 *front
+*front_double_speed
+*front_double_speed_armor
+*front_double_speed_weapon
+*front_double_speed_weapon_armor
 @cell x=128 y=128
 @s
 
@@ -46,6 +50,10 @@
 @s
 
 *back
+*back_double_speed
+*back_double_speed_armor
+*back_double_speed_weapon
+*back_double_speed_weapon_armor
 @cell x=128 y=128
 @s
 
@@ -72,6 +80,10 @@
 @s
 
 *left
+*left_double_speed
+*left_double_speed_armor
+*left_double_speed_weapon
+*left_double_speed_weapon_armor
 @cell x=128 y=128
 @s
 
@@ -98,6 +110,10 @@
 @s
 
 *right
+*right_double_speed
+*right_double_speed_armor
+*right_double_speed_weapon
+*right_double_speed_weapon_armor
 @cell x=128 y=128
 @s
 
@@ -124,6 +140,10 @@
 @s
 
 *left_front
+*left_front_double_speed
+*left_front_double_speed_armor
+*left_front_double_speed_weapon
+*left_front_double_speed_weapon_armor
 @cell x=128 y=128
 @s
 
@@ -150,6 +170,10 @@
 @s
 
 *right_front
+*right_front_double_speed
+*right_front_double_speed_armor
+*right_front_double_speed_weapon
+*right_front_double_speed_weapon_armor
 @cell x=128 y=128
 @s
 
@@ -176,6 +200,10 @@
 @s
 
 *left_back
+*left_back_double_speed
+*left_back_double_speed_armor
+*left_back_double_speed_weapon
+*left_back_double_speed_weapon_armor
 @cell x=128 y=128
 @s
 
@@ -202,6 +230,10 @@
 @s
 
 *right_back
+*right_back_double_speed
+*right_back_double_speed_armor
+*right_back_double_speed_weapon
+*right_back_double_speed_weapon_armor
 @cell x=128 y=128
 @s
 
