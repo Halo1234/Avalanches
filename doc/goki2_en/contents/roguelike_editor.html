@@ -101,6 +101,12 @@ This is the label name used to execute animations implemented in the character's
 Specifying [dir] in this value replaces it with the character's direction.<br />
 For example, specifying "*[dir]_eat" when the character is facing front will execute "*front_eat".<br />
 <br />
+The damage you take is received by the character using the item (usually the player).<br />
+The damage you deal hits an enemy one space in the direction the character using the item is facing.<br />
+If you throw it, both characters that get hit take damage, but if you specify the amount of damage taken, you won't gain any experience.<br />
+If you specify the damage dealt, you will gain experience.<br />
+I wrote that the range is 1 square, but actually, if you check the 'Can attack from a distance when used' box in the 'Settings 4' tab, you can specify the range.<br />
+<br />
 <br /><div class="descimg" style="text-align: left;"><img src="SpecialEffect.png" style="width: 50%; height: auto;" alt="SpecialEffect.png" /><br />
 Special abilities include area attacks (all-target attacks), where you can specify an animation to play over damaged enemies.<br />
 If you create and assign an explosion animation, for example, the specified animation will play over the enemies taking damage.<br />
