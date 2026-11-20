@@ -347,6 +347,7 @@
 @roguelike_character id=warehouse name=案内員 x=4 y=1 target=*warehouse
 @roguelike_map_event x=9 y=1 target=*go_back_over500
 
+; 宝箱を持ち帰った実績があれば第二ダンジョンを解放する
 @roguelike_has_key_item name=宝箱 target=*2nd_dungeon
 
 *label|初期部屋
