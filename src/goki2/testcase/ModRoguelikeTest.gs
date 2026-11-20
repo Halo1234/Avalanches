@@ -3,7 +3,7 @@
 *label|
 @history enabled=false
 
-@roguelike_option debug 
+;@roguelike_option debug 
 ;@roguelike_option debug_dump_map
 @roguelike_option debug_show_enemies
 ;@roguelike_option debug_move_enemies
@@ -61,6 +61,7 @@
 @roguelike_option return_trip
 @roguelike_option shop_rate=10
 @roguelike_option not_trap_triggered=20
+@roguelike_option key_item_name=宝箱
 @roguelike_option warning_turn=1000
 
 ; 部屋の読み込み
@@ -250,7 +251,7 @@
 
 @eval exp="f.label = '*go_back_over2500'"
 
-@roguelike_option clear
+@roguelike initialize
 @roguelike_deploy_room name=0 x=0 y=0
 @roguelike_character id=player x=1 y=2
 @roguelike_option x=2 y=1 stairs_down
@@ -271,7 +272,7 @@
 @roguelike hide
 @wait_roguelike_hide
 
-@roguelike_option clear
+@roguelike initialize
 @roguelike_deploy_room name=0 x=0 y=0
 @roguelike_character id=player x=1 y=2
 @roguelike_option x=2 y=1 stairs_down
@@ -292,7 +293,7 @@
 
 @eval exp="f.label = '*go_back_over500'"
 
-@roguelike_option clear
+@roguelike initialize
 @roguelike_deploy_room name=0 x=0 y=0
 @roguelike_character id=player x=1 y=2
 @roguelike_option x=2 y=1 stairs_down
@@ -313,7 +314,7 @@
 @roguelike hide
 @wait_roguelike_hide
 
-@roguelike_option clear
+@roguelike initialize
 @roguelike_deploy_room name=0 x=0 y=0
 @roguelike_character id=player x=1 y=2
 @roguelike_option x=2 y=1 stairs_down
@@ -335,9 +336,19 @@
 @roguelike_option clear
 @roguelike_deploy_room name=1 x=0 y=0
 @roguelike_character id=player x=8 y=1
-@roguelike_character id=guide name=案内員 x=2 y=1 target=*guide
 @roguelike_character id=warehouse name=案内員 x=4 y=1 target=*warehouse
 @roguelike_map_event x=9 y=1 target=*go_back_over500
+
+@roguelike_has_key_item name=宝箱 target=*2nd_dungeon
+
+*label|初期部屋
+@roguelike show
+@wait_roguelike_show
+@roguelike start
+@s
+
+*2nd_dungeon
+@roguelike_character id=guide name=案内員 x=2 y=1 target=*guide
 
 *label|初期部屋
 @roguelike show
@@ -359,7 +370,24 @@
 @roguelike hide
 @wait_roguelike_hide
 
+; 基本設定
 @roguelike_option max_floor=99
+@roguelike_option room_count_min=4 room_count_max=8
+@roguelike_option item_count_min=4 item_count_max=8
+@roguelike_option money_count_min=1 money_count_max=3
+@roguelike_option enemy_count_min=4 enemy_count_max=8
+@roguelike_option trap_lower_floor=1 trap_upper_floor=99 trap_min=1 trap_max=3
+@roguelike_option enemy_sleeping=20
+@roguelike_option enemy_wakeup=20
+@roguelike_option monster_house_rate=10
+@roguelike_option go_back_target=*go_back
+@roguelike_option gameover_target=*gameover
+@roguelike_option return_trip
+@roguelike_option shop_rate=10
+@roguelike_option not_trap_triggered=20
+@roguelike_option key_item_name=大きな宝箱
+@roguelike_option warning_turn=1000
+
 @roguelike next_floor
 
 *label|不思議のダンジョン
