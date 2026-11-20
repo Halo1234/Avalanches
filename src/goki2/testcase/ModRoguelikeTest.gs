@@ -251,7 +251,9 @@
 
 @eval exp="f.label = '*go_back_over2500'"
 
+; 初期化
 @roguelike initialize
+
 @roguelike_deploy_room name=0 x=0 y=0
 @roguelike_character id=player x=1 y=2
 @roguelike_option x=2 y=1 stairs_down
@@ -272,7 +274,9 @@
 @roguelike hide
 @wait_roguelike_hide
 
+; 初期化
 @roguelike initialize
+
 @roguelike_deploy_room name=0 x=0 y=0
 @roguelike_character id=player x=1 y=2
 @roguelike_option x=2 y=1 stairs_down
@@ -293,7 +297,9 @@
 
 @eval exp="f.label = '*go_back_over500'"
 
+; 初期化
 @roguelike initialize
+
 @roguelike_deploy_room name=0 x=0 y=0
 @roguelike_character id=player x=1 y=2
 @roguelike_option x=2 y=1 stairs_down
@@ -314,7 +320,9 @@
 @roguelike hide
 @wait_roguelike_hide
 
+; 初期化
 @roguelike initialize
+
 @roguelike_deploy_room name=0 x=0 y=0
 @roguelike_character id=player x=1 y=2
 @roguelike_option x=2 y=1 stairs_down
