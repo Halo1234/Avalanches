@@ -385,8 +385,8 @@ Manages control functions such as show/hide and start/stop for the roguelike gam
     <tr><th>Alias</th><th>Attribute</th><th>Required?</th><th>Value</th><th>Description</th></tr>
   </thead>
   <tbody>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_storage" id="roguelike_load_character_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">File name</td><td class="tagattribdesc">Specifies the file name for character data.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_image_storage" id="roguelike_load_character_image_storage">image_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">File name</td><td class="tagattribdesc">Specifies the image file name for the character.<br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_storage" id="roguelike_load_character_storage">storage</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">File name</td><td class="tagattribdesc">Specifies the file name for character data.<br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_image_storage" id="roguelike_load_character_image_storage">image_storage</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">File name</td><td class="tagattribdesc">Specifies the image file name for the character.<br />
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_asd" id="roguelike_load_character_asd">asd</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">File name</td><td class="tagattribdesc">Specifies the animation file name (*.asd/*.asdx) for the character.<br />
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_player" id="roguelike_load_character_player">player</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">This value is true for player-controlled characters.<br />
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_boss" id="roguelike_load_character_boss">boss</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">This value is true for boss characters.<br />
@@ -460,7 +460,7 @@ So, make sure to set [roguelike_option max_floor] before using this tag.<br />
     <tr><th>Alias</th><th>Attribute</th><th>Required?</th><th>Value</th><th>Description</th></tr>
   </thead>
   <tbody>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_character_id" id="roguelike_character_id">id</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Character ID</td><td class="tagattribdesc">Specifies the ID of the character to control.<br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_character_id" id="roguelike_character_id">id</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Character ID</td><td class="tagattribdesc">Specifies the ID of the character to control.<br />
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_character_name" id="roguelike_character_name">name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Character name</td><td class="tagattribdesc">Specifies the name of the character to control.<br />
 This value specifies the character name (the name defined in the editor) loaded with roguelike_load_character.<br />
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_character_x" id="roguelike_character_x">x</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Grid units</td><td class="tagattribdesc">Specifies the position to place the character.<br />
@@ -1151,11 +1151,7 @@ Sets the status configuration.<br />
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_show_hide_type" id="roguelike_yesno_show_hide_type">show_hide_type</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">fade or vista</td><td class="tagattribdesc">Specifies the show/hide type for the Yes/No background.<br />
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_show_hide_time" id="roguelike_yesno_show_hide_time">show_hide_time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">milliseconds</td><td class="tagattribdesc">Specifies the time taken to show/hide the Yes/No background (in milliseconds).<br />
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_yes_storage" id="roguelike_yesno_yes_storage">yes_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">file name</td><td class="tagattribdesc">Specifies the image file name for the Yes button.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_yes_storage" id="roguelike_yesno_yes_storage">yes_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">The implementation checks for this attribute before applying the Yes button image setting.<br />
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_yes_target" id="roguelike_yesno_yes_target">yes_target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Label name</td><td class="tagattribdesc">Specifies the label to execute when the Yes button is pressed.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_no_storage" id="roguelike_yesno_no_storage">no_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">file name</td><td class="tagattribdesc">Specifies the image file name for the No button.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_no_storage" id="roguelike_yesno_no_storage">no_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">The implementation checks for this attribute before applying the No button image setting.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_no_target" id="roguelike_yesno_no_target">no_target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Label name</td><td class="tagattribdesc">Specifies the label to execute when the No button is pressed.<br />
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_yes_left" id="roguelike_yesno_yes_left">yes_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">in pixels</td><td class="tagattribdesc">Specifies the position of the Yes button.<br />
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_yes_top" id="roguelike_yesno_yes_top">yes_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">in pixels</td><td class="tagattribdesc">Specifies the position of the Yes button.<br />
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_yes_center_left" id="roguelike_yesno_yes_center_left">yes_center_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">in pixels</td><td class="tagattribdesc">Specifies the center position of the Yes button.<br />
@@ -1168,6 +1164,8 @@ Sets the status configuration.<br />
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_yes_shadow_color" id="roguelike_yesno_yes_shadow_color">yes_shadow_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">Specifies the shadow color for the Yes button label.<br />
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_yes_edge_color" id="roguelike_yesno_yes_edge_color">yes_edge_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">Specifies the edge color for the Yes button label.<br />
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_yes_caption" id="roguelike_yesno_yes_caption">yes_caption</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Caption</td><td class="tagattribdesc">Specifies the caption for the Yes button.<br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_no_storage" id="roguelike_yesno_no_storage">no_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">file name</td><td class="tagattribdesc">Specifies the image file name for the No button.<br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_no_target" id="roguelike_yesno_no_target">no_target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Label name</td><td class="tagattribdesc">Specifies the label to execute when the No button is pressed.<br />
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_no_left" id="roguelike_yesno_no_left">no_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">in pixels</td><td class="tagattribdesc">Specifies the position of the No button.<br />
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_no_top" id="roguelike_yesno_no_top">no_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">in pixels</td><td class="tagattribdesc">Specifies the position of the No button.<br />
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_no_center_left" id="roguelike_yesno_no_center_left">no_center_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">in pixels</td><td class="tagattribdesc">Specifies the center position of the No button.<br />
@@ -1625,7 +1623,7 @@ Saving the current state.<br />
 When you come back, it's a good idea to auto-save like this before showing the initial room.<br />
 <div class="tagexample"><code class="bq"><span class="weak">Example:</span><br />
 ; Always place a save-possible label before display<br />
-*label|initial_room<br />
+*force_store|initial_room<br />
 @roguelike_save<br /><br />
 ; Display initial room<br />
 @roguelike show<br />
@@ -1723,6 +1721,7 @@ If you have the key item, the specified scenario will be executed.<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Back to genre/tag list</span></a></div>
 </div>
 </div></div>
+
 <h1><a name="roguelike_money" id="roguelike_money" class="targanchor"><span class="b">roguelike_money</span> (no alias)</a></h1>
 <div class="taggenre">Money Icon</div>
 <div class="para"><div>
@@ -1731,7 +1730,7 @@ If you have the key item, the specified scenario will be executed.<br />
 <tr><th>Alias</th><th>Attribute</th><th>Required?</th><th>Value</th><th>Description</th></tr>
 </thead>
 <tbody>
-Does nothing if nothing has been taken.
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="roguelike_storage" id="roguelike_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">image file name</td><td class="tagattribdesc">Specify an image for the money.<br />
 </tbody>
 </table>
 <div class="tagremarks">

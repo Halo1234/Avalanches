@@ -384,8 +384,8 @@ roguelike_load_roomタグで初期部屋を定義してから初期化してください。<br />
     <tr><th>別名</th><th>属性</th><th>必須?</th><th>値</th><th>説明</th></tr>
   </thead>
   <tbody>
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_storage" id="roguelike_load_character_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">キャラクターデータのファイル名を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_image_storage" id="roguelike_load_character_image_storage">image_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">キャラクターの画像ファイル名を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_storage" id="roguelike_load_character_storage">storage</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">キャラクターデータのファイル名を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_image_storage" id="roguelike_load_character_image_storage">image_storage</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">キャラクターの画像ファイル名を指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_asd" id="roguelike_load_character_asd">asd</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">キャラクターのアニメーションファイル名(*.asd/*.asdx)を指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_player" id="roguelike_load_character_player">player</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">ユーザーが操作するキャラクターの場合、この値は true となります。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_load_character_boss" id="roguelike_load_character_boss">boss</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">ボスキャラクターの場合、この値は true となります。<br />
@@ -473,7 +473,7 @@ roguelike_optionで指定するボス部屋は、ここで付けた名前を指定してください。
     <tr><th>別名</th><th>属性</th><th>必須?</th><th>値</th><th>説明</th></tr>
   </thead>
   <tbody>
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_character_id" id="roguelike_character_id">id</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">キャラクターID</td><td class="tagattribdesc">操作するキャラクターのIDを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_character_id" id="roguelike_character_id">id</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">キャラクターID</td><td class="tagattribdesc">操作するキャラクターのIDを指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_character_name" id="roguelike_character_name">name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">キャラクター名</td><td class="tagattribdesc">操作するキャラクターの名前を指定します。<br />
 この値はroguelike_load_characterで読み込んだキャラクターの名前を（エディタで指定した名前）指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_character_x" id="roguelike_character_x">x</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">グリッド単位</td><td class="tagattribdesc">キャラクターを配置する位置を指定します。<br />
@@ -1188,11 +1188,7 @@ roguelikeタグにnext_floor属性を付けて呼び出すと階層移動します。
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_show_hide_type" id="roguelike_yesno_show_hide_type">show_hide_type</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">fade or vista</td><td class="tagattribdesc">Yes/No背景の表示/非表示タイプを指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_show_hide_time" id="roguelike_yesno_show_hide_time">show_hide_time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ミリ秒</td><td class="tagattribdesc">Yes/No背景の表示/非表示にかける時間をミリ秒単位で指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_yes_storage" id="roguelike_yesno_yes_storage">yes_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">Yesボタンの画像ファイル名を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_yes_storage" id="roguelike_yesno_yes_storage">yes_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Yesボタンの画像設定を適用する条件判定に使用されます。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_yes_target" id="roguelike_yesno_yes_target">yes_target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ラベル名</td><td class="tagattribdesc">Yesボタンを押した時に実行するラベル名を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_no_storage" id="roguelike_yesno_no_storage">no_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">Noボタンの画像ファイル名を指定します。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_no_storage" id="roguelike_yesno_no_storage">no_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Noボタンの画像設定を適用する条件判定に使用されます。<br />
-<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_no_target" id="roguelike_yesno_no_target">no_target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ラベル名</td><td class="tagattribdesc">Noボタンを押した時に実行するラベル名を指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_yes_left" id="roguelike_yesno_yes_left">yes_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">Yesボタンの位置を指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_yes_top" id="roguelike_yesno_yes_top">yes_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">Yesボタンの位置を指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_yes_center_left" id="roguelike_yesno_yes_center_left">yes_center_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">Yesボタンの中央位置を指定します。<br />
@@ -1205,6 +1201,8 @@ roguelikeタグにnext_floor属性を付けて呼び出すと階層移動します。
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_yes_shadow_color" id="roguelike_yesno_yes_shadow_color">yes_shadow_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">Yesボタンラベルのシャドウカラーを指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_yes_edge_color" id="roguelike_yesno_yes_edge_color">yes_edge_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">Yesボタンラベルのエッジカラーを指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_yes_caption" id="roguelike_yesno_yes_caption">yes_caption</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">キャプション</td><td class="tagattribdesc">Yesボタンのキャプションを指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_no_storage" id="roguelike_yesno_no_storage">no_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ファイル名</td><td class="tagattribdesc">Noボタンの画像ファイル名を指定します。<br />
+<tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_no_target" id="roguelike_yesno_no_target">no_target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ラベル名</td><td class="tagattribdesc">Noボタンを押した時に実行するラベル名を指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_no_left" id="roguelike_yesno_no_left">no_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">Noボタンの位置を指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_no_top" id="roguelike_yesno_no_top">no_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">Noボタンの位置を指定します。<br />
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_yesno_no_center_left" id="roguelike_yesno_no_center_left">no_center_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ピクセル単位</td><td class="tagattribdesc">Noボタンの中央位置を指定します。<br />
@@ -1673,7 +1671,7 @@ Yes/Noメニューの設定を行います。<br />
 戻ってきた時は初期部屋表示前に以下のようにオートセーブするのがよいでしょう。<br />
 <div class="tagexample"><code class="bq"><span class="weak">例:</span><br />
 ; 表示前は必ずセーブ可能ラベルを配置するようにする<br />
-*label|初期部屋<br />
+*force_store|初期部屋<br />
 @roguelike_save<br />
 <br />
 ; 初期部屋表示<br />
@@ -1792,7 +1790,6 @@ Yes/Noメニューの設定を行います。<br />
     <tr><th>別名</th><th>属性</th><th>必須?</th><th>値</th><th>説明</th></tr>
   </thead>
   <tbody>
-持ち帰った事がなければ何もしない。
 <tr><td class="tagattribalias">なし</td><td class="tagattribname"><a class="targanchor" name="roguelike_storage" id="roguelike_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">画像ファイル名</td><td class="tagattribdesc">お金の画像を指定します。<br />
   </tbody>
 </table>
