@@ -251,7 +251,7 @@
 
 @eval exp="f.label = '*go_back_over2500'"
 
-; 初期化
+; 初期化（戻ったら必ず初期化すること）
 @roguelike initialize
 
 @roguelike_deploy_room name=0 x=0 y=0
@@ -274,7 +274,7 @@
 @roguelike hide
 @wait_roguelike_hide
 
-; 初期化
+; 初期化（戻ったら必ず初期化すること）
 @roguelike initialize
 
 @roguelike_deploy_room name=0 x=0 y=0
@@ -297,7 +297,7 @@
 
 @eval exp="f.label = '*go_back_over500'"
 
-; 初期化
+; 初期化（戻ったら必ず初期化すること）
 @roguelike initialize
 
 @roguelike_deploy_room name=0 x=0 y=0
@@ -320,7 +320,7 @@
 @roguelike hide
 @wait_roguelike_hide
 
-; 初期化
+; 初期化（戻ったら必ず初期化すること）
 @roguelike initialize
 
 @roguelike_deploy_room name=0 x=0 y=0
