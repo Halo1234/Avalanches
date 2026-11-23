@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="Shift_JIS"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
@@ -82,18 +82,18 @@ Basically, it would be a good idea to create a scenario in the following format.
 <div class="tagremarks">Change the character output destination to ModADV.<br />
 Text processing ch/ruby/r/p/er/cm tags are redirected to<br />
 ch_mod_adv/ruby_mod_adv/r_mod_adv/p_mod_adv/erase_message/clear_message_layer.<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div>
 
 <h1><a name="not_using_mod_adv" id="not_using_mod_adv" class="targanchor"><span class="b">not_using_mod_adv</span>(No alias)</a></h1>
 <div class="taggenre">Changing the character output destination</div>
 <div class="tagremarks">Resets the character output destination to the default.<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div>
 
 <h1><a name="make_character" id="make_character" class="targanchor"><span class="b">make_character</span>(No alias)</a></h1>
 <div class="taggenre">Character operation</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of make_character attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="make_character_name" id="make_character_name">name</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Character name</td><td class="tagattribdesc">Specify the character name to create or change settings.<br />
-The character name specified here will be used as the tag name.<br />
+The character name specified here will be used as the tag name.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="make_character_mob" id="make_character_mob">mob</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies whether the character is a mob.<br />
 If you specify true, it becomes a mob character.<br />
 Mob characters are valid characters only within the defined scenario file.<br />
@@ -113,39 +113,39 @@ Default is true.</td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="make_character_voice" id="make_character_voice">voice</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies whether it has a voice.<br />
 Specify true if it has a voice.<br />
 Default is true.</td></tr>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="make_character_message" id="make_character_message">message</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Message layer number</td><td class="tagattribdesc">Specifies the message layer number used by the character.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="make_character_voice_buffer" id="make_character_voice_buffer">voice_buffer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Voice buffer number</td><td class="tagattribdesc">Specifies the voice buffer number used by the character.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="make_character_message" id="make_character_message">message</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Message layer number</td><td class="tagattribdesc">Specifies the message layer number used by the character.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="make_character_voice_buffer" id="make_character_voice_buffer">voice_buffer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Voice buffer number</td><td class="tagattribdesc">Specifies the voice buffer number used by the character.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="make_character_history_voice" id="make_character_history_voice">history_voice</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If you specify true, the voice playback action will be added to the history.<br />
-Default is true.<br />
+Default is true.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="make_character_sub_directory_name" id="make_character_sub_directory_name">sub_directory_name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Sub directory name</td><td class="tagattribdesc">Specify the image subdirectory name.<br />
 If the image is in /sub_directory/A/image001.png, specify sub_directory.<br />
 Specify this attribute together with part_of_directory_path.<br />
-When specifying this attribute, it is mandatory to use it together with the make tool.<br />
+When specifying this attribute, it is mandatory to use it together with the make tool.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="make_character_part_of_direcotry_path" id="make_character_part_of_direcotry_path">part_of_directory_path</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Part of path name</td><td class="tagattribdesc">Specifies the partial path name of the image.<br />
 Specify A if the image is in /sub_directory/A/image001.png.<br />
 Specify this attribute together with sub_directory_name.<br />
-When specifying this attribute, it is mandatory to use it together with the make tool.<br />
+When specifying this attribute, it is mandatory to use it together with the make tool.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="make_character_voice_sub_directory_path" id="make_character_voice_sub_directory_path">voice_sub_directory_name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Sub directory name</td><td class="tagattribdesc">Specify the voice subdirectory name.<br />
 If the voice is located in /sub_directory/Scene001/Voice001.ogg, specify sub_directory.<br />
 The Scene001 part specifies the name of the scenario file being executed (without extension).<br />
-When specifying this attribute, it is mandatory to use it together with the make tool.<br />
+When specifying this attribute, it is mandatory to use it together with the make tool.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="make_character_color" id="make_character_color">color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">Specifies the color of message text.<br />
-The default is message0's text color.<br />
+The default is message0's text color.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="make_character_shadow_color" id="make_character_shadow_color">shadow_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">Specifies the shadow color of the message text.<br />
-Default is message0 shadow color.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="make_character_edge_color" id="make_character_edge_color">edge_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">Specifies the edge color of the message text.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="make_character_name_layer_storage" id="make_character_name_layer_storage">name_layer_storage</a></td><td class="tagattribrequired">None</td><td class="tagattribformat">Image file name</td><td class="tagattribdesc">Specifies the background image for the name display layer.<br />
+Default is message0 shadow color.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="make_character_edge_color" id="make_character_edge_color">edge_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">Specifies the edge color of the message text.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="make_character_name_layer_storage" id="make_character_name_layer_storage">name_layer_storage</a></td><td class="tagattribrequired">None</td><td class="tagattribformat">Image file name</td><td class="tagattribdesc">Specifies the background image for the name display layer.<br /></td></tr>
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="make_character_use_name_layer" id="make_character_use_name_layer">use_name_layer</a></td><td class="tagattribrequired">None</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If true is specified, this character will display the name display layer.<br />
-Default is message0 edge color.<br />
+Default is message0 edge color.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="make_character_history_color" id="make_character_history_color">history_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">Specifies the history text color.<br />
-The default is the history layer text color.<br />
+The default is the history layer text color.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="make_character_history_shadow_color" id="make_character_history_shadow_color">history_shadow_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">Specifies the shadow color for history text.<br />
-The default is the history layer shadow color.<br />
+The default is the history layer shadow color.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="make_character_history_edge_color" id="make_character_history_edge_color">history_edge_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">Specifies the edge color of history text.<br />
-Default is history layer edge color.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="make_character_history_icon" id="make_character_history_icon">history_icon</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the icon to display in the history layer.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="make_character_history_icon_left" id="make_character_history_icon_left">history_icon_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Icon pos</td><td class="tagattribdesc">Specifies the left position of the icon displayed in the history layer.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="make_character_history_icon_top" id="make_character_history_icon_top">history_icon_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Icon pos</td><td class="tagattribdesc">Specify the top position of the icon displayed in the history layer.<br />
+Default is history layer edge color.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="make_character_history_icon" id="make_character_history_icon">history_icon</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the icon to display in the history layer.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="make_character_history_icon_left" id="make_character_history_icon_left">history_icon_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Icon pos</td><td class="tagattribdesc">Specifies the left position of the icon displayed in the history layer.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="make_character_history_icon_top" id="make_character_history_icon_top">history_icon_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Icon pos</td><td class="tagattribdesc">Specify the top position of the icon displayed in the history layer.<br /></td></tr>
 </tbody></table><div class="tagremarks">You can create characters and change settings.<br />
 </div>
 <div class="tagexample"><code class="bq"><span class="weak">Exsample:</span><br />
@@ -158,7 +158,7 @@ Default is history layer edge color.<br />
 <div class="taggenre">Create time zone</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of make_time_zone attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="make_time_zone_name" id="make_time_zone_name">name</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Time zone name</td><td class="tagattribdesc">Specify the name of the time zone to create.<br />
-The time zone name specified here will be used as the tag name.<br />
+The time zone name specified here will be used as the tag name.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="make_time_zone_suffix" id="make_time_zone_suffix">suffix</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Time zone difference suffix</td><td class="tagattribdesc">Specify the suffix of the file name to be used as the time difference.<br /></td></tr>
 </tbody></table><div class="tagremarks">Create a time zone.<br />
 If you use a time zone tag, the time zone difference will be applied.<br />
@@ -176,7 +176,7 @@ If you use a time zone tag, the time zone difference will be applied.<br />
 <div class="taggenre">background creation</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of make_stage attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="make_stage_name" id="make_stage_name">name</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Background name</td><td class="tagattribdesc">Specify the background name to create.<br />
-The background name specified here will be used as the tag name.<br />
+The background name specified here will be used as the tag name.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="make_stage_storage" id="make_stage_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the file name of the image to be used as the background.<br /></td></tr>
 </tbody></table><div class="tagremarks">Create a background.<br />
 The file name specified with this tag will be displayed as the background name with the specified tag.<br />
@@ -188,7 +188,7 @@ If there is a time zone difference, the suffix specified in make_time_zone is al
 <div class="taggenre">Time zone specification</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of set_timezone attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="set_timezone_name" id="set_timezone_name">name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Time zone name</td><td class="tagattribdesc">Specify the time zone name to set.<br />
-The time zone name that can be specified here is the name specified with the make_time_zone tag.<br />
+The time zone name that can be specified here is the name specified with the make_time_zone tag.<br /></td></tr>
 </tbody></table><div class="tagremarks">Specify the time zone.<br />
 This tag is rarely used directly.<br />
 </div>
@@ -205,7 +205,7 @@ This tag is rarely used directly.<br />
 <h1><a name="ch_mod_adv" id="ch_mod_adv" class="targanchor"><span class="b">ch_mod_adv</span>(ch)</a></h1>
 <div class="taggenre">Output character</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of ch_mod_adv attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ch_mod_adv_text" id="ch_mod_adv_text">text</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">text</td><td class="tagattribdesc">Specify the string to display.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ch_mod_adv_text" id="ch_mod_adv_text">text</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">text</td><td class="tagattribdesc">Specify the string to display.<br /></td></tr>
 </tbody></table><div class="tagremarks">Outputs characters.<br />
 This tag is typically used as a redirect destination for the ch tag using the using_mod_adv tag.<br />
 You will never use this tag directly.<br />
@@ -215,42 +215,42 @@ You will never use this tag directly.<br />
 <h1><a name="r_mod_adv" id="r_mod_adv" class="targanchor"><span class="b">r_mod_adv</span>(r)</a></h1>
 <div class="taggenre">Line feed output</div>
 <tbody>
-</tbody></table><div class="tagremarks">Outputs a newline.<br />
+</tbody><div class="tagremarks">Outputs a newline.<br />
 You will never use this tag directly.<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div>
 
 <h1><a name="p_mod_adv" id="p_mod_adv" class="targanchor"><span class="b">p_mod_adv</span>(p)</a></h1>
 <div class="taggenre">Page break output</div>
 <tbody>
-</tbody></table><div class="tagremarks">Outputs a page break.<br />
+</tbody><div class="tagremarks">Outputs a page break.<br />
 You will never use this tag directly.<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div>
 
 <h1><a name="all_free_characters" id="all_free_characters" class="targanchor"><span class="b">all_free_characters</span>(No alias)</a></h1>
 <div class="taggenre">All character layers released</div>
 <tbody>
-</tbody></table><div class="tagremarks">Release all character layers.<br />
+</tbody><div class="tagremarks">Release all character layers.<br />
 You will never use this tag directly.<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div>
 
 <h1><a name="character" id="character" class="targanchor"><span class="b">character</span>(name specified in make_character)</a></h1>
 <div class="taggenre">Character operation</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of character attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="character_name" id="character_name">name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Character name</td><td class="tagattribdesc">Specify the character name to operate.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="character_name" id="character_name">name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Character name</td><td class="tagattribdesc">Specify the character name to operate.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="character_voice" id="character_voice">voice</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If you specify true, the voice will be played.<br />
-If you specify false, the voice will not be played.<br />
+If you specify false, the voice will not be played.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="character_voice_number" id="character_voice_number">voice_number</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">buffer number</td><td class="tagattribdesc">Specify the voice number.<br />
-Normally, a sequential number that is automatically counted is used, but you can override the number by specifying a number here.<br />
+Normally, a sequential number that is automatically counted is used, but you can override the number by specifying a number here.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="character_visible" id="character_visible">visible</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If true, a standing picture will be displayed.<br />
-If false, the standing picture will be hidden.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="character_storage" id="character_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the file name of the standing picture you want to display.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="character_asd" id="character_asd">asd</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">asd storage name</td><td class="tagattribdesc">Specify the asd file name you want to apply.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="character_target" id="character_target">target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Label name</td><td class="tagattribdesc">Specify the label name in the asd file you want to run.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="character_time" id="character_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ms</td><td class="tagattribdesc">Specify the time in milliseconds for the transition.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="character_vague" id="character_vague">vague</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0-255</td><td class="tagattribdesc">Specifies the vague value for the transition.<br />
+If false, the standing picture will be hidden.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="character_storage" id="character_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the file name of the standing picture you want to display.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="character_asd" id="character_asd">asd</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">asd storage name</td><td class="tagattribdesc">Specify the asd file name you want to apply.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="character_target" id="character_target">target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Label name</td><td class="tagattribdesc">Specify the label name in the asd file you want to run.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="character_time" id="character_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">ms</td><td class="tagattribdesc">Specify the time in milliseconds for the transition.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="character_vague" id="character_vague">vague</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0-255</td><td class="tagattribdesc">Specifies the vague value for the transition.<br /></td></tr>
 </tbody></table><div class="tagremarks">Control your character.<br />
 You will never use this tag directly.<br />
 Normally, please use the character-name tag.<br />
@@ -260,7 +260,7 @@ Normally, please use the character-name tag.<br />
 <h1><a name="activate_character" id="activate_character" class="targanchor"><span class="b">activate_character</span>(No alias)</a></h1>
 <div class="taggenre">character activation</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of activate_character attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="active_character_name" id="active_character_name">name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Character name</td><td class="tagattribdesc">Specify the character name to activate.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="active_character_name" id="active_character_name">name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Character name</td><td class="tagattribdesc">Specify the character name to activate.<br /></td></tr>
 </tbody></table><div class="tagremarks">Activate your character.<br />
 You will never use this tag directly.<br />
 </div>
@@ -269,28 +269,28 @@ You will never use this tag directly.<br />
 <h1><a name="stage" id="stage" class="targanchor"><span class="b">stage</span>(Name specified in make_stage)</a></h1>
 <div class="taggenre">background display</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of stage attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="stage_name" id="stage_name">name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Background name</td><td class="tagattribdesc">Specify the background name to display.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="stage_name" id="stage_name">name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Background name</td><td class="tagattribdesc">Specify the background name to display.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="character_page" id="character_page">page</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Target layer page</td><td class="tagattribdesc">Page name of the target layer.<br />
 If you specify fore, the layer on the fore page will be targeted.<br />
-If you specify back, the layer on the back page will be targeted.<br />
+If you specify back, the layer on the back page will be targeted.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="character_children" id="character_children">children</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies whether to include children in the transition.<br />
 If you specify true, children will also be included in the transition.<br />
 If you specify false, the transition will occur independently.<br />
-Default is true.<br />
+Default is true.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="character_time" id="character_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">millisecond unit</td><td class="tagattribdesc">Specify the time in milliseconds for the transition.<br />
-If omitted, 1000 milliseconds is assumed.<br />
+If omitted, 1000 milliseconds is assumed.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="character_method" id="character_method">method</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">"universal" or "scroll" or other</td><td class="tagattribdesc">Specify the type of transition.<br />
 "universal" causes a universal transition to occur according to the rule, vague, time attribute.<br />
 "crossfade" performs a simple crossfade according to the time attribute.<br />
 If you specify "scroll", a scroll transition will be performed based on from and stay.<br />
 There are also types of transitions made available by plug-ins. In that case, specify the name of her transition in the method attribute, and depending on the transition, you may need to specify another attribute.<br />
-If omitted, it will be inferred from other parameters.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="character_rule" id="character_rule">rule</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the rule image used for universal transitions.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="character_vague" id="character_vague">vague</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0-255</td><td class="tagattribdesc">Specifies a vague value to apply to the universal transition.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="character_from" id="character_from">from</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">"left" or "top" or "right" or "bottom"</td><td class="tagattribdesc">Specify the direction from which the back page image appears in the scroll transition. "left" = left, "top" = top, "right" = right, "bottom" = bottom<br />
+If omitted, it will be inferred from other parameters.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="character_rule" id="character_rule">rule</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the rule image used for universal transitions.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="character_vague" id="character_vague">vague</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0-255</td><td class="tagattribdesc">Specifies a vague value to apply to the universal transition.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="character_from" id="character_from">from</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">"left" or "top" or "right" or "bottom"</td><td class="tagattribdesc">Specify the direction from which the back page image appears in the scroll transition. "left" = left, "top" = top, "right" = right, "bottom" = bottom<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="character_stay" id="character_stay">stay</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">"stayfore" or "stayback" or "nostay"(default)</td><td class="tagattribdesc">In a scroll transition, either the image on the front page stays in place and the image on the back page scrolls in from the outside ("stayfore"),<br />
 or the image on the front page scrolls out from the back, and the image on the back page scrolls out.<br />
-Specifies whether the image on the page remains in place ("stayback"), or whether the images on the front and back pages are linked and moved together ("nostay"). Specify.<br />
+Specifies whether the image on the page remains in place ("stayback"), or whether the images on the front and back pages are linked and moved together ("nostay"). Specify.<br /></td></tr>
 </tbody></table><div class="tagremarks">Show background.<br />
 You will never use this tag directly.<br />
 Normally, use the background name tag.
@@ -299,32 +299,32 @@ Normally, use the background name tag.
 
 <h1><a name="show_current_message_layer" id="show_current_message_layer" class="targanchor"><span class="b">show_current_message_layer</span>(No alias)</a></h1>
 <div class="taggenre">Current message layer display</div>
-</tbody></table><div class="tagremarks">Show the current message layer.<br />
+<div class="tagremarks">Show the current message layer.<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div>
 
 <h1><a name="wait_show_current_message" id="wait_show_current_message" class="targanchor"><span class="b">wait_show_current_message</span>(No alias)</a></h1>
 <div class="taggenre">Waiting for display of current message layer</div>
-</tbody></table><div class="tagremarks">Waits for the current message layer to be displayed.<br />
+<div class="tagremarks">Waits for the current message layer to be displayed.<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div>
 
 <h1><a name="hide_current_message_layer" id="hide_current_message_layer" class="targanchor"><span class="b">hide_current_message_layer</span>(No alias)</a></h1>
 <div class="taggenre">Hide current message layer</div>
-</tbody></table><div class="tagremarks">Hide the current message layer.<br />
+<div class="tagremarks">Hide the current message layer.<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div>
 
 <h1><a name="wait_hide_current_message" id="wait_hide_current_message" class="targanchor"><span class="b">wait_hide_current_message</span>(No alias)</a></h1>
 <div class="taggenre">Waiting to hide current message layer</div>
-</tbody></table><div class="tagremarks">Waits for the current message layer to be hidden.<br />
+<div class="tagremarks">Waits for the current message layer to be hidden.<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div>
 
 <h1><a name="play_character_voice" id="play_character_voice" class="targanchor"><span class="b">play_character_voice</span>(No alias)</a></h1>
 <div class="taggenre">Character voice play</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of play_character_voice attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="play_character_voide_name" id="play_character_voide_name">name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Character name</td><td class="tagattribdesc">Specify the character name whose voice will be played.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="play_character_voide_name" id="play_character_voide_name">name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Character name</td><td class="tagattribdesc">Specify the character name whose voice will be played.<br /></td></tr>
 </tbody></table><div class="tagremarks">Play the voice.<br />
 You will never use this tag directly.<br />
 </div>
@@ -333,7 +333,7 @@ You will never use this tag directly.<br />
 <h1><a name="stop_character_voice" id="stop_character_voice" class="targanchor"><span class="b">stop_character_voice</span>(No alias)</a></h1>
 <div class="taggenre">Character voice stopped</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of stop_character_voice attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="stop_character_voide_name" id="stop_character_voide_name">name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Character name</td><td class="tagattribdesc">Specify the character name whose voice you want to stop.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="stop_character_voide_name" id="stop_character_voide_name">name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Character name</td><td class="tagattribdesc">Specify the character name whose voice you want to stop.<br /></td></tr>
 </tbody></table><div class="tagremarks">Stop the voice.<br />
 You will never use this tag directly.<br />
 </div>
@@ -342,9 +342,9 @@ You will never use this tag directly.<br />
 <h1><a name="wait_character_voice" id="wait_character_voice" class="targanchor"><span class="b">wait_character_voice</span>(No alias)</a></h1>
 <div class="taggenre">Waiting for character voice to play</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of wait_character_voice attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="wait_character_voide_name" id="wait_character_voide_name">name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Character name</td><td class="tagattribdesc">Specify the name of the character whose voice is waiting for play.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="wait_character_voide_name" id="wait_character_voide_name">name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Character name</td><td class="tagattribdesc">Specify the name of the character whose voice is waiting for play.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="wait_character_skip" id="wait_character_skip">skip</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true/false</td><td class="tagattribdesc">Specifying true allows skipping.<br />
-If you specify false, it will not be skippable.<br />
+If you specify false, it will not be skippable.<br /></td></tr>
 </tbody></table><div class="tagremarks">Waits for the voice to play.<br />
 You will never use this tag directly.<br />
 </div>
@@ -352,36 +352,36 @@ You will never use this tag directly.<br />
 
 <h1><a name="end_of_sentence" id="end_of_sentence" class="targanchor"><span class="b">end_of_sentence</span>(No alias)</a></h1>
 <div class="taggenre">end of sentence</div>
-</tbody></table><div class="tagremarks">End of sentence.<br />
+<div class="tagremarks">End of sentence.<br />
 You will never use this tag directly.<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div>
 
 <h1><a name="reserved_transition" id="reserved_transition" class="targanchor"><span class="b">reserved_transition</span>(No alias)</a></h1>
 <div class="taggenre">reserved a transition</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of transition attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="transition_layer" id="transition_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Layer number</td><td class="tagattribdesc">Specify the name of the portrait layer.<br />
-It can be between 0 and N. (N is the number of standing picture layers specified by cv_layers - 1)<br />
+It can be between 0 and N. (N is the number of standing picture layers specified by cv_layers - 1)<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="transition_page" id="transition_page">page</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Target layer page</td><td class="tagattribdesc">Page name of the target layer.<br />
 If you specify fore, the layer on the fore page will be targeted.<br />
-If you specify back, the layer on the back page will be targeted.<br />
+If you specify back, the layer on the back page will be targeted.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="transition_children" id="transition_children">children</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies whether to include children in the transition.<br />
 If you specify true, children will also be included in the transition.<br />
 If you specify false, the transition will occur independently.<br />
-Default is true.<br />
+Default is true.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="transition_time" id="transition_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">millisecond unit</td><td class="tagattribdesc">Specify the time in milliseconds for the transition.<br />
-If omitted, 1000 milliseconds is assumed.<br />
+If omitted, 1000 milliseconds is assumed.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="transition_method" id="transition_method">method</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">"universal" (default) or "scroll" or other</td><td class="tagattribdesc">Specify the type of transition.<br />
 "universal" causes a universal transition to occur according to the rule, vague, time attribute.<br />
 "crossfade" performs a simple crossfade according to the time attribute.<br />
 If you specify "scroll", a scroll transition will be performed based on from and stay.<br />
-There are also types of transitions made available by plug-ins. In that case, specify the name of her transition in the method attribute, and depending on the transition, you may need to specify another attribute.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="transition_rule" id="transition_rule">rule</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the rule image used for universal transitions.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="transition_vague" id="transition_vague">vague</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0-255</td><td class="tagattribdesc">Specifies a vague value to apply to the universal transition.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="transition_from" id="transition_from">from</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">"left" or "top" or "right" or "bottom"</td><td class="tagattribdesc">Specify the direction from which the back page image appears in the scroll transition. "left" = left, "top" = top, "right" = right, "bottom" = bottom<br />
+There are also types of transitions made available by plug-ins. In that case, specify the name of her transition in the method attribute, and depending on the transition, you may need to specify another attribute.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="transition_rule" id="transition_rule">rule</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the rule image used for universal transitions.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="transition_vague" id="transition_vague">vague</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0-255</td><td class="tagattribdesc">Specifies a vague value to apply to the universal transition.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="transition_from" id="transition_from">from</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">"left" or "top" or "right" or "bottom"</td><td class="tagattribdesc">Specify the direction from which the back page image appears in the scroll transition. "left" = left, "top" = top, "right" = right, "bottom" = bottom<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="transition_stay" id="transition_stay">stay</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">"stayfore" or "stayback" or "nostay"(default)</td><td class="tagattribdesc">In a scroll transition, either the image on the front page stays in place and the image on the back page scrolls in from the outside ("stayfore"),<br />
 or the image on the front page scrolls out from the back, and the image on the back page scrolls out.<br />
-Specifies whether the image on the page remains in place ("stayback"), or whether the images on the front and back pages are linked and moved together ("nostay"). Specify.<br />
+Specifies whether the image on the page remains in place ("stayback"), or whether the images on the front and back pages are linked and moved together ("nostay"). Specify.<br /></td></tr>
 </tbody></table><div class="tagremarks">Reserved a transition.<br />
 You will never use this tag directly.<br />
 </div>
@@ -391,14 +391,14 @@ You will never use this tag directly.<br />
 <div class="taggenre">Execute the reserved transition</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of wait_transition attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="wait_transition_layer" id="wait_transition_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Layer number</td><td class="tagattribdesc">Specify the name of the portrait layer.<br />
-It can be between 0 and N. (N is the number of standing picture layers specified by cv_layers - 1)<br />
+It can be between 0 and N. (N is the number of standing picture layers specified by cv_layers - 1)<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="wait_transition_page" id="wait_transition_page">page</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Target layer page</td><td class="tagattribdesc">Page name of the target layer.<br />
 If you specify fore, the layer on the fore page will be targeted.<br />
-If you specify back, the layer on the back page will be targeted.<br />
+If you specify back, the layer on the back page will be targeted.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="wait_transition_skip" id="wait_transition_skip">skip</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specify whether to skip when skipping.<br />
 Specify true to skip.<br />
 If you specify false, it will not be skipped.<br />
-Default is true.<br />
+Default is true.<br /></td></tr>
 </tbody></table><div class="tagremarks">Execute the reserved transition<br />
 You will never use this tag directly.<br />
 </div>
@@ -409,7 +409,7 @@ You will never use this tag directly.<br />
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of wait_transition attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="enabled" id="enabled">enabled</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If you specify true, the voice will be played during auto.<br />
 If you specify false, the voice will not be played during auto.<br />
-Default is true.<br />
+Default is true.<br /></td></tr>
 </tbody></table><div class="tagremarks">Specify whether to perform voice playback during auto mode.<br />
 </div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>

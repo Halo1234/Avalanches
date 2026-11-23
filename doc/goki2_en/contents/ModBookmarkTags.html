@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="Shift_JIS"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<h1><a name="tags" id="tags">ModBookmarkのTag List of</a></h1>
+<h1><a name="tags" id="tags">ModBookmark縺ｮTag List of</a></h1>
 <div class="para"><div>Reference of tags available in ModBookmark.<br />
 This module requires ModSnapshot, but will work without it.<br />
 <br />
@@ -54,35 +54,35 @@ When the label name includes force_store, if the label can be saved, it will be 
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="bookmark_format" id="bookmark_format">format</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">String</td><td class="tagattribdesc">Specify the save data format.<br />
 If it is bmp8, it will be 8bit BMP.<br />
 If it is bmp24, it will be 24bit BMP.<br />
-Otherwise, it will be kdt.<br />
+Otherwise, it will be kdt.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="bookmark_width" id="bookmark_width">width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Width</td><td class="tagattribdesc">Specify the width of the thumbnail.<br />
 If it is auto, it will be calculated automatically.<br />
-Both height and height cannot be set to auto.<br />
+Both height and height cannot be set to auto.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="bookmark_height" id="bookmark_height">height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Height</td><td class="tagattribdesc">Specify the height of the thumbnail.<br />
 If it is auto, it will be calculated automatically.<br />
-Both height and width cannot be set to auto.<br />
+Both height and width cannot be set to auto.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="bookmark_keep_aspect_ratio" id="bookmark_keep_aspect_ratio">keep_aspect_ratio</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies whether to fix the aspect ratio of thumbnails.<br />
 If true, the aspect ratio will be fixed.<br />
-If false, the aspect ratio will not be fixed.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="bookmark_prefix" id="bookmark_prefix">prefix</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">String</td><td class="tagattribdesc">Specify the prefix name of the save data file.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="bookmark_suffix" id="bookmark_suffix">suffix</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">String</td><td class="tagattribdesc">Specify the suffix name of the save data file.<br />
+If false, the aspect ratio will not be fixed.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="bookmark_prefix" id="bookmark_prefix">prefix</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">String</td><td class="tagattribdesc">Specify the prefix name of the save data file.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="bookmark_suffix" id="bookmark_suffix">suffix</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">String</td><td class="tagattribdesc">Specify the suffix name of the save data file.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="bookmark_mode" id="bookmark_mode">mode</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Mode</td><td class="tagattribdesc">You can specify the save data mode.<br />
 Specifying c performs simple encryption.<br />
 If you specify z, compression will be applied.<br />
 Both z and c cannot be specified.<br />
-Specifying an offset after o will write from that point in the file.<br />
+Specifying an offset after o will write from that point in the file.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="bookmark_store_skipping" id="bookmark_store_skipping">store_skipping</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specify whether to store when skipping.<br />
 If true is specified, the store will not be executed when skipping.<br />
 If you specify false, the store will be executed when skipping.<br />
 Default is false.<br />
-If force_store is included in the label name, it will be forced to store even if this attribute is true.<br />
+If force_store is included in the label name, it will be forced to store even if this attribute is true.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="bookmark_store_and_save" id="bookmark_store_and_save">store_and_save</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specify whether to store or save.<br />
 If you specify true, store and save will be performed.<br />
 If you specify false, neither store nor save will be performed.<br />
-Default is true.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="bookmark_quick" id="bookmark_quick">quick</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">String</td><td class="tagattribdesc">Specify the quick save data file name.<br />
+Default is true.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="bookmark_quick" id="bookmark_quick">quick</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">String</td><td class="tagattribdesc">Specify the quick save data file name.<br /></td></tr>
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="bookmark_stack_size" id="bookmark_stack_size">stack_size</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">integer value</td><td class="tagattribdesc">The size of the buffer for going back one step.<br />
-Specifying 5 allows you to go back up to 5 steps.<br />
+Specifying 5 allows you to go back up to 5 steps.<br /></td></tr>
 </tbody></table><div class="tagremarks">Configure settings related to save data.<br />
 <div class="tagexample"><code class="bq"><span class="weak">Example:</span><br />
 *label|<br />
@@ -103,13 +103,13 @@ Specifying 5 allows you to go back up to 5 steps.<br />
 <h1><a name="clear_variables" id="clear_variables" class="targanchor"><span class="b">clear_variables</span>(clearvar)</a></h1>
 <div class="taggenre">Clear user variables</div>
 <div class="tagremarks">Clear user variables<br />
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div>
 
 <h1><a name="copy_bookmark" id="copy_bookmark" class="targanchor"><span class="b">copy_bookmark</span>(cpbm)</a></h1>
 <div class="taggenre">Copy save data</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of copy_bookmark attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">src</td><td class="tagattribname"><a class="targanchor" name="copy_bookmark_source" id="copy_bookmark_source">source</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Save data number</td><td class="tagattribdesc">Specify the copy source save data number.<br />
-<tr><td class="tagattribalias">dst</td><td class="tagattribname"><a class="targanchor" name="copy_bookmark_destination" id="copy_bookmark_destination">destination</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Save data number</td><td class="tagattribdesc">Specify the copy destination save data number.<br />
+<tr><td class="tagattribalias">src</td><td class="tagattribname"><a class="targanchor" name="copy_bookmark_source" id="copy_bookmark_source">source</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Save data number</td><td class="tagattribdesc">Specify the copy source save data number.<br /></td></tr>
+<tr><td class="tagattribalias">dst</td><td class="tagattribname"><a class="targanchor" name="copy_bookmark_destination" id="copy_bookmark_destination">destination</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Save data number</td><td class="tagattribdesc">Specify the copy destination save data number.<br /></td></tr>
 </tbody></table><div class="tagremarks">You can copy save data.<br />
 </div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
@@ -117,8 +117,8 @@ Specifying 5 allows you to go back up to 5 steps.<br />
 <h1><a name="erase_bookmark" id="erase_bookmark" class="targanchor"><span class="b">erase_bookmark</span>(erbm)</a></h1>
 <div class="taggenre">Delete save data</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of erase_bookmark attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="erase_bookmark_number" id="erase_bookmark_number">number</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Save data number</td><td class="tagattribdesc">Specify the save data number to delete.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="erase_bookmark_ask" id="erase_bookmark_ask">ask</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Whether to confirm deletion</td><td class="tagattribdesc">Specifies whether to confirm deletion.<br />If true, deletion will be confirmed.<br />If false, deletion will not be confirmed.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="erase_bookmark_number" id="erase_bookmark_number">number</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Save data number</td><td class="tagattribdesc">Specify the save data number to delete.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="erase_bookmark_ask" id="erase_bookmark_ask">ask</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Whether to confirm deletion</td><td class="tagattribdesc">Specifies whether to confirm deletion.<br />If true, deletion will be confirmed.<br />If false, deletion will not be confirmed.<br /></td></tr>
 </tbody></table><div class="tagremarks">Delete the specified save data.<br />
 </div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
@@ -139,14 +139,14 @@ Specifying 5 allows you to go back up to 5 steps.<br />
 ; This will not be reached.<br />
 [s]<br />
 </code></div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div>
 
 <h1><a name="go_back" id="go_back" class="targanchor"><span class="b">go_back</span>(goback)</a></h1>
 <div class="taggenre">Return to previous record</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of go_back attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="go_back_ask" id="go_back_ask">ask</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specify whether to confirm going back one step.<br />
 If you specify true, you will be asked to go back one step.<br />
-If you specify false, you will not be asked to go back one step.<br />
+If you specify false, you will not be asked to go back one step.<br /></td></tr>
 </tbody></table><div class="tagremarks">Returns to the previous record.<br />
 </div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
@@ -156,7 +156,7 @@ If you specify false, you will not be asked to go back one step.<br />
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of start_anchor attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="start_anchor_enabled" id="start_anchor_enabled">enabled</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies whether the return to start feature is enabled.<br />
 Specifying true enables the function to return to the beginning.<br />
-Specifying false disables the ability to return to the beginning.<br />
+Specifying false disables the ability to return to the beginning.<br /></td></tr>
 </tbody></table><div class="tagremarks">Records the state of the function back to the beginning.<br />
 If you use the return to start function, you will return to the location where this tag was written.<br />
 </div>
@@ -167,7 +167,7 @@ If you use the return to start function, you will return to the location where t
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of go_to_start attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="go_to_start_ask" id="go_to_start_ask">ask</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specify whether to check back to the beginning.<br />
 If you specify true, the confirmation returns to the beginning.<br />
-If you specify false, the confirmation to return to the beginning will not be performed.<br />
+If you specify false, the confirmation to return to the beginning will not be performed.<br /></td></tr>
 </tbody></table><div class="tagremarks">Returns to the position recorded with the [start_anchor] tag.<br />
 </div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
@@ -175,10 +175,10 @@ If you specify false, the confirmation to return to the beginning will not be pe
 <h1><a name="save" id="save" class="targanchor"><span class="b">save</span>(No alias)</a></h1>
 <div class="taggenre">Save</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of save attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="save_place" id="save_place">place</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Save number</td><td class="tagattribdesc">Specify a valid save data number starting from 0.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="save_summary" id="save_summary">summary</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">String</td><td class="tagattribdesc">Specify the save data summary.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="save_place" id="save_place">place</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Save number</td><td class="tagattribdesc">Specify a valid save data number starting from 0.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="save_summary" id="save_summary">summary</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">String</td><td class="tagattribdesc">Specify the save data summary.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="save_ask" id="save_ask">ask</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If true is specified and the settings screen is set to confirm overwriting of saved data, the overwriting confirmation will be performed.<br />
-If you specify false, overwriting will not be confirmed.<br />
+If you specify false, overwriting will not be confirmed.<br /></td></tr>
 </tbody></table><div class="tagremarks">Save at current location.<br />
 </div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
@@ -186,7 +186,7 @@ If you specify false, overwriting will not be confirmed.<br />
 <h1><a name="load" id="load" class="targanchor"><span class="b">load</span>(No alias)</a></h1>
 <div class="taggenre">Load</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of load attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="load_place" id="load_place">place</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Save number</td><td class="tagattribdesc">Specify a valid save data number starting from 0.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="load_place" id="load_place">place</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Save number</td><td class="tagattribdesc">Specify a valid save data number starting from 0.<br /></td></tr>
 </tbody></table><div class="tagremarks">Load<br />
 </div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
@@ -194,7 +194,7 @@ If you specify false, overwriting will not be confirmed.<br />
 <h1><a name="save_temporary" id="save_temporary" class="targanchor"><span class="b">save_temporary</span>(tempsave)</a></h1>
 <div class="taggenre">Save current position to temporary variable</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of save_temporary attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="save_temporary_place" id="save_temporary_place">place</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Save number</td><td class="tagattribdesc">Specify a valid save data number starting from 0.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="save_temporary_place" id="save_temporary_place">place</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Save number</td><td class="tagattribdesc">Specify a valid save data number starting from 0.<br /></td></tr>
 </tbody></table><div class="tagremarks">Save state in temporary variable.<br />
 </div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
@@ -203,7 +203,7 @@ If you specify false, overwriting will not be confirmed.<br />
 <div class="taggenre">Load data from temporary variable</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of load_temporary attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="load_temporary_place" id="load_temporary_place">place</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Save number</td><td class="tagattribdesc">Specify a valid save data number starting from 0.<br />
-
+</td></tr>
 </tbody></table><div class="tagremarks">Load state from temporary variable.<br />
 </div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
@@ -212,76 +212,76 @@ If you specify false, overwriting will not be confirmed.<br />
 <div class="taggenre">Loading system variables</div>
 <div class="tagremarks">Loading system variables<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div>
 
 <h1><a name="ask_start" id="ask_start" class="targanchor"><span class="b">ask_start</span>(No alias)</a></h1>
 <div class="taggenre">Controls</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of ask_start attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_start_base_storage" id="ask_start_base_storage">base_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the background image for the first dialog to return to.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_start_yes" id="ask_start_yes">yes</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the Yes button image for the initial return dialog.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_start_no" id="ask_start_no">no</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the No button image for the initial return dialog.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_start_confirm" id="ask_start_confirm">confirm</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the image for the confirmation checkbox in the initial return dialog.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_start_yes_left" id="ask_start_yes_left">yes_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X Axis</td><td class="tagattribdesc">Specify the position of the Yes button.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_start_yes_top" id="ask_start_yes_top">yes_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y Axis</td><td class="tagattribdesc">Specify the position of the Yes button.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_start_no_left" id="ask_start_no_left">no_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X Axis</td><td class="tagattribdesc">Specify the position of the No button.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_start_no_top" id="ask_start_no_top">no_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y Axis</td><td class="tagattribdesc">Specify the position of the No button.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_start_confirm_left" id="ask_start_confirm_left">confirm_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X Axis</td><td class="tagattribdesc">Specify the position of the confirmation checkbox.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_start_confirm_top" id="ask_start_confirm_top">confirm_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y Axis</td><td class="tagattribdesc">Specify the position of the confirmation checkbox.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_start_confirm_caption" id="ask_start_confirm_caption">confirm_caption</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Caption</td><td class="tagattribdesc">Specify the caption for the checkbox that sets whether to confirm back to the beginning.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_start_base_storage" id="ask_start_base_storage">base_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the background image for the first dialog to return to.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_start_yes" id="ask_start_yes">yes</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the Yes button image for the initial return dialog.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_start_no" id="ask_start_no">no</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the No button image for the initial return dialog.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_start_confirm" id="ask_start_confirm">confirm</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the image for the confirmation checkbox in the initial return dialog.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_start_yes_left" id="ask_start_yes_left">yes_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X Axis</td><td class="tagattribdesc">Specify the position of the Yes button.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_start_yes_top" id="ask_start_yes_top">yes_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y Axis</td><td class="tagattribdesc">Specify the position of the Yes button.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_start_no_left" id="ask_start_no_left">no_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X Axis</td><td class="tagattribdesc">Specify the position of the No button.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_start_no_top" id="ask_start_no_top">no_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y Axis</td><td class="tagattribdesc">Specify the position of the No button.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_start_confirm_left" id="ask_start_confirm_left">confirm_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X Axis</td><td class="tagattribdesc">Specify the position of the confirmation checkbox.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_start_confirm_top" id="ask_start_confirm_top">confirm_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y Axis</td><td class="tagattribdesc">Specify the position of the confirmation checkbox.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_start_confirm_caption" id="ask_start_confirm_caption">confirm_caption</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Caption</td><td class="tagattribdesc">Specify the caption for the checkbox that sets whether to confirm back to the beginning.<br /></td></tr>
 </tbody></table><div class="tagremarks">Specify the image for the first dialog to return to.<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="ask_record" id="ask_record" class="targanchor"><span class="b">ask_record</span>(No alias)</a></h1>
 <div class="taggenre">Controls</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of ask_record attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_record_base_storage" id="ask_record_base_storage">base_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the background image for the previous dialog.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_record_yes" id="ask_record_yes">yes</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the yes button image for the previous dialog.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_record_no" id="ask_record_no">no</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the No button image for the previous dialog.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_record_confirm" id="ask_record_confirm">confirm</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the image of the confirmation checkbox in the previous dialog.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_record_yes_left" id="ask_record_yes_left">yes_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X Axis</td><td class="tagattribdesc">Specify the position of the Yes button.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_record_yes_top" id="ask_record_yes_top">yes_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y Axis</td><td class="tagattribdesc">Specify the position of the Yes button.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_record_no_left" id="ask_record_no_left">no_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X Axis</td><td class="tagattribdesc">Specify the position of the No button.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_record_no_top" id="ask_record_no_top">no_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y Axis</td><td class="tagattribdesc">Specify the position of the No button.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_record_confirm_left" id="ask_record_confirm_left">confirm_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X Axis</td><td class="tagattribdesc">Specify the position of the confirmation checkbox.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_record_confirm_top" id="ask_record_confirm_top">confirm_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y Axis</td><td class="tagattribdesc">Specify the position of the confirmation checkbox.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_record_confirm_caption" id="ask_record_confirm_caption">confirm_caption</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Caption</td><td class="tagattribdesc">Specify the caption of the checkbox that sets whether to confirm going back one step.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_record_base_storage" id="ask_record_base_storage">base_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the background image for the previous dialog.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_record_yes" id="ask_record_yes">yes</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the yes button image for the previous dialog.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_record_no" id="ask_record_no">no</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the No button image for the previous dialog.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_record_confirm" id="ask_record_confirm">confirm</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the image of the confirmation checkbox in the previous dialog.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_record_yes_left" id="ask_record_yes_left">yes_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X Axis</td><td class="tagattribdesc">Specify the position of the Yes button.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_record_yes_top" id="ask_record_yes_top">yes_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y Axis</td><td class="tagattribdesc">Specify the position of the Yes button.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_record_no_left" id="ask_record_no_left">no_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X Axis</td><td class="tagattribdesc">Specify the position of the No button.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_record_no_top" id="ask_record_no_top">no_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y Axis</td><td class="tagattribdesc">Specify the position of the No button.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_record_confirm_left" id="ask_record_confirm_left">confirm_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X Axis</td><td class="tagattribdesc">Specify the position of the confirmation checkbox.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_record_confirm_top" id="ask_record_confirm_top">confirm_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y Axis</td><td class="tagattribdesc">Specify the position of the confirmation checkbox.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_record_confirm_caption" id="ask_record_confirm_caption">confirm_caption</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Caption</td><td class="tagattribdesc">Specify the caption of the checkbox that sets whether to confirm going back one step.<br /></td></tr>
 </tbody></table><div class="tagremarks">Specifies the image of the dialog to go back one step.<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="ask_save" id="ask_save" class="targanchor"><span class="b">ask_save</span>(No alias)</a></h1>
 <div class="taggenre">Controls</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of ask_save attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_save_base_storage" id="ask_save_base_storage">base_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the background image for the first dialog to return to.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_save_yes" id="ask_save_yes">yes</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the Yes button image for the initial return dialog.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_save_no" id="ask_save_no">no</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the No button image for the initial return dialog.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_save_confirm" id="ask_save_confirm">confirm</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the image for the confirmation checkbox in the save data overwrite confirmation dialog.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_save_yes_left" id="ask_save_yes_left">yes_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X Axis</td><td class="tagattribdesc">Specify the position of the Yes button.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_save_yes_top" id="ask_save_yes_top">yes_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y Axis</td><td class="tagattribdesc">Specify the position of the Yes button.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_save_no_left" id="ask_save_no_left">no_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X Axis</td><td class="tagattribdesc">Specify the position of the No button.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_save_no_top" id="ask_save_no_top">no_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y Axis</td><td class="tagattribdesc">Specify the position of the No button.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_save_confirm_left" id="ask_save_confirm_left">confirm_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X Axis</td><td class="tagattribdesc">Specify the position of the confirmation checkbox.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_save_confirm_top" id="ask_save_confirm_top">confirm_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y Axis</td><td class="tagattribdesc">Specify the position of the confirmation checkbox.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_save_confirm_caption" id="ask_save_confirm_caption">confirm_caption</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Caption</td><td class="tagattribdesc">Specify the caption for the checkbox that sets whether to confirm overwriting saved data.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_save_base_storage" id="ask_save_base_storage">base_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the background image for the first dialog to return to.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_save_yes" id="ask_save_yes">yes</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the Yes button image for the initial return dialog.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_save_no" id="ask_save_no">no</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the No button image for the initial return dialog.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_save_confirm" id="ask_save_confirm">confirm</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the image for the confirmation checkbox in the save data overwrite confirmation dialog.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_save_yes_left" id="ask_save_yes_left">yes_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X Axis</td><td class="tagattribdesc">Specify the position of the Yes button.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_save_yes_top" id="ask_save_yes_top">yes_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y Axis</td><td class="tagattribdesc">Specify the position of the Yes button.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_save_no_left" id="ask_save_no_left">no_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X Axis</td><td class="tagattribdesc">Specify the position of the No button.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_save_no_top" id="ask_save_no_top">no_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y Axis</td><td class="tagattribdesc">Specify the position of the No button.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_save_confirm_left" id="ask_save_confirm_left">confirm_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X Axis</td><td class="tagattribdesc">Specify the position of the confirmation checkbox.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_save_confirm_top" id="ask_save_confirm_top">confirm_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y Axis</td><td class="tagattribdesc">Specify the position of the confirmation checkbox.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="ask_save_confirm_caption" id="ask_save_confirm_caption">confirm_caption</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Caption</td><td class="tagattribdesc">Specify the caption for the checkbox that sets whether to confirm overwriting saved data.<br /></td></tr>
 </tbody></table><div class="tagremarks">Specify the image for the save data overwrite confirmation dialog.<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="ask_disable" id="ask_disable" class="targanchor"><span class="b">ask_disable</span> (No aliases)</a></h1>
 <div class="taggenre">Control</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="List of attributes for tag ask_disable"><thead><tr><th>Alias</th><th>Attribute</th><th>Required?</th><th>Value</th><th>Description</th></tr></thead><tbody>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="ask_disable_base_storage" id="ask_disable_base_storage">base_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">File name</td><td class="tagattribdesc">Specifies the background image for the save data deletion confirmation dialog.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="ask_disable_yes" id="ask_disable_yes">yes</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">File name</td><td class="tagattribdesc">Specifies the "Yes" button image for the save data deletion confirmation dialog.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="ask_disable_no" id="ask_disable_no">no</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">File name</td><td class="tagattribdesc">Specifies the "No" button image for the save data deletion confirmation dialog.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="ask_disable_confirm" id="ask_disable_confirm">confirm</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">File name</td><td class="tagattribdesc">Specifies the confirmation checkbox image for the save data deletion confirmation dialog.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="ask_disable_yes_left" id="ask_disable_yes_left">yes_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X coordinate</td><td class="tagattribdesc">Specifies the position of the "Yes" button.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="ask_disable_yes_top" id="ask_disable_yes_top">yes_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y coordinate</td><td class="tagattribdesc">Specifies the position of the "Yes" button.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="ask_disable_no_left" id="ask_disable_no_left">no_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X coordinate</td><td class="tagattribdesc">Specifies the position of the "No" button.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="ask_disable_no_top" id="ask_disable_no_top">no_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y coordinate</td><td class="tagattribdesc">Specifies the position of the "No" button.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="ask_disable_confirm_left" id="ask_disable_confirm_left">confirm_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X coordinate</td><td class="tagattribdesc">Specifies the position of the confirmation checkbox.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="ask_disable_confirm_top" id="ask_disable_confirm_top">confirm_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y coordinate</td><td class="tagattribdesc">Specifies the position of the confirmation checkbox.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="ask_disable_confirm_caption" id="ask_disable_confirm_caption">confirm_caption</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Caption</td><td class="tagattribdesc">Specifies the caption for the checkbox that toggles save data deletion confirmation.<br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="ask_disable_base_storage" id="ask_disable_base_storage">base_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">File name</td><td class="tagattribdesc">Specifies the background image for the save data deletion confirmation dialog.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="ask_disable_yes" id="ask_disable_yes">yes</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">File name</td><td class="tagattribdesc">Specifies the "Yes" button image for the save data deletion confirmation dialog.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="ask_disable_no" id="ask_disable_no">no</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">File name</td><td class="tagattribdesc">Specifies the "No" button image for the save data deletion confirmation dialog.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="ask_disable_confirm" id="ask_disable_confirm">confirm</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">File name</td><td class="tagattribdesc">Specifies the confirmation checkbox image for the save data deletion confirmation dialog.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="ask_disable_yes_left" id="ask_disable_yes_left">yes_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X coordinate</td><td class="tagattribdesc">Specifies the position of the "Yes" button.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="ask_disable_yes_top" id="ask_disable_yes_top">yes_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y coordinate</td><td class="tagattribdesc">Specifies the position of the "Yes" button.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="ask_disable_no_left" id="ask_disable_no_left">no_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X coordinate</td><td class="tagattribdesc">Specifies the position of the "No" button.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="ask_disable_no_top" id="ask_disable_no_top">no_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y coordinate</td><td class="tagattribdesc">Specifies the position of the "No" button.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="ask_disable_confirm_left" id="ask_disable_confirm_left">confirm_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">X coordinate</td><td class="tagattribdesc">Specifies the position of the confirmation checkbox.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="ask_disable_confirm_top" id="ask_disable_confirm_top">confirm_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Y coordinate</td><td class="tagattribdesc">Specifies the position of the confirmation checkbox.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="ask_disable_confirm_caption" id="ask_disable_confirm_caption">confirm_caption</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Caption</td><td class="tagattribdesc">Specifies the caption for the checkbox that toggles save data deletion confirmation.<br /></td></tr>
 </tbody></table><div class="tagremarks">Specifies images for the save data deletion confirmation dialog.<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to Category/Tag List</span></a></div></div></div>
 
 	<script type="text/javascript" charset="Shift_JIS" src="documentid.js" ></script>
-	<script type="text/javascript" charset="Shift_JIS" src="postcontent.js" ></script>
+	<script type="text/javascript" charset="Shift_JIS" src="postcontent.js" ></script></div></div></div></div>
 </body></html>

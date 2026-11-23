@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="Shift_JIS"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
@@ -93,19 +93,19 @@ Unlike KAG3, the message layer can save the contents, so there is no need to ins
 <h1><a name="message_layers" id="message_layers" class="targanchor"><span class="b">message_layers</span>(No alias)</a></h1>
 <div class="taggenre">Message operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of message_layers attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_layers_count" id="message_layers_count">count</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specify the number of message layers.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_layers_base" id="message_layers_base">base</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specifies the base of the absolute value of the message layer.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_layers_count" id="message_layers_count">count</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specify the number of message layers.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_layers_base" id="message_layers_base">base</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specifies the base of the absolute value of the message layer.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_layers_step" id="message_layers_step">step</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specifies the absolute value step for the message layer.<br />
-The value specified here will be added to the base value.<br />
+The value specified here will be added to the base value.<br /></td></tr>
 </tbody></table><div class="tagremarks">Specify the number of message layers.<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="skip_key" id="skip_key" class="targanchor"><span class="b">skip_key</span>(No alias)</a></h1>
 <div class="taggenre">Key config</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of skip_key attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="skip_key_skip_key" id="skip_key_skip_key">skip_key</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Virtual key code</td><td class="tagattribdesc">Specify the reading advance key.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="skip_key_not_read_skip_key" id="skip_key_not_read_skip_key">not_read_skip_key</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Virtual key code</td><td class="tagattribdesc">Specify the skip key.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="skip_key_auto_mode_key" id="skip_key_auto_mode_key">auto_mode_key</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Virtual key code</td><td class="tagattribdesc">Specify the auto mode key.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="skip_key_skip_key" id="skip_key_skip_key">skip_key</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Virtual key code</td><td class="tagattribdesc">Specify the reading advance key.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="skip_key_not_read_skip_key" id="skip_key_not_read_skip_key">not_read_skip_key</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Virtual key code</td><td class="tagattribdesc">Specify the skip key.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="skip_key_auto_mode_key" id="skip_key_auto_mode_key">auto_mode_key</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Virtual key code</td><td class="tagattribdesc">Specify the auto mode key.<br /></td></tr>
 </tbody></table><div class="tagremarks">Set the read forward key, etc.<br />
 </div>
 <div class="tagexample"><code class="bq"><span class="weak">Example:</span><br />
@@ -119,67 +119,67 @@ The value specified here will be added to the base value.<br />
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of message_option attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_option_layer" id="message_option_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">message0 or message1 or messageN ...</td><td class="tagattribdesc">Specify the message layer to be operated on.<br />
 It can be one of message0 to messageN. (N is the number of message layers specified in message_layers - 1)<br />
-If omitted, the current message layer will be targeted.<br />
-<tr><td class="tagattribalias">frame</td><td class="tagattribname"><a class="targanchor" name="message_option_storage" id="message_option_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the image file name to be used as the background.<br />
+If omitted, the current message layer will be targeted.<br /></td></tr>
+<tr><td class="tagattribalias">frame</td><td class="tagattribname"><a class="targanchor" name="message_option_storage" id="message_option_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the image file name to be used as the background.<br /></td></tr>
 <tr><td class="tagattribalias">framekey</td><td class="tagattribname"><a class="targanchor" name="message_option_key" id="message_option_key">key</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB or Palette index number or adapt</td><td class="tagattribdesc">Specify which color of the frame image specified by the storage value is to be extracted. If omitted, the extraction color will be disabled.<br />
 If you specify the extraction color in hexadecimal in the format key=0xRRGGBB, the parts painted with RR (red) GG (green) BB (blue) will be made transparent as the extraction color. For example, key=0xff00ff specifies (r,g,b)=(255,0,255), which means that the true magenta part will be extracted and made transparent.<br />
 If you simply specify a numerical value, the numerical value of that palette index will be the extraction color. Valid for 16-color/256-color images.<br />
 If you specify key=adapt, the extraction color will be determined automatically. The extraction color used is the color that is used the most on the top line of the image. Valid for 16-color/256-color images.<br />
-If you use a mask image, you do not need to specify this attribute.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_option_left" id="message_option_left">left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the display position.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_option_top" id="message_option_top">top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the display position.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_option_width" id="message_option_width">width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the width.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_option_height" id="message_option_height">height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the height.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_option_color" id="message_option_color">color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">Specify the message layer display color in 0xRRGGBB format. Valid when "" is specified for storage.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_option_opacity" id="message_option_opacity">opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Opacity ( 0 - 255 )</td><td class="tagattribdesc">Specifies the opacity of the message layer as a number value from 0 to 255 (not the opacity of the text or the layer itself). 0 is completely transparent. Valid when "" is specified for storage.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_option_shadow_color" id="message_option_shadow_color">shadow_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format</td><td class="tagattribdesc">Specify the color of the shadow.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_option_edge_color" id="message_option_edge_color">edge_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format</td><td class="tagattribdesc">Specify the edge color.<br />
+If you use a mask image, you do not need to specify this attribute.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_option_left" id="message_option_left">left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the display position.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_option_top" id="message_option_top">top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the display position.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_option_width" id="message_option_width">width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the width.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_option_height" id="message_option_height">height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the height.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_option_color" id="message_option_color">color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">Specify the message layer display color in 0xRRGGBB format. Valid when "" is specified for storage.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_option_opacity" id="message_option_opacity">opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Opacity ( 0 - 255 )</td><td class="tagattribdesc">Specifies the opacity of the message layer as a number value from 0 to 255 (not the opacity of the text or the layer itself). 0 is completely transparent. Valid when "" is specified for storage.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_option_shadow_color" id="message_option_shadow_color">shadow_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format</td><td class="tagattribdesc">Specify the color of the shadow.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_option_edge_color" id="message_option_edge_color">edge_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format</td><td class="tagattribdesc">Specify the edge color.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_option_current" id="message_option_current">current</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If true is specified, the layer to be operated on will be set as the current message layer.<br />
-If false is specified, nothing will be done.<br />
-<tr><td class="tagattribalias">marginl</td><td class="tagattribname"><a class="targanchor" name="message_option_margin_left" id="message_option_margin_left">margin_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the character display position margin.<br />
-<tr><td class="tagattribalias">margint</td><td class="tagattribname"><a class="targanchor" name="message_option_margin_top" id="message_option_margin_top">margin_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the character display position margin.<br />
-<tr><td class="tagattribalias">marginr</td><td class="tagattribname"><a class="targanchor" name="message_option_margin_right" id="message_option_margin_right">margin_right</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the character display position margin.<br />
-<tr><td class="tagattribalias">marginb</td><td class="tagattribname"><a class="targanchor" name="message_option_margin_bottom" id="message_option_margin_bottom">margin_bottom</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the character display position margin.<br />
+If false is specified, nothing will be done.<br /></td></tr>
+<tr><td class="tagattribalias">marginl</td><td class="tagattribname"><a class="targanchor" name="message_option_margin_left" id="message_option_margin_left">margin_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the character display position margin.<br /></td></tr>
+<tr><td class="tagattribalias">margint</td><td class="tagattribname"><a class="targanchor" name="message_option_margin_top" id="message_option_margin_top">margin_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the character display position margin.<br /></td></tr>
+<tr><td class="tagattribalias">marginr</td><td class="tagattribname"><a class="targanchor" name="message_option_margin_right" id="message_option_margin_right">margin_right</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the character display position margin.<br /></td></tr>
+<tr><td class="tagattribalias">marginb</td><td class="tagattribname"><a class="targanchor" name="message_option_margin_bottom" id="message_option_margin_bottom">margin_bottom</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the character display position margin.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_option_visible" id="message_option_visible">visible</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies whether to display the message layer.<br />
 Displays if true is specified.<br />
-Specify false to hide it.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_option_layout_mode" id="message_option_layout_mode">layout_mode</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">vertical or horizontal</td><td class="tagattribdesc">Specify horizontal or vertical writing.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_option_effect_type" id="message_option_effect_type">effect_type</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">fade or vista</td><td class="tagattribdesc">Specifies the display method for characters.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_option_show_hide_type" id="message_option_show_hide_type">show_hide_type</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">fade or vista</td><td class="tagattribdesc">Specify the display/hide method of the message layer.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="message_option_name_storage" id="message_option_name_storage">name_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the background image for the name display layer.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="message_option_name_key" id="message_option_name_key">name_key</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">Specifies the color key for the name display layer.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="message_option_name_left" id="message_option_name_left">name_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixels</td><td class="tagattribdesc">Specifies the X-coordinate (left) of the name display layer.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="message_option_name_top" id="message_option_name_top">name_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixels</td><td class="tagattribdesc">Specifies the Y-coordinate (top) of the name display layer.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="message_option_name_width" id="message_option_name_width">name_width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixels</td><td class="tagattribdesc">Specifies the width of the name display layer.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="message_option_name_height" id="message_option_name_height">name_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixels</td><td class="tagattribdesc">Specifies the height of the name display layer.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="message_option_name_font" id="message_option_name_font">name_font</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Font name</td><td class="tagattribdesc">Specifies the font face for the name display layer.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="message_option_name_size" id="message_option_name_size">name_size</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Font size</td><td class="tagattribdesc">Specifies the font size for the name display layer.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="message_option_name_body_color" id="message_option_name_body_color">name_body_color</a></td><td class="tagattribrequired">None</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">Specifies the background color of the name layer.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="message_option_name_body_opacity" id="message_option_name_body_opacity">name_body_opacity</a></td><td class="tagattribrequired">None</td><td class="tagattribformat">0-255</td><td class="tagattribdesc">Specifies the opacity of the name layer.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="message_option_name_color" id="message_option_name_color">name_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Font color</td><td class="tagattribdesc">Specifies the text color for the name display layer.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="message_option_name_shadow_color" id="message_option_name_shadow_color">name_shadow_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Shadow color</td><td class="tagattribdesc">Specifies the shadow color for the text in the name display layer.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="message_option_name_edge_color" id="message_option_name_edge_color">name_edge_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Shadow Color</td><td class="tagattribdesc">Specifies the edge color of the layer that displays the name.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="message_option_name_visible" id="message_option_name_visible">name_visible</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies the display state of the name display layer.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="message_option_name" id="message_option_name">name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">String</td><td class="tagattribdesc">Specifies the name to be displayed.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_option_interval" id="message_option_interval">interval</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">milliseconds</td><td class="tagattribdesc">Specify the character display interval.<br />
+Specify false to hide it.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_option_layout_mode" id="message_option_layout_mode">layout_mode</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">vertical or horizontal</td><td class="tagattribdesc">Specify horizontal or vertical writing.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_option_effect_type" id="message_option_effect_type">effect_type</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">fade or vista</td><td class="tagattribdesc">Specifies the display method for characters.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_option_show_hide_type" id="message_option_show_hide_type">show_hide_type</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">fade or vista</td><td class="tagattribdesc">Specify the display/hide method of the message layer.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="message_option_name_storage" id="message_option_name_storage">name_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the background image for the name display layer.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="message_option_name_key" id="message_option_name_key">name_key</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">Specifies the color key for the name display layer.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="message_option_name_left" id="message_option_name_left">name_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixels</td><td class="tagattribdesc">Specifies the X-coordinate (left) of the name display layer.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="message_option_name_top" id="message_option_name_top">name_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixels</td><td class="tagattribdesc">Specifies the Y-coordinate (top) of the name display layer.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="message_option_name_width" id="message_option_name_width">name_width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixels</td><td class="tagattribdesc">Specifies the width of the name display layer.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="message_option_name_height" id="message_option_name_height">name_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixels</td><td class="tagattribdesc">Specifies the height of the name display layer.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="message_option_name_font" id="message_option_name_font">name_font</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Font name</td><td class="tagattribdesc">Specifies the font face for the name display layer.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="message_option_name_size" id="message_option_name_size">name_size</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Font size</td><td class="tagattribdesc">Specifies the font size for the name display layer.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="message_option_name_body_color" id="message_option_name_body_color">name_body_color</a></td><td class="tagattribrequired">None</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">Specifies the background color of the name layer.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="message_option_name_body_opacity" id="message_option_name_body_opacity">name_body_opacity</a></td><td class="tagattribrequired">None</td><td class="tagattribformat">0-255</td><td class="tagattribdesc">Specifies the opacity of the name layer.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="message_option_name_color" id="message_option_name_color">name_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Font color</td><td class="tagattribdesc">Specifies the text color for the name display layer.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="message_option_name_shadow_color" id="message_option_name_shadow_color">name_shadow_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Shadow color</td><td class="tagattribdesc">Specifies the shadow color for the text in the name display layer.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="message_option_name_edge_color" id="message_option_name_edge_color">name_edge_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Shadow Color</td><td class="tagattribdesc">Specifies the edge color of the layer that displays the name.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="message_option_name_visible" id="message_option_name_visible">name_visible</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies the display state of the name display layer.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="message_option_name" id="message_option_name">name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">String</td><td class="tagattribdesc">Specifies the name to be displayed.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_option_interval" id="message_option_interval">interval</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">milliseconds</td><td class="tagattribdesc">Specify the character display interval.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_option_auto_mode_click_cancel" id="message_option_auto_mode_click_cancel">auto_mode_click_cancel</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If you specify true, clicking during auto mode will cancel auto mode.<br />
-If you specify false, auto mode will not be canceled even if you click during auto mode.<br />
+If you specify false, auto mode will not be canceled even if you click during auto mode.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_option_no_wait_speed" id="message_option_no_wait_speed">no_wait_speed</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specifies the no-wait message display speed.<br />
-The initial value is 0.<br />
+The initial value is 0.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_option_high_speed" id="message_option_high_speed">high_speed</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specify the fast message display speed.<br />
-The initial value is 10.<br />
+The initial value is 10.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_option_normal_speed" id="message_option_normal_speed">normal_speed</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specifies the normal message display speed.<br />
-The initial value is 30.<br />
+The initial value is 30.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_option_low_speed" id="message_option_low_speed">low_speed</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specifies the slow message display speed.<br />
-The initial value is 50.<br />
+The initial value is 50.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_option_readingno_wait_speed" id="message_option_readingno_wait_speed">reading_no_wait_speed</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specifies the display speed of read and no-wait messages.<br />
-The initial value is 0.<br />
+The initial value is 0.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_option_readinghigh_speed" id="message_option_readinghigh_speed">reading_high_speed</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specify the display speed for fast read messages.<br />
-The initial value is 10.<br />
+The initial value is 10.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_option_readingnormal_speed" id="message_option_readingnormal_speed">reading_normal_speed</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specifies the normal read message display speed.<br />
-The initial value is 30.<br />
+The initial value is 30.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="message_option_readinglow_speed" id="message_option_readinglow_speed">reading_low_speed</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specifies the display speed of slow read messages.<br />
-The initial value is 50.<br />
+The initial value is 50.<br /></td></tr>
 </tbody></table><div class="tagremarks">Message layer settings.<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
@@ -188,40 +188,40 @@ The initial value is 50.<br />
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of current attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="current_layer" id="current_layer">layer</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">"message0" or "message1" or "messageN"</td><td class="tagattribdesc">Specify the message layer to be operated on.<br />
 It can be one of message0 to messageN. (N is the number of message layers specified in message_layers - 1)<br />
-If omitted, the current message layer will be targeted.<br />
+If omitted, the current message layer will be targeted.<br /></td></tr>
 </tbody></table><div class="tagremarks">Set the current layer.<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="history_option" id="history_option" class="targanchor"><span class="b">history_option</span>(history)</a></h1>
 <div class="taggenre">Message operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of history_option attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_option_storage" id="history_option_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the image file name to be used as a frame image.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_option_storage" id="history_option_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the image file name to be used as a frame image.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_option_slider_storage" id="history_option_slider_storage">slider_storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the image file name to be used as a slider.<br />
-It can be specified in the format "background/thumb".<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_option_left" id="history_option_left">left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the display position of the history layer.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_option_top" id="history_option_top">top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the display position of the history layer.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_option_width" id="history_option_width">width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the width of the history layer.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_option_height" id="history_option_height">height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the height of the history layer.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_option_color" id="history_option_color">color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format</td><td class="tagattribdesc">Specifies the color of the history layer.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_option_opacity" id="history_option_opacity">opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0 - 255</td><td class="tagattribdesc">Specifies the opacity of the history layer.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_option_caption_color" id="history_option_caption_color">caption_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format</td><td class="tagattribdesc">Specify the color of the text.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_option_shadow_color" id="history_option_shadow_color">shadow_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format</td><td class="tagattribdesc">Specify the shadow color of the text.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_option_edge_color" id="history_option_edge_color">edge_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format</td><td class="tagattribdesc">Specify the edge color.<br />
-<tr><td class="tagattribalias">marginl</td><td class="tagattribname"><a class="targanchor" name="history_option_margin_left" id="history_option_margin_left">margin_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the character display margin.<br />
-<tr><td class="tagattribalias">margint</td><td class="tagattribname"><a class="targanchor" name="history_option_margin_top" id="history_option_margin_top">margin_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the character display margin.<br />
-<tr><td class="tagattribalias">marginr</td><td class="tagattribname"><a class="targanchor" name="history_option_margin_right" id="history_option_margin_right">margin_right</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the character display margin.<br />
-<tr><td class="tagattribalias">marginb</td><td class="tagattribname"><a class="targanchor" name="history_option_margin_bottom" id="history_option_margin_bottom">margin_bottom</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the character display margin.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_option_layout_mode" id="history_option_layout_mode">layout_mode</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">vertical or horizontal</td><td class="tagattribdesc">Specify vertical or horizontal writing.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_option_font_size" id="history_option_font_size">font_size</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the font size.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_option_font_face" id="history_option_font_face">font_face</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Font name</td><td class="tagattribdesc">Specify the font face name of the text.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_option_show_hide_type" id="history_option_show_hide_type">show_hide_type</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">fade or vista</td><td class="tagattribdesc">Specify the display/hide method for the history layer.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_option_time" id="history_option_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">milliseconds</td><td class="tagattribdesc">Specifies the time in milliseconds to show/hide the history layer.<br />
+It can be specified in the format "background/thumb".<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_option_left" id="history_option_left">left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the display position of the history layer.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_option_top" id="history_option_top">top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the display position of the history layer.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_option_width" id="history_option_width">width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the width of the history layer.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_option_height" id="history_option_height">height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the height of the history layer.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_option_color" id="history_option_color">color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format</td><td class="tagattribdesc">Specifies the color of the history layer.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_option_opacity" id="history_option_opacity">opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0 - 255</td><td class="tagattribdesc">Specifies the opacity of the history layer.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_option_caption_color" id="history_option_caption_color">caption_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format</td><td class="tagattribdesc">Specify the color of the text.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_option_shadow_color" id="history_option_shadow_color">shadow_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format</td><td class="tagattribdesc">Specify the shadow color of the text.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_option_edge_color" id="history_option_edge_color">edge_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format</td><td class="tagattribdesc">Specify the edge color.<br /></td></tr>
+<tr><td class="tagattribalias">marginl</td><td class="tagattribname"><a class="targanchor" name="history_option_margin_left" id="history_option_margin_left">margin_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the character display margin.<br /></td></tr>
+<tr><td class="tagattribalias">margint</td><td class="tagattribname"><a class="targanchor" name="history_option_margin_top" id="history_option_margin_top">margin_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the character display margin.<br /></td></tr>
+<tr><td class="tagattribalias">marginr</td><td class="tagattribname"><a class="targanchor" name="history_option_margin_right" id="history_option_margin_right">margin_right</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the character display margin.<br /></td></tr>
+<tr><td class="tagattribalias">marginb</td><td class="tagattribname"><a class="targanchor" name="history_option_margin_bottom" id="history_option_margin_bottom">margin_bottom</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the character display margin.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_option_layout_mode" id="history_option_layout_mode">layout_mode</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">vertical or horizontal</td><td class="tagattribdesc">Specify vertical or horizontal writing.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_option_font_size" id="history_option_font_size">font_size</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the font size.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_option_font_face" id="history_option_font_face">font_face</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Font name</td><td class="tagattribdesc">Specify the font face name of the text.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_option_show_hide_type" id="history_option_show_hide_type">show_hide_type</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">fade or vista</td><td class="tagattribdesc">Specify the display/hide method for the history layer.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_option_time" id="history_option_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">milliseconds</td><td class="tagattribdesc">Specifies the time in milliseconds to show/hide the history layer.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_option_enabled" id="history_option_enabled">enabled</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Set enable/disable of history layer.<br />
 Specifying true enables the history layer.<br />
-Specifying false disables the history layer.<br />
+Specifying false disables the history layer.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_option_output" id="history_option_output">output</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specify whether to output text to the history layer.<br />
 If true is specified, characters will be output.<br />
-If false is specified, no characters will be output.<br />
+If false is specified, no characters will be output.<br /></td></tr>
 </tbody></table><div class="tagremarks">Configure the history layer.<br />
 </div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
@@ -229,17 +229,17 @@ If false is specified, no characters will be output.<br />
 <h1><a name="default_font_parameters" id="default_font_parameters" class="targanchor"><span class="b">default_font_parameters</span>(deffont)</a></h1>
 <div class="taggenre">Message operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of default_font_parameters attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="default_font_parameters_face" id="default_font_parameters_face">face</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Font name</td><td class="tagattribdesc">Specify the default font name.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="default_font_parameters_size" id="default_font_parameters_size">size</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specifies the default font size.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="default_font_parameters_italic" id="default_font_parameters_italic">italic</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies whether the default text is italic.<br />
-<tr><td class="tagattribalias">rubysize</td><td class="tagattribname"><a class="targanchor" name="default_font_parameters_ruby_size" id="default_font_parameters_ruby_size">ruby_size</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the default ruby size.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="default_font_parameters_bold" id="default_font_parameters_bold">bold</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies whether the default text is bold.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="default_font_parameters_strikeout" id="default_font_parameters_strikeout">strikeout</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies whether the default text is strikeout.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="default_font_parameters_underline" id="default_font_parameters_underline">underline</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies whether default characters are underlined.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="default_font_parameters_shadow" id="default_font_parameters_shadow">shadow</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies whether the default text is shaded.<br />
-<tr><td class="tagattribalias">shadowcolor</td><td class="tagattribname"><a class="targanchor" name="default_font_parameters_shadow_color" id="default_font_parameters_shadow_color">shadow_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format</td><td class="tagattribdesc">Specifies the default text shadow color.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="default_font_parameters_edge" id="default_font_parameters_edge">edge</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies whether the default text is an edge text.<br />
-<tr><td class="tagattribalias">edgecolor</td><td class="tagattribname"><a class="targanchor" name="default_font_parameters_edge_color" id="default_font_parameters_edge_color">edge_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format</td><td class="tagattribdesc">Specifies the default text edge text color.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="default_font_parameters_face" id="default_font_parameters_face">face</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Font name</td><td class="tagattribdesc">Specify the default font name.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="default_font_parameters_size" id="default_font_parameters_size">size</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specifies the default font size.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="default_font_parameters_italic" id="default_font_parameters_italic">italic</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies whether the default text is italic.<br /></td></tr>
+<tr><td class="tagattribalias">rubysize</td><td class="tagattribname"><a class="targanchor" name="default_font_parameters_ruby_size" id="default_font_parameters_ruby_size">ruby_size</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the default ruby size.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="default_font_parameters_bold" id="default_font_parameters_bold">bold</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies whether the default text is bold.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="default_font_parameters_strikeout" id="default_font_parameters_strikeout">strikeout</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies whether the default text is strikeout.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="default_font_parameters_underline" id="default_font_parameters_underline">underline</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies whether default characters are underlined.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="default_font_parameters_shadow" id="default_font_parameters_shadow">shadow</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies whether the default text is shaded.<br /></td></tr>
+<tr><td class="tagattribalias">shadowcolor</td><td class="tagattribname"><a class="targanchor" name="default_font_parameters_shadow_color" id="default_font_parameters_shadow_color">shadow_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format</td><td class="tagattribdesc">Specifies the default text shadow color.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="default_font_parameters_edge" id="default_font_parameters_edge">edge</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies whether the default text is an edge text.<br /></td></tr>
+<tr><td class="tagattribalias">edgecolor</td><td class="tagattribname"><a class="targanchor" name="default_font_parameters_edge_color" id="default_font_parameters_edge_color">edge_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format</td><td class="tagattribdesc">Specifies the default text edge text color.<br /></td></tr>
 </tbody></table><div class="tagremarks">Specifies the default character attributes for the message layer currently being manipulated.<br />
 See the font tag for details on each attribute. However, you cannot specify "default" as the attribute value.<br />
 The attributes specified here are actually reflected in the reset_font tag.<br />
@@ -247,42 +247,42 @@ Conversely, just executing this tag will not immediately reflect the font attrib
 </div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
-<h1><a name="default_line_parameters" id="default_line_parameters" class="targanchor"><span class="b">default_line_parameters</span>(defstyle)</h1>
+<h1><a name="default_line_parameters" id="default_line_parameters" class="targanchor"><span class="b">default_line_parameters</span>(defstyle)</a></h1>
 <div class="taggenre">Message operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of default_line_parameters attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">linesize</td><td class="tagattribname"><a class="targanchor" name="default_line_parameters_line_size" id="default_line_parameters_line_size">line_size</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the line size.<br />
-<tr><td class="tagattribalias">pitch</td><td class="tagattribname"><a class="targanchor" name="default_line_parameters_character_space" id="default_line_parameters_character_space">character_space</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the character spacing.<br />
-<tr><td class="tagattribalias">linespacing</td><td class="tagattribname"><a class="targanchor" name="default_line_parameters_line_space" id="default_line_parameters_line_space">line_space</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify line spacing.<br />
+<tr><td class="tagattribalias">linesize</td><td class="tagattribname"><a class="targanchor" name="default_line_parameters_line_size" id="default_line_parameters_line_size">line_size</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the line size.<br /></td></tr>
+<tr><td class="tagattribalias">pitch</td><td class="tagattribname"><a class="targanchor" name="default_line_parameters_character_space" id="default_line_parameters_character_space">character_space</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the character spacing.<br /></td></tr>
+<tr><td class="tagattribalias">linespacing</td><td class="tagattribname"><a class="targanchor" name="default_line_parameters_line_space" id="default_line_parameters_line_space">line_space</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify line spacing.<br /></td></tr>
 </tbody></table><div class="tagremarks">Set default line parameters.<br />
 Just executing this tag will not take effect immediately. It is actually reflected in reset_line_parameters.<br />
 </div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
-<h1><a name="line_parameters" id="line_parameters" class="targanchor"><span class="b">line_parameters</span>(style)</h1>
+<h1><a name="line_parameters" id="line_parameters" class="targanchor"><span class="b">line_parameters</span>(style)</a></h1>
 <div class="taggenre">Message operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of line_parameters attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">linesize</td><td class="tagattribname"><a class="targanchor" name="line_parameters_line_size" id="line_parameters_line_size">line_size</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the line size.<br />
-<tr><td class="tagattribalias">pitch</td><td class="tagattribname"><a class="targanchor" name="line_parameters_character_space" id="line_parameters_character_space">character_space</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the character spacing.<br />
-<tr><td class="tagattribalias">linespacing</td><td class="tagattribname"><a class="targanchor" name="line_parameters_line_space" id="line_parameters_line_space">line_space</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify line spacing.<br />
+<tr><td class="tagattribalias">linesize</td><td class="tagattribname"><a class="targanchor" name="line_parameters_line_size" id="line_parameters_line_size">line_size</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the line size.<br /></td></tr>
+<tr><td class="tagattribalias">pitch</td><td class="tagattribname"><a class="targanchor" name="line_parameters_character_space" id="line_parameters_character_space">character_space</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the character spacing.<br /></td></tr>
+<tr><td class="tagattribalias">linespacing</td><td class="tagattribname"><a class="targanchor" name="line_parameters_line_space" id="line_parameters_line_space">line_space</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify line spacing.<br /></td></tr>
 </tbody></table><div class="tagremarks">Set line parameters.<br />
 reset_line_parameters returns to the original line parameters.<br />
 </div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
-<h1><a name="font" id="font" class="targanchor"><span class="b">font</span>(No alias)</h1>
+<h1><a name="font" id="font" class="targanchor"><span class="b">font</span>(No alias)</a></h1>
 <div class="taggenre">Message operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of font attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="font_face" id="font_face">face</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Font name</td><td class="tagattribdesc">Specify the font name.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="font_size" id="font_size">size</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the font size.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="font_italic" id="font_italic">italic</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies whether text is italicized.<br />
-<tr><td class="tagattribalias">rubysize</td><td class="tagattribname"><a class="targanchor" name="font_ruby_size" id="font_ruby_size">ruby_size</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the ruby size.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="font_bold" id="font_bold">bold</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies whether the text is bold.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="font_strikeout" id="font_strikeout">strikeout</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies whether text is strikeout.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="font_underline" id="font_underline">underline</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies whether text is underlined.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="font_shadow" id="font_shadow">shadow</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies whether the text is shaded.<br />
-<tr><td class="tagattribalias">shadowcolor</td><td class="tagattribname"><a class="targanchor" name="font_shadow_color" id="font_shadow_color">shadow_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format</td><td class="tagattribdesc">Specify the shadow color of the text.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="font_edge" id="font_edge">edge</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies whether the text is an edge text.<br />
-<tr><td class="tagattribalias">edgecolor</td><td class="tagattribname"><a class="targanchor" name="font_edge_color" id="font_edge_color">edge_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format</td><td class="tagattribdesc">Specifies the color of the edge text of the text.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="font_face" id="font_face">face</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Font name</td><td class="tagattribdesc">Specify the font name.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="font_size" id="font_size">size</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the font size.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="font_italic" id="font_italic">italic</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies whether text is italicized.<br /></td></tr>
+<tr><td class="tagattribalias">rubysize</td><td class="tagattribname"><a class="targanchor" name="font_ruby_size" id="font_ruby_size">ruby_size</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the ruby size.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="font_bold" id="font_bold">bold</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies whether the text is bold.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="font_strikeout" id="font_strikeout">strikeout</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies whether text is strikeout.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="font_underline" id="font_underline">underline</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies whether text is underlined.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="font_shadow" id="font_shadow">shadow</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies whether the text is shaded.<br /></td></tr>
+<tr><td class="tagattribalias">shadowcolor</td><td class="tagattribname"><a class="targanchor" name="font_shadow_color" id="font_shadow_color">shadow_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format</td><td class="tagattribdesc">Specify the shadow color of the text.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="font_edge" id="font_edge">edge</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies whether the text is an edge text.<br /></td></tr>
+<tr><td class="tagattribalias">edgecolor</td><td class="tagattribname"><a class="targanchor" name="font_edge_color" id="font_edge_color">edge_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format</td><td class="tagattribdesc">Specifies the color of the edge text of the text.<br /></td></tr>
 </tbody></table><div class="tagremarks">Configure font settings.<br />
 reset_font returns to the original font settings.<br />
 </div>
@@ -307,24 +307,24 @@ ch/ruby/p/l/r/er/cm/ct tag is redirected to <br />
 ch_mod_message/ruby_mod_message/p_mod_message/l_mod_message/r_mod_message/erase_message/clear_message_layers_with_history/reset_message_layers_with_history,<br />
 The message will not be processed unless this tag is executed.<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div>
 
 <h1><a name="not_using_mod_message" id="not_using_mod_message" class="targanchor"><span class="b">not_using_mod_message</span>(No alias)</a></h1>
 <div class="taggenre">Redirect</div>
 <div class="tagremarks">Restore the output destination.<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div>
 
 <h1><a name="show_message" id="show_message" class="targanchor"><span class="b">show_message</span>(No alias)</a></h1>
 <div class="taggenre">Message operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of show_message attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="show_message_layer" id="show_message_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">message0 or message1 ...</td><td class="tagattribdesc">Specify the message layer to be operated on.<br />
 It can be one of message0 to messageN. (N is the number of message layers specified in message_layers - 1)<br />
-If omitted, the current message layer will be targeted.<br />
+If omitted, the current message layer will be targeted.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="show_message_type" id="show_message_type">type</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">vista or fade</td><td class="tagattribdesc">Specify the display method.<br />
 If you specify vista, a scaling effect will be applied.<br />
-Specifying fade will apply a fade effect.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="show_message_time" id="show_message_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">milliseconds</td><td class="tagattribdesc">Specify the display time in milliseconds.<br />
+Specifying fade will apply a fade effect.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="show_message_time" id="show_message_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">milliseconds</td><td class="tagattribdesc">Specify the display time in milliseconds.<br /></td></tr>
 </tbody></table><div class="tagremarks">Display message layer.<br />
 </div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
@@ -334,7 +334,7 @@ Specifying fade will apply a fade effect.<br />
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of wait_show_message attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="wait_show_message_layer" id="wait_show_message_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">message0 or message1 ...</td><td class="tagattribdesc">Specify the message layer to be operated on.<br />
 It can be one of message0 to messageN. (N is the number of message layers specified in message_layers - 1)<br />
-If omitted, the current message layer will be targeted.<br />
+If omitted, the current message layer will be targeted.<br /></td></tr>
 </tbody></table><div class="tagremarks">Waits for the message layer to be displayed.<br />
 </div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
@@ -344,11 +344,11 @@ If omitted, the current message layer will be targeted.<br />
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of hide_message attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="hide_message_layer" id="hide_message_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">message0 or message1 ...</td><td class="tagattribdesc">Specify the message layer to be operated on.<br />
 It can be one of message0 to messageN. (N is the number of message layers specified in message_layers - 1)<br />
-If omitted, the current message layer will be targeted.<br />
+If omitted, the current message layer will be targeted.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="hide_message_type" id="hide_message_type">type</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">vista or fade</td><td class="tagattribdesc">Specify the hiding method.<br />
 If you specify vista, a scaling effect will be applied.<br />
-Specifying fade will apply a fade effect.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="hide_message_time" id="hide_message_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">milliseconds</td><td class="tagattribdesc">Specify the amount of time to hide in milliseconds.<br />
+Specifying fade will apply a fade effect.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="hide_message_time" id="hide_message_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">milliseconds</td><td class="tagattribdesc">Specify the amount of time to hide in milliseconds.<br /></td></tr>
 </tbody></table><div class="tagremarks">Hide the message layer.<br />
 </div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
@@ -358,7 +358,7 @@ Specifying fade will apply a fade effect.<br />
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of wait_hide_message attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="wait_hide_message_layer" id="wait_hide_message_layer">layer</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">message0 or message1 ...</td><td class="tagattribdesc">Specify the message layer to be operated on.<br />
 It can be one of message0 to messageN. (N is the number of message layers specified in message_layers - 1)<br />
-If omitted, the current message layer will be targeted.<br />
+If omitted, the current message layer will be targeted.<br /></td></tr>
 </tbody></table><div class="tagremarks">Waits for the message layer to be hidden.<br />
 </div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
@@ -366,9 +366,9 @@ If omitted, the current message layer will be targeted.<br />
 <h1><a name="horizontal_ch" id="horizontal_ch" class="targanchor"><span class="b">horizontal_ch</span>(hch)</a></h1>
 <div class="taggenre">Message operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of horizontal_ch attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="horizontal_ch_text" id="horizontal_ch_text">text</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Text</td><td class="tagattribdesc">Specify the text to display.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="horizontal_ch_text" id="horizontal_ch_text">text</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Text</td><td class="tagattribdesc">Specify the text to display.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="horizontal_ch_expand" id="horizontal_ch_expand">expand</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If true is specified, the row size will be adjusted if the width is long.<br />
-If you specify false, no adjustment will be made.<br />
+If you specify false, no adjustment will be made.<br /></td></tr>
 </tbody></table><div class="tagremarks">Displays horizontally while writing vertically.<br />
 This cannot be executed unless the current mode is vertical writing.<br />
 </div>
@@ -380,7 +380,7 @@ This cannot be executed unless the current mode is vertical writing.<br />
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_reline_repage" id="history_reline_repage">repage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specify whether to break a page.<br />
 Specifying true will cause a page break.<br />
 If you specify false, a new line will be inserted.<br />
-Defaults is false.<br />
+Defaults is false.<br /></td></tr>
 </tbody></table><div class="tagremarks">Creates a line break/page break in the history layer.<br />
 </div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
@@ -389,58 +389,58 @@ Defaults is false.<br />
 <div class="taggenre">Message operations</div>
 <div class="tagremarks">Clear all message and history layers.<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div>
 
 <h1><a name="reset_message_layers_with_history" id="reset_message_layers_with_history" class="targanchor"><span class="b">reset_message_layers_with_history</span>(ct)</a></h1>
 <div class="taggenre">Message operations</div>
 <div class="tagremarks">Clear all message and history layers.<br />
 Additionally, change the current layer back to messsage0.<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div>
 
 <h1><a name="clear_message_layers" id="clear_message_layers" class="targanchor"><span class="b">clear_message_layers</span>(No alias)</a></h1>
 <div class="taggenre">Message operations</div>
 <div class="tagremarks">Clear all message layers.<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div>
 
 <h1><a name="erase_message" id="erase_message" class="targanchor"><span class="b">erase_message</span>(er)</a></h1>
 <div class="taggenre">Message operations</div>
 <div class="tagremarks">Clears the current text.<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div>
 
 <h1><a name="indent" id="indent" class="targanchor"><span class="b">indent</span>(No alias)</a></h1>
 <div class="taggenre">Message operations</div>
 <div class="tagremarks">Set the current output position as an indent.<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div>
 
 <h1><a name="end_indent" id="end_indent" class="targanchor"><span class="b">end_indent</span>(endindent)</a></h1>
 <div class="taggenre">Message operations</div>
 <div class="tagremarks">Clears indentation settings.<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div>
 
 <h1><a name="link" id="link" class="targanchor"><span class="b">link</span>(No alias)</a></h1>
 <div class="taggenre">Message operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of link attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">exp</td><td class="tagattribname"><a class="targanchor" name="link_expression" id="link_expression">expression</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">TJS expression</td><td class="tagattribdesc">Specify a tjs expression to be executed when clicked. If omitted, the expression will not be executed. If storage or target is specified, this expression is executed before moving to the jump destination.<br />
-<tr><td class="tagattribalias">clickse</td><td class="tagattribname"><a class="targanchor" name="link_click_sound_effect" id="link_click_sound_effect">click_sound_effect</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the sound effect to play when clicked. If not specified, no sound effects will be played.<br />
-<tr><td class="tagattribalias">clicksebuf</td><td class="tagattribname"><a class="targanchor" name="link_click_sound_effect_buffer_number" id="link_click_sound_effect_buffer_number">click_sound_effect_buffer_number</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specifies the sound effect buffer that plays the sound effect specified by clickse. If omitted, 0 is assumed.<br />
-<tr><td class="tagattribalias">onenter</td><td class="tagattribname"><a class="targanchor" name="link_on_enter_expression" id="link_on_enter_expression">on_enter_expression</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">TJS expression</td><td class="tagattribdesc">Specifies the TJS expression that is executed when the mouse cursor enters the link.<br />
-<tr><td class="tagattribalias">enterse</td><td class="tagattribname"><a class="targanchor" name="link_enter_sound_effect" id="link_enter_sound_effect">enter_sound_effect</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the sound effect to play when the mouse enters. If not specified, no sound effects will be played.<br />
-<tr><td class="tagattribalias">entersebuf</td><td class="tagattribname"><a class="targanchor" name="link_enter_sound_effect_buffer_number" id="link_enter_sound_effect_buffer_number">enter_sound_effect_buffer_number</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specifies the sound effect buffer that plays the sound effect specified by enterse. If omitted, 0 is assumed.<br />
-<tr><td class="tagattribalias">onleave</td><td class="tagattribname"><a class="targanchor" name="link_on_leave_expression" id="link_on_leave_expression">on_leave_expression</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">TJS expression</td><td class="tagattribdesc">Specifies the TJS expression that is executed when the mouse cursor leaves the link.<br />
-<tr><td class="tagattribalias">leavese</td><td class="tagattribname"><a class="targanchor" name="link_leave_sound_effect" id="link_leave_sound_effect">leave_sound_effect</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the sound effect to play when the mouse leaves. If not specified, no sound effects will be played.<br />
-<tr><td class="tagattribalias">leavesebuf</td><td class="tagattribname"><a class="targanchor" name="link_leave_sound_effect_buffer_number" id="link_leave_sound_effect_buffer_number">leave_sound_effect_buffer_number</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specifies the sound effect buffer that plays the sound effect specified by leavese. If omitted, 0 is assumed.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="link_storage" id="link_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the scenario file to jump to. If omitted, the current scenario file is assumed.<br />
+<tr><td class="tagattribalias">exp</td><td class="tagattribname"><a class="targanchor" name="link_expression" id="link_expression">expression</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">TJS expression</td><td class="tagattribdesc">Specify a tjs expression to be executed when clicked. If omitted, the expression will not be executed. If storage or target is specified, this expression is executed before moving to the jump destination.<br /></td></tr>
+<tr><td class="tagattribalias">clickse</td><td class="tagattribname"><a class="targanchor" name="link_click_sound_effect" id="link_click_sound_effect">click_sound_effect</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the sound effect to play when clicked. If not specified, no sound effects will be played.<br /></td></tr>
+<tr><td class="tagattribalias">clicksebuf</td><td class="tagattribname"><a class="targanchor" name="link_click_sound_effect_buffer_number" id="link_click_sound_effect_buffer_number">click_sound_effect_buffer_number</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specifies the sound effect buffer that plays the sound effect specified by clickse. If omitted, 0 is assumed.<br /></td></tr>
+<tr><td class="tagattribalias">onenter</td><td class="tagattribname"><a class="targanchor" name="link_on_enter_expression" id="link_on_enter_expression">on_enter_expression</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">TJS expression</td><td class="tagattribdesc">Specifies the TJS expression that is executed when the mouse cursor enters the link.<br /></td></tr>
+<tr><td class="tagattribalias">enterse</td><td class="tagattribname"><a class="targanchor" name="link_enter_sound_effect" id="link_enter_sound_effect">enter_sound_effect</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the sound effect to play when the mouse enters. If not specified, no sound effects will be played.<br /></td></tr>
+<tr><td class="tagattribalias">entersebuf</td><td class="tagattribname"><a class="targanchor" name="link_enter_sound_effect_buffer_number" id="link_enter_sound_effect_buffer_number">enter_sound_effect_buffer_number</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specifies the sound effect buffer that plays the sound effect specified by enterse. If omitted, 0 is assumed.<br /></td></tr>
+<tr><td class="tagattribalias">onleave</td><td class="tagattribname"><a class="targanchor" name="link_on_leave_expression" id="link_on_leave_expression">on_leave_expression</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">TJS expression</td><td class="tagattribdesc">Specifies the TJS expression that is executed when the mouse cursor leaves the link.<br /></td></tr>
+<tr><td class="tagattribalias">leavese</td><td class="tagattribname"><a class="targanchor" name="link_leave_sound_effect" id="link_leave_sound_effect">leave_sound_effect</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the sound effect to play when the mouse leaves. If not specified, no sound effects will be played.<br /></td></tr>
+<tr><td class="tagattribalias">leavesebuf</td><td class="tagattribname"><a class="targanchor" name="link_leave_sound_effect_buffer_number" id="link_leave_sound_effect_buffer_number">leave_sound_effect_buffer_number</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specifies the sound effect buffer that plays the sound effect specified by leavese. If omitted, 0 is assumed.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="link_storage" id="link_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the scenario file to jump to. If omitted, the current scenario file is assumed.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="link_target" id="link_target">target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Label name</td><td class="tagattribdesc">Specify the label to jump to.<br />
-If omitted, execution starts from the beginning of the file.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="link_color" id="link_color">color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format</td><td class="tagattribdesc">Specifies the color of the semi-transparent rectangle that appears when the link is selected.<br />
+If omitted, execution starts from the beginning of the file.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="link_color" id="link_color">color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format</td><td class="tagattribdesc">Specifies the color of the semi-transparent rectangle that appears when the link is selected.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="link_hint" id="link_hint">hint</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">String to display as a hint</td><td class="tagattribdesc">Specifies the tooltip hint that appears when you select a link and pause the mouse cursor.<br />
 If omitted, no display will be performed.<br />
-It can be used to supplement a link's explanation, but you can also create an empty link by specifying only the hint attribute and no target, storage, or exp attributes to explain difficult words.<br />
+It can be used to supplement a link's explanation, but you can also create an empty link by specifying only the hint attribute and no target, storage, or exp attributes to explain difficult words.<br /></td></tr>
 </tbody></table><div class="tagremarks">You can make the text between the link and endlink tags selectable with the mouse or keyboard, and specify where to jump when clicked or pressed.<br />
 By specifying the exp attribute, you can perform actions such as assigning a value to a variable when a link is clicked.<br />
 Enclosed text cannot span pages (although it can span lines).<br />
@@ -452,32 +452,32 @@ You can create up to 255 links on one screen.<br />
 <div class="taggenre">Message operations</div>
 <div class="tagremarks">End of link.<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div>
 
 <h1><a name="button" id="button" class="targanchor"><span class="b">button</span>(No alias)</a></h1>
 <div class="taggenre">Message operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of button attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">exp</td><td class="tagattribname"><a class="targanchor" name="button_expression" id="button_expression">expression</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">TJS expression</td><td class="tagattribdesc">Specifies the TJS expression to be executed when clicked. If omitted, the expression will not be executed. If storage or target is specified, this expression is executed before moving to the jump destination.<br />
-<tr><td class="tagattribalias">clickse</td><td class="tagattribname"><a class="targanchor" name="button_click_sound_effect" id="button_click_sound_effect">click_sound_effect</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the sound effect to play when clicked. If not specified, no sound effects will be played.<br />
-<tr><td class="tagattribalias">clicksebuf</td><td class="tagattribname"><a class="targanchor" name="button_click_sound_effect_buffer_number" id="button_click_sound_effect_buffer_number">click_sound_effect_buffer_number</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specifies the sound effect buffer that plays the sound effect specified by clickse. If omitted, 0 is assumed.<br />
-<tr><td class="tagattribalias">onenter</td><td class="tagattribname"><a class="targanchor" name="button_on_enter_expression" id="button_on_enter_expression">on_enter_expression</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">TJS expression</td><td class="tagattribdesc">Specifies the TJS expression that is executed when the mouse cursor enters the link.<br />
-<tr><td class="tagattribalias">enterse</td><td class="tagattribname"><a class="targanchor" name="button_enter_sound_effect" id="button_enter_sound_effect">enter_sound_effect</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the sound effect to play when the mouse enters. If not specified, no sound effects will be played.<br />
-<tr><td class="tagattribalias">entersebuf</td><td class="tagattribname"><a class="targanchor" name="button_enter_sound_effect_buffer_number" id="button_enter_sound_effect_buffer_number">enter_sound_effect_buffer_number</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specifies the sound effect buffer that plays the sound effect specified by enterse. If omitted, 0 is assumed.<br />
-<tr><td class="tagattribalias">onleave</td><td class="tagattribname"><a class="targanchor" name="button_on_leave_expression" id="button_on_leave_expression">on_leave_expression</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">TJS expression</td><td class="tagattribdesc">Specifies the TJS expression that is executed when the mouse cursor leaves the link.<br />
-<tr><td class="tagattribalias">leavese</td><td class="tagattribname"><a class="targanchor" name="button_leave_sound_effect" id="button_leave_sound_effect">leave_sound_effect</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the sound effect to play when the mouse leaves. If not specified, no sound effects will be played.<br />
-<tr><td class="tagattribalias">leasesebuf</td><td class="tagattribname"><a class="targanchor" name="button_leave_sound_effect_buffer_number" id="button_leave_sound_effect_buffer_number">leave_sound_effect_buffer_number</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specifies the sound effect buffer that plays the sound effect specified by leavese. If omitted, 0 is assumed.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="button_storage" id="button_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the scenario file to jump to. If omitted, the current scenario file is assumed.<br />
+<tr><td class="tagattribalias">exp</td><td class="tagattribname"><a class="targanchor" name="button_expression" id="button_expression">expression</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">TJS expression</td><td class="tagattribdesc">Specifies the TJS expression to be executed when clicked. If omitted, the expression will not be executed. If storage or target is specified, this expression is executed before moving to the jump destination.<br /></td></tr>
+<tr><td class="tagattribalias">clickse</td><td class="tagattribname"><a class="targanchor" name="button_click_sound_effect" id="button_click_sound_effect">click_sound_effect</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the sound effect to play when clicked. If not specified, no sound effects will be played.<br /></td></tr>
+<tr><td class="tagattribalias">clicksebuf</td><td class="tagattribname"><a class="targanchor" name="button_click_sound_effect_buffer_number" id="button_click_sound_effect_buffer_number">click_sound_effect_buffer_number</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specifies the sound effect buffer that plays the sound effect specified by clickse. If omitted, 0 is assumed.<br /></td></tr>
+<tr><td class="tagattribalias">onenter</td><td class="tagattribname"><a class="targanchor" name="button_on_enter_expression" id="button_on_enter_expression">on_enter_expression</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">TJS expression</td><td class="tagattribdesc">Specifies the TJS expression that is executed when the mouse cursor enters the link.<br /></td></tr>
+<tr><td class="tagattribalias">enterse</td><td class="tagattribname"><a class="targanchor" name="button_enter_sound_effect" id="button_enter_sound_effect">enter_sound_effect</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the sound effect to play when the mouse enters. If not specified, no sound effects will be played.<br /></td></tr>
+<tr><td class="tagattribalias">entersebuf</td><td class="tagattribname"><a class="targanchor" name="button_enter_sound_effect_buffer_number" id="button_enter_sound_effect_buffer_number">enter_sound_effect_buffer_number</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specifies the sound effect buffer that plays the sound effect specified by enterse. If omitted, 0 is assumed.<br /></td></tr>
+<tr><td class="tagattribalias">onleave</td><td class="tagattribname"><a class="targanchor" name="button_on_leave_expression" id="button_on_leave_expression">on_leave_expression</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">TJS expression</td><td class="tagattribdesc">Specifies the TJS expression that is executed when the mouse cursor leaves the link.<br /></td></tr>
+<tr><td class="tagattribalias">leavese</td><td class="tagattribname"><a class="targanchor" name="button_leave_sound_effect" id="button_leave_sound_effect">leave_sound_effect</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the sound effect to play when the mouse leaves. If not specified, no sound effects will be played.<br /></td></tr>
+<tr><td class="tagattribalias">leasesebuf</td><td class="tagattribname"><a class="targanchor" name="button_leave_sound_effect_buffer_number" id="button_leave_sound_effect_buffer_number">leave_sound_effect_buffer_number</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specifies the sound effect buffer that plays the sound effect specified by leavese. If omitted, 0 is assumed.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="button_storage" id="button_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the scenario file to jump to. If omitted, the current scenario file is assumed.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="button_target" id="button_target">target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Label name</td><td class="tagattribdesc">Specify the label to jump to.<br />
-If omitted, execution starts from the beginning of the file.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="button_color" id="button_color">color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format</td><td class="tagattribdesc">Specifies the color of the semi-transparent rectangle that appears when the link is selected.<br />
+If omitted, execution starts from the beginning of the file.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="button_color" id="button_color">color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format</td><td class="tagattribdesc">Specifies the color of the semi-transparent rectangle that appears when the link is selected.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="button_hint" id="button_hint">hint</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">String to display as a hint</td><td class="tagattribdesc">Specifies the tooltip hint that appears when you select a link and pause the mouse cursor.<br />
 If omitted, no display will be performed.<br />
-It can be used to supplement a link's explanation, but you can also create an empty link by specifying only the hint attribute and no target, storage, or exp attributes to explain difficult words.<br />
+It can be used to supplement a link's explanation, but you can also create an empty link by specifying only the hint attribute and no target, storage, or exp attributes to explain difficult words.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="button_graphic" id="button_graphic">graphic</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the image to be used as a button.<br />
-See the storage attribute of the image tag.<br />
+See the storage attribute of the image tag.<br /></td></tr>
 <tr><td class="tagattribalias">graphickey</td><td class="tagattribname"><a class="targanchor" name="button_graphic_key" id="button_graphic_key">graphic_key</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format or Palette index number or "adapt"</td><td class="tagattribdesc">Specify the color key of the image to be made into a button.<br />
-See the key attribute of the image tag.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="button_caption" id="button_caption">caption</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">String</td><td class="tagattribdesc">Specify the caption string to be displayed on the button.<br />
+See the key attribute of the image tag.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="button_caption" id="button_caption">caption</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">String</td><td class="tagattribdesc">Specify the caption string to be displayed on the button.<br /></td></tr>
 </tbody></table><div class="tagremarks">Creates a button at the current position of the message layer currently being operated.<br />
 </div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
@@ -486,16 +486,16 @@ See the key attribute of the image tag.<br />
 <div class="taggenre">Message operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of checkbox attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="checkbox_graphic" id="checkbox_graphic">graphic</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the image to be a checkbox.<br />
-See the storage attribute of the image tag.<br />
+See the storage attribute of the image tag.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="checkbox_graphic_key" id="checkbox_graphic_key">graphic_key</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format or Palette index number or "adapt"</td><td class="tagattribdesc">Specify the color key of the image to be made into a checkbox.<br />
-See the key attribute of the image tag.<br />
+See the key attribute of the image tag.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="checkbox_name" id="checkbox_name">name</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Variable name</td><td class="tagattribdesc">Specify the variable that stores the checkbox state.<br />
 If the variable is 0 (or undefined), it is considered unchecked, otherwise it is considered checked.<br />
-If the variable is already non-zero, the checkbox will be created checked.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="checkbox_caption" id="checkbox_caption">caption</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">String</td><td class="tagattribdesc">Specify the string to display as a caption.<br />
-<tr><td class="tagattribalias">bgcolor</td><td class="tagattribname"><a class="targanchor" name="checkbox_background_color" id="checkbox_background_color">background_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format</td><td class="tagattribdesc">Specify the background color in 0xRRGGBB format.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="checkbox_color" id="checkbox_color">color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format</td><td class="tagattribdesc">Specify the checkmark color in 0xRRGGBB format.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="checkbox_opacity" id="checkbox_opacity">opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0 - 255</td><td class="tagattribdesc">Specify the opacity of the background color specified in the background_color attribute from 0 to 255.<br />
+If the variable is already non-zero, the checkbox will be created checked.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="checkbox_caption" id="checkbox_caption">caption</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">String</td><td class="tagattribdesc">Specify the string to display as a caption.<br /></td></tr>
+<tr><td class="tagattribalias">bgcolor</td><td class="tagattribname"><a class="targanchor" name="checkbox_background_color" id="checkbox_background_color">background_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format</td><td class="tagattribdesc">Specify the background color in 0xRRGGBB format.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="checkbox_color" id="checkbox_color">color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format</td><td class="tagattribdesc">Specify the checkmark color in 0xRRGGBB format.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="checkbox_opacity" id="checkbox_opacity">opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0 - 255</td><td class="tagattribdesc">Specify the opacity of the background color specified in the background_color attribute from 0 to 255.<br /></td></tr>
 </tbody></table><div class="tagremarks">Creates a checkbox at the current position of the message layer that is currently being manipulated.<br />
 The state of the checkbox is not assigned to the specified variable until the commit tag is executed.<br />
 When the commit tag is executed, the variable will contain 1 if the checkbox is checked and 0 if it is unchecked.<br />
@@ -506,15 +506,15 @@ When the commit tag is executed, the variable will contain 1 if the checkbox is 
 <div class="taggenre">Message operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of edit attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="edit_name" id="edit_name">name</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Variable name</td><td class="tagattribdesc">Specify a variable to store the input string.<br />
-If the variable already contains a string, it will be displayed as the initial string for single-line editing.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="edit_length" id="edit_length">length</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specifies the width (height for vertical writing) of the single-line edit in pixels.<br />
-<tr><td class="tagattribalias">bgcolor</td><td class="tagattribname"><a class="targanchor" name="edit_background_color" id="edit_background_color">background_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format</td><td class="tagattribdesc">Specify the background color in 0xRRGGBB format.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="edit_color" id="edit_color">color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format</td><td class="tagattribdesc">Specify the font color in 0xRRGGBB format.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="edit_opacity" id="edit_opacity">opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0 - 255</td><td class="tagattribdesc">Specify the opacity of the background color specified by the bgcolor attribute from 0 to 255.<br />
+If the variable already contains a string, it will be displayed as the initial string for single-line editing.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="edit_length" id="edit_length">length</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specifies the width (height for vertical writing) of the single-line edit in pixels.<br /></td></tr>
+<tr><td class="tagattribalias">bgcolor</td><td class="tagattribname"><a class="targanchor" name="edit_background_color" id="edit_background_color">background_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format</td><td class="tagattribdesc">Specify the background color in 0xRRGGBB format.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="edit_color" id="edit_color">color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format</td><td class="tagattribdesc">Specify the font color in 0xRRGGBB format.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="edit_opacity" id="edit_opacity">opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0 - 255</td><td class="tagattribdesc">Specify the opacity of the background color specified by the bgcolor attribute from 0 to 255.<br /></td></tr>
 <tr><td class="tagattribalias">maxchars</td><td class="tagattribname"><a class="targanchor" name="edit_max_character" id="edit_max_character">max_character</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specify the maximum number of characters that can be entered. Specifying 0 means unlimited.<br />
-Default is unlimited.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="edit_ghost_text" id="edit_ghost_text">ghost_text</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">String</td><td class="tagattribdesc">Specifies the ghost text.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="edit_ghost_text_color" id="edit_ghost_text_color">ghost_text_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">Specifies the color of the ghost text.<br />
+Default is unlimited.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="edit_ghost_text" id="edit_ghost_text">ghost_text</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">String</td><td class="tagattribdesc">Specifies the ghost text.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="edit_ghost_text_color" id="edit_ghost_text_color">ghost_text_color</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB</td><td class="tagattribdesc">Specifies the color of the ghost text.<br /></td></tr>
 </tbody></table><div class="tagremarks">Creates a single-line edit box.<br />
 </div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
@@ -522,15 +522,15 @@ Default is unlimited.<br />
 <h1><a name="slider" id="slider" class="targanchor"><span class="b">slider</span>(No alias)</a></h1>
 <div class="taggenre">Message operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of slider attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="slider_graphic" id="slider_graphic">graphic</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Image storage name</td><td class="tagattribdesc">Specifies the image storage name to be displayed as a slider.<br />
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="slider_graphic" id="slider_graphic">graphic</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Image storage name</td><td class="tagattribdesc">Specifies the image storage name to be displayed as a slider.<br /></td></tr>
 <tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="slider_graphic_key" id="slider_graphic_key">graphic_key</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB format, palette index number, or "adapt"</td><td class="tagattribdesc">Specifies the color key for the image to be displayed as a slider.<br />
-Refer to the key attribute of the image tag.<br />
+Refer to the key attribute of the image tag.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="slider_name" id="slider_name">name</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Variable name</td><td class="tagattribdesc">Specify the variable that stores the slider position.<br />
-If the variable already contains a number, it will be displayed as the initial position of the slider.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="slider_width" id="slider_width">width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specifies the width of the slider in pixels.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="slider_height" id="slider_height">height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specifies the height of the slider in pixels.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="slider_min" id="slider_min">min</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format</td><td class="tagattribdesc">Specifies the minimum value of the slider.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="slider_max" id="slider_max">max</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format</td><td class="tagattribdesc">Specifies the maximum value of the slider.<br />
+If the variable already contains a number, it will be displayed as the initial position of the slider.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="slider_width" id="slider_width">width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specifies the width of the slider in pixels.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="slider_height" id="slider_height">height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specifies the height of the slider in pixels.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="slider_min" id="slider_min">min</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format</td><td class="tagattribdesc">Specifies the minimum value of the slider.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="slider_max" id="slider_max">max</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format</td><td class="tagattribdesc">Specifies the maximum value of the slider.<br /></td></tr>
 </tbody></table><div class="tagremarks">Create a slider.<br />
 </div>
 <div class="tagexample"><code class="bq"><span class="weak">Example:</span><br />
@@ -551,38 +551,38 @@ If the variable already contains a number, it will be displayed as the initial p
 <div class="taggenre">Message operations</div>
 <div class="tagremarks">Commit your input.<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div>
 
 <h1><a name="lock_link" id="lock_link" class="targanchor"><span class="b">lock_link</span>(locklink)</a></h1>
 <div class="taggenre">Message operations</div>
 <div class="tagremarks">Lock link input.<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div>
 
 <h1><a name="unlock_link" id="unlock_link" class="targanchor"><span class="b">unlock_link</span>(unlocklink)</a></h1>
 <div class="taggenre">Message operations</div>
 <div class="tagremarks">Unlock links.<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div>
 
 <h1><a name="store_history_data" id="store_history_data" class="targanchor"><span class="b">store_history_data</span>(No alias)</a></h1>
 <div class="taggenre">Message operations</div>
 <div class="tagremarks">Store historical data.<br />
 Normally you would not use this tag.<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div>
 
 <h1><a name="auto_wait_ch" id="auto_wait_ch" class="targanchor"><span class="b">auto_wait_ch</span>(autowc)</a></h1>
 <div class="taggenre">Message operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of auto_wait_ch attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="auto_wait_ch_enabled" id="auto_wait_ch_enabled">enabled</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specify true to enable automatic waiting or false to disable it.<br />
-If omitted, the settings will not be changed.<br />
+If omitted, the settings will not be changed.<br /></td></tr>
 <tr><td class="tagattribalias">chars</td><td class="tagattribname"><a class="targanchor" name="auto_wait_ch_chars" id="auto_wait_ch_chars">ch</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Character</td><td class="tagattribdesc">Specify the characters to be automatically waited. After the specified character, a wait equal to the number of characters specified in the time attribute is inserted.<br />
-If omitted, the settings will not be changed.<br />
+If omitted, the settings will not be changed.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="auto_wait_ch_time" id="auto_wait_ch_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Wait (in characters)</td><td class="tagattribdesc">Specify the time to insert automatic wait in units of characters.<br />
 You can specify times for each character specified in the ch attribute, separated by commas.<br />
 If only one time is specified, that time will be set for all characters specified in the ch tag.<br />
-If this attribute is omitted, 4 is assumed.<br />
+If this attribute is omitted, 4 is assumed.<br /></td></tr>
 </tbody></table><div class="tagremarks">You can insert waits for the specified number of characters after a specific character.<br />
 After the characters specified in the ch attribute are displayed, the time specified in the time attribute is entered as a wait.<br />
 Multiple characters can be specified using the ch tag, and correspondingly, the timing can be specified for each character using the time attribute.<br />
@@ -593,7 +593,7 @@ Multiple characters can be specified using the ch tag, and correspondingly, the 
 <div class="taggenre">Events</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of click_skip attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="click_skip_enabled" id="click_skip_enabled">enabled</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specify true to enable click skip, or false to disable it.<br />
-If omitted, the settings will not be changed.<br />
+If omitted, the settings will not be changed.<br /></td></tr>
 </tbody></table><div class="tagremarks">Enable/disable click skip.<br />
 If set to true, click skip will be enabled for all tags.<br />
 If set to false, click skip will be disabled for all tags.<br />
@@ -602,15 +602,15 @@ If set to false, click skip will be disabled for all tags.<br />
 
 <h1><a name="hidden_message" id="hidden_message" class="targanchor"><span class="b">hidden_message</span>(hidemessage)</a></h1>
 <div class="taggenre">Message operations</div>
-</tbody></table><div class="tagremarks">Temporarily hide the message layer.<br />
+<div class="tagremarks">Temporarily hide the message layer.<br />
 Click to cancel temporary hide.<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div>
 
 <h1><a name="map_prerendered_font" id="map_prerendered_font" class="targanchor"><span class="b">map_prerendered_font</span>(mapfont)</a></h1>
 <div class="taggenre">Message operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of map_prerendered_font attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="map_prerendered_font_storage" id="map_prerendered_font_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the rendered font file you want to assign to the current font.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="map_prerendered_font_storage" id="map_prerendered_font_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the rendered font file you want to assign to the current font.<br /></td></tr>
 </tbody></table><div class="tagremarks">Assigns the specified rendered font to the current font of the message layer currently being manipulated. After this tag, whenever you draw that font in Kirikiri, the specified rendered font will be used.<br />
 The font you assign does not have to actually exist. For example, if you use map_prerendered_font with the font "Hogehoge Font" selected, you can assign any rendered font to that "Hogehoge Font". You can only assign one rendered font to a font name (for example, you cannot assign multiple rendered fonts of different sizes to a font name).<br />
 You can also assign multiple rendered fonts to different fonts.<br />
@@ -620,7 +620,7 @@ You can also assign multiple rendered fonts to different fonts.<br />
 <h1><a name="next_skip" id="next_skip" class="targanchor"><span class="b">next_skip</span>(nextskip)</a></h1>
 <div class="taggenre">Message operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of next_skip attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="next_skip_enabled" id="next_skip_enabled">enabled</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specify true to enable the "Advance to next choice" function, or false to disable it.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="next_skip_enabled" id="next_skip_enabled">enabled</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specify true to enable the "Advance to next choice" function, or false to disable it.<br /></td></tr>
 </tbody></table><div class="tagremarks">You can specify whether users can use the "Advance to next choice" feature.<br />
 It may be better to disable it in demo scenes etc.<br />
 </div>
@@ -630,12 +630,12 @@ It may be better to disable it in demo scenes etc.<br />
 <div class="taggenre">Scenario progress</div>
 <div class="tagremarks">Pause the progress of the scenario.<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div>
 
 <h1><a name="wait_ch" id="wait_ch" class="targanchor"><span class="b">wait_ch</span>(wc)</a></h1>
 <div class="taggenre">Message operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of wait_ch attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="wait_ch_time" id="wait_ch_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Waits the same amount of time as it takes to display the number of characters specified here. The time required for one character is specified using the delay tag.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="wait_ch_time" id="wait_ch_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Waits the same amount of time as it takes to display the number of characters specified here. The time required for one character is specified using the delay tag.<br /></td></tr>
 </tbody></table><div class="tagremarks">Insert the wait for the number of characters.<br />
 </div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
@@ -644,19 +644,19 @@ It may be better to disable it in demo scenes etc.<br />
 <div class="taggenre">Scenario progress</div>
 <div class="tagremarks">Cancel auto mode.<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div>
 
 <h1><a name="cancel_skip" id="cancel_skip" class="targanchor"><span class="b">cancel_skip</span>(cancelskip)</a></h1>
 <div class="taggenre">Scenario progress</div>
 <div class="tagremarks">Cancel skip mode.<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div>
 
 <h1><a name="delay" id="delay" class="targanchor"><span class="b">delay</span>(No alias)</a></h1>
 <div class="taggenre">Message operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of delay attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="delay_speed" id="delay_speed">speed</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">"nowait" or "user" or Wait value (in ms)</td><td class="tagattribdesc">If you specify "nowait", the characters will be displayed all at once without any wait time. If "user" is specified, the speed specified by message_option will be used (default). If you specify a wait value, characters will be displayed at a rate of one character per time indicated by the value.<br />
-Text display speed is the same for all message layers.<br />
+Text display speed is the same for all message layers.<br /></td></tr>
 </tbody></table><div class="tagremarks">Specify the display speed of characters.<br />
 You can also use the no_wait tag to display characters without waiting.<br />
 </div>
@@ -666,27 +666,27 @@ You can also use the no_wait tag to display characters without waiting.<br />
 <div class="taggenre">Message operations</div>
 <div class="tagremarks">Sets the character display speed to no wait.<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div>
 
 <h1><a name="end_no_wait" id="end_no_wait" class="targanchor"><span class="b">end_no_wait</span>(endnowait)</a></h1>
 <div class="taggenre">Message operations</div>
 <div class="tagremarks">Returns the character display speed to the character display speed immediately before it was set to no-wait using the nowait tag.<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div>
 
 <h1><a name="glyph" id="glyph" class="targanchor"><span class="b">glyph</span>(No alias)</a></h1>
 <div class="taggenre">Message operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of glyph attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="glyph_page" id="glyph_page">page</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the file name of the page break waiting symbol image.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="glyph_page" id="glyph_page">page</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the file name of the page break waiting symbol image.<br /></td></tr>
 <tr><td class="tagattribalias">pagekey</td><td class="tagattribname"><a class="targanchor" name="glyph_page_key" id="glyph_page_key">page_key</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format or Palette index number or "adapt"</td><td class="tagattribdesc">Specify the color key.<br />
-See the key attribute of the image tag.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="glyph_line" id="glyph_line">line</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the file name of the symbol image waiting for click at the end of the line.<br />
+See the key attribute of the image tag.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="glyph_line" id="glyph_line">line</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the file name of the symbol image waiting for click at the end of the line.<br /></td></tr>
 <tr><td class="tagattribalias">linekey</td><td class="tagattribname"><a class="targanchor" name="glyph_line_key" id="glyph_line_key">line_key</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format or Palette index number or "adapt"</td><td class="tagattribdesc">Specify the color key.<br />
-See the key attribute of the image tag.<br />
+See the key attribute of the image tag.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="glyph_fix" id="glyph_fix">fix</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specify whether to fix the symbol display position to the specified position. If true, the symbol will be displayed at the specified left and top positions.<br />
-If false, the left and top attributes will be ignored and the symbol will be displayed at the current character position.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="glyph_left" id="glyph_left">left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the leftmost position of the symbol to be displayed when the fix attribute is set to true.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="glyph_top" id="glyph_top">top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the top position of the symbol to be displayed when the fix attribute is set to true.<br />
+If false, the left and top attributes will be ignored and the symbol will be displayed at the current character position.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="glyph_left" id="glyph_left">left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the leftmost position of the symbol to be displayed when the fix attribute is set to true.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="glyph_top" id="glyph_top">top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specify the top position of the symbol to be displayed when the fix attribute is set to true.<br /></td></tr>
 </tbody></table><div class="tagremarks">Specifies the image used for waiting for clicks in the current layer.<br />
 The image with the file name specified by the line or page attribute will be loaded as a symbol, and the file name with .asd appended to that file name will be loaded as the animation layer script.<br />
 These settings can be configured separately for each message layer.<br />
@@ -697,15 +697,15 @@ These settings can be configured separately for each message layer.<br />
 <div class="taggenre">Message operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of graph attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
 				<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="graph_storage" id="graph_storage">storage</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the image file name you want to display. The formats that can be read are the same as those that can be read with the image tag.<br />
-The file with _m appended to the file name (excluding the extension) specified here, if any, will be loaded as a mask image. Be sure to save the mask image in 256-color grayscale.<br />
+The file with _m appended to the file name (excluding the extension) specified here, if any, will be loaded as a mask image. Be sure to save the mask image in 256-color grayscale.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="graph_key" id="graph_key">key</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0xRRGGBB Format or Palette index number or "adapt"</td><td class="tagattribdesc">Specify which color will be the extraction color. If omitted, the extraction color will be disabled.<br />
 If you specify the extraction color in hexadecimal in the format key=0xRRGGBB, the parts painted with RR (red) GG (green) BB (blue) will be made transparent as the extraction color. For example, key=0xff00ff specifies (r,g,b)=(255,0,255), which means that the true magenta part will be extracted and made transparent.<br />
 If you simply specify a numerical value, the number value of that palette index will be the extraction color. Valid for 16-color/256-color images.<br />
 If you specify key=adapt, the extraction color will be determined automatically. The extraction color used is the color that is used the most on the top line of the image. Valid for 16-color/256-color images.<br />
-If you use a mask image, you do not need to specify this tag.<br />
+If you use a mask image, you do not need to specify this tag.<br /></td></tr>
 <tr><td class="tagattribalias">char</td><td class="tagattribname"><a class="targanchor" name="graph_character" id="graph_character">character</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If you set it to true, the image will display the color, shadow, and outlined text state specified by the font tag just like text. Therefore, if true is set, the image's color information will be ignored. Also, the image does not need to be shadowed or outlined.<br />
-The default is true, assuming that the graph tag is often used to display special symbols, so be careful when displaying normal images.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="graph_alt" id="graph_alt">alt</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">alternative characters</td><td class="tagattribdesc">Specifies an alternative character for this image to display in the message history. Since message history can only display character information, the characters specified in the alt attribute will be displayed instead.<br />
+The default is true, assuming that the graph tag is often used to display special symbols, so be careful when displaying normal images.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="graph_alt" id="graph_alt">alt</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">alternative characters</td><td class="tagattribdesc">Specifies an alternative character for this image to display in the message history. Since message history can only display character information, the characters specified in the alt attribute will be displayed instead.<br /></td></tr>
 </tbody></table><div class="tagremarks">Display an arbitrary image at the text position of the message layer.<br />
 Normally, special symbols that are not included in fonts are prepared as images and used to display them.<br />
 </div>
@@ -714,8 +714,8 @@ Normally, special symbols that are not included in fonts are prepared as images 
 <h1><a name="locate" id="locate" class="targanchor"><span class="b">locate</span>(No alias)</a></h1>
 <div class="taggenre">Message operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of locate attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="locate_x" id="locate_x">x</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specifies the x-coordinate location where the text should be displayed.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="locate_y" id="locate_y">y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specifies the y-coordinate location where the text should be displayed.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="locate_x" id="locate_x">x</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specifies the x-coordinate location where the text should be displayed.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="locate_y" id="locate_y">y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Pixel unit</td><td class="tagattribdesc">Specifies the y-coordinate location where the text should be displayed.<br /></td></tr>
 </tbody></table><div class="tagremarks">Specify the character display position.<br />
 The values of the margin_left and margin_top attributes specified in the message_option tag are actually added together.<br />
 By omitting y for horizontal writing and x for vertical writing, you can change the character display position within the same line.<br />
@@ -729,9 +729,9 @@ By omitting y for horizontal writing and x for vertical writing, you can change 
 Some of the triggers implemented by GOKI2 are shown below.<br />
 left_click<br />
 right_click<br />
-middle_click<br />
-<tr><td class="tagattribalias">canskip</td><td class="tagattribname"><a class="targanchor" name="wait_trigger_skip" id="wait_trigger_skip">skip</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If you specify true, you can skip the waiting action by clicking.<br />
-<tr><td class="tagattribalias">onskip</td><td class="tagattribname"><a class="targanchor" name="wait_trigger_on_skip" id="wait_trigger_on_skip">on_skip</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">TJS expression</td><td class="tagattribdesc">Specify the TJS expression to run when skipped by click.<br />
+middle_click<br /></td></tr>
+<tr><td class="tagattribalias">canskip</td><td class="tagattribname"><a class="targanchor" name="wait_trigger_skip" id="wait_trigger_skip">skip</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If you specify true, you can skip the waiting action by clicking.<br /></td></tr>
+<tr><td class="tagattribalias">onskip</td><td class="tagattribname"><a class="targanchor" name="wait_trigger_on_skip" id="wait_trigger_on_skip">on_skip</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">TJS expression</td><td class="tagattribdesc">Specify the TJS expression to run when skipped by click.<br /></td></tr>
 </tbody></table><div class="tagremarks">
 Wait for the TJS2 script to call the GConductor#signal method.<br />
 </div>
@@ -740,13 +740,13 @@ Wait for the TJS2 script to call the GConductor#signal method.<br />
 <h1><a name="wheel" id="wheel" class="targanchor"><span class="b">wheel</span>(No alias)</a></h1>
 <div class="taggenre">Events</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of wheel attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="wheel_storage" id="wheel_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the scenario file to jump to. If omitted, the current scenario file is assumed.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="wheel_storage" id="wheel_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the scenario file to jump to. If omitted, the current scenario file is assumed.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="wheel_target" id="wheel_target">target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Label name</td><td class="tagattribdesc">Specify the label to jump to.<br />
-If omitted, execution starts from the beginning of the file.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="wheel_function" id="wheel_function">function</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">TJS expression</td><td class="tagattribdesc">Specifies the method name to be executed when wheeled. It is called as function(shift, delta, x, y). If omitted, the call will not be executed. If storage or target is specified, this method call is executed before moving to the jump destination.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="wheel_exp" id="wheel_exp">exp</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">TJS expression</td><td class="tagattribdesc">Specifies the TJS expression to be executed at wheel time. If omitted, the expression will not be executed. If storage or target is specified, this expression is executed before moving to the jump destination.<br />
-<tr><td class="tagattribalias">se</td><td class="tagattribname"><a class="targanchor" name="wheel_sound_effect" id="wheel_sound_effect">sound_effect</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the sound effect to play when wheeling. If not specified, no sound effects will be played.<br />
-<tr><td class="tagattribalias">sebuf</td><td class="tagattribname"><a class="targanchor" name="wheel_sound_effect_buffer_number" id="wheel_sound_effect_buffer_number">sound_effect_buffer_number</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specifies the sound effect buffer that plays the sound effect specified by sound_effect. If omitted, 0 is assumed.<br />
+If omitted, execution starts from the beginning of the file.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="wheel_function" id="wheel_function">function</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">TJS expression</td><td class="tagattribdesc">Specifies the method name to be executed when wheeled. It is called as function(shift, delta, x, y). If omitted, the call will not be executed. If storage or target is specified, this method call is executed before moving to the jump destination.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="wheel_exp" id="wheel_exp">exp</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">TJS expression</td><td class="tagattribdesc">Specifies the TJS expression to be executed at wheel time. If omitted, the expression will not be executed. If storage or target is specified, this expression is executed before moving to the jump destination.<br /></td></tr>
+<tr><td class="tagattribalias">se</td><td class="tagattribname"><a class="targanchor" name="wheel_sound_effect" id="wheel_sound_effect">sound_effect</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the sound effect to play when wheeling. If not specified, no sound effects will be played.<br /></td></tr>
+<tr><td class="tagattribalias">sebuf</td><td class="tagattribname"><a class="targanchor" name="wheel_sound_effect_buffer_number" id="wheel_sound_effect_buffer_number">sound_effect_buffer_number</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specifies the sound effect buffer that plays the sound effect specified by sound_effect. If omitted, 0 is assumed.<br /></td></tr>
 </tbody></table><div class="tagremarks">
 Set scripts and TJS expressions to be executed at wheel events.
 </div>
@@ -756,19 +756,19 @@ Set scripts and TJS expressions to be executed at wheel events.
 <div class="taggenre">Events</div>
 <div class="tagremarks">Clear wheel events.<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div>
 
 <h1><a name="timeout" id="timeout" class="targanchor"><span class="b">timeout</span>(No alias)</a></h1>
 <div class="taggenre">Events</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of timeout attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="timeout_storage" id="timeout_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the scenario file to jump to. If omitted, the current scenario file is assumed.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="timeout_storage" id="timeout_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the scenario file to jump to. If omitted, the current scenario file is assumed.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="timeout_target" id="timeout_target">target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Label name</td><td class="tagattribdesc">Specify the label to jump to.<br />
-If omitted, execution starts from the beginning of the file.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="timeout_exp" id="timeout_exp">exp</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">TJS expression</td><td class="tagattribdesc">Specifies a TJS expression to be executed on timeout. If omitted, the expression will not be executed. If storage or target is specified, this expression is executed before moving to the jump destination.<br />
-<tr><td class="tagattribalias">se</td><td class="tagattribname"><a class="targanchor" name="timeout_sound_effect" id="timeout_sound_effect">sound_effect</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the sound effect to play when timeout occurs. If not specified, no sound effects will be played.<br />
-<tr><td class="tagattribalias">sebuf</td><td class="tagattribname"><a class="targanchor" name="timeout_sound_effect_buffer_number" id="timeout_sound_effect_buffer_number">sound_effect_buffer_number</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specifies the sound effect buffer that plays the sound effect specified by sound_effect. If omitted, 0 is assumed.<br />
+If omitted, execution starts from the beginning of the file.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="timeout_exp" id="timeout_exp">exp</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">TJS expression</td><td class="tagattribdesc">Specifies a TJS expression to be executed on timeout. If omitted, the expression will not be executed. If storage or target is specified, this expression is executed before moving to the jump destination.<br /></td></tr>
+<tr><td class="tagattribalias">se</td><td class="tagattribname"><a class="targanchor" name="timeout_sound_effect" id="timeout_sound_effect">sound_effect</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the sound effect to play when timeout occurs. If not specified, no sound effects will be played.<br /></td></tr>
+<tr><td class="tagattribalias">sebuf</td><td class="tagattribname"><a class="targanchor" name="timeout_sound_effect_buffer_number" id="timeout_sound_effect_buffer_number">sound_effect_buffer_number</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specifies the sound effect buffer that plays the sound effect specified by sound_effect. If omitted, 0 is assumed.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="timeout_time" id="timeout_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">milliseconds</td><td class="tagattribdesc">Specify the time until timeout in ms.<br />
-If omitted, 0 is assumed.<br />
+If omitted, 0 is assumed.<br /></td></tr>
 </tbody></table><div class="tagremarks">Register timeout. The timeout wait starts from the time the s tag is executed.<br />
 If you use this tag, please use the s tag to wait for options as soon as possible.<br />
 </div>
@@ -778,17 +778,17 @@ If you use this tag, please use the s tag to wait for options as soon as possibl
 <div class="taggenre">Events</div>
 <div class="tagremarks">Clears timeout events.<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div>
 
 <h1><a name="click" id="click" class="targanchor"><span class="b">click</span>(No alias)</a></h1>
 <div class="taggenre">Events</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of click attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="click_storage" id="click_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the scenario file to jump to. If omitted, the current scenario file is assumed.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="click_storage" id="click_storage">storage</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the scenario file to jump to. If omitted, the current scenario file is assumed.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="click_target" id="click_target">target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Label name</td><td class="tagattribdesc">Specify the label to jump to.<br />
-If omitted, execution starts from the beginning of the file.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="click_exp" id="click_exp">exp</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">TJS expression</td><td class="tagattribdesc">Specifies the TJS expression to be executed on click. If omitted, the expression will not be executed. If storage or target is specified, this expression is executed before moving to the jump destination.<br />
-<tr><td class="tagattribalias">se</td><td class="tagattribname"><a class="targanchor" name="click_sound_effect" id="click_sound_effect">sound_effect</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the sound effect to play when clicked. If not specified, no sound effects will be played.<br />
-<tr><td class="tagattribalias">sebuf</td><td class="tagattribname"><a class="targanchor" name="click_sound_effect_buffer_number" id="click_sound_effect_buffer_number">sound_effect_buffer_number</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specifies the sound effect buffer that plays the sound effect specified by sound_effect. If omitted, 0 is assumed.<br />
+If omitted, execution starts from the beginning of the file.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="click_exp" id="click_exp">exp</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">TJS expression</td><td class="tagattribdesc">Specifies the TJS expression to be executed on click. If omitted, the expression will not be executed. If storage or target is specified, this expression is executed before moving to the jump destination.<br /></td></tr>
+<tr><td class="tagattribalias">se</td><td class="tagattribname"><a class="targanchor" name="click_sound_effect" id="click_sound_effect">sound_effect</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specifies the sound effect to play when clicked. If not specified, no sound effects will be played.<br /></td></tr>
+<tr><td class="tagattribalias">sebuf</td><td class="tagattribname"><a class="targanchor" name="click_sound_effect_buffer_number" id="click_sound_effect_buffer_number">sound_effect_buffer_number</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Integer</td><td class="tagattribdesc">Specifies the sound effect buffer that plays the sound effect specified by sound_effect. If omitted, 0 is assumed.<br /></td></tr>
 </tbody></table><div class="tagremarks">Register the click wait for the window. Reacts when you click on a place where there is no link or button.<br />
 </div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
@@ -797,18 +797,18 @@ If omitted, execution starts from the beginning of the file.<br />
 <div class="taggenre">Events</div>
 <div class="tagremarks">Clear the click event.<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div>
 
 <h1><a name="show_history" id="show_history" class="targanchor"><span class="b">show_history</span>(showhistory)</a></h1>
 <div class="taggenre">Message operations</div>
 <div class="tagremarks">Show history layer.<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div>
 
 <h1><a name="history_action" id="history_action" class="targanchor"><span class="b">history_action</span>(hact)</a></h1>
 <div class="taggenre">Message operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of history_action attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_action_exp" id="history_action_exp">exp</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">TJS expression</td><td class="tagattribdesc">Specify the TJS expression to run when the message is clicked.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_action_exp" id="history_action_exp">exp</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">TJS expression</td><td class="tagattribdesc">Specify the TJS expression to run when the message is clicked.<br /></td></tr>
 </tbody></table><div class="tagremarks">Specify actions for message history. The part between this tag and the end_history_action tag becomes clickable on the message history, and you can specify a TJS expression to be executed when clicked. This can be applied to allowing voices that were previously played along with messages to be played back by clicking on the message history.<br />
 </div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
@@ -817,22 +817,22 @@ If omitted, execution starts from the beginning of the file.<br />
 <div class="taggenre">Message operations</div>
 <div class="tagremarks">Ends the message history action set with the history_action tag (clears the settings).<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div>
 
 <h1><a name="init_history_data" id="init_history_data" class="targanchor"><span class="b">init_history_data</span>(No alias)</a></h1>
 <div class="taggenre">Message operations</div>
 <div class="tagremarks">Delete all historical data.<br />
 </div>
-<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
+<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div>
 
 <h1><a name="history_icon" id="history_icon" class="targanchor"><span class="b">history_icon</span>((No alias))</a></h1>
 <div class="taggenre">Message operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of history_icon attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_icon_storage" id="history_icon_storage">storage</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the icon to display in the history.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_icon_storage" id="history_icon_storage">storage</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the icon to display in the history.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_icon_left" id="history_icon_left">left</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">icon position</td><td class="tagattribdesc">Specify the left position of the icon to be displayed in the history.<br />
-Specify when using a horizontal history layer.<br />
+Specify when using a horizontal history layer.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="history_icon_top" id="history_icon_top">top</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">icon position</td><td class="tagattribdesc">Specify the top position of the icon to be displayed in the history.<br />
-Specify when using a vertical history layer.<br />
+Specify when using a vertical history layer.<br /></td></tr>
 </tbody></table><div class="tagremarks">Set the icon to be displayed in the history. After specifying this tag, the icon will be displayed when the next message is displayed.<br />
 </div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>

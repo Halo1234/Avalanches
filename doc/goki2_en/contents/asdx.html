@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="Shift_JIS"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
@@ -39,7 +39,7 @@ In addition to the tags described here, you can also use the tags described in D
 <h1><a name="load_cell" id="load_cell" class="targanchor"><span class="b">load_cell</span>(No alias)</a></h1>
 <div class="taggenre">Cell operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of load_cell attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="load_cell_storage" id="load_cell_storage">storage</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the file name of the image to load.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="load_cell_storage" id="load_cell_storage">storage</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Storage name</td><td class="tagattribdesc">Specify the file name of the image to load.<br /></td></tr>
 </tbody></table><div class="tagremarks">Load the cell image.<br />
 You can't use this tag to load an image on a parent layer.<br />
 Make sure to use this tag on a cell layer.
@@ -48,48 +48,48 @@ Make sure to use this tag on a cell layer.
 <h1><a name="option" id="option" class="targanchor"><span class="b">option</span>(No alias)</a></h1>
 <div class="taggenre">Cell operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of option attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_flip_ud" id="option_flip_ud">flip_ud</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If you specify true, it will be flipped vertically.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_flip_lr" id="option_flip_lr">flip_lr</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If you specify true, the image will be flipped horizontally.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_flip_ud" id="option_flip_ud">flip_ud</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If you specify true, it will be flipped vertically.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_flip_lr" id="option_flip_lr">flip_lr</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If you specify true, the image will be flipped horizontally.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_clip_width" id="option_clip_width">clip_width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the width of the image.<br />
-If omitted, the original image width will be used.<br />
+If omitted, the original image width will be used.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_clip_height" id="option_clip_height">clip_height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the height of the image.<br />
-If omitted, the original image height will be used.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_clip_left" id="option_clip_left">clip_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the clip position of the image to be displayed.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_clip_top" id="option_clip_top">clip_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the clip position of the image to be displayed.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_center_x" id="option_center_x">center_x</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the center position of the image.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_center_y" id="option_center_y">center_y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the center position of the image.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_left" id="option_left">left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the image position.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_top" id="option_top">top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the image position.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_right" id="option_right">right</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the image position.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_bottom" id="option_bottom">bottom</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the image position.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_visible" id="option_visible">visible</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If true is specified, the layer will be displayed.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_index" id="option_index">index</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">integer value</td><td class="tagattribdesc">Specifies the absolute value of the layer.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_opacity" id="option_opacity">opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0～255</td><td class="tagattribdesc">Specifies the layer's opacity.<br />
+If omitted, the original image height will be used.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_clip_left" id="option_clip_left">clip_left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the clip position of the image to be displayed.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_clip_top" id="option_clip_top">clip_top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the clip position of the image to be displayed.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_center_x" id="option_center_x">center_x</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the center position of the image.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_center_y" id="option_center_y">center_y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the center position of the image.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_left" id="option_left">left</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the image position.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_top" id="option_top">top</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the image position.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_right" id="option_right">right</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the image position.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_bottom" id="option_bottom">bottom</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the image position.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_visible" id="option_visible">visible</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If true is specified, the layer will be displayed.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_index" id="option_index">index</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">integer value</td><td class="tagattribdesc">Specifies the absolute value of the layer.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="option_opacity" id="option_opacity">opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0～255</td><td class="tagattribdesc">Specifies the layer's opacity.<br /></td></tr>
 </tbody></table><div class="tagremarks">Manipulate cell images.<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="fork" id="fork" class="targanchor"><span class="b">fork</span>(No alias)</a></h1>
 <div class="taggenre">Cell operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of fork attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fork_index" id="fork_index">index</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">integer value</td><td class="tagattribdesc">Specifies the index of the cell layer to start from.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fork_target" id="fork_target">target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">integer value</td><td class="tagattribdesc">Specifies the label of the animation to start.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fork_index" id="fork_index">index</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">integer value</td><td class="tagattribdesc">Specifies the index of the cell layer to start from.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="fork_target" id="fork_target">target</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">integer value</td><td class="tagattribdesc">Specifies the label of the animation to start.<br /></td></tr>
 </tbody></table><div class="tagremarks">Starts a new cel animation.<br />
 Executing this tag creates a new cell layer.<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="looping" id="looping" class="targanchor"><span class="b">looping</span>(No alias)</a></h1>
 <div class="taggenre">Cell operations</div>
-</tbody></table><div class="tagremarks">Starts a loop of cel animation.<br />
+<div class="tagremarks">Starts a loop of cel animation.<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="end_looping" id="end_looping" class="targanchor"><span class="b">end_looping</span>(No alias)</a></h1>
 <div class="taggenre">Cell operations</div>
-</tbody></table><div class="tagremarks">This is the end of the cell animation loop.<br />
+<div class="tagremarks">This is the end of the cell animation loop.<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="home" id="home" class="targanchor"><span class="b">home</span>(No alias)</a></h1>
 <div class="taggenre">Cell operations</div>
-</tbody></table><div class="tagremarks">Use this as the starting point of the cell animation loop.<br />
+<div class="tagremarks">Use this as the starting point of the cell animation loop.<br />
 When you stop the animation, it will stop at the position where this tag is placed.<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
@@ -98,17 +98,17 @@ When you stop the animation, it will stop at the position where this tag is plac
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of move attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="move_time" id="move_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">milliseconds</td><td class="tagattribdesc">Specifies the time required for the layer to move a point from the point specified by path.<br />
 Therefore, the movement takes time equal to the number of intervals between points traversed times the value of this attribute.<br />
-However, if you specify a value other than 0 for the accel attribute, the time it takes to pass one point will change (the time required for the entire movement is the number of sections passed * the value of this attribute).<br />
+However, if you specify a value other than 0 for the accel attribute, the time it takes to pass one point will change (the time required for the entire movement is the number of sections passed * the value of this attribute).<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="move_delay" id="move_delay">delay</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">milliseconds</td><td class="tagattribdesc">Specifies the time in ms before automatic layer movement begins.<br />
-If omitted, it is assumed to be 0.<br />
+If omitted, it is assumed to be 0.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="move_path" id="move_path">path</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">"(x1,y1,opacity1) (x2,y2,opacity2) ..."</td><td class="tagattribdesc">Specify the movement position.<br />
 Specify the movement position by separating x (left edge position of layer), y (top edge position of layer), and opacity (layer opacity) with commas, spaces, or parentheses ( ).<br />
-opacity specifies the layer's display density. The density of the layer also changes continuously as you move from point to point.
+opacity specifies the layer's display density. The density of the layer also changes continuously as you move from point to point.</td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="move_accel" id="move_accel">accel</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">A number less than -1 or 0 (default) or greater than 1</td><td class="tagattribdesc">Specify whether to perform accelerated movement.<br />
 If you specify 0, the movement process will proceed at a constant rate from beginning to end (each passing point will be passed at equal intervals of time). If omitted, 0 is assumed.<br />
 A number less than -1 will start faster and gradually become slower.<br />
 A number greater than 1 will start slower and gradually speed up.<br />
-You can also specify a real number.<br />
+You can also specify a real number.<br /></td></tr>
 </tbody></table><div class="tagremarks">Move the layer.<br />
 </div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
@@ -119,37 +119,37 @@ You can also specify a real number.<br />
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_clear" id="layer_move_clear">clear</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies whether to clear the travel path.<br />
 If you specify true, the movement path will be cleared.<br />
 If false is specified, nothing will be done.<br />
-Default is false.<br />
+Default is false.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_transform" id="layer_move_transform">transform</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specify whether to perform transformation (rotation scaling).<br />
 Specifying true will perform transformation.<br />
-false does nothing.<br />
+false does nothing.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_children" id="layer_move_children">children</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specifies whether to include child layers in the transformation.<br />
 If you specify true, children will also be included.<br />
-If false is specified, nothing will be done.<br />
+If false is specified, nothing will be done.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_looping" id="layer_move_looping">looping</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">Specify whether to loop.<br />
 Specifying true will loop.<br />
-If false is specified, nothing will be done.<br />
-<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="layer_move_time" id="layer_move_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">in milliseconds</td><td class="tagattribdesc">Specifies the time it takes for the layer to move from position=0.0 to position=1.0.<br />
+If false is specified, nothing will be done.<br /></td></tr>
+<tr><td class="tagattribalias">None</td><td class="tagattribname"><a class="targanchor" name="layer_move_time" id="layer_move_time">time</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">in milliseconds</td><td class="tagattribdesc">Specifies the time it takes for the layer to move from position=0.0 to position=1.0.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_delay" id="layer_move_delay">delay</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">milliseconds</td><td class="tagattribdesc">Specifies the time in ms before automatic layer movement begins.<br />
-If omitted, it is assumed to be 0.<br />
+If omitted, it is assumed to be 0.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_accel" id="layer_move_accel">accel</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">A number less than -1 or 0 (default) or greater than 1</td><td class="tagattribdesc">Specify whether to perform accelerated movement.<br />
 If you specify 0, the movement process will proceed at a constant rate from beginning to end (each passing point will be passed at equal intervals of time). If omitted, 0 is assumed.<br />
 A number less than -1 will start faster and gradually become slower.<br />
-A number greater than 1 will start slower and gradually speed up.<br />
+A number greater than 1 will start slower and gradually speed up.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_position" id="layer_move_position">position</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">nteger or position in milliseconds (0.0 to 1.0)</td><td class="tagattribdesc">When specifying a position by time, specify within the range of the time attribute.<br />
-When specifying the position directly, specify between 0.0 and 1.0.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_x" id="layer_move_x">x</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the position to move.
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_y" id="layer_move_y">y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the position to move.
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_width" id="layer_move_width">width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the image width to move to.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_height" id="layer_move_height">height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the image height to move to.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_ix" id="layer_move_ix">ix</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the destination image display position.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_iy" id="layer_move_iy">iy</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the destination image display position.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_opacity" id="layer_move_opacity">opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0 ～ 255</td><td class="tagattribdesc">Specify the opacity of the destination.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_angle" id="layer_move_angle">angle</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Angle</td><td class="tagattribdesc">Specify the angle to move to.<br />
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_scale" id="layer_move_scale">scale</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Scale</td><td class="tagattribdesc">Specify the scale to move to.<br />
+When specifying the position directly, specify between 0.0 and 1.0.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_x" id="layer_move_x">x</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the position to move.</td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_y" id="layer_move_y">y</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the position to move.</td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_width" id="layer_move_width">width</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the image width to move to.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_height" id="layer_move_height">height</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the image height to move to.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_ix" id="layer_move_ix">ix</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the destination image display position.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_iy" id="layer_move_iy">iy</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">pixel unit</td><td class="tagattribdesc">Specify the destination image display position.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_opacity" id="layer_move_opacity">opacity</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">0 ～ 255</td><td class="tagattribdesc">Specify the opacity of the destination.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_angle" id="layer_move_angle">angle</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Angle</td><td class="tagattribdesc">Specify the angle to move to.<br /></td></tr>
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_scale" id="layer_move_scale">scale</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">Scale</td><td class="tagattribdesc">Specify the scale to move to.<br /></td></tr>
 <tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="layer_move_start" id="layer_move_start">start</a></td><td class="tagattribrequired">no</td><td class="tagattribformat">true or false</td><td class="tagattribdesc">If you specify true, the movement will start.<br />
 If false is specified, nothing will be done.<br />
-Default is false.<br />
+Default is false.<br /></td></tr>
 </tbody></table><div class="tagremarks">Move the layer.<br />
 </div>
 <div class="tagexample"><code class="bq"><span class="weak">Example:</span><br />
@@ -162,18 +162,18 @@ Default is false.<br />
 
 <h1><a name="stop_move" id="stop_move" class="targanchor"><span class="b">stop_move</span>(No alias)</a></h1>
 <div class="taggenre">Cell operations</div>
-</tbody></table><div class="tagremarks">Stop automatic layer movement.<br />
+<div class="tagremarks">Stop automatic layer movement.<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="wait_move" id="wait_move" class="targanchor"><span class="b">wait_move</span>(No alias)</a></h1>
 <div class="taggenre">Cell operations</div>
-</tbody></table><div class="tagremarks">Wait for the layer to stop moving automatically.<br />
+<div class="tagremarks">Wait for the layer to stop moving automatically.<br />
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
 
 <h1><a name="call_handler" id="call_handler" class="targanchor"><span class="b">call_handler</span>(No alias)</a></h1>
 <div class="taggenre">Layer operations</div>
 <div class="para"><div><table class="tagparams" frame="box" rules="all" summary="Tag List of call_handler attributes"><thead><tr><td>alias</td><td>attribute</td><td>Required?</td><td>value</td><td>Description</td></tr></thead><tbody>
-<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="call_handler_message" id="call_handler_message">message</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Event name</td><td class="tagattribdesc">Specify the event name to be issued to the layer.<br />
+<tr><td class="tagattribalias">none</td><td class="tagattribname"><a class="targanchor" name="call_handler_message" id="call_handler_message">message</a></td><td class="tagattribrequired">yes</td><td class="tagattribformat">Event name</td><td class="tagattribdesc">Specify the event name to be issued to the layer.<br /></td></tr>
 </tbody></table><div class="tagremarks">Publish an event.<br />
 </div>
 <div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">Return to genre/tag list</span></a></div></div></div>
