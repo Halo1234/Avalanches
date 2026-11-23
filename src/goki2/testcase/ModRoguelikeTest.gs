@@ -119,7 +119,7 @@
 @roguelike_item_menu storage=RoguelikeItemMenuBack.png left=300 top=80 margin_left=50 margin_top=40 margin_right=50
 @roguelike_item_menu button_body_opacity=0 button_caption_color=0xFFFFFF
 @roguelike_item_menu price_body_opacity=0 price_caption_color=0xFF0000
-@roguelike_item_menu equip_icon_storage=RoguelikeStatusEquip.png curse_icon_storage=RoguelikeStatusCurse.png
+@roguelike_item_menu equip_icon_storage=RoguelikeStatusEquip.png curse_icon_storage=RoguelikeStatusCurse.png protection_icon_storage=RoguelikeStatusProtection.png
 
 ; アイテムサブメニュー
 @roguelike_item_sub_menu storage=RoguelikeItemSubMenuBack.png left=680 top=100 margin_left=20 margin_top=20
@@ -216,7 +216,7 @@
 @roguelike_character id=player add_item=鉄の盾 equip
 ;@roguelike_character id=player add_item=鑑定の巻物
 ;@roguelike_character id=player add_item=ダメージ罠設置
-@roguelike_character id=player add_item=敵増殖の罠設置
+@roguelike_character id=player add_item=劣化しない巻物
 ;@roguelike_character id=player add_item=混乱の杖 correction_value=10
 @roguelike_character id=player add_item=即死の杖 correction_value=5
 ;@roguelike_character id=player add_item=イオナズンの巻物
